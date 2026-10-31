@@ -425,12 +425,6 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "select.js"])))
   end
 
-  get "/input_otp.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "input_otp.js"])))
-  end
-
   get "/combo_box.js" do
     conn
     |> put_resp_content_type("text/javascript")
@@ -465,12 +459,6 @@ defmodule HeroUI.Preview.Router do
     conn
     |> put_resp_content_type("text/javascript")
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "time_field.js"])))
-  end
-
-  get "/scroll_shadow.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "scroll_shadow.js"])))
   end
 
   get "/autocomplete.js" do

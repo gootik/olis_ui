@@ -1,12 +1,10 @@
 import { installSelect } from "./select.js";
-import { installInputOTP } from "./input_otp.js";
 import { installComboBox } from "./combo_box.js";
 import { installCalendar } from "./calendar.js";
 import { installDateField } from "./date_field.js";
 import { installTimeField } from "./time_field.js";
 import { installDatePicker } from "./date_picker.js";
 import { installColorField } from "./color_field.js";
-import { installScrollShadow } from "./scroll_shadow.js";
 import { installAutocomplete } from "./autocomplete.js";
 import { installSheet } from "./sheet.js";
 import { installDropdown } from "./dropdown.js";
@@ -15,14 +13,12 @@ export { toast, updateToast, dismissToast, clearToasts } from "./toast.js";
 /** Install delegated behavior for HeroUI components. Returns a cleanup function. */
 export function installHeroUI(root = document) {
   const removeSelect = installSelect(root);
-  const removeInputOTP = installInputOTP(root);
   const removeComboBox = installComboBox(root);
   const removeCalendar = installCalendar(root);
   const removeDateField = installDateField(root);
   const removeTimeField = installTimeField(root);
   const removeDatePicker = installDatePicker(root);
   const removeColorField = installColorField(root);
-  const removeScrollShadow = installScrollShadow(root);
   const removeAutocomplete = installAutocomplete(root);
   const removeSheet = installSheet(root);
   const removeDropdown = installDropdown(root);
@@ -290,14 +286,12 @@ export function installHeroUI(root = document) {
   root.addEventListener('cancel', onCancel, true);
   return () => {
     removeSelect();
-    removeInputOTP();
     removeComboBox();
     removeCalendar();
     removeDateField();
     removeTimeField();
     removeDatePicker();
     removeColorField();
-    removeScrollShadow();
     removeAutocomplete();
     removeSheet();
     removeDropdown();

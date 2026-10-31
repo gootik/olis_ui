@@ -449,6 +449,9 @@ defmodule HeroUITest do
       })
 
     assert auto =~ ~s(data-scroll-shadow-mode="auto")
+    assert auto =~ ~s(x-data="heroScrollShadow")
+    assert auto =~ ~s|x-on:phx:update.window="schedule()"|
+    assert auto =~ ~s|x-on:scroll="schedule()"|
     assert auto =~ "scroll-shadow--vertical"
     assert auto =~ "scroll-shadow--fade"
     assert auto =~ ~s(data-scroll-shadow-size="40")
@@ -794,6 +797,8 @@ defmodule HeroUITest do
     assert html =~ ~s(data-visible="true")
     assert length(Regex.scan(~r/data-hero-otp-index=/, html)) == 4
     assert length(Regex.scan(~r/input-otp__separator/, html)) == 1
+    assert html =~ ~s(x-data="heroInputOTP")
+    assert html =~ ~s|x-on:compositionend="onInput($event)"|
 
     assert_raise ArgumentError, fn ->
       render_component(&HeroUI.input_otp/1, %{id: "invalid", length: 4, groups: [3, 3]})

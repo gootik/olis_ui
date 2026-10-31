@@ -667,6 +667,15 @@ defmodule HeroUI do
         id={"#{@id}-otp"}
         class={["input-otp", "input-otp--#{@variant}"]}
         data-hero-otp
+        x-data="heroInputOTP"
+        x-on:input="onInput($event)"
+        x-on:compositionend="onInput($event)"
+        x-on:pointerdown="onPointerDown($event)"
+        x-on:focusin="onFocus()"
+        x-on:focusout="onFocus()"
+        x-on:selectionchange.document="onSelection()"
+        x-on:phx:update.document="sync()"
+        x-on:reset.document="onReset($event)"
         data-invalid={if @errors != [], do: "true"}
         data-allowed-pattern={@allowed_pattern}
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-hero-otp-ready"])}
@@ -701,6 +710,7 @@ defmodule HeroUI do
           spellcheck={@spellcheck}
           class="input input--primary input-otp__input"
           data-hero-otp-input
+          x-ref="input"
           aria-invalid={if @errors != [], do: "true"}
           aria-describedby={if @describedby != "", do: @describedby}
           {@rest}
@@ -1427,6 +1437,11 @@ defmodule HeroUI do
       ]}
       data-slot="scroll-shadow"
       data-hero-scroll-shadow
+      x-data="heroScrollShadow"
+      x-on:scroll="schedule()"
+      x-on:load.capture="schedule()"
+      x-on:resize.window="schedule()"
+      x-on:phx:update.window="schedule()"
       data-orientation={@orientation}
       data-scroll-shadow-mode={if @auto, do: "auto", else: "manual"}
       data-scroll-shadow-size={@size}

@@ -2,6 +2,86 @@ import { installToast } from "./toast.js";
 
 /** Register Alpine state used by HeroUI components before calling Alpine.start(). */
 export function registerHeroUIAlpine(Alpine) {
+  Alpine.data('heroScrollShadow', () => ({
+    last: null,
+    frame: null,
+    resizeObserver: null,
+    mutationObserver: null,
+    observed: new Set(),
+    destroyed: false,
+    init() {
+      if (typeof ResizeObserver !== 'undefined') {
+        this.resizeObserver = new ResizeObserver(() => this.schedule());
+        this.resizeObserver.observe(this.$root);
+      }
+      if (typeof MutationObserver !== 'undefined') {
+        this.mutationObserver = new MutationObserver(() => this.schedule());
+        this.mutationObserver.observe(this.$root, {
+          subtree: true, childList: true, characterData: true, attributes: true,
+          attributeFilter: ['class', 'style', 'hidden', 'dir']
+        });
+      }
+      this.$nextTick(() => this.schedule());
+    },
+    destroy() {
+      this.destroyed = true;
+      this.resizeObserver?.disconnect();
+      this.mutationObserver?.disconnect();
+      if (this.frame != null) cancelAnimationFrame(this.frame);
+      this.observed.clear();
+    },
+    schedule() {
+      if (this.destroyed || !this.$root.isConnected || this.frame != null) return;
+      this.frame = requestAnimationFrame(() => {
+        this.frame = null;
+        if (!this.destroyed && this.$root.isConnected) this.update();
+      });
+    },
+    trackChildren() {
+      if (!this.resizeObserver) return;
+      const children = new Set(this.$root.children);
+      for (const child of this.observed) {
+        if (!children.has(child)) { this.resizeObserver.unobserve(child); this.observed.delete(child); }
+      }
+      for (const child of children) {
+        if (!this.observed.has(child)) { this.resizeObserver.observe(child); this.observed.add(child); }
+      }
+    },
+    update() {
+      this.trackChildren();
+      const element = this.$root, vertical = element.dataset.orientation !== 'horizontal';
+      if (element.dataset.scrollShadowMode !== 'auto') {
+        const requested = element.dataset.scrollShadowVisibility || 'none';
+        const supported = vertical ? ['top', 'bottom', 'both'] : ['left', 'right', 'both'];
+        const visibility = supported.includes(requested) ? requested : 'none';
+        this.setEdges(vertical, visibility);
+        element.dataset.heroScrollShadowCurrent = visibility;
+        this.last = null;
+        return;
+      }
+      const extent = vertical ? element.scrollHeight - element.clientHeight : element.scrollWidth - element.clientWidth;
+      const position = vertical ? element.scrollTop : Math.abs(element.scrollLeft);
+      const offset = Math.max(0, Number(element.dataset.scrollShadowOffset) || 0), tolerance = 0.5;
+      const before = extent > tolerance && position > offset + tolerance;
+      const after = extent > tolerance && position < extent - offset - tolerance;
+      const visibility = before && after ? 'both' : before ? (vertical ? 'top' : 'left') : after ? (vertical ? 'bottom' : 'right') : 'none';
+      this.setEdges(vertical, visibility);
+      element.dataset.heroScrollShadowCurrent = visibility;
+      if (this.last != null && this.last !== visibility) {
+        element.dispatchEvent(new CustomEvent('hero:scroll-shadow-change', {bubbles: true, detail: {visibility}}));
+        const button = element.querySelector(':scope > [data-hero-scroll-shadow-event]');
+        if (button) { button.setAttribute('phx-value-visibility', visibility); button.click(); }
+      }
+      this.last = visibility;
+    },
+    setEdges(vertical, visibility) {
+      const element = this.$root;
+      for (const attr of ['top', 'bottom', 'top-bottom', 'left', 'right', 'left-right']) element.removeAttribute(`data-${attr}-scroll`);
+      const attr = visibility === 'both' ? (vertical ? 'top-bottom' : 'left-right') : visibility;
+      if (attr !== 'none') element.setAttribute(`data-${attr}-scroll`, 'true');
+    }
+  }));
+
   Alpine.data('heroToolbar', () => {
     const originals = new Map();
     const selector = 'button, a[href], input:not([type="hidden"]), select, textarea, [contenteditable="true"], [tabindex]';
@@ -260,6 +340,100 @@ export function registerHeroUIAlpine(Alpine) {
         return;
       } else return;
       event.preventDefault(); this.activate(next, true);
+    }
+  }));
+
+  // The real input owns editing, autofill, IME, and form submission.
+  Alpine.data('heroInputOTP', () => ({
+    previous: null,
+    previousInput: null,
+    init() { this.$nextTick(() => this.sync()); },
+    destroy() {
+      delete this.$root.dataset.heroOtpReady;
+      delete this.$root.dataset.disabled;
+    },
+    allowed(value) {
+      const pattern = this.$root.dataset.allowedPattern;
+      if (!pattern) return true;
+      try { return new RegExp(`^(?:${pattern})$`, 'v').test(value); }
+      catch (_) {
+        try { return new RegExp(`^(?:${pattern})$`, 'u').test(value); }
+        catch (_) { return true; }
+      }
+    },
+    render() {
+      const input = this.$refs.input;
+      if (!input) return;
+      this.$root.dataset.heroOtpReady = 'true';
+      const disabled = input.matches(':disabled');
+      if (disabled) this.$root.dataset.disabled = 'true'; else delete this.$root.dataset.disabled;
+      const focused = document.activeElement === input && !disabled;
+      const start = input.selectionStart ?? 0, end = input.selectionEnd ?? start;
+      const active = Math.min(start, input.maxLength - 1);
+      this.$root.querySelectorAll('[data-hero-otp-index]').forEach(slot => {
+        const index = Number(slot.dataset.heroOtpIndex), character = input.value[index] || '';
+        const value = slot.querySelector('[data-hero-otp-value]');
+        const caret = slot.querySelector('[data-hero-otp-caret]');
+        if (value.textContent !== character) value.textContent = character;
+        value.hidden = !character;
+        caret.hidden = !(focused && start === end && index === active && !character);
+        if (character) slot.dataset.filled = 'true'; else delete slot.dataset.filled;
+        if (focused && index === active) slot.dataset.active = 'true'; else delete slot.dataset.active;
+        if (disabled) slot.dataset.disabled = 'true'; else delete slot.dataset.disabled;
+        if (this.$root.dataset.invalid === 'true') slot.dataset.invalid = 'true'; else delete slot.dataset.invalid;
+      });
+    },
+    sync() {
+      const input = this.$refs.input;
+      if (!input) return;
+      if (this.previousInput !== input || !this.previous || this.previous.value !== input.value) {
+        this.previousInput = input;
+        this.previous = {value: input.value, start: input.selectionStart, end: input.selectionEnd};
+      }
+      this.render();
+    },
+    onInput(event) {
+      const input = this.$refs.input;
+      if (event.target !== input || event.isComposing) return;
+      const state = this.previous;
+      if (!this.allowed(input.value) && state) {
+        input.value = state.value;
+        input.setSelectionRange(state.start ?? input.value.length, state.end ?? input.value.length);
+        event.stopImmediatePropagation();
+        this.render();
+        return;
+      }
+      const wasComplete = state?.value.length === input.maxLength;
+      this.previous = {value: input.value, start: input.selectionStart, end: input.selectionEnd};
+      this.render();
+      if (!wasComplete && input.value.length === input.maxLength) {
+        input.dispatchEvent(new CustomEvent('hero:otp-complete', {bubbles: true, detail: {value: input.value}}));
+      }
+    },
+    onPointerDown(event) {
+      const input = this.$refs.input;
+      if (event.target !== input || input.matches(':disabled') || input.readOnly || event.button !== 0) return;
+      const slots = [...this.$root.querySelectorAll('[data-hero-otp-index]')];
+      if (!slots.length) return;
+      const nearest = slots.reduce((best, slot) => {
+        const rect = slot.getBoundingClientRect(), distance = Math.abs(event.clientX - (rect.left + rect.width / 2));
+        return distance < best.distance ? {slot, distance} : best;
+      }, {slot: slots[0], distance: Infinity}).slot;
+      event.preventDefault();
+      input.focus({preventScroll: true});
+      const index = Math.min(Number(nearest.dataset.heroOtpIndex), input.value.length);
+      input.setSelectionRange(index, Math.min(index + 1, input.value.length));
+      this.render();
+    },
+    onSelection() {
+      const input = this.$refs.input;
+      if (document.activeElement !== input) return;
+      if (this.previous) { this.previous.start = input.selectionStart; this.previous.end = input.selectionEnd; }
+      this.render();
+    },
+    onFocus() { queueMicrotask(() => { if (this.$root.isConnected) this.render(); }); },
+    onReset(event) {
+      if (event.target === this.$refs.input?.form) setTimeout(() => { if (this.$root.isConnected) this.sync(); }, 0);
     }
   }));
 

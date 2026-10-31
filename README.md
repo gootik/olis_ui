@@ -117,7 +117,7 @@ Group related fields with a native fieldset. Its legend names the group, its des
 </.fieldset>
 ```
 
-Scroll shadows fade the edges of a constrained scrollable region. Set a height or width with Tailwind classes, and give the region a label and `tabindex="0"` when keyboard users need to scroll it. Use `orientation="horizontal"`, `hide_scrollbar`, `size`, or `offset` as needed. `visibility` can explicitly select `top`, `bottom`, `left`, `right`, `both`, or `none`; the default `auto` follows scroll position. With `installHeroUI`, automatic changes dispatch a bubbling `hero:scroll-shadow-change` event and can also send a LiveView event via `on_visibility_change`, with a `"visibility"` parameter. The callback fires on changes after the initial measurement.
+Scroll shadows fade the edges of a constrained scrollable region. Set a height or width with Tailwind classes, and give the region a label and `tabindex="0"` when keyboard users need to scroll it. Use `orientation="horizontal"`, `hide_scrollbar`, `size`, or `offset` as needed. `visibility` can explicitly select `top`, `bottom`, `left`, `right`, `both`, or `none`; the default `auto` follows scroll position. With HeroUI's Alpine providers registered, automatic changes dispatch a bubbling `hero:scroll-shadow-change` event and can also send a LiveView event via `on_visibility_change`, with a `"visibility"` parameter. The callback fires on changes after the initial measurement.
 
 ```heex
 <.scroll_shadow id="activity" class="max-h-48" tabindex="0" role="region" aria-label="Activity">
@@ -125,7 +125,7 @@ Scroll shadows fade the edges of a constrained scrollable region. Set a height o
 </.scroll_shadow>
 ```
 
-HeroUI's CSS supplies automatic fades without JavaScript in browsers that support scroll-driven animations. In other browsers, install the JavaScript module for automatic detection; explicitly selected visibility also works without it.
+HeroUI's CSS supplies automatic fades without JavaScript in browsers that support scroll-driven animations. In other browsers, register HeroUI's Alpine providers for automatic detection; explicitly selected visibility also works without it.
 
 Avatar groups inherit `size`, `color`, and `variant` from the group, with per-avatar overrides available. Set `max` to show an automatic overflow count, use `grid` for a wrapping layout, or choose `overlap="ring"` for a solid seam. An explicit `:count` slot replaces the automatic count and supplies its own accessible label. Give meaningful groups a role and label.
 
@@ -472,7 +472,7 @@ Search fields accept a Phoenix form field or an explicit `id`, `name`, and `valu
 <.search_field field={@form[:query]} label="Search" placeholder="Search..." />
 ```
 
-One-time-code fields use one native input for form submission, keyboard editing, paste, and device autofill. The default six slots are grouped three and three; use `length` and `groups` to configure them. `allowed_pattern` is an optional JavaScript regular expression matched against the entire intermediate value, so it should allow partial input as well as the empty string. Native `pattern` can separately specify the final form-validation rule. The JavaScript installer renders the styled slots and emits a bubbling `hero:otp-complete` event with the completed value in `event.detail.value`; without it, the native input remains usable.
+One-time-code fields use one native input for form submission, keyboard editing, paste, and device autofill. The default six slots are grouped three and three; use `length` and `groups` to configure them. `allowed_pattern` is an optional JavaScript regular expression matched against the entire intermediate value, so it should allow partial input as well as the empty string. Native `pattern` can separately specify the final form-validation rule. The registered HeroUI Alpine components render the styled slots and emit a bubbling `hero:otp-complete` event with the completed value in `event.detail.value`; without it, the native input remains usable.
 
 ```heex
 <.input_otp field={@form[:code]} label="Verification code" length={6} groups={[3, 3]}

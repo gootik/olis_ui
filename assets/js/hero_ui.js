@@ -34,22 +34,6 @@ export function installHeroUI(root = document) {
   const removeAutocomplete = installAutocomplete(root);
   const removeSheet = installSheet(root);
   const removeDropdown = installDropdown(root);
-  function tabsIn(tabs) {
-    return Array.from(tabs.querySelectorAll('[role="tab"]')).filter(tab => tab.closest('[data-hero-tabs]') === tabs && !tab.disabled);
-  }
-  function selectTab(tab, focus = false) {
-    const tabs = tab.closest('[data-hero-tabs]');
-    if (!tabs || tab.disabled) return;
-    for (const item of tabsIn(tabs)) {
-      const selected = item === tab;
-      item.setAttribute('aria-selected', String(selected));
-      item.setAttribute('data-selected', String(selected));
-      item.tabIndex = selected ? 0 : -1;
-      const panel = document.getElementById(item.getAttribute('aria-controls'));
-      if (panel) panel.hidden = !selected;
-    }
-    if (focus) tab.focus();
-  }
   const menuSearch = new WeakMap();
   function menuItems(menu) {
     return Array.from(menu.querySelectorAll('[role="menuitem"]')).filter(item => !item.disabled && item.getAttribute('aria-disabled') !== 'true');
@@ -207,21 +191,6 @@ export function installHeroUI(root = document) {
       if (target && !target.matches(':popover-open')) { event.preventDefault(); target.dataset.heroFocusLast = String(event.key === 'ArrowUp'); target.showPopover(); }
       return;
     }
-    const tab = event.target.closest?.('[role="tab"]');
-    const tabs = tab?.closest('[data-hero-tabs]');
-    if (!tabs || !root.contains(tabs)) return;
-    const items = tabsIn(tabs);
-    const current = items.indexOf(tab);
-    const vertical = tabs.dataset.orientation === 'vertical';
-    const rtl = getComputedStyle(tabs).direction === 'rtl';
-    let index;
-    if (event.key === 'Home') index = 0;
-    else if (event.key === 'End') index = items.length - 1;
-    else if (event.key === (vertical ? 'ArrowDown' : rtl ? 'ArrowLeft' : 'ArrowRight')) index = (current + 1) % items.length;
-    else if (event.key === (vertical ? 'ArrowUp' : rtl ? 'ArrowRight' : 'ArrowLeft')) index = (current - 1 + items.length) % items.length;
-    else return;
-    event.preventDefault();
-    selectTab(items[index], true);
   }
   function onAvatarError(event) {
     const image = event.target;
@@ -342,8 +311,6 @@ export function installHeroUI(root = document) {
     const menu = item?.closest('[data-hero-menu]');
     if (menu && !item.disabled && item.getAttribute('aria-disabled') !== 'true') { menu.hidePopover(); if (item.tagName !== 'A') menuTrigger(menu)?.focus(); }
 
-    const tab = event.target.closest?.('[role="tab"]');
-    if (tab?.closest('[data-hero-tabs]') && root.contains(tab)) { selectTab(tab); return; }
     const trigger = event.target.closest?.('[data-hero-dialog-open]');
     if (trigger && root.contains(trigger)) {
       const id = trigger.getAttribute('data-hero-dialog-open');

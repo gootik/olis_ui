@@ -144,7 +144,7 @@ const liveSocket = new LiveSocket("/live", Socket, {
 liveSocket.connect();
 ```
 
-Start Alpine and connect the LiveSocket only once. Search Field and Number Field use Alpine for their client-side behavior; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
+Start Alpine and connect the LiveSocket only once. Search Field, Number Field, and Tabs use Alpine for their client-side behavior; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
 
 Disclosures use native `<details>` and work without JavaScript. A group permits one open item by default; add `allows_multiple_expanded` to allow several. Use `default_expanded_keys` for browser-managed state or pass `expanded_keys` and `on_toggle` to manage state in LiveView. The toggle event sends the item `"key"` and the desired `"expanded"` state as `"true"` or `"false"`; update `expanded_keys` in the event handler. Install the JavaScript module for animated transitions and event synchronization.
 
@@ -187,7 +187,7 @@ Alert dialogs and drawers use the same opener as modals. Alert dialogs require a
 </.alert_dialog>
 ```
 
-Tabs use labelled slots and support arrow keys, Home, and End. The `selected` attribute sets the initial selection; subsequent selection is client-managed and preserved through LiveView patches. Tab IDs must be unique within a tab set and at least one tab must be enabled.
+Tabs use labelled slots and support arrow keys, Home, and End. By default, selection follows focus. Set `activation_mode="manual"` to move focus with arrow keys and select with Enter or Space. The `selected` or `default_selected_key` attribute sets the initial selection; subsequent selection is browser-managed and preserved through LiveView patches. For LiveView-controlled selection, pass `selected_key={@selected}` and `on_selection_change="select_tab"`; the event receives `"key"`, and the handler must update the assign. Set `orientation="vertical"`, `variant="secondary"`, `align="start"` or `"end"`, and `show_separators` as needed. Overflowing lists show scroll controls. Tab IDs must be unique within a tab set and at least one tab must be enabled.
 
 ```heex
 <.tabs id="settings" label="Settings">

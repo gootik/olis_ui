@@ -1092,6 +1092,38 @@ defmodule HeroUITest do
     assert html =~ ~s(aria-controls="settings-panel-two")
     assert html =~ ~s(aria-labelledby="settings-tab-two")
     assert html =~ ~s(aria-selected="true")
+    assert html =~ ~s(x-data="heroTabs")
+    assert html =~ ~s(data-controlled="false")
+
+    controlled =
+      render_component(&HeroUI.tabs/1, %{
+        id: "controlled",
+        label: "Settings",
+        tab: tabs,
+        selected_key: "two",
+        on_selection_change: "select_tab",
+        activation_mode: "manual",
+        orientation: "vertical",
+        align: "start",
+        show_separators: true
+      })
+
+    assert controlled =~ ~s(data-selected-key="two")
+    assert controlled =~ ~s(data-controlled="true")
+    assert controlled =~ ~s(data-activation-mode="manual")
+    assert controlled =~ ~s(phx-click="select_tab")
+    assert controlled =~ "tabs--align-start"
+    assert controlled =~ ~s(data-slot="tabs-separator")
+
+    assert_raise ArgumentError, ~r/cannot be combined/, fn ->
+      render_component(&HeroUI.tabs/1, %{
+        id: "ambiguous",
+        label: "Settings",
+        tab: tabs,
+        selected_key: "two",
+        selected: "two"
+      })
+    end
 
     assert_raise ArgumentError, fn ->
       render_component(&HeroUI.tabs/1, %{id: "invalid", label: "Invalid", tab: [hd(tabs)]})

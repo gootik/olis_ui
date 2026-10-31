@@ -100,6 +100,7 @@ defmodule HeroUI.Preview.Live do
         controlled_sheet_open: false,
         sheet_last: "none",
         toolbar_action: "none",
+        tabs_selection: "overview",
         dropdown_sort: "newest",
         dropdown_columns: ["name", "status"],
         dropdown_last: "none",
@@ -219,6 +220,10 @@ defmodule HeroUI.Preview.Live do
   def handle_event("toolbar_action", %{"action" => action}, socket)
       when action in ~w(Copy Cut Undo Redo),
       do: {:noreply, assign(socket, :toolbar_action, action)}
+
+  def handle_event("tabs_selection", %{"key" => key}, socket)
+      when key in ~w(overview analytics reports),
+      do: {:noreply, assign(socket, :tabs_selection, key)}
 
   def handle_event("dropdown_sort", %{"key" => key}, socket),
     do: {:noreply, assign(socket, :dropdown_sort, key)}
@@ -1892,6 +1897,58 @@ defmodule HeroUI.Preview.Live do
                     <p id="tab-count">Security updates: {@count}</p><.button phx-click="increment">Update tab</.button>
                   </:tab>
                   <:tab id="disabled" label="Disabled" disabled>Unavailable</:tab>
+                </.tabs>
+              </.preview_card>
+              <.preview_card
+                title="Controlled tabs"
+                description="Manual activation and server-controlled selection."
+              >
+                <.tabs
+                  id="controlled-tabs"
+                  label="Reports"
+                  variant="secondary"
+                  activation_mode="manual"
+                  selected_key={@tabs_selection}
+                  on_selection_change="tabs_selection"
+                >
+                  <:tab id="overview" label="Overview">Overview of your project.</:tab>
+                  <:tab id="analytics" label="Analytics">Analytics for your project.</:tab>
+                  <:tab id="reports" label="Reports">Your latest reports.</:tab>
+                </.tabs>
+                <p
+                  id="tabs-selection-state"
+                  class="mt-3 mb-0 text-xs text-zinc-500 dark:text-zinc-400"
+                >
+                  Selected: {@tabs_selection}
+                </p>
+                <.button
+                  size="sm"
+                  variant="secondary"
+                  class="mt-3"
+                  phx-click="tabs_selection"
+                  phx-value-key="reports"
+                >Select reports</.button>
+              </.preview_card>
+              <.preview_card title="Scrollable tabs" description="Overflow controls and separators.">
+                <.tabs id="overflow-tabs" label="Workspace sections" show_separators class="w-full">
+                  <:tab id="overview" label="Overview">Workspace overview.</:tab>
+                  <:tab id="activity" label="Activity">Recent activity.</:tab>
+                  <:tab id="members" label="Members">Workspace members.</:tab>
+                  <:tab id="billing" label="Billing">Billing details.</:tab>
+                  <:tab id="settings" label="Settings">Workspace settings.</:tab>
+                </.tabs>
+              </.preview_card>
+              <.preview_card title="Vertical tabs" description="A compact navigation layout.">
+                <.tabs
+                  id="vertical-tabs"
+                  label="Account settings"
+                  orientation="vertical"
+                  variant="secondary"
+                  align="start"
+                >
+                  <:tab id="account" label="Account">Manage your account.</:tab>
+                  <:tab id="security" label="Security">Security settings.</:tab>
+                  <:tab id="notifications" label="Notifications">Notification settings.</:tab>
                 </.tabs>
               </.preview_card>
             </div>

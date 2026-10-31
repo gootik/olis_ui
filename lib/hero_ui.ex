@@ -3880,30 +3880,49 @@ defmodule HeroUI do
   defp valid_sheet_snap_point?(_), do: false
 
   @doc """
-  A keyboard-accessible tab set. The first enabled tab is selected by default.
-  Tab ids must be unique within the set. Requires `installHeroUI` in the browser.
+  A keyboard-accessible tab set. Use `selected_key` and `on_selection_change`
+  for LiveView-controlled selection. Requires HeroUI's Alpine components.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
   attr(:selected, :string, default: nil)
+  attr(:selected_key, :string, default: nil)
+  attr(:default_selected_key, :string, default: nil)
+  attr(:on_selection_change, :string, default: nil)
+  attr(:target, :any, default: nil)
   attr(:variant, :string, default: "primary", values: ~w(primary secondary))
   attr(:orientation, :string, default: "horizontal", values: ~w(horizontal vertical))
+  attr(:align, :string, default: "center", values: ~w(start center end))
+  attr(:activation_mode, :string, default: "automatic", values: ~w(automatic manual))
+  attr(:show_separators, :boolean, default: false)
+  attr(:scroll_previous_label, :string, default: "Scroll tabs backward")
+  attr(:scroll_next_label, :string, default: "Scroll tabs forward")
   attr(:class, :any, default: nil)
 
   slot :tab, required: true do
     attr(:id, :string, required: true)
     attr(:label, :string, required: true)
     attr(:disabled, :boolean)
+    attr(:class, :any)
   end
 
   def tabs(assigns) do
     enabled = Enum.reject(assigns.tab, &Map.get(&1, :disabled, false))
     ids = Enum.map(assigns.tab, & &1.id)
 
-    if enabled == [] or length(ids) != length(Enum.uniq(ids)),
-      do: raise(ArgumentError, "tabs require distinct ids and at least one enabled tab")
+    if enabled == [] or Enum.any?(ids, &(not is_binary(&1) or &1 == "")) or
+         length(ids) != length(Enum.uniq(ids)),
+       do: raise(ArgumentError, "tabs require distinct ids and at least one enabled tab")
 
-    selected = assigns.selected || hd(enabled).id
+    if assigns.selected && assigns.default_selected_key,
+      do:
+        raise(ArgumentError, "use either selected or default_selected_key for initial selection")
+
+    if assigns.selected_key && (assigns.selected || assigns.default_selected_key),
+      do: raise(ArgumentError, "selected_key cannot be combined with an initial selection")
+
+    selected =
+      assigns.selected_key || assigns.default_selected_key || assigns.selected || hd(enabled).id
 
     if not Enum.any?(enabled, &(&1.id == selected)),
       do: raise(ArgumentError, "selected tab must exist and be enabled")
@@ -3913,50 +3932,137 @@ defmodule HeroUI do
     ~H"""
     <div
       id={@id}
-      class={["tabs", "tabs--#{@variant}", @class]}
+      class={["tabs", "tabs--#{@variant}", @align != "center" && "tabs--align-#{@align}", @class]}
+      data-slot="tabs"
       data-orientation={@orientation}
       data-hero-tabs
+      data-initial-key={@selected_id}
+      data-selected-key={@selected_key}
+      data-controlled={to_string(!is_nil(@selected_key))}
+      data-activation-mode={@activation_mode}
+      x-data="heroTabs"
+      x-on:phx:update.window="sync()"
     >
-      <div class="tabs__list-container">
+      <div class="tabs__list-container min-w-0 max-w-full" data-slot="tabs-list-container">
         <div
-          class="tabs__list"
-          role="tablist"
-          aria-label={@label}
-          aria-orientation={@orientation}
+          class={[
+            "scroll-shadow",
+            "scroll-shadow--hide-scrollbar",
+            "scroll-shadow--#{@orientation}",
+            "scroll-shadow--fade",
+            "tabs__list-container__scroller",
+            "max-w-full",
+            "[--scroll-shadow-size:64px]"
+          ]}
           data-orientation={@orientation}
+          data-scroll-shadow-mode="auto"
+          x-ref="scroller"
+          x-on:scroll="updateScroll()"
+          x-bind:data-left-scroll="$el.dataset.orientation === 'horizontal' && before && !after ? 'true' : null"
+          x-bind:data-right-scroll="$el.dataset.orientation === 'horizontal' && !before && after ? 'true' : null"
+          x-bind:data-left-right-scroll="$el.dataset.orientation === 'horizontal' && before && after ? 'true' : null"
+          x-bind:data-top-scroll="$el.dataset.orientation === 'vertical' && before && !after ? 'true' : null"
+          x-bind:data-bottom-scroll="$el.dataset.orientation === 'vertical' && !before && after ? 'true' : null"
+          x-bind:data-top-bottom-scroll="$el.dataset.orientation === 'vertical' && before && after ? 'true' : null"
+          phx-mounted={
+            Phoenix.LiveView.JS.ignore_attributes([
+              "data-left-scroll",
+              "data-right-scroll",
+              "data-left-right-scroll",
+              "data-top-scroll",
+              "data-bottom-scroll",
+              "data-top-bottom-scroll"
+            ])
+          }
         >
-          <button
-            :for={tab <- @tab}
-            id={"#{@id}-tab-#{tab.id}"}
-            type="button"
-            role="tab"
-            class="tabs__tab"
-            data-selected={to_string(tab.id == @selected_id)}
-            aria-selected={to_string(tab.id == @selected_id)}
-            aria-controls={"#{@id}-panel-#{tab.id}"}
-            tabindex={if tab.id == @selected_id, do: "0", else: "-1"}
-            disabled={Map.get(tab, :disabled, false)}
-            phx-mounted={
-              Phoenix.LiveView.JS.ignore_attributes(["aria-selected", "data-selected", "tabindex"])
-            }
+          <div
+            class="tabs__list"
+            role="tablist"
+            data-slot="tabs-list"
+            aria-label={@label}
+            aria-orientation={@orientation}
+            data-orientation={@orientation}
+            x-ref="list"
+            x-on:keydown="keydown($event)"
+            x-on:focusout="leave($event)"
           >
-            {tab.label}<span class="tabs__indicator" aria-hidden="true"></span>
-          </button>
+            <button
+              :for={{tab, index} <- Enum.with_index(@tab)}
+              id={"#{@id}-tab-#{tab.id}"}
+              type="button"
+              role="tab"
+              class={["tabs__tab", "whitespace-nowrap", Map.get(tab, :class)]}
+              data-slot="tabs-tab"
+              data-key={tab.id}
+              data-selected={to_string(tab.id == @selected_id)}
+              aria-selected={to_string(tab.id == @selected_id)}
+              aria-controls={"#{@id}-panel-#{tab.id}"}
+              tabindex={if tab.id == @selected_id, do: "0", else: "-1"}
+              disabled={Map.get(tab, :disabled, false)}
+              data-disabled={if Map.get(tab, :disabled, false), do: "true"}
+              x-bind:data-selected="(selected === $el.dataset.key).toString()"
+              x-bind:aria-selected="(selected === $el.dataset.key).toString()"
+              x-bind:tabindex="focused === $el.dataset.key ? 0 : -1"
+              x-on:click="select($el.dataset.key)"
+              phx-mounted={
+                Phoenix.LiveView.JS.ignore_attributes(["aria-selected", "data-selected", "tabindex"])
+              }
+            >
+              <span
+                :if={@show_separators && index > 0}
+                class="tabs__separator"
+                data-slot="tabs-separator"
+                aria-hidden="true"
+              ></span>
+              {tab.label}<span class="tabs__indicator" data-slot="tabs-indicator" aria-hidden="true"></span>
+            </button>
+          </div>
         </div>
+        <button
+          type="button"
+          class="tabs__list-container__scroll-prev"
+          aria-label={@scroll_previous_label}
+          tabindex="-1"
+          x-on:click="scroll('previous')"
+        ><svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path
+          d="M10.53 2.97a.75.75 0 0 1 0 1.06L6.56 8l3.97 3.97a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 0"
+          fill="currentColor"
+        /></svg></button>
+        <button
+          type="button"
+          class="tabs__list-container__scroll-next"
+          aria-label={@scroll_next_label}
+          tabindex="-1"
+          x-on:click="scroll('next')"
+        ><svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path
+          d="M5.47 2.97a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06L9.44 8 5.47 4.03a.75.75 0 0 1 0-1.06Z"
+          fill="currentColor"
+        /></svg></button>
       </div>
       <div
         :for={tab <- @tab}
         id={"#{@id}-panel-#{tab.id}"}
         role="tabpanel"
         class="tabs__panel"
+        data-slot="tabs-panel"
+        data-key={tab.id}
         data-orientation={@orientation}
         aria-labelledby={"#{@id}-tab-#{tab.id}"}
         hidden={tab.id != @selected_id}
+        x-bind:hidden="selected !== $el.dataset.key"
         tabindex="0"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["hidden"])}
       >
         {render_slot(tab)}
       </div>
+      <button
+        :if={@on_selection_change}
+        type="button"
+        hidden
+        x-ref="changeEvent"
+        phx-click={@on_selection_change}
+        phx-target={@target}
+      ></button>
     </div>
     """
   end

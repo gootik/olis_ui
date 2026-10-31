@@ -24,8 +24,17 @@ export function installToast(root = document) {
     if (!states.has(region)) states.set(region,{region,items:[],hover:false,focus:false,lastFocus:null});
     return states.get(region);
   }
-  function regions() { return [...root.querySelectorAll('[data-hero-toast-region]')]; }
-  function selectedRegion(detail) { const all=regions(); return detail.region ? all.find(el => el.id === detail.region) : all[0]; }
+  function regions() {
+    if (root.matches?.('[data-hero-toast-region]')) return [root];
+    return [...root.querySelectorAll('[data-hero-toast-region]')];
+  }
+  function selectedRegion(detail) {
+    const all=regions();
+    if (detail.region) return all.find(el => el.id === detail.region);
+    // Independent Alpine regions still share the existing first-region default.
+    const first=document.querySelector('[data-hero-toast-region]');
+    return all.includes(first) ? first : undefined;
+  }
   function paused(state) { return state.hover || state.focus || document.hidden || !document.hasFocus(); }
   function pauseItem(item) { if (item.timer) { clearTimeout(item.timer); item.timer=null; item.remaining=Math.max(0,item.remaining-(performance.now()-item.started)); } }
   function startItem(state,item) { if (item.exiting || item.remaining == null || item.timer || paused(state)) return; item.started=performance.now(); item.timer=setTimeout(() => { item.timer=null; close(state,item,'timeout'); },Math.max(0,item.remaining)); }
@@ -97,13 +106,17 @@ export function installToast(root = document) {
   function onFocusIn(event) { const region=event.target.closest?.('[data-hero-toast-region]'), state=region && states.get(region); if (!state) return; if (!region.contains(event.relatedTarget)) state.lastFocus=event.relatedTarget; state.focus=true; layout(state); reconcileTimers(state); }
   function onFocusOut(event) { const region=event.target.closest?.('[data-hero-toast-region]'), state=region && states.get(region); if (!state || region.contains(event.relatedTarget)) return; state.focus=false; layout(state); reconcileTimers(state); }
   function onKeyDown(event) {
-    if (event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey && event.code === 'KeyT') { const region=regions().find(el=>states.get(el)?.items.some(item=>!item.exiting)); if (region) { event.preventDefault(); stateFor(region).lastFocus=document.activeElement; region.focus(); } }
+    if (event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey && event.code === 'KeyT') {
+      const first=[...document.querySelectorAll('[data-hero-toast-region]')].find(el=>el.querySelector('[data-hero-toast]:not([data-exiting])'));
+      const region=regions().includes(first) ? first : null;
+      if (region) { event.preventDefault(); stateFor(region).lastFocus=document.activeElement; region.focus(); }
+    }
     else if (event.key === 'Escape') { const el=event.target.closest?.('[data-hero-toast]'), region=el?.closest('[data-hero-toast-region]'), state=region && states.get(region); if (state) { event.preventDefault(); close(state,state.items.find(item=>item.el===el),'dismiss'); } }
   }
   function syncAll() { for (const [region,state] of states) if (!region.isConnected) { state.items.forEach(item=>{pauseItem(item); clearTimeout(item.removeTimer);}); states.delete(region); } }
   function onVisibility() { states.forEach(reconcileTimers); }
   function onResize() { states.forEach(layout); }
   ['hero:toast','phx:hero:toast'].forEach(name=>window.addEventListener(name,onToast)); ['hero:toast-update','phx:hero:toast-update'].forEach(name=>window.addEventListener(name,onUpdate)); ['hero:toast-close','phx:hero:toast-close'].forEach(name=>window.addEventListener(name,onCloseEvent)); ['hero:toast-clear','phx:hero:toast-clear'].forEach(name=>window.addEventListener(name,onClear));
-  root.addEventListener('click',onClick); root.addEventListener('pointerover',onPointerOver); root.addEventListener('pointerout',onPointerOut); root.addEventListener('focusin',onFocusIn); root.addEventListener('focusout',onFocusOut); root.addEventListener('keydown',onKeyDown); document.addEventListener('phx:update',syncAll); document.addEventListener('visibilitychange',onVisibility); window.addEventListener('focus',onVisibility); window.addEventListener('blur',onVisibility); window.addEventListener('resize',onResize);
-  return () => { ['hero:toast','phx:hero:toast'].forEach(name=>window.removeEventListener(name,onToast)); ['hero:toast-update','phx:hero:toast-update'].forEach(name=>window.removeEventListener(name,onUpdate)); ['hero:toast-close','phx:hero:toast-close'].forEach(name=>window.removeEventListener(name,onCloseEvent)); ['hero:toast-clear','phx:hero:toast-clear'].forEach(name=>window.removeEventListener(name,onClear)); root.removeEventListener('click',onClick); root.removeEventListener('pointerover',onPointerOver); root.removeEventListener('pointerout',onPointerOut); root.removeEventListener('focusin',onFocusIn); root.removeEventListener('focusout',onFocusOut); root.removeEventListener('keydown',onKeyDown); document.removeEventListener('phx:update',syncAll); document.removeEventListener('visibilitychange',onVisibility); window.removeEventListener('focus',onVisibility); window.removeEventListener('blur',onVisibility); window.removeEventListener('resize',onResize); states.forEach(state=>state.items.forEach(item=>{pauseItem(item); clearTimeout(item.removeTimer); item.li.remove();})); states.clear(); };
+  root.addEventListener('click',onClick); root.addEventListener('pointerover',onPointerOver); root.addEventListener('pointerout',onPointerOut); root.addEventListener('focusin',onFocusIn); root.addEventListener('focusout',onFocusOut); document.addEventListener('keydown',onKeyDown); document.addEventListener('phx:update',syncAll); document.addEventListener('visibilitychange',onVisibility); window.addEventListener('focus',onVisibility); window.addEventListener('blur',onVisibility); window.addEventListener('resize',onResize);
+  return () => { ['hero:toast','phx:hero:toast'].forEach(name=>window.removeEventListener(name,onToast)); ['hero:toast-update','phx:hero:toast-update'].forEach(name=>window.removeEventListener(name,onUpdate)); ['hero:toast-close','phx:hero:toast-close'].forEach(name=>window.removeEventListener(name,onCloseEvent)); ['hero:toast-clear','phx:hero:toast-clear'].forEach(name=>window.removeEventListener(name,onClear)); root.removeEventListener('click',onClick); root.removeEventListener('pointerover',onPointerOver); root.removeEventListener('pointerout',onPointerOut); root.removeEventListener('focusin',onFocusIn); root.removeEventListener('focusout',onFocusOut); document.removeEventListener('keydown',onKeyDown); document.removeEventListener('phx:update',syncAll); document.removeEventListener('visibilitychange',onVisibility); window.removeEventListener('focus',onVisibility); window.removeEventListener('blur',onVisibility); window.removeEventListener('resize',onResize); states.forEach(state=>state.items.forEach(item=>{pauseItem(item); clearTimeout(item.removeTimer); item.li.remove();})); states.clear(); };
 }

@@ -1,5 +1,13 @@
+import { installToast } from "./toast.js";
+
 /** Register Alpine state used by HeroUI components before calling Alpine.start(). */
 export function registerHeroUIAlpine(Alpine) {
+  Alpine.data('heroToastRegion', () => ({
+    cleanup: null,
+    init() { this.cleanup = installToast(this.$root); },
+    destroy() { this.cleanup?.(); this.cleanup = null; }
+  }));
+
   Alpine.data('heroTooltip', () => ({
     hovering: false,
     focused: false,
@@ -114,28 +122,140 @@ export function registerHeroUIAlpine(Alpine) {
     }
   }));
 
+  // Selection and removal remain server-controlled; Alpine owns roving focus.
+  Alpine.data('heroTagGroup', () => ({
+    pendingRemoval: null,
+    tags() {
+      return [...this.$root.querySelectorAll('[data-hero-tag]')].filter(tag =>
+        tag.closest('[data-hero-tag-group]') === this.$root && tag.getAttribute('aria-disabled') !== 'true');
+    },
+    activate(tag, focus = false) {
+      const enabled = this.tags();
+      if (!enabled.includes(tag)) tag = enabled[0];
+      enabled.forEach(item => { item.tabIndex = item === tag ? 0 : -1; });
+      this.$root.tabIndex = enabled.length || this.$root.getAttribute('aria-disabled') === 'true' ? -1 : 0;
+      if (focus && tag) tag.focus();
+    },
+    init() { this.sync(); },
+    sync() {
+      const enabled = this.tags(), pending = this.pendingRemoval;
+      if (pending) {
+        this.pendingRemoval = null;
+        if (!this.$root.querySelector(`[id="${CSS.escape(pending.id)}"]`)) {
+          const next = enabled[Math.min(pending.index, enabled.length - 1)];
+          this.activate(next, pending.focus);
+          if (!next && pending.focus) this.$root.focus();
+          return;
+        }
+      }
+      const focused = document.activeElement?.closest?.('[data-hero-tag]');
+      this.activate(enabled.includes(focused) ? focused : enabled.find(tag => tag.tabIndex === 0) || enabled.find(tag => tag.getAttribute('aria-selected') === 'true'));
+    },
+    tagFor(event) {
+      const tag = event.target.closest?.('[data-hero-tag]');
+      return tag?.closest('[data-hero-tag-group]') === this.$root && tag.getAttribute('aria-disabled') !== 'true' ? tag : null;
+    },
+    onFocus(event) {
+      const tag = this.tagFor(event);
+      if (tag) this.activate(tag);
+    },
+    onClick(event) {
+      const tag = this.tagFor(event);
+      if (!tag) return;
+      const remove = event.target.closest?.('[data-hero-tag-remove]');
+      if (remove && !remove.disabled) {
+        this.pendingRemoval = {id: tag.id, index: this.tags().indexOf(tag), focus: this.$root.contains(document.activeElement)};
+      } else if (!remove) this.activate(tag, true);
+    },
+    onKeyDown(event) {
+      const tag = this.tagFor(event);
+      if (!tag || event.target !== tag) return;
+      const enabled = this.tags(), index = enabled.indexOf(tag);
+      const rtl = getComputedStyle(this.$root).direction === 'rtl';
+      let next;
+      if (event.key === 'ArrowDown' || event.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) next = enabled[Math.min(index + 1, enabled.length - 1)];
+      else if (event.key === 'ArrowUp' || event.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) next = enabled[Math.max(index - 1, 0)];
+      else if (event.key === 'Home') next = enabled[0];
+      else if (event.key === 'End') next = enabled.at(-1);
+      else if ((event.key === ' ' || event.key === 'Enter') && tag.dataset.selectionMode !== 'none') {
+        event.preventDefault(); tag.click(); return;
+      } else if (event.key === 'Delete' || event.key === 'Backspace') {
+        const remove = tag.querySelector('[data-hero-tag-remove]:not(:disabled)');
+        if (remove) { event.preventDefault(); remove.click(); }
+        return;
+      } else return;
+      event.preventDefault(); this.activate(next, true);
+    }
+  }));
+
   // Native dialog retains browser focus trapping and focus restoration.
   Alpine.data('heroDrawer', () => ({
+    closing: false,
+    animations: [],
+    destroy() { this.stopAnimations(); },
+    stopAnimations() {
+      for (const animation of this.animations) animation.cancel();
+      this.animations = [];
+    },
+    animate(opening) {
+      const dialog = this.$root;
+      if (typeof dialog.animate !== 'function' || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return null;
+      const side = dialog.dataset.placement || 'right';
+      const direction = {top: 'translateY(-100%)', bottom: 'translateY(100%)', left: 'translateX(-100%)', right: 'translateX(100%)'}[side];
+      const start = opening ? direction : 'translate(0, 0)';
+      const end = opening ? 'translate(0, 0)' : direction;
+      const options = {duration: opening ? 250 : 200, easing: 'cubic-bezier(0.32, 0.72, 0, 1)'};
+      const panel = dialog.animate([{transform: start}, {transform: end}], options);
+      this.animations = [panel];
+      try {
+        const backdrop = dialog.animate([{opacity: opening ? 0 : 1}, {opacity: opening ? 1 : 0}], {...options, pseudoElement: '::backdrop'});
+        this.animations.push(backdrop);
+      } catch (_) {
+        // The native backdrop remains usable when pseudo-element animation is unsupported.
+      }
+      for (const animation of this.animations) animation.finished.catch(() => {});
+      return panel;
+    },
     openFromTrigger(event) {
       const trigger = event.target.closest?.('[data-hero-dialog-open]');
       if (!trigger || trigger.getAttribute('data-hero-dialog-open') !== this.$root.id ||
-          trigger.matches(':disabled, [aria-disabled="true"]') || this.$root.open) return;
+          trigger.matches(':disabled, [aria-disabled="true"]')) return;
+      if (this.$root.open) {
+        if (this.closing) { this.closing = false; this.stopAnimations(); }
+        return;
+      }
+      this.closing = false;
+      this.stopAnimations();
       this.$root.showModal();
+      this.animate(true);
+    },
+    close() {
+      if (!this.$root.open || this.closing) return;
+      this.stopAnimations();
+      this.closing = true;
+      const panel = this.animate(false);
+      const finish = () => {
+        if (!this.closing) return;
+        this.closing = false;
+        this.animations = [];
+        if (this.$root.open) this.$root.close();
+      };
+      if (panel) panel.finished.then(finish, () => {}); else finish();
     },
     onClick(event) {
       const dialog = this.$root;
       const close = event.target.closest?.('[data-hero-dialog-close]');
       if (close && close.closest('dialog') === dialog) {
-        dialog.close();
+        this.close();
         return;
       }
       if (event.target !== dialog || dialog.dataset.dismissible !== 'true') return;
       const rect = dialog.getBoundingClientRect();
       if (event.clientX < rect.left || event.clientX > rect.right ||
-          event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+          event.clientY < rect.top || event.clientY > rect.bottom) this.close();
     },
     onCancel() {
-      if (this.$root.dataset.dismissible === 'true') this.$root.close();
+      if (this.$root.dataset.dismissible === 'true') this.close();
     }
   }));
 

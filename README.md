@@ -232,7 +232,7 @@ For LiveView-controlled state, pass `open={@sheet_open}` and `on_open_change="sh
 
 The native dialog contains focus and restores it on close. Escape and backdrop clicks dismiss it by default; `dismissible={false}` disables those dismissals. The Close button is always available. A LiveView mount command preserves the native `open` attribute across updates. Mount the client module once per page; the installer returns a cleanup function for teardown.
 
-Alert dialogs and drawers use the same opener as modals. Alert dialogs require an explicit cancel or confirm action and send `on_confirm` as a LiveView event. Drawers support `top`, `bottom`, `left`, and `right` placement and use the registered HeroUI Alpine providers for opening and dismissal. Their native dialog traps focus and restores it on close; set `dismissible={false}` to prevent backdrop and Escape dismissal.
+Alert dialogs and drawers use the same opener as modals. Alert dialogs require an explicit cancel or confirm action and send `on_confirm` as a LiveView event. Drawers support `top`, `bottom`, `left`, and `right` placement and `opaque`, `blur`, or `transparent` backdrops. They use the registered HeroUI Alpine providers for opening and dismissal, animate unless reduced motion is requested, and retain native focus containment during exit. Set `dismissible={false}` to prevent backdrop and Escape dismissal.
 
 ```heex
 <.button data-hero-dialog-open="confirm-delete">Delete</.button>
@@ -341,7 +341,7 @@ Listboxes are server-controlled. `on_select` receives a `"value"` parameter; upd
 </.listbox>
 ```
 
-Tag groups are also server-controlled. Handle `on_select` and `on_remove` events using their `"value"` parameter, then update the selected list or tag slots. They support `none`, `single`, and `multiple` selection, disabled tags, size and surface variants, and optional custom tag content. With the JavaScript installer, arrow keys move between tags, Enter or Space selects, and Delete or Backspace removes a focused tag. The remove buttons are also individually focusable.
+Tag groups are also server-controlled. Handle `on_select` and `on_remove` events using their `"value"` parameter, then update the selected list or tag slots. They support `none`, `single`, and `multiple` selection, disabled tags, size and surface variants, and optional custom tag content. With the registered HeroUI Alpine components, arrow keys move between tags, Enter or Space selects, and Delete or Backspace removes a focused tag. The remove buttons are also individually focusable.
 
 ```heex
 <.tag_group id="topics" label="Topics" selection_mode="multiple" selected={@topics}
@@ -414,7 +414,7 @@ Color swatches display a CSS color with a transparency pattern, in `xs` through 
 
 The picker supports `size`, `shape`, `layout="stack"`, `required`, disabled options, descriptions, and errors. The color values must be CSS color strings; values are submitted unchanged. Equivalent hexadecimal forms are matched regardless of letter case or shorthand. If neither a `field` nor `name` is supplied, the picker uses its `id` as the radio group name.
 
-Toast notifications need one region inside your LiveView and the JavaScript installer. Send a notification from the server with `push_event/3`:
+Toast notifications need one region inside your LiveView and the registered HeroUI Alpine components. Send a notification from the server with `push_event/3`:
 
 ```heex
 <.toast_region id="notifications" placement="bottom-end" />

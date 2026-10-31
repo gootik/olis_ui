@@ -2357,6 +2357,7 @@ defmodule HeroUI do
       class={["toast-region", "toast-region--#{@placement}", @class]}
       data-slot="toast-region"
       data-hero-toast-region
+      x-data="heroToastRegion"
       data-placement={@placement}
       data-gap={@gap}
       data-max-visible={@max_visible}
@@ -5157,11 +5158,13 @@ defmodule HeroUI do
   @doc """
   A modal drawer attached to an edge of the viewport.
   Open it with `data-hero-dialog-open={id}`. Requires HeroUI's Alpine providers.
+  The backdrop can be `opaque` (default), `blur`, or `transparent`.
   """
   attr(:id, :string, required: true)
   attr(:title, :string, required: true)
   attr(:placement, :string, default: "right", values: ~w(top bottom left right))
   attr(:dismissible, :boolean, default: true)
+  attr(:backdrop, :string, default: "opaque", values: ~w(opaque blur transparent))
   attr(:class, :any, default: nil)
   slot(:inner_block, required: true)
   slot(:footer)
@@ -5171,8 +5174,17 @@ defmodule HeroUI do
     <dialog
       id={@id}
       aria-labelledby={"#{@id}-title"}
-      class={["drawer__dialog", "hui-native-modal", "hui-native-drawer", @class]}
+      class={[
+        "drawer__dialog",
+        "hui-native-modal",
+        "hui-native-drawer",
+        @backdrop == "opaque" && "backdrop:bg-backdrop",
+        @backdrop == "blur" && "backdrop:bg-backdrop backdrop:backdrop-blur-md",
+        @backdrop == "transparent" && "backdrop:bg-transparent",
+        @class
+      ]}
       data-placement={@placement}
+      data-backdrop={@backdrop}
       data-hero-drawer
       data-slot="drawer-dialog"
       x-data="heroDrawer"
@@ -6190,8 +6202,8 @@ defmodule HeroUI do
   attr(:errors, :list, default: [])
   attr(:selection_mode, :string, default: "none", values: ~w(none single multiple))
   attr(:selected, :list, default: [])
-  attr(:on_select, :string, default: nil)
-  attr(:on_remove, :string, default: nil)
+  attr(:on_select, :any, default: nil)
+  attr(:on_remove, :any, default: nil)
   attr(:disabled, :boolean, default: false)
   attr(:target, :any, default: nil)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
@@ -6242,6 +6254,11 @@ defmodule HeroUI do
         class="tag-group__list"
         data-slot="tag-group-list"
         data-hero-tag-group
+        x-data="heroTagGroup"
+        x-on:focusin="onFocus($event)"
+        x-on:click="onClick($event)"
+        x-on:keydown="onKeyDown($event)"
+        x-on:phx:update.document="sync()"
         role="grid"
         aria-labelledby={"#{@id}-label"}
         aria-describedby={if @describedby != "", do: @describedby}

@@ -134,7 +134,7 @@
 /* Native dialog supplies focus containment and the browser top layer. */
 dialog.hui-native-modal:not([open]) { display:none; }
 dialog.hui-native-modal[open] { position:fixed; inset:0; margin:auto; width:calc(100% - 2rem); max-height:calc(100dvh - 2rem); overflow:auto; border:0; color:var(--foreground); }
-dialog.hui-native-modal::backdrop { background:var(--backdrop); }
+dialog.hui-native-modal:not(.hui-native-drawer)::backdrop { background:var(--backdrop); }
 body:has(dialog.hui-native-modal[open]) { overflow:hidden; }
 
 /* Keep tab indicators in the LiveView DOM; selection only changes attributes. */

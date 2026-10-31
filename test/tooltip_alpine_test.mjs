@@ -1,7 +1,5 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
-const source = await readFile(new URL('../assets/js/alpine.js', import.meta.url),'utf8');
-const {registerHeroUIAlpine} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+const {registerHeroUIAlpine} = await import('../assets/js/alpine.js');
 const providers = {};
 registerHeroUIAlpine({data(name, factory) {providers[name] = factory;}});
 let now = 0, next = 1;

@@ -2295,6 +2295,8 @@ defmodule HeroUI.Preview.Live do
                 <.button data-hero-dialog-open="live-modal">Open modal</.button>
                 <.button data-hero-dialog-open="live-alert" variant="danger-soft">Open alert dialog</.button>
                 <.button data-hero-dialog-open="live-drawer" variant="secondary">Open drawer</.button>
+                <.button data-hero-dialog-open="live-drawer-blur" variant="secondary">Blurred drawer</.button>
+                <.button data-hero-dialog-open="live-drawer-clear" variant="secondary">Transparent drawer</.button>
                 <.alert_dialog
                   id="live-alert"
                   title="Confirm update"
@@ -2306,6 +2308,22 @@ defmodule HeroUI.Preview.Live do
                 <.drawer id="live-drawer" title="Drawer settings" placement="right">
                   <p id="drawer-count">Drawer updates: {@count}</p>
                   <.button phx-click="increment">Update drawer</.button>
+                </.drawer>
+                <.drawer
+                  id="live-drawer-blur"
+                  title="Blurred backdrop"
+                  placement="left"
+                  backdrop="blur"
+                >
+                  <p>Review the panel with a blurred backdrop.</p>
+                </.drawer>
+                <.drawer
+                  id="live-drawer-clear"
+                  title="Transparent backdrop"
+                  placement="bottom"
+                  backdrop="transparent"
+                >
+                  <p>Review the panel with a transparent backdrop.</p>
                 </.drawer>
                 <.tooltip id="preview-tip" text="This is a helpful hint" delay={0}>
                   Hover or focus

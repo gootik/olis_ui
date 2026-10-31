@@ -431,12 +431,6 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "input_otp.js"])))
   end
 
-  get "/tag_group.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "tag_group.js"])))
-  end
-
   get "/combo_box.js" do
     conn
     |> put_resp_content_type("text/javascript")

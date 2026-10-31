@@ -1,12 +1,10 @@
 import { installSelect } from "./select.js";
 import { installInputOTP } from "./input_otp.js";
-import { installTagGroup } from "./tag_group.js";
 import { installComboBox } from "./combo_box.js";
 import { installCalendar } from "./calendar.js";
 import { installDateField } from "./date_field.js";
 import { installTimeField } from "./time_field.js";
 import { installDatePicker } from "./date_picker.js";
-import { installToast } from "./toast.js";
 import { installColorField } from "./color_field.js";
 import { installToolbar } from "./toolbar.js";
 import { installScrollShadow } from "./scroll_shadow.js";
@@ -19,13 +17,11 @@ export { toast, updateToast, dismissToast, clearToasts } from "./toast.js";
 export function installHeroUI(root = document) {
   const removeSelect = installSelect(root);
   const removeInputOTP = installInputOTP(root);
-  const removeTagGroup = installTagGroup(root);
   const removeComboBox = installComboBox(root);
   const removeCalendar = installCalendar(root);
   const removeDateField = installDateField(root);
   const removeTimeField = installTimeField(root);
   const removeDatePicker = installDatePicker(root);
-  const removeToast = installToast(root);
   const removeColorField = installColorField(root);
   const removeToolbar = installToolbar(root);
   const removeScrollShadow = installScrollShadow(root);
@@ -297,13 +293,11 @@ export function installHeroUI(root = document) {
   return () => {
     removeSelect();
     removeInputOTP();
-    removeTagGroup();
     removeComboBox();
     removeCalendar();
     removeDateField();
     removeTimeField();
     removeDatePicker();
-    removeToast();
     removeColorField();
     removeToolbar();
     removeScrollShadow();

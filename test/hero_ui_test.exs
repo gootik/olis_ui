@@ -835,6 +835,23 @@ defmodule HeroUITest do
     end
   end
 
+  test "tag group accepts LiveView JS commands for selection and removal" do
+    html =
+      render_component(&HeroUI.tag_group/1, %{
+        id: "languages",
+        label: "Languages",
+        tag: [%{value: "elixir", label: "Elixir"}],
+        selection_mode: "multiple",
+        on_select: Phoenix.LiveView.JS.push("select_tag"),
+        on_remove: Phoenix.LiveView.JS.push("remove_tag")
+      })
+
+    assert html =~ "select_tag"
+    assert html =~ "remove_tag"
+    assert html =~ ~s(phx-value-value="elixir")
+    assert html =~ ~s(aria-keyshortcuts="Delete Backspace")
+  end
+
   test "checkbox and switch render native controls" do
     slot = [%{inner_block: fn _, _ -> "Notifications" end}]
 
@@ -1603,6 +1620,30 @@ defmodule HeroUITest do
     assert drawer =~ ~s|x-on:cancel.prevent="onCancel()"|
     assert drawer =~ ~s(data-slot="drawer-dialog")
     assert drawer =~ ~s(data-slot="drawer-body")
+    assert drawer =~ ~s(data-backdrop="opaque")
+    assert drawer =~ "backdrop:bg-backdrop"
+
+    blurred =
+      render_component(&HeroUI.drawer/1, %{
+        id: "blur",
+        title: "Blur",
+        backdrop: "blur",
+        inner_block: slot
+      })
+
+    assert blurred =~ ~s(data-backdrop="blur")
+    assert blurred =~ "backdrop:backdrop-blur-md"
+
+    transparent =
+      render_component(&HeroUI.drawer/1, %{
+        id: "clear",
+        title: "Clear",
+        backdrop: "transparent",
+        inner_block: slot
+      })
+
+    assert transparent =~ ~s(data-backdrop="transparent")
+    assert transparent =~ "backdrop:bg-transparent"
     refute drawer =~ ~s(data-hero-dialog="")
   end
 

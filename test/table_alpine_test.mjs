@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {registerHeroTable} from '../assets/js/alpine/table.js';
 let factory;
 registerHeroTable({data(name, value) { assert.equal(name, 'heroTable'); factory = value; }});
+globalThis.document = {addEventListener() {}, removeEventListener() {}};
 globalThis.CustomEvent = class {constructor(type, options) {this.type=type; Object.assign(this, options);}};
 const label={dataset:{}};
 const selectAll={checked:false,indeterminate:false,disabled:false, matches:s=>s==='[data-hero-table-select-all]', closest:s=>s==='.checkbox'?label:root};

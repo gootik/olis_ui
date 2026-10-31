@@ -243,6 +243,16 @@ Open a modal with a button whose `data-hero-dialog-open` matches the modal ID:
 </.modal>
 ```
 
+Modal supports `placement="auto" | "top" | "center" | "bottom"`, `backdrop="opaque" | "blur" | "transparent"`, `scroll="inside" | "outside"`, and sizes through `cover` and `full`. `dismissible={false}` prevents backdrop dismissal; `keyboard_dismiss_disabled` separately disables Escape. For LiveView-controlled state, pass `open` and `on_open_change`; the event receives `"open"` and `"reason"`. Use `default_open` for initial client state. Slots can replace the trigger or close button:
+
+```heex
+<.modal id="settings" title="Settings" open={@settings_open} on_open_change="settings_open_change">
+  <:trigger :let={attrs}><.button {attrs}>Settings</.button></:trigger>
+  Update your settings.
+  <:close :let={attrs}><.button {attrs}>Done</.button></:close>
+</.modal>
+```
+
 Sheets are swipeable modal panels managed by the HeroUI Alpine providers. Open one with `data-hero-sheet-open`, close it with `data-hero-sheet-close` or its built-in close button, and choose `placement="bottom"`, `"top"`, `"left"`, or `"right"`. `detached` adds space around the panel. Use `snap_points` for partial positions; numbers are pixels and strings support `px`, `%`, `vh`, `vw`, `rem`, and `em` units. A fully expanded position is added automatically. Sheets can be nested and use native modal focus containment.
 
 ```heex
@@ -358,6 +368,8 @@ Toggle buttons manage their own state with Alpine when `pressed` is omitted; use
 Pagination supports either LiveView events (`on_change`) or URL generation (`href={fn page -> ... end}`). The event receives the requested page as `"page"`; the application owns page bounds, loading, and URL state. Use the optional `:summary` slot for result counts.
 
 Tables accept lists or LiveView streams. Give a stream table a unique `id`; the component supplies the stream container and row IDs. The `:empty` slot customizes the empty message for both lists and streams, and `:footer` places pagination or other content inside the HeroUI table footer. For server-driven sorting, add `sort_key` to a column and set `sort_event`, `sort_by`, and `sort_direction`. The event receives the selected key as `"sort"`; your LiveView sorts the data and updates those assigns.
+
+With Alpine, tables use grid keyboard navigation: Tab enters the grid, Up and Down move between rows, Right enters cells, and Left returns to the row. Home and End move to the first or last row or cell. Enter or Space activates sorting or selection. To interact with a cell's controls, press Enter to focus the first control; Tab and Shift+Tab move between controls, and Escape returns to the cell. Controls keep their native keyboard behavior while focused. Without Alpine, the native table and its controls remain available.
 
 Selectable tables use `selection_mode="single"` or `"multiple"`. Supply a stable `row_id` function for list rows; streams use their stream DOM IDs as keys. `row_label` provides meaningful names for the selection controls. Pass `selected_keys` and `on_selection_change` for server-controlled selection, or `default_selected_keys` for Alpine-managed selection. The event receives a JSON-encoded `keys` list; decode it and assign the list back in controlled mode. Select-all applies to currently rendered enabled rows and preserves selections outside the rendered collection. Supply `disabled_keys` to prevent particular rows from being selected.
 
@@ -557,6 +569,15 @@ Tooltips show noninteractive descriptions on hover or focus using the HeroUI Alp
 </.tooltip>
 <.popover id="details" trigger="Details" title="More information">
   <p>Additional content</p>
+</.popover>
+```
+
+Popovers accept `placement` (`"top"`, `"bottom"`, `"left"`, or `"right"`, optionally followed by `" start"` or `" end"`), `offset`, `should_flip`, and `show_arrow`. Use `content_class` for Tailwind sizing and `show_close={false}` for content without the default close button. A `:trigger_content` slot can render a custom button using the yielded attributes. Use `default_open` for initial client state, or `open` with `on_open_change` for LiveView-controlled state; the event receives `open` and `reason`. The browser's Popover API provides light dismissal and Escape handling.
+
+```heex
+<.popover id="project-details" title="Project" placement="top" show_arrow show_close={false}>
+  <:trigger_content :let={attrs}><.button variant="secondary" {attrs}>Details</.button></:trigger_content>
+  <p>Project details</p>
 </.popover>
 ```
 

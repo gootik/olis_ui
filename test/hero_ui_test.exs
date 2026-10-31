@@ -1724,6 +1724,63 @@ defmodule HeroUITest do
     assert html =~ "phx-mounted"
   end
 
+  test "modal composes controlled state, placement, backdrop and scroll variants" do
+    slot = [%{inner_block: fn _, _ -> "Details" end}]
+
+    html =
+      render_component(&HeroUI.modal/1, %{
+        id: "settings",
+        title: "Settings",
+        description: "Change settings.",
+        open: true,
+        on_open_change: "toggle",
+        placement: "top",
+        backdrop: "blur",
+        scroll: "outside",
+        size: "cover",
+        show_close: false,
+        inner_block: slot
+      })
+
+    assert html =~ ~s(data-controlled="true")
+    assert html =~ ~s(data-controlled-open="true")
+    assert html =~ ~s(data-placement="top")
+    assert html =~ ~s(data-backdrop="blur")
+    assert html =~ ~s(data-scroll="outside")
+    assert html =~ "modal__dialog--cover"
+    assert html =~ "modal__body--scroll-outside"
+    assert html =~ "backdrop:backdrop-blur-md"
+    assert html =~ ~s(aria-describedby="settings-description")
+    assert html =~ ~s(phx-click="toggle")
+    refute html =~ "data-hero-dialog-close"
+
+    assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
+      render_component(&HeroUI.modal/1, %{
+        id: "bad",
+        title: "Bad",
+        open: false,
+        default_open: true,
+        inner_block: slot
+      })
+    end
+
+    assigns = %{}
+
+    composed =
+      rendered_to_string(~H"""
+      <HeroUI.modal id="compose" title="Composed" keyboard_dismiss_disabled>
+        <:trigger :let={attrs}><HeroUI.button {attrs}>Launch</HeroUI.button></:trigger>
+        Content
+        <:close :let={attrs}><HeroUI.button {attrs}>Done</HeroUI.button></:close>
+      </HeroUI.modal>
+      """)
+
+    assert composed =~ ~s(data-keyboard-dismiss-disabled="true")
+    assert composed =~ ~s(data-hero-dialog-open="compose")
+    assert composed =~ "data-hero-dialog-close"
+    assert composed =~ ">Done</button>"
+  end
+
   test "tabs connect tabs and panels and select the first enabled item" do
     tabs = [
       %{id: "one", label: "One", disabled: true, inner_block: fn _, _ -> "First" end},
@@ -2252,6 +2309,64 @@ defmodule HeroUITest do
     assert popover =~ ~s(role="dialog")
   end
 
+  test "popover supports custom triggers, placement, arrows and controlled state" do
+    assigns = %{}
+
+    html =
+      rendered_to_string(~H"""
+      <HeroUI.popover
+        id="custom-popover"
+        title="Details"
+        placement="right start"
+        show_arrow
+        show_close={false}
+        open={false}
+        on_open_change="popover_change"
+      >
+        <:trigger_content :let={attrs}><HeroUI.button {attrs}>Custom</HeroUI.button></:trigger_content>
+        <p>More information</p>
+      </HeroUI.popover>
+      """)
+
+    assert html =~ ~s(popovertarget="custom-popover-content")
+    assert html =~ ~s(aria-controls="custom-popover-content")
+    assert html =~ ~s(data-requested-placement="right start")
+    assert html =~ ~s(data-offset="8")
+    assert html =~ ~s(data-should-flip="true")
+    assert html =~ ~s(data-controlled="true")
+    assert html =~ ~s(data-controlled-open="false")
+    assert html =~ ~s(data-slot="popover-overlay-arrow")
+    assert html =~ ~s(phx-click="popover_change")
+    refute html =~ "data-hero-popover-close"
+
+    content = [%{inner_block: fn _, _ -> "Content" end}]
+
+    assert_raise ArgumentError, ~r/either trigger/, fn ->
+      render_component(&HeroUI.popover/1, %{id: "missing", title: "Missing", inner_block: content})
+    end
+
+    assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
+      render_component(&HeroUI.popover/1, %{
+        id: "bad",
+        title: "Bad",
+        trigger: "Open",
+        open: false,
+        default_open: true,
+        inner_block: content
+      })
+    end
+
+    assert_raise ArgumentError, ~r/offset must be nonnegative/, fn ->
+      render_component(&HeroUI.popover/1, %{
+        id: "bad",
+        title: "Bad",
+        trigger: "Open",
+        offset: -1,
+        inner_block: content
+      })
+    end
+  end
+
   test "slider and number field expose native form controls" do
     slider =
       render_component(&HeroUI.slider/1, %{
@@ -2507,6 +2622,25 @@ defmodule HeroUITest do
     populated = render_component(&HeroUI.data_table/1, %{attrs | rows: [%{name: "Jane"}]})
     refute populated =~ "No matching people"
     assert populated =~ "Page 1 of 3"
+  end
+
+  test "tables expose Alpine grid navigation even without selection" do
+    cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
+
+    html =
+      render_component(&HeroUI.data_table/1, %{
+        id: "people",
+        label: "People",
+        rows: [%{name: "Alice"}],
+        col: cols
+      })
+
+    assert html =~ ~s(x-data="heroTable")
+    assert html =~ ~s|x-on:keydown="keyDown($event)"|
+    assert html =~ ~s|x-on:focusin="focusIn($event)"|
+    assert html =~ ~s(data-hero-table-row="true")
+    assert html =~ ~s|x-bind:role="'grid'"|
+    refute html =~ ~s(aria-selected=)
   end
 
   test "selectable tables reject ambiguous state and missing row keys" do

@@ -4867,17 +4867,27 @@ defmodule HeroUI do
     ~H"""
     <div
       class={["table-root", "table-root--#{@variant}", @class]}
-      data-hero-table={if @selection_mode != "none", do: "true"}
+      data-hero-table="true"
       data-selection-mode={if @selection_mode != "none", do: @selection_mode}
       data-selected-keys={if @selection_mode != "none", do: @encoded_selected}
       data-controlled={if @selection_mode != "none", do: to_string(!is_nil(@selected_keys))}
-      x-data={if @selection_mode != "none", do: "heroTable"}
+      x-data="heroTable"
+      x-on:keydown="keyDown($event)"
+      x-on:focusin="focusIn($event)"
+      x-on:focusout="focusOut($event)"
       x-on:change={if @selection_mode != "none", do: "selectionChange($event)"}
       x-on:click={if @selection_mode != "none", do: "rowClick($event)"}
-      x-on:phx:update.document={if @selection_mode != "none", do: "sync()"}
+      x-on:phx:update.document="sync()"
     >
       <div class="table__scroll-container">
-        <table id={@id} class="table__content" aria-label={@label}>
+        <table
+          id={@id}
+          class="table__content"
+          aria-label={@label}
+          x-bind:role="'grid'"
+          tabindex="0"
+          x-bind:aria-multiselectable="$root.dataset.selectionMode === 'multiple' ? 'true' : null"
+        >
           <thead class="table__header">
             <tr>
               <th :if={@selection_mode != "none"} scope="col" class="table__column">
@@ -4929,7 +4939,7 @@ defmodule HeroUI do
               :for={item <- @rows}
               id={table_row_id(item, @stream?, @row_id)}
               class="table__row"
-              data-hero-table-row={if @selection_mode != "none", do: "true"}
+              data-hero-table-row="true"
               data-key={if @selection_mode != "none", do: table_row_id(item, @stream?, @row_id)}
               data-selected={
                 if @selection_mode != "none" and
@@ -5050,38 +5060,112 @@ defmodule HeroUI do
   A modal dialog using the browser's focus containment and Escape behavior.
 
   Install the HeroUI Alpine providers as described in the README. Open it with a button carrying
-  `data-hero-dialog-open={id}`. Provide a unique id and a concise title.
+  `data-hero-dialog-open={id}`, or pass a trigger slot receiving that attribute. Use `open` and
+  `on_open_change` for server-controlled state or `default_open` for client-managed state.
   """
   attr(:id, :string, required: true)
   attr(:title, :string, required: true)
-  attr(:size, :string, default: "md", values: ~w(xs sm md lg))
+  attr(:size, :string, default: "md", values: ~w(xs sm md lg cover full))
+  attr(:placement, :string, default: "auto", values: ~w(auto top center bottom))
+  attr(:scroll, :string, default: "inside", values: ~w(inside outside))
+  attr(:backdrop, :string, default: "opaque", values: ~w(opaque blur transparent))
   attr(:dismissible, :boolean, default: true)
+  attr(:keyboard_dismiss_disabled, :boolean, default: false)
+  attr(:description, :string, default: nil)
+  attr(:open, :boolean, default: nil)
+  attr(:default_open, :boolean, default: false)
+  attr(:on_open_change, :any, default: nil)
+  attr(:target, :any, default: nil)
+  attr(:show_close, :boolean, default: true)
+  attr(:close_label, :string, default: "Close")
   attr(:class, :any, default: nil)
+  attr(:body_class, :any, default: nil)
+  attr(:rest, :global)
   slot(:inner_block, required: true)
   slot(:footer)
+  slot(:trigger)
+  slot(:close)
 
   def modal(assigns) do
+    if !is_nil(assigns.open) && assigns.default_open,
+      do: raise(ArgumentError, "modal cannot use open and default_open together")
+
     ~H"""
+    {render_slot(@trigger, %{"data-hero-dialog-open" => @id})}
     <dialog
       id={@id}
-      class={["modal__dialog", "modal__dialog--#{@size}", "hui-native-modal", @class]}
+      class={[
+        "modal__dialog",
+        "modal__dialog--#{@size}",
+        "modal__dialog--scroll-#{@scroll}",
+        "hui-native-modal",
+        "hui-hero-modal",
+        "fixed inset-0 m-auto w-[calc(100%-2rem)] max-h-[calc(100dvh-2rem)] border-0 text-foreground sm:max-h-[calc(100dvh-5rem)]",
+        @scroll == "outside" && "overflow-y-auto",
+        @size == "cover" &&
+          "h-[calc(100dvh-2rem)] max-w-none sm:h-[calc(100dvh-5rem)] sm:w-[calc(100%-5rem)]",
+        @size == "full" && "h-dvh max-h-none w-full max-w-none rounded-none shadow-none sm:max-h-none",
+        @size != "full" && @placement == "auto" && "mb-4 sm:my-auto",
+        @size != "full" && @placement == "top" && "mt-4 sm:mt-10",
+        @size != "full" && @placement == "bottom" && "mb-4 sm:mb-10",
+        @backdrop == "opaque" && "backdrop:bg-backdrop",
+        @backdrop == "blur" && "backdrop:bg-backdrop backdrop:backdrop-blur-md",
+        @backdrop == "transparent" && "backdrop:bg-transparent",
+        @class
+      ]}
       data-hero-dialog
+      data-hero-modal
+      data-slot="modal-dialog"
+      data-placement={@placement}
+      data-backdrop={@backdrop}
+      data-scroll={@scroll}
       x-data="heroDialog"
       x-on:click.window="openFromTrigger($event)"
       x-on:click="onClick($event)"
       x-on:cancel="onCancel($event)"
+      x-on:close="onNativeClose($event)"
+      x-on:phx:update.window="sync()"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["open"])}
       data-dismissible={to_string(@dismissible)}
+      data-keyboard-dismiss-disabled={to_string(@keyboard_dismiss_disabled)}
+      data-controlled={to_string(!is_nil(@open))}
+      data-controlled-open={if !is_nil(@open), do: to_string(@open)}
+      data-default-open={to_string(@default_open)}
       aria-labelledby={"#{@id}-title"}
+      aria-describedby={if @description, do: "#{@id}-description"}
+      {@rest}
     >
-      <header class="modal__header">
-        <h2 class="modal__heading" id={"#{@id}-title"}>{@title}</h2>
+      <header class="modal__header" data-slot="modal-header">
+        <h2 class="modal__heading" id={"#{@id}-title"} data-slot="modal-heading">{@title}</h2>
       </header>
-      <div class="modal__body">{render_slot(@inner_block)}</div>
-      <div class="modal__footer">
-        {render_slot(@footer)}
-        <button class="button button--md button--tertiary" type="button" data-hero-dialog-close>Close</button>
+      <div
+        class={["modal__body", "modal__body--scroll-#{@scroll}", @body_class]}
+        data-slot="modal-body"
+      >
+        <p :if={@description} id={"#{@id}-description"}>{@description}</p>
+        {render_slot(@inner_block)}
       </div>
+      <div class="modal__footer" data-slot="modal-footer">
+        {render_slot(@footer)}
+        <%= if @close != [] do %>
+          {render_slot(@close, %{"data-hero-dialog-close" => true})}
+        <% else %>
+          <button
+            :if={@show_close}
+            class="button button--md button--tertiary"
+            type="button"
+            data-hero-dialog-close
+          >{@close_label}</button>
+        <% end %>
+      </div>
+      <button
+        :if={@on_open_change}
+        type="button"
+        hidden
+        data-hero-modal-event
+        phx-click={@on_open_change}
+        phx-target={@target}
+      ></button>
     </dialog>
     """
   end
@@ -6078,49 +6162,141 @@ defmodule HeroUI do
 
   @doc """
   A nonmodal, interactive popover anchored to a button. Requires HeroUI's Alpine components.
+
+  Use `trigger` for a simple button or the `:trigger_content` slot for a custom
+  trigger; apply the yielded attributes to its interactive element. `open` and
+  `on_open_change` enable LiveView-controlled state. `default_open` sets initial
+  client-managed state.
   """
   attr(:id, :string, required: true)
-  attr(:trigger, :string, required: true)
+  attr(:trigger, :string, default: nil)
   attr(:title, :string, required: true)
+
+  attr(:placement, :string,
+    default: "bottom",
+    values: [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "top start",
+      "top end",
+      "bottom start",
+      "bottom end",
+      "left start",
+      "left end",
+      "right start",
+      "right end"
+    ]
+  )
+
+  attr(:offset, :integer, default: 8)
+  attr(:should_flip, :boolean, default: true)
+  attr(:show_arrow, :boolean, default: false)
+  attr(:open, :boolean, default: nil)
+  attr(:default_open, :boolean, default: false)
+  attr(:on_open_change, :any, default: nil)
+  attr(:target, :any, default: nil)
+  attr(:show_close, :boolean, default: true)
+  attr(:close_label, :string, default: "Close")
   attr(:class, :any, default: nil)
+  attr(:content_class, :any, default: nil)
   slot(:inner_block, required: true)
+  slot(:trigger_content)
 
   def popover(assigns) do
+    if (is_nil(assigns.trigger) and assigns.trigger_content == []) or
+         (!is_nil(assigns.trigger) and assigns.trigger_content != []),
+       do: raise(ArgumentError, "popover requires either trigger or a trigger_content slot")
+
+    if !is_nil(assigns.open) and assigns.default_open,
+      do: raise(ArgumentError, "popover cannot use open and default_open together")
+
+    if assigns.offset < 0,
+      do: raise(ArgumentError, "popover offset must be nonnegative")
+
     ~H"""
     <div
       class={["hui-popover-root", @class]}
+      data-controlled={to_string(!is_nil(@open))}
+      data-controlled-open={if !is_nil(@open), do: to_string(@open)}
+      data-default-open={to_string(@default_open)}
+      data-requested-placement={@placement}
+      data-offset={@offset}
+      data-should-flip={to_string(@should_flip)}
       x-data="heroPopover"
-      x-on:click="close($event)"
+      x-on:click="onClick($event)"
       x-on:resize.window="position()"
       x-on:scroll.window.capture="position()"
       x-on:phx:update.document="sync()"
     >
       <button
+        :if={@trigger_content == []}
         type="button"
         class="button button--md button--secondary popover__trigger"
         x-ref="trigger"
+        data-hero-popover-trigger
         popovertarget={"#{@id}-content"}
         aria-controls={"#{@id}-content"}
         aria-expanded="false"
         aria-haspopup="dialog"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-expanded"])}
       >{@trigger}</button>
+      <span :if={@trigger_content != []} class="inline-flex" x-ref="trigger">
+        {render_slot(@trigger_content, %{
+          "data-hero-popover-trigger" => true,
+          "popovertarget" => "#{@id}-content",
+          "aria-controls" => "#{@id}-content",
+          "aria-expanded" => "false",
+          "aria-haspopup" => "dialog",
+          "phx-mounted" => Phoenix.LiveView.JS.ignore_attributes(["aria-expanded"])
+        })}
+      </span>
       <div
         id={"#{@id}-content"}
         popover="auto"
-        role="dialog"
-        aria-labelledby={"#{@id}-title"}
-        tabindex="-1"
-        class="popover popover__dialog hui-popover"
+        class={["popover", "hui-popover", "group/popover", @content_class]}
         data-hero-popover
         x-ref="content"
         x-on:toggle="toggle($event)"
-        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
+        data-placement={@placement |> String.split() |> hd()}
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style", "data-placement"])}
       >
-        <span id={"#{@id}-title"} class="popover__heading">{@title}</span>
-        <div class="hui-popover-content">{render_slot(@inner_block)}</div>
-        <button type="button" class="button button--sm button--tertiary" data-hero-popover-close>Close</button>
+        <svg
+          :if={@show_arrow}
+          data-slot="popover-overlay-arrow"
+          aria-hidden="true"
+          viewBox="0 0 12 12"
+          width="12"
+          height="12"
+          class="pointer-events-none absolute size-3 group-data-[placement=top]/popover:-bottom-3 group-data-[placement=top]/popover:left-1/2 group-data-[placement=top]/popover:-translate-x-1/2 group-data-[placement=bottom]/popover:-top-3 group-data-[placement=bottom]/popover:left-1/2 group-data-[placement=bottom]/popover:-translate-x-1/2 group-data-[placement=left]/popover:-right-3 group-data-[placement=left]/popover:top-1/2 group-data-[placement=left]/popover:-translate-y-1/2 group-data-[placement=right]/popover:-left-3 group-data-[placement=right]/popover:top-1/2 group-data-[placement=right]/popover:-translate-y-1/2"
+        ><path d="M0 0C5.48483 8 6.5 8 12 0Z" /></svg>
+        <section
+          role="dialog"
+          aria-labelledby={"#{@id}-title"}
+          tabindex="-1"
+          class="popover__dialog max-h-[calc(100dvh-1rem)] overflow-y-auto"
+          data-slot="popover-dialog"
+          x-ref="dialog"
+        >
+          <h2 id={"#{@id}-title"} class="popover__heading" data-slot="popover-heading">{@title}</h2>
+          <div class="mt-2">{render_slot(@inner_block)}</div>
+          <button
+            :if={@show_close}
+            type="button"
+            class="button button--sm button--tertiary mt-4"
+            data-hero-popover-close
+          >{@close_label}</button>
+        </section>
       </div>
+      <button
+        :if={@on_open_change}
+        type="button"
+        hidden
+        data-hero-popover-event
+        phx-click={@on_open_change}
+        phx-target={@target}
+      ></button>
     </div>
     """
   end

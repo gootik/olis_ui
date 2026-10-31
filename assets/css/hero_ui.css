@@ -129,8 +129,8 @@
 
 /* Native dialog supplies focus containment and the browser top layer. */
 dialog.hui-native-modal:not([open]) { display:none; }
-dialog.hui-native-modal[open] { position:fixed; inset:0; margin:auto; width:calc(100% - 2rem); max-height:calc(100dvh - 2rem); overflow:auto; border:0; color:var(--foreground); }
-dialog.hui-native-modal:not(.hui-native-drawer)::backdrop { background:var(--backdrop); }
+dialog.hui-native-modal:not(.hui-hero-modal)[open] { position:fixed; inset:0; margin:auto; width:calc(100% - 2rem); max-height:calc(100dvh - 2rem); overflow:auto; border:0; color:var(--foreground); }
+dialog.hui-native-modal:not(.hui-native-drawer):not(.hui-hero-modal)::backdrop { background:var(--backdrop); }
 body:has(dialog.hui-native-modal[open]) { overflow:hidden; }
 
 /* Keep tab indicators in the LiveView DOM; selection only changes attributes. */
@@ -173,8 +173,7 @@ dialog.hui-native-drawer[data-placement="bottom"][open] { inset:auto 0 0; width:
 
 .hui-tooltip-root, .hui-popover-root { display:inline-block; }
 .hui-tooltip, .hui-popover { position:fixed; inset:auto; margin:0; border:0; max-width:min(20rem,calc(100vw - 1rem)); color:var(--overlay-foreground); }
-.hui-popover { width:min(18rem,calc(100vw - 1rem)); max-height:calc(100dvh - 1rem); overflow:auto; }
-.hui-popover-content { display:block; margin:.5rem 0 1rem; }
+.hui-popover { max-height:calc(100dvh - 1rem); overflow:visible; }
 
 .hui-number-input { appearance:textfield; }
 .hui-number-input::-webkit-inner-spin-button,.hui-number-input::-webkit-outer-spin-button { appearance:none; margin:0; }

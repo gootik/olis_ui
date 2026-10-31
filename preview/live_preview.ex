@@ -113,6 +113,10 @@ defmodule HeroUI.Preview.Live do
         sheet_last: "none",
         controlled_drawer_open: false,
         drawer_last: "none",
+        controlled_modal_open: false,
+        modal_last: "none",
+        controlled_popover_open: false,
+        popover_last: "none",
         toolbar_action: "none",
         tabs_selection: "overview",
         dropdown_sort: "newest",
@@ -177,6 +181,9 @@ defmodule HeroUI.Preview.Live do
 
   def handle_event("table_selection", %{"keys" => encoded}, socket),
     do: {:noreply, assign(socket, :table_selected, Jason.decode!(encoded))}
+
+  def handle_event("popover_change", %{"open" => open, "reason" => reason}, socket),
+    do: {:noreply, assign(socket, controlled_popover_open: open == "true", popover_last: reason)}
 
   def handle_event("sort_people", %{"sort" => "name"}, socket) do
     direction =
@@ -254,6 +261,11 @@ defmodule HeroUI.Preview.Live do
     do:
       {:noreply,
        assign(socket, controlled_drawer_open: open == "true", drawer_last: "#{open}: #{reason}")}
+
+  def handle_event("modal_open_change", %{"open" => open, "reason" => reason}, socket),
+    do:
+      {:noreply,
+       assign(socket, controlled_modal_open: open == "true", modal_last: "#{open}: #{reason}")}
 
   def handle_event("toolbar_action", %{"action" => action}, socket)
       when action in ~w(Copy Cut Undo Redo),
@@ -2470,6 +2482,8 @@ defmodule HeroUI.Preview.Live do
                 class="lp-card-wide"
               >
                 <.button data-hero-dialog-open="live-modal">Open modal</.button>
+                <.button data-hero-dialog-open="live-modal-controlled" variant="secondary">Controlled modal</.button>
+                <.button data-hero-dialog-open="live-modal-bottom" variant="secondary">Bottom modal</.button>
                 <.button data-hero-dialog-open="live-alert" variant="danger-soft">Open alert dialog</.button>
                 <.button data-hero-dialog-open="live-drawer" variant="secondary">Open drawer</.button>
                 <.button data-hero-dialog-open="live-drawer-blur" variant="secondary">Blurred drawer</.button>
@@ -2477,6 +2491,9 @@ defmodule HeroUI.Preview.Live do
                 <.button data-hero-dialog-open="live-drawer-controlled" variant="secondary">Controlled drawer</.button>
                 <p id="drawer-state" class="mt-3 text-xs text-muted">
                   Last drawer change: {@drawer_last}
+                </p>
+                <p id="modal-state" class="mt-3 text-xs text-muted">
+                  Last modal change: {@modal_last}
                 </p>
                 <.alert_dialog
                   id="live-alert"
@@ -2523,6 +2540,33 @@ defmodule HeroUI.Preview.Live do
                   <p id="popover-count">Popover updates: {@count}</p>
                   <.button phx-click="increment">Update popover</.button>
                 </.popover>
+                <.popover
+                  id="preview-popover-custom"
+                  title="Project details"
+                  placement="top"
+                  show_arrow
+                  show_close={false}
+                  content_class="w-64"
+                >
+                  <:trigger_content :let={attrs}>
+                    <.button variant="secondary" {attrs}>Project details</.button>
+                  </:trigger_content>
+                  <p class="m-0 text-sm text-muted">Review the project before continuing.</p>
+                </.popover>
+                <.popover
+                  id="preview-popover-controlled"
+                  trigger="Controlled popover"
+                  title="Notifications"
+                  open={@controlled_popover_open}
+                  on_open_change="popover_change"
+                  placement="right"
+                  content_class="w-64"
+                >
+                  <p class="m-0 text-sm text-muted">Open state is controlled by LiveView.</p>
+                </.popover>
+                <p id="popover-state" class="mt-3 text-xs text-muted">
+                  Last popover change: {@popover_last}
+                </p>
                 <.dropdown id="preview-actions" label="Actions">
                   <:item label="Update count" on_click="increment" />
                   <:item label="Unavailable" disabled />
@@ -2936,6 +2980,26 @@ defmodule HeroUI.Preview.Live do
           <.modal id="live-modal" title="Live update">
             <p id="count">Server updates: {@count}</p>
             <.button phx-click="increment">Update content</.button>
+          </.modal>
+          <.modal
+            id="live-modal-controlled"
+            title="Controlled modal"
+            description="LiveView controls this dialog."
+            open={@controlled_modal_open}
+            on_open_change="modal_open_change"
+            backdrop="blur"
+            placement="center"
+          >
+            <p>Choose how you want to continue.</p>
+            <:close :let={attrs}><.button variant="secondary" {attrs}>Done</.button></:close>
+          </.modal>
+          <.modal
+            id="live-modal-bottom"
+            title="Bottom modal"
+            placement="bottom"
+            backdrop="transparent"
+          >
+            <p>A dialog positioned at the bottom of the viewport.</p>
           </.modal>
         </main>
       </div>

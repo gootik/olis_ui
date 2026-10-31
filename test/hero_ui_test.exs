@@ -293,6 +293,89 @@ defmodule HeroUITest do
     end
   end
 
+  test "color swatches and palettes expose native, labelled form controls" do
+    swatch =
+      render_component(&HeroUI.color_swatch/1, %{
+        color: "#ff000080",
+        label: "Translucent red",
+        size: "lg",
+        shape: "square"
+      })
+
+    assert swatch =~ "color-swatch--square"
+    assert swatch =~ "color-swatch--lg"
+    assert swatch =~ ~s(aria-label="Translucent red")
+    assert swatch =~ "--color-swatch-current: #ff000080"
+
+    form = Phoenix.Component.to_form(%{"accent" => "#8B5CF6"}, as: :theme)
+
+    options = [
+      %{value: "#8B5CF6", label: "Purple"},
+      %{value: "#FACC15", label: "Yellow", disabled: true}
+    ]
+
+    html =
+      render_component(&HeroUI.color_swatch_picker/1, %{
+        field: form[:accent],
+        label: "Accent",
+        description: "Pick one",
+        required: true,
+        option: options
+      })
+
+    assert html =~ ~s(name="theme[accent]")
+    assert html =~ ~s(aria-label="Purple")
+    assert html =~ ~s(aria-label="Yellow")
+    assert html =~ ~s(aria-describedby="theme_accent-description")
+    assert html =~ ~s(data-light-color="true")
+    assert html =~ ~r/value="#8B5CF6"[^>]*checked/
+    assert html =~ ~r/value="#FACC15"[^>]*disabled/
+
+    equivalent =
+      render_component(&HeroUI.color_swatch_picker/1, %{
+        id: "equivalent",
+        label: "Accent",
+        value: "#8b5cf6ff",
+        option: options
+      })
+
+    assert equivalent =~ ~r/value="#8B5CF6"[^>]*checked/
+
+    assert_raise ArgumentError, fn ->
+      render_component(&HeroUI.color_swatch_picker/1, %{
+        id: "dup",
+        label: "Colors",
+        option: [hd(options), hd(options)]
+      })
+    end
+
+    assert_raise ArgumentError, fn ->
+      render_component(&HeroUI.color_swatch/1, %{color: "red; background: url(evil)"})
+    end
+  end
+
+  test "toast region exposes placement and queue settings" do
+    html =
+      render_component(&HeroUI.toast_region/1, %{
+        id: "alerts",
+        placement: "top-end",
+        max_visible: 2,
+        timeout: 0,
+        width: 360
+      })
+
+    assert html =~ ~s(class="toast-region toast-region--top-end")
+    assert html =~ ~s(data-max-visible="2")
+    assert html =~ ~s(data-timeout="0")
+    assert html =~ ~s(--toast-width: 360px)
+    assert html =~ ~s(role="region")
+    assert html =~ ~s(phx-update="ignore")
+
+    assert_raise ArgumentError, fn ->
+      render_component(&HeroUI.toast_region/1, %{id: "bad", max_visible: 0})
+    end
+  end
+
   test "date field renders a constrained native form field with enhanced segments" do
     form = Phoenix.Component.to_form(%{"day" => "2026-10-15"}, as: :event)
 
@@ -323,6 +406,28 @@ defmodule HeroUITest do
         max: ~D[2026-01-01]
       })
     end
+  end
+
+  test "date picker renders a single form value and a detached calendar" do
+    form = Phoenix.Component.to_form(%{"day" => "2026-10-15"}, as: :event)
+
+    html =
+      render_component(&HeroUI.date_picker/1, %{
+        field: form[:day],
+        label: "Event date",
+        min: ~D[2026-09-01],
+        max: ~D[2026-12-31],
+        unavailable_dates: [~D[2026-10-18]],
+        required: true
+      })
+
+    assert length(Regex.scan(~r/name="event\[day\]"/, html)) == 1
+    assert html =~ ~s(data-hero-date-picker-trigger)
+    assert html =~ ~s(aria-controls="event_day-picker-popover")
+    assert html =~ ~s(form="event_day-picker-detached")
+    assert html =~ ~s(data-hero-calendar)
+    assert html =~ "2026-10-18"
+    assert html =~ ~s(value="2026-10-15")
   end
 
   test "calendar renders a named native date input with constraints and accessible feedback" do

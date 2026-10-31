@@ -253,3 +253,13 @@ dialog.hui-native-drawer[data-placement="bottom"][open] { inset:auto 0 0; width:
 .hui-calendar-root .range-calendar__cell { display:block; width:100%; }
 
 .hui-date-field-native[aria-hidden="true"] { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+.hui-date-picker-popover { position:fixed; inset:auto; margin:0; border:0; }
+
+.toast__close-button:focus-visible { opacity:1; pointer-events:auto; }
+
+/* Native radios drive HeroUI's selected and focus states without JavaScript. */
+.hui-swatch-picker__option:has(input:checked) { border-color:var(--color-swatch-current); box-shadow:var(--field-shadow); }
+.hui-swatch-picker__option:has(input:checked) .color-swatch-picker__swatch { transform:scale(.77); }
+.hui-swatch-picker__option:has(input:checked) .color-swatch-picker__indicator > * { transform:scale(1) translateZ(0); }
+.hui-swatch-picker__option:has(input:focus-visible) { outline:2px solid var(--focus); outline-offset:2px; }
+.hui-swatch-picker__option:has(input:disabled) { opacity:.5; cursor:not-allowed; }

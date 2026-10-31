@@ -189,20 +189,21 @@ export function installCalendar(root = document) {
   function sync(field) {
     const {native, end, ui, view, error} = parts(field); if (!native || !ui || !view || !error) return;
     const nativeHadFocus = document.activeElement === native || document.activeElement === end;
-    let state = states.get(field), next = signature(field,native);
+    const dateHadFocus = view.contains(document.activeElement) && document.activeElement?.hasAttribute("data-hero-calendar-date");
+    let focusChanged = false, state = states.get(field), next = signature(field,native);
     if (!state) {
       const focus = clamp(parse(field.dataset.focusedDate) || parse(native.value) || parse(field.dataset.today) || localToday(),native);
       state = {focus, month:monthStart(focus), value:native.value, externalFocus:field.dataset.focusedDate, managedError:false, signature:null, yearOpen:false, yearStart:null, yearEnd:null, yearActive:null}; states.set(field,state);
     } else {
-      if (state.value !== native.value) { state.value = native.value; const selected = parse(native.value); if (selected) { state.focus = clamp(selected,native); state.month = monthStart(state.focus); } }
-      if (state.externalFocus !== field.dataset.focusedDate) { state.externalFocus = field.dataset.focusedDate; const requested = parse(field.dataset.focusedDate); if (requested) { state.focus = clamp(requested,native); state.month = monthStart(state.focus); } }
+      if (state.value !== native.value) { state.value = native.value; const selected = parse(native.value); if (selected) { state.focus = clamp(selected,native); state.month = monthStart(state.focus); focusChanged = true; } }
+      if (state.externalFocus !== field.dataset.focusedDate) { state.externalFocus = field.dataset.focusedDate; const requested = parse(field.dataset.focusedDate); if (requested) { state.focus = clamp(requested,native); state.month = monthStart(state.focus); focusChanged = true; } }
       const clamped = clamp(state.focus,native);
-      if (iso(clamped) !== iso(state.focus)) { state.focus = clamped; state.month = monthStart(clamped); }
+      if (iso(clamped) !== iso(state.focus)) { state.focus = clamped; state.month = monthStart(clamped); focusChanged = true; }
     }
     syncValidity(field,native,state); syncRangeValidity(field,end,state);
     if (field.dataset.yearPicker !== 'true' || native.matches(':disabled')) state.yearOpen=false;
     field.dataset.enhanced='true'; native.setAttribute('aria-hidden','true'); native.tabIndex=-1; if (end) { end.setAttribute('aria-hidden','true'); end.tabIndex=-1; field.querySelector('[data-hero-calendar-native-group]')?.setAttribute('aria-hidden','true'); } ui.hidden=false;
-    if (state.signature !== next) { state.signature = next; render(field); }
+    if (state.signature !== next) { state.signature = next; render(field, focusChanged && dateHadFocus ? {date:iso(state.focus)} : null); }
     if (nativeHadFocus) (view.querySelector('[data-hero-calendar-date][tabindex="0"]') || view.querySelector('[role="grid"]'))?.focus({preventScroll:true});
   }
   function onClick(event) {
@@ -309,8 +310,15 @@ export function installCalendar(root = document) {
     if (grid.scrollTop < 32) extendYears(field,grid,-1);
     if (grid.scrollHeight-grid.scrollTop-grid.clientHeight < 32) extendYears(field,grid,1);
   }
+  function onRequestFocus(event) {
+    const field=event.target.closest?.('[data-hero-calendar]'); if (!field || !root.contains(field)) return;
+    const state=states.get(field), {native}=parts(field); if (!state) return;
+    const requested=parse(event.detail?.value) || parse(field.dataset.focusedDate) || parse(field.dataset.today) || localToday();
+    state.focus=clamp(requested,native); state.month=monthStart(state.focus); state.yearOpen=false;
+    render(field,event.detail?.focus ? {date:iso(state.focus)} : null);
+  }
   function syncAll() { fields().forEach(sync); }
   function onReset() { setTimeout(() => { fields().forEach(field => { const {native,error}=parts(field),state=states.get(field); if (!state) return; state.focus=clamp(parse(native.value) || parse(field.dataset.today) || localToday(),native); state.month=monthStart(state.focus); state.yearOpen=false; state.signature=null; error.hidden=true; error.textContent=''; }); syncAll(); },0); }
-  syncAll(); root.addEventListener('click',onClick); root.addEventListener('pointerover',onPointerOver); root.addEventListener('pointerout',onPointerOut); root.addEventListener('keydown',onKeyDown); root.addEventListener('focusin',onFocusIn); root.addEventListener('change',onChange); root.addEventListener('invalid',onInvalid,true); root.addEventListener('reset',onReset); root.addEventListener('scroll',onScroll,true); document.addEventListener('phx:update',syncAll);
-  return () => { root.removeEventListener('click',onClick); root.removeEventListener('pointerover',onPointerOver); root.removeEventListener('pointerout',onPointerOut); root.removeEventListener('keydown',onKeyDown); root.removeEventListener('focusin',onFocusIn); root.removeEventListener('change',onChange); root.removeEventListener('invalid',onInvalid,true); root.removeEventListener('reset',onReset); root.removeEventListener('scroll',onScroll,true); document.removeEventListener('phx:update',syncAll); fields().forEach(field => { const {native,end,ui}=parts(field),state=states.get(field); if (state?.managedError) native.setCustomValidity(''); native.removeAttribute('aria-hidden'); native.removeAttribute('tabindex'); if (end) { if (state?.rangeError) end.setCustomValidity(''); end.removeAttribute('aria-hidden'); end.removeAttribute('tabindex'); field.querySelector('[data-hero-calendar-native-group]')?.removeAttribute('aria-hidden'); } ui.hidden=true; delete field.dataset.enhanced; }); };
+  syncAll(); root.addEventListener('click',onClick); root.addEventListener('hero-calendar-focus',onRequestFocus); root.addEventListener('pointerover',onPointerOver); root.addEventListener('pointerout',onPointerOut); root.addEventListener('keydown',onKeyDown); root.addEventListener('focusin',onFocusIn); root.addEventListener('change',onChange); root.addEventListener('invalid',onInvalid,true); root.addEventListener('reset',onReset); root.addEventListener('scroll',onScroll,true); document.addEventListener('phx:update',syncAll);
+  return () => { root.removeEventListener('click',onClick); root.removeEventListener('hero-calendar-focus',onRequestFocus); root.removeEventListener('pointerover',onPointerOver); root.removeEventListener('pointerout',onPointerOut); root.removeEventListener('keydown',onKeyDown); root.removeEventListener('focusin',onFocusIn); root.removeEventListener('change',onChange); root.removeEventListener('invalid',onInvalid,true); root.removeEventListener('reset',onReset); root.removeEventListener('scroll',onScroll,true); document.removeEventListener('phx:update',syncAll); fields().forEach(field => { const {native,end,ui}=parts(field),state=states.get(field); if (state?.managedError) native.setCustomValidity(''); native.removeAttribute('aria-hidden'); native.removeAttribute('tabindex'); if (end) { if (state?.rangeError) end.setCustomValidity(''); end.removeAttribute('aria-hidden'); end.removeAttribute('tabindex'); field.querySelector('[data-hero-calendar-native-group]')?.removeAttribute('aria-hidden'); } ui.hidden=true; delete field.dataset.enhanced; }); };
 }

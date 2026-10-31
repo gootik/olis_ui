@@ -348,6 +348,18 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "combo_box.js"])))
   end
 
+  get "/toast.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "toast.js"])))
+  end
+
+  get "/date_picker.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "date_picker.js"])))
+  end
+
   get "/date_field.js" do
     conn
     |> put_resp_content_type("text/javascript")
@@ -379,6 +391,12 @@ defmodule HeroUI.Preview.Router do
       200,
       File.read!(Application.app_dir(:phoenix_live_view, "priv/static/phoenix_live_view.esm.js"))
     )
+  end
+
+  get "/live-preview.css" do
+    conn
+    |> put_resp_content_type("text/css")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "preview", "live_preview.css"])))
   end
 
   get "/preview.css" do

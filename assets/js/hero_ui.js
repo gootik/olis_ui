@@ -4,6 +4,9 @@ import { installTagGroup } from "./tag_group.js";
 import { installComboBox } from "./combo_box.js";
 import { installCalendar } from "./calendar.js";
 import { installDateField } from "./date_field.js";
+import { installDatePicker } from "./date_picker.js";
+import { installToast } from "./toast.js";
+export { toast, updateToast, dismissToast, clearToasts } from "./toast.js";
 
 /** Install delegated behavior for HeroUI components. Returns a cleanup function. */
 export function installHeroUI(root = document) {
@@ -13,6 +16,8 @@ export function installHeroUI(root = document) {
   const removeComboBox = installComboBox(root);
   const removeCalendar = installCalendar(root);
   const removeDateField = installDateField(root);
+  const removeDatePicker = installDatePicker(root);
+  const removeToast = installToast(root);
   function tabsIn(tabs) {
     return Array.from(tabs.querySelectorAll('[role="tab"]')).filter(tab => tab.closest('[data-hero-tabs]') === tabs && !tab.disabled);
   }
@@ -338,6 +343,8 @@ export function installHeroUI(root = document) {
     removeComboBox();
     removeCalendar();
     removeDateField();
+    removeDatePicker();
+    removeToast();
     window.removeEventListener('resize', repositionOpenMenus);
     window.removeEventListener('scroll', repositionOpenMenus, true);
     avatarObserver.disconnect();

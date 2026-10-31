@@ -1080,6 +1080,256 @@ defmodule HeroUI do
     """
   end
 
+  @doc "A color preview with HeroUI sizes, shapes, and transparency pattern."
+  attr(:color, :string, required: true)
+  attr(:label, :string, default: nil)
+  attr(:size, :string, default: "md", values: ~w(xs sm md lg xl))
+  attr(:shape, :string, default: "circle", values: ~w(circle square))
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+
+  def color_swatch(assigns) do
+    color = safe_swatch_color(assigns.color)
+
+    assigns =
+      assigns |> assign(:color, color) |> assign(:accessible_label, assigns.label || color)
+
+    ~H"""
+    <span
+      class={["color-swatch", "color-swatch--#{@shape}", "color-swatch--#{@size}", @class]}
+      data-slot="color-swatch"
+      role="img"
+      aria-label={@accessible_label}
+      style={"--color-swatch-current: #{@color}"}
+      {@rest}
+    ></span>
+    """
+  end
+
+  @doc "A single-selection palette backed by native radio inputs."
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:id, :string, default: nil)
+  attr(:name, :string, default: nil)
+  attr(:value, :string, default: nil)
+  attr(:label, :string, required: true)
+  attr(:description, :string, default: nil)
+  attr(:errors, :list, default: [])
+  attr(:size, :string, default: "md", values: ~w(xs sm md lg xl))
+  attr(:shape, :string, default: "circle", values: ~w(circle square))
+  attr(:layout, :string, default: "grid", values: ~w(grid stack))
+  attr(:disabled, :boolean, default: false)
+  attr(:required, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global, include: ~w(form))
+
+  slot :option, required: true do
+    attr(:value, :string, required: true)
+    attr(:label, :string, required: true)
+    attr(:disabled, :boolean)
+  end
+
+  def color_swatch_picker(assigns) do
+    field = assigns.field
+    id = assigns.id || (field && field.id)
+    if is_nil(id), do: raise(ArgumentError, "color_swatch_picker requires an id or field")
+    name = assigns.name || (field && field.name) || id
+    value = if is_nil(assigns.value) && field, do: field.value, else: assigns.value
+
+    options =
+      Enum.map(assigns.option, fn option ->
+        color = safe_swatch_color(option.value)
+        option |> Map.put(:value, color) |> Map.put(:light, light_swatch_color?(color))
+      end)
+
+    values = Enum.map(options, &canonical_swatch_color(&1.value))
+
+    if length(values) != length(Enum.uniq(values)),
+      do: raise(ArgumentError, "swatch values must be unique")
+
+    {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
+    {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+
+    describedby =
+      [
+        external_description,
+        external_description_string,
+        assigns.description && "#{id}-description",
+        assigns.errors != [] && "#{id}-errors"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join(" ")
+
+    assigns =
+      assigns
+      |> assign(:id, id)
+      |> assign(:name, name)
+      |> assign(:value, value)
+      |> assign(:options, options)
+      |> assign(:describedby, describedby)
+      |> assign(:rest, rest)
+
+    ~H"""
+    <fieldset
+      id={@id}
+      class={@class}
+      disabled={@disabled}
+      aria-describedby={if @describedby != "", do: @describedby}
+    >
+      <legend class="label">{@label}</legend>
+      <div
+        class={[
+          "color-swatch-picker",
+          "color-swatch-picker--#{@layout}",
+          "color-swatch-picker--#{@size}",
+          "color-swatch-picker--#{@shape}"
+        ]}
+        data-slot="color-swatch-picker"
+        data-layout={@layout}
+      >
+        <label
+          :for={option <- @options}
+          class="color-swatch-picker__item hui-swatch-picker__option"
+          data-slot="color-swatch-picker-item"
+          data-disabled={if @disabled || Map.get(option, :disabled, false), do: "true"}
+          style={"--color-swatch-current: #{option.value}"}
+        >
+          <input
+            type="radio"
+            class="hui-visually-hidden-input"
+            name={@name}
+            value={option.value}
+            checked={canonical_swatch_color(option.value) == canonical_swatch_color(@value)}
+            disabled={@disabled || Map.get(option, :disabled, false)}
+            required={@required}
+            aria-label={option.label}
+            aria-invalid={if @errors != [], do: "true"}
+            {@rest}
+          />
+          <span
+            class="color-swatch-picker__swatch"
+            data-slot="color-swatch-picker-swatch"
+            aria-hidden="true"
+            style={"background-color: #{option.value}"}
+          ></span>
+          <span
+            class="color-swatch-picker__indicator"
+            data-slot="color-swatch-picker-indicator"
+            aria-hidden="true"
+            data-light-color={if option.light, do: "true"}
+          >
+            <svg
+              data-slot="color-swatch-picker-checkmark"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="2.5 6 5 8.5 9.5 3"></polyline>
+            </svg>
+          </span>
+        </label>
+      </div>
+      <p :if={@description} id={"#{@id}-description"} class="description">{@description}</p>
+      <div :if={@errors != []} id={"#{@id}-errors"} class="field-error" data-visible="true">
+        <p :for={error <- @errors}>{error}</p>
+      </div>
+    </fieldset>
+    """
+  end
+
+  defp safe_swatch_color(color) when is_binary(color) do
+    value = String.trim(color)
+
+    if value == "" || byte_size(value) > 160 ||
+         !Regex.match?(~r/\A[a-zA-Z0-9#.,()%+\-\/\s]+\z/, value),
+       do: raise(ArgumentError, "invalid color value")
+
+    value
+  end
+
+  defp canonical_swatch_color("#" <> hex = original) when byte_size(hex) in [3, 4, 6, 8] do
+    hex = String.downcase(hex)
+
+    if Regex.match?(~r/\A[0-9a-f]+\z/, hex) do
+      hex =
+        if byte_size(hex) in [3, 4],
+          do: hex |> String.graphemes() |> Enum.map_join(&(&1 <> &1)),
+          else: hex
+
+      if byte_size(hex) == 6, do: "#" <> hex <> "ff", else: "#" <> hex
+    else
+      original
+    end
+  end
+
+  defp canonical_swatch_color(value), do: value
+
+  defp light_swatch_color?("#" <> hex) when byte_size(hex) in [3, 4, 6, 8] do
+    hex =
+      if byte_size(hex) in [3, 4],
+        do: hex |> String.graphemes() |> Enum.map_join(&(&1 <> &1)),
+        else: hex
+
+    case Base.decode16(hex, case: :mixed) do
+      {:ok, <<red, green, blue, _rest::binary>>} ->
+        (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255 > 0.5
+
+      _ ->
+        false
+    end
+  end
+
+  defp light_swatch_color?(_), do: false
+
+  @doc "A notification region for client and LiveView toast events."
+  attr(:id, :string, required: true)
+
+  attr(:placement, :string,
+    default: "bottom",
+    values: ~w(top top-start top-end bottom bottom-start bottom-end)
+  )
+
+  attr(:label, :string, default: "Notifications")
+  attr(:width, :integer, default: 460)
+  attr(:gap, :integer, default: 12)
+  attr(:max_visible, :integer, default: 3)
+  attr(:timeout, :integer, default: 4000)
+  attr(:expanded, :boolean, default: false)
+  attr(:class, :any, default: nil)
+
+  def toast_region(assigns) do
+    if assigns.width <= 0 || assigns.gap < 0 || assigns.max_visible < 1 || assigns.timeout < 0,
+      do:
+        raise(
+          ArgumentError,
+          "toast width and max_visible must be positive; gap and timeout must be non-negative"
+        )
+
+    ~H"""
+    <div
+      id={@id}
+      class={["toast-region", "toast-region--#{@placement}", @class]}
+      data-slot="toast-region"
+      data-hero-toast-region
+      data-placement={@placement}
+      data-gap={@gap}
+      data-max-visible={@max_visible}
+      data-timeout={@timeout}
+      data-expanded={to_string(@expanded)}
+      style={"--toast-width: #{@width}px; --gap: #{@gap}px"}
+      role="region"
+      aria-label={@label}
+      tabindex="-1"
+      phx-update="ignore"
+    >
+      <ol data-hero-toast-list style="display:contents"></ol>
+    </div>
+    """
+  end
+
   @doc "A segmented Gregorian date field backed by a native date input."
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:id, :string, default: nil)
@@ -1091,6 +1341,7 @@ defmodule HeroUI do
   attr(:min, :any, default: nil)
   attr(:max, :any, default: nil)
   attr(:locale, :string, default: nil)
+  attr(:unavailable_dates, :list, default: [])
   attr(:variant, :string, default: "primary", values: ~w(primary secondary))
   attr(:disabled, :boolean, default: false)
   attr(:read_only, :boolean, default: false)
@@ -1129,6 +1380,10 @@ defmodule HeroUI do
       |> assign(:value, calendar_value(value))
       |> assign(:min, min)
       |> assign(:max, max)
+      |> assign(
+        :unavailable_json,
+        Jason.encode!(Enum.map(assigns.unavailable_dates, &calendar_iso/1))
+      )
       |> assign(:rest, rest)
       |> assign(:describedby, describedby)
 
@@ -1139,6 +1394,7 @@ defmodule HeroUI do
       data-hero-date-field
       data-locale={@locale}
       data-variant={@variant}
+      data-unavailable={@unavailable_json}
       data-invalid={if @errors != [], do: "true"}
       data-disabled={if @disabled, do: "true"}
       data-required={if @required, do: "true"}
@@ -1213,6 +1469,132 @@ defmodule HeroUI do
       </p>
       <div :if={@errors != []} id={"#{@id}-errors"} class="field-error" data-visible="true">
         <p :for={error <- @errors}>{error}</p>
+      </div>
+    </div>
+    """
+  end
+
+  @doc "A segmented date field with a calendar popover."
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:id, :string, default: nil)
+  attr(:name, :string, default: nil)
+  attr(:value, :any, default: nil)
+  attr(:label, :string, required: true)
+  attr(:description, :string, default: nil)
+  attr(:errors, :list, default: [])
+  attr(:min, :any, default: nil)
+  attr(:max, :any, default: nil)
+  attr(:today, :any, default: nil)
+  attr(:focused_date, :any, default: nil)
+  attr(:unavailable_dates, :list, default: [])
+  attr(:locale, :string, default: nil)
+  attr(:week_starts_on, :integer, default: nil)
+  attr(:weeks_in_month, :integer, default: nil)
+  attr(:year_picker, :boolean, default: true)
+  attr(:variant, :string, default: "primary", values: ~w(primary secondary))
+  attr(:disabled, :boolean, default: false)
+  attr(:read_only, :boolean, default: false)
+  attr(:required, :boolean, default: false)
+  attr(:full_width, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global, include: ~w(autocomplete autofocus form))
+  slot(:indicator)
+
+  def date_picker(assigns) do
+    field = assigns.field
+    id = assigns.id || (field && field.id)
+    if is_nil(id), do: raise(ArgumentError, "date_picker requires an id or field")
+    value = if is_nil(assigns.value) && field, do: field.value, else: assigns.value
+    assigns = assigns |> assign(:id, id) |> assign(:value, value)
+
+    ~H"""
+    <div
+      id={"#{@id}-picker"}
+      class={["date-picker", @full_width && "w-full", @class]}
+      data-hero-date-picker
+    >
+      <.date_field
+        field={@field}
+        id={@id}
+        name={@name}
+        value={@value}
+        label={@label}
+        description={@description}
+        errors={@errors}
+        min={@min}
+        max={@max}
+        locale={@locale}
+        unavailable_dates={@unavailable_dates}
+        variant={@variant}
+        disabled={@disabled}
+        read_only={@read_only}
+        required={@required}
+        full_width={@full_width}
+        {@rest}
+      >
+        <:suffix>
+          <button
+            type="button"
+            class="date-picker__trigger"
+            data-slot="date-picker-trigger"
+            data-hero-date-picker-trigger
+            aria-label="Calendar"
+            aria-labelledby={"#{@id}-picker-trigger #{@id}-label"}
+            id={"#{@id}-picker-trigger"}
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls={"#{@id}-picker-popover"}
+            disabled={@disabled}
+          >
+            <span
+              class="date-picker__trigger-indicator"
+              data-slot="date-picker-trigger-indicator"
+              aria-hidden="true"
+            >
+              <%= if @indicator != [] do %>
+                {render_slot(@indicator)}
+              <% else %>
+                <svg viewBox="0 0 13 14" width="1em" height="1em" fill="none" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M3.75 4.5A.75.75 0 0 1 3 3.75v-.748a1.5 1.5 0 0 0-1.5 1.5v1h10v-1a1.5 1.5 0 0 0-1.5-1.5v.75a.75.75 0 1 1-1.5 0v-.75h-4v.747a.75.75 0 0 1-.75.75ZM8.5 1.501h-4V.75a.75.75 0 0 0-1.5 0v.752a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h7a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3v-.75a.75.75 0 0 0-1.5 0v.75Zm-7 5.5v3.5a1.5 1.5 0 0 0 1.5 1.5h7a1.5 1.5 0 0 0 1.5-1.5v-3.5h-10Z"
+                  />
+                </svg>
+              <% end %>
+            </span>
+          </button>
+        </:suffix>
+      </.date_field>
+      <div
+        id={"#{@id}-picker-popover"}
+        class="date-picker__popover hui-date-picker-popover"
+        data-slot="date-picker-popover"
+        data-hero-date-picker-popover
+        popover="auto"
+        role="dialog"
+        tabindex="-1"
+        aria-labelledby={"#{@id}-label"}
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style", "data-placement"])}
+      >
+        <.calendar
+          id={"#{@id}-picker-calendar"}
+          label={@label}
+          value={@value}
+          min={@min}
+          max={@max}
+          today={@today}
+          focused_date={@focused_date}
+          unavailable_dates={@unavailable_dates}
+          locale={@locale}
+          week_starts_on={@week_starts_on}
+          weeks_in_month={@weeks_in_month}
+          year_picker={@year_picker}
+          disabled={@disabled}
+          read_only={@read_only}
+          form={"#{@id}-picker-detached"}
+        />
       </div>
     </div>
     """

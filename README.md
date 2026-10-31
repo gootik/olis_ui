@@ -2,7 +2,7 @@
 
 A starting point for a Phoenix LiveView component library inspired by [HeroUI](https://github.com/heroui-inc/heroui). It uses Phoenix function components and native HTML, with Tailwind CSS v4 and a small JavaScript module for interactive components. The initial API follows HeroUI **v3** naming where practical; this is an independent project and is not affiliated with HeroUI.
 
-This is an early foundation, not a complete port. It currently provides button, input, text field, input group, search field, one-time-code input, combo box, date field, calendar, range calendar, card, chip, checkbox, checkbox group, switch, avatar, progress bar, progress circle, meter, spinner, separator, skeleton, textarea, radio, radio group, keyboard key, link, surface, select, accordion, alert, badge, data table, modal, alert dialog, drawer, tabs, dropdown, tooltip, popover, slider, number field, pagination, button groups, toggle buttons, breadcrumbs, listbox, and tag group components. Exact visual and behavioral parity with HeroUI and more complex interactive components are still to be built.
+This is an early foundation, not a complete port. It currently provides button, input, text field, input group, search field, one-time-code input, color swatch, color swatch picker, combo box, date field, date picker, calendar, range calendar, card, chip, checkbox, checkbox group, switch, avatar, progress bar, progress circle, meter, spinner, separator, skeleton, textarea, radio, radio group, keyboard key, link, surface, select, accordion, alert, toast, badge, data table, modal, alert dialog, drawer, tabs, dropdown, tooltip, popover, slider, number field, pagination, button groups, toggle buttons, breadcrumbs, listbox, and tag group components. Exact visual and behavioral parity with HeroUI and more complex interactive components are still to be built.
 
 ## Preview
 
@@ -172,11 +172,50 @@ For multiple keys, set `selection_mode="multiple"` and supply a list as `value`.
   selected_placeholder="No animals selected" options={[{"Cat", "cat"}, {"Dog", "dog"}]} />
 ```
 
+Color swatches display a CSS color with a transparency pattern, in `xs` through `xl` sizes and `circle` or `square` shapes. Color swatch pickers use native radio inputs, so they work with Phoenix form fields, keyboard navigation, and standard form submission without JavaScript. Provide an accessible label for each color:
+
+```heex
+<.color_swatch color="#3B82F6" label="Blue" />
+<.color_swatch_picker field={@form[:accent]} label="Accent color">
+  <:option value="#8B5CF6" label="Purple" />
+  <:option value="#3B82F6" label="Blue" />
+  <:option value="#FACC15" label="Yellow" disabled />
+</.color_swatch_picker>
+```
+
+The picker supports `size`, `shape`, `layout="stack"`, `required`, disabled options, descriptions, and errors. The color values must be CSS color strings; values are submitted unchanged. Equivalent hexadecimal forms are matched regardless of letter case or shorthand. If neither a `field` nor `name` is supplied, the picker uses its `id` as the radio group name.
+
+Toast notifications need one region inside your LiveView and the JavaScript installer. Send a notification from the server with `push_event/3`:
+
+```heex
+<.toast_region id="notifications" placement="bottom-end" />
+```
+
+```elixir
+{:noreply, push_event(socket, "hero:toast", %{
+  id: "saved", title: "Changes saved", description: "Your preferences have been updated.",
+  variant: "success", timeout: 4000
+})}
+```
+
+The variants are `default`, `accent`, `success`, `warning`, and `danger`. A timeout of `0` keeps a toast open. Optional `action: %{label: "Undo", event: "undo", params: %{id: "123"}}` renders a LiveView action button; place the region inside the LiveView that handles that event. Use `region` to target a specific region when there is more than one. The stack expands and pauses its timers on hover or focus; Alt+T moves focus to it.
+
+From JavaScript, import `toast`, `updateToast`, `dismissToast`, or `clearToasts` from `hero_ui.js`. `toast("Saved", {variant: "success"})` returns an ID; pass it to `updateToast(id, {title: "Updated"})` or `dismissToast(id)`. LiveView can also push `hero:toast-update`, `hero:toast-close`, and `hero:toast-clear` events. Custom indicator content and promise helpers are not implemented yet.
+
 Date fields provide editable month, day, and year segments backed by a native date input. They accept a Phoenix form field, `Date` or ISO date values, `min`, `max`, `required`, `read_only`, `disabled`, and a `locale`. The segment order follows the browser locale; values are submitted as ISO Gregorian dates. Use the arrow keys to move between or adjust segments, type digits to edit, and use Backspace or Delete to clear a segment. The native date input remains available without JavaScript. Partial and invalid dates are blocked from submission when enhanced. Localized digit entry, non-Gregorian calendars, and date-time granularities are not yet supported.
 
 ```heex
 <.date_field field={@form[:date]} label="Date" min={~D[2026-01-01]} required />
 ```
+
+Date pickers combine the date field with a calendar popover. They accept the same field, value, bounds, and form options, plus `unavailable_dates`, `week_starts_on`, `weeks_in_month`, and `year_picker` (enabled by default). Unavailable dates are rejected both when typed and when chosen in the calendar; validate them on the server too. The popover uses the browser Popover API. Without JavaScript, the native date input remains available.
+
+```heex
+<.date_picker field={@form[:appointment]} label="Appointment"
+  min={~D[2026-01-01]} unavailable_dates={[~D[2026-06-15]]} />
+```
+
+The picker currently selects Gregorian dates. Date-time granularities and non-Gregorian calendar displays remain to be implemented.
 
 Calendars select one Gregorian date and submit an ISO date string through a native date input. They accept `Date` values or ISO strings, `min`, `max`, `unavailable_dates`, `read_only`, and `disabled`. Month and weekday labels use the browser locale unless `locale` is supplied; `week_starts_on` can override the first weekday (`0` is Sunday). Arrow keys move by day or week, Home and End move within a week, and Page Up or Page Down changes months (hold Shift to change years). The JavaScript installer renders the month grid; without it, the native date input remains available. Native date inputs cannot enforce arbitrary `unavailable_dates` without JavaScript, so validate those dates on the server too. Multiple dates and non-Gregorian calendar systems are not implemented yet.
 

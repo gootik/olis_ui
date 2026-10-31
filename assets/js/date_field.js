@@ -63,8 +63,11 @@ export function installDateField(root = document) {
   }
   function setValidity(field) {
     const {native} = parts(field), state = states.get(field), values = Object.values(state.values), partial = values.some(v => v != null) && !dateValue(state.values);
-    if (partial && (!native.validity.customError || state.managedError)) { native.setCustomValidity('Enter a complete, valid date.'); state.managedError = true; }
-    else if (!partial && state.managedError) { native.setCustomValidity(''); state.managedError = false; }
+    let unavailable = []; try { unavailable = JSON.parse(field.dataset.unavailable || '[]'); } catch (_) { /* Ignore malformed configuration. */ }
+    const blocked = Array.isArray(unavailable) && native.value && unavailable.includes(native.value);
+    const message = partial ? 'Enter a complete, valid date.' : blocked ? 'This date is unavailable.' : '';
+    if (message && (!native.validity.customError || state.managedError)) { native.setCustomValidity(message); state.managedError = true; }
+    else if (!message && state.managedError) { native.setCustomValidity(''); state.managedError = false; }
   }
   function commit(field) {
     const {native, error} = parts(field), state = states.get(field), value = dateValue(state.values), changed = native.value !== value;

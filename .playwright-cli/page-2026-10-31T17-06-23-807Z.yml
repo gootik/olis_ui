@@ -1,0 +1,1281 @@
+- generic [active] [ref=f14e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f14e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f14e3]: Pro
+    - generic [ref=f14e4]:
+      - generic [ref=f14e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f14e6]:
+    - complementary [ref=f14e7]:
+      - generic [ref=f14e9]:
+        - paragraph [ref=f14e10]: Overview
+        - link "All Components (React)" [ref=f14e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f14e12]: Components
+        - link "Accordion" [ref=f14e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f14e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f14e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f14e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f14e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f14e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f14e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f14e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f14e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f14e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f14e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f14e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f14e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f14e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f14e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f14e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f14e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f14e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f14e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f14e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f14e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f14e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f14e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f14e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f14e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f14e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f14e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f14e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f14e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f14e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f14e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f14e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f14e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f14e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f14e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f14e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f14e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f14e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f14e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f14e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f14e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f14e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f14e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f14e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f14e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f14e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f14e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f14e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f14e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f14e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f14e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f14e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f14e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f14e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f14e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f14e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f14e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f14e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f14e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f14e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f14e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f14e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f14e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f14e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f14e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f14e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f14e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f14e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f14e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f14e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f14e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f14e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f14e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f14e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f14e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f14e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f14e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f14e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f14e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f14e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f14e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f14e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f14e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f14e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f14e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f14e110]:
+      - generic [ref=f14e111]:
+        - generic [ref=f14e113]:
+          - link "HeroUI" [ref=f14e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f14e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f14e126]:
+          - text: Search
+          - generic [ref=f14e130]:
+            - generic [ref=f14e131]: ⌘
+            - generic [ref=f14e132]: K
+        - generic [ref=f14e133]:
+          - generic [ref=f14e134]:
+            - button "Ask AI" [ref=f14e136] [cursor=pointer]
+            - button [ref=f14e137] [cursor=pointer]:
+              - button "Design theme" [ref=f14e138]:
+                - generic [ref=f14e139]: Theme
+            - link "31.1k" [ref=f14e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f14e142]:
+            - button "Choose a language" [ref=f14e143] [cursor=pointer]
+            - generic [ref=f14e144] [cursor=pointer]:
+              - button "light" [ref=f14e145]
+              - button "dark" [ref=f14e152]
+              - button "system" [ref=f14e155]
+      - generic [ref=f14e159]:
+        - link "Getting Started" [ref=f14e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f14e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f14e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f14e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f14e188]:
+          - tab "Web" [selected] [ref=f14e189] [cursor=pointer]
+          - tab "Native" [ref=f14e193] [cursor=pointer]
+    - article [ref=f14e196]:
+      - generic [ref=f14e197]:
+        - generic [ref=f14e198]:
+          - heading "Toast Updated" [level=1] [ref=f14e199]:
+            - text: Toast
+            - generic [ref=f14e200]: Updated
+          - group [ref=f14e203]:
+            - button "Copy Markdown" [ref=f14e204] [cursor=pointer]
+            - button "More options" [ref=f14e205] [cursor=pointer]
+        - paragraph [ref=f14e206]: Display temporary notifications and messages to users with automatic dismissal and customizable placement
+        - generic [ref=f14e207]:
+          - link "Figma" [ref=f14e208] [cursor=pointer]:
+            - /url: https://www.figma.com/community/file/1546526812159103429
+          - link "Storybook" [ref=f14e209] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-feedback-toast--docs
+          - link "React Aria" [ref=f14e210] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Toast
+          - link "Source" [ref=f14e211] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/toast/toast.tsx
+          - link "Styles source" [ref=f14e212] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/toast.css
+      - generic [ref=f14e213]:
+        - heading [level=2] [ref=f14e214]:
+          - link "Usage" [ref=f14e215] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f14e216]
+        - figure [ref=f14e221]:
+          - button "Copy Text" [ref=f14e223] [cursor=pointer]
+          - region [ref=f14e224]:
+            - code [ref=f14e226]:
+              - generic [ref=f14e227]: "import { Toast, toast } from '@heroui/react';"
+        - generic [ref=f14e228]:
+          - button "Show toast" [ref=f14e232] [cursor=pointer]
+          - generic [ref=f14e236]:
+            - figure [ref=f14e238]:
+              - button "Copy Text" [ref=f14e240] [cursor=pointer]
+              - region [ref=f14e241]:
+                - code [ref=f14e243]:
+                  - generic [ref=f14e244]: "\"use client\";"
+                  - generic [ref=f14e246]: "import {Persons} from \"@gravity-ui/icons\";"
+                  - generic [ref=f14e247]: "import {Button, toast} from \"@heroui/react\";"
+            - button "Expand code" [ref=f14e249] [cursor=pointer]
+        - heading [level=2] [ref=f14e250]:
+          - link "Anatomy" [ref=f14e251] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f14e252]
+        - figure [ref=f14e257]:
+          - button "Copy Text" [ref=f14e259] [cursor=pointer]
+          - region [ref=f14e260]:
+            - code [ref=f14e262]:
+              - generic [ref=f14e263]: <Toast.Provider>
+              - generic [ref=f14e264]: <Toast>
+              - generic [ref=f14e265]: <Toast.Indicator />
+              - generic [ref=f14e266]: <Toast.Content>
+              - generic [ref=f14e267]: <Toast.Title />
+              - generic [ref=f14e268]: <Toast.Description />
+              - generic [ref=f14e269]: </Toast.Content>
+              - generic [ref=f14e270]: <Toast.ActionButton />
+              - generic [ref=f14e271]: <Toast.CloseButton />
+              - generic [ref=f14e272]: </Toast>
+              - generic [ref=f14e273]: </Toast.Provider>
+        - heading [level=2] [ref=f14e274]:
+          - link "Examples" [ref=f14e275] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f14e276]
+        - heading [level=3] [ref=f14e281]:
+          - link "Variants" [ref=f14e282] [cursor=pointer]:
+            - /url: "#variants"
+          - button "Copy Anchor Link" [ref=f14e283]
+        - heading [level=3] [ref=f14e289]:
+          - link "Placements" [ref=f14e290] [cursor=pointer]:
+            - /url: "#placements"
+          - button "Copy Anchor Link" [ref=f14e291]
+        - heading [level=3] [ref=f14e297]:
+          - link "Expanded Stack" [ref=f14e298] [cursor=pointer]:
+            - /url: "#expanded-stack"
+          - button "Copy Anchor Link" [ref=f14e299]
+        - heading [level=3] [ref=f14e305]:
+          - link "Simple Toasts" [ref=f14e306] [cursor=pointer]:
+            - /url: "#simple-toasts"
+          - button "Copy Anchor Link" [ref=f14e307]
+        - heading [level=3] [ref=f14e313]:
+          - link "Custom Indicators" [ref=f14e314] [cursor=pointer]:
+            - /url: "#custom-indicators"
+          - button "Copy Anchor Link" [ref=f14e315]
+        - heading [level=3] [ref=f14e321]:
+          - link "Custom Toast Rendering" [ref=f14e322] [cursor=pointer]:
+            - /url: "#custom-toast-rendering"
+          - button "Copy Anchor Link" [ref=f14e323]
+        - heading [level=3] [ref=f14e329]:
+          - link "Promise & Loading" [ref=f14e330] [cursor=pointer]:
+            - /url: "#promise--loading"
+          - button "Copy Anchor Link" [ref=f14e331]
+        - heading [level=3] [ref=f14e337]:
+          - link "Callbacks" [ref=f14e338] [cursor=pointer]:
+            - /url: "#callbacks"
+          - button "Copy Anchor Link" [ref=f14e339]
+        - heading [level=3] [ref=f14e345]:
+          - link "Custom Queues" [ref=f14e346] [cursor=pointer]:
+            - /url: "#custom-queues"
+          - button "Copy Anchor Link" [ref=f14e347]
+        - heading [level=3] [ref=f14e353]:
+          - link "Setup" [ref=f14e354] [cursor=pointer]:
+            - /url: "#setup"
+          - button "Copy Anchor Link" [ref=f14e355]
+        - paragraph [ref=f14e360]: Render the provider in the root of your app.
+        - figure [ref=f14e361]:
+          - button "Copy Text" [ref=f14e363] [cursor=pointer]
+          - region [ref=f14e364]:
+            - code [ref=f14e366]:
+              - generic [ref=f14e367]: "import { Toast, Button, toast } from '@heroui/react';"
+              - generic [ref=f14e369]: "function App() {"
+              - generic [ref=f14e370]: return (
+              - generic [ref=f14e371]: <div>
+              - generic [ref=f14e372]: <Toast.Provider />
+              - generic [ref=f14e373]: "<Button onPress={() => toast(\"Simple message\")}>"
+              - generic [ref=f14e374]: Show toast
+              - generic [ref=f14e375]: </Button>
+              - generic [ref=f14e376]: </div>
+              - generic [ref=f14e377]: );
+              - generic [ref=f14e378]: "}"
+        - heading [level=2] [ref=f14e379]:
+          - link "Customization" [ref=f14e380] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f14e381]
+        - heading [level=3] [ref=f14e386]:
+          - link "Tailwind CSS" [ref=f14e387] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f14e388]
+        - heading [level=3] [ref=f14e394]:
+          - link "Global CSS" [ref=f14e395] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f14e396]
+        - paragraph [ref=f14e401]:
+          - text: To customize the Toast component classes, you can use the
+          - code [ref=f14e402]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f14e403] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f14e404]:
+          - button "Copy Text" [ref=f14e406] [cursor=pointer]
+          - region [ref=f14e407]:
+            - code [ref=f14e409]:
+              - generic [ref=f14e410]: "@layer components {"
+              - generic [ref=f14e411]: ".toast {"
+              - generic [ref=f14e412]: "@apply rounded-xl shadow-lg;"
+              - generic [ref=f14e413]: "}"
+              - generic [ref=f14e415]: ".toast__content {"
+              - generic [ref=f14e416]: "@apply gap-2;"
+              - generic [ref=f14e417]: "}"
+              - generic [ref=f14e418]: "}"
+        - heading [level=2] [ref=f14e419]:
+          - link "Styling Reference" [ref=f14e420] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f14e421]
+        - paragraph [ref=f14e426]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f14e427] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f14e428]:
+          - link "CSS Classes" [ref=f14e429] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f14e430]
+        - paragraph [ref=f14e435]:
+          - text: The Toast component uses these CSS classes (
+          - link "View source styles" [ref=f14e436] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/toast.css
+          - text: "):"
+        - heading [level=4] [ref=f14e437]:
+          - link "Base Classes" [ref=f14e438] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f14e439]
+        - list [ref=f14e444]:
+          - listitem [ref=f14e445]:
+            - code [ref=f14e446]: .toast
+            - text: "- Base toast container"
+          - listitem [ref=f14e447]:
+            - code [ref=f14e448]: .toast-region
+            - text: "- Toast region container"
+          - listitem [ref=f14e449]:
+            - code [ref=f14e450]: .toast__content
+            - text: "- Content wrapper for title and description"
+          - listitem [ref=f14e451]:
+            - code [ref=f14e452]: .toast__indicator
+            - text: "- Icon/indicator container"
+          - listitem [ref=f14e453]:
+            - code [ref=f14e454]: .toast__title
+            - text: "- Toast title text"
+          - listitem [ref=f14e455]:
+            - code [ref=f14e456]: .toast__description
+            - text: "- Toast description text"
+          - listitem [ref=f14e457]:
+            - code [ref=f14e458]: .toast__action
+            - text: "- Action button container"
+          - listitem [ref=f14e459]:
+            - code [ref=f14e460]: .toast__close-button
+            - text: "- Close button container"
+        - heading [level=4] [ref=f14e461]:
+          - link "Variant Classes" [ref=f14e462] [cursor=pointer]:
+            - /url: "#variant-classes-toc"
+          - button "Copy Anchor Link" [ref=f14e463]
+        - list [ref=f14e468]:
+          - listitem [ref=f14e469]:
+            - code [ref=f14e470]: .toast--default
+            - text: "- Default gray variant"
+          - listitem [ref=f14e471]:
+            - code [ref=f14e472]: .toast--accent
+            - text: "- Accent blue variant"
+          - listitem [ref=f14e473]:
+            - code [ref=f14e474]: .toast--success
+            - text: "- Success green variant"
+          - listitem [ref=f14e475]:
+            - code [ref=f14e476]: .toast--warning
+            - text: "- Warning yellow/orange variant"
+          - listitem [ref=f14e477]:
+            - code [ref=f14e478]: .toast--danger
+            - text: "- Danger red variant"
+        - heading [level=3] [ref=f14e479]:
+          - link "Interactive States" [ref=f14e480] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f14e481]
+        - paragraph [ref=f14e486]: "The component supports various states:"
+        - list [ref=f14e487]:
+          - listitem [ref=f14e488]:
+            - strong [ref=f14e489]: Frontmost
+            - text: ":"
+            - code [ref=f14e490]: "[data-frontmost]"
+            - text: "- Applied to the topmost visible toast"
+          - listitem [ref=f14e491]:
+            - strong [ref=f14e492]: Index
+            - text: ":"
+            - code [ref=f14e493]: "[data-index]"
+            - text: "- Applied based on toast position in stack"
+          - listitem [ref=f14e494]:
+            - strong [ref=f14e495]: Placement
+            - text: ":"
+            - code [ref=f14e496]: "[data-placement=\"*\"]"
+            - text: "- Applied based on toast region placement"
+          - listitem [ref=f14e497]:
+            - strong [ref=f14e498]: Entering
+            - text: ":"
+            - code [ref=f14e499]: "[data-entering]"
+            - text: "- Applied on first paint of a new toast"
+          - listitem [ref=f14e500]:
+            - strong [ref=f14e501]: Exiting
+            - text: ":"
+            - code [ref=f14e502]: "[data-exiting]"
+            - text: "- Applied while a closing toast plays its exit transition"
+          - listitem [ref=f14e503]:
+            - strong [ref=f14e504]: Expanded
+            - text: ":"
+            - code [ref=f14e505]: "[data-expanded]"
+            - text: "- Applied to every toast while the stack is expanded"
+          - listitem [ref=f14e506]:
+            - strong [ref=f14e507]: Hidden
+            - text: ":"
+            - code [ref=f14e508]: "[data-hidden]"
+            - text: "- Applied to toasts beyond"
+            - code [ref=f14e509]: maxVisibleToasts
+        - heading [level=2] [ref=f14e510]:
+          - link "API Reference" [ref=f14e511] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f14e512]
+        - heading [level=3] [ref=f14e517]:
+          - link "Toast.Provider" [ref=f14e518] [cursor=pointer]:
+            - /url: "#toastprovider"
+          - button "Copy Anchor Link" [ref=f14e519]
+        - table [ref=f14e525]:
+          - rowgroup [ref=f14e526]:
+            - row [ref=f14e527]:
+              - columnheader "Prop" [ref=f14e528]
+              - columnheader "Type" [ref=f14e529]
+              - columnheader "Default" [ref=f14e530]
+              - columnheader "Description" [ref=f14e531]
+          - rowgroup [ref=f14e532]:
+            - row [ref=f14e533]:
+              - cell [ref=f14e534]:
+                - code [ref=f14e535]: placement
+              - cell [ref=f14e536]:
+                - code [ref=f14e537]: "\"top start\" | \"top\" | \"top end\" | \"bottom start\" | \"bottom\" | \"bottom end\""
+              - cell [ref=f14e538]:
+                - code [ref=f14e539]: "\"bottom\""
+              - cell "Placement of the toast region" [ref=f14e540]
+            - row [ref=f14e541]:
+              - cell [ref=f14e542]:
+                - code [ref=f14e543]: gap
+              - cell [ref=f14e544]:
+                - code [ref=f14e545]: number
+              - cell [ref=f14e546]:
+                - code [ref=f14e547]: "12"
+              - cell "The gap between toasts in pixels" [ref=f14e548]
+            - row [ref=f14e549]:
+              - cell [ref=f14e550]:
+                - code [ref=f14e551]: isExpanded
+              - cell [ref=f14e552]:
+                - code [ref=f14e553]: boolean
+              - cell [ref=f14e554]:
+                - code [ref=f14e555]: "false"
+              - cell "Force the stack into its expanded layout (does not pause timers)" [ref=f14e556]
+            - row [ref=f14e557]:
+              - cell [ref=f14e558]:
+                - code [ref=f14e559]: maxVisibleToasts
+              - cell [ref=f14e560]:
+                - code [ref=f14e561]: number
+              - cell [ref=f14e562]:
+                - code [ref=f14e563]: "3"
+              - cell "Maximum number of toasts to display at once" [ref=f14e564]
+            - row [ref=f14e565]:
+              - cell [ref=f14e566]:
+                - code [ref=f14e567]: hotkey
+              - cell [ref=f14e568]:
+                - code [ref=f14e569]: string[]
+              - cell [ref=f14e570]:
+                - code [ref=f14e571]: "[\"altKey\", \"KeyT\"]"
+              - cell [ref=f14e572]:
+                - text: Hotkey that moves focus to the toast region and expands the stack. Modifiers match
+                - code [ref=f14e573]: KeyboardEvent
+                - text: boolean properties (e.g.
+                - code [ref=f14e574]: "\"altKey\""
+                - text: ), other keys match
+                - code [ref=f14e575]: event.code
+                - text: (e.g.
+                - code [ref=f14e576]: "\"KeyT\""
+                - text: ). Modifiers you leave out must be up, so
+                - code [ref=f14e577]: Alt
+                - text: +
+                - code [ref=f14e578]: T
+                - text: does not also fire on
+                - code [ref=f14e579]: Ctrl
+                - text: +
+                - code [ref=f14e580]: Alt
+                - text: +
+                - code [ref=f14e581]: T
+                - text: . Pass
+                - code [ref=f14e582]: "[]"
+                - text: to disable
+            - row [ref=f14e583]:
+              - cell [ref=f14e584]:
+                - code [ref=f14e585]: scaleFactor
+              - cell [ref=f14e586]:
+                - code [ref=f14e587]: number
+              - cell [ref=f14e588]:
+                - code [ref=f14e589]: "0.05"
+              - cell "Scale factor for stacked toasts (0-1)" [ref=f14e590]
+            - row [ref=f14e591]:
+              - cell [ref=f14e592]:
+                - code [ref=f14e593]: width
+              - cell [ref=f14e594]:
+                - code [ref=f14e595]: number | string
+              - cell [ref=f14e596]:
+                - code [ref=f14e597]: "460"
+              - cell "Width of the toast in pixels or CSS value" [ref=f14e598]
+            - row [ref=f14e599]:
+              - cell [ref=f14e600]:
+                - code [ref=f14e601]: queue
+              - cell [ref=f14e602]:
+                - code [ref=f14e603]: ToastQueue<T>
+              - cell "-" [ref=f14e604]
+              - cell "Custom toast queue instance" [ref=f14e605]
+            - row [ref=f14e606]:
+              - cell [ref=f14e607]:
+                - code [ref=f14e608]: children
+              - cell [ref=f14e609]:
+                - code [ref=f14e610]: "ReactNode | ((props: {toast: QueuedToast<T>}) => ReactNode)"
+              - cell "-" [ref=f14e611]
+              - cell "Custom render function or children" [ref=f14e612]
+            - row [ref=f14e613]:
+              - cell [ref=f14e614]:
+                - code [ref=f14e615]: className
+              - cell [ref=f14e616]:
+                - code [ref=f14e617]: string
+              - cell "-" [ref=f14e618]
+              - cell "Additional CSS classes" [ref=f14e619]
+        - heading [level=3] [ref=f14e620]:
+          - link "Toast" [ref=f14e621] [cursor=pointer]:
+            - /url: "#toast"
+          - button "Copy Anchor Link" [ref=f14e622]
+        - table [ref=f14e628]:
+          - rowgroup [ref=f14e629]:
+            - row [ref=f14e630]:
+              - columnheader "Prop" [ref=f14e631]
+              - columnheader "Type" [ref=f14e632]
+              - columnheader "Default" [ref=f14e633]
+              - columnheader "Description" [ref=f14e634]
+          - rowgroup [ref=f14e635]:
+            - row [ref=f14e636]:
+              - cell [ref=f14e637]:
+                - code [ref=f14e638]: toast
+              - cell [ref=f14e639]:
+                - code [ref=f14e640]: QueuedToast<T>
+              - cell "-" [ref=f14e641]
+              - cell "Toast data from queue (required)" [ref=f14e642]
+            - row [ref=f14e643]:
+              - cell [ref=f14e644]:
+                - code [ref=f14e645]: variant
+              - cell [ref=f14e646]:
+                - code [ref=f14e647]: "\"default\" | \"accent\" | \"success\" | \"warning\" | \"danger\""
+              - cell [ref=f14e648]:
+                - code [ref=f14e649]: "\"default\""
+              - cell "Visual variant of the toast" [ref=f14e650]
+            - row [ref=f14e651]:
+              - cell [ref=f14e652]:
+                - code [ref=f14e653]: placement
+              - cell [ref=f14e654]:
+                - code [ref=f14e655]: ToastVariants["placement"]
+              - cell "-" [ref=f14e656]
+              - cell "Placement (inherited from Provider)" [ref=f14e657]
+            - row [ref=f14e658]:
+              - cell [ref=f14e659]:
+                - code [ref=f14e660]: scaleFactor
+              - cell [ref=f14e661]:
+                - code [ref=f14e662]: number
+              - cell "-" [ref=f14e663]
+              - cell "Scale factor (inherited from Provider)" [ref=f14e664]
+            - row [ref=f14e665]:
+              - cell [ref=f14e666]:
+                - code [ref=f14e667]: className
+              - cell [ref=f14e668]:
+                - code [ref=f14e669]: string
+              - cell "-" [ref=f14e670]
+              - cell "Additional CSS classes" [ref=f14e671]
+            - row [ref=f14e672]:
+              - cell [ref=f14e673]:
+                - code [ref=f14e674]: children
+              - cell [ref=f14e675]:
+                - code [ref=f14e676]: ReactNode
+              - cell "-" [ref=f14e677]
+              - cell "Toast content (ToastContent, ToastIndicator, etc.)" [ref=f14e678]
+        - heading [level=3] [ref=f14e679]:
+          - link "Toast.Content" [ref=f14e680] [cursor=pointer]:
+            - /url: "#toastcontent"
+          - button "Copy Anchor Link" [ref=f14e681]
+        - table [ref=f14e687]:
+          - rowgroup [ref=f14e688]:
+            - row [ref=f14e689]:
+              - columnheader "Prop" [ref=f14e690]
+              - columnheader "Type" [ref=f14e691]
+              - columnheader "Default" [ref=f14e692]
+              - columnheader "Description" [ref=f14e693]
+          - rowgroup [ref=f14e694]:
+            - row [ref=f14e695]:
+              - cell [ref=f14e696]:
+                - code [ref=f14e697]: children
+              - cell [ref=f14e698]:
+                - code [ref=f14e699]: ReactNode
+              - cell "-" [ref=f14e700]
+              - cell "Content (typically ToastTitle and ToastDescription)" [ref=f14e701]
+            - row [ref=f14e702]:
+              - cell [ref=f14e703]:
+                - code [ref=f14e704]: className
+              - cell [ref=f14e705]:
+                - code [ref=f14e706]: string
+              - cell "-" [ref=f14e707]
+              - cell "Additional CSS classes" [ref=f14e708]
+        - heading [level=3] [ref=f14e709]:
+          - link "Toast.Indicator" [ref=f14e710] [cursor=pointer]:
+            - /url: "#toastindicator"
+          - button "Copy Anchor Link" [ref=f14e711]
+        - table [ref=f14e717]:
+          - rowgroup [ref=f14e718]:
+            - row [ref=f14e719]:
+              - columnheader "Prop" [ref=f14e720]
+              - columnheader "Type" [ref=f14e721]
+              - columnheader "Default" [ref=f14e722]
+              - columnheader "Description" [ref=f14e723]
+          - rowgroup [ref=f14e724]:
+            - row [ref=f14e725]:
+              - cell [ref=f14e726]:
+                - code [ref=f14e727]: variant
+              - cell [ref=f14e728]:
+                - code [ref=f14e729]: ToastVariants["variant"]
+              - cell "-" [ref=f14e730]
+              - cell "Variant for default icon" [ref=f14e731]
+            - row [ref=f14e732]:
+              - cell [ref=f14e733]:
+                - code [ref=f14e734]: children
+              - cell [ref=f14e735]:
+                - code [ref=f14e736]: ReactNode
+              - cell "-" [ref=f14e737]
+              - cell "Custom indicator icon (defaults to variant icon)" [ref=f14e738]
+            - row [ref=f14e739]:
+              - cell [ref=f14e740]:
+                - code [ref=f14e741]: className
+              - cell [ref=f14e742]:
+                - code [ref=f14e743]: string
+              - cell "-" [ref=f14e744]
+              - cell "Additional CSS classes" [ref=f14e745]
+        - heading [level=3] [ref=f14e746]:
+          - link "Toast.Title" [ref=f14e747] [cursor=pointer]:
+            - /url: "#toasttitle"
+          - button "Copy Anchor Link" [ref=f14e748]
+        - table [ref=f14e754]:
+          - rowgroup [ref=f14e755]:
+            - row [ref=f14e756]:
+              - columnheader "Prop" [ref=f14e757]
+              - columnheader "Type" [ref=f14e758]
+              - columnheader "Default" [ref=f14e759]
+              - columnheader "Description" [ref=f14e760]
+          - rowgroup [ref=f14e761]:
+            - row [ref=f14e762]:
+              - cell [ref=f14e763]:
+                - code [ref=f14e764]: children
+              - cell [ref=f14e765]:
+                - code [ref=f14e766]: ReactNode
+              - cell "-" [ref=f14e767]
+              - cell "Title text" [ref=f14e768]
+            - row [ref=f14e769]:
+              - cell [ref=f14e770]:
+                - code [ref=f14e771]: className
+              - cell [ref=f14e772]:
+                - code [ref=f14e773]: string
+              - cell "-" [ref=f14e774]
+              - cell "Additional CSS classes" [ref=f14e775]
+        - heading [level=3] [ref=f14e776]:
+          - link "Toast.Description" [ref=f14e777] [cursor=pointer]:
+            - /url: "#toastdescription"
+          - button "Copy Anchor Link" [ref=f14e778]
+        - table [ref=f14e784]:
+          - rowgroup [ref=f14e785]:
+            - row [ref=f14e786]:
+              - columnheader "Prop" [ref=f14e787]
+              - columnheader "Type" [ref=f14e788]
+              - columnheader "Default" [ref=f14e789]
+              - columnheader "Description" [ref=f14e790]
+          - rowgroup [ref=f14e791]:
+            - row [ref=f14e792]:
+              - cell [ref=f14e793]:
+                - code [ref=f14e794]: children
+              - cell [ref=f14e795]:
+                - code [ref=f14e796]: ReactNode
+              - cell "-" [ref=f14e797]
+              - cell "Description text" [ref=f14e798]
+            - row [ref=f14e799]:
+              - cell [ref=f14e800]:
+                - code [ref=f14e801]: className
+              - cell [ref=f14e802]:
+                - code [ref=f14e803]: string
+              - cell "-" [ref=f14e804]
+              - cell "Additional CSS classes" [ref=f14e805]
+        - heading [level=3] [ref=f14e806]:
+          - link "Toast.ActionButton" [ref=f14e807] [cursor=pointer]:
+            - /url: "#toastactionbutton"
+          - button "Copy Anchor Link" [ref=f14e808]
+        - table [ref=f14e814]:
+          - rowgroup [ref=f14e815]:
+            - row [ref=f14e816]:
+              - columnheader "Prop" [ref=f14e817]
+              - columnheader "Type" [ref=f14e818]
+              - columnheader "Default" [ref=f14e819]
+              - columnheader "Description" [ref=f14e820]
+          - rowgroup [ref=f14e821]:
+            - row [ref=f14e822]:
+              - cell [ref=f14e823]:
+                - code [ref=f14e824]: children
+              - cell [ref=f14e825]:
+                - code [ref=f14e826]: ReactNode
+              - cell "-" [ref=f14e827]
+              - cell "Action button content" [ref=f14e828]
+            - row [ref=f14e829]:
+              - cell [ref=f14e830]:
+                - code [ref=f14e831]: className
+              - cell [ref=f14e832]:
+                - code [ref=f14e833]: string
+              - cell "-" [ref=f14e834]
+              - cell "Additional CSS classes" [ref=f14e835]
+            - row [ref=f14e836]:
+              - cell [ref=f14e837]:
+                - text: All
+                - code [ref=f14e838]: Button
+                - text: props
+              - cell "-" [ref=f14e839]
+              - cell "-" [ref=f14e840]
+              - cell "Accepts all Button component props" [ref=f14e841]
+        - heading [level=3] [ref=f14e842]:
+          - link "Toast.CloseButton" [ref=f14e843] [cursor=pointer]:
+            - /url: "#toastclosebutton"
+          - button "Copy Anchor Link" [ref=f14e844]
+        - table [ref=f14e850]:
+          - rowgroup [ref=f14e851]:
+            - row [ref=f14e852]:
+              - columnheader "Prop" [ref=f14e853]
+              - columnheader "Type" [ref=f14e854]
+              - columnheader "Default" [ref=f14e855]
+              - columnheader "Description" [ref=f14e856]
+          - rowgroup [ref=f14e857]:
+            - row [ref=f14e858]:
+              - cell [ref=f14e859]:
+                - code [ref=f14e860]: className
+              - cell [ref=f14e861]:
+                - code [ref=f14e862]: string
+              - cell "-" [ref=f14e863]
+              - cell "Additional CSS classes" [ref=f14e864]
+            - row [ref=f14e865]:
+              - cell [ref=f14e866]:
+                - text: All
+                - code [ref=f14e867]: CloseButton
+                - text: props
+              - cell "-" [ref=f14e868]
+              - cell "-" [ref=f14e869]
+              - cell "Accepts all CloseButton component props" [ref=f14e870]
+        - heading [level=3] [ref=f14e871]:
+          - link "ToastQueue" [ref=f14e872] [cursor=pointer]:
+            - /url: "#toastqueue"
+          - button "Copy Anchor Link" [ref=f14e873]
+        - paragraph [ref=f14e878]:
+          - text: A
+          - code [ref=f14e879]: ToastQueue
+          - text: manages the state for a
+          - code [ref=f14e880]: <Toast.Provider>
+          - text: . The state is stored outside React so you can trigger toasts from anywhere in your application.
+        - heading [level=4] [ref=f14e881]:
+          - link "Constructor Options" [ref=f14e882] [cursor=pointer]:
+            - /url: "#constructor-options"
+          - button "Copy Anchor Link" [ref=f14e883]
+        - table [ref=f14e889]:
+          - rowgroup [ref=f14e890]:
+            - row [ref=f14e891]:
+              - columnheader "Option" [ref=f14e892]
+              - columnheader "Type" [ref=f14e893]
+              - columnheader "Default" [ref=f14e894]
+              - columnheader "Description" [ref=f14e895]
+          - rowgroup [ref=f14e896]:
+            - row [ref=f14e897]:
+              - cell [ref=f14e898]:
+                - code [ref=f14e899]: exitDuration
+              - cell [ref=f14e900]:
+                - code [ref=f14e901]: number
+              - cell [ref=f14e902]:
+                - code [ref=f14e903]: "300"
+              - cell "How long a closing toast stays mounted for its exit animation (0 removes immediately)" [ref=f14e904]
+            - row [ref=f14e905]:
+              - cell [ref=f14e906]:
+                - code [ref=f14e907]: maxVisibleToasts
+              - cell [ref=f14e908]:
+                - code [ref=f14e909]: number
+              - cell [ref=f14e910]:
+                - code [ref=f14e911]: "3"
+              - cell "Maximum number of toasts to display at once (visual only)" [ref=f14e912]
+            - row [ref=f14e913]:
+              - cell [ref=f14e914]:
+                - code [ref=f14e915]: wrapUpdate
+              - cell [ref=f14e916]:
+                - code [ref=f14e917]: "(fn: () => void) => void"
+              - cell "-" [ref=f14e918]
+              - cell [ref=f14e919]:
+                - text: Function to wrap state updates (e.g.
+                - code [ref=f14e920]: document.startViewTransition
+                - text: ); by default updates are applied directly and animated with CSS transitions
+        - heading [level=4] [ref=f14e921]:
+          - link "Methods" [ref=f14e922] [cursor=pointer]:
+            - /url: "#methods"
+          - button "Copy Anchor Link" [ref=f14e923]
+        - table [ref=f14e929]:
+          - rowgroup [ref=f14e930]:
+            - row [ref=f14e931]:
+              - columnheader "Method" [ref=f14e932]
+              - columnheader "Parameters" [ref=f14e933]
+              - columnheader "Returns" [ref=f14e934]
+              - columnheader "Description" [ref=f14e935]
+          - rowgroup [ref=f14e936]:
+            - row [ref=f14e937]:
+              - cell [ref=f14e938]:
+                - code [ref=f14e939]: add
+              - cell [ref=f14e940]:
+                - code [ref=f14e941]: "(content: T, options?: ToastOptions)"
+              - cell [ref=f14e942]:
+                - code [ref=f14e943]: string
+              - cell "Add a toast to the queue, returns toast key" [ref=f14e944]
+            - row [ref=f14e945]:
+              - cell [ref=f14e946]:
+                - code [ref=f14e947]: update
+              - cell [ref=f14e948]:
+                - code [ref=f14e949]: "(key: string, content: T, options?: {timeout?: number; onClose?: () => void})"
+              - cell [ref=f14e950]:
+                - code [ref=f14e951]: boolean
+              - cell [ref=f14e952]:
+                - text: Update a toast in place, preserving its stack position;
+                - code [ref=f14e953]: timeout
+                - text: restarts the countdown (0 keeps it open), omit it to keep the current countdown. Returns
+                - code [ref=f14e954]: "false"
+                - text: if the toast no longer exists
+            - row [ref=f14e955]:
+              - cell [ref=f14e956]:
+                - code [ref=f14e957]: close
+              - cell [ref=f14e958]:
+                - code [ref=f14e959]: "(key: string)"
+              - cell [ref=f14e960]:
+                - code [ref=f14e961]: void
+              - cell "Close a toast by its key" [ref=f14e962]
+            - row [ref=f14e963]:
+              - cell [ref=f14e964]:
+                - code [ref=f14e965]: pauseAll
+              - cell [ref=f14e966]:
+                - code [ref=f14e967]: ()
+              - cell [ref=f14e968]:
+                - code [ref=f14e969]: void
+              - cell "Pause all toast timers" [ref=f14e970]
+            - row [ref=f14e971]:
+              - cell [ref=f14e972]:
+                - code [ref=f14e973]: resumeAll
+              - cell [ref=f14e974]:
+                - code [ref=f14e975]: ()
+              - cell [ref=f14e976]:
+                - code [ref=f14e977]: void
+              - cell "Resume all toast timers" [ref=f14e978]
+            - row [ref=f14e979]:
+              - cell [ref=f14e980]:
+                - code [ref=f14e981]: clear
+              - cell [ref=f14e982]:
+                - code [ref=f14e983]: ()
+              - cell [ref=f14e984]:
+                - code [ref=f14e985]: void
+              - cell [ref=f14e986]:
+                - text: Close all toasts (each toast animates out and fires its
+                - code [ref=f14e987]: onClose
+                - text: )
+            - row [ref=f14e988]:
+              - cell [ref=f14e989]:
+                - code [ref=f14e990]: subscribe
+              - cell [ref=f14e991]:
+                - code [ref=f14e992]: "(fn: () => void)"
+              - cell [ref=f14e993]:
+                - code [ref=f14e994]: () => void
+              - cell "Subscribe to queue changes, returns unsubscribe function" [ref=f14e995]
+        - heading [level=3] [ref=f14e996]:
+          - link "toast Function" [ref=f14e997] [cursor=pointer]:
+            - /url: "#toast-function"
+          - button "Copy Anchor Link" [ref=f14e998]
+        - paragraph [ref=f14e1003]:
+          - text: The default
+          - code [ref=f14e1004]: toast
+          - text: "function provides convenient methods for showing toasts:"
+        - figure [ref=f14e1005]:
+          - button "Copy Text" [ref=f14e1007] [cursor=pointer]
+          - region [ref=f14e1008]:
+            - code [ref=f14e1010]:
+              - generic [ref=f14e1011]: "import { toast } from '@heroui/react';"
+              - generic [ref=f14e1013]: // Basic toast (auto-dismisses after 4 seconds by default)
+              - generic [ref=f14e1014]: toast("Event has been created");
+              - generic [ref=f14e1016]: // Variant methods (also auto-dismiss after 4 seconds by default)
+              - generic [ref=f14e1017]: toast.success("File saved");
+              - generic [ref=f14e1018]: toast.info("New update available");
+              - generic [ref=f14e1019]: toast.warning("Please check your settings");
+              - generic [ref=f14e1020]: toast.danger("Something went wrong");
+              - generic [ref=f14e1022]: // With options. The returned id lets the action close its own toast.
+              - generic [ref=f14e1023]: "const eventId = toast(\"Event has been created\", {"
+              - generic [ref=f14e1024]: "description: \"Your event has been scheduled for tomorrow\","
+              - generic [ref=f14e1025]: "variant: \"default\","
+              - generic [ref=f14e1026]: "timeout: 5000, // Custom timeout: 5 seconds"
+              - generic [ref=f14e1027]: "onClose: () => console.log(\"Closed\"),"
+              - generic [ref=f14e1028]: "actionProps: {"
+              - generic [ref=f14e1029]: "children: \"View\","
+              - generic [ref=f14e1030]: "onPress: () => toast.close(eventId),"
+              - generic [ref=f14e1031]: "},"
+              - generic [ref=f14e1032]: "indicator: <CustomIcon />,"
+              - generic [ref=f14e1033]: "});"
+              - generic [ref=f14e1035]: // Update an existing toast in place (keeps its position in the stack).
+              - generic [ref=f14e1036]: "// Options you omit are inherited, so pass `timeout` to start a countdown"
+              - generic [ref=f14e1037]: // on a toast that was created persistent.
+              - generic [ref=f14e1038]: "const id = toast(\"Saving…\", { timeout: 0 });"
+              - generic [ref=f14e1039]: "toast.update(id, \"Saved\", { variant: \"success\", timeout: 4000 });"
+              - generic [ref=f14e1041]: // Promise support (automatically shows loading spinner). The loading toast
+              - generic [ref=f14e1042]: // updates in place when the promise settles — same toast, same stack
+              - generic [ref=f14e1043]: // position; the auto-dismiss countdown starts at that point.
+              - generic [ref=f14e1044]: toast.promise(
+              - generic [ref=f14e1045]: uploadFile(),
+              - generic [ref=f14e1046]: "{"
+              - generic [ref=f14e1047]: "loading: \"Uploading file...\","
+              - generic [ref=f14e1048]: "success: (data) => `File ${data.filename} uploaded`,"
+              - generic [ref=f14e1049]: "error: \"Failed to upload file\","
+              - generic [ref=f14e1050]: "}"
+              - generic [ref=f14e1051]: );
+              - generic [ref=f14e1053]: // Manual loading state (persistent toast - no auto-dismiss)
+              - generic [ref=f14e1054]: "const loadingId = toast(\"Creating event...\", {"
+              - generic [ref=f14e1055]: "isLoading: true,"
+              - generic [ref=f14e1056]: "timeout: 0, // Persistent toast that doesn't auto-dismiss"
+              - generic [ref=f14e1057]: "});"
+              - generic [ref=f14e1059]: // Later, update in place and start the auto-dismiss countdown
+              - generic [ref=f14e1060]: "toast.update(loadingId, \"Event created\", { variant: \"success\", timeout: 4000 });"
+              - generic [ref=f14e1062]: // Queue methods
+              - generic [ref=f14e1063]: toast.close(key);
+              - generic [ref=f14e1064]: toast.clear();
+              - generic [ref=f14e1065]: toast.pauseAll();
+              - generic [ref=f14e1066]: toast.resumeAll();
+        - heading [level=4] [ref=f14e1067]:
+          - link "toast Options" [ref=f14e1068] [cursor=pointer]:
+            - /url: "#toast-options"
+          - button "Copy Anchor Link" [ref=f14e1069]
+        - table [ref=f14e1075]:
+          - rowgroup [ref=f14e1076]:
+            - row [ref=f14e1077]:
+              - columnheader "Option" [ref=f14e1078]
+              - columnheader "Type" [ref=f14e1079]
+              - columnheader "Default" [ref=f14e1080]
+              - columnheader "Description" [ref=f14e1081]
+          - rowgroup [ref=f14e1082]:
+            - row [ref=f14e1083]:
+              - cell [ref=f14e1084]:
+                - code [ref=f14e1085]: title
+              - cell [ref=f14e1086]:
+                - code [ref=f14e1087]: ReactNode
+              - cell "-" [ref=f14e1088]
+              - cell "Toast title (first parameter for variant methods)" [ref=f14e1089]
+            - row [ref=f14e1090]:
+              - cell [ref=f14e1091]:
+                - code [ref=f14e1092]: description
+              - cell [ref=f14e1093]:
+                - code [ref=f14e1094]: ReactNode
+              - cell "-" [ref=f14e1095]
+              - cell "Optional description text" [ref=f14e1096]
+            - row [ref=f14e1097]:
+              - cell [ref=f14e1098]:
+                - code [ref=f14e1099]: variant
+              - cell [ref=f14e1100]:
+                - code [ref=f14e1101]: "\"default\" | \"accent\" | \"success\" | \"warning\" | \"danger\""
+              - cell [ref=f14e1102]:
+                - code [ref=f14e1103]: "\"default\""
+              - cell "Visual variant" [ref=f14e1104]
+            - row [ref=f14e1105]:
+              - cell [ref=f14e1106]:
+                - code [ref=f14e1107]: indicator
+              - cell [ref=f14e1108]:
+                - code [ref=f14e1109]: ReactNode
+              - cell "-" [ref=f14e1110]
+              - cell "Custom indicator icon (null to hide)" [ref=f14e1111]
+            - row [ref=f14e1112]:
+              - cell [ref=f14e1113]:
+                - code [ref=f14e1114]: actionProps
+              - cell [ref=f14e1115]:
+                - code [ref=f14e1116]: ButtonProps
+              - cell "-" [ref=f14e1117]
+              - cell "Props for action button" [ref=f14e1118]
+            - row [ref=f14e1119]:
+              - cell [ref=f14e1120]:
+                - code [ref=f14e1121]: isLoading
+              - cell [ref=f14e1122]:
+                - code [ref=f14e1123]: boolean
+              - cell [ref=f14e1124]:
+                - code [ref=f14e1125]: "false"
+              - cell "Show loading spinner instead of indicator" [ref=f14e1126]
+            - row [ref=f14e1127]:
+              - cell [ref=f14e1128]:
+                - code [ref=f14e1129]: timeout
+              - cell [ref=f14e1130]:
+                - code [ref=f14e1131]: number
+              - cell [ref=f14e1132]:
+                - code [ref=f14e1133]: "4000"
+              - cell [ref=f14e1134]:
+                - text: Auto-dismiss timeout in milliseconds. Defaults to 4000ms (4 seconds). Set to
+                - code [ref=f14e1135]: "0"
+                - text: for persistent toasts that don't auto-dismiss
+            - row [ref=f14e1136]:
+              - cell [ref=f14e1137]:
+                - code [ref=f14e1138]: onClose
+              - cell [ref=f14e1139]:
+                - code [ref=f14e1140]: () => void
+              - cell "-" [ref=f14e1141]
+              - cell "Called when the toast is dismissed, as its exit animation starts" [ref=f14e1142]
+        - heading [level=4] [ref=f14e1143]:
+          - link "toast.promise Options" [ref=f14e1144] [cursor=pointer]:
+            - /url: "#toastpromise-options"
+          - button "Copy Anchor Link" [ref=f14e1145]
+        - table [ref=f14e1151]:
+          - rowgroup [ref=f14e1152]:
+            - row [ref=f14e1153]:
+              - columnheader "Option" [ref=f14e1154]
+              - columnheader "Type" [ref=f14e1155]
+              - columnheader "Default" [ref=f14e1156]
+              - columnheader "Description" [ref=f14e1157]
+          - rowgroup [ref=f14e1158]:
+            - row [ref=f14e1159]:
+              - cell [ref=f14e1160]:
+                - code [ref=f14e1161]: loading
+              - cell [ref=f14e1162]:
+                - code [ref=f14e1163]: ReactNode
+              - cell "-" [ref=f14e1164]
+              - cell "Message shown while promise is pending" [ref=f14e1165]
+            - row [ref=f14e1166]:
+              - cell [ref=f14e1167]:
+                - code [ref=f14e1168]: success
+              - cell [ref=f14e1169]:
+                - code [ref=f14e1170]: "ReactNode | ((data: T) => ReactNode)"
+              - cell "-" [ref=f14e1171]
+              - cell "Message shown on success (can be function)" [ref=f14e1172]
+            - row [ref=f14e1173]:
+              - cell [ref=f14e1174]:
+                - code [ref=f14e1175]: error
+              - cell [ref=f14e1176]:
+                - code [ref=f14e1177]: "ReactNode | ((error: Error) => ReactNode)"
+              - cell "-" [ref=f14e1178]
+              - cell "Message shown on error (can be function)" [ref=f14e1179]
+        - heading [level=2] [ref=f14e1180]:
+          - link "Accessibility" [ref=f14e1181] [cursor=pointer]:
+            - /url: "#accessibility"
+          - button "Copy Anchor Link" [ref=f14e1182]
+        - paragraph [ref=f14e1187]:
+          - text: Each toast implements the
+          - link "WAI-ARIA alertdialog pattern" [ref=f14e1188] [cursor=pointer]:
+            - /url: https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/
+          - text: ", grouped inside a labeled landmark region:"
+        - list [ref=f14e1189]:
+          - listitem [ref=f14e1190]:
+            - strong [ref=f14e1191]: Landmark region
+            - text: ": Toasts render in a labeled landmark reachable with"
+            - code [ref=f14e1192]: F6
+            - text: ;
+            - code [ref=f14e1193]: Alt
+            - text: +
+            - code [ref=f14e1194]: T
+            - text: moves focus straight to it. The hotkey is configurable via the
+            - code [ref=f14e1195]: hotkey
+            - text: prop and can be disabled by passing an empty array, and the region label can be overridden with
+            - code [ref=f14e1196]: aria-label
+          - listitem [ref=f14e1197]:
+            - strong [ref=f14e1198]: Keyboard
+            - text: ":"
+            - code [ref=f14e1199]: Tab
+            - text: reaches the controls of visible toasts,
+            - code [ref=f14e1200]: Escape
+            - text: collapses the expanded stack, and dismissing a focused toast moves focus to the nearest remaining toast
+          - listitem [ref=f14e1201]:
+            - strong [ref=f14e1202]: Screen readers
+            - text: ": Each toast uses"
+            - code [ref=f14e1203]: role="alertdialog"
+            - text: with its title and description linked; new toasts are announced automatically
+          - listitem [ref=f14e1204]:
+            - strong [ref=f14e1205]: Timers
+            - text: ": Auto-dismiss pauses while the stack is hovered or focused, and while the page is in a background tab"
+        - heading [level=2] [ref=f14e1206]:
+          - link "Related Components" [ref=f14e1207] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f14e1208]
+        - generic [ref=f14e1213]:
+          - generic [ref=f14e1214]:
+            - link "Button" [ref=f14e1216] [cursor=pointer]:
+              - /url: /en/docs/components/button
+            - generic [ref=f14e1218]:
+              - link "Button":
+                - /url: /en/docs/components/button
+                - img "Button" [ref=f14e1219] [cursor=pointer]
+          - generic [ref=f14e1220]:
+            - link "Alert" [ref=f14e1222] [cursor=pointer]:
+              - /url: /en/docs/components/alert
+            - generic [ref=f14e1224]:
+              - link "Alert":
+                - /url: /en/docs/components/alert
+                - img "Alert" [ref=f14e1225] [cursor=pointer]
+          - generic [ref=f14e1226]:
+            - link "CloseButton" [ref=f14e1228] [cursor=pointer]:
+              - /url: /en/docs/components/close-button
+            - generic [ref=f14e1230]:
+              - link "CloseButton":
+                - /url: /en/docs/components/close-button
+                - img "CloseButton" [ref=f14e1231] [cursor=pointer]
+      - generic [ref=f14e1232]:
+        - link [ref=f14e1233] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+          - paragraph [ref=f14e1237]: TimeField
+          - paragraph [ref=f14e1238]: Time input field with labels, descriptions, and validation built on React Aria TimeField
+        - link [ref=f14e1239] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+          - paragraph [ref=f14e1243]: ToggleButton
+          - paragraph [ref=f14e1244]: An interactive toggle control for on/off or selected/unselected states
+    - generic [ref=f14e1245]:
+      - heading "On this page" [level=3] [ref=f14e1246]
+      - generic [ref=f14e1251]:
+        - link "Usage" [ref=f14e1252] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f14e1253] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f14e1254] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Variants" [ref=f14e1255] [cursor=pointer]:
+          - /url: "#variants"
+        - link "Placements" [ref=f14e1256] [cursor=pointer]:
+          - /url: "#placements"
+        - link "Expanded Stack" [ref=f14e1257] [cursor=pointer]:
+          - /url: "#expanded-stack"
+        - link "Simple Toasts" [ref=f14e1258] [cursor=pointer]:
+          - /url: "#simple-toasts"
+        - link "Custom Indicators" [ref=f14e1259] [cursor=pointer]:
+          - /url: "#custom-indicators"
+        - link "Custom Toast Rendering" [ref=f14e1260] [cursor=pointer]:
+          - /url: "#custom-toast-rendering"
+        - link "Promise & Loading" [ref=f14e1261] [cursor=pointer]:
+          - /url: "#promise--loading"
+        - link "Callbacks" [ref=f14e1262] [cursor=pointer]:
+          - /url: "#callbacks"
+        - link "Custom Queues" [ref=f14e1263] [cursor=pointer]:
+          - /url: "#custom-queues"
+        - link "Setup" [ref=f14e1264] [cursor=pointer]:
+          - /url: "#setup"
+        - link "Customization" [ref=f14e1265] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f14e1266] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f14e1267] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f14e1268] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f14e1269] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f14e1270] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f14e1271] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Toast.Provider" [ref=f14e1272] [cursor=pointer]:
+          - /url: "#toastprovider"
+        - link "Toast" [ref=f14e1273] [cursor=pointer]:
+          - /url: "#toast"
+        - link "Toast.Content" [ref=f14e1274] [cursor=pointer]:
+          - /url: "#toastcontent"
+        - link "Toast.Indicator" [ref=f14e1275] [cursor=pointer]:
+          - /url: "#toastindicator"
+        - link "Toast.Title" [ref=f14e1276] [cursor=pointer]:
+          - /url: "#toasttitle"
+        - link "Toast.Description" [ref=f14e1277] [cursor=pointer]:
+          - /url: "#toastdescription"
+        - link "Toast.ActionButton" [ref=f14e1278] [cursor=pointer]:
+          - /url: "#toastactionbutton"
+        - link "Toast.CloseButton" [ref=f14e1279] [cursor=pointer]:
+          - /url: "#toastclosebutton"
+        - link "ToastQueue" [ref=f14e1280] [cursor=pointer]:
+          - /url: "#toastqueue"
+        - link "Constructor Options" [ref=f14e1281] [cursor=pointer]:
+          - /url: "#constructor-options"
+        - link "Methods" [ref=f14e1282] [cursor=pointer]:
+          - /url: "#methods"
+        - link "toast Function" [ref=f14e1283] [cursor=pointer]:
+          - /url: "#toast-function"
+        - link "toast Options" [ref=f14e1284] [cursor=pointer]:
+          - /url: "#toast-options"
+        - link "toast.promise Options" [ref=f14e1285] [cursor=pointer]:
+          - /url: "#toastpromise-options"
+        - link "Accessibility" [ref=f14e1286] [cursor=pointer]:
+          - /url: "#accessibility"
+        - link "Related Components" [ref=f14e1287] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f14e1290]:
+        - generic [ref=f14e1291]:
+          - generic [ref=f14e1292]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f14e1293]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f14e1294] [cursor=pointer]
+  - generic [ref=f14e1296]:
+    - generic [ref=f14e1297]: Now available
+    - button "Close" [ref=f14e1311] [cursor=pointer]
+    - generic [ref=f14e1312]:
+      - generic [ref=f14e1313]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f14e1314]
+        - paragraph [ref=f14e1315]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f14e1316]:
+        - button "Close" [ref=f14e1317] [cursor=pointer]
+        - link "Explore Pro" [ref=f14e1318] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f14e1319]:
+    - button "Open data assistant" [ref=f15e3] [cursor=pointer]
+  - alert [ref=f14e1320]

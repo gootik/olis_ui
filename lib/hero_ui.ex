@@ -416,6 +416,8 @@ defmodule HeroUI do
         ]}
         data-slot="input-group"
         data-hero-input-group
+        x-data="heroInputGroup"
+        x-on:click="focusInput($event)"
         data-invalid={if @invalid, do: "true"}
         data-disabled={if @disabled, do: "true"}
       >
@@ -1514,6 +1516,10 @@ defmodule HeroUI do
         aria-hidden="true"
         class="avatar__image hui-avatar-image"
         data-hero-avatar-image
+        x-data="heroAvatarImage"
+        x-on:phx:update.window="sync()"
+        x-on:load="$el.removeAttribute('data-failed')"
+        x-on:error="$el.dataset.failed = 'true'"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-failed"])}
       />
     </span>
@@ -3675,6 +3681,16 @@ defmodule HeroUI do
       class={["select", "select--#{@variant}", "hui-native-select", @class]}
       data-invalid={if @invalid, do: "true"}
       data-hero-select-root
+      x-data="heroSelect"
+      x-on:click.window="click($event)"
+      x-on:keydown="keydown($event)"
+      x-on:toggle.capture="toggle($event)"
+      x-on:invalid.capture="invalid($event)"
+      x-on:change="change($event)"
+      x-on:reset.window="reset($event)"
+      x-on:resize.window="position()"
+      x-on:scroll.window.capture="position()"
+      x-on:phx:update.window="sync()"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-enhanced"])}
     >
       <div class="hui-native-select-field">

@@ -152,7 +152,7 @@ Switch groups arrange independent native switches. Add a `label` for a fieldset 
 </.switch_group>
 ```
 
-Input groups combine a native input with optional `:prefix` and `:suffix` slots. Pass `multiline` for a textarea, `variant="secondary"` for surfaces, and `full_width` to fill the available width. Slots can contain text, icons, or interactive controls; disable interactive slot controls explicitly when the field is disabled. Like `text_field`, an input group accepts a Phoenix form field and explicit error strings.
+Input groups combine a native input with optional `:prefix` and `:suffix` slots. Pass `multiline` for a textarea, `variant="secondary"` for surfaces, and `full_width` to fill the available width. Slots can contain text, icons, or interactive controls; disable interactive slot controls explicitly when the field is disabled. Like `text_field`, an input group accepts a Phoenix form field and explicit error strings. With Alpine installed, clicking a noninteractive part of the group focuses its input.
 
 ```heex
 <.input_group field={@form[:price]} label="Price" type="number" full_width>
@@ -351,7 +351,7 @@ Tag groups are also server-controlled. Handle `on_select` and `on_remove` events
 </.tag_group>
 ```
 
-Single selects progressively enhance to a HeroUI-styled listbox when the JavaScript installer and browser Popover API are available. The native select remains the form control and fallback; multiple selects and size-based listboxes remain native. Associate a `<label for="...">` or provide an accessible label.
+Single selects progressively enhance to a HeroUI-styled listbox when the HeroUI Alpine providers and browser Popover API are available. The native select remains the form control and fallback; multiple selects and size-based listboxes remain native. Associate a `<label for="...">` or provide an accessible label.
 
 Autocomplete combines a select with a search field inside its popover. It accepts the same option formats as `Phoenix.HTML.Form.options_for_select/2`, including groups and disabled options. Set `selection_mode="multiple"` and provide a list for multiple selection; the form name gets a `[]` suffix and an empty selection omits the form key. `clearable` adds a clear button. The JavaScript installer and Popover API provide filtering and keyboard navigation; otherwise the native select remains available.
 
@@ -488,7 +488,7 @@ Tooltips show plain descriptive text on hover or focus using the HeroUI Alpine p
 </.popover>
 ```
 
-Avatars use the JavaScript installer to reveal initials if an image fails to load. Badge placement classes can be used inside `.badge_anchor`.
+Avatars use the HeroUI Alpine providers to reveal initials if an image fails to load. Badge placement classes can be used inside `.badge_anchor`.
 
 Checkbox groups render native multi-value inputs and append `[]` to the supplied name. When all options are unchecked, the key is absent from the submitted form; treat it as an empty list. `required` adds an accessible instruction but group-level validation belongs on the server, since HTML checkbox `required` would require every option.
 

@@ -731,6 +731,8 @@ defmodule HeroUITest do
     assert html =~ "input-group__prefix"
     assert html =~ "input-group__suffix"
     assert html =~ ~s(data-visible="true")
+    assert html =~ ~s(x-data="heroInputGroup")
+    assert html =~ ~s|x-on:click="focusInput($event)"|
 
     multiline =
       render_component(&HeroUI.input_group/1, %{
@@ -1591,6 +1593,9 @@ defmodule HeroUITest do
 
     assert html =~ "select--secondary"
     assert html =~ "select__trigger"
+    assert html =~ ~s(x-data="heroSelect")
+    assert html =~ ~s|x-on:invalid.capture="invalid($event)"|
+    assert html =~ ~s|x-on:phx:update.window="sync()"|
     assert html =~ ~s(aria-invalid="true")
     assert html =~ "disabled"
   end
@@ -1894,6 +1899,9 @@ defmodule HeroUITest do
     assert avatar =~ "avatar__fallback--accent"
     assert avatar =~ ">CJ</span>"
     assert avatar =~ "data-hero-avatar-image"
+    assert avatar =~ ~s(x-data="heroAvatarImage")
+    assert avatar =~ "x-on:error"
+    assert avatar =~ "x-on:load"
     slot = [%{inner_block: fn _, _ -> "Saved" end}]
 
     alert =

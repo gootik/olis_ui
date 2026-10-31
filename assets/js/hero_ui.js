@@ -1,4 +1,3 @@
-import { installSelect } from "./select.js";
 import { installComboBox } from "./combo_box.js";
 import { installCalendar } from "./calendar.js";
 import { installDateField } from "./date_field.js";
@@ -12,7 +11,6 @@ export { toast, updateToast, dismissToast, clearToasts } from "./toast.js";
 
 /** Install delegated behavior for HeroUI components. Returns a cleanup function. */
 export function installHeroUI(root = document) {
-  const removeSelect = installSelect(root);
   const removeComboBox = installComboBox(root);
   const removeCalendar = installCalendar(root);
   const removeDateField = installDateField(root);
@@ -132,29 +130,6 @@ export function installHeroUI(root = document) {
       return;
     }
   }
-  function onAvatarError(event) {
-    const image = event.target;
-    if (image.matches?.('[data-hero-avatar-image]') && root.contains(image)) image.dataset.failed = 'true';
-  }
-  function onAvatarLoad(event) {
-    const image = event.target;
-    if (image.matches?.('[data-hero-avatar-image]') && root.contains(image)) delete image.dataset.failed;
-  }
-  function checkAvatar(image) {
-    if (image.complete && image.naturalWidth === 0 && image.dataset.failed !== 'true') image.dataset.failed = 'true';
-  }
-  function scanAvatars(node) {
-    if (node.matches?.('[data-hero-avatar-image]')) checkAvatar(node);
-    node.querySelectorAll?.('[data-hero-avatar-image]').forEach(checkAvatar);
-  }
-  scanAvatars(root);
-  const avatarObserver = new MutationObserver(records => {
-    for (const record of records) {
-      if (record.type === 'attributes') scanAvatars(record.target);
-      else record.addedNodes.forEach(scanAvatars);
-    }
-  });
-  avatarObserver.observe(root, {subtree: true, childList: true, attributes: true, attributeFilter: ['src', 'data-failed']});
   let sliderDrag = null;
   function syncSlider(slider, changed) {
     const inputs = [...slider.querySelectorAll('[data-hero-slider-input]')];
@@ -227,11 +202,6 @@ export function installHeroUI(root = document) {
   }
   function onFormReset() { setTimeout(syncSliders, 0); }
   function onClick(event) {
-    const inputGroup = event.target.closest?.('[data-hero-input-group]');
-    if (inputGroup && root.contains(inputGroup) && !event.target.closest('input, textarea, select, button, a, [contenteditable="true"], [role="button"]')) {
-      const input = inputGroup.querySelector('[data-slot="input-group-input"], [data-slot="input-group-textarea"]');
-      if (input && !input.matches(':disabled')) input.focus();
-    }
     const option = event.target.closest?.('[role="option"]');
     const listbox = option?.closest('[data-hero-listbox]');
     if (listbox && root.contains(listbox) && listbox.getAttribute('aria-disabled') !== 'true' && option.getAttribute('aria-disabled') !== 'true') {
@@ -271,8 +241,6 @@ export function installHeroUI(root = document) {
   document.addEventListener('phx:update', reconcileListboxes);
   document.addEventListener('phx:update', syncSliders);
   syncSliders();
-  root.addEventListener('error', onAvatarError, true);
-  root.addEventListener('load', onAvatarLoad, true);
   root.addEventListener('input', onSliderInput, true);
   root.addEventListener('pointerdown', onSliderPointerDown);
   root.addEventListener('pointermove', moveSlider);
@@ -285,7 +253,6 @@ export function installHeroUI(root = document) {
   root.addEventListener('keydown', onKeyDown);
   root.addEventListener('cancel', onCancel, true);
   return () => {
-    removeSelect();
     removeComboBox();
     removeCalendar();
     removeDateField();
@@ -297,11 +264,8 @@ export function installHeroUI(root = document) {
     removeDropdown();
     window.removeEventListener('resize', repositionOpenMenus);
     window.removeEventListener('scroll', repositionOpenMenus, true);
-    avatarObserver.disconnect();
     document.removeEventListener('phx:update', reconcileListboxes);
     document.removeEventListener('phx:update', syncSliders);
-    root.removeEventListener('error', onAvatarError, true);
-    root.removeEventListener('load', onAvatarLoad, true);
     root.removeEventListener('input', onSliderInput, true);
     root.removeEventListener('pointerdown', onSliderPointerDown);
     root.removeEventListener('pointermove', moveSlider);

@@ -4,7 +4,7 @@ defmodule HeroUI do
 
   Import this module in your HTML helpers and include the official HeroUI v3 styles and `assets/css/hero_ui.css` in your Tailwind v4 application stylesheet. See the README for setup and examples.
   """
-  use Phoenix.Component
+  use Phoenix.Component, global_prefixes: ~w(x-)
 
   @doc "A native button with HeroUI v3 variants. Defaults to type=button."
   attr(:variant, :string,
@@ -39,6 +39,55 @@ defmodule HeroUI do
     """
   end
 
+  @doc "An accessible icon button for closing or dismissing content."
+  attr(:label, :string, default: "Close")
+  attr(:disabled, :boolean, default: false)
+  attr(:type, :string, default: "button", values: ~w(button submit reset))
+  attr(:class, :any, default: nil)
+  attr(:rest, :global, include: ~w(form name value hidden slot))
+  slot(:inner_block)
+
+  def close_button(assigns) do
+    label =
+      Map.get(assigns.rest, :"aria-label") || Map.get(assigns.rest, "aria-label") || assigns.label
+
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "close-button"
+
+    rest = Map.drop(assigns.rest, [:"aria-label", "aria-label", :"data-slot", "data-slot"])
+    assigns = assign(assigns, label: label, data_slot: data_slot, rest: rest)
+
+    ~H"""
+    <button
+      type={@type}
+      disabled={@disabled}
+      aria-label={@label}
+      class={["close-button", "close-button--default", @class]}
+      data-slot={@data_slot}
+      {@rest}
+    >
+      <%= if @inner_block == [] do %>
+        <svg
+          aria-hidden="true"
+          role="presentation"
+          fill="none"
+          height="16"
+          width="16"
+          viewBox="0 0 16 16"
+          data-slot="close-button-icon"
+        ><path
+          d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+        /></svg>
+      <% else %>
+        {render_slot(@inner_block)}
+      <% end %>
+    </button>
+    """
+  end
+
   @doc "A styled native input. Supply an accessible label or aria-label."
   attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
@@ -69,21 +118,24 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A labelled input with optional description and errors. Accepts a Phoenix form field."
+  @doc "A labelled input or textarea with optional description and errors. Accepts a Phoenix form field."
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
   attr(:value, :any, default: nil)
-  attr(:label, :string, required: true)
+  attr(:label, :string, default: nil)
   attr(:description, :string, default: nil)
   attr(:errors, :list, default: [])
   attr(:type, :string, default: "text")
+  attr(:multiline, :boolean, default: false)
+  attr(:invalid, :boolean, default: false)
   attr(:variant, :string, default: "primary", values: ~w(primary secondary))
   attr(:class, :any, default: nil)
+  attr(:input_class, :any, default: nil)
 
   attr(:rest, :global,
     include:
-      ~w(autocomplete autofocus disabled form max maxlength min minlength pattern placeholder readonly required step)
+      ~w(autocomplete autofocus cols disabled form max maxlength min minlength pattern placeholder readonly required rows step wrap)
   )
 
   def text_field(assigns) do
@@ -97,41 +149,141 @@ defmodule HeroUI do
 
     if is_nil(assigns.id), do: raise(ArgumentError, "text_field requires an id or field")
 
-    assigns =
-      assign(
-        assigns,
-        :describedby,
-        Enum.join(
-          Enum.filter(
-            [
-              assigns.description && "#{assigns.id}-description",
-              assigns.errors != [] && "#{assigns.id}-errors"
-            ],
-            & &1
-          ),
-          " "
-        )
-      )
+    invalid = assigns.invalid || assigns.errors != []
+    {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
+    {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+
+    if (is_nil(assigns.label) or assigns.label == "") and
+         !(rest[:"aria-label"] || rest["aria-label"] || rest[:"aria-labelledby"] ||
+             rest["aria-labelledby"]),
+       do: raise(ArgumentError, "text_field requires a label, aria-label, or aria-labelledby")
+
+    describedby =
+      [
+        external_description,
+        external_description_string,
+        !invalid && assigns.description && "#{assigns.id}-description",
+        assigns.errors != [] && "#{assigns.id}-errors"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join(" ")
+
+    assigns = assign(assigns, rest: rest, describedby: describedby, invalid_state: invalid)
 
     ~H"""
-    <div class={["hui-field", @class]}>
-      <label class="hui-label" for={@id}>{@label}</label>
+    <div
+      class={["textfield", "textfield--full-width", @class]}
+      data-slot="textfield"
+      data-invalid={if @invalid_state, do: "true"}
+      data-disabled={if @rest[:disabled] || @rest["disabled"], do: "true"}
+      data-required={if @rest[:required] || @rest["required"], do: "true"}
+      data-readonly={if @rest[:readonly] || @rest["readonly"], do: "true"}
+    >
+      <label :if={@label && @label != ""} class="label" data-slot="label" for={@id}>{@label}</label>
       <.input
+        :if={!@multiline}
         id={@id}
         name={@name}
         value={@value}
         type={@type}
         variant={@variant}
-        invalid={@errors != []}
+        invalid={@invalid_state}
         full_width
+        class={@input_class}
+        data-slot="input"
         aria-describedby={if @describedby != "", do: @describedby}
         {@rest}
       />
-      <p :if={@description} class="hui-description" id={"#{@id}-description"}>{@description}</p>
-      <div :if={@errors != []} class="hui-errors" id={"#{@id}-errors"}>
+      <.textarea
+        :if={@multiline}
+        id={@id}
+        name={@name}
+        value={@value}
+        variant={@variant}
+        invalid={@invalid_state}
+        class={@input_class}
+        data-slot="textarea"
+        aria-describedby={if @describedby != "", do: @describedby}
+        {@rest}
+      />
+      <span
+        :if={@description}
+        class="description px-1"
+        data-slot="description"
+        id={"#{@id}-description"}
+      >{@description}</span>
+      <div
+        :if={@errors != []}
+        class="field-error"
+        data-visible="true"
+        data-slot="field-error"
+        id={"#{@id}-errors"}
+      >
         <p :for={error <- @errors}>{error}</p>
       </div>
     </div>
+    """
+  end
+
+  @doc "Groups related form controls with a native legend, description, and optional actions."
+  attr(:id, :string, required: true)
+  attr(:legend, :string, default: nil)
+  attr(:description, :string, default: nil)
+  attr(:disabled, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:group_class, :any, default: nil)
+  attr(:actions_class, :any, default: nil)
+  attr(:rest, :global, include: ~w(form name))
+  slot(:inner_block, required: true)
+  slot(:legend_content)
+  slot(:actions)
+
+  def fieldset(assigns) do
+    if (is_nil(assigns.legend) or assigns.legend == "") and assigns.legend_content == [],
+      do: raise(ArgumentError, "fieldset requires a legend")
+
+    if assigns.legend && assigns.legend_content != [],
+      do: raise(ArgumentError, "fieldset accepts either legend or legend_content")
+
+    rest_description =
+      Map.get(assigns.rest, :"aria-describedby") || Map.get(assigns.rest, "aria-describedby")
+
+    describedby =
+      Enum.reject(
+        [rest_description, assigns.description && "#{assigns.id}-description"],
+        &is_nil/1
+      )
+      |> Enum.join(" ")
+
+    rest = assigns.rest |> Map.delete(:"aria-describedby") |> Map.delete("aria-describedby")
+
+    assigns =
+      assign(assigns, rest: rest, describedby: if(describedby == "", do: nil, else: describedby))
+
+    ~H"""
+    <fieldset
+      id={@id}
+      disabled={@disabled}
+      class={["fieldset", @class]}
+      data-slot="fieldset"
+      aria-describedby={@describedby}
+      {@rest}
+    >
+      <legend class="fieldset__legend" data-slot="fieldset-legend">
+        {if @legend_content == [], do: @legend, else: render_slot(@legend_content)}
+      </legend>
+      <span :if={@description} id={"#{@id}-description"} class="description" data-slot="description">{@description}</span>
+      <div class={["fieldset__field-group", @group_class]} data-slot="fieldset-field-group">
+        {render_slot(@inner_block)}
+      </div>
+      <div
+        :if={@actions != []}
+        class={["fieldset__actions", @actions_class]}
+        data-slot="fieldset-actions"
+      >
+        {render_slot(@actions)}
+      </div>
+    </fieldset>
     """
   end
 
@@ -324,7 +476,14 @@ defmodule HeroUI do
       data-slot="search-field"
       data-empty={to_string(is_nil(@value) || @value == "")}
       data-invalid={if @errors != [], do: "true"}
-      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-empty"])}
+      x-data="{ empty: true, locked: false, sync() { let input = this.$refs.input; if (!input) return; this.empty = input.value === ''; this.locked = input.matches(':disabled') || input.readOnly }, clear() { let input = this.$refs.input; if (!input || this.locked || this.empty) return; input.value = ''; input.dispatchEvent(new Event('input', { bubbles: true })); input.focus() } }"
+      x-init="$nextTick(() => sync())"
+      x-on:input="sync()"
+      x-on:phx:update.window="sync()"
+      x-on:reset.window="$nextTick(() => sync())"
+      x-bind:data-empty="empty.toString()"
+      x-bind:data-hero-search-ready="'true'"
+      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-empty", "data-hero-search-ready"])}
     >
       <label :if={@label} class="label" data-slot="label" for={@id}>{@label}</label>
       <div
@@ -350,26 +509,25 @@ defmodule HeroUI do
           name={@name}
           value={@value}
           type="search"
+          x-ref="input"
           class="search-field__input"
           data-slot="search-field-input"
           aria-invalid={if @errors != [], do: "true"}
           aria-describedby={if @describedby != "", do: @describedby}
           {@rest}
         />
-        <button
-          type="button"
-          class="close-button close-button--default search-field__clear-button"
+        <.close_button
+          label="Clear search"
+          class="search-field__clear-button"
           data-slot="search-field-clear-button"
           data-hero-search-clear
           slot="clear"
-          aria-label="Clear search"
           hidden
-        ><svg aria-hidden="true" data-slot="close-button-icon" viewBox="0 0 16 16" fill="none"><path
-          d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
-          fill="currentColor"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-        /></svg></button>
+          x-bind:hidden="false"
+          x-bind:disabled="empty || locked"
+          x-bind:aria-hidden="empty.toString()"
+          x-on:click="clear()"
+        />
       </div>
       <p :if={@description} id={"#{@id}-description"} class="description" data-slot="description">
         {@description}
@@ -3584,6 +3742,144 @@ defmodule HeroUI do
   end
 
   @doc """
+  A swipeable modal sheet. Open it with `data-hero-sheet-open={id}` and install
+  the HeroUI JavaScript module. Supply `open` and `on_open_change` for
+  server-controlled state, or use `default_open` for client-managed state.
+  """
+  attr(:id, :string, required: true)
+  attr(:title, :string, required: true)
+  attr(:description, :string, default: nil)
+  attr(:placement, :string, default: "bottom", values: ~w(top bottom left right))
+  attr(:backdrop, :string, default: "opaque", values: ~w(opaque blur transparent))
+  attr(:dismissible, :boolean, default: true)
+  attr(:detached, :boolean, default: false)
+  attr(:handle, :boolean, default: true)
+  attr(:snap_points, :list, default: [])
+  attr(:open, :boolean, default: nil)
+  attr(:default_open, :boolean, default: false)
+  attr(:on_open_change, :string, default: nil)
+  attr(:target, :any, default: nil)
+  attr(:class, :any, default: nil)
+  attr(:body_class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+  slot(:footer)
+
+  def sheet(assigns) do
+    if Enum.any?(assigns.snap_points, &(not valid_sheet_snap_point?(&1))),
+      do: raise(ArgumentError, "sheet snap points must be positive pixel numbers or CSS lengths")
+
+    if Enum.any?(Enum.drop(assigns.snap_points, -1), &(&1 == "1")),
+      do: raise(ArgumentError, "the unitless string snap point 1 may only appear last")
+
+    if !is_nil(assigns.open) && assigns.default_open,
+      do: raise(ArgumentError, "sheet cannot use open and default_open together")
+
+    ~H"""
+    <dialog
+      id={@id}
+      class={[
+        "sheet__overlay",
+        "fixed inset-0 m-0 hidden h-dvh max-h-none w-screen max-w-none border-0 bg-transparent p-0 outline-none open:flex [&:not([open])]:hidden",
+        @placement == "bottom" && "items-end justify-center",
+        @placement == "top" && "items-start justify-center",
+        @placement == "left" && "items-center justify-start",
+        @placement == "right" && "items-center justify-end",
+        "backdrop:bg-transparent"
+      ]}
+      data-hero-sheet
+      data-slot="sheet-overlay"
+      data-placement={@placement}
+      data-dismissible={to_string(@dismissible)}
+      data-snap-points-json={Jason.encode!(@snap_points)}
+      data-controlled={to_string(!is_nil(@open))}
+      data-controlled-open={if !is_nil(@open), do: to_string(@open)}
+      data-default-open={to_string(@default_open)}
+      aria-labelledby={"#{@id}-title"}
+      aria-describedby={if @description, do: "#{@id}-description"}
+      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["open", "data-sheet-nested"])}
+      {@rest}
+    >
+      <div
+        class={["sheet__backdrop", "sheet__backdrop--#{@backdrop}", "fixed inset-0"]}
+        data-slot="sheet-backdrop"
+        data-hero-sheet-backdrop
+        data-stack-index="0"
+        aria-hidden="true"
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-stack-index", "style"])}
+      >
+      </div>
+      <div
+        class={["sheet__content", "sheet__content--#{@placement}", "relative", @class]}
+        data-slot="sheet-content"
+        data-hero-sheet-content
+        data-placement={@placement}
+        data-detached={if @detached, do: "true"}
+        data-snap-points={if @snap_points != [], do: "true"}
+        data-expanded={if @snap_points == [], do: "true"}
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-expanded", "style"])}
+      >
+        <section
+          class={[
+            "sheet__dialog",
+            "sheet__dialog--#{@placement}",
+            "max-h-[inherit]",
+            (@placement in ["left", "right"] || @snap_points != []) && "h-full"
+          ]}
+          data-slot="sheet-dialog"
+        >
+          <div
+            :if={@handle}
+            class="sheet__handle"
+            data-slot="sheet-handle"
+            data-hero-sheet-handle
+            aria-hidden="true"
+          >
+            <span class="sheet__handle-bar" data-slot="sheet-handle-bar"></span>
+          </div>
+          <.close_button
+            class="sheet__close-trigger"
+            data-slot="sheet-close-trigger"
+            data-hero-sheet-close
+          />
+          <header class="sheet__header" data-slot="sheet-header">
+            <h2 id={"#{@id}-title"} class="sheet__heading" data-slot="sheet-heading">{@title}</h2>
+          </header>
+          <div class={["sheet__body", @body_class]} data-slot="sheet-body" data-hero-sheet-body>
+            <p :if={@description} id={"#{@id}-description"} class="text-sm text-muted">
+              {@description}
+            </p>
+            {render_slot(@inner_block)}
+          </div>
+          <footer :if={@footer != []} class="sheet__footer" data-slot="sheet-footer">
+            {render_slot(@footer)}
+          </footer>
+        </section>
+      </div>
+      <button
+        :if={@on_open_change}
+        type="button"
+        hidden
+        data-hero-sheet-event
+        phx-click={@on_open_change}
+        phx-target={@target}
+      ></button>
+    </dialog>
+    """
+  end
+
+  defp valid_sheet_snap_point?(point) when is_number(point), do: point > 0
+  defp valid_sheet_snap_point?("1"), do: true
+
+  defp valid_sheet_snap_point?(point) when is_binary(point) do
+    with true <- Regex.match?(~r/\A\d+(?:\.\d+)?(?:px|%|vh|vw|rem|em)\z/, point),
+         {number, _} <- Float.parse(point),
+         do: number > 0
+  end
+
+  defp valid_sheet_snap_point?(_), do: false
+
+  @doc """
   A keyboard-accessible tab set. The first enabled tab is selected by default.
   Tab ids must be unique within the set. Requires `installHeroUI` in the browser.
   """
@@ -3666,8 +3962,8 @@ defmodule HeroUI do
   end
 
   @doc """
-  An action menu using the native Popover API. Requires `installHeroUI`.
-  Each item accepts a label and either `on_click` for a LiveView event or `href`.
+  An action or selection menu with sections and nested submenus.
+  Install `installHeroUI` and use a browser with the Popover API.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
@@ -3677,69 +3973,352 @@ defmodule HeroUI do
     values: ~w(primary secondary tertiary outline ghost danger danger-soft)
   )
 
+  attr(:selection_mode, :string, default: "none", values: ~w(none single multiple))
+  attr(:selected_keys, :list, default: nil)
+  attr(:default_selected_keys, :list, default: [])
+  attr(:on_selection_change, :string, default: nil)
+  attr(:on_action, :string, default: nil)
+  attr(:target, :any, default: nil)
+  attr(:close_on_select, :boolean, default: nil)
+  attr(:disabled, :boolean, default: false)
   attr(:class, :any, default: nil)
 
-  slot :item, required: true do
+  slot :item do
     attr(:label, :string, required: true)
+    attr(:key, :string)
     attr(:on_click, :any)
     attr(:href, :string)
+    attr(:description, :string)
+    attr(:shortcut, :string)
     attr(:disabled, :boolean)
     attr(:danger, :boolean)
+    attr(:items, :list)
+    attr(:selection_mode, :string)
+    attr(:selected_keys, :list)
+    attr(:default_selected_keys, :list)
+    attr(:on_selection_change, :string)
+    attr(:close_on_select, :boolean)
+  end
+
+  slot :section do
+    attr(:label, :string, required: true)
+    attr(:items, :list, required: true)
+    attr(:selection_mode, :string)
+    attr(:selected_keys, :list)
+    attr(:default_selected_keys, :list)
+    attr(:on_selection_change, :string)
+    attr(:close_on_select, :boolean)
   end
 
   def dropdown(assigns) do
+    if assigns.item == [] && assigns.section == [],
+      do: raise(ArgumentError, "dropdown requires at least one item or section")
+
     ~H"""
-    <div class={["dropdown", "hui-dropdown", @class]} data-hero-dropdown>
+    <div id={@id} class={["dropdown", "hui-dropdown", @class]} data-hero-dropdown>
       <button
         type="button"
         class={["button", "button--md", "button--#{@variant}", "dropdown__trigger"]}
+        data-hero-dropdown-trigger
         popovertarget={"#{@id}-menu"}
         aria-haspopup="menu"
         aria-controls={"#{@id}-menu"}
         aria-expanded="false"
+        disabled={@disabled}
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-expanded"])}
       >{@label}</button>
       <div
         id={"#{@id}-menu"}
         popover="auto"
         class="dropdown__popover hui-dropdown-popover"
-        data-hero-menu
+        data-hero-dropdown-menu
         aria-label={@label}
         role="menu"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
       >
-        <div class="dropdown__menu" data-slot="dropdown-menu">
-          <%= for item <- @item do %>
-            <a
-              :if={Map.get(item, :href) && !Map.get(item, :disabled, false)}
-              href={item.href}
-              role="menuitem"
-              tabindex="-1"
-              class={[
-                "menu-item",
-                "menu-item--default",
-                Map.get(item, :danger, false) && "menu-item--danger"
-              ]}
-              data-slot="menu-item"
-            ><span data-slot="label">{item.label}</span></a>
-            <button
-              :if={!Map.get(item, :href) || Map.get(item, :disabled, false)}
-              type="button"
-              role="menuitem"
-              tabindex="-1"
-              disabled={Map.get(item, :disabled, false)}
-              phx-click={Map.get(item, :on_click)}
-              class={[
-                "menu-item",
-                "menu-item--default",
-                Map.get(item, :danger, false) && "menu-item--danger"
-              ]}
-              data-slot="menu-item"
-            ><span data-slot="label">{item.label}</span></button>
+        <div class="dropdown__menu" data-slot="dropdown-menu" data-selection-mode={@selection_mode}>
+          <.dropdown_group
+            :if={@item != []}
+            id={"#{@id}-root"}
+            entries={@item}
+            mode={@selection_mode}
+            selected_keys={@selected_keys}
+            default_selected_keys={@default_selected_keys}
+            on_selection_change={@on_selection_change}
+            on_action={@on_action}
+            target={@target}
+            close_on_select={@close_on_select}
+          />
+          <%= for {section, index} <- Enum.with_index(@section) do %>
+            <.separator :if={@item != [] || index > 0} />
+            <.dropdown_group
+              id={"#{@id}-section-#{index}"}
+              label={section.label}
+              entries={section.items}
+              mode={Map.get(section, :selection_mode) || @selection_mode}
+              selected_keys={Map.get(section, :selected_keys, @selected_keys)}
+              default_selected_keys={Map.get(section, :default_selected_keys, @default_selected_keys)}
+              on_selection_change={Map.get(section, :on_selection_change) || @on_selection_change}
+              on_action={@on_action}
+              target={@target}
+              close_on_select={Map.get(section, :close_on_select, @close_on_select)}
+            />
           <% end %>
         </div>
       </div>
     </div>
+    """
+  end
+
+  attr(:id, :string, required: true)
+  attr(:label, :string, default: nil)
+  attr(:entries, :list, required: true)
+  attr(:mode, :string, required: true)
+  attr(:selected_keys, :list, default: nil)
+  attr(:default_selected_keys, :list, default: [])
+  attr(:on_selection_change, :string, default: nil)
+  attr(:on_action, :string, default: nil)
+  attr(:target, :any, default: nil)
+  attr(:close_on_select, :boolean, default: nil)
+
+  defp dropdown_group(assigns) do
+    unless assigns.mode in ~w(none single multiple),
+      do: raise(ArgumentError, "invalid dropdown selection mode")
+
+    keys =
+      assigns.entries
+      |> Enum.reject(&is_list(Map.get(&1, :items)))
+      |> Enum.map(&Map.get(&1, :key))
+
+    if assigns.mode != "none" &&
+         (Enum.any?(keys, &(not is_binary(&1) || &1 == "")) ||
+            length(keys) != length(Enum.uniq(keys))),
+       do: raise(ArgumentError, "selectable dropdown items require unique nonempty string keys")
+
+    selected = assigns.selected_keys || assigns.default_selected_keys || []
+
+    if assigns.mode == "single" && length(Enum.uniq(selected)) > 1,
+      do: raise(ArgumentError, "single-selection dropdown groups allow at most one selected key")
+
+    assigns =
+      assign(assigns, selected: MapSet.new(selected), controlled: !is_nil(assigns.selected_keys))
+
+    ~H"""
+    <div
+      class={@label && "menu-section"}
+      role={if @label, do: "group"}
+      aria-label={@label}
+      data-hero-dropdown-group
+      data-selection-mode={@mode}
+      data-controlled={to_string(@controlled)}
+      data-close-on-select={
+        to_string(if is_nil(@close_on_select), do: @mode != "multiple", else: @close_on_select)
+      }
+    >
+      <div :if={@label} class="header" data-slot="header" aria-hidden="true">{@label}</div>
+      <.dropdown_entry
+        :for={{entry, index} <- Enum.with_index(@entries)}
+        entry={entry}
+        id={"#{@id}-#{index}"}
+        mode={@mode}
+        selected={@selected}
+        controlled={@controlled}
+        on_action={@on_action}
+        target={@target}
+      />
+      <button
+        :if={@on_selection_change && @mode != "none"}
+        type="button"
+        hidden
+        data-hero-dropdown-selection-event
+        phx-click={@on_selection_change}
+        phx-target={@target}
+      ></button>
+    </div>
+    """
+  end
+
+  attr(:entry, :map, required: true)
+  attr(:id, :string, required: true)
+  attr(:mode, :string, required: true)
+  attr(:selected, :any, required: true)
+  attr(:controlled, :boolean, required: true)
+  attr(:on_action, :string, default: nil)
+  attr(:target, :any, default: nil)
+
+  defp dropdown_entry(assigns) do
+    entry = assigns.entry
+
+    if !is_binary(Map.get(entry, :label)) || entry.label == "",
+      do: raise(ArgumentError, "dropdown items require a label")
+
+    submenu = Map.get(entry, :items)
+
+    if !is_nil(submenu) && (!is_list(submenu) || submenu == []),
+      do: raise(ArgumentError, "dropdown submenus require a nonempty items list")
+
+    checked = MapSet.member?(assigns.selected, Map.get(entry, :key))
+
+    assigns =
+      assign(assigns,
+        submenu: submenu,
+        checked: checked,
+        role:
+          case assigns.mode do
+            "single" -> "menuitemradio"
+            "multiple" -> "menuitemcheckbox"
+            _ -> "menuitem"
+          end
+      )
+
+    ~H"""
+    <div :if={@submenu} class="w-full" role="none" data-hero-dropdown-submenu-root>
+      <button
+        id={@id}
+        type="button"
+        role="menuitem"
+        tabindex="-1"
+        class="menu-item menu-item--default"
+        data-slot="menu-item"
+        data-hero-dropdown-item
+        data-hero-dropdown-submenu-trigger
+        data-has-submenu="true"
+        disabled={Map.get(@entry, :disabled, false)}
+        data-disabled={if Map.get(@entry, :disabled, false), do: "true"}
+        aria-label={@entry.label}
+        aria-haspopup="menu"
+        aria-expanded="false"
+        aria-controls={"#{@id}-submenu"}
+      >
+        <.dropdown_item_content entry={@entry} mode="none" checked={false} controlled={true} />
+        <span
+          class="menu-item__indicator menu-item__indicator--submenu"
+          data-slot="submenu-indicator"
+          aria-hidden="true"
+        ><svg class="rtl:rotate-180" viewBox="0 0 16 16" fill="none"><path
+          d="m6 3.5 4.5 4.5L6 12.5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        /></svg></span>
+      </button>
+      <div
+        id={"#{@id}-submenu"}
+        popover="auto"
+        role="menu"
+        aria-label={@entry.label}
+        class="dropdown__popover hui-dropdown-popover"
+        data-hero-dropdown-menu
+        data-hero-dropdown-submenu
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
+      >
+        <div class="dropdown__menu" data-slot="dropdown-menu">
+          <.dropdown_group
+            id={"#{@id}-nested"}
+            entries={@submenu}
+            mode={Map.get(@entry, :selection_mode, "none")}
+            selected_keys={Map.get(@entry, :selected_keys)}
+            default_selected_keys={Map.get(@entry, :default_selected_keys, [])}
+            on_selection_change={Map.get(@entry, :on_selection_change)}
+            on_action={@on_action}
+            target={@target}
+            close_on_select={Map.get(@entry, :close_on_select)}
+          />
+        </div>
+      </div>
+    </div>
+    <a
+      :if={!@submenu && Map.get(@entry, :href) && !Map.get(@entry, :disabled, false)}
+      id={@id}
+      href={@entry.href}
+      role={@role}
+      aria-label={@entry.label}
+      aria-checked={if @mode != "none", do: to_string(@checked)}
+      tabindex="-1"
+      class={[
+        "menu-item",
+        "menu-item--default",
+        Map.get(@entry, :danger, false) && "menu-item--danger"
+      ]}
+      data-slot="menu-item"
+      data-hero-dropdown-item
+      data-key={Map.get(@entry, :key)}
+      data-selected={if @mode != "none", do: to_string(@checked)}
+      data-selection-mode={if @mode != "none", do: @mode}
+      phx-mounted={
+        if @mode != "none" && !@controlled,
+          do: Phoenix.LiveView.JS.ignore_attributes(["aria-checked", "data-selected"])
+      }
+    >
+      <.dropdown_item_content entry={@entry} mode={@mode} checked={@checked} controlled={@controlled} />
+    </a>
+    <button
+      :if={!@submenu && (!Map.get(@entry, :href) || Map.get(@entry, :disabled, false))}
+      id={@id}
+      type="button"
+      role={@role}
+      tabindex="-1"
+      disabled={Map.get(@entry, :disabled, false)}
+      data-disabled={if Map.get(@entry, :disabled, false), do: "true"}
+      aria-label={@entry.label}
+      aria-checked={if @mode != "none", do: to_string(@checked)}
+      data-selected={if @mode != "none", do: to_string(@checked)}
+      data-selection-mode={if @mode != "none", do: @mode}
+      data-key={Map.get(@entry, :key)}
+      data-slot="menu-item"
+      data-hero-dropdown-item
+      phx-click={Map.get(@entry, :on_click) || @on_action}
+      phx-value-key={Map.get(@entry, :key)}
+      phx-target={@target}
+      phx-mounted={
+        if @mode != "none" && !@controlled,
+          do: Phoenix.LiveView.JS.ignore_attributes(["aria-checked", "data-selected"])
+      }
+      class={[
+        "menu-item",
+        "menu-item--default",
+        Map.get(@entry, :danger, false) && "menu-item--danger"
+      ]}
+    >
+      <.dropdown_item_content entry={@entry} mode={@mode} checked={@checked} controlled={@controlled} />
+    </button>
+    """
+  end
+
+  attr(:entry, :map, required: true)
+  attr(:mode, :string, required: true)
+  attr(:checked, :boolean, required: true)
+  attr(:controlled, :boolean, required: true)
+
+  defp dropdown_item_content(assigns) do
+    ~H"""
+    <span :if={@mode != "none"} class="menu-item__indicator" aria-hidden="true">
+      <svg
+        data-slot="menu-item-indicator--checkmark"
+        viewBox="0 0 16 16"
+        fill="none"
+        class={if !@checked, do: "invisible"}
+        phx-mounted={if !@controlled, do: Phoenix.LiveView.JS.ignore_attributes(["class"])}
+      ><path
+        d="M3.5 8l3 3 6-6"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      /></svg>
+    </span>
+    <span class="flex min-w-0 flex-1 flex-col items-start">
+      <span data-slot="label">{@entry.label}</span>
+      <span :if={Map.get(@entry, :description)} class="description" data-slot="description">{Map.get(
+        @entry,
+        :description
+      )}</span>
+    </span>
+    <kbd :if={Map.get(@entry, :shortcut)} class="kbd ml-auto" data-slot="keyboard">{Map.get(
+      @entry,
+      :shortcut
+    )}</kbd>
     """
   end
 
@@ -3910,7 +4489,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A native range input with a HeroUI-style track. Requires `installHeroUI` for live output updates."
+  @doc "A single-value or multi-thumb slider. Requires `installHeroUI` for pointer interaction and live updates."
   attr(:id, :string, required: true)
   attr(:name, :string, default: nil)
   attr(:label, :string, required: true)
@@ -3918,44 +4497,155 @@ defmodule HeroUI do
   attr(:min, :any, default: 0)
   attr(:max, :any, default: 100)
   attr(:step, :any, default: 1)
+  attr(:orientation, :string, default: "horizontal", values: ~w(horizontal vertical))
+  attr(:show_steps, :boolean, default: false)
+  attr(:marks, :list, default: [])
   attr(:disabled, :boolean, default: false)
   attr(:class, :any, default: nil)
   attr(:rest, :global, include: ~w(form required))
 
   def slider(assigns) do
-    percent = range_percent!(assigns.value, assigns.min, assigns.max, false)
-
     if not is_number(assigns.step) or assigns.step <= 0,
       do: raise(ArgumentError, "slider step must be a positive number")
 
-    assigns = assign(assigns, :percent, percent)
+    values = if is_list(assigns.value), do: assigns.value, else: [assigns.value]
+
+    if values == [] or Enum.sort(values) != values,
+      do: raise(ArgumentError, "slider values must be a nonempty, ascending list")
+
+    percentages = Enum.map(values, &range_percent!(&1, assigns.min, assigns.max, false))
+    first = hd(percentages)
+    last = List.last(percentages)
+    start = if length(values) == 1, do: 0, else: first
+    step_count = (assigns.max - assigns.min) / assigns.step
+    nearest_step_count = round(step_count)
+
+    count =
+      if abs(step_count - nearest_step_count) <= 1.0e-12 * max(1, abs(step_count)),
+        do: nearest_step_count + 1,
+        else: floor(step_count) + 1
+
+    steps =
+      if assigns.show_steps and count <= 1000 do
+        for index <- 0..(count - 1), do: min(assigns.max, assigns.min + index * assigns.step)
+      else
+        []
+      end
+
+    marks =
+      Enum.flat_map(assigns.marks, fn mark ->
+        {value, label} = if is_tuple(mark), do: mark, else: {mark, mark}
+
+        if is_number(value) and value >= assigns.min and value <= assigns.max,
+          do: [{value, label}],
+          else: []
+      end)
+
+    assigns =
+      assign(assigns,
+        values: values,
+        percentages: percentages,
+        start: start,
+        finish: last,
+        steps: steps,
+        visible_marks: marks,
+        multiple: is_list(assigns.value)
+      )
 
     ~H"""
     <div
-      class={["slider", "hui-native-slider", @class]}
-      data-orientation="horizontal"
+      class={["slider", @orientation == "vertical" && "w-fit", @class]}
+      data-orientation={@orientation}
       data-disabled={if @disabled, do: "true"}
       data-hero-slider
     >
-      <label for={@id} data-slot="label">{@label}</label>
-      <output class="slider__output" for={@id} data-hero-slider-output>{@value}</output>
-      <input
-        id={@id}
-        name={@name}
-        type="range"
-        value={@value}
-        min={@min}
-        max={@max}
-        step={@step}
-        disabled={@disabled}
-        class="hui-slider-input"
-        style={"--hui-slider-percent: #{@percent}%"}
-        data-hero-slider-input
-        {@rest}
-      />
+      <label for={if @multiple, do: "#{@id}-0", else: @id} data-slot="label">{@label}</label>
+      <output class="slider__output" data-hero-slider-output>{Enum.join(@values, " – ")}</output>
+      <div
+        class="slider__track touch-none"
+        data-hero-slider-track
+        data-fill-start={to_string(@start == 0)}
+        data-fill-end={to_string(@finish == 100)}
+      >
+        <div
+          class="slider__fill"
+          data-hero-slider-fill
+          style={slider_fill_style(@orientation, @start, @finish)}
+        >
+        </div>
+        <div :if={@steps != []} class="slider__steps" data-slot="slider-steps" aria-hidden="true">
+          <span
+            :for={value <- @steps}
+            class="slider__step"
+            data-slot="slider-step"
+            data-value={value}
+            data-filled={
+              to_string(
+                value >= if(@multiple, do: hd(@values), else: @min) and value <= List.last(@values)
+              )
+            }
+            style={slider_position_style(@orientation, range_percent!(value, @min, @max, false))}
+          ></span>
+        </div>
+        <div
+          :for={{value, index} <- Enum.with_index(@values)}
+          class="pointer-events-none absolute inset-0"
+        >
+          <input
+            id={if @multiple, do: "#{@id}-#{index}", else: @id}
+            name={if @name && @multiple, do: "#{@name}[]", else: @name}
+            type="range"
+            value={value}
+            min={@min}
+            max={@max}
+            step={@step}
+            disabled={@disabled}
+            aria-label={if @multiple, do: "#{@label} #{index + 1}", else: @label}
+            aria-orientation={@orientation}
+            class="peer sr-only"
+            data-hero-slider-input
+            {@rest}
+          />
+          <span
+            class={[
+              "slider__thumb peer-focus-visible:z-10 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus",
+              if(@orientation == "vertical",
+                do: "-translate-x-1/2 translate-y-1/2",
+                else: "-translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2"
+              )
+            ]}
+            data-hero-slider-thumb
+            data-disabled={if @disabled, do: "true"}
+            style={slider_position_style(@orientation, Enum.at(@percentages, index))}
+          ></span>
+        </div>
+      </div>
+      <div :if={@visible_marks != []} class="slider__marks" data-slot="slider-marks">
+        <span
+          :for={{value, label} <- @visible_marks}
+          class="slider__mark"
+          data-slot="slider-mark"
+          data-value={value}
+          data-filled={
+            to_string(
+              value >= if(@multiple, do: hd(@values), else: @min) and value <= List.last(@values)
+            )
+          }
+          style={slider_position_style(@orientation, range_percent!(value, @min, @max, false))}
+        >{label}</span>
+      </div>
     </div>
     """
   end
+
+  defp slider_position_style("vertical", percent), do: "bottom: #{percent}%"
+  defp slider_position_style(_, percent), do: "inset-inline-start: #{percent}%"
+
+  defp slider_fill_style("vertical", start, finish),
+    do: "bottom: #{start}%; height: #{finish - start}%"
+
+  defp slider_fill_style(_, start, finish),
+    do: "inset-inline-start: #{start}%; width: #{finish - start}%"
 
   @doc "A labelled numeric input with increment and decrement buttons. Requires `installHeroUI`."
   attr(:id, :string, required: true)

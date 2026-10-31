@@ -370,7 +370,7 @@ defmodule HeroUI.Preview do
           </main>
         </div>
         <script type="module">
-          import { installHeroUI } from "/hero_ui.js?v=autocomplete";
+          import { installHeroUI } from "/hero_ui.js?v=dropdown";
           installHeroUI();
         </script>
         <script>
@@ -488,6 +488,18 @@ defmodule HeroUI.Preview.Router do
     conn
     |> put_resp_content_type("text/javascript")
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "autocomplete.js"])))
+  end
+
+  get "/sheet.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "sheet.js"])))
+  end
+
+  get "/dropdown.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "dropdown.js"])))
   end
 
   get "/calendar.js" do

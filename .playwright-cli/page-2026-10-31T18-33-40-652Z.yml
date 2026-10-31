@@ -1,0 +1,1370 @@
+- generic [ref=f57e3]:
+  - banner [ref=f57e4]:
+    - link "HeroUI for LiveView home" [ref=f57e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=f57e6]: ✦
+      - generic [ref=f57e7]: HeroUI for LiveView
+    - button "Toggle light and dark theme" [ref=f57e9] [cursor=pointer]: ◐
+  - generic [ref=f57e10]:
+    - complementary "Preview navigation" [ref=f57e11]:
+      - link "Overview" [ref=f57e12] [cursor=pointer]:
+        - /url: "#overview"
+        - generic [aria-hidden] [ref=f57e14]: ↗
+      - navigation [ref=f57e15]:
+        - link "Forms" [ref=f57e16] [cursor=pointer]:
+          - /url: "#forms"
+        - link "Colors" [ref=f57e17] [cursor=pointer]:
+          - /url: "#colors"
+        - link "Dates & calendars" [ref=f57e18] [cursor=pointer]:
+          - /url: "#dates"
+        - link "Selection & navigation" [ref=f57e19] [cursor=pointer]:
+          - /url: "#selection"
+        - link "Overlays" [ref=f57e20] [cursor=pointer]:
+          - /url: "#overlays"
+        - link "Feedback" [ref=f57e21] [cursor=pointer]:
+          - /url: "#feedback"
+        - link "Data display" [ref=f57e22] [cursor=pointer]:
+          - /url: "#data"
+    - main [ref=f57e23]:
+      - generic [ref=f57e25]:
+        - paragraph [ref=f57e26]: THE LIVEVIEW PLAYGROUND
+        - heading "Components, in motion." [level=1] [ref=f57e28]: Components,in motion.
+        - paragraph [ref=f57e29]: Explore the building blocks, try their states, and see how they respond to real LiveView updates.
+        - generic [ref=f57e30]:
+          - link "Explore components" [ref=f57e31] [cursor=pointer]:
+            - /url: "#forms"
+            - text: Explore components
+            - generic [aria-hidden] [ref=f57e32]: ↘
+          - link "View the gallery" [ref=f57e33] [cursor=pointer]:
+            - /url: /
+            - text: View the gallery ↗
+      - region [ref=f57e34]:
+        - generic [ref=f57e35]:
+          - generic [ref=f57e36]:
+            - paragraph [ref=f57e37]: COMPONENTS
+            - heading "Forms" [level=2] [ref=f57e38]
+          - paragraph [ref=f57e39]: Inputs, validation, and searchable choices.
+        - generic [ref=f57e40]:
+          - article [ref=f57e41]:
+            - generic [ref=f57e42]:
+              - heading "Search field" [level=3] [ref=f57e43]
+              - paragraph [ref=f57e44]: Search with a clear action and LiveView updates.
+            - generic [ref=f57e46]:
+              - generic [ref=f57e47]:
+                - generic [ref=f57e48]: Search
+                - generic [ref=f57e49]:
+                  - searchbox "Search" [ref=f57e50]
+                  - button [disabled] [aria-hidden]
+              - paragraph [ref=f57e51]: "Query:"
+          - article [ref=f57e52]:
+            - generic [ref=f57e53]:
+              - heading "Input groups" [level=3] [ref=f57e54]
+              - paragraph [ref=f57e55]: Prefix, suffix, and multiline examples.
+            - generic [ref=f57e56]:
+              - generic [ref=f57e57]:
+                - generic [ref=f57e58]:
+                  - generic [ref=f57e59]: Set a price
+                  - generic [ref=f57e60]:
+                    - generic [ref=f57e61]: $
+                    - spinbutton "Set a price" [ref=f57e62]: "10"
+                    - generic [ref=f57e63]: USD
+                  - paragraph [ref=f57e64]: What customers would pay
+                - paragraph [ref=f57e65]: "Price: 10"
+              - generic [ref=f57e66]:
+                - generic [ref=f57e67]:
+                  - generic [ref=f57e68]: Feedback
+                  - generic [ref=f57e69]:
+                    - generic [ref=f57e70]: ✎
+                    - textbox "Feedback" [ref=f57e71]
+                    - button "Update" [ref=f57e73] [cursor=pointer]
+                - paragraph [ref=f57e74]: "Feedback:"
+          - article [ref=f57e75]:
+            - generic [ref=f57e76]:
+              - heading "Autocomplete" [level=3] [ref=f57e77]
+              - paragraph [ref=f57e78]: Search within a select menu.
+            - generic [ref=f57e80]:
+              - generic [ref=f57e81]:
+                - generic [ref=f57e82]: Destination
+                - combobox [aria-hidden]
+                - generic [ref=f57e83]: Required
+                - group [ref=f57e85] [cursor=pointer]:
+                  - generic: Select a destination
+                  - button [aria-hidden]
+                  - button "Destination Select a destination" [ref=f57e86]
+                - paragraph [ref=f57e89]: Choose a destination.
+              - button "Submit destination" [ref=f57e90] [cursor=pointer]
+              - button "Set Japan" [ref=f57e91] [cursor=pointer]
+              - paragraph [ref=f57e92]: "Selected: ; Submitted: none"
+          - article [ref=f57e93]:
+            - generic [ref=f57e94]:
+              - heading "Multiple autocomplete" [level=3] [ref=f57e95]
+              - paragraph [ref=f57e96]: Select several items from the filtered list.
+            - generic [ref=f57e98]:
+              - generic [ref=f57e99]:
+                - generic [ref=f57e100]: Places to visit
+                - listbox [aria-hidden]
+                - group [ref=f57e102] [cursor=pointer]:
+                  - generic: United States
+                  - button "Clear Places to visit" [ref=f57e103]
+                  - button "Places to visit United States" [ref=f57e106]
+              - button "Submit places" [ref=f57e109] [cursor=pointer]
+              - paragraph [ref=f57e110]: "Selected: us; Submitted: none"
+          - article [ref=f57e111]:
+            - generic [ref=f57e112]:
+              - heading "Combo box" [level=3] [ref=f57e113]
+              - paragraph [ref=f57e114]: Choose one animal from a searchable list.
+            - generic [ref=f57e116]:
+              - generic [ref=f57e117]:
+                - generic [ref=f57e118]: Favorite Animal
+                - combobox [aria-hidden]
+                - generic [ref=f57e120]:
+                  - combobox "Favorite Animal" [ref=f57e121]
+                  - button "Show Favorite Animal options" [ref=f57e122] [cursor=pointer]
+              - button "Submit animal" [ref=f57e125] [cursor=pointer]
+              - paragraph [ref=f57e126]: "Selected: ; Submitted: none; Changes: 0"
+          - article [ref=f57e127]:
+            - generic [ref=f57e128]:
+              - heading "Multiple selection" [level=3] [ref=f57e129]
+              - paragraph [ref=f57e130]: Select several options from grouped results.
+            - generic [ref=f57e132]:
+              - generic [ref=f57e133]:
+                - generic [ref=f57e134]: Favorite Animals
+                - listbox [aria-hidden]:
+                  - group:
+                    - option: Aardvark
+                    - option [selected]: Cat
+                    - option: Dog
+                    - option [disabled]: Kangaroo
+                    - option: Panda
+                  - group:
+                    - option: Snake
+                - generic [ref=f57e135]:
+                  - generic [ref=f57e136]:
+                    - combobox "Favorite Animals" [ref=f57e137]
+                    - button "Show Favorite Animals options" [ref=f57e138] [cursor=pointer]
+                  - generic [aria-hidden] [ref=f57e141]: Cat
+              - button "Submit animals" [ref=f57e142] [cursor=pointer]
+              - paragraph [ref=f57e143]: "Selected: cat; Submitted: none; Changes: 0"
+          - article [ref=f57e144]:
+            - generic [ref=f57e145]:
+              - heading "Custom values" [level=3] [ref=f57e146]
+              - paragraph [ref=f57e147]: Choose an option or enter your own.
+            - generic [ref=f57e149]:
+              - generic [ref=f57e150]:
+                - generic [ref=f57e151]: Any animal
+                - generic [ref=f57e153]:
+                  - combobox "Any animal" [ref=f57e154]: Otter
+                  - button "Show Any animal options" [ref=f57e155] [cursor=pointer]
+              - button "Submit custom animal" [ref=f57e158] [cursor=pointer]
+              - button "Set Dragon" [ref=f57e159] [cursor=pointer]
+              - paragraph [ref=f57e160]: "Value: Otter; Submitted: none"
+          - article [ref=f57e161]:
+            - generic [ref=f57e162]:
+              - heading "Verification code" [level=3] [ref=f57e163]
+              - paragraph [ref=f57e164]: A segmented input for one-time codes.
+            - generic [ref=f57e166]:
+              - generic [ref=f57e167]:
+                - text: Verify account
+                - paragraph [ref=f57e168]: Enter your six-digit code
+                - textbox "Verify account" [ref=f57e180]
+              - paragraph [ref=f57e181]: "Digits entered: 0"
+          - article [ref=f57e182]:
+            - generic [ref=f57e183]:
+              - heading "Validation states" [level=3] [ref=f57e184]
+              - paragraph [ref=f57e185]: Invalid and disabled field examples.
+            - generic [ref=f57e186]:
+              - generic [ref=f57e188]:
+                - generic [ref=f57e189]: Amount
+                - generic [ref=f57e190]:
+                  - generic [ref=f57e191]: $
+                  - spinbutton "Amount" [invalid] [ref=f57e192]: "-1"
+                - paragraph [ref=f57e194]: Amount must be positive
+              - group [ref=f57e195]:
+                - generic [ref=f57e196]:
+                  - generic [ref=f57e197]: Unavailable price
+                  - generic:
+                    - generic: $
+                    - spinbutton "Unavailable price" [disabled]: "10"
+                    - generic: USD
+              - generic [ref=f57e198]:
+                - generic [ref=f57e199]:
+                  - generic [ref=f57e200]: Search error
+                  - generic [ref=f57e201]:
+                    - searchbox "Search error" [invalid] [ref=f57e202]: x
+                    - button "Clear search" [ref=f57e203] [cursor=pointer]
+                  - paragraph [ref=f57e205]: Enter at least two characters
+                - generic [ref=f57e206]:
+                  - text: Code error
+                  - generic [ref=f57e207]:
+                    - generic [ref=f57e209]:
+                      - generic [ref=f57e210]: "1"
+                      - generic [ref=f57e212]: "2"
+                    - textbox "Code error" [invalid] [ref=f57e220]: "12"
+                  - paragraph [ref=f57e222]: Enter the full code
+      - region [ref=f57e223]:
+        - generic [ref=f57e224]:
+          - generic [ref=f57e225]:
+            - paragraph [ref=f57e226]: COMPONENTS
+            - heading "Colors" [level=2] [ref=f57e227]
+          - paragraph [ref=f57e228]: Preview and select colors with accessible controls.
+        - generic [ref=f57e229]:
+          - article [ref=f57e230]:
+            - generic [ref=f57e231]:
+              - heading "Color swatches" [level=3] [ref=f57e232]
+              - paragraph [ref=f57e233]: Sizes, shapes, and transparent colors.
+            - generic [ref=f57e235]:
+              - img "Blue, extra small" [ref=f57e236]
+              - img "Purple, small" [ref=f57e237]
+              - img "Rose, medium" [ref=f57e238]
+              - img "Cyan, large" [ref=f57e239]
+              - img "Green, extra large" [ref=f57e240]
+              - img "Translucent rose" [ref=f57e241]
+          - article [ref=f57e242]:
+            - generic [ref=f57e243]:
+              - heading "Swatch picker" [level=3] [ref=f57e244]
+              - paragraph [ref=f57e245]: Select an accent color and submit it.
+            - generic [ref=f57e247]:
+              - group "Accent color" [ref=f57e248]:
+                - generic [ref=f57e250]:
+                  - radio "Rose" [ref=f57e252] [cursor=pointer]
+                  - radio "Magenta" [ref=f57e255] [cursor=pointer]
+                  - radio "Purple" [checked] [ref=f57e258] [cursor=pointer]
+                  - radio "Blue" [ref=f57e261] [cursor=pointer]
+                  - radio "Cyan" [ref=f57e264] [cursor=pointer]
+                  - radio "Green" [ref=f57e267] [cursor=pointer]
+                  - radio "Yellow" [ref=f57e270] [cursor=pointer]
+              - button "Submit color" [ref=f57e272] [cursor=pointer]
+              - button "Set blue" [ref=f57e273] [cursor=pointer]
+              - paragraph [ref=f57e274]: "Selected: #8B5CF6; Submitted: none; Changes: 0"
+          - article [ref=f57e275]:
+            - generic [ref=f57e276]:
+              - heading "Color field" [level=3] [ref=f57e277]
+              - paragraph [ref=f57e278]: Edit and preview a hex color.
+            - generic [ref=f57e280]:
+              - generic [ref=f57e281]:
+                - generic [ref=f57e282]: Color*
+                - 'img "Color preview: #0485F7" [ref=f57e285]'
+                - textbox "Color*" [ref=f57e286]: "#0485F7"
+                - paragraph [ref=f57e287]: Enter a hex color.
+              - button "Submit color" [ref=f57e288] [cursor=pointer]
+              - button "Set purple" [ref=f57e289] [cursor=pointer]
+              - paragraph [ref=f57e290]: "Value: #0485F7; Submitted: none; Changes: 0"
+          - article [ref=f57e291]:
+            - generic [ref=f57e292]:
+              - heading "Color channels" [level=3] [ref=f57e293]
+              - paragraph [ref=f57e294]: Edit HSL channels as numeric form values.
+            - generic [ref=f57e296]:
+              - generic [ref=f57e297]:
+                - generic [ref=f57e298]:
+                  - generic [ref=f57e299]: Hue
+                  - spinbutton "Hue" [ref=f57e300]: "300"
+                  - generic [ref=f57e301]: °
+                - generic [ref=f57e302]:
+                  - generic [ref=f57e303]: Saturation
+                  - spinbutton "Saturation" [ref=f57e304]: "100"
+                  - generic [ref=f57e305]: "%"
+                - generic [ref=f57e306]:
+                  - generic [ref=f57e307]: Lightness
+                  - spinbutton "Lightness" [ref=f57e308]: "25"
+                  - generic [ref=f57e309]: "%"
+              - generic [ref=f57e310]:
+                - img "Current HSL color" [ref=f57e311]
+                - generic [ref=f57e312]: "HSL: 300°, 100%, 25%"
+          - article [ref=f57e313]:
+            - generic [ref=f57e314]:
+              - heading "Swatch picker states" [level=3] [ref=f57e315]
+              - paragraph [ref=f57e316]: Square, disabled, and stacked palettes.
+            - generic [ref=f57e317]:
+              - group "Disabled palette" [ref=f57e318]:
+                - generic [ref=f57e320]:
+                  - generic:
+                    - radio "Rose" [disabled]
+                  - generic:
+                    - radio "Blue" [checked] [disabled]
+                  - generic:
+                    - radio "Yellow" [disabled]
+              - group "Stacked palette" [ref=f57e322]:
+                - generic [ref=f57e324]:
+                  - radio "Rose" [ref=f57e326] [cursor=pointer]
+                  - radio "Green" [checked] [ref=f57e329] [cursor=pointer]
+                  - radio "Yellow" [ref=f57e332] [cursor=pointer]
+      - region [ref=f57e334]:
+        - generic [ref=f57e335]:
+          - generic [ref=f57e336]:
+            - paragraph [ref=f57e337]: COMPONENTS
+            - heading "Dates & calendars" [level=2] [ref=f57e338]
+          - paragraph [ref=f57e339]: Date input and selection, connected to LiveView.
+        - generic [ref=f57e340]:
+          - article [ref=f57e341]:
+            - generic [ref=f57e342]:
+              - heading "Time fields" [level=3] [ref=f57e343]
+              - paragraph [ref=f57e344]: Enter a time with keyboard-friendly segments.
+            - generic [ref=f57e345]:
+              - generic [ref=f57e346]:
+                - generic [ref=f57e347]:
+                  - generic [ref=f57e348]: Meeting time
+                  - textbox [aria-hidden]: 09:30
+                  - group [ref=f57e350]:
+                    - generic [ref=f57e351]:
+                      - spinbutton "hour Meeting time" [ref=f57e352]: "9"
+                      - generic [aria-hidden] [ref=f57e353]: ":"
+                      - spinbutton "minute Meeting time" [ref=f57e354]: "30"
+                      - spinbutton "AM/PM Meeting time" [ref=f57e355]: AM
+                  - paragraph [ref=f57e356]: Choose a time between 9 AM and 5 PM.
+                - button "Submit time" [ref=f57e357] [cursor=pointer]
+                - button "Set 2:45 PM" [ref=f57e358] [cursor=pointer]
+                - paragraph [ref=f57e359]: "Time: 09:30; Submitted: none; Changes: 0"
+              - generic [ref=f57e360]:
+                - generic [ref=f57e361]:
+                  - generic [ref=f57e362]: 24-hour time with seconds
+                  - textbox [aria-hidden]: 23:15:30
+                  - group [ref=f57e364]:
+                    - generic [ref=f57e365]:
+                      - spinbutton "hour 24-hour time with seconds" [ref=f57e366]: "23"
+                      - generic [aria-hidden] [ref=f57e367]: ":"
+                      - spinbutton "minute 24-hour time with seconds" [ref=f57e368]: "15"
+                      - generic [aria-hidden] [ref=f57e369]: ":"
+                      - spinbutton "second 24-hour time with seconds" [ref=f57e370]: "30"
+                - generic [ref=f57e371]:
+                  - generic: Unavailable
+                  - textbox [disabled] [aria-hidden]: 10:00
+                  - generic [ref=f57e372]:
+                    - group "Unavailable":
+                      - generic:
+                        - spinbutton "hour Unavailable" [disabled]: "10"
+                        - generic [aria-hidden]: ":"
+                        - spinbutton "minute Unavailable" [disabled]: "00"
+                        - spinbutton "AM/PM Unavailable" [disabled]: AM
+                - generic [ref=f57e373]:
+                  - generic [ref=f57e374]: Read only
+                  - textbox [aria-hidden]: 12:15
+                  - group [ref=f57e376]:
+                    - generic [ref=f57e377]:
+                      - spinbutton "hour Read only" [ref=f57e378]: "12"
+                      - generic [aria-hidden] [ref=f57e379]: ":"
+                      - spinbutton "minute Read only" [ref=f57e380]: "15"
+                      - spinbutton "AM/PM Read only" [ref=f57e381]: PM
+          - article [ref=f57e382]:
+            - generic [ref=f57e383]:
+              - heading "Date picker" [level=3] [ref=f57e384]
+              - paragraph [ref=f57e385]: Type a date or choose one from the calendar.
+            - generic [ref=f57e387]:
+              - generic [ref=f57e389]:
+                - generic [ref=f57e390]: Booking date*
+                - textbox [aria-hidden]: 2026-10-15
+                - group [ref=f57e392]:
+                  - generic [ref=f57e393]:
+                    - spinbutton "month Booking date*" [ref=f57e394]: "10"
+                    - generic [aria-hidden] [ref=f57e395]: /
+                    - spinbutton "day Booking date*" [ref=f57e396]: "15"
+                    - generic [aria-hidden] [ref=f57e397]: /
+                    - spinbutton "year Booking date*" [ref=f57e398]: "2026"
+                  - button "Calendar Booking date*" [ref=f57e400] [cursor=pointer]
+              - button "Submit booking" [ref=f57e404] [cursor=pointer]
+              - button "Set November 10" [ref=f57e405] [cursor=pointer]
+              - paragraph [ref=f57e406]: "Date: 2026-10-15; Submitted: none; Changes: 0"
+          - article [ref=f57e407]:
+            - generic [ref=f57e408]:
+              - heading "Date fields" [level=3] [ref=f57e409]
+              - paragraph [ref=f57e410]: Segmented dates with locale-aware ordering.
+            - generic [ref=f57e411]:
+              - generic [ref=f57e412]:
+                - generic [ref=f57e413]:
+                  - generic [ref=f57e414]: Date*
+                  - textbox [aria-hidden]: 2026-10-15
+                  - group [ref=f57e416]:
+                    - generic [ref=f57e417]:
+                      - spinbutton "month Date*" [ref=f57e418]: "10"
+                      - generic [aria-hidden] [ref=f57e419]: /
+                      - spinbutton "day Date*" [ref=f57e420]: "15"
+                      - generic [aria-hidden] [ref=f57e421]: /
+                      - spinbutton "year Date*" [ref=f57e422]: "2026"
+                  - paragraph [ref=f57e423]: Choose a date in 2026.
+                - button "Submit date field" [ref=f57e424] [cursor=pointer]
+                - button "Set December 10" [ref=f57e425] [cursor=pointer]
+                - paragraph [ref=f57e426]: "Date: 2026-10-15; Submitted: none; Changes: 0"
+              - generic [ref=f57e428]:
+                - generic [ref=f57e429]: Date française
+                - textbox [aria-hidden]: 2026-10-15
+                - group [ref=f57e431]:
+                  - generic [ref=f57e432]:
+                    - spinbutton "day Date française" [ref=f57e433]: "15"
+                    - generic [aria-hidden] [ref=f57e434]: /
+                    - spinbutton "month Date française" [ref=f57e435]: "10"
+                    - generic [aria-hidden] [ref=f57e436]: /
+                    - spinbutton "year Date française" [ref=f57e437]: "2026"
+          - article [ref=f57e438]:
+            - generic [ref=f57e439]:
+              - heading "Calendar" [level=3] [ref=f57e440]
+              - paragraph [ref=f57e441]: Select a date, with limits and unavailable days.
+            - generic [ref=f57e443]:
+              - generic [ref=f57e444]:
+                - generic [ref=f57e445]: Event date
+                - textbox [aria-hidden]: 2026-10-15
+                - group "Event date, October 2026" [ref=f57e447]:
+                  - generic [ref=f57e448]:
+                    - button "October 2026, year selector" [ref=f57e449] [cursor=pointer]:
+                      - generic [ref=f57e450]: October 2026
+                    - button "Previous month" [ref=f57e454] [cursor=pointer]
+                    - button "Next month" [ref=f57e457] [cursor=pointer]
+                  - grid "Event date, October 2026" [ref=f57e460]:
+                    - rowgroup [aria-hidden] [ref=f57e461]:
+                      - row [ref=f57e462]:
+                        - columnheader [ref=f57e463]: Sun
+                        - columnheader [ref=f57e464]: Mon
+                        - columnheader [ref=f57e465]: Tue
+                        - columnheader [ref=f57e466]: Wed
+                        - columnheader [ref=f57e467]: Thu
+                        - columnheader [ref=f57e468]: Fri
+                        - columnheader [ref=f57e469]: Sat
+                    - rowgroup [ref=f57e470]:
+                      - row [ref=f57e471]:
+                        - gridcell [disabled] [ref=f57e472]:
+                          - button "Sunday, September 27, 2026" [disabled] [ref=f57e473] [cursor=pointer]: "27"
+                        - gridcell [disabled] [ref=f57e474]:
+                          - button "Monday, September 28, 2026" [disabled] [ref=f57e475] [cursor=pointer]: "28"
+                        - gridcell [disabled] [ref=f57e476]:
+                          - button "Tuesday, September 29, 2026" [disabled] [ref=f57e477] [cursor=pointer]: "29"
+                        - gridcell [disabled] [ref=f57e478]:
+                          - button "Wednesday, September 30, 2026" [disabled] [ref=f57e479] [cursor=pointer]: "30"
+                        - gridcell [ref=f57e480]:
+                          - button "Thursday, October 1, 2026" [ref=f57e481] [cursor=pointer]: "1"
+                        - gridcell [ref=f57e482]:
+                          - button "Friday, October 2, 2026" [ref=f57e483] [cursor=pointer]: "2"
+                        - gridcell [ref=f57e484]:
+                          - button "Saturday, October 3, 2026" [ref=f57e485] [cursor=pointer]: "3"
+                      - row [ref=f57e486]:
+                        - gridcell [ref=f57e487]:
+                          - button "Sunday, October 4, 2026" [ref=f57e488] [cursor=pointer]: "4"
+                        - gridcell [ref=f57e489]:
+                          - button "Monday, October 5, 2026" [ref=f57e490] [cursor=pointer]: "5"
+                        - gridcell [ref=f57e491]:
+                          - button "Tuesday, October 6, 2026" [ref=f57e492] [cursor=pointer]: "6"
+                        - gridcell [ref=f57e493]:
+                          - button "Wednesday, October 7, 2026" [ref=f57e494] [cursor=pointer]: "7"
+                        - gridcell [ref=f57e495]:
+                          - button "Thursday, October 8, 2026" [ref=f57e496] [cursor=pointer]: "8"
+                        - gridcell [ref=f57e497]:
+                          - button "Friday, October 9, 2026" [ref=f57e498] [cursor=pointer]: "9"
+                        - gridcell [ref=f57e499]:
+                          - button "Saturday, October 10, 2026" [ref=f57e500] [cursor=pointer]: "10"
+                      - row [ref=f57e501]:
+                        - gridcell [ref=f57e502]:
+                          - button "Sunday, October 11, 2026" [ref=f57e503] [cursor=pointer]: "11"
+                        - gridcell [ref=f57e504]:
+                          - button "Monday, October 12, 2026" [ref=f57e505] [cursor=pointer]: "12"
+                        - gridcell [ref=f57e506]:
+                          - button "Tuesday, October 13, 2026" [ref=f57e507] [cursor=pointer]: "13"
+                        - gridcell [ref=f57e508]:
+                          - button "Wednesday, October 14, 2026" [ref=f57e509] [cursor=pointer]: "14"
+                        - gridcell [selected] [ref=f57e510]:
+                          - button "Thursday, October 15, 2026, selected" [ref=f57e511] [cursor=pointer]: "15"
+                        - gridcell [ref=f57e512]:
+                          - button "Friday, October 16, 2026" [ref=f57e513] [cursor=pointer]: "16"
+                        - gridcell [ref=f57e514]:
+                          - button "Saturday, October 17, 2026" [ref=f57e515] [cursor=pointer]: "17"
+                      - row [ref=f57e516]:
+                        - gridcell "Sunday, October 18, 2026" [disabled] [ref=f57e517]:
+                          - button "Sunday, October 18, 2026" [disabled]: "18"
+                        - gridcell [ref=f57e518]:
+                          - button "Monday, October 19, 2026" [ref=f57e519] [cursor=pointer]: "19"
+                        - gridcell [ref=f57e520]:
+                          - button "Tuesday, October 20, 2026" [ref=f57e521] [cursor=pointer]: "20"
+                        - gridcell [ref=f57e522]:
+                          - button "Wednesday, October 21, 2026" [ref=f57e523] [cursor=pointer]: "21"
+                        - gridcell [ref=f57e524]:
+                          - button "Thursday, October 22, 2026" [ref=f57e525] [cursor=pointer]: "22"
+                        - gridcell [ref=f57e526]:
+                          - button "Friday, October 23, 2026" [ref=f57e527] [cursor=pointer]: "23"
+                        - gridcell [ref=f57e528]:
+                          - button "Saturday, October 24, 2026" [ref=f57e529] [cursor=pointer]: "24"
+                      - row [ref=f57e530]:
+                        - gridcell [ref=f57e531]:
+                          - button "Sunday, October 25, 2026" [ref=f57e532] [cursor=pointer]: "25"
+                        - gridcell [ref=f57e533]:
+                          - button "Monday, October 26, 2026" [ref=f57e534] [cursor=pointer]: "26"
+                        - gridcell [ref=f57e535]:
+                          - button "Tuesday, October 27, 2026" [ref=f57e536] [cursor=pointer]: "27"
+                        - gridcell [ref=f57e537]:
+                          - button "Wednesday, October 28, 2026" [ref=f57e538] [cursor=pointer]: "28"
+                        - gridcell [ref=f57e539]:
+                          - button "Thursday, October 29, 2026" [ref=f57e540] [cursor=pointer]: "29"
+                        - gridcell [ref=f57e541]:
+                          - button "Friday, October 30, 2026" [ref=f57e542] [cursor=pointer]: "30"
+                        - gridcell [ref=f57e543]:
+                          - button "Today, Saturday, October 31, 2026" [ref=f57e544] [cursor=pointer]: "31"
+              - button "Submit date" [ref=f57e545] [cursor=pointer]
+              - button "Set November 10" [ref=f57e546] [cursor=pointer]
+              - paragraph [ref=f57e547]: "Date: 2026-10-15; Submitted: none; Changes: 0"
+          - article [ref=f57e548]:
+            - generic [ref=f57e549]:
+              - heading "Range calendar" [level=3] [ref=f57e550]
+              - paragraph [ref=f57e551]: Select a start and end date.
+            - generic [ref=f57e553]:
+              - generic [ref=f57e554]:
+                - generic [aria-hidden]:
+                  - text: "Trip dates: Start date"
+                  - textbox [aria-hidden]: 2026-10-12
+                  - text: "Trip dates: End date"
+                  - textbox [aria-hidden]: 2026-10-16
+                - group "Trip dates, October 2026" [ref=f57e556]:
+                  - generic [ref=f57e557]:
+                    - button "October 2026, year selector" [ref=f57e558] [cursor=pointer]:
+                      - generic [ref=f57e559]: October 2026
+                    - button "Previous month" [ref=f57e563] [cursor=pointer]
+                    - button "Next month" [ref=f57e566] [cursor=pointer]
+                  - grid "Trip dates, October 2026" [ref=f57e569]:
+                    - rowgroup [aria-hidden] [ref=f57e570]:
+                      - row [ref=f57e571]:
+                        - columnheader [ref=f57e572]: Sun
+                        - columnheader [ref=f57e573]: Mon
+                        - columnheader [ref=f57e574]: Tue
+                        - columnheader [ref=f57e575]: Wed
+                        - columnheader [ref=f57e576]: Thu
+                        - columnheader [ref=f57e577]: Fri
+                        - columnheader [ref=f57e578]: Sat
+                    - rowgroup [ref=f57e579]:
+                      - row [ref=f57e580]:
+                        - gridcell [disabled] [ref=f57e581]:
+                          - button "Sunday, September 27, 2026" [disabled] [ref=f57e582] [cursor=pointer]:
+                            - generic [ref=f57e583]: "27"
+                        - gridcell [disabled] [ref=f57e584]:
+                          - button "Monday, September 28, 2026" [disabled] [ref=f57e585] [cursor=pointer]:
+                            - generic [ref=f57e586]: "28"
+                        - gridcell [disabled] [ref=f57e587]:
+                          - button "Tuesday, September 29, 2026" [disabled] [ref=f57e588] [cursor=pointer]:
+                            - generic [ref=f57e589]: "29"
+                        - gridcell [disabled] [ref=f57e590]:
+                          - button "Wednesday, September 30, 2026" [disabled] [ref=f57e591] [cursor=pointer]:
+                            - generic [ref=f57e592]: "30"
+                        - gridcell [ref=f57e593]:
+                          - button "Thursday, October 1, 2026" [ref=f57e594] [cursor=pointer]:
+                            - generic [ref=f57e595]: "1"
+                        - gridcell [ref=f57e596]:
+                          - button "Friday, October 2, 2026" [ref=f57e597] [cursor=pointer]:
+                            - generic [ref=f57e598]: "2"
+                        - gridcell [ref=f57e599]:
+                          - button "Saturday, October 3, 2026" [ref=f57e600] [cursor=pointer]:
+                            - generic [ref=f57e601]: "3"
+                      - row [ref=f57e602]:
+                        - gridcell [ref=f57e603]:
+                          - button "Sunday, October 4, 2026" [ref=f57e604] [cursor=pointer]:
+                            - generic [ref=f57e605]: "4"
+                        - gridcell [ref=f57e606]:
+                          - button "Monday, October 5, 2026" [ref=f57e607] [cursor=pointer]:
+                            - generic [ref=f57e608]: "5"
+                        - gridcell [ref=f57e609]:
+                          - button "Tuesday, October 6, 2026" [ref=f57e610] [cursor=pointer]:
+                            - generic [ref=f57e611]: "6"
+                        - gridcell [ref=f57e612]:
+                          - button "Wednesday, October 7, 2026" [ref=f57e613] [cursor=pointer]:
+                            - generic [ref=f57e614]: "7"
+                        - gridcell [ref=f57e615]:
+                          - button "Thursday, October 8, 2026" [ref=f57e616] [cursor=pointer]:
+                            - generic [ref=f57e617]: "8"
+                        - gridcell [ref=f57e618]:
+                          - button "Friday, October 9, 2026" [ref=f57e619] [cursor=pointer]:
+                            - generic [ref=f57e620]: "9"
+                        - gridcell [ref=f57e621]:
+                          - button "Saturday, October 10, 2026" [ref=f57e622] [cursor=pointer]:
+                            - generic [ref=f57e623]: "10"
+                      - row [ref=f57e624]:
+                        - gridcell [ref=f57e625]:
+                          - button "Sunday, October 11, 2026" [ref=f57e626] [cursor=pointer]:
+                            - generic [ref=f57e627]: "11"
+                        - gridcell [selected] [ref=f57e628]:
+                          - button "Monday, October 12, 2026, selected" [ref=f57e629] [cursor=pointer]:
+                            - generic [ref=f57e630]: "12"
+                        - gridcell [selected] [ref=f57e631]:
+                          - button "Tuesday, October 13, 2026, selected" [ref=f57e632] [cursor=pointer]:
+                            - generic [ref=f57e633]: "13"
+                        - gridcell [selected] [ref=f57e634]:
+                          - button "Wednesday, October 14, 2026, selected" [ref=f57e635] [cursor=pointer]:
+                            - generic [ref=f57e636]: "14"
+                        - gridcell [selected] [ref=f57e637]:
+                          - button "Thursday, October 15, 2026, selected" [ref=f57e638] [cursor=pointer]:
+                            - generic [ref=f57e639]: "15"
+                        - gridcell [selected] [ref=f57e640]:
+                          - button "Friday, October 16, 2026, selected" [ref=f57e641] [cursor=pointer]:
+                            - generic [ref=f57e642]: "16"
+                        - gridcell [ref=f57e643]:
+                          - button "Saturday, October 17, 2026" [ref=f57e644] [cursor=pointer]:
+                            - generic [ref=f57e645]: "17"
+                      - row [ref=f57e646]:
+                        - gridcell "Sunday, October 18, 2026" [disabled] [ref=f57e647]:
+                          - button "Sunday, October 18, 2026" [disabled]:
+                            - generic: "18"
+                        - gridcell [ref=f57e648]:
+                          - button "Monday, October 19, 2026" [ref=f57e649] [cursor=pointer]:
+                            - generic [ref=f57e650]: "19"
+                        - gridcell [ref=f57e651]:
+                          - button "Tuesday, October 20, 2026" [ref=f57e652] [cursor=pointer]:
+                            - generic [ref=f57e653]: "20"
+                        - gridcell [ref=f57e654]:
+                          - button "Wednesday, October 21, 2026" [ref=f57e655] [cursor=pointer]:
+                            - generic [ref=f57e656]: "21"
+                        - gridcell [ref=f57e657]:
+                          - button "Thursday, October 22, 2026" [ref=f57e658] [cursor=pointer]:
+                            - generic [ref=f57e659]: "22"
+                        - gridcell [ref=f57e660]:
+                          - button "Friday, October 23, 2026" [ref=f57e661] [cursor=pointer]:
+                            - generic [ref=f57e662]: "23"
+                        - gridcell [ref=f57e663]:
+                          - button "Saturday, October 24, 2026" [ref=f57e664] [cursor=pointer]:
+                            - generic [ref=f57e665]: "24"
+                      - row [ref=f57e666]:
+                        - gridcell [ref=f57e667]:
+                          - button "Sunday, October 25, 2026" [ref=f57e668] [cursor=pointer]:
+                            - generic [ref=f57e669]: "25"
+                        - gridcell [ref=f57e670]:
+                          - button "Monday, October 26, 2026" [ref=f57e671] [cursor=pointer]:
+                            - generic [ref=f57e672]: "26"
+                        - gridcell [ref=f57e673]:
+                          - button "Tuesday, October 27, 2026" [ref=f57e674] [cursor=pointer]:
+                            - generic [ref=f57e675]: "27"
+                        - gridcell [ref=f57e676]:
+                          - button "Wednesday, October 28, 2026" [ref=f57e677] [cursor=pointer]:
+                            - generic [ref=f57e678]: "28"
+                        - gridcell [ref=f57e679]:
+                          - button "Thursday, October 29, 2026" [ref=f57e680] [cursor=pointer]:
+                            - generic [ref=f57e681]: "29"
+                        - gridcell [ref=f57e682]:
+                          - button "Friday, October 30, 2026" [ref=f57e683] [cursor=pointer]:
+                            - generic [ref=f57e684]: "30"
+                        - gridcell [ref=f57e685]:
+                          - button "Today, Saturday, October 31, 2026" [ref=f57e686] [cursor=pointer]:
+                            - generic [ref=f57e687]: "31"
+              - button "Submit trip dates" [ref=f57e688] [cursor=pointer]
+              - paragraph [ref=f57e689]: "Start: 2026-10-12; End: 2026-10-16; Submitted: none"
+          - article [ref=f57e690]:
+            - generic [ref=f57e691]:
+              - heading "Calendar states" [level=3] [ref=f57e692]
+              - paragraph [ref=f57e693]: Year navigation, read-only, and disabled states.
+            - generic [ref=f57e695]:
+              - generic [ref=f57e696]:
+                - generic [ref=f57e697]: Year picker
+                - textbox [aria-hidden]: 2026-10-31
+                - group "Year picker, October 2026" [ref=f57e699]:
+                  - generic [ref=f57e700]:
+                    - button "October 2026, year selector" [ref=f57e701] [cursor=pointer]:
+                      - generic [ref=f57e702]: October 2026
+                    - button "Previous month" [ref=f57e706] [cursor=pointer]
+                    - button "Next month" [ref=f57e709] [cursor=pointer]
+                  - grid "Year picker, October 2026" [ref=f57e712]:
+                    - rowgroup [aria-hidden] [ref=f57e713]:
+                      - row [ref=f57e714]:
+                        - columnheader [ref=f57e715]: Sun
+                        - columnheader [ref=f57e716]: Mon
+                        - columnheader [ref=f57e717]: Tue
+                        - columnheader [ref=f57e718]: Wed
+                        - columnheader [ref=f57e719]: Thu
+                        - columnheader [ref=f57e720]: Fri
+                        - columnheader [ref=f57e721]: Sat
+                    - rowgroup [ref=f57e722]:
+                      - row [ref=f57e723]:
+                        - gridcell [disabled] [ref=f57e724]:
+                          - button "Sunday, September 27, 2026" [disabled] [ref=f57e725] [cursor=pointer]: "27"
+                        - gridcell [disabled] [ref=f57e726]:
+                          - button "Monday, September 28, 2026" [disabled] [ref=f57e727] [cursor=pointer]: "28"
+                        - gridcell [disabled] [ref=f57e728]:
+                          - button "Tuesday, September 29, 2026" [disabled] [ref=f57e729] [cursor=pointer]: "29"
+                        - gridcell [disabled] [ref=f57e730]:
+                          - button "Wednesday, September 30, 2026" [disabled] [ref=f57e731] [cursor=pointer]: "30"
+                        - gridcell [ref=f57e732]:
+                          - button "Thursday, October 1, 2026" [ref=f57e733] [cursor=pointer]: "1"
+                        - gridcell [ref=f57e734]:
+                          - button "Friday, October 2, 2026" [ref=f57e735] [cursor=pointer]: "2"
+                        - gridcell [ref=f57e736]:
+                          - button "Saturday, October 3, 2026" [ref=f57e737] [cursor=pointer]: "3"
+                      - row [ref=f57e738]:
+                        - gridcell [ref=f57e739]:
+                          - button "Sunday, October 4, 2026" [ref=f57e740] [cursor=pointer]: "4"
+                        - gridcell [ref=f57e741]:
+                          - button "Monday, October 5, 2026" [ref=f57e742] [cursor=pointer]: "5"
+                        - gridcell [ref=f57e743]:
+                          - button "Tuesday, October 6, 2026" [ref=f57e744] [cursor=pointer]: "6"
+                        - gridcell [ref=f57e745]:
+                          - button "Wednesday, October 7, 2026" [ref=f57e746] [cursor=pointer]: "7"
+                        - gridcell [ref=f57e747]:
+                          - button "Thursday, October 8, 2026" [ref=f57e748] [cursor=pointer]: "8"
+                        - gridcell [ref=f57e749]:
+                          - button "Friday, October 9, 2026" [ref=f57e750] [cursor=pointer]: "9"
+                        - gridcell [ref=f57e751]:
+                          - button "Saturday, October 10, 2026" [ref=f57e752] [cursor=pointer]: "10"
+                      - row [ref=f57e753]:
+                        - gridcell [ref=f57e754]:
+                          - button "Sunday, October 11, 2026" [ref=f57e755] [cursor=pointer]: "11"
+                        - gridcell [ref=f57e756]:
+                          - button "Monday, October 12, 2026" [ref=f57e757] [cursor=pointer]: "12"
+                        - gridcell [ref=f57e758]:
+                          - button "Tuesday, October 13, 2026" [ref=f57e759] [cursor=pointer]: "13"
+                        - gridcell [ref=f57e760]:
+                          - button "Wednesday, October 14, 2026" [ref=f57e761] [cursor=pointer]: "14"
+                        - gridcell [ref=f57e762]:
+                          - button "Thursday, October 15, 2026" [ref=f57e763] [cursor=pointer]: "15"
+                        - gridcell [ref=f57e764]:
+                          - button "Friday, October 16, 2026" [ref=f57e765] [cursor=pointer]: "16"
+                        - gridcell [ref=f57e766]:
+                          - button "Saturday, October 17, 2026" [ref=f57e767] [cursor=pointer]: "17"
+                      - row [ref=f57e768]:
+                        - gridcell [ref=f57e769]:
+                          - button "Sunday, October 18, 2026" [ref=f57e770] [cursor=pointer]: "18"
+                        - gridcell [ref=f57e771]:
+                          - button "Monday, October 19, 2026" [ref=f57e772] [cursor=pointer]: "19"
+                        - gridcell [ref=f57e773]:
+                          - button "Tuesday, October 20, 2026" [ref=f57e774] [cursor=pointer]: "20"
+                        - gridcell [ref=f57e775]:
+                          - button "Wednesday, October 21, 2026" [ref=f57e776] [cursor=pointer]: "21"
+                        - gridcell [ref=f57e777]:
+                          - button "Thursday, October 22, 2026" [ref=f57e778] [cursor=pointer]: "22"
+                        - gridcell [ref=f57e779]:
+                          - button "Friday, October 23, 2026" [ref=f57e780] [cursor=pointer]: "23"
+                        - gridcell [ref=f57e781]:
+                          - button "Saturday, October 24, 2026" [ref=f57e782] [cursor=pointer]: "24"
+                      - row [ref=f57e783]:
+                        - gridcell [ref=f57e784]:
+                          - button "Sunday, October 25, 2026" [ref=f57e785] [cursor=pointer]: "25"
+                        - gridcell [ref=f57e786]:
+                          - button "Monday, October 26, 2026" [ref=f57e787] [cursor=pointer]: "26"
+                        - gridcell [ref=f57e788]:
+                          - button "Tuesday, October 27, 2026" [ref=f57e789] [cursor=pointer]: "27"
+                        - gridcell [ref=f57e790]:
+                          - button "Wednesday, October 28, 2026" [ref=f57e791] [cursor=pointer]: "28"
+                        - gridcell [ref=f57e792]:
+                          - button "Thursday, October 29, 2026" [ref=f57e793] [cursor=pointer]: "29"
+                        - gridcell [ref=f57e794]:
+                          - button "Friday, October 30, 2026" [ref=f57e795] [cursor=pointer]: "30"
+                        - gridcell [selected] [ref=f57e796]:
+                          - button "Today, Saturday, October 31, 2026, selected" [ref=f57e797] [cursor=pointer]: "31"
+              - generic [ref=f57e798]:
+                - generic [ref=f57e799]: Read-only calendar
+                - textbox [aria-hidden]: 2026-10-15
+                - group "Read-only calendar, October 2026" [ref=f57e801]:
+                  - generic [ref=f57e802]:
+                    - heading "October 2026" [level=2] [ref=f57e803]
+                    - button "Previous month" [ref=f57e804] [cursor=pointer]
+                    - button "Next month" [ref=f57e807] [cursor=pointer]
+                  - grid "Read-only calendar, October 2026" [ref=f57e810]:
+                    - rowgroup [aria-hidden] [ref=f57e811]:
+                      - row [ref=f57e812]:
+                        - columnheader [ref=f57e813]: Sun
+                        - columnheader [ref=f57e814]: Mon
+                        - columnheader [ref=f57e815]: Tue
+                        - columnheader [ref=f57e816]: Wed
+                        - columnheader [ref=f57e817]: Thu
+                        - columnheader [ref=f57e818]: Fri
+                        - columnheader [ref=f57e819]: Sat
+                    - rowgroup [ref=f57e820]:
+                      - row [ref=f57e821]:
+                        - gridcell "Sunday, September 27, 2026" [disabled] [ref=f57e822]:
+                          - button "Sunday, September 27, 2026" [disabled]: "27"
+                        - gridcell "Monday, September 28, 2026" [disabled] [ref=f57e823]:
+                          - button "Monday, September 28, 2026" [disabled]: "28"
+                        - gridcell "Tuesday, September 29, 2026" [disabled] [ref=f57e824]:
+                          - button "Tuesday, September 29, 2026" [disabled]: "29"
+                        - gridcell "Wednesday, September 30, 2026" [disabled] [ref=f57e825]:
+                          - button "Wednesday, September 30, 2026" [disabled]: "30"
+                        - gridcell "Thursday, October 1, 2026" [ref=f57e826]:
+                          - button "Thursday, October 1, 2026": "1"
+                        - gridcell "Friday, October 2, 2026" [ref=f57e827]:
+                          - button "Friday, October 2, 2026": "2"
+                        - gridcell "Saturday, October 3, 2026" [ref=f57e828]:
+                          - button "Saturday, October 3, 2026": "3"
+                      - row [ref=f57e829]:
+                        - gridcell "Sunday, October 4, 2026" [ref=f57e830]:
+                          - button "Sunday, October 4, 2026": "4"
+                        - gridcell "Monday, October 5, 2026" [ref=f57e831]:
+                          - button "Monday, October 5, 2026": "5"
+                        - gridcell "Tuesday, October 6, 2026" [ref=f57e832]:
+                          - button "Tuesday, October 6, 2026": "6"
+                        - gridcell "Wednesday, October 7, 2026" [ref=f57e833]:
+                          - button "Wednesday, October 7, 2026": "7"
+                        - gridcell "Thursday, October 8, 2026" [ref=f57e834]:
+                          - button "Thursday, October 8, 2026": "8"
+                        - gridcell "Friday, October 9, 2026" [ref=f57e835]:
+                          - button "Friday, October 9, 2026": "9"
+                        - gridcell "Saturday, October 10, 2026" [ref=f57e836]:
+                          - button "Saturday, October 10, 2026": "10"
+                      - row [ref=f57e837]:
+                        - gridcell "Sunday, October 11, 2026" [ref=f57e838]:
+                          - button "Sunday, October 11, 2026": "11"
+                        - gridcell "Monday, October 12, 2026" [ref=f57e839]:
+                          - button "Monday, October 12, 2026": "12"
+                        - gridcell "Tuesday, October 13, 2026" [ref=f57e840]:
+                          - button "Tuesday, October 13, 2026": "13"
+                        - gridcell "Wednesday, October 14, 2026" [ref=f57e841]:
+                          - button "Wednesday, October 14, 2026": "14"
+                        - gridcell "Thursday, October 15, 2026, selected" [selected] [ref=f57e842]:
+                          - button "Thursday, October 15, 2026, selected": "15"
+                        - gridcell "Friday, October 16, 2026" [ref=f57e843]:
+                          - button "Friday, October 16, 2026": "16"
+                        - gridcell "Saturday, October 17, 2026" [ref=f57e844]:
+                          - button "Saturday, October 17, 2026": "17"
+                      - row [ref=f57e845]:
+                        - gridcell "Sunday, October 18, 2026" [ref=f57e846]:
+                          - button "Sunday, October 18, 2026": "18"
+                        - gridcell "Monday, October 19, 2026" [ref=f57e847]:
+                          - button "Monday, October 19, 2026": "19"
+                        - gridcell "Tuesday, October 20, 2026" [ref=f57e848]:
+                          - button "Tuesday, October 20, 2026": "20"
+                        - gridcell "Wednesday, October 21, 2026" [ref=f57e849]:
+                          - button "Wednesday, October 21, 2026": "21"
+                        - gridcell "Thursday, October 22, 2026" [ref=f57e850]:
+                          - button "Thursday, October 22, 2026": "22"
+                        - gridcell "Friday, October 23, 2026" [ref=f57e851]:
+                          - button "Friday, October 23, 2026": "23"
+                        - gridcell "Saturday, October 24, 2026" [ref=f57e852]:
+                          - button "Saturday, October 24, 2026": "24"
+                      - row [ref=f57e853]:
+                        - gridcell "Sunday, October 25, 2026" [ref=f57e854]:
+                          - button "Sunday, October 25, 2026": "25"
+                        - gridcell "Monday, October 26, 2026" [ref=f57e855]:
+                          - button "Monday, October 26, 2026": "26"
+                        - gridcell "Tuesday, October 27, 2026" [ref=f57e856]:
+                          - button "Tuesday, October 27, 2026": "27"
+                        - gridcell "Wednesday, October 28, 2026" [ref=f57e857]:
+                          - button "Wednesday, October 28, 2026": "28"
+                        - gridcell "Thursday, October 29, 2026" [ref=f57e858]:
+                          - button "Thursday, October 29, 2026": "29"
+                        - gridcell "Friday, October 30, 2026" [ref=f57e859]:
+                          - button "Friday, October 30, 2026": "30"
+                        - gridcell "Today, Saturday, October 31, 2026" [ref=f57e860]:
+                          - button "Today, Saturday, October 31, 2026": "31"
+              - generic [ref=f57e861]:
+                - generic [ref=f57e862]: Calendrier désactivé
+                - textbox [disabled] [aria-hidden]: 2026-10-15
+                - group "Calendrier désactivé, octobre 2026" [ref=f57e864]:
+                  - generic [ref=f57e865]:
+                    - heading "octobre 2026" [level=2] [ref=f57e866]
+                    - button "Previous month" [disabled]
+                    - button "Next month" [disabled]
+                  - grid "Calendrier désactivé, octobre 2026" [ref=f57e867]:
+                    - rowgroup [aria-hidden] [ref=f57e868]:
+                      - row [ref=f57e869]:
+                        - columnheader [ref=f57e870]: lun.
+                        - columnheader [ref=f57e871]: mar.
+                        - columnheader [ref=f57e872]: mer.
+                        - columnheader [ref=f57e873]: jeu.
+                        - columnheader [ref=f57e874]: ven.
+                        - columnheader [ref=f57e875]: sam.
+                        - columnheader [ref=f57e876]: dim.
+                    - rowgroup [ref=f57e877]:
+                      - row [ref=f57e878]:
+                        - gridcell [disabled] [ref=f57e879]:
+                          - button "lundi 28 septembre 2026" [disabled] [ref=f57e880] [cursor=pointer]: "28"
+                        - gridcell [disabled] [ref=f57e881]:
+                          - button "mardi 29 septembre 2026" [disabled] [ref=f57e882] [cursor=pointer]: "29"
+                        - gridcell [disabled] [ref=f57e883]:
+                          - button "mercredi 30 septembre 2026" [disabled] [ref=f57e884] [cursor=pointer]: "30"
+                        - gridcell "jeudi 1 octobre 2026" [disabled] [ref=f57e885]:
+                          - button "jeudi 1 octobre 2026" [disabled]: "1"
+                        - gridcell "vendredi 2 octobre 2026" [disabled] [ref=f57e886]:
+                          - button "vendredi 2 octobre 2026" [disabled]: "2"
+                        - gridcell "samedi 3 octobre 2026" [disabled] [ref=f57e887]:
+                          - button "samedi 3 octobre 2026" [disabled]: "3"
+                        - gridcell "dimanche 4 octobre 2026" [disabled] [ref=f57e888]:
+                          - button "dimanche 4 octobre 2026" [disabled]: "4"
+                      - row [ref=f57e889]:
+                        - gridcell "lundi 5 octobre 2026" [disabled] [ref=f57e890]:
+                          - button "lundi 5 octobre 2026" [disabled]: "5"
+                        - gridcell "mardi 6 octobre 2026" [disabled] [ref=f57e891]:
+                          - button "mardi 6 octobre 2026" [disabled]: "6"
+                        - gridcell "mercredi 7 octobre 2026" [disabled] [ref=f57e892]:
+                          - button "mercredi 7 octobre 2026" [disabled]: "7"
+                        - gridcell "jeudi 8 octobre 2026" [disabled] [ref=f57e893]:
+                          - button "jeudi 8 octobre 2026" [disabled]: "8"
+                        - gridcell "vendredi 9 octobre 2026" [disabled] [ref=f57e894]:
+                          - button "vendredi 9 octobre 2026" [disabled]: "9"
+                        - gridcell "samedi 10 octobre 2026" [disabled] [ref=f57e895]:
+                          - button "samedi 10 octobre 2026" [disabled]: "10"
+                        - gridcell "dimanche 11 octobre 2026" [disabled] [ref=f57e896]:
+                          - button "dimanche 11 octobre 2026" [disabled]: "11"
+                      - row [ref=f57e897]:
+                        - gridcell "lundi 12 octobre 2026" [disabled] [ref=f57e898]:
+                          - button "lundi 12 octobre 2026" [disabled]: "12"
+                        - gridcell "mardi 13 octobre 2026" [disabled] [ref=f57e899]:
+                          - button "mardi 13 octobre 2026" [disabled]: "13"
+                        - gridcell "mercredi 14 octobre 2026" [disabled] [ref=f57e900]:
+                          - button "mercredi 14 octobre 2026" [disabled]: "14"
+                        - gridcell "jeudi 15 octobre 2026, selected" [disabled] [selected] [ref=f57e901]:
+                          - button "jeudi 15 octobre 2026, selected" [disabled]: "15"
+                        - gridcell "vendredi 16 octobre 2026" [disabled] [ref=f57e902]:
+                          - button "vendredi 16 octobre 2026" [disabled]: "16"
+                        - gridcell "samedi 17 octobre 2026" [disabled] [ref=f57e903]:
+                          - button "samedi 17 octobre 2026" [disabled]: "17"
+                        - gridcell "dimanche 18 octobre 2026" [disabled] [ref=f57e904]:
+                          - button "dimanche 18 octobre 2026" [disabled]: "18"
+                      - row [ref=f57e905]:
+                        - gridcell "lundi 19 octobre 2026" [disabled] [ref=f57e906]:
+                          - button "lundi 19 octobre 2026" [disabled]: "19"
+                        - gridcell "mardi 20 octobre 2026" [disabled] [ref=f57e907]:
+                          - button "mardi 20 octobre 2026" [disabled]: "20"
+                        - gridcell "mercredi 21 octobre 2026" [disabled] [ref=f57e908]:
+                          - button "mercredi 21 octobre 2026" [disabled]: "21"
+                        - gridcell "jeudi 22 octobre 2026" [disabled] [ref=f57e909]:
+                          - button "jeudi 22 octobre 2026" [disabled]: "22"
+                        - gridcell "vendredi 23 octobre 2026" [disabled] [ref=f57e910]:
+                          - button "vendredi 23 octobre 2026" [disabled]: "23"
+                        - gridcell "samedi 24 octobre 2026" [disabled] [ref=f57e911]:
+                          - button "samedi 24 octobre 2026" [disabled]: "24"
+                        - gridcell "dimanche 25 octobre 2026" [disabled] [ref=f57e912]:
+                          - button "dimanche 25 octobre 2026" [disabled]: "25"
+                      - row [ref=f57e913]:
+                        - gridcell "lundi 26 octobre 2026" [disabled] [ref=f57e914]:
+                          - button "lundi 26 octobre 2026" [disabled]: "26"
+                        - gridcell "mardi 27 octobre 2026" [disabled] [ref=f57e915]:
+                          - button "mardi 27 octobre 2026" [disabled]: "27"
+                        - gridcell "mercredi 28 octobre 2026" [disabled] [ref=f57e916]:
+                          - button "mercredi 28 octobre 2026" [disabled]: "28"
+                        - gridcell "jeudi 29 octobre 2026" [disabled] [ref=f57e917]:
+                          - button "jeudi 29 octobre 2026" [disabled]: "29"
+                        - gridcell "vendredi 30 octobre 2026" [disabled] [ref=f57e918]:
+                          - button "vendredi 30 octobre 2026" [disabled]: "30"
+                        - gridcell "Today, samedi 31 octobre 2026" [disabled] [ref=f57e919]:
+                          - button "Today, samedi 31 octobre 2026" [disabled]: "31"
+                        - gridcell [disabled] [ref=f57e920]:
+                          - button "dimanche 1 novembre 2026" [disabled] [ref=f57e921] [cursor=pointer]: "1"
+      - region [ref=f57e922]:
+        - generic [ref=f57e923]:
+          - generic [ref=f57e924]:
+            - paragraph [ref=f57e925]: COMPONENTS
+            - heading "Selection & navigation" [level=2] [ref=f57e926]
+          - paragraph [ref=f57e927]: Choices, navigation, and grouped actions.
+        - generic [ref=f57e928]:
+          - article [ref=f57e929]:
+            - generic [ref=f57e930]:
+              - heading "Form controls" [level=3] [ref=f57e931]
+              - paragraph [ref=f57e932]: Checkboxes, switches, sliders, and more.
+            - generic [ref=f57e934]:
+              - generic [ref=f57e936] [cursor=pointer]:
+                - checkbox "Accept terms" [ref=f57e937]
+                - generic [ref=f57e938]: Accept terms
+              - generic [ref=f57e940] [cursor=pointer]:
+                - switch "Enable alerts" [ref=f57e941]
+                - generic [ref=f57e942]: Enable alerts
+              - generic [ref=f57e943]: Plan
+              - generic [ref=f57e945]:
+                - combobox [aria-hidden]
+                - combobox "Plan" [ref=f57e947] [cursor=pointer]:
+                  - generic [ref=f57e948]: Starter
+              - generic [ref=f57e951]:
+                - generic [ref=f57e952]: Volume
+                - status [ref=f57e953]: "40"
+                - slider "Volume" [ref=f57e954]: "40"
+              - generic [ref=f57e955]:
+                - generic [ref=f57e956]: Quantity
+                - generic [ref=f57e957]:
+                  - button "Decrease Quantity" [ref=f57e958] [cursor=pointer]: −
+                  - spinbutton "Quantity" [ref=f57e959]: "1"
+                  - button "Increase Quantity" [ref=f57e960] [cursor=pointer]: +
+              - group "Delivery" [ref=f57e961]:
+                - generic [ref=f57e963]:
+                  - generic [ref=f57e964] [cursor=pointer]:
+                    - generic [ref=f57e965]:
+                      - radio "Standard" [checked] [ref=f57e966]
+                      - generic [ref=f57e967]: Standard
+                    - generic [ref=f57e968]: Three to five days
+                  - generic [ref=f57e970] [cursor=pointer]:
+                    - radio "Express" [ref=f57e971]
+                    - generic [ref=f57e972]: Express
+                  - generic:
+                    - generic:
+                      - radio "Overnight" [disabled]
+                      - generic: Overnight
+                - paragraph [ref=f57e973]: Choose a delivery speed.
+              - group "Interests" [ref=f57e974]:
+                - generic [ref=f57e976]:
+                  - generic [ref=f57e977] [cursor=pointer]:
+                    - generic [ref=f57e978]:
+                      - checkbox "News" [checked] [ref=f57e979]
+                      - generic [ref=f57e980]: News
+                    - generic [ref=f57e981]: Product announcements
+                  - generic [ref=f57e983] [cursor=pointer]:
+                    - checkbox "Events" [ref=f57e984]
+                    - generic [ref=f57e985]: Events
+                  - generic:
+                    - generic:
+                      - checkbox "Research" [disabled]
+                      - generic: Research
+                - paragraph [ref=f57e986]: Choose any topics you like.
+              - paragraph [ref=f57e987]: "Interests: news"
+              - paragraph [ref=f57e988]: "Delivery: standard"
+              - paragraph [ref=f57e989]: "Volume: 40; Quantity: 1"
+              - paragraph [ref=f57e990]: "Terms: false; Alerts: false; Plan: starter"
+          - article [ref=f57e991]:
+            - generic [ref=f57e992]:
+              - heading "Switch groups" [level=3] [ref=f57e993]
+              - paragraph [ref=f57e994]: Group independent settings vertically or horizontally.
+            - generic [ref=f57e995]:
+              - generic [ref=f57e996]:
+                - group "Notifications" [ref=f57e997]:
+                  - generic [ref=f57e999]:
+                    - generic [ref=f57e1000] [cursor=pointer]:
+                      - generic [ref=f57e1001]:
+                        - switch "Account updates" [checked] [ref=f57e1002]
+                        - generic [ref=f57e1003]: Account updates
+                      - generic [ref=f57e1004]: Important account activity.
+                    - generic [ref=f57e1006] [cursor=pointer]:
+                      - switch "Marketing emails" [ref=f57e1007]
+                      - generic [ref=f57e1008]: Marketing emails
+                    - generic [ref=f57e1010] [cursor=pointer]:
+                      - switch "Product news" [checked] [ref=f57e1011]
+                      - generic [ref=f57e1012]: Product news
+                  - paragraph [ref=f57e1013]: Choose which updates you receive.
+                - paragraph [ref=f57e1014]: "Account: true; Marketing: false; Product: true"
+              - group "Display options" [ref=f57e1015]:
+                - generic [ref=f57e1016]:
+                  - generic [ref=f57e1018] [cursor=pointer]:
+                    - switch "Grid" [checked] [ref=f57e1019]
+                    - generic [ref=f57e1020]: Grid
+                  - generic [ref=f57e1022] [cursor=pointer]:
+                    - switch "Labels" [ref=f57e1023]
+                    - generic [ref=f57e1024]: Labels
+          - article [ref=f57e1025]:
+            - generic [ref=f57e1026]:
+              - heading "Select" [level=3] [ref=f57e1027]
+              - paragraph [ref=f57e1028]: Grouped, multiple, and required choices.
+            - generic [ref=f57e1029]:
+              - generic [ref=f57e1030]:
+                - text: Grouped plans
+                - generic [ref=f57e1032]:
+                  - combobox [aria-hidden]
+                  - combobox "Grouped plans" [ref=f57e1034] [cursor=pointer]:
+                    - generic [ref=f57e1035]: Starter
+                - text: Multiple choices
+                - listbox "Multiple choices" [ref=f57e1040] [cursor=pointer]:
+                  - option "One" [ref=f57e1041]
+                  - option "Two" [ref=f57e1042]
+              - generic [ref=f57e1043]:
+                - generic [ref=f57e1044]: Required choice
+                - generic [ref=f57e1046]:
+                  - combobox [aria-hidden]
+                  - combobox "Required choice" [ref=f57e1048] [cursor=pointer]:
+                    - generic [ref=f57e1049]: Choose an option
+                - button "Submit choice" [ref=f57e1052] [cursor=pointer]
+                - paragraph [ref=f57e1053]: "Submitted: none"
+          - article [ref=f57e1054]:
+            - generic [ref=f57e1055]:
+              - heading "Tag group" [level=3] [ref=f57e1056]
+              - paragraph [ref=f57e1057]: Select or remove topics.
+            - generic [ref=f57e1058]:
+              - generic [ref=f57e1059]:
+                - generic [ref=f57e1060]: Topics
+                - grid "Topics" [ref=f57e1061]:
+                  - row "News" [selected] [ref=f57e1062] [cursor=pointer]:
+                    - gridcell [ref=f57e1063]:
+                      - text: News
+                      - button "Remove News" [ref=f57e1064]
+                  - row "Travel" [ref=f57e1065] [cursor=pointer]:
+                    - gridcell [ref=f57e1066]:
+                      - text: Travel
+                      - button "Remove Travel" [ref=f57e1067]
+                  - row "Gaming" [ref=f57e1068] [cursor=pointer]:
+                    - gridcell [ref=f57e1069]:
+                      - text: Gaming
+                      - button "Remove Gaming" [ref=f57e1070]
+                  - row "Shopping" [ref=f57e1071] [cursor=pointer]:
+                    - gridcell [ref=f57e1072]:
+                      - text: Shopping
+                      - button "Remove Shopping" [ref=f57e1073]
+                  - row "Disabled" [disabled]:
+                    - gridcell "Disabled Remove Disabled" [disabled]:
+                      - text: Disabled
+                      - button "Remove Disabled" [disabled]
+                - paragraph [ref=f57e1074]: Select or remove topics
+              - paragraph [ref=f57e1075]: "Selected topics: news"
+          - article [ref=f57e1076]:
+            - generic [ref=f57e1077]:
+              - heading "Listbox & actions" [level=3] [ref=f57e1078]
+              - paragraph [ref=f57e1079]: Choose a workspace and toggle formatting.
+            - generic [ref=f57e1080]:
+              - generic [ref=f57e1081]:
+                - group "Editing actions" [ref=f57e1082]:
+                  - button "Copy" [ref=f57e1083] [cursor=pointer]
+                  - button "Paste" [ref=f57e1084] [cursor=pointer]
+                - group "Text formatting" [ref=f57e1085]:
+                  - button "Bold" [ref=f57e1086] [cursor=pointer]
+                  - button "Italic" [ref=f57e1087] [cursor=pointer]
+              - listbox "Workspace" [ref=f57e1089]:
+                - option "Alpha" [selected] [ref=f57e1090] [cursor=pointer]:
+                  - generic [ref=f57e1091]:
+                    - generic: Alpha
+                    - generic: Main workspace
+                - option "Beta" [ref=f57e1095] [cursor=pointer]
+                - option "Unavailable" [disabled]
+              - paragraph [ref=f57e1097]: "Workspace: alpha"
+              - paragraph [ref=f57e1098]: "Bold: false; Italic: false"
+              - paragraph [ref=f57e1099]: "Updates: 0"
+          - article [ref=f57e1100]:
+            - generic [ref=f57e1101]:
+              - heading "Toolbar" [level=3] [ref=f57e1102]
+              - paragraph [ref=f57e1103]: Use arrow keys to move between related controls.
+            - generic [ref=f57e1105]:
+              - generic [ref=f57e1106]:
+                - toolbar "Text formatting" [ref=f57e1107]:
+                  - group "Text style" [ref=f57e1108]:
+                    - button "Bold" [ref=f57e1109] [cursor=pointer]
+                    - button "Italic" [ref=f57e1110] [cursor=pointer]
+                    - button "Underline" [ref=f57e1111] [cursor=pointer]
+                  - group "Editing" [ref=f57e1112]:
+                    - button "Copy" [ref=f57e1113] [cursor=pointer]
+                    - button "Cut" [ref=f57e1114] [cursor=pointer]
+                - paragraph [ref=f57e1115]: "Bold: false; Italic: false; Underline: false; Action: none"
+              - toolbar "History" [ref=f57e1116]:
+                - button "Undo" [ref=f57e1117] [cursor=pointer]
+                - button "Redo" [ref=f57e1118] [cursor=pointer]
+                - button "Unavailable" [disabled]: ×
+          - article [ref=f57e1119]:
+            - generic [ref=f57e1120]:
+              - heading "Disclosure" [level=3] [ref=f57e1121]
+              - paragraph [ref=f57e1122]: Expand a section to reveal more detail.
+            - generic [ref=f57e1123]:
+              - group [ref=f57e1124]:
+                - button "Project details" [ref=f57e1125] [cursor=pointer]
+              - group [ref=f57e1128]:
+                - button "Unavailable" [disabled]
+          - article [ref=f57e1129]:
+            - generic [ref=f57e1130]:
+              - heading "Disclosure group" [level=3] [ref=f57e1131]
+              - paragraph [ref=f57e1132]: One section at a time, controlled by LiveView.
+            - generic [ref=f57e1133]:
+              - generic [ref=f57e1134]:
+                - group [ref=f57e1135]:
+                  - button "Account" [expanded] [ref=f57e1136] [cursor=pointer]
+                  - group "Account" [ref=f57e1138]:
+                    - paragraph [ref=f57e1141]: Manage your profile and personal details.
+                - group [ref=f57e1142]:
+                  - button "Billing" [ref=f57e1143] [cursor=pointer]
+                - group [ref=f57e1145]:
+                  - button "Security" [ref=f57e1146] [cursor=pointer]
+              - button "Open billing" [ref=f57e1148] [cursor=pointer]
+              - paragraph [ref=f57e1149]: "Expanded: account; Last: none"
+          - article [ref=f57e1150]:
+            - generic [ref=f57e1151]:
+              - heading "Multiple disclosures" [level=3] [ref=f57e1152]
+              - paragraph [ref=f57e1153]: Keep several sections open at once.
+            - generic [ref=f57e1155]:
+              - group [ref=f57e1156]:
+                - button "First section" [expanded] [ref=f57e1157] [cursor=pointer]
+                - group "First section" [ref=f57e1159]:
+                  - paragraph [ref=f57e1162]: Each section manages its own expanded state.
+              - group [ref=f57e1163]:
+                - button "Second section" [ref=f57e1164] [cursor=pointer]
+              - group [ref=f57e1166]:
+                - button "Unavailable" [disabled]
+          - article [ref=f57e1167]:
+            - generic [ref=f57e1168]:
+              - heading "Tabs" [level=3] [ref=f57e1169]
+              - paragraph [ref=f57e1170]: Switch between account sections.
+            - generic [ref=f57e1172]:
+              - tablist "Account sections" [ref=f57e1174]:
+                - tab "Profile" [selected] [ref=f57e1175] [cursor=pointer]
+                - tab "Security" [ref=f57e1177] [cursor=pointer]
+                - tab "Disabled" [disabled]
+              - tabpanel "Profile" [ref=f57e1178]:
+                - paragraph [ref=f57e1179]: Profile settings
+      - region [ref=f57e1180]:
+        - generic [ref=f57e1181]:
+          - generic [ref=f57e1182]:
+            - paragraph [ref=f57e1183]: COMPONENTS
+            - heading "Overlays" [level=2] [ref=f57e1184]
+          - paragraph [ref=f57e1185]: Dialogs and contextual actions.
+        - generic [ref=f57e1186]:
+          - article [ref=f57e1187]:
+            - generic [ref=f57e1188]:
+              - heading "Sheets" [level=3] [ref=f57e1189]
+              - paragraph [ref=f57e1190]: Swipe an edge panel or snap it between sizes.
+            - generic [ref=f57e1191]:
+              - generic [ref=f57e1192]:
+                - button "Bottom sheet" [ref=f57e1193] [cursor=pointer]
+                - button "Right sheet" [ref=f57e1194] [cursor=pointer]
+                - button "Top sheet" [ref=f57e1195] [cursor=pointer]
+                - button "Left sheet" [ref=f57e1196] [cursor=pointer]
+                - button "Snap points" [ref=f57e1197] [cursor=pointer]
+                - button "Controlled" [ref=f57e1198] [cursor=pointer]
+              - paragraph [ref=f57e1199]: "Last controlled change: none"
+          - article [ref=f57e1200]:
+            - generic [ref=f57e1201]:
+              - heading "Dialogs & menus" [level=3] [ref=f57e1202]
+              - paragraph [ref=f57e1203]: Open each overlay to explore its behavior.
+            - generic [ref=f57e1204]:
+              - button "Open modal" [ref=f57e1205] [cursor=pointer]
+              - button "Open alert dialog" [ref=f57e1206] [cursor=pointer]
+              - button "Open drawer" [ref=f57e1207] [cursor=pointer]
+              - button "Hover or focus" [ref=f57e1209] [cursor=pointer]
+              - button "Open popover" [ref=f57e1211] [cursor=pointer]
+              - button "Actions" [ref=f57e1213] [cursor=pointer]
+      - region [ref=f57e1214]:
+        - generic [ref=f57e1215]:
+          - generic [ref=f57e1216]:
+            - paragraph [ref=f57e1217]: COMPONENTS
+            - heading "Feedback" [level=2] [ref=f57e1218]
+          - paragraph [ref=f57e1219]: Keep people informed about changes.
+        - generic [ref=f57e1220]:
+          - article [ref=f57e1221]:
+            - generic [ref=f57e1222]:
+              - heading "Toast notifications" [level=3] [ref=f57e1223]
+              - paragraph [ref=f57e1224]: Send a notification in any of five variants.
+            - region "Toast preview" [ref=f57e1226]:
+              - region "Notifications"
+              - generic [ref=f57e1227]:
+                - button "Default toast" [ref=f57e1228] [cursor=pointer]
+                - button "Accent toast" [ref=f57e1229] [cursor=pointer]
+                - button "Success toast" [ref=f57e1230] [cursor=pointer]
+                - button "Warning toast" [ref=f57e1231] [cursor=pointer]
+                - button "Danger toast" [ref=f57e1232] [cursor=pointer]
+              - paragraph [ref=f57e1233]: "Action: none"
+          - article [ref=f57e1234]:
+            - generic [ref=f57e1235]:
+              - heading "Status & identity" [level=3] [ref=f57e1236]
+              - paragraph [ref=f57e1237]: Alerts, avatars, and badges.
+            - generic [ref=f57e1238]:
+              - generic [ref=f57e1239]:
+                - img "Casey Jones" [ref=f57e1240]:
+                  - generic [aria-hidden] [ref=f57e1241]: CJ
+                - img "Alex Kim" [ref=f57e1242]:
+                  - generic [aria-hidden] [ref=f57e1243]: AK
+                - generic [ref=f57e1244]:
+                  - img "Jane Doe" [ref=f57e1245]:
+                    - generic [aria-hidden] [ref=f57e1246]: JD
+                  - generic [ref=f57e1247]: "3"
+              - status [ref=f57e1249]:
+                - generic [ref=f57e1253]:
+                  - generic [ref=f57e1254]: Profile updated
+                  - generic [ref=f57e1255]: Your settings are saved.
+          - article [ref=f57e1256]:
+            - generic [ref=f57e1257]:
+              - heading "Avatar group" [level=3] [ref=f57e1258]
+              - paragraph [ref=f57e1259]: Stack teammates with an overflow count, or display them in a grid.
+            - generic [ref=f57e1261]:
+              - group "Project team" [ref=f57e1262]:
+                - img "Jane Doe" [ref=f57e1263]:
+                  - generic [aria-hidden] [ref=f57e1264]: JD
+                - img "Alex Kim" [ref=f57e1265]:
+                  - generic [aria-hidden] [ref=f57e1266]: AK
+                - img "Morgan Lee" [ref=f57e1267]:
+                  - generic [aria-hidden] [ref=f57e1268]: ML
+                - img "2 more" [ref=f57e1269]:
+                  - generic [aria-hidden] [ref=f57e1270]: "+2"
+              - group "Reviewers" [ref=f57e1271]:
+                - img "Jane Doe" [ref=f57e1272]:
+                  - generic [aria-hidden] [ref=f57e1273]: JD
+                - img "Alex Kim" [ref=f57e1274]:
+                  - generic [aria-hidden] [ref=f57e1275]: AK
+                - img "Morgan Lee" [ref=f57e1276]:
+                  - generic [aria-hidden] [ref=f57e1277]: ML
+                - img "9 more reviewers" [ref=f57e1278]:
+                  - generic [aria-hidden] [ref=f57e1279]: "+9"
+              - group "Contributors" [ref=f57e1280]:
+                - img "Jane Doe" [ref=f57e1281]:
+                  - generic [aria-hidden] [ref=f57e1282]: JD
+                - img "Alex Kim" [ref=f57e1283]:
+                  - generic [aria-hidden] [ref=f57e1284]: AK
+                - img "Morgan Lee" [ref=f57e1285]:
+                  - generic [aria-hidden] [ref=f57e1286]: ML
+                - img "Sam Rivera" [ref=f57e1287]:
+                  - generic [aria-hidden] [ref=f57e1288]: SR
+          - article [ref=f57e1289]:
+            - generic [ref=f57e1290]:
+              - heading "Progress" [level=3] [ref=f57e1291]
+              - paragraph [ref=f57e1292]: Visualize the current update count.
+            - generic [ref=f57e1293]:
+              - progressbar "Updates" [ref=f57e1294]
+              - meter "Capacity" [ref=f57e1298]:
+                - generic [ref=f57e1300]: 0 of 10
+      - region [ref=f57e1302]:
+        - generic [ref=f57e1303]:
+          - generic [ref=f57e1304]:
+            - paragraph [ref=f57e1305]: COMPONENTS
+            - heading "Data display" [level=2] [ref=f57e1306]
+          - paragraph [ref=f57e1307]: Tables and pagination with LiveView updates.
+        - generic [ref=f57e1308]:
+          - article [ref=f57e1309]:
+            - generic [ref=f57e1310]:
+              - heading "Scroll shadow" [level=3] [ref=f57e1311]
+              - paragraph [ref=f57e1312]: Fade edges as content scrolls.
+            - generic [ref=f57e1313]:
+              - region "Activity feed" [ref=f57e1314]:
+                - generic [ref=f57e1315]:
+                  - paragraph [ref=f57e1316]: 1. A small update from your project team.
+                  - paragraph [ref=f57e1317]: 2. A small update from your project team.
+                  - paragraph [ref=f57e1318]: 3. A small update from your project team.
+                  - paragraph [ref=f57e1319]: 4. A small update from your project team.
+                  - paragraph [ref=f57e1320]: 5. A small update from your project team.
+                  - paragraph [ref=f57e1321]: 6. A small update from your project team.
+                  - paragraph [ref=f57e1322]: 7. A small update from your project team.
+                  - paragraph [ref=f57e1323]: 8. A small update from your project team.
+              - generic [ref=f57e1324]:
+                - button "Toggle content length" [ref=f57e1325] [cursor=pointer]
+                - paragraph [ref=f57e1326]: "Visibility: waiting"
+              - region "Project categories" [ref=f57e1327]:
+                - generic [ref=f57e1328]:
+                  - generic [ref=f57e1329]: Design
+                  - generic [ref=f57e1331]: Engineering
+                  - generic [ref=f57e1333]: Research
+                  - generic [ref=f57e1335]: Product
+                  - generic [ref=f57e1337]: Marketing
+          - article [ref=f57e1339]:
+            - generic [ref=f57e1340]:
+              - heading "Tables" [level=3] [ref=f57e1341]
+              - paragraph [ref=f57e1342]: Sort, paginate, and add a streamed row.
+            - generic [ref=f57e1344]:
+              - heading "Sortable table" [level=2] [ref=f57e1345]
+              - table "People" [ref=f57e1348]:
+                - rowgroup [ref=f57e1349]:
+                  - row [ref=f57e1350]:
+                    - columnheader [ref=f57e1351] [cursor=pointer]:
+                      - button "Name" [ref=f57e1352]
+                    - columnheader "Role" [ref=f57e1355]
+                - rowgroup [ref=f57e1356]:
+                  - row [ref=f57e1357]:
+                    - rowheader "Alex Kim" [ref=f57e1358]
+                    - cell "Designer" [ref=f57e1359]
+                  - row [ref=f57e1360]:
+                    - rowheader "Jane Smith" [ref=f57e1361]
+                    - cell "Developer" [ref=f57e1362]
+                  - row [ref=f57e1363]:
+                    - rowheader "Morgan Lee" [ref=f57e1364]
+                    - cell "Engineer" [ref=f57e1365]
+                  - row [ref=f57e1366]:
+                    - rowheader "Taylor Brown" [ref=f57e1367]
+                    - cell "Product Manager" [ref=f57e1368]
+              - navigation "Pagination" [ref=f57e1369]:
+                - generic [ref=f57e1370]: Page 1 of 10
+                - list [ref=f57e1371]:
+                  - listitem [ref=f57e1372]:
+                    - button "Previous" [disabled]
+                  - listitem [ref=f57e1373]:
+                    - button "Page 1" [ref=f57e1374] [cursor=pointer]: "1"
+                  - listitem [ref=f57e1375]:
+                    - button "Page 2" [ref=f57e1376] [cursor=pointer]: "2"
+                  - listitem [ref=f57e1377]:
+                    - generic [aria-hidden] [ref=f57e1378]: …
+                  - listitem [ref=f57e1379]:
+                    - button "Page 10" [ref=f57e1380] [cursor=pointer]: "10"
+                  - listitem [ref=f57e1381]:
+                    - button "Next" [ref=f57e1382] [cursor=pointer]
+              - heading "Streamed table" [level=2] [ref=f57e1387]
+              - table "Streamed people" [ref=f57e1390]:
+                - rowgroup [ref=f57e1391]:
+                  - row [ref=f57e1392]:
+                    - columnheader "Name" [ref=f57e1393]
+                    - columnheader "Role" [ref=f57e1394]
+                - rowgroup [ref=f57e1395]:
+                  - row [ref=f57e1396]:
+                    - cell "Alex Kim" [ref=f57e1397]
+                    - cell "Designer" [ref=f57e1398]
+                  - row [ref=f57e1399]:
+                    - cell "Jane Smith" [ref=f57e1400]
+                    - cell "Developer" [ref=f57e1401]
+                  - row [ref=f57e1402]:
+                    - cell "Morgan Lee" [ref=f57e1403]
+                    - cell "Engineer" [ref=f57e1404]
+                  - row [ref=f57e1405]:
+                    - cell "Taylor Brown" [ref=f57e1406]
+                    - cell "Product Manager" [ref=f57e1407]
+              - button "Add person" [ref=f57e1408] [cursor=pointer]
+      - generic [ref=f57e1409]:
+        - generic [ref=f57e1410]: HeroUI for LiveView
+        - link "Back to top ↑" [ref=f57e1411] [cursor=pointer]:
+          - /url: "#overview"

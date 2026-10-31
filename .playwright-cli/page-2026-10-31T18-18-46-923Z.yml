@@ -1,0 +1,1296 @@
+- generic [active] [ref=f38e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f38e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f38e3]: Pro
+    - generic [ref=f38e4]:
+      - generic [ref=f38e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f38e6]:
+    - complementary [ref=f38e7]:
+      - generic [ref=f38e9]:
+        - paragraph [ref=f38e10]: Overview
+        - link "All Components (React)" [ref=f38e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f38e12]: Components
+        - link "Accordion" [ref=f38e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f38e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f38e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f38e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f38e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f38e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f38e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f38e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f38e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f38e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f38e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f38e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f38e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f38e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f38e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f38e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f38e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f38e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f38e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f38e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f38e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f38e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f38e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f38e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f38e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f38e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f38e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f38e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f38e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f38e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f38e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f38e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f38e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f38e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f38e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f38e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f38e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f38e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f38e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f38e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f38e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f38e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f38e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f38e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f38e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f38e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f38e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f38e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f38e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f38e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f38e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f38e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f38e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f38e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f38e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f38e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f38e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f38e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f38e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f38e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f38e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f38e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f38e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f38e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f38e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f38e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f38e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f38e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f38e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f38e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f38e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f38e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f38e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f38e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f38e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f38e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f38e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f38e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f38e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f38e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f38e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f38e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f38e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f38e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f38e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f38e110]:
+      - generic [ref=f38e111]:
+        - generic [ref=f38e113]:
+          - link "HeroUI" [ref=f38e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f38e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f38e126]:
+          - text: Search
+          - generic [ref=f38e130]:
+            - generic [ref=f38e131]: ⌘
+            - generic [ref=f38e132]: K
+        - generic [ref=f38e133]:
+          - generic [ref=f38e134]:
+            - button "Ask AI" [ref=f38e136] [cursor=pointer]
+            - button [ref=f38e137] [cursor=pointer]:
+              - button "Design theme" [ref=f38e138]:
+                - generic [ref=f38e139]: Theme
+            - link "27.7k" [ref=f38e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f38e142]:
+            - button "Choose a language" [ref=f38e143] [cursor=pointer]
+            - generic [ref=f38e144] [cursor=pointer]:
+              - button "light" [ref=f38e145]
+              - button "dark" [ref=f38e152]
+              - button "system" [ref=f38e155]
+      - generic [ref=f38e159]:
+        - link "Getting Started" [ref=f38e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f38e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f38e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f38e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f38e188]:
+          - tab "Web" [selected] [ref=f38e189] [cursor=pointer]
+          - tab "Native" [ref=f38e193] [cursor=pointer]
+    - article [ref=f38e196]:
+      - generic [ref=f38e197]:
+        - generic [ref=f38e198]:
+          - heading "Sheet New" [level=1] [ref=f38e199]:
+            - text: Sheet
+            - generic [ref=f38e200]: New
+          - group [ref=f38e203]:
+            - button "Copy Markdown" [ref=f38e204] [cursor=pointer]
+            - button "More options" [ref=f38e205] [cursor=pointer]
+        - paragraph [ref=f38e206]: Swipeable overlay with native scroll snapping, partial positions, and nested sheets
+        - generic [ref=f38e207]:
+          - link "Storybook" [ref=f38e208] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-overlays-sheet--docs
+          - link "React Aria" [ref=f38e209] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Sheet
+          - link "Source" [ref=f38e210] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/sheet/sheet.tsx
+          - link "Styles source" [ref=f38e211] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/sheet.css
+      - generic [ref=f38e212]:
+        - heading [level=2] [ref=f38e213]:
+          - link "Usage" [ref=f38e214] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f38e215]
+        - figure [ref=f38e220]:
+          - button "Copy Text" [ref=f38e222] [cursor=pointer]
+          - region [ref=f38e223]:
+            - code [ref=f38e225]:
+              - generic [ref=f38e226]: "import {Button, Sheet} from \"@heroui/react\";"
+        - heading [level=2] [ref=f38e228]:
+          - link "Anatomy" [ref=f38e229] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f38e230]
+        - figure [ref=f38e235]:
+          - button "Copy Text" [ref=f38e237] [cursor=pointer]
+          - region [ref=f38e238]:
+            - code [ref=f38e240]:
+              - generic [ref=f38e241]: "import {Button, Sheet} from \"@heroui/react\";"
+              - generic [ref=f38e243]: export default () => (
+              - generic [ref=f38e244]: <Sheet>
+              - generic [ref=f38e245]: <Sheet.Trigger>
+              - generic [ref=f38e246]: <Button>Open sheet</Button>
+              - generic [ref=f38e247]: </Sheet.Trigger>
+              - generic [ref=f38e248]: <Sheet.Backdrop>
+              - generic [ref=f38e249]: <Sheet.Content>
+              - generic [ref=f38e250]: <Sheet.Dialog>
+              - generic [ref=f38e251]: <Sheet.Handle />
+              - generic [ref=f38e252]: <Sheet.CloseTrigger />
+              - generic [ref=f38e253]: <Sheet.Header>
+              - generic [ref=f38e254]: <Sheet.Heading>Details</Sheet.Heading>
+              - generic [ref=f38e255]: </Sheet.Header>
+              - generic [ref=f38e256]: <Sheet.Body>Sheet content</Sheet.Body>
+              - generic [ref=f38e257]: <Sheet.Footer>
+              - generic [ref=f38e258]: <Sheet.Close>
+              - generic [ref=f38e259]: <Button>Done</Button>
+              - generic [ref=f38e260]: </Sheet.Close>
+              - generic [ref=f38e261]: </Sheet.Footer>
+              - generic [ref=f38e262]: </Sheet.Dialog>
+              - generic [ref=f38e263]: </Sheet.Content>
+              - generic [ref=f38e264]: </Sheet.Backdrop>
+              - generic [ref=f38e265]: </Sheet>
+              - generic [ref=f38e266]: );
+        - paragraph [ref=f38e267]:
+          - code [ref=f38e268]: Sheet.Root
+          - text: is an alias for
+          - code [ref=f38e269]: Sheet
+          - text: .
+          - code [ref=f38e270]: Sheet.Trigger
+          - text: wraps a pressable child such as
+          - code [ref=f38e271]: Button
+          - text: and is placed directly inside the root. Provide a
+          - code [ref=f38e272]: Sheet.Heading
+          - text: ","
+          - code [ref=f38e273]: aria-label
+          - text: ", or"
+          - code [ref=f38e274]: aria-labelledby
+          - text: for the dialog's accessible name. Use
+          - code [ref=f38e275]: Sheet.Close
+          - text: ","
+          - code [ref=f38e276]: Sheet.CloseTrigger
+          - text: ", or a button with"
+          - code [ref=f38e277]: slot="close"
+          - text: for keyboard-accessible dismissal; the handle is decorative to assistive technology.
+        - heading [level=2] [ref=f38e278]:
+          - link "Examples" [ref=f38e279] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f38e280]
+        - heading [level=3] [ref=f38e285]:
+          - link "Placements" [ref=f38e286] [cursor=pointer]:
+            - /url: "#placements"
+          - button "Copy Anchor Link" [ref=f38e287]
+        - paragraph [ref=f38e292]:
+          - text: Set
+          - code [ref=f38e293]: placement
+          - text: on the root to
+          - code [ref=f38e294]: bottom
+          - text: (default),
+          - code [ref=f38e295]: top
+          - text: ","
+          - code [ref=f38e296]: left
+          - text: ", or"
+          - code [ref=f38e297]: right
+          - text: .
+        - heading [level=3] [ref=f38e299]:
+          - link "Snap Points" [ref=f38e300] [cursor=pointer]:
+            - /url: "#snap-points"
+          - button "Copy Anchor Link" [ref=f38e301]
+        - paragraph [ref=f38e306]:
+          - text: Numbers are
+          - strong [ref=f38e307]: pixels
+          - text: ", not fractions. Strings are CSS lengths; percentages are relative to the sheet. The sheet opens at the first point and can expand to full size without an explicit final point. A trailing"
+          - code [ref=f38e308]: "1"
+          - text: ","
+          - code [ref=f38e309]: "\"1\""
+          - text: ", or"
+          - code [ref=f38e310]: "\"100%\""
+          - text: is ignored. Other numbers retain their pixel meaning.
+        - heading [level=3] [ref=f38e312]:
+          - link "Snap Points (Sequential)" [ref=f38e313] [cursor=pointer]:
+            - /url: "#snap-points-sequential"
+          - button "Copy Anchor Link" [ref=f38e314]
+        - paragraph [ref=f38e319]: A swipe can pass through multiple snap points. Full expansion is implicit; no additional sequential-snapping prop is needed.
+        - heading [level=3] [ref=f38e321]:
+          - link "Snap Points (Custom Fade)" [ref=f38e322] [cursor=pointer]:
+            - /url: "#snap-points-custom-fade"
+          - button "Copy Anchor Link" [ref=f38e323]
+        - paragraph [ref=f38e328]:
+          - text: The backdrop remains clear through the partial snap points and fades in as the sheet expands past the last point. React Aria manages this behavior;
+          - code [ref=f38e329]: fadeFromIndex
+          - text: is not supported.
+        - heading [level=3] [ref=f38e331]:
+          - link "Backdrop Variants" [ref=f38e332] [cursor=pointer]:
+            - /url: "#backdrop-variants"
+          - button "Copy Anchor Link" [ref=f38e333]
+        - heading [level=3] [ref=f38e339]:
+          - link "Non-Dismissable" [ref=f38e340] [cursor=pointer]:
+            - /url: "#non-dismissable"
+          - button "Copy Anchor Link" [ref=f38e341]
+        - paragraph [ref=f38e346]:
+          - code [ref=f38e347]: "isDismissable={false}"
+          - text: prevents outside interaction, Escape, and swipe dismissal. Explicit close controls still work.
+        - heading [level=3] [ref=f38e349]:
+          - link "Scrollable Content" [ref=f38e350] [cursor=pointer]:
+            - /url: "#scrollable-content"
+          - button "Copy Anchor Link" [ref=f38e351]
+        - paragraph [ref=f38e356]:
+          - text: At a partial snap point, swiping expands the sheet. Once fully expanded,
+          - code [ref=f38e357]: Sheet.Body
+          - text: scrolls its content.
+          - code [ref=f38e358]: Sheet.Handle
+          - text: also supports pointer dragging, including a mouse.
+        - heading [level=3] [ref=f38e360]:
+          - link "With Form" [ref=f38e361] [cursor=pointer]:
+            - /url: "#with-form"
+          - button "Copy Anchor Link" [ref=f38e362]
+        - paragraph [ref=f38e367]:
+          - text: Compose form fields inside
+          - code [ref=f38e368]: Sheet.Body
+          - text: . Use secondary inputs on the overlay surface.
+        - heading [level=3] [ref=f38e370]:
+          - link "Detached" [ref=f38e371] [cursor=pointer]:
+            - /url: "#detached"
+          - button "Copy Anchor Link" [ref=f38e372]
+        - paragraph [ref=f38e377]:
+          - code [ref=f38e378]: isDetached
+          - text: adds space around the sheet and rounds all corners.
+        - heading [level=3] [ref=f38e380]:
+          - link "Controlled State" [ref=f38e381] [cursor=pointer]:
+            - /url: "#controlled-state"
+          - button "Copy Anchor Link" [ref=f38e382]
+        - paragraph [ref=f38e387]:
+          - text: Use
+          - code [ref=f38e388]: isOpen
+          - text: with
+          - code [ref=f38e389]: onOpenChange
+          - text: ", or"
+          - code [ref=f38e390]: defaultOpen
+          - text: for uncontrolled state. A controlled sheet may omit
+          - code [ref=f38e391]: Sheet.Trigger
+          - text: .
+        - heading [level=3] [ref=f38e393]:
+          - link "Handle Only" [ref=f38e394] [cursor=pointer]:
+            - /url: "#handle-only"
+          - button "Copy Anchor Link" [ref=f38e395]
+        - paragraph [ref=f38e400]: The handle offers a visible grip and supports pointer dragging. Touch gestures also work on the panel until it is fully expanded; the handle does not restrict swipes to itself.
+        - heading [level=3] [ref=f38e402]:
+          - link "Nested Sheets" [ref=f38e403] [cursor=pointer]:
+            - /url: "#nested-sheets"
+          - button "Copy Anchor Link" [ref=f38e404]
+        - paragraph [ref=f38e409]:
+          - text: Place
+          - code [ref=f38e410]: Sheet.NestedRoot
+          - text: inside another sheet. React Aria manages stacking and focus restoration; only the bottom sheet dims the page.
+        - heading [level=3] [ref=f38e412]:
+          - link "Professions Picker" [ref=f38e413] [cursor=pointer]:
+            - /url: "#professions-picker"
+          - button "Copy Anchor Link" [ref=f38e414]
+        - paragraph [ref=f38e419]: Combine a search field and a virtualized list inside a sheet with a 355px initial snap point. Selecting an occupation updates the value and closes the sheet.
+        - heading [level=2] [ref=f38e421]:
+          - link "Customization" [ref=f38e422] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f38e423]
+        - paragraph [ref=f38e428]:
+          - text: Use
+          - code [ref=f38e429]: className
+          - text: on compound parts or override the
+          - code [ref=f38e430]: sheet__*
+          - text: BEM classes in
+          - code [ref=f38e431]: "@layer components"
+          - text: . Preserve React Aria's scroll positioning rather than adding a separate translate-based entrance animation.
+        - heading [level=3] [ref=f38e432]:
+          - link "Tailwind CSS" [ref=f38e433] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f38e434]
+        - paragraph [ref=f38e439]:
+          - text: Apply Tailwind CSS utilities to individual parts with
+          - code [ref=f38e440]: className
+          - text: .
+        - figure [ref=f38e441]:
+          - button "Copy Text" [ref=f38e443] [cursor=pointer]
+          - region [ref=f38e444]:
+            - code [ref=f38e446]:
+              - generic [ref=f38e447]: <Sheet>
+              - generic [ref=f38e448]: <Sheet.Trigger>
+              - generic [ref=f38e449]: <Button variant="secondary">Open sheet</Button>
+              - generic [ref=f38e450]: </Sheet.Trigger>
+              - generic [ref=f38e451]: <Sheet.Backdrop>
+              - generic [ref=f38e452]: <Sheet.Content className="mx-auto max-w-lg">
+              - generic [ref=f38e453]: <Sheet.Dialog className="rounded-t-3xl border border-border">
+              - generic [ref=f38e454]: <Sheet.Handle />
+              - generic [ref=f38e455]: <Sheet.CloseTrigger />
+              - generic [ref=f38e456]: <Sheet.Header className="text-center">
+              - generic [ref=f38e457]: <Sheet.Heading>Details</Sheet.Heading>
+              - generic [ref=f38e458]: </Sheet.Header>
+              - generic [ref=f38e459]: <Sheet.Body className="px-6 pb-6">Sheet content</Sheet.Body>
+              - generic [ref=f38e460]: </Sheet.Dialog>
+              - generic [ref=f38e461]: </Sheet.Content>
+              - generic [ref=f38e462]: </Sheet.Backdrop>
+              - generic [ref=f38e463]: </Sheet>
+        - heading [level=3] [ref=f38e464]:
+          - link "Global CSS" [ref=f38e465] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f38e466]
+        - paragraph [ref=f38e471]:
+          - text: Use
+          - code [ref=f38e472]: "@layer components"
+          - text: to customize the Sheet BEM classes.
+        - figure [ref=f38e473]:
+          - button "Copy Text" [ref=f38e475] [cursor=pointer]
+          - region [ref=f38e476]:
+            - code [ref=f38e478]:
+              - generic [ref=f38e479]: "@layer components {"
+              - generic [ref=f38e480]: ".sheet__dialog {"
+              - generic [ref=f38e481]: "@apply border border-border;"
+              - generic [ref=f38e482]: "}"
+              - generic [ref=f38e484]: ".sheet__header {"
+              - generic [ref=f38e485]: "@apply text-center;"
+              - generic [ref=f38e486]: "}"
+              - generic [ref=f38e488]: ".sheet__body {"
+              - generic [ref=f38e489]: "@apply px-6 pb-6;"
+              - generic [ref=f38e490]: "}"
+              - generic [ref=f38e491]: "}"
+        - heading [level=2] [ref=f38e492]:
+          - link "Styling Reference" [ref=f38e493] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f38e494]
+        - paragraph [ref=f38e499]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f38e500] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to keep component styles reusable and easy to customize.
+        - heading [level=3] [ref=f38e501]:
+          - link "CSS Classes" [ref=f38e502] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f38e503]
+        - heading [level=4] [ref=f38e508]:
+          - link "Base Classes" [ref=f38e509] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f38e510]
+        - list [ref=f38e515]:
+          - listitem [ref=f38e516]:
+            - code [ref=f38e517]: .sheet__overlay
+            - text: "- Modal overlay container"
+          - listitem [ref=f38e518]:
+            - code [ref=f38e519]: .sheet__backdrop
+            - text: "- Backdrop behind the sheet"
+          - listitem [ref=f38e520]:
+            - code [ref=f38e521]: .sheet__content
+            - text: "- Sheet sizing and stacking wrapper"
+          - listitem [ref=f38e522]:
+            - code [ref=f38e523]: .sheet__dialog
+            - text: "- Dialog surface"
+          - listitem [ref=f38e524]:
+            - code [ref=f38e525]: .sheet__header
+            - text: "- Header section"
+          - listitem [ref=f38e526]:
+            - code [ref=f38e527]: .sheet__heading
+            - text: "- Dialog title"
+          - listitem [ref=f38e528]:
+            - code [ref=f38e529]: .sheet__body
+            - text: "- Content area that scrolls after full expansion"
+          - listitem [ref=f38e530]:
+            - code [ref=f38e531]: .sheet__footer
+            - text: "- Footer actions"
+          - listitem [ref=f38e532]:
+            - code [ref=f38e533]: .sheet__handle
+            - text: "- Draggable handle area"
+          - listitem [ref=f38e534]:
+            - code [ref=f38e535]: .sheet__handle-bar
+            - text: "- Default visual grip"
+          - listitem [ref=f38e536]:
+            - code [ref=f38e537]: .sheet__close-trigger
+            - text: "- Close button"
+        - heading [level=4] [ref=f38e538]:
+          - link "Backdrop Variants" [ref=f38e539] [cursor=pointer]:
+            - /url: "#backdrop-variants-toc"
+          - button "Copy Anchor Link" [ref=f38e540]
+        - list [ref=f38e545]:
+          - listitem [ref=f38e546]:
+            - code [ref=f38e547]: .sheet__backdrop--opaque
+            - text: "- Dimmed backdrop (default)"
+          - listitem [ref=f38e548]:
+            - code [ref=f38e549]: .sheet__backdrop--blur
+            - text: "- Blurred backdrop"
+          - listitem [ref=f38e550]:
+            - code [ref=f38e551]: .sheet__backdrop--transparent
+            - text: "- Transparent backdrop"
+        - paragraph [ref=f38e552]: Only the bottom-most sheet in a nested stack dims the page.
+        - heading [level=4] [ref=f38e553]:
+          - link "Placement Variants" [ref=f38e554] [cursor=pointer]:
+            - /url: "#placement-variants-toc"
+          - button "Copy Anchor Link" [ref=f38e555]
+        - list [ref=f38e560]:
+          - listitem [ref=f38e561]:
+            - code [ref=f38e562]: .sheet__content--bottom
+            - text: ","
+            - code [ref=f38e563]: .sheet__dialog--bottom
+            - text: "- Bottom edge (default)"
+          - listitem [ref=f38e564]:
+            - code [ref=f38e565]: .sheet__content--top
+            - text: ","
+            - code [ref=f38e566]: .sheet__dialog--top
+            - text: "- Top edge"
+          - listitem [ref=f38e567]:
+            - code [ref=f38e568]: .sheet__content--left
+            - text: ","
+            - code [ref=f38e569]: .sheet__dialog--left
+            - text: "- Left edge"
+          - listitem [ref=f38e570]:
+            - code [ref=f38e571]: .sheet__content--right
+            - text: ","
+            - code [ref=f38e572]: .sheet__dialog--right
+            - text: "- Right edge"
+        - heading [level=3] [ref=f38e573]:
+          - link "Interactive States" [ref=f38e574] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f38e575]
+        - list [ref=f38e580]:
+          - listitem [ref=f38e581]:
+            - code [ref=f38e582]: "[data-focus-visible=\"true\"]"
+            - text: "- Keyboard focus on the close button; native fallback uses"
+            - code [ref=f38e583]: :focus-visible:not([data-focused])
+          - listitem [ref=f38e584]:
+            - code [ref=f38e585]: :hover
+            - text: ","
+            - code [ref=f38e586]: "[data-hovered=\"true\"]"
+            - text: "- Close button hover"
+          - listitem [ref=f38e587]:
+            - code [ref=f38e588]: :disabled
+            - text: ","
+            - code [ref=f38e589]: "[aria-disabled=\"true\"]"
+            - text: "- Disabled close button"
+          - listitem [ref=f38e590]:
+            - code [ref=f38e591]: "[data-dragging]"
+            - text: "- Handle drag in progress"
+          - listitem [ref=f38e592]:
+            - code [ref=f38e593]: "[data-expanded]"
+            - text: "- Fully expanded sheet; enables body scrolling"
+          - listitem [ref=f38e594]:
+            - code [ref=f38e595]: "[data-has-descendants]"
+            - text: "- Parent sheet with an open nested sheet"
+          - listitem [ref=f38e596]:
+            - code [ref=f38e597]: "[data-detached]"
+            - text: "- Inset spacing and rounded corners"
+          - listitem [ref=f38e598]:
+            - code [ref=f38e599]: "[data-snap-points]"
+            - text: "- Sheet configured with partial snap points"
+          - listitem [ref=f38e600]:
+            - code [ref=f38e601]: "[data-entering]"
+            - text: ","
+            - code [ref=f38e602]: "[data-exiting]"
+            - text: "- Opening and closing lifecycle states"
+          - listitem [ref=f38e603]:
+            - code [ref=f38e604]: "[data-closed]"
+            - text: "- Retained closed overlay; pointer interaction is disabled"
+        - heading [level=3] [ref=f38e605]:
+          - link "Data Attributes" [ref=f38e606] [cursor=pointer]:
+            - /url: "#data-attributes"
+          - button "Copy Anchor Link" [ref=f38e607]
+        - paragraph [ref=f38e612]:
+          - text: The rendered parts expose
+          - code [ref=f38e613]: data-slot
+          - text: ":"
+          - code [ref=f38e614]: sheet-overlay
+          - text: ","
+          - code [ref=f38e615]: sheet-backdrop
+          - text: ","
+          - code [ref=f38e616]: sheet-content
+          - text: ","
+          - code [ref=f38e617]: sheet-dialog
+          - text: ","
+          - code [ref=f38e618]: sheet-header
+          - text: ","
+          - code [ref=f38e619]: sheet-heading
+          - text: ","
+          - code [ref=f38e620]: sheet-body
+          - text: ","
+          - code [ref=f38e621]: sheet-footer
+          - text: ","
+          - code [ref=f38e622]: sheet-handle
+          - text: ","
+          - code [ref=f38e623]: sheet-handle-bar
+          - text: ", and"
+          - code [ref=f38e624]: sheet-close-trigger
+          - text: . The root, trigger, and close wrappers do not add DOM elements.
+        - paragraph [ref=f38e625]:
+          - code [ref=f38e626]: Sheet.Content
+          - text: also exposes
+          - code [ref=f38e627]: data-placement
+          - text: ","
+          - code [ref=f38e628]: data-detached
+          - text: ", and"
+          - code [ref=f38e629]: data-snap-points
+          - text: . React Aria supplies
+          - code [ref=f38e630]: data-position
+          - text: ","
+          - code [ref=f38e631]: data-expanded
+          - text: ","
+          - code [ref=f38e632]: data-stack-index
+          - text: ","
+          - code [ref=f38e633]: data-has-descendants
+          - text: ","
+          - code [ref=f38e634]: data-entering
+          - text: ", and"
+          - code [ref=f38e635]: data-exiting
+          - text: on applicable parts.
+        - heading [level=2] [ref=f38e636]:
+          - link "API Reference" [ref=f38e637] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f38e638]
+        - heading [level=3] [ref=f38e643]:
+          - link "Sheet / Sheet.Root / Sheet.NestedRoot" [ref=f38e644] [cursor=pointer]:
+            - /url: "#sheet--sheetroot--sheetnestedroot"
+          - button "Copy Anchor Link" [ref=f38e645]
+        - table [ref=f38e651]:
+          - rowgroup [ref=f38e652]:
+            - row [ref=f38e653]:
+              - columnheader "Prop" [ref=f38e654]
+              - columnheader "Type" [ref=f38e655]
+              - columnheader "Default" [ref=f38e656]
+              - columnheader "Description" [ref=f38e657]
+          - rowgroup [ref=f38e658]:
+            - row [ref=f38e659]:
+              - cell [ref=f38e660]:
+                - code [ref=f38e661]: children
+              - cell [ref=f38e662]:
+                - code [ref=f38e663]: ReactNode
+              - cell "—" [ref=f38e664]
+              - cell "Compound parts." [ref=f38e665]
+            - row [ref=f38e666]:
+              - cell [ref=f38e667]:
+                - code [ref=f38e668]: isOpen
+              - cell [ref=f38e669]:
+                - code [ref=f38e670]: boolean
+              - cell "—" [ref=f38e671]
+              - cell "Controlled visibility." [ref=f38e672]
+            - row [ref=f38e673]:
+              - cell [ref=f38e674]:
+                - code [ref=f38e675]: defaultOpen
+              - cell [ref=f38e676]:
+                - code [ref=f38e677]: boolean
+              - cell [ref=f38e678]:
+                - code [ref=f38e679]: "false"
+              - cell "Initial uncontrolled visibility." [ref=f38e680]
+            - row [ref=f38e681]:
+              - cell [ref=f38e682]:
+                - code [ref=f38e683]: onOpenChange
+              - cell [ref=f38e684]:
+                - code [ref=f38e685]: "(open: boolean) => void"
+              - cell "—" [ref=f38e686]
+              - cell "Called when a visibility change is requested." [ref=f38e687]
+            - row [ref=f38e688]:
+              - cell [ref=f38e689]:
+                - code [ref=f38e690]: onClose
+              - cell [ref=f38e691]:
+                - code [ref=f38e692]: () => void
+              - cell "—" [ref=f38e693]
+              - cell "Called when closing is requested." [ref=f38e694]
+            - row [ref=f38e695]:
+              - cell [ref=f38e696]:
+                - code [ref=f38e697]: onAnimationEnd
+              - cell [ref=f38e698]:
+                - code [ref=f38e699]: "(open: boolean) => void"
+              - cell "—" [ref=f38e700]
+              - cell "Called after entering or exiting finishes." [ref=f38e701]
+            - row [ref=f38e702]:
+              - cell [ref=f38e703]:
+                - code [ref=f38e704]: placement
+              - cell [ref=f38e705]:
+                - code [ref=f38e706]: "\"bottom\" | \"top\" | \"left\" | \"right\""
+              - cell [ref=f38e707]:
+                - code [ref=f38e708]: "\"bottom\""
+              - cell "Physical screen edge." [ref=f38e709]
+            - row [ref=f38e710]:
+              - cell [ref=f38e711]:
+                - code [ref=f38e712]: isDismissable
+              - cell [ref=f38e713]:
+                - code [ref=f38e714]: boolean
+              - cell [ref=f38e715]:
+                - code [ref=f38e716]: "true"
+              - cell "Allow outside, Escape, and swipe dismissal." [ref=f38e717]
+            - row [ref=f38e718]:
+              - cell [ref=f38e719]:
+                - code [ref=f38e720]: isDetached
+              - cell [ref=f38e721]:
+                - code [ref=f38e722]: boolean
+              - cell [ref=f38e723]:
+                - code [ref=f38e724]: "false"
+              - cell "Inset the sheet from the screen edges." [ref=f38e725]
+            - row [ref=f38e726]:
+              - cell [ref=f38e727]:
+                - code [ref=f38e728]: snapPoints
+              - cell [ref=f38e729]:
+                - code [ref=f38e730]: (number | string)[]
+              - cell "—" [ref=f38e731]
+              - cell "Partial resting positions; full expansion is implicit." [ref=f38e732]
+        - paragraph [ref=f38e733]:
+          - code [ref=f38e734]: Sheet.NestedRoot
+          - text: requires a parent Sheet. The
+          - code [ref=f38e735]: isNested
+          - text: root flag is internal; use
+          - code [ref=f38e736]: NestedRoot
+          - text: for nesting.
+        - heading [level=3] [ref=f38e737]:
+          - link "Sheet.Trigger" [ref=f38e738] [cursor=pointer]:
+            - /url: "#sheettrigger"
+          - button "Copy Anchor Link" [ref=f38e739]
+        - table [ref=f38e745]:
+          - rowgroup [ref=f38e746]:
+            - row [ref=f38e747]:
+              - columnheader "Prop" [ref=f38e748]
+              - columnheader "Type" [ref=f38e749]
+              - columnheader "Default" [ref=f38e750]
+              - columnheader "Description" [ref=f38e751]
+          - rowgroup [ref=f38e752]:
+            - row [ref=f38e753]:
+              - cell [ref=f38e754]:
+                - code [ref=f38e755]: children
+              - cell [ref=f38e756]:
+                - code [ref=f38e757]: ReactElement
+              - cell "—" [ref=f38e758]
+              - cell "One pressable child, such as Button. Place directly inside Sheet." [ref=f38e759]
+        - heading [level=3] [ref=f38e760]:
+          - link "Sheet.Close" [ref=f38e761] [cursor=pointer]:
+            - /url: "#sheetclose"
+          - button "Copy Anchor Link" [ref=f38e762]
+        - table [ref=f38e768]:
+          - rowgroup [ref=f38e769]:
+            - row [ref=f38e770]:
+              - columnheader "Prop" [ref=f38e771]
+              - columnheader "Type" [ref=f38e772]
+              - columnheader "Default" [ref=f38e773]
+              - columnheader "Description" [ref=f38e774]
+          - rowgroup [ref=f38e775]:
+            - row [ref=f38e776]:
+              - cell [ref=f38e777]:
+                - code [ref=f38e778]: children
+              - cell [ref=f38e779]:
+                - code [ref=f38e780]: ReactElement
+              - cell "—" [ref=f38e781]
+              - cell "One pressable child; its onPress handler is composed with closing." [ref=f38e782]
+        - heading [level=3] [ref=f38e783]:
+          - link "Sheet.Backdrop" [ref=f38e784] [cursor=pointer]:
+            - /url: "#sheetbackdrop"
+          - button "Copy Anchor Link" [ref=f38e785]
+        - table [ref=f38e791]:
+          - rowgroup [ref=f38e792]:
+            - row [ref=f38e793]:
+              - columnheader "Prop" [ref=f38e794]
+              - columnheader "Type" [ref=f38e795]
+              - columnheader "Default" [ref=f38e796]
+              - columnheader "Description" [ref=f38e797]
+          - rowgroup [ref=f38e798]:
+            - row [ref=f38e799]:
+              - cell [ref=f38e800]:
+                - code [ref=f38e801]: children
+              - cell [ref=f38e802]:
+                - code [ref=f38e803]: ReactNode
+              - cell "—" [ref=f38e804]
+              - cell "Content to render." [ref=f38e805]
+            - row [ref=f38e806]:
+              - cell [ref=f38e807]:
+                - code [ref=f38e808]: className
+              - cell [ref=f38e809]:
+                - code [ref=f38e810]: string
+              - cell "—" [ref=f38e811]
+              - cell "CSS classes." [ref=f38e812]
+            - row [ref=f38e813]:
+              - cell [ref=f38e814]:
+                - code [ref=f38e815]: variant
+              - cell [ref=f38e816]:
+                - code [ref=f38e817]: "\"opaque\" | \"blur\" | \"transparent\""
+              - cell [ref=f38e818]:
+                - code [ref=f38e819]: "\"opaque\""
+              - cell "Backdrop appearance." [ref=f38e820]
+            - row [ref=f38e821]:
+              - cell [ref=f38e822]:
+                - code [ref=f38e823]: isExiting
+              - cell [ref=f38e824]:
+                - code [ref=f38e825]: boolean
+              - cell "—" [ref=f38e826]
+              - cell "Retain content after closing until this flag is cleared." [ref=f38e827]
+        - paragraph [ref=f38e828]:
+          - text: Other props inherit from React Aria SheetOverlay, excluding root-owned state, position, snap points, and
+          - code [ref=f38e829]: style
+          - text: . Closing still releases modal focus containment and scroll locking. Clear
+          - code [ref=f38e830]: isExiting
+          - text: when retained content is no longer needed.
+        - heading [level=3] [ref=f38e831]:
+          - link "Sheet.Content" [ref=f38e832] [cursor=pointer]:
+            - /url: "#sheetcontent"
+          - button "Copy Anchor Link" [ref=f38e833]
+        - table [ref=f38e839]:
+          - rowgroup [ref=f38e840]:
+            - row [ref=f38e841]:
+              - columnheader "Prop" [ref=f38e842]
+              - columnheader "Type" [ref=f38e843]
+              - columnheader "Default" [ref=f38e844]
+              - columnheader "Description" [ref=f38e845]
+          - rowgroup [ref=f38e846]:
+            - row [ref=f38e847]:
+              - cell [ref=f38e848]:
+                - code [ref=f38e849]: children
+              - cell [ref=f38e850]:
+                - code [ref=f38e851]: "ReactNode | ((values: SheetRenderProps) => ReactNode)"
+              - cell "—" [ref=f38e852]
+              - cell "Content or a function receiving React Aria sheet state." [ref=f38e853]
+            - row [ref=f38e854]:
+              - cell [ref=f38e855]:
+                - code [ref=f38e856]: className
+              - cell [ref=f38e857]:
+                - code [ref=f38e858]: string
+              - cell "—" [ref=f38e859]
+              - cell "CSS classes." [ref=f38e860]
+        - paragraph [ref=f38e861]:
+          - text: Other props inherit from React Aria Sheet. HeroUI manages stacking animation and overscroll padding;
+          - code [ref=f38e862]: stackAnimation
+          - text: and
+          - code [ref=f38e863]: overscrollPadding
+          - text: cannot be overridden through this component.
+        - heading [level=3] [ref=f38e864]:
+          - link "Sheet.Dialog" [ref=f38e865] [cursor=pointer]:
+            - /url: "#sheetdialog"
+          - button "Copy Anchor Link" [ref=f38e866]
+        - table [ref=f38e872]:
+          - rowgroup [ref=f38e873]:
+            - row [ref=f38e874]:
+              - columnheader "Prop" [ref=f38e875]
+              - columnheader "Type" [ref=f38e876]
+              - columnheader "Default" [ref=f38e877]
+              - columnheader "Description" [ref=f38e878]
+          - rowgroup [ref=f38e879]:
+            - row [ref=f38e880]:
+              - cell [ref=f38e881]:
+                - code [ref=f38e882]: children
+              - cell [ref=f38e883]:
+                - code [ref=f38e884]: ReactNode
+              - cell "—" [ref=f38e885]
+              - cell "Content to render." [ref=f38e886]
+            - row [ref=f38e887]:
+              - cell [ref=f38e888]:
+                - code [ref=f38e889]: className
+              - cell [ref=f38e890]:
+                - code [ref=f38e891]: string
+              - cell "—" [ref=f38e892]
+              - cell "CSS classes." [ref=f38e893]
+            - row [ref=f38e894]:
+              - cell [ref=f38e895]:
+                - code [ref=f38e896]: role
+              - cell [ref=f38e897]:
+                - code [ref=f38e898]: "\"dialog\" | \"alertdialog\""
+              - cell [ref=f38e899]:
+                - code [ref=f38e900]: "\"dialog\""
+              - cell "Accessible dialog role." [ref=f38e901]
+            - row [ref=f38e902]:
+              - cell [ref=f38e903]:
+                - code [ref=f38e904]: aria-label
+              - cell [ref=f38e905]:
+                - code [ref=f38e906]: string
+              - cell "—" [ref=f38e907]
+              - cell "Accessible name when no visible heading is provided." [ref=f38e908]
+            - row [ref=f38e909]:
+              - cell [ref=f38e910]:
+                - code [ref=f38e911]: aria-labelledby
+              - cell [ref=f38e912]:
+                - code [ref=f38e913]: string
+              - cell "—" [ref=f38e914]
+              - cell "ID of the element that labels the dialog." [ref=f38e915]
+            - row [ref=f38e916]:
+              - cell [ref=f38e917]:
+                - code [ref=f38e918]: aria-describedby
+              - cell [ref=f38e919]:
+                - code [ref=f38e920]: string
+              - cell "—" [ref=f38e921]
+              - cell "ID of the element describing the dialog." [ref=f38e922]
+        - paragraph [ref=f38e923]: Other props and refs inherit from React Aria SheetContent.
+        - heading [level=3] [ref=f38e924]:
+          - link "Sheet.Header" [ref=f38e925] [cursor=pointer]:
+            - /url: "#sheetheader"
+          - button "Copy Anchor Link" [ref=f38e926]
+        - table [ref=f38e932]:
+          - rowgroup [ref=f38e933]:
+            - row [ref=f38e934]:
+              - columnheader "Prop" [ref=f38e935]
+              - columnheader "Type" [ref=f38e936]
+              - columnheader "Default" [ref=f38e937]
+              - columnheader "Description" [ref=f38e938]
+          - rowgroup [ref=f38e939]:
+            - row [ref=f38e940]:
+              - cell [ref=f38e941]:
+                - code [ref=f38e942]: children
+              - cell [ref=f38e943]:
+                - code [ref=f38e944]: ReactNode
+              - cell "—" [ref=f38e945]
+              - cell "Header content." [ref=f38e946]
+            - row [ref=f38e947]:
+              - cell [ref=f38e948]:
+                - code [ref=f38e949]: className
+              - cell [ref=f38e950]:
+                - code [ref=f38e951]: string
+              - cell "—" [ref=f38e952]
+              - cell "CSS classes." [ref=f38e953]
+        - paragraph [ref=f38e954]: Supports standard div props, event handlers, and refs.
+        - heading [level=3] [ref=f38e955]:
+          - link "Sheet.Heading" [ref=f38e956] [cursor=pointer]:
+            - /url: "#sheetheading"
+          - button "Copy Anchor Link" [ref=f38e957]
+        - table [ref=f38e963]:
+          - rowgroup [ref=f38e964]:
+            - row [ref=f38e965]:
+              - columnheader "Prop" [ref=f38e966]
+              - columnheader "Type" [ref=f38e967]
+              - columnheader "Default" [ref=f38e968]
+              - columnheader "Description" [ref=f38e969]
+          - rowgroup [ref=f38e970]:
+            - row [ref=f38e971]:
+              - cell [ref=f38e972]:
+                - code [ref=f38e973]: children
+              - cell [ref=f38e974]:
+                - code [ref=f38e975]: ReactNode
+              - cell "—" [ref=f38e976]
+              - cell "Dialog title." [ref=f38e977]
+            - row [ref=f38e978]:
+              - cell [ref=f38e979]:
+                - code [ref=f38e980]: className
+              - cell [ref=f38e981]:
+                - code [ref=f38e982]: string
+              - cell "—" [ref=f38e983]
+              - cell "CSS classes." [ref=f38e984]
+            - row [ref=f38e985]:
+              - cell [ref=f38e986]:
+                - code [ref=f38e987]: slot
+              - cell [ref=f38e988]:
+                - code [ref=f38e989]: string
+              - cell [ref=f38e990]:
+                - code [ref=f38e991]: "\"title\""
+              - cell "Associates the heading with the dialog." [ref=f38e992]
+        - paragraph [ref=f38e993]: Other props and refs inherit from React Aria Heading.
+        - heading [level=3] [ref=f38e994]:
+          - link "Sheet.Body" [ref=f38e995] [cursor=pointer]:
+            - /url: "#sheetbody"
+          - button "Copy Anchor Link" [ref=f38e996]
+        - table [ref=f38e1002]:
+          - rowgroup [ref=f38e1003]:
+            - row [ref=f38e1004]:
+              - columnheader "Prop" [ref=f38e1005]
+              - columnheader "Type" [ref=f38e1006]
+              - columnheader "Default" [ref=f38e1007]
+              - columnheader "Description" [ref=f38e1008]
+          - rowgroup [ref=f38e1009]:
+            - row [ref=f38e1010]:
+              - cell [ref=f38e1011]:
+                - code [ref=f38e1012]: children
+              - cell [ref=f38e1013]:
+                - code [ref=f38e1014]: ReactNode
+              - cell "—" [ref=f38e1015]
+              - cell "Scrollable body content." [ref=f38e1016]
+            - row [ref=f38e1017]:
+              - cell [ref=f38e1018]:
+                - code [ref=f38e1019]: className
+              - cell [ref=f38e1020]:
+                - code [ref=f38e1021]: string
+              - cell "—" [ref=f38e1022]
+              - cell "CSS classes." [ref=f38e1023]
+        - paragraph [ref=f38e1024]: Supports standard div props, event handlers, and refs.
+        - heading [level=3] [ref=f38e1025]:
+          - link "Sheet.Footer" [ref=f38e1026] [cursor=pointer]:
+            - /url: "#sheetfooter"
+          - button "Copy Anchor Link" [ref=f38e1027]
+        - table [ref=f38e1033]:
+          - rowgroup [ref=f38e1034]:
+            - row [ref=f38e1035]:
+              - columnheader "Prop" [ref=f38e1036]
+              - columnheader "Type" [ref=f38e1037]
+              - columnheader "Default" [ref=f38e1038]
+              - columnheader "Description" [ref=f38e1039]
+          - rowgroup [ref=f38e1040]:
+            - row [ref=f38e1041]:
+              - cell [ref=f38e1042]:
+                - code [ref=f38e1043]: children
+              - cell [ref=f38e1044]:
+                - code [ref=f38e1045]: ReactNode
+              - cell "—" [ref=f38e1046]
+              - cell "Footer actions." [ref=f38e1047]
+            - row [ref=f38e1048]:
+              - cell [ref=f38e1049]:
+                - code [ref=f38e1050]: className
+              - cell [ref=f38e1051]:
+                - code [ref=f38e1052]: string
+              - cell "—" [ref=f38e1053]
+              - cell "CSS classes." [ref=f38e1054]
+        - paragraph [ref=f38e1055]: Supports standard div props, event handlers, and refs.
+        - heading [level=3] [ref=f38e1056]:
+          - link "Sheet.Handle" [ref=f38e1057] [cursor=pointer]:
+            - /url: "#sheethandle"
+          - button "Copy Anchor Link" [ref=f38e1058]
+        - table [ref=f38e1064]:
+          - rowgroup [ref=f38e1065]:
+            - row [ref=f38e1066]:
+              - columnheader "Prop" [ref=f38e1067]
+              - columnheader "Type" [ref=f38e1068]
+              - columnheader "Default" [ref=f38e1069]
+              - columnheader "Description" [ref=f38e1070]
+          - rowgroup [ref=f38e1071]:
+            - row [ref=f38e1072]:
+              - cell [ref=f38e1073]:
+                - code [ref=f38e1074]: children
+              - cell [ref=f38e1075]:
+                - code [ref=f38e1076]: ReactNode
+              - cell "—" [ref=f38e1077]
+              - cell "Custom grip; renders the default bar when omitted." [ref=f38e1078]
+            - row [ref=f38e1079]:
+              - cell [ref=f38e1080]:
+                - code [ref=f38e1081]: className
+              - cell [ref=f38e1082]:
+                - code [ref=f38e1083]: string
+              - cell "—" [ref=f38e1084]
+              - cell "CSS classes." [ref=f38e1085]
+        - paragraph [ref=f38e1086]: Supports standard div props, event handlers, and refs.
+        - heading [level=3] [ref=f38e1087]:
+          - link "Sheet.CloseTrigger" [ref=f38e1088] [cursor=pointer]:
+            - /url: "#sheetclosetrigger"
+          - button "Copy Anchor Link" [ref=f38e1089]
+        - table [ref=f38e1095]:
+          - rowgroup [ref=f38e1096]:
+            - row [ref=f38e1097]:
+              - columnheader "Prop" [ref=f38e1098]
+              - columnheader "Type" [ref=f38e1099]
+              - columnheader "Default" [ref=f38e1100]
+              - columnheader "Description" [ref=f38e1101]
+          - rowgroup [ref=f38e1102]:
+            - row [ref=f38e1103]:
+              - cell [ref=f38e1104]:
+                - code [ref=f38e1105]: children
+              - cell [ref=f38e1106]:
+                - code [ref=f38e1107]: "ReactNode | ((values: ButtonRenderProps) => ReactNode)"
+              - cell "—" [ref=f38e1108]
+              - cell "Custom content; defaults to the close icon." [ref=f38e1109]
+            - row [ref=f38e1110]:
+              - cell [ref=f38e1111]:
+                - code [ref=f38e1112]: className
+              - cell [ref=f38e1113]:
+                - code [ref=f38e1114]: string
+              - cell "—" [ref=f38e1115]
+              - cell "CSS classes." [ref=f38e1116]
+            - row [ref=f38e1117]:
+              - cell [ref=f38e1118]:
+                - code [ref=f38e1119]: isDisabled
+              - cell [ref=f38e1120]:
+                - code [ref=f38e1121]: boolean
+              - cell [ref=f38e1122]:
+                - code [ref=f38e1123]: "false"
+              - cell "Disable the close button." [ref=f38e1124]
+            - row [ref=f38e1125]:
+              - cell [ref=f38e1126]:
+                - code [ref=f38e1127]: aria-label
+              - cell [ref=f38e1128]:
+                - code [ref=f38e1129]: string
+              - cell [ref=f38e1130]:
+                - code [ref=f38e1131]: "\"Close\""
+              - cell "Accessible name; provide localized text when needed." [ref=f38e1132]
+            - row [ref=f38e1133]:
+              - cell [ref=f38e1134]:
+                - code [ref=f38e1135]: onPress
+              - cell [ref=f38e1136]:
+                - code [ref=f38e1137]: "(event: PressEvent) => void"
+              - cell "—" [ref=f38e1138]
+              - cell "Called together with the sheet close action." [ref=f38e1139]
+        - paragraph [ref=f38e1140]: Other props and refs inherit from CloseButton.
+        - paragraph [ref=f38e1141]:
+          - text: Named exports include
+          - code [ref=f38e1142]: SheetRoot
+          - text: ","
+          - code [ref=f38e1143]: SheetTrigger
+          - text: ", and the other parts, their props types,"
+          - code [ref=f38e1144]: SheetProps
+          - text: ","
+          - code [ref=f38e1145]: SheetNestedRootProps
+          - text: ","
+          - code [ref=f38e1146]: sheetVariants
+          - text: ", and"
+          - code [ref=f38e1147]: SheetVariants
+          - text: . Compound prop types use indexed access, for example
+          - code [ref=f38e1148]: Sheet["Props"]
+          - text: and
+          - code [ref=f38e1149]: Sheet["ContentProps"]
+          - text: .
+        - heading [level=2] [ref=f38e1150]:
+          - link "Sheet and Drawer" [ref=f38e1151] [cursor=pointer]:
+            - /url: "#sheet-and-drawer"
+          - button "Copy Anchor Link" [ref=f38e1152]
+        - paragraph [ref=f38e1157]: Sheet uses React Aria's native scroll gestures, partial snap positions, and nested stacking. Drawer remains available with its existing API and behavior. Adding Sheet does not migrate or deprecate Drawer.
+        - heading [level=2] [ref=f38e1158]:
+          - link "Accessibility" [ref=f38e1159] [cursor=pointer]:
+            - /url: "#accessibility"
+          - button "Copy Anchor Link" [ref=f38e1160]
+        - list [ref=f38e1165]:
+          - listitem [ref=f38e1166]:
+            - strong [ref=f38e1167]: Accessible name
+            - text: ": Label the dialog with"
+            - code [ref=f38e1168]: Sheet.Heading
+            - text: ","
+            - code [ref=f38e1169]: aria-label
+            - text: ", or"
+            - code [ref=f38e1170]: aria-labelledby
+            - text: .
+          - listitem [ref=f38e1171]:
+            - strong [ref=f38e1172]: Focus management
+            - text: ": Opening moves focus into the sheet and contains it within the active modal. Closing restores focus to the trigger; closing a nested sheet restores focus within its parent."
+          - listitem [ref=f38e1173]:
+            - strong [ref=f38e1174]: Keyboard
+            - text: ": Use"
+            - code [ref=f38e1175]: Tab
+            - text: and
+            - code [ref=f38e1176]: Shift+Tab
+            - text: to move between controls.
+            - code [ref=f38e1177]: Escape
+            - text: closes the sheet when dismissal is enabled.
+          - listitem [ref=f38e1178]:
+            - strong [ref=f38e1179]: Close controls
+            - text: ":"
+            - code [ref=f38e1180]: Sheet.Close
+            - text: and
+            - code [ref=f38e1181]: Sheet.CloseTrigger
+            - text: support keyboard activation, including when
+            - code [ref=f38e1182]: "isDismissable={false}"
+            - text: .
+          - listitem [ref=f38e1183]:
+            - strong [ref=f38e1184]: Scroll locking
+            - text: ": Page scrolling is locked while the modal is open."
+            - code [ref=f38e1185]: Sheet.Body
+            - text: scrolls after full expansion. Retained closed content does not keep the page locked.
+          - listitem [ref=f38e1186]:
+            - strong [ref=f38e1187]: Drag handle
+            - text: ": The handle is hidden from assistive technology and does not support keyboard dragging. Provide accessible close controls instead of relying solely on swipe gestures."
+        - heading [level=2] [ref=f38e1188]:
+          - link "Related Components" [ref=f38e1189] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f38e1190]
+      - generic [ref=f38e1195]:
+        - link [ref=f38e1196] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+          - paragraph [ref=f38e1200]: Separator
+          - paragraph [ref=f38e1201]: Visually divide content sections
+        - link [ref=f38e1202] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+          - paragraph [ref=f38e1206]: Skeleton
+          - paragraph [ref=f38e1207]: Skeleton is a placeholder to show a loading state and the expected shape of a component.
+    - generic [ref=f38e1208]:
+      - heading "On this page" [level=3] [ref=f38e1209]
+      - generic [ref=f38e1213]:
+        - link "Usage" [ref=f38e1214] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f38e1215] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f38e1216] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Placements" [ref=f38e1217] [cursor=pointer]:
+          - /url: "#placements"
+        - link "Snap Points" [ref=f38e1218] [cursor=pointer]:
+          - /url: "#snap-points"
+        - link "Snap Points (Sequential)" [ref=f38e1219] [cursor=pointer]:
+          - /url: "#snap-points-sequential"
+        - link "Snap Points (Custom Fade)" [ref=f38e1220] [cursor=pointer]:
+          - /url: "#snap-points-custom-fade"
+        - link "Backdrop Variants" [ref=f38e1221] [cursor=pointer]:
+          - /url: "#backdrop-variants"
+        - link "Non-Dismissable" [ref=f38e1222] [cursor=pointer]:
+          - /url: "#non-dismissable"
+        - link "Scrollable Content" [ref=f38e1223] [cursor=pointer]:
+          - /url: "#scrollable-content"
+        - link "With Form" [ref=f38e1224] [cursor=pointer]:
+          - /url: "#with-form"
+        - link "Detached" [ref=f38e1225] [cursor=pointer]:
+          - /url: "#detached"
+        - link "Controlled State" [ref=f38e1226] [cursor=pointer]:
+          - /url: "#controlled-state"
+        - link "Handle Only" [ref=f38e1227] [cursor=pointer]:
+          - /url: "#handle-only"
+        - link "Nested Sheets" [ref=f38e1228] [cursor=pointer]:
+          - /url: "#nested-sheets"
+        - link "Professions Picker" [ref=f38e1229] [cursor=pointer]:
+          - /url: "#professions-picker"
+        - link "Customization" [ref=f38e1230] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f38e1231] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f38e1232] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f38e1233] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f38e1234] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f38e1235] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "Data Attributes" [ref=f38e1236] [cursor=pointer]:
+          - /url: "#data-attributes"
+        - link "API Reference" [ref=f38e1237] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Sheet / Sheet.Root / Sheet.NestedRoot" [ref=f38e1238] [cursor=pointer]:
+          - /url: "#sheet--sheetroot--sheetnestedroot"
+        - link "Sheet.Trigger" [ref=f38e1239] [cursor=pointer]:
+          - /url: "#sheettrigger"
+        - link "Sheet.Close" [ref=f38e1240] [cursor=pointer]:
+          - /url: "#sheetclose"
+        - link "Sheet.Backdrop" [ref=f38e1241] [cursor=pointer]:
+          - /url: "#sheetbackdrop"
+        - link "Sheet.Content" [ref=f38e1242] [cursor=pointer]:
+          - /url: "#sheetcontent"
+        - link "Sheet.Dialog" [ref=f38e1243] [cursor=pointer]:
+          - /url: "#sheetdialog"
+        - link "Sheet.Header" [ref=f38e1244] [cursor=pointer]:
+          - /url: "#sheetheader"
+        - link "Sheet.Heading" [ref=f38e1245] [cursor=pointer]:
+          - /url: "#sheetheading"
+        - link "Sheet.Body" [ref=f38e1246] [cursor=pointer]:
+          - /url: "#sheetbody"
+        - link "Sheet.Footer" [ref=f38e1247] [cursor=pointer]:
+          - /url: "#sheetfooter"
+        - link "Sheet.Handle" [ref=f38e1248] [cursor=pointer]:
+          - /url: "#sheethandle"
+        - link "Sheet.CloseTrigger" [ref=f38e1249] [cursor=pointer]:
+          - /url: "#sheetclosetrigger"
+        - link "Sheet and Drawer" [ref=f38e1250] [cursor=pointer]:
+          - /url: "#sheet-and-drawer"
+        - link "Accessibility" [ref=f38e1251] [cursor=pointer]:
+          - /url: "#accessibility"
+        - link "Related Components" [ref=f38e1252] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f38e1255]:
+        - generic [ref=f38e1256]:
+          - generic [ref=f38e1257]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f38e1258]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f38e1259] [cursor=pointer]

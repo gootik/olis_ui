@@ -2,6 +2,124 @@ defmodule HeroUITest do
   use ExUnit.Case, async: true
   import Phoenix.LiveViewTest
 
+  test "close button provides an accessible default and accepts custom icons" do
+    default = render_component(&HeroUI.close_button/1, %{})
+    assert default =~ ~s(type="button")
+    assert default =~ ~s(aria-label="Close")
+    assert default =~ ~s(data-slot="close-button-icon")
+    assert default =~ "close-button--default"
+
+    custom =
+      render_component(&HeroUI.close_button/1, %{
+        disabled: true,
+        rest: %{"aria-label" => "Dismiss notification", "data-slot" => "custom-close"},
+        inner_block: [
+          %{inner_block: fn _, _ -> Phoenix.HTML.raw("<svg data-custom-icon></svg>") end}
+        ]
+      })
+
+    assert custom =~ ~s(aria-label="Dismiss notification")
+    assert custom =~ ~s(data-slot="custom-close")
+    assert custom =~ ~s(disabled)
+    assert custom =~ "data-custom-icon"
+    refute custom =~ ~s(data-slot="close-button-icon")
+  end
+
+  test "fieldset labels its group, combines descriptions, and disables native controls" do
+    html =
+      render_component(&HeroUI.fieldset/1, %{
+        id: "profile",
+        legend: "Profile",
+        description: "Public details",
+        disabled: true,
+        rest: %{"aria-describedby" => "additional-help"},
+        inner_block: [%{inner_block: fn _, _ -> Phoenix.HTML.raw("<input name=\"name\">") end}],
+        actions: [%{inner_block: fn _, _ -> "Save" end}]
+      })
+
+    assert html =~ ~s(<fieldset id="profile" disabled)
+    assert html =~ ~s(aria-describedby="additional-help profile-description")
+
+    assert html =~
+             ~r/<legend class="fieldset__legend" data-slot="fieldset-legend">\s*Profile\s*<\/legend>/
+
+    assert html =~ ~s(id="profile-description")
+    assert html =~ ~s(data-slot="fieldset-field-group")
+    assert html =~ ~s(data-slot="fieldset-actions")
+
+    custom =
+      render_component(&HeroUI.fieldset/1, %{
+        id: "custom",
+        legend_content: [%{inner_block: fn _, _ -> "Custom legend" end}],
+        inner_block: [%{inner_block: fn _, _ -> "Fields" end}]
+      })
+
+    assert custom =~ "Custom legend"
+
+    assert_raise ArgumentError, ~r/requires a legend/, fn ->
+      render_component(&HeroUI.fieldset/1, %{
+        id: "missing",
+        inner_block: [%{inner_block: fn _, _ -> "" end}]
+      })
+    end
+  end
+
+  test "sheet renders labelled modal content, placement, and snap configuration" do
+    html =
+      render_component(&HeroUI.sheet/1, %{
+        id: "details",
+        title: "Details",
+        description: "More information",
+        placement: "right",
+        detached: true,
+        snap_points: [200, "50%"],
+        open: false,
+        on_open_change: "sheet_change",
+        inner_block: [%{inner_block: fn _, _ -> "Sheet body" end}],
+        footer: [%{inner_block: fn _, _ -> "Footer" end}]
+      })
+
+    assert html =~ ~s(<dialog id="details")
+    assert html =~ ~s(aria-labelledby="details-title")
+    assert html =~ ~s(aria-describedby="details-description")
+    assert html =~ ~s(data-placement="right")
+    assert html =~ ~s(data-detached="true")
+    assert html =~ ~s(data-controlled="true")
+    assert html =~ ~s(data-controlled-open="false")
+    assert html =~ ~s(data-snap-points-json="[200,&quot;50%&quot;]")
+    assert html =~ ~s(phx-click="sheet_change")
+    assert html =~ "Sheet body"
+    assert html =~ "Footer"
+
+    assert_raise ArgumentError, ~r/snap points/, fn ->
+      render_component(&HeroUI.sheet/1, %{
+        id: "bad",
+        title: "Bad",
+        snap_points: ["bad"],
+        inner_block: [%{inner_block: fn _, _ -> "" end}]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/snap points/, fn ->
+      render_component(&HeroUI.sheet/1, %{
+        id: "bad",
+        title: "Bad",
+        snap_points: ["0px"],
+        inner_block: [%{inner_block: fn _, _ -> "" end}]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
+      render_component(&HeroUI.sheet/1, %{
+        id: "bad",
+        title: "Bad",
+        open: false,
+        default_open: true,
+        inner_block: [%{inner_block: fn _, _ -> "" end}]
+      })
+    end
+  end
+
   test "switches connect descriptions and errors and switch groups preserve independent controls" do
     switch =
       render_component(&HeroUI.switch/1, %{
@@ -329,8 +447,37 @@ defmodule HeroUITest do
 
     assert html =~ ~s(for="email")
     assert html =~ ~s(aria-invalid="true")
-    assert html =~ ~s(aria-describedby="email-description email-errors")
+    assert html =~ ~s(aria-describedby="email-errors")
+    assert html =~ ~s(class="textfield textfield--full-width)
+    assert html =~ ~s(data-invalid="true")
+    assert html =~ ~s(data-slot="field-error")
     assert html =~ "is invalid"
+
+    multiline =
+      render_component(&HeroUI.text_field/1, %{
+        id: "bio",
+        name: "bio",
+        label: "Biography",
+        value: "Hello",
+        multiline: true,
+        description: "Tell us more",
+        rest: %{"rows" => 4, "required" => true, "aria-describedby" => "extra-help"}
+      })
+
+    assert multiline =~ "<textarea"
+    assert multiline =~ ~s(rows="4")
+    assert multiline =~ ~s(data-required="true")
+    assert multiline =~ ~s(aria-describedby="extra-help bio-description")
+    assert multiline =~ "Hello</textarea>"
+
+    accessible =
+      render_component(&HeroUI.text_field/1, %{id: "search", rest: %{"aria-label" => "Search"}})
+
+    assert accessible =~ ~s(aria-label="Search")
+
+    assert_raise ArgumentError, ~r/requires a label/, fn ->
+      render_component(&HeroUI.text_field/1, %{id: "unlabelled"})
+    end
   end
 
   test "input group connects form fields, adornments, and visible errors" do
@@ -996,6 +1143,58 @@ defmodule HeroUITest do
     assert html =~ "disabled"
   end
 
+  test "dropdown supports selection groups and nested submenus" do
+    html =
+      render_component(&HeroUI.dropdown/1, %{
+        id: "view",
+        label: "View",
+        on_action: "action",
+        section: [
+          %{
+            label: "Sort",
+            selection_mode: "single",
+            selected_keys: ["recent"],
+            on_selection_change: "sort",
+            items: [%{key: "recent", label: "Recent"}, %{key: "old", label: "Old"}]
+          },
+          %{
+            label: "Share",
+            items: [
+              %{label: "Share via", items: [%{key: "copy", label: "Copy", shortcut: "⌘ C"}]}
+            ]
+          }
+        ]
+      })
+
+    assert html =~ ~s(role="menuitemradio")
+    assert html =~ ~s(aria-checked="true")
+    assert html =~ ~s(phx-click="sort")
+    assert html =~ ~s(phx-click="action")
+    assert html =~ ~s(aria-label="Sort")
+    assert html =~ ~s(data-hero-dropdown-submenu-trigger)
+    assert html =~ ~s(aria-label="Share via")
+    assert html =~ "⌘ C"
+
+    assert_raise ArgumentError, ~r/unique nonempty string keys/, fn ->
+      render_component(&HeroUI.dropdown/1, %{
+        id: "bad",
+        label: "Bad",
+        selection_mode: "multiple",
+        item: [%{key: "same", label: "One"}, %{key: "same", label: "Two"}]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/at most one selected key/, fn ->
+      render_component(&HeroUI.dropdown/1, %{
+        id: "bad",
+        label: "Bad",
+        selection_mode: "single",
+        selected_keys: ["one", "two"],
+        item: [%{key: "one", label: "One"}, %{key: "two", label: "Two"}]
+      })
+    end
+  end
+
   test "select forwards native attributes and uses HeroUI variant and invalid state" do
     html =
       render_component(&HeroUI.select/1, %{
@@ -1116,7 +1315,44 @@ defmodule HeroUITest do
 
     assert slider =~ ~s(type="range")
     assert slider =~ ~s(for="volume")
-    assert slider =~ "--hui-slider-percent: 25.0%"
+    assert slider =~ "width: 25.0%"
+
+    range =
+      render_component(&HeroUI.slider/1, %{
+        id: "price",
+        name: "price",
+        label: "Price",
+        value: [20, 80],
+        step: 10,
+        show_steps: true,
+        marks: [0, {50, "Mid"}, 100],
+        orientation: "vertical"
+      })
+
+    assert range =~ ~s(name="price[]")
+    assert range =~ ~s(aria-label="Price 1")
+    assert range =~ ~s(aria-label="Price 2")
+    assert range =~ ~s(data-orientation="vertical")
+    assert range =~ "height: 60.0%"
+    assert range =~ ~s(data-slot="slider-step")
+    assert range =~ "Mid"
+
+    fractional =
+      render_component(&HeroUI.slider/1, %{
+        id: "fractional",
+        label: "Fractional",
+        value: 0.2,
+        min: 0,
+        max: 0.3,
+        step: 0.1,
+        show_steps: true
+      })
+
+    assert length(Regex.scan(~r/data-slot="slider-step"/, fractional)) == 4
+
+    assert_raise ArgumentError, fn ->
+      render_component(&HeroUI.slider/1, %{id: "s", label: "Slider", value: [80, 20]})
+    end
 
     assert_raise ArgumentError, fn ->
       render_component(&HeroUI.slider/1, %{id: "s", label: "Slider", value: 5, step: 0})

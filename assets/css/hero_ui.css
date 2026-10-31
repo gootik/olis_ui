@@ -189,16 +189,8 @@ dialog.hui-native-drawer[data-placement="bottom"][open] { inset:auto 0 0; width:
 .hui-popover { width:min(18rem,calc(100vw - 1rem)); max-height:calc(100dvh - 1rem); overflow:auto; }
 .hui-popover-content { display:block; margin:.5rem 0 1rem; }
 
-/* Native range input, styled to match the HeroUI slider track and thumb. */
-.hui-slider-input { grid-area:track; appearance:none; width:100%; height:20px; margin:0; border:0; border-radius:12px; background:linear-gradient(to right,var(--accent) 0 var(--hui-slider-percent),var(--default) var(--hui-slider-percent) 100%); cursor:grab; }
-.hui-slider-input::-webkit-slider-thumb { appearance:none; width:28px; height:20px; border:2px solid var(--accent); border-radius:12px; background:var(--accent-foreground); box-shadow:var(--field-shadow); }
-.hui-slider-input::-moz-range-thumb { width:24px; height:16px; border:2px solid var(--accent); border-radius:12px; background:var(--accent-foreground); box-shadow:var(--field-shadow); }
-.hui-slider-input:focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
-.hui-slider-input:disabled { cursor:not-allowed; }
 .hui-number-input { appearance:textfield; }
 .hui-number-input::-webkit-inner-spin-button,.hui-number-input::-webkit-outer-spin-button { appearance:none; margin:0; }
-
-.hui-slider-input:dir(rtl) { background:linear-gradient(to left,var(--accent) 0 var(--hui-slider-percent),var(--default) var(--hui-slider-percent) 100%); }
 
 .hui-avatar-image { object-fit:cover; }
 .hui-avatar-image[data-failed="true"] { display:none; }

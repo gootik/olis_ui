@@ -12,6 +12,8 @@ import { installToolbar } from "./toolbar.js";
 import { installDisclosure } from "./disclosure.js";
 import { installScrollShadow } from "./scroll_shadow.js";
 import { installAutocomplete } from "./autocomplete.js";
+import { installSheet } from "./sheet.js";
+import { installDropdown } from "./dropdown.js";
 export { toast, updateToast, dismissToast, clearToasts } from "./toast.js";
 
 /** Install delegated behavior for HeroUI components. Returns a cleanup function. */
@@ -30,6 +32,8 @@ export function installHeroUI(root = document) {
   const removeDisclosure = installDisclosure(root);
   const removeScrollShadow = installScrollShadow(root);
   const removeAutocomplete = installAutocomplete(root);
+  const removeSheet = installSheet(root);
+  const removeDropdown = installDropdown(root);
   function tabsIn(tabs) {
     return Array.from(tabs.querySelectorAll('[role="tab"]')).filter(tab => tab.closest('[data-hero-tabs]') === tabs && !tab.disabled);
   }
@@ -242,46 +246,82 @@ export function installHeroUI(root = document) {
     }
   });
   avatarObserver.observe(root, {subtree: true, childList: true, attributes: true, attributeFilter: ['src', 'data-failed']});
+  let sliderDrag = null;
+  function syncSlider(slider, changed) {
+    const inputs = [...slider.querySelectorAll('[data-hero-slider-input]')];
+    if (!inputs.length) return;
+    const index = inputs.indexOf(changed);
+    if (index >= 0) {
+      const lower = index ? Number(inputs[index - 1].value) : Number(changed.min);
+      const upper = index < inputs.length - 1 ? Number(inputs[index + 1].value) : Number(changed.max);
+      changed.value = Math.max(lower, Math.min(upper, Number(changed.value)));
+    }
+    const min = Number(inputs[0].min), max = Number(inputs[0].max);
+    const values = inputs.map(input => Number(input.value));
+    const percentages = values.map(value => (value - min) / (max - min) * 100);
+    const start = values.length === 1 ? 0 : percentages[0], end = percentages.at(-1);
+    const vertical = slider.dataset.orientation === 'vertical';
+    const track = slider.querySelector('[data-hero-slider-track]'), fill = slider.querySelector('[data-hero-slider-fill]');
+    const rtl = getComputedStyle(slider).direction === 'rtl';
+    track.dataset.fillStart = String(start === 0); track.dataset.fillEnd = String(end === 100);
+    fill.style[vertical ? 'bottom' : 'insetInlineStart'] = `${start}%`;
+    fill.style[vertical ? 'height' : 'width'] = `${end - start}%`;
+    slider.querySelectorAll('[data-hero-slider-thumb]').forEach((thumb, i) => {
+      thumb.style[vertical ? 'bottom' : 'insetInlineStart'] = `${percentages[i]}%`;
+      inputs[i].setAttribute('aria-valuemin', String(i ? values[i - 1] : min));
+      inputs[i].setAttribute('aria-valuemax', String(i < values.length - 1 ? values[i + 1] : max));
+    });
+    slider.querySelectorAll('[data-slot="slider-steps"], [data-slot="slider-marks"]').forEach(node => { node.dataset.direction = rtl ? 'rtl' : 'ltr'; node.dataset.orientation = slider.dataset.orientation; });
+    slider.querySelectorAll('[data-slot="slider-step"], [data-slot="slider-mark"]').forEach(node => { const value = Number(node.dataset.value); node.dataset.filled = String(value >= (values.length === 1 ? min : values[0]) && value <= values.at(-1)); });
+    slider.querySelector('[data-hero-slider-output]').textContent = inputs.map(input => input.value).join(' – ');
+  }
+  function syncSliders() { root.querySelectorAll('[data-hero-slider]').forEach(slider => syncSlider(slider)); }
   function onSliderInput(event) {
     const input = event.target;
-    if (!input.matches?.('[data-hero-slider-input]') || !root.contains(input)) return;
-    const min = Number(input.min), max = Number(input.max), value = Number(input.value);
-    input.style.setProperty('--hui-slider-percent', `${(value - min) / (max - min) * 100}%`);
-    const output = input.closest('[data-hero-slider]')?.querySelector('[data-hero-slider-output]');
-    if (output) output.textContent = input.value;
+    if (input.matches?.('[data-hero-slider-input]') && root.contains(input)) syncSlider(input.closest('[data-hero-slider]'), input);
   }
-  function syncSearchField(field) {
-    const input = field.querySelector('[data-slot="search-field-input"]');
-    const clear = field.querySelector('[data-hero-search-clear]');
-    if (!input || !clear) return;
-    const empty = input.value === '';
-    field.dataset.heroSearchReady = 'true';
-    field.dataset.empty = String(empty);
-    clear.hidden = false;
-    clear.disabled = empty || input.matches(':disabled') || input.readOnly;
-    clear.setAttribute('aria-hidden', String(empty));
+  function sliderPointerValue(track, event) {
+    const rect = track.getBoundingClientRect(), style = getComputedStyle(track), vertical = track.closest('[data-hero-slider]').dataset.orientation === 'vertical';
+    const start = parseFloat(vertical ? style.borderBottomWidth : style.borderLeftWidth) || 0;
+    const end = parseFloat(vertical ? style.borderTopWidth : style.borderRightWidth) || 0;
+    let fraction = vertical ? (rect.bottom - start - event.clientY) / (rect.height - start - end) : (event.clientX - rect.left - start) / (rect.width - start - end);
+    if (!vertical && style.direction === 'rtl') fraction = 1 - fraction;
+    return Math.max(0, Math.min(1, fraction));
   }
-  function syncSearchFields() { root.querySelectorAll('[data-hero-search-field]').forEach(syncSearchField); }
-  function onSearchInput(event) {
-    const field = event.target.closest?.('[data-hero-search-field]');
-    if (field && root.contains(field) && event.target.matches('[data-slot="search-field-input"]')) syncSearchField(field);
+  function moveSlider(event) {
+    if (!sliderDrag || event.pointerId !== sliderDrag.pointerId) return;
+    const {track, input} = sliderDrag, min = Number(input.min), max = Number(input.max), step = Number(input.step);
+    const fraction = sliderPointerValue(track, event), value = min + Math.round((min + fraction * (max - min) - min) / step) * step;
+    const decimals = number => { const [coefficient, exponent = '0'] = String(number).toLowerCase().split('e'); return Math.max(0, (coefficient.split('.')[1]?.length || 0) - Number(exponent)); };
+    const precision = Math.min(15, Math.max(decimals(min), decimals(step)));
+    const previous = input.value; input.value = String(Number(value.toFixed(precision)));
+    if (input.value !== previous) input.dispatchEvent(new Event('input', {bubbles: true}));
   }
-  function onFormReset() { setTimeout(syncSearchFields, 0); }
+  function onSliderPointerDown(event) {
+    const track = event.target.closest?.('[data-hero-slider-track]');
+    if (!track || !root.contains(track) || event.button !== 0) return;
+    const slider = track.closest('[data-hero-slider]'), inputs = [...slider.querySelectorAll('[data-hero-slider-input]')];
+    if (!inputs.length || inputs[0].disabled) return;
+    const fraction = sliderPointerValue(track, event), min = Number(inputs[0].min), max = Number(inputs[0].max), value = min + fraction * (max - min);
+    const input = inputs.reduce((best, candidate) => {
+      const distance = Math.abs(Number(candidate.value) - value), bestDistance = Math.abs(Number(best.value) - value);
+      return distance < bestDistance || (distance === bestDistance && value >= Number(candidate.value)) ? candidate : best;
+    });
+    event.preventDefault(); input.focus({preventScroll: true}); track.setPointerCapture(event.pointerId);
+    sliderDrag = {track, input, pointerId: event.pointerId, initial: input.value};
+    input.nextElementSibling.dataset.dragging = 'true'; moveSlider(event);
+  }
+  function onSliderPointerEnd(event) {
+    if (!sliderDrag || event.pointerId !== sliderDrag.pointerId) return;
+    const {input, initial} = sliderDrag; delete input.nextElementSibling.dataset.dragging; sliderDrag = null;
+    if (input.value !== initial) input.dispatchEvent(new Event('change', {bubbles: true}));
+  }
+  function onFormReset() { setTimeout(syncSliders, 0); }
   function onClick(event) {
     const inputGroup = event.target.closest?.('[data-hero-input-group]');
     if (inputGroup && root.contains(inputGroup) && !event.target.closest('input, textarea, select, button, a, [contenteditable="true"], [role="button"]')) {
       const input = inputGroup.querySelector('[data-slot="input-group-input"], [data-slot="input-group-textarea"]');
       if (input && !input.matches(':disabled')) input.focus();
-    }
-    const clear = event.target.closest?.('[data-hero-search-clear]');
-    if (clear && root.contains(clear) && !clear.disabled) {
-      const input = clear.closest('[data-hero-search-field]')?.querySelector('[data-slot="search-field-input"]');
-      if (input && !input.matches(':disabled') && !input.readOnly && input.value !== '') {
-        input.value = '';
-        input.dispatchEvent(new Event('input', {bubbles:true}));
-        input.focus();
-      }
-      return;
     }
     const option = event.target.closest?.('[role="option"]');
     const listbox = option?.closest('[data-hero-listbox]');
@@ -332,12 +372,15 @@ export function installHeroUI(root = document) {
   window.addEventListener('resize', repositionOpenMenus);
   window.addEventListener('scroll', repositionOpenMenus, true);
   document.addEventListener('phx:update', reconcileListboxes);
-  document.addEventListener('phx:update', syncSearchFields);
-  syncSearchFields();
+  document.addEventListener('phx:update', syncSliders);
+  syncSliders();
   root.addEventListener('error', onAvatarError, true);
   root.addEventListener('load', onAvatarLoad, true);
-  root.addEventListener('input', onSliderInput);
-  root.addEventListener('input', onSearchInput);
+  root.addEventListener('input', onSliderInput, true);
+  root.addEventListener('pointerdown', onSliderPointerDown);
+  root.addEventListener('pointermove', moveSlider);
+  root.addEventListener('pointerup', onSliderPointerEnd);
+  root.addEventListener('pointercancel', onSliderPointerEnd);
   root.addEventListener('reset', onFormReset);
   root.addEventListener('pointerover', onPointerOver);
   root.addEventListener('pointerout', onPointerOut);
@@ -363,21 +406,21 @@ export function installHeroUI(root = document) {
     removeDisclosure();
     removeScrollShadow();
     removeAutocomplete();
+    removeSheet();
+    removeDropdown();
     window.removeEventListener('resize', repositionOpenMenus);
     window.removeEventListener('scroll', repositionOpenMenus, true);
     avatarObserver.disconnect();
     document.removeEventListener('phx:update', reconcileListboxes);
-    document.removeEventListener('phx:update', syncSearchFields);
+    document.removeEventListener('phx:update', syncSliders);
     root.removeEventListener('error', onAvatarError, true);
     root.removeEventListener('load', onAvatarLoad, true);
-    root.removeEventListener('input', onSliderInput);
-    root.removeEventListener('input', onSearchInput);
+    root.removeEventListener('input', onSliderInput, true);
+    root.removeEventListener('pointerdown', onSliderPointerDown);
+    root.removeEventListener('pointermove', moveSlider);
+    root.removeEventListener('pointerup', onSliderPointerEnd);
+    root.removeEventListener('pointercancel', onSliderPointerEnd);
     root.removeEventListener('reset', onFormReset);
-    root.querySelectorAll('[data-hero-search-field]').forEach(field => {
-      delete field.dataset.heroSearchReady;
-      const clear = field.querySelector('[data-hero-search-clear]');
-      if (clear) clear.hidden = true;
-    });
     root.removeEventListener('pointerover', onPointerOver);
     root.removeEventListener('pointerout', onPointerOut);
     root.removeEventListener('focusin', onFocusIn);

@@ -4,6 +4,7 @@
     "tailwindcss": "^4.1.10"
   },
   "dependencies": {
-    "@heroui/styles": "3.2.7"
+    "@heroui/styles": "3.2.7",
+    "alpinejs": "3.17.5"
   }
 }

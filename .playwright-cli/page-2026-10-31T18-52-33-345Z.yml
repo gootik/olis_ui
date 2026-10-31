@@ -1,0 +1,542 @@
+- generic [active] [ref=f46e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f46e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f46e3]: Pro
+    - generic [ref=f46e4]:
+      - generic [ref=f46e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f46e6]:
+    - complementary [ref=f46e7]:
+      - generic [ref=f46e9]:
+        - paragraph [ref=f46e10]: Overview
+        - link "All Components (React)" [ref=f46e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f46e12]: Components
+        - link "Accordion" [ref=f46e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f46e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f46e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f46e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f46e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f46e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f46e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f46e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f46e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f46e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f46e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f46e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f46e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f46e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f46e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f46e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f46e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f46e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f46e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f46e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f46e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f46e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f46e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f46e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f46e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f46e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f46e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f46e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f46e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f46e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f46e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f46e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f46e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f46e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f46e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f46e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f46e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f46e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f46e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f46e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f46e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f46e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f46e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f46e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f46e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f46e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f46e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f46e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f46e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f46e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f46e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f46e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f46e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f46e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f46e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f46e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f46e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f46e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f46e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f46e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f46e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f46e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f46e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f46e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f46e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f46e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f46e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f46e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f46e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f46e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f46e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f46e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f46e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f46e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f46e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f46e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f46e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f46e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f46e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f46e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f46e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f46e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f46e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f46e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f46e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f46e110]:
+      - generic [ref=f46e111]:
+        - generic [ref=f46e113]:
+          - link "HeroUI" [ref=f46e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f46e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f46e126]:
+          - text: Search
+          - generic [ref=f46e130]:
+            - generic [ref=f46e131]: ⌘
+            - generic [ref=f46e132]: K
+        - generic [ref=f46e133]:
+          - generic [ref=f46e134]:
+            - button "Ask AI" [ref=f46e136] [cursor=pointer]
+            - button [ref=f46e137] [cursor=pointer]:
+              - button "Design theme" [ref=f46e138]:
+                - generic [ref=f46e139]: Theme
+            - link "27.7k" [ref=f46e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f46e142]:
+            - button "Choose a language" [ref=f46e143] [cursor=pointer]
+            - generic [ref=f46e144] [cursor=pointer]:
+              - button "light" [ref=f46e145]
+              - button "dark" [ref=f46e152]
+              - button "system" [ref=f46e155]
+      - generic [ref=f46e159]:
+        - link "Getting Started" [ref=f46e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f46e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f46e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f46e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f46e188]:
+          - tab "Web" [selected] [ref=f46e189] [cursor=pointer]
+          - tab "Native" [ref=f46e193] [cursor=pointer]
+    - article [ref=f46e196]:
+      - generic [ref=f46e197]:
+        - generic [ref=f46e198]:
+          - heading "CloseButton" [level=1] [ref=f46e199]
+          - group [ref=f46e201]:
+            - button "Copy Markdown" [ref=f46e202] [cursor=pointer]
+            - button "More options" [ref=f46e203] [cursor=pointer]
+        - paragraph [ref=f46e204]: Button component for closing dialogs, modals, or dismissing content
+        - generic [ref=f46e205]:
+          - link "Storybook" [ref=f46e206] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-buttons-closebutton--docs
+          - link "React Aria" [ref=f46e207] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Button
+          - link "Source" [ref=f46e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/close-button/close-button.tsx
+          - link "Styles source" [ref=f46e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/close-button.css
+      - generic [ref=f46e210]:
+        - heading [level=2] [ref=f46e211]:
+          - link "Usage" [ref=f46e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f46e213]
+        - figure [ref=f46e218]:
+          - button "Copy Text" [ref=f46e220] [cursor=pointer]
+          - region [ref=f46e221]:
+            - code [ref=f46e223]:
+              - generic [ref=f46e224]: "import { CloseButton } from \"@heroui/react\";"
+        - heading [level=2] [ref=f46e226]:
+          - link "Examples" [ref=f46e227] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f46e228]
+        - heading [level=3] [ref=f46e233]:
+          - link "Interactive" [ref=f46e234] [cursor=pointer]:
+            - /url: "#interactive"
+          - button "Copy Anchor Link" [ref=f46e235]
+        - heading [level=3] [ref=f46e241]:
+          - link "With Custom Icon" [ref=f46e242] [cursor=pointer]:
+            - /url: "#with-custom-icon"
+          - button "Copy Anchor Link" [ref=f46e243]
+        - heading [level=2] [ref=f46e249]:
+          - link "Customization" [ref=f46e250] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f46e251]
+        - heading [level=3] [ref=f46e256]:
+          - link "Tailwind CSS" [ref=f46e257] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f46e258]
+        - heading [level=3] [ref=f46e264]:
+          - link "Global CSS" [ref=f46e265] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f46e266]
+        - paragraph [ref=f46e271]:
+          - text: To customize the CloseButton component classes, you can use the
+          - code [ref=f46e272]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f46e273] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f46e274]:
+          - button "Copy Text" [ref=f46e276] [cursor=pointer]
+          - region [ref=f46e277]:
+            - code [ref=f46e279]:
+              - generic [ref=f46e280]: "@layer components {"
+              - generic [ref=f46e281]: ".close-button {"
+              - generic [ref=f46e282]: "@apply bg-red-100 text-red-800 hover:bg-red-200;"
+              - generic [ref=f46e283]: "}"
+              - generic [ref=f46e285]: ".close-button--custom {"
+              - generic [ref=f46e286]: "@apply rounded-full border-2 border-red-300;"
+              - generic [ref=f46e287]: "}"
+              - generic [ref=f46e288]: "}"
+        - heading [level=2] [ref=f46e289]:
+          - link "Styling Reference" [ref=f46e290] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f46e291]
+        - paragraph [ref=f46e296]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f46e297] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f46e298]:
+          - link "CSS Classes" [ref=f46e299] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f46e300]
+        - paragraph [ref=f46e305]:
+          - text: The CloseButton component uses these CSS classes (
+          - link "View source styles" [ref=f46e306] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/close-button.css
+          - text: "):"
+        - heading [level=4] [ref=f46e307]:
+          - link "Base Classes" [ref=f46e308] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f46e309]
+        - list [ref=f46e314]:
+          - listitem [ref=f46e315]:
+            - code [ref=f46e316]: .close-button
+            - text: "- Base component styles"
+        - heading [level=4] [ref=f46e317]:
+          - link "Variant Classes" [ref=f46e318] [cursor=pointer]:
+            - /url: "#variant-classes-toc"
+          - button "Copy Anchor Link" [ref=f46e319]
+        - list [ref=f46e324]:
+          - listitem [ref=f46e325]:
+            - code [ref=f46e326]: .close-button--default
+            - text: "- Default variant"
+        - heading [level=3] [ref=f46e327]:
+          - link "Interactive States" [ref=f46e328] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f46e329]
+        - paragraph [ref=f46e334]: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list [ref=f46e335]:
+          - listitem [ref=f46e336]:
+            - strong [ref=f46e337]: Hover
+            - text: ":"
+            - code [ref=f46e338]: :hover
+            - text: or
+            - code [ref=f46e339]: "[data-hovered=\"true\"]"
+          - listitem [ref=f46e340]:
+            - strong [ref=f46e341]: Active/Pressed
+            - text: ":"
+            - code [ref=f46e342]: :active
+            - text: or
+            - code [ref=f46e343]: "[data-pressed=\"true\"]"
+          - listitem [ref=f46e344]:
+            - strong [ref=f46e345]: Focus
+            - text: ":"
+            - code [ref=f46e346]: :focus-visible
+            - text: or
+            - code [ref=f46e347]: "[data-focus-visible=\"true\"]"
+          - listitem [ref=f46e348]:
+            - strong [ref=f46e349]: Disabled
+            - text: ":"
+            - code [ref=f46e350]: :disabled
+            - text: or
+            - code [ref=f46e351]: "[aria-disabled=\"true\"]"
+        - heading [level=2] [ref=f46e352]:
+          - link "API Reference" [ref=f46e353] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f46e354]
+        - heading [level=3] [ref=f46e359]:
+          - link "CloseButton" [ref=f46e360] [cursor=pointer]:
+            - /url: "#closebutton"
+          - button "Copy Anchor Link" [ref=f46e361]
+        - table [ref=f46e367]:
+          - rowgroup [ref=f46e368]:
+            - row [ref=f46e369]:
+              - columnheader "Prop" [ref=f46e370]
+              - columnheader "Type" [ref=f46e371]
+              - columnheader "Default" [ref=f46e372]
+              - columnheader "Description" [ref=f46e373]
+          - rowgroup [ref=f46e374]:
+            - row [ref=f46e375]:
+              - cell [ref=f46e376]:
+                - code [ref=f46e377]: variant
+              - cell [ref=f46e378]:
+                - code [ref=f46e379]: "\"default\""
+              - cell [ref=f46e380]:
+                - code [ref=f46e381]: "\"default\""
+              - cell "Visual variant of the button" [ref=f46e382]
+            - row [ref=f46e383]:
+              - cell [ref=f46e384]:
+                - code [ref=f46e385]: children
+              - cell [ref=f46e386]:
+                - code [ref=f46e387]: ReactNode | function
+              - cell [ref=f46e388]:
+                - code [ref=f46e389]: <CloseIcon />
+              - cell "Content to display (defaults to close icon)" [ref=f46e390]
+            - row [ref=f46e391]:
+              - cell [ref=f46e392]:
+                - code [ref=f46e393]: onPress
+              - cell [ref=f46e394]:
+                - code [ref=f46e395]: () => void
+              - cell "-" [ref=f46e396]
+              - cell "Handler called when the button is pressed" [ref=f46e397]
+            - row [ref=f46e398]:
+              - cell [ref=f46e399]:
+                - code [ref=f46e400]: isDisabled
+              - cell [ref=f46e401]:
+                - code [ref=f46e402]: boolean
+              - cell [ref=f46e403]:
+                - code [ref=f46e404]: "false"
+              - cell "Whether the button is disabled" [ref=f46e405]
+        - heading [level=3] [ref=f46e406]:
+          - link "React Aria Button Props" [ref=f46e407] [cursor=pointer]:
+            - /url: "#react-aria-button-props"
+          - button "Copy Anchor Link" [ref=f46e408]
+        - paragraph [ref=f46e413]: "CloseButton extends all React Aria Button props. Common props include:"
+        - table [ref=f46e415]:
+          - rowgroup [ref=f46e416]:
+            - row [ref=f46e417]:
+              - columnheader "Prop" [ref=f46e418]
+              - columnheader "Type" [ref=f46e419]
+              - columnheader "Description" [ref=f46e420]
+          - rowgroup [ref=f46e421]:
+            - row [ref=f46e422]:
+              - cell [ref=f46e423]:
+                - code [ref=f46e424]: aria-label
+              - cell [ref=f46e425]:
+                - code [ref=f46e426]: string
+              - cell "Accessible label for screen readers" [ref=f46e427]
+            - row [ref=f46e428]:
+              - cell [ref=f46e429]:
+                - code [ref=f46e430]: aria-labelledby
+              - cell [ref=f46e431]:
+                - code [ref=f46e432]: string
+              - cell "ID of element that labels the button" [ref=f46e433]
+            - row [ref=f46e434]:
+              - cell [ref=f46e435]:
+                - code [ref=f46e436]: aria-describedby
+              - cell [ref=f46e437]:
+                - code [ref=f46e438]: string
+              - cell "ID of element that describes the button" [ref=f46e439]
+        - heading [level=3] [ref=f46e440]:
+          - link "Render Props" [ref=f46e441] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f46e442]
+        - paragraph [ref=f46e447]: "When using the render prop pattern, these values are provided:"
+        - table [ref=f46e449]:
+          - rowgroup [ref=f46e450]:
+            - row [ref=f46e451]:
+              - columnheader "Prop" [ref=f46e452]
+              - columnheader "Type" [ref=f46e453]
+              - columnheader "Description" [ref=f46e454]
+          - rowgroup [ref=f46e455]:
+            - row [ref=f46e456]:
+              - cell [ref=f46e457]:
+                - code [ref=f46e458]: isHovered
+              - cell [ref=f46e459]:
+                - code [ref=f46e460]: boolean
+              - cell "Whether the button is hovered" [ref=f46e461]
+            - row [ref=f46e462]:
+              - cell [ref=f46e463]:
+                - code [ref=f46e464]: isPressed
+              - cell [ref=f46e465]:
+                - code [ref=f46e466]: boolean
+              - cell "Whether the button is pressed" [ref=f46e467]
+            - row [ref=f46e468]:
+              - cell [ref=f46e469]:
+                - code [ref=f46e470]: isFocused
+              - cell [ref=f46e471]:
+                - code [ref=f46e472]: boolean
+              - cell "Whether the button is focused" [ref=f46e473]
+            - row [ref=f46e474]:
+              - cell [ref=f46e475]:
+                - code [ref=f46e476]: isDisabled
+              - cell [ref=f46e477]:
+                - code [ref=f46e478]: boolean
+              - cell "Whether the button is disabled" [ref=f46e479]
+        - heading [level=2] [ref=f46e480]:
+          - link "Related Components" [ref=f46e481] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f46e482]
+        - generic [ref=f46e487]:
+          - generic [ref=f46e488]:
+            - link "Alert" [ref=f46e490] [cursor=pointer]:
+              - /url: /en/docs/components/alert
+            - generic [ref=f46e492]:
+              - link "Alert":
+                - /url: /en/docs/components/alert
+                - img "Alert" [ref=f46e493] [cursor=pointer]
+          - generic [ref=f46e494]:
+            - link "AlertDialog" [ref=f46e496] [cursor=pointer]:
+              - /url: /en/docs/components/alert-dialog
+            - generic [ref=f46e498]:
+              - link "AlertDialog":
+                - /url: /en/docs/components/alert-dialog
+                - img "AlertDialog" [ref=f46e499] [cursor=pointer]
+          - generic [ref=f46e500]:
+            - link "Chip" [ref=f46e502] [cursor=pointer]:
+              - /url: /en/docs/components/chip
+            - generic [ref=f46e504]:
+              - link "Chip":
+                - /url: /en/docs/components/chip
+                - img "Chip" [ref=f46e505] [cursor=pointer]
+      - generic [ref=f46e506]:
+        - link [ref=f46e507] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+          - paragraph [ref=f46e511]: Chip
+          - paragraph [ref=f46e512]: Small informational badges for displaying labels, statuses, and categories
+        - link [ref=f46e513] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+          - paragraph [ref=f46e517]: ColorArea
+          - paragraph [ref=f46e518]: A 2D color picker that allows users to select colors from a gradient area
+    - generic [ref=f46e519]:
+      - heading "On this page" [level=3] [ref=f46e520]
+      - generic [ref=f46e524]:
+        - link "Usage" [ref=f46e525] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Examples" [ref=f46e526] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Interactive" [ref=f46e527] [cursor=pointer]:
+          - /url: "#interactive"
+        - link "With Custom Icon" [ref=f46e528] [cursor=pointer]:
+          - /url: "#with-custom-icon"
+        - link "Customization" [ref=f46e529] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f46e530] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f46e531] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f46e532] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f46e533] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f46e534] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f46e535] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "CloseButton" [ref=f46e536] [cursor=pointer]:
+          - /url: "#closebutton"
+        - link "React Aria Button Props" [ref=f46e537] [cursor=pointer]:
+          - /url: "#react-aria-button-props"
+        - link "Render Props" [ref=f46e538] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Related Components" [ref=f46e539] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f46e542]:
+        - generic [ref=f46e543]:
+          - generic [ref=f46e544]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f46e545]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f46e546] [cursor=pointer]

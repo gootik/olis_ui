@@ -2,7 +2,7 @@
 
 A starting point for a Phoenix LiveView component library inspired by [HeroUI](https://github.com/heroui-inc/heroui). It uses Phoenix function components and native HTML, with Tailwind CSS v4 and a small JavaScript module for interactive components. The initial API follows HeroUI **v3** naming where practical; this is an independent project and is not affiliated with HeroUI.
 
-This is an early foundation, not a complete port. It currently provides button, input, text field, input group, search field, one-time-code input, color field, color swatch, color swatch picker, autocomplete, combo box, date field, time field, date picker, calendar, range calendar, card, chip, checkbox, checkbox group, switch, switch group, avatar, avatar group, progress bar, progress circle, meter, spinner, separator, scroll shadow, skeleton, textarea, radio, radio group, keyboard key, link, surface, select, accordion, disclosure, disclosure group, alert, toast, badge, data table, modal, alert dialog, drawer, tabs, dropdown, tooltip, popover, slider, number field, pagination, toolbar, button groups, toggle buttons, breadcrumbs, listbox, and tag group components. Exact visual and behavioral parity with HeroUI and more complex interactive components are still to be built.
+This is an early foundation, not a complete port. It currently provides button, close button, input, text field, fieldset, input group, search field, one-time-code input, color field, color swatch, color swatch picker, autocomplete, combo box, date field, time field, date picker, calendar, range calendar, card, chip, checkbox, checkbox group, switch, switch group, avatar, avatar group, progress bar, progress circle, meter, spinner, separator, scroll shadow, skeleton, textarea, radio, radio group, keyboard key, link, surface, select, accordion, disclosure, disclosure group, alert, toast, badge, data table, modal, alert dialog, drawer, sheet, tabs, dropdown, tooltip, popover, slider, number field, pagination, toolbar, button groups, toggle buttons, breadcrumbs, listbox, and tag group components. Exact visual and behavioral parity with HeroUI and more complex interactive components are still to be built.
 
 ## Preview
 
@@ -57,7 +57,22 @@ Restart the asset watcher after adding the dependency. The components migrated t
 </.card>
 ```
 
-`translate_error/1` is the application's error translation function (Phoenix generators commonly provide one in `CoreComponents`). Errors are explicit so applications control translation and when validation appears. A standalone field needs an `id` and can receive `name`, `value`, and a list of error strings. `text_field` associates its label, description, and errors with the input. Use `.input` directly when composing your own field; give it a label or `aria-label`.
+`translate_error/1` is the application's error translation function (Phoenix generators commonly provide one in `CoreComponents`). Errors are explicit so applications control translation and when validation appears. A standalone field needs an `id` and can receive `name`, `value`, and a list of error strings. `text_field` associates its label, description, and errors with the input; when invalid, it hides the description and associates the visible errors instead. Use `invalid` to mark a field invalid without an error message, or `multiline` and `rows` for a textarea. If there is no visible `label`, provide `aria-label` or `aria-labelledby`. Use `.input` directly when composing your own field.
+
+Use `<.close_button label="Dismiss notification" phx-click="dismiss" />` for an icon-only dismissal action. It defaults to `type="button"` and the accessible label `Close`; pass `disabled`, Tailwind classes, or custom icon content as needed. Like a normal button, it requires a click handler or another dismissal mechanism supplied by the surrounding component.
+
+Group related fields with a native fieldset. Its legend names the group, its description is connected with `aria-describedby`, and `disabled` disables its descendant form controls. Use `:legend_content` instead of `legend` when the legend needs markup; `group_class` and `actions_class` customize the layout.
+
+```heex
+<.fieldset id="profile" legend="Profile settings" description="Update your profile information.">
+  <.text_field field={@form[:name]} label="Name" required />
+  <.text_field field={@form[:email]} label="Email" type="email" />
+  <:actions>
+    <.button type="submit">Save changes</.button>
+    <.button type="reset" variant="secondary">Reset</.button>
+  </:actions>
+</.fieldset>
+```
 
 Scroll shadows fade the edges of a constrained scrollable region. Set a height or width with Tailwind classes, and give the region a label and `tabindex="0"` when keyboard users need to scroll it. Use `orientation="horizontal"`, `hide_scrollbar`, `size`, or `offset` as needed. `visibility` can explicitly select `top`, `bottom`, `left`, `right`, `both`, or `none`; the default `auto` follows scroll position. With `installHeroUI`, automatic changes dispatch a bubbling `hero:scroll-shadow-change` event and can also send a LiveView event via `on_visibility_change`, with a `"visibility"` parameter. The callback fires on changes after the initial measurement.
 
@@ -128,6 +143,18 @@ Open a modal with a button whose `data-hero-dialog-open` matches the modal ID:
 </.modal>
 ```
 
+Sheets are swipeable modal panels. Open one with `data-hero-sheet-open`, close it with `data-hero-sheet-close` or its built-in close button, and choose `placement="bottom"`, `"top"`, `"left"`, or `"right"`. `detached` adds space around the panel. Use `snap_points` for partial positions; numbers are pixels and strings support `px`, `%`, `vh`, `vw`, `rem`, and `em` units. A fully expanded position is added automatically. Sheets can be nested and use native modal focus containment.
+
+```heex
+<.button data-hero-sheet-open="filters">Filters</.button>
+<.sheet id="filters" title="Filters" snap_points={[240, "60%"]}>
+  Choose the filters to apply.
+  <:footer><.button data-hero-sheet-close>Done</.button></:footer>
+</.sheet>
+```
+
+For LiveView-controlled state, pass `open={@sheet_open}` and `on_open_change="sheet_open_change"`. The event sends `"open"` as `"true"` or `"false"` and a `"reason"` of `"trigger"`, `"close"`, `"backdrop"`, `"escape"`, `"swipe"`, or `"parent"` when an ancestor sheet closes; update the assign in your handler. Omit `open` to manage the sheet in the browser, optionally setting `default_open`. Set `dismissible={false}` to prevent outside, Escape, and swipe dismissal; explicit close buttons still work.
+
 The native dialog contains focus and restores it on close. Escape and backdrop clicks dismiss it by default; `dismissible={false}` disables those dismissals. The Close button is always available. A LiveView mount command preserves the native `open` attribute across updates. Mount the client module once per page; the installer returns a cleanup function for teardown.
 
 Alert dialogs and drawers use the same opener as modals. Alert dialogs require an explicit cancel or confirm action and send `on_confirm` as a LiveView event. Drawers support `top`, `bottom`, `left`, and `right` placement.
@@ -158,9 +185,45 @@ A dropdown uses the browser Popover API and forwards actions to LiveView:
 </.dropdown>
 ```
 
-Dropdowns require a browser with the Popover API. Keyboard users can open with Enter, Space, or arrow keys and navigate items with arrow keys, Home, End, and type-ahead. Escape closes the menu. This initial implementation supports action and link items; sections, selection modes, and submenus are not yet implemented.
+Use sections to group items and provide each selectable item with a unique string `key` within its group. Selection can be controlled by LiveView, or managed in the browser with `default_selected_keys`:
 
-Slider and number field use native range and number inputs. They require the JavaScript installer for immediate slider output updates and number-field step buttons. Their inputs submit normally through Phoenix forms. The slider currently supports a single horizontal value; range selection and vertical orientation are not yet implemented.
+```heex
+<.dropdown id="view-options" label="View options" on_action="menu_action">
+  <:section
+    label="Columns"
+    selection_mode="multiple"
+    selected_keys={@columns}
+    on_selection_change="columns_changed"
+    items={[
+      %{key: "name", label: "Name"},
+      %{key: "status", label: "Status"}
+    ]}
+  />
+  <:section label="Share" items={[
+    %{label: "Share project", items: [
+      %{key: "copy", label: "Copy link", shortcut: "⌘ C"},
+      %{key: "email", label: "Email", description: "Send a link"}
+    ]}
+  ]} />
+</.dropdown>
+```
+
+`selection_mode` accepts `"none"`, `"single"`, or `"multiple"` on the dropdown, a section, or a submenu item. Each group maintains its own selection. `on_selection_change` receives `"key"`, `"selected"` (`"true"` or `"false"`), and `"keys"` (a JSON-encoded list). When `selected_keys` is supplied, update it in the event handler; otherwise, `default_selected_keys` initializes browser-managed state. An item’s `on_click` or the dropdown’s `on_action` receives its `"key"` when provided. Single-selection and action menus close after selection by default; multiple-selection menus remain open. Override this with `close_on_select`.
+
+Dropdowns require a browser with the Popover API and the HeroUI JavaScript installer. Keyboard users can open with Enter, Space, or arrow keys and navigate items with arrow keys, Home, End, and type-ahead. Arrow keys open and close submenus according to text direction; Escape closes the current menu and restores focus.
+
+Slider and number field use native range and number inputs. Install the HeroUI JavaScript for slider pointer interaction and live output, and for number-field step buttons. Inputs submit through Phoenix forms.
+
+```heex
+<.slider id="volume" name="volume" label="Volume" value={30} />
+<.slider id="price" name="price" label="Price" value={[20, 80]}
+  step={10} show_steps marks={[{0, "$0"}, {50, "$50"}, {100, "$100"}]} />
+<div class="h-64">
+  <.slider id="brightness" label="Brightness" value={40} orientation="vertical" />
+</div>
+```
+
+An ascending list creates multiple thumbs and submits each value under `name[]`. Each thumb is a native range input with its own keyboard focus and is constrained by its neighbors. Marks accept numbers or `{value, label}` tuples; marks outside the bounds are omitted. Step dots are decorative and are omitted if more than 1,000 would be needed. Give vertical sliders a container with a defined height. Values and track positions are updated in the browser as the user moves a thumb, and form change events remain available to LiveView.
 
 Toggle buttons are controlled by LiveView: handle `phx-click` and update the `pressed` attribute. Group related buttons with `.button_group` or `.toggle_button_group`; breadcrumbs use `:item` slots and mark the last item as the current page.
 

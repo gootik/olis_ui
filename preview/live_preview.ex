@@ -17,7 +17,7 @@ defmodule HeroUI.Preview.Layout do
         <script type="module">
           import {Socket} from "/phoenix.mjs";
           import {LiveSocket} from "/phoenix_live_view.esm.js";
-          import {installHeroUI} from "/hero_ui.js?v=autocomplete";
+          import {installHeroUI} from "/hero_ui.js?v=dropdown";
           installHeroUI();
           const updateNavigation = () => {
             const sections = [...document.querySelectorAll('.lp-intro, .lp-section')];
@@ -70,6 +70,7 @@ defmodule HeroUI.Preview.Live do
       socket
       |> assign(
         count: 0,
+        close_button_count: 0,
         terms: false,
         alerts: false,
         switch_news: true,
@@ -88,7 +89,13 @@ defmodule HeroUI.Preview.Live do
         underline: false,
         disclosure_expanded: ["account"],
         disclosure_last: "none",
+        controlled_sheet_open: false,
+        sheet_last: "none",
         toolbar_action: "none",
+        dropdown_sort: "newest",
+        dropdown_columns: ["name", "status"],
+        dropdown_last: "none",
+        fieldset_saved: nil,
         workspace: ["alpha"],
         required_choice: nil,
         search_query: "",
@@ -196,9 +203,30 @@ defmodule HeroUI.Preview.Live do
       {:noreply,
        assign(socket, disclosure_expanded: ["billing"], disclosure_last: "billing: true")}
 
+  def handle_event("sheet_open_change", %{"open" => open, "reason" => reason}, socket),
+    do:
+      {:noreply,
+       assign(socket, controlled_sheet_open: open == "true", sheet_last: "#{open}: #{reason}")}
+
   def handle_event("toolbar_action", %{"action" => action}, socket)
       when action in ~w(Copy Cut Undo Redo),
       do: {:noreply, assign(socket, :toolbar_action, action)}
+
+  def handle_event("dropdown_sort", %{"key" => key}, socket),
+    do: {:noreply, assign(socket, :dropdown_sort, key)}
+
+  def handle_event("fieldset_save", %{"profile" => %{"name" => name}}, socket),
+    do: {:noreply, assign(socket, :fieldset_saved, name)}
+
+  def handle_event("dropdown_columns", %{"key" => key, "selected" => selected}, socket) do
+    values = Enum.reject(socket.assigns.dropdown_columns, &(&1 == key))
+
+    {:noreply,
+     assign(socket, :dropdown_columns, if(selected == "true", do: values ++ [key], else: values))}
+  end
+
+  def handle_event("dropdown_action", %{"key" => key}, socket),
+    do: {:noreply, assign(socket, :dropdown_last, key)}
 
   def handle_event("required_submit", %{"choice" => value}, socket),
     do: {:noreply, assign(socket, :required_choice, value)}
@@ -375,6 +403,9 @@ defmodule HeroUI.Preview.Live do
   end
 
   def handle_event("increment", _, socket), do: {:noreply, update(socket, :count, &(&1 + 1))}
+
+  def handle_event("close_button_clicked", _, socket),
+    do: {:noreply, update(socket, :close_button_count, &(&1 + 1))}
 
   def handle_event("switch_group_change", params, socket) do
     {:noreply,
@@ -575,6 +606,93 @@ defmodule HeroUI.Preview.Live do
               </div><p>Inputs, validation, and searchable choices.</p>
             </div>
             <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+              <.preview_card title="Fieldset" description="Related fields, descriptions, and actions.">
+                <form phx-submit="fieldset_save">
+                  <.fieldset
+                    id="profile-fieldset"
+                    legend="Profile settings"
+                    description="Update your profile information."
+                  >
+                    <.text_field
+                      id="profile-name"
+                      name="profile[name]"
+                      label="Name"
+                      placeholder="John Doe"
+                      required
+                    />
+                    <.text_field
+                      id="profile-email"
+                      name="profile[email]"
+                      label="Email"
+                      type="email"
+                      placeholder="john@example.com"
+                      required
+                    />
+                    <:actions>
+                      <.button type="submit">Save changes</.button>
+                      <.button type="reset" variant="secondary">Reset</.button>
+                    </:actions>
+                  </.fieldset>
+                </form>
+                <p
+                  :if={@fieldset_saved}
+                  id="fieldset-saved"
+                  class="mt-3 mb-0 text-xs text-zinc-500 dark:text-zinc-400"
+                >
+                  Saved profile for {@fieldset_saved}.
+                </p>
+                <.fieldset
+                  id="disabled-fieldset"
+                  legend="Disabled group"
+                  disabled
+                  class="mt-6 border-t border-separator pt-4"
+                >
+                  <.text_field
+                    id="disabled-fieldset-input"
+                    name="disabled_example"
+                    label="Name"
+                    value="Unavailable"
+                  />
+                  <:actions><.button>Save</.button></:actions>
+                </.fieldset>
+              </.preview_card>
+              <.preview_card
+                title="Text fields"
+                description="Labels, help text, validation, and multiline input."
+              >
+                <div class="flex flex-col gap-5">
+                  <.text_field
+                    id="preview-username"
+                    label="Username"
+                    placeholder="Choose a username"
+                    description="This is visible on your profile."
+                    required
+                  />
+                  <.text_field
+                    id="preview-email-error"
+                    label="Email"
+                    type="email"
+                    value="not-an-email"
+                    description="We'll never share your email."
+                    errors={["Please enter a valid email address."]}
+                  />
+                  <.text_field
+                    id="preview-bio"
+                    label="Bio"
+                    multiline
+                    rows={3}
+                    placeholder="Tell us about yourself"
+                    description="A short introduction."
+                  />
+                  <.text_field
+                    id="preview-account-id"
+                    label="Account ID"
+                    value="USR-12345"
+                    description="This field cannot be edited."
+                    disabled
+                  />
+                </div>
+              </.preview_card>
               <.preview_card
                 title="Search field"
                 description="Search with a clear action and LiveView updates."
@@ -1368,6 +1486,63 @@ defmodule HeroUI.Preview.Live do
                   </p>
                 </form>
               </.preview_card>
+              <.preview_card title="Close button" description="Default, disabled, and custom icons.">
+                <div class="flex items-center gap-4">
+                  <.close_button label="Dismiss example" phx-click="close_button_clicked" />
+                  <.close_button label="Disabled close" disabled />
+                  <.close_button label="Dismiss with custom icon" phx-click="close_button_clicked">
+                    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><circle
+                      cx="8"
+                      cy="8"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    /><path
+                      d="m5.5 5.5 5 5m0-5-5 5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    /></svg>
+                  </.close_button>
+                </div>
+                <p id="close-button-state" class="mt-3 mb-0 text-xs text-zinc-500 dark:text-zinc-400">
+                  Clicked: {@close_button_count}
+                </p>
+              </.preview_card>
+              <.preview_card
+                title="Sliders"
+                description="Ranges, steps, marks, and vertical controls."
+              >
+                <div class="flex flex-col gap-8">
+                  <.slider
+                    id="preview-price-range"
+                    name="price_range"
+                    label="Price range"
+                    value={[20, 80]}
+                    step={10}
+                    show_steps
+                    marks={[{0, "$0"}, {50, "$50"}, {100, "$100"}]}
+                  />
+                  <div class="flex h-64 items-stretch gap-10">
+                    <.slider
+                      id="preview-brightness"
+                      label="Brightness"
+                      value={40}
+                      step={10}
+                      orientation="vertical"
+                      show_steps
+                      marks={[0, 50, 100]}
+                    />
+                    <.slider
+                      id="preview-disabled-slider"
+                      label="Disabled"
+                      value={30}
+                      orientation="vertical"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </.preview_card>
               <.preview_card
                 title="Switch groups"
                 description="Group independent settings vertically or horizontally."
@@ -1686,6 +1861,143 @@ defmodule HeroUI.Preview.Live do
               </div><p>Dialogs and contextual actions.</p>
             </div>
             <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+              <.preview_card
+                title="Sheets"
+                description="Swipe an edge panel or snap it between sizes."
+              >
+                <div class="flex flex-wrap gap-2">
+                  <.button data-hero-sheet-open="preview-sheet">Bottom sheet</.button>
+                  <.button data-hero-sheet-open="preview-sheet-right" variant="secondary">Right sheet</.button>
+                  <.button data-hero-sheet-open="preview-sheet-top" variant="secondary">Top sheet</.button>
+                  <.button data-hero-sheet-open="preview-sheet-left" variant="secondary">Left sheet</.button>
+                  <.button data-hero-sheet-open="preview-sheet-snap" variant="secondary">Snap points</.button>
+                  <.button data-hero-sheet-open="preview-sheet-controlled" variant="secondary">Controlled</.button>
+                </div>
+                <p
+                  id="sheet-state"
+                  class="mt-3 mb-0 break-words text-[11px] leading-[1.55] text-zinc-500 dark:text-zinc-400"
+                >
+                  Last controlled change: {@sheet_last}
+                </p>
+                <.sheet
+                  id="preview-sheet"
+                  title="Sheet title"
+                  class="max-w-[420px]"
+                  description="A focused space for a quick task."
+                >
+                  <p class="mt-3 text-sm text-muted">
+                    Drag the handle to dismiss, or open a nested sheet.
+                  </p>
+                  <.button
+                    data-hero-sheet-open="preview-sheet-nested"
+                    class="mt-4"
+                    variant="secondary"
+                  >Open nested sheet</.button>
+                  <.button phx-click="increment" class="mt-4" variant="secondary">Update count: {@count}</.button>
+                  <.sheet id="preview-sheet-nested" title="Nested sheet" class="max-w-[380px]">
+                    <p class="text-sm text-muted">Close this sheet to return to the previous one.</p>
+                    <:footer>
+                      <.button data-hero-sheet-close variant="secondary">Done</.button>
+                    </:footer>
+                  </.sheet>
+                  <:footer>
+                    <.button data-hero-sheet-close variant="secondary">Cancel</.button><.button data-hero-sheet-close>Confirm</.button>
+                  </:footer>
+                </.sheet>
+                <.sheet id="preview-sheet-right" title="Details" placement="right" detached>
+                  <p class="text-sm text-muted">A detached sheet can appear from any edge.</p>
+                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                </.sheet>
+                <.sheet id="preview-sheet-top" title="Top sheet" placement="top" class="max-w-[420px]">
+                  <p class="text-sm text-muted">This sheet opens from the top edge.</p>
+                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                </.sheet>
+                <.sheet id="preview-sheet-left" title="Left sheet" placement="left">
+                  <p class="text-sm text-muted">This sheet opens from the left edge.</p>
+                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                </.sheet>
+                <.sheet
+                  id="preview-sheet-snap"
+                  title="Explore updates"
+                  class="max-w-[420px]"
+                  snap_points={[220, "55%"]}
+                >
+                  <div class="space-y-4 text-sm text-muted">
+                    <p :for={i <- 1..30}>Update {i}: swipe up to expand and scroll this sheet.</p>
+                  </div>
+                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                </.sheet>
+                <.sheet
+                  id="preview-sheet-controlled"
+                  title="Controlled sheet"
+                  class="max-w-[420px]"
+                  open={@controlled_sheet_open}
+                  on_open_change="sheet_open_change"
+                >
+                  <p class="text-sm text-muted">LiveView controls whether this sheet is open.</p>
+                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                </.sheet>
+              </.preview_card>
+              <.preview_card
+                title="Dropdown menus"
+                description="Sections, selection, and nested actions."
+              >
+                <div class="flex flex-wrap gap-2">
+                  <.dropdown id="view-menu" label="View options" on_action="dropdown_action">
+                    <:section
+                      label="Sort by"
+                      selection_mode="single"
+                      selected_keys={[@dropdown_sort]}
+                      on_selection_change="dropdown_sort"
+                      items={[
+                        %{key: "newest", label: "Newest first"},
+                        %{key: "oldest", label: "Oldest first"}
+                      ]}
+                    />
+                    <:section
+                      label="Visible columns"
+                      selection_mode="multiple"
+                      selected_keys={@dropdown_columns}
+                      on_selection_change="dropdown_columns"
+                      items={[
+                        %{key: "name", label: "Name"},
+                        %{key: "status", label: "Status"},
+                        %{key: "owner", label: "Owner"}
+                      ]}
+                    />
+                    <:section
+                      label="Share"
+                      items={[
+                        %{
+                          label: "Share project",
+                          items: [
+                            %{key: "email", label: "Email", description: "Send a link"},
+                            %{key: "copy", label: "Copy link", shortcut: "⌘ C"},
+                            %{label: "More", items: [%{key: "export", label: "Export"}]}
+                          ]
+                        }
+                      ]}
+                    />
+                  </.dropdown>
+                  <.dropdown
+                    id="format-menu"
+                    label="Formatting"
+                    selection_mode="multiple"
+                    default_selected_keys={["bold"]}
+                  >
+                    <:item key="bold" label="Bold" /><:item key="italic" label="Italic" /><:item
+                      key="underline"
+                      label="Underline"
+                    />
+                  </.dropdown>
+                </div>
+                <p
+                  id="dropdown-state"
+                  class="mt-3 mb-0 break-words text-[11px] leading-[1.55] text-zinc-500 dark:text-zinc-400"
+                >
+                  Sort: {@dropdown_sort}; Columns: {Enum.join(@dropdown_columns, ", ")}; Action: {@dropdown_last}
+                </p>
+              </.preview_card>
               <.preview_card
                 title="Dialogs & menus"
                 description="Open each overlay to explore its behavior."

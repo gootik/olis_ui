@@ -1,0 +1,1223 @@
+- generic [active] [ref=f40e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f40e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f40e3]: Pro
+    - generic [ref=f40e4]:
+      - generic [ref=f40e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f40e6]:
+    - complementary [ref=f40e7]:
+      - generic [ref=f40e9]:
+        - paragraph [ref=f40e10]: Overview
+        - link "All Components (React)" [ref=f40e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f40e12]: Components
+        - link "Accordion" [ref=f40e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f40e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f40e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f40e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f40e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f40e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f40e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f40e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f40e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f40e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f40e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f40e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f40e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f40e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f40e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f40e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f40e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f40e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f40e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f40e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f40e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f40e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f40e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f40e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f40e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f40e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f40e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f40e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f40e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f40e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f40e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f40e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f40e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f40e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f40e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f40e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f40e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f40e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f40e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f40e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f40e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f40e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f40e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f40e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f40e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f40e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f40e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f40e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f40e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f40e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f40e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f40e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f40e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f40e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f40e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f40e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f40e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f40e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f40e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f40e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f40e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f40e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f40e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f40e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f40e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f40e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f40e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f40e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f40e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f40e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f40e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f40e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f40e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f40e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f40e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f40e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f40e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f40e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f40e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f40e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f40e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f40e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f40e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f40e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f40e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f40e110]:
+      - generic [ref=f40e111]:
+        - generic [ref=f40e113]:
+          - link "HeroUI" [ref=f40e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f40e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f40e126]:
+          - text: Search
+          - generic [ref=f40e130]:
+            - generic [ref=f40e131]: ⌘
+            - generic [ref=f40e132]: K
+        - generic [ref=f40e133]:
+          - generic [ref=f40e134]:
+            - button "Ask AI" [ref=f40e136] [cursor=pointer]
+            - button [ref=f40e137] [cursor=pointer]:
+              - button "Design theme" [ref=f40e138]:
+                - generic [ref=f40e139]: Theme
+            - link "31.1k" [ref=f40e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f40e142]:
+            - button "Choose a language" [ref=f40e143] [cursor=pointer]
+            - generic [ref=f40e144] [cursor=pointer]:
+              - button "light" [ref=f40e145]
+              - button "dark" [ref=f40e152]
+              - button "system" [ref=f40e155]
+      - generic [ref=f40e159]:
+        - link "Getting Started" [ref=f40e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f40e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f40e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f40e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f40e188]:
+          - tab "Web" [selected] [ref=f40e189] [cursor=pointer]
+          - tab "Native" [ref=f40e193] [cursor=pointer]
+    - article [ref=f40e196]:
+      - generic [ref=f40e197]:
+        - generic [ref=f40e198]:
+          - heading "Dropdown" [level=1] [ref=f40e199]
+          - group [ref=f40e201]:
+            - button "Copy Markdown" [ref=f40e202] [cursor=pointer]
+            - button "More options" [ref=f40e203] [cursor=pointer]
+        - paragraph [ref=f40e204]: A dropdown displays a list of actions or options that a user can choose
+        - generic [ref=f40e205]:
+          - link "Storybook" [ref=f40e206] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-collections-dropdown--docs
+          - link "React Aria" [ref=f40e207] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Menu
+          - link "Source" [ref=f40e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/dropdown/dropdown.tsx
+          - link "Styles source" [ref=f40e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/dropdown.css
+      - generic [ref=f40e210]:
+        - heading [level=2] [ref=f40e211]:
+          - link "Usage" [ref=f40e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f40e213]
+        - figure [ref=f40e218]:
+          - button "Copy Text" [ref=f40e220] [cursor=pointer]
+          - region [ref=f40e221]:
+            - code [ref=f40e223]:
+              - generic [ref=f40e224]: "import { Dropdown } from '@heroui/react';"
+        - generic [ref=f40e225]:
+          - button "Menu" [ref=f40e228] [cursor=pointer]: Actions
+          - generic [ref=f40e232]:
+            - figure [ref=f40e234]:
+              - button "Copy Text" [ref=f40e236] [cursor=pointer]
+              - region [ref=f40e237]:
+                - code [ref=f40e239]:
+                  - generic [ref=f40e240]: "\"use client\";"
+                  - generic [ref=f40e242]: "import {Button, Dropdown, Label} from \"@heroui/react\";"
+                  - generic [ref=f40e244]: "export function Default() {"
+            - button "Expand code" [ref=f40e245] [cursor=pointer]
+        - heading [level=2] [ref=f40e246]:
+          - link "Anatomy" [ref=f40e247] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f40e248]
+        - figure [ref=f40e253]:
+          - button "Copy Text" [ref=f40e255] [cursor=pointer]
+          - region [ref=f40e256]:
+            - code [ref=f40e258]:
+              - generic [ref=f40e259]: "import { Dropdown, Button, Label, Description, Header, Kbd, Separator } from '@heroui/react';"
+              - generic [ref=f40e261]: export default () => (
+              - generic [ref=f40e262]: <Dropdown>
+              - generic [ref=f40e263]: <Dropdown.Trigger>
+              - generic [ref=f40e264]: <Button />
+              - generic [ref=f40e265]: </Dropdown.Trigger>
+              - generic [ref=f40e266]: <Dropdown.Popover>
+              - generic [ref=f40e267]: <Dropdown.Menu>
+              - generic [ref=f40e268]: <Dropdown.Item>
+              - generic [ref=f40e269]: <Label />
+              - generic [ref=f40e270]: <Description />
+              - generic [ref=f40e271]: <Kbd slot="keyboard" />
+              - generic [ref=f40e272]: <Dropdown.ItemIndicator />
+              - generic [ref=f40e273]: </Dropdown.Item>
+              - generic [ref=f40e274]: <Separator />
+              - generic [ref=f40e275]: <Dropdown.Section>
+              - generic [ref=f40e276]: <Header />
+              - generic [ref=f40e277]: <Dropdown.Item />
+              - generic [ref=f40e278]: </Dropdown.Section>
+              - generic [ref=f40e279]: <Dropdown.SubmenuTrigger>
+              - generic [ref=f40e280]: <Dropdown.Item>
+              - generic [ref=f40e281]: <Label />
+              - generic [ref=f40e282]: <Dropdown.SubmenuIndicator />
+              - generic [ref=f40e283]: </Dropdown.Item>
+              - generic [ref=f40e284]: <Dropdown.Popover>
+              - generic [ref=f40e285]: <Dropdown.Menu>
+              - generic [ref=f40e286]: <Dropdown.Item />
+              - generic [ref=f40e287]: </Dropdown.Menu>
+              - generic [ref=f40e288]: </Dropdown.Popover>
+              - generic [ref=f40e289]: </Dropdown.SubmenuTrigger>
+              - generic [ref=f40e290]: </Dropdown.Menu>
+              - generic [ref=f40e291]: </Dropdown.Popover>
+              - generic [ref=f40e292]: </Dropdown>
+              - generic [ref=f40e293]: )
+        - heading [level=2] [ref=f40e294]:
+          - link "Examples" [ref=f40e295] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f40e296]
+        - heading [level=3] [ref=f40e301]:
+          - link "With Icons" [ref=f40e302] [cursor=pointer]:
+            - /url: "#with-icons"
+          - button "Copy Anchor Link" [ref=f40e303]
+        - heading [level=3] [ref=f40e309]:
+          - link "With Descriptions" [ref=f40e310] [cursor=pointer]:
+            - /url: "#with-descriptions"
+          - button "Copy Anchor Link" [ref=f40e311]
+        - heading [level=3] [ref=f40e317]:
+          - link "With Disabled Items" [ref=f40e318] [cursor=pointer]:
+            - /url: "#with-disabled-items"
+          - button "Copy Anchor Link" [ref=f40e319]
+        - heading [level=3] [ref=f40e325]:
+          - link "With Sections" [ref=f40e326] [cursor=pointer]:
+            - /url: "#with-sections"
+          - button "Copy Anchor Link" [ref=f40e327]
+        - heading [level=3] [ref=f40e333]:
+          - link "With Multiple Selection" [ref=f40e334] [cursor=pointer]:
+            - /url: "#with-multiple-selection"
+          - button "Copy Anchor Link" [ref=f40e335]
+        - heading [level=3] [ref=f40e341]:
+          - link "Controlled" [ref=f40e342] [cursor=pointer]:
+            - /url: "#controlled"
+          - button "Copy Anchor Link" [ref=f40e343]
+        - heading [level=3] [ref=f40e349]:
+          - link "Controlled Open State" [ref=f40e350] [cursor=pointer]:
+            - /url: "#controlled-open-state"
+          - button "Copy Anchor Link" [ref=f40e351]
+        - heading [level=3] [ref=f40e357]:
+          - link "With Single Selection" [ref=f40e358] [cursor=pointer]:
+            - /url: "#with-single-selection"
+          - button "Copy Anchor Link" [ref=f40e359]
+        - heading [level=3] [ref=f40e365]:
+          - link "Single With Custom Indicator" [ref=f40e366] [cursor=pointer]:
+            - /url: "#single-with-custom-indicator"
+          - button "Copy Anchor Link" [ref=f40e367]
+        - heading [level=3] [ref=f40e373]:
+          - link "With Section Level Selection" [ref=f40e374] [cursor=pointer]:
+            - /url: "#with-section-level-selection"
+          - button "Copy Anchor Link" [ref=f40e375]
+        - heading [level=3] [ref=f40e381]:
+          - link "With Keyboard Shortcuts" [ref=f40e382] [cursor=pointer]:
+            - /url: "#with-keyboard-shortcuts"
+          - button "Copy Anchor Link" [ref=f40e383]
+        - heading [level=3] [ref=f40e389]:
+          - link "With Submenus" [ref=f40e390] [cursor=pointer]:
+            - /url: "#with-submenus"
+          - button "Copy Anchor Link" [ref=f40e391]
+        - heading [level=3] [ref=f40e397]:
+          - link "With Custom Submenu Indicator" [ref=f40e398] [cursor=pointer]:
+            - /url: "#with-custom-submenu-indicator"
+          - button "Copy Anchor Link" [ref=f40e399]
+        - heading [level=3] [ref=f40e405]:
+          - link "Custom Trigger" [ref=f40e406] [cursor=pointer]:
+            - /url: "#custom-trigger"
+          - button "Copy Anchor Link" [ref=f40e407]
+        - heading [level=3] [ref=f40e413]:
+          - link "Long Press Trigger" [ref=f40e414] [cursor=pointer]:
+            - /url: "#long-press-trigger"
+          - button "Copy Anchor Link" [ref=f40e415]
+        - heading [level=2] [ref=f40e421]:
+          - link "Customization" [ref=f40e422] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f40e423]
+        - heading [level=3] [ref=f40e428]:
+          - link "Tailwind CSS" [ref=f40e429] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f40e430]
+        - heading [level=3] [ref=f40e436]:
+          - link "Global CSS" [ref=f40e437] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f40e438]
+        - paragraph [ref=f40e443]:
+          - text: To customize the Dropdown component classes, you can use the
+          - code [ref=f40e444]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f40e445] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f40e446]:
+          - button "Copy Text" [ref=f40e448] [cursor=pointer]
+          - region [ref=f40e449]:
+            - code [ref=f40e451]:
+              - generic [ref=f40e452]: "@layer components {"
+              - generic [ref=f40e453]: ".dropdown {"
+              - generic [ref=f40e454]: "@apply flex flex-col gap-1;"
+              - generic [ref=f40e455]: "}"
+              - generic [ref=f40e457]: ".dropdown__trigger {"
+              - generic [ref=f40e458]: "@apply outline-none;"
+              - generic [ref=f40e459]: "}"
+              - generic [ref=f40e461]: ".dropdown__popover {"
+              - generic [ref=f40e462]: "@apply rounded-lg border border-border bg-overlay p-2;"
+              - generic [ref=f40e463]: "}"
+              - generic [ref=f40e465]: ".dropdown__menu {"
+              - generic [ref=f40e466]: "@apply flex flex-col gap-1;"
+              - generic [ref=f40e467]: "}"
+              - generic [ref=f40e468]: "}"
+        - heading [level=2] [ref=f40e469]:
+          - link "Styling Reference" [ref=f40e470] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f40e471]
+        - paragraph [ref=f40e476]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f40e477] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f40e478]:
+          - link "CSS Classes" [ref=f40e479] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f40e480]
+        - paragraph [ref=f40e485]:
+          - text: The Dropdown component uses these CSS classes (
+          - link "View source styles" [ref=f40e486] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/dropdown.css
+          - text: "):"
+        - heading [level=4] [ref=f40e487]:
+          - link "Base Classes" [ref=f40e488] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e489]
+        - list [ref=f40e494]:
+          - listitem [ref=f40e495]:
+            - code [ref=f40e496]: .dropdown
+            - text: "- Base dropdown container"
+          - listitem [ref=f40e497]:
+            - code [ref=f40e498]: .dropdown__trigger
+            - text: "- The button or element that triggers the dropdown"
+          - listitem [ref=f40e499]:
+            - code [ref=f40e500]: .dropdown__popover
+            - text: "- The popover container"
+          - listitem [ref=f40e501]:
+            - code [ref=f40e502]: .dropdown__menu
+            - text: "- The menu container inside the popover"
+        - heading [level=4] [ref=f40e503]:
+          - link "State Classes" [ref=f40e504] [cursor=pointer]:
+            - /url: "#state-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e505]
+        - list [ref=f40e510]:
+          - listitem [ref=f40e511]:
+            - code [ref=f40e512]: .dropdown__trigger[data-focus-visible="true"]
+            - text: "- Focused trigger state"
+          - listitem [ref=f40e513]:
+            - code [ref=f40e514]: .dropdown__trigger[data-disabled="true"]
+            - text: "- Disabled trigger state"
+          - listitem [ref=f40e515]:
+            - code [ref=f40e516]: .dropdown__trigger[data-pressed="true"]
+            - text: "- Pressed trigger state"
+          - listitem [ref=f40e517]:
+            - code [ref=f40e518]: .dropdown__popover[data-entering]
+            - text: "- Entering animation state"
+          - listitem [ref=f40e519]:
+            - code [ref=f40e520]: .dropdown__popover[data-exiting]
+            - text: "- Exiting animation state"
+          - listitem [ref=f40e521]:
+            - code [ref=f40e522]: .dropdown__menu[data-selection-mode="single"]
+            - text: "- Single selection mode"
+          - listitem [ref=f40e523]:
+            - code [ref=f40e524]: .dropdown__menu[data-selection-mode="multiple"]
+            - text: "- Multiple selection mode"
+        - heading [level=3] [ref=f40e525]:
+          - link "Menu Component Classes" [ref=f40e526] [cursor=pointer]:
+            - /url: "#menu-component-classes"
+          - button "Copy Anchor Link" [ref=f40e527]
+        - paragraph [ref=f40e532]: "The Dropdown component uses Menu, MenuItem, and MenuSection as base components. These classes are also available for customization:"
+        - heading [level=4] [ref=f40e533]:
+          - link "Menu Classes" [ref=f40e534] [cursor=pointer]:
+            - /url: "#menu-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e535]
+        - list [ref=f40e540]:
+          - listitem [ref=f40e541]:
+            - code [ref=f40e542]: .menu
+            - text: "- Base menu container ("
+            - link "menu.css" [ref=f40e543] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/menu.css
+            - text: )
+            - list [ref=f40e544]:
+              - listitem [ref=f40e545]:
+                - code [ref=f40e546]: "[data-slot=\"separator\"]"
+                - text: "- Separator elements within the menu"
+        - heading [level=4] [ref=f40e547]:
+          - link "MenuItem Classes" [ref=f40e548] [cursor=pointer]:
+            - /url: "#menuitem-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e549]
+        - list [ref=f40e554]:
+          - listitem [ref=f40e555]:
+            - code [ref=f40e556]: .menu-item
+            - text: "- Base menu item container ("
+            - link "menu-item.css" [ref=f40e557] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/menu-item.css
+            - text: )
+          - listitem [ref=f40e558]:
+            - code [ref=f40e559]: .menu-item__indicator
+            - text: "- Selection indicator (checkmark or dot)"
+            - list [ref=f40e560]:
+              - listitem [ref=f40e561]:
+                - code [ref=f40e562]: "[data-slot=\"menu-item-indicator--checkmark\"]"
+                - text: "- Checkmark indicator SVG"
+              - listitem [ref=f40e563]:
+                - code [ref=f40e564]: "[data-slot=\"menu-item-indicator--dot\"]"
+                - text: "- Dot indicator SVG"
+          - listitem [ref=f40e565]:
+            - code [ref=f40e566]: .menu-item__indicator--submenu
+            - text: "- Submenu indicator (chevron)"
+          - listitem [ref=f40e567]:
+            - code [ref=f40e568]: .menu-item--default
+            - text: "- Default variant styling"
+          - listitem [ref=f40e569]:
+            - code [ref=f40e570]: .menu-item--danger
+            - text: "- Danger variant styling"
+        - heading [level=4] [ref=f40e571]:
+          - link "MenuItem State Classes" [ref=f40e572] [cursor=pointer]:
+            - /url: "#menuitem-state-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e573]
+        - list [ref=f40e578]:
+          - listitem [ref=f40e579]:
+            - code [ref=f40e580]: .menu-item[data-focus-visible="true"]
+            - text: "- Focused item state (keyboard focus)"
+          - listitem [ref=f40e581]:
+            - code [ref=f40e582]: .menu-item[data-focus="true"]
+            - text: "- Focused item state"
+          - listitem [ref=f40e583]:
+            - code [ref=f40e584]: .menu-item[data-pressed]
+            - text: "- Pressed item state"
+          - listitem [ref=f40e585]:
+            - code [ref=f40e586]: .menu-item[data-hovered]
+            - text: "- Hovered item state"
+          - listitem [ref=f40e587]:
+            - code [ref=f40e588]: .menu-item[data-selected="true"]
+            - text: "- Selected item state"
+          - listitem [ref=f40e589]:
+            - code [ref=f40e590]: .menu-item[data-disabled]
+            - text: "- Disabled item state"
+          - listitem [ref=f40e591]:
+            - code [ref=f40e592]: .menu-item[data-has-submenu="true"]
+            - text: "- Item with submenu"
+          - listitem [ref=f40e593]:
+            - code [ref=f40e594]: .menu-item[data-selection-mode="single"]
+            - text: "- Single selection mode"
+          - listitem [ref=f40e595]:
+            - code [ref=f40e596]: .menu-item[data-selection-mode="multiple"]
+            - text: "- Multiple selection mode"
+          - listitem [ref=f40e597]:
+            - code [ref=f40e598]: .menu-item[aria-checked="true"]
+            - text: "- Checked item (ARIA)"
+          - listitem [ref=f40e599]:
+            - code [ref=f40e600]: .menu-item[aria-selected="true"]
+            - text: "- Selected item (ARIA)"
+        - heading [level=4] [ref=f40e601]:
+          - link "MenuSection Classes" [ref=f40e602] [cursor=pointer]:
+            - /url: "#menusection-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e603]
+        - list [ref=f40e608]:
+          - listitem [ref=f40e609]:
+            - code [ref=f40e610]: .menu-section
+            - text: "- Base menu section container ("
+            - link "menu-section.css" [ref=f40e611] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/menu-section.css
+            - text: )
+        - heading [level=3] [ref=f40e612]:
+          - link "Interactive States" [ref=f40e613] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f40e614]
+        - paragraph [ref=f40e619]: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list [ref=f40e620]:
+          - listitem [ref=f40e621]:
+            - strong [ref=f40e622]: Hover
+            - text: ":"
+            - code [ref=f40e623]: :hover
+            - text: or
+            - code [ref=f40e624]: "[data-hovered=\"true\"]"
+            - text: on trigger and items
+          - listitem [ref=f40e625]:
+            - strong [ref=f40e626]: Focus
+            - text: ":"
+            - code [ref=f40e627]: :focus-visible
+            - text: or
+            - code [ref=f40e628]: "[data-focus-visible=\"true\"]"
+            - text: on trigger and items
+          - listitem [ref=f40e629]:
+            - strong [ref=f40e630]: Disabled
+            - text: ":"
+            - code [ref=f40e631]: :disabled
+            - text: or
+            - code [ref=f40e632]: "[data-disabled=\"true\"]"
+            - text: on trigger and items
+          - listitem [ref=f40e633]:
+            - strong [ref=f40e634]: Pressed
+            - text: ":"
+            - code [ref=f40e635]: :active
+            - text: or
+            - code [ref=f40e636]: "[data-pressed=\"true\"]"
+            - text: on trigger and items
+          - listitem [ref=f40e637]:
+            - strong [ref=f40e638]: Selected
+            - text: ":"
+            - code [ref=f40e639]: "[data-selected=\"true\"]"
+            - text: or
+            - code [ref=f40e640]: "[aria-selected=\"true\"]"
+            - text: on items
+        - heading [level=2] [ref=f40e641]:
+          - link "API Reference" [ref=f40e642] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f40e643]
+        - heading [level=3] [ref=f40e648]:
+          - link "Dropdown" [ref=f40e649] [cursor=pointer]:
+            - /url: "#dropdown"
+          - button "Copy Anchor Link" [ref=f40e650]
+        - table [ref=f40e656]:
+          - rowgroup [ref=f40e657]:
+            - row [ref=f40e658]:
+              - columnheader "Prop" [ref=f40e659]
+              - columnheader "Type" [ref=f40e660]
+              - columnheader "Default" [ref=f40e661]
+              - columnheader "Description" [ref=f40e662]
+          - rowgroup [ref=f40e663]:
+            - row [ref=f40e664]:
+              - cell [ref=f40e665]:
+                - code [ref=f40e666]: isOpen
+              - cell [ref=f40e667]:
+                - code [ref=f40e668]: boolean
+              - cell "-" [ref=f40e669]
+              - cell "Sets the open state of the menu (controlled)" [ref=f40e670]
+            - row [ref=f40e671]:
+              - cell [ref=f40e672]:
+                - code [ref=f40e673]: defaultOpen
+              - cell [ref=f40e674]:
+                - code [ref=f40e675]: boolean
+              - cell "-" [ref=f40e676]
+              - cell "Sets the default open state of the menu (uncontrolled)" [ref=f40e677]
+            - row [ref=f40e678]:
+              - cell [ref=f40e679]:
+                - code [ref=f40e680]: onOpenChange
+              - cell [ref=f40e681]:
+                - code [ref=f40e682]: "(isOpen: boolean) => void"
+              - cell "-" [ref=f40e683]
+              - cell "Handler called when the open state changes" [ref=f40e684]
+            - row [ref=f40e685]:
+              - cell [ref=f40e686]:
+                - code [ref=f40e687]: trigger
+              - cell [ref=f40e688]:
+                - code [ref=f40e689]: "\"press\" | \"longPress\""
+              - cell [ref=f40e690]:
+                - code [ref=f40e691]: "\"press\""
+              - cell "The type of interaction that triggers the menu" [ref=f40e692]
+            - row [ref=f40e693]:
+              - cell [ref=f40e694]:
+                - code [ref=f40e695]: className
+              - cell [ref=f40e696]:
+                - code [ref=f40e697]: string
+              - cell "-" [ref=f40e698]
+              - cell "Additional CSS classes" [ref=f40e699]
+            - row [ref=f40e700]:
+              - cell [ref=f40e701]:
+                - code [ref=f40e702]: children
+              - cell [ref=f40e703]:
+                - code [ref=f40e704]: ReactNode
+              - cell "-" [ref=f40e705]
+              - cell "Dropdown content" [ref=f40e706]
+        - heading [level=3] [ref=f40e707]:
+          - link "Dropdown.Trigger" [ref=f40e708] [cursor=pointer]:
+            - /url: "#dropdowntrigger"
+          - button "Copy Anchor Link" [ref=f40e709]
+        - table [ref=f40e715]:
+          - rowgroup [ref=f40e716]:
+            - row [ref=f40e717]:
+              - columnheader "Prop" [ref=f40e718]
+              - columnheader "Type" [ref=f40e719]
+              - columnheader "Default" [ref=f40e720]
+              - columnheader "Description" [ref=f40e721]
+          - rowgroup [ref=f40e722]:
+            - row [ref=f40e723]:
+              - cell [ref=f40e724]:
+                - code [ref=f40e725]: className
+              - cell [ref=f40e726]:
+                - code [ref=f40e727]: string
+              - cell "-" [ref=f40e728]
+              - cell "Additional CSS classes" [ref=f40e729]
+            - row [ref=f40e730]:
+              - cell [ref=f40e731]:
+                - code [ref=f40e732]: children
+              - cell [ref=f40e733]:
+                - code [ref=f40e734]: ReactNode | RenderFunction
+              - cell "-" [ref=f40e735]
+              - cell "Trigger content or render function" [ref=f40e736]
+        - paragraph [ref=f40e737]:
+          - text: All
+          - link "Button" [ref=f40e738] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Button.html
+          - text: props are also supported when using a Button as the trigger.
+        - heading [level=3] [ref=f40e739]:
+          - link "Dropdown.Popover" [ref=f40e740] [cursor=pointer]:
+            - /url: "#dropdownpopover"
+          - button "Copy Anchor Link" [ref=f40e741]
+        - table [ref=f40e747]:
+          - rowgroup [ref=f40e748]:
+            - row [ref=f40e749]:
+              - columnheader "Prop" [ref=f40e750]
+              - columnheader "Type" [ref=f40e751]
+              - columnheader "Default" [ref=f40e752]
+              - columnheader "Description" [ref=f40e753]
+          - rowgroup [ref=f40e754]:
+            - row [ref=f40e755]:
+              - cell [ref=f40e756]:
+                - code [ref=f40e757]: placement
+              - cell [ref=f40e758]:
+                - code [ref=f40e759]: "\"bottom\" | \"bottom left\" | \"bottom right\" | \"bottom start\" | \"bottom end\" | \"top\" | \"top left\" | \"top right\" | \"top start\" | \"top end\" | \"left\" | \"left top\" | \"left bottom\" | \"start\" | \"start top\" | \"start bottom\" | \"right\" | \"right top\" | \"right bottom\" | \"end\" | \"end top\" | \"end bottom\""
+              - cell [ref=f40e760]:
+                - code [ref=f40e761]: "\"bottom\""
+              - cell "Placement of the popover relative to the trigger" [ref=f40e762]
+            - row [ref=f40e763]:
+              - cell [ref=f40e764]:
+                - code [ref=f40e765]: className
+              - cell [ref=f40e766]:
+                - code [ref=f40e767]: string
+              - cell "-" [ref=f40e768]
+              - cell "Additional CSS classes" [ref=f40e769]
+            - row [ref=f40e770]:
+              - cell [ref=f40e771]:
+                - code [ref=f40e772]: children
+              - cell [ref=f40e773]:
+                - code [ref=f40e774]: ReactNode
+              - cell "-" [ref=f40e775]
+              - cell "Content children" [ref=f40e776]
+        - paragraph [ref=f40e777]:
+          - text: All
+          - link "Popover" [ref=f40e778] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Popover.html
+          - text: props are also supported.
+        - heading [level=3] [ref=f40e779]:
+          - link "Dropdown.Menu" [ref=f40e780] [cursor=pointer]:
+            - /url: "#dropdownmenu"
+          - button "Copy Anchor Link" [ref=f40e781]
+        - table [ref=f40e787]:
+          - rowgroup [ref=f40e788]:
+            - row [ref=f40e789]:
+              - columnheader "Prop" [ref=f40e790]
+              - columnheader "Type" [ref=f40e791]
+              - columnheader "Default" [ref=f40e792]
+              - columnheader "Description" [ref=f40e793]
+          - rowgroup [ref=f40e794]:
+            - row [ref=f40e795]:
+              - cell [ref=f40e796]:
+                - code [ref=f40e797]: selectionMode
+              - cell [ref=f40e798]:
+                - code [ref=f40e799]: "\"single\" | \"multiple\" | \"none\""
+              - cell [ref=f40e800]:
+                - code [ref=f40e801]: "\"none\""
+              - cell "Whether single or multiple selection is enabled" [ref=f40e802]
+            - row [ref=f40e803]:
+              - cell [ref=f40e804]:
+                - code [ref=f40e805]: selectedKeys
+              - cell [ref=f40e806]:
+                - code [ref=f40e807]: Iterable<Key>
+              - cell "-" [ref=f40e808]
+              - cell "The currently selected keys (controlled)" [ref=f40e809]
+            - row [ref=f40e810]:
+              - cell [ref=f40e811]:
+                - code [ref=f40e812]: defaultSelectedKeys
+              - cell [ref=f40e813]:
+                - code [ref=f40e814]: Iterable<Key>
+              - cell "-" [ref=f40e815]
+              - cell "The initial selected keys (uncontrolled)" [ref=f40e816]
+            - row [ref=f40e817]:
+              - cell [ref=f40e818]:
+                - code [ref=f40e819]: onSelectionChange
+              - cell [ref=f40e820]:
+                - code [ref=f40e821]: "(keys: Selection) => void"
+              - cell "-" [ref=f40e822]
+              - cell "Handler called when the selection changes" [ref=f40e823]
+            - row [ref=f40e824]:
+              - cell [ref=f40e825]:
+                - code [ref=f40e826]: disabledKeys
+              - cell [ref=f40e827]:
+                - code [ref=f40e828]: Iterable<Key>
+              - cell "-" [ref=f40e829]
+              - cell "Keys of disabled items" [ref=f40e830]
+            - row [ref=f40e831]:
+              - cell [ref=f40e832]:
+                - code [ref=f40e833]: onAction
+              - cell [ref=f40e834]:
+                - code [ref=f40e835]: "(key: Key) => void"
+              - cell "-" [ref=f40e836]
+              - cell "Handler called when an item is activated" [ref=f40e837]
+            - row [ref=f40e838]:
+              - cell [ref=f40e839]:
+                - code [ref=f40e840]: className
+              - cell [ref=f40e841]:
+                - code [ref=f40e842]: string
+              - cell "-" [ref=f40e843]
+              - cell "Additional CSS classes" [ref=f40e844]
+            - row [ref=f40e845]:
+              - cell [ref=f40e846]:
+                - code [ref=f40e847]: children
+              - cell [ref=f40e848]:
+                - code [ref=f40e849]: ReactNode
+              - cell "-" [ref=f40e850]
+              - cell "Menu content" [ref=f40e851]
+        - paragraph [ref=f40e852]:
+          - text: All
+          - link "Menu" [ref=f40e853] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Menu.html#menu
+          - text: props are also supported.
+        - heading [level=3] [ref=f40e854]:
+          - link "Dropdown.Section" [ref=f40e855] [cursor=pointer]:
+            - /url: "#dropdownsection"
+          - button "Copy Anchor Link" [ref=f40e856]
+        - table [ref=f40e862]:
+          - rowgroup [ref=f40e863]:
+            - row [ref=f40e864]:
+              - columnheader "Prop" [ref=f40e865]
+              - columnheader "Type" [ref=f40e866]
+              - columnheader "Default" [ref=f40e867]
+              - columnheader "Description" [ref=f40e868]
+          - rowgroup [ref=f40e869]:
+            - row [ref=f40e870]:
+              - cell [ref=f40e871]:
+                - code [ref=f40e872]: selectionMode
+              - cell [ref=f40e873]:
+                - code [ref=f40e874]: "\"single\" | \"multiple\""
+              - cell "-" [ref=f40e875]
+              - cell "Selection mode for items within this section" [ref=f40e876]
+            - row [ref=f40e877]:
+              - cell [ref=f40e878]:
+                - code [ref=f40e879]: selectedKeys
+              - cell [ref=f40e880]:
+                - code [ref=f40e881]: Iterable<Key>
+              - cell "-" [ref=f40e882]
+              - cell "The currently selected keys (controlled)" [ref=f40e883]
+            - row [ref=f40e884]:
+              - cell [ref=f40e885]:
+                - code [ref=f40e886]: defaultSelectedKeys
+              - cell [ref=f40e887]:
+                - code [ref=f40e888]: Iterable<Key>
+              - cell "-" [ref=f40e889]
+              - cell "The initial selected keys (uncontrolled)" [ref=f40e890]
+            - row [ref=f40e891]:
+              - cell [ref=f40e892]:
+                - code [ref=f40e893]: onSelectionChange
+              - cell [ref=f40e894]:
+                - code [ref=f40e895]: "(keys: Selection) => void"
+              - cell "-" [ref=f40e896]
+              - cell "Handler called when the selection changes" [ref=f40e897]
+            - row [ref=f40e898]:
+              - cell [ref=f40e899]:
+                - code [ref=f40e900]: disabledKeys
+              - cell [ref=f40e901]:
+                - code [ref=f40e902]: Iterable<Key>
+              - cell "-" [ref=f40e903]
+              - cell "Keys of disabled items" [ref=f40e904]
+            - row [ref=f40e905]:
+              - cell [ref=f40e906]:
+                - code [ref=f40e907]: className
+              - cell [ref=f40e908]:
+                - code [ref=f40e909]: string
+              - cell "-" [ref=f40e910]
+              - cell "Additional CSS classes" [ref=f40e911]
+            - row [ref=f40e912]:
+              - cell [ref=f40e913]:
+                - code [ref=f40e914]: children
+              - cell [ref=f40e915]:
+                - code [ref=f40e916]: ReactNode
+              - cell "-" [ref=f40e917]
+              - cell "Section content" [ref=f40e918]
+        - paragraph [ref=f40e919]:
+          - text: All
+          - link "MenuSection" [ref=f40e920] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Menu.html#menusection
+          - text: props are also supported.
+        - heading [level=3] [ref=f40e921]:
+          - link "Dropdown.Item" [ref=f40e922] [cursor=pointer]:
+            - /url: "#dropdownitem"
+          - button "Copy Anchor Link" [ref=f40e923]
+        - table [ref=f40e929]:
+          - rowgroup [ref=f40e930]:
+            - row [ref=f40e931]:
+              - columnheader "Prop" [ref=f40e932]
+              - columnheader "Type" [ref=f40e933]
+              - columnheader "Default" [ref=f40e934]
+              - columnheader "Description" [ref=f40e935]
+          - rowgroup [ref=f40e936]:
+            - row [ref=f40e937]:
+              - cell [ref=f40e938]:
+                - code [ref=f40e939]: id
+              - cell [ref=f40e940]:
+                - code [ref=f40e941]: Key
+              - cell "-" [ref=f40e942]
+              - cell "Unique identifier for the item" [ref=f40e943]
+            - row [ref=f40e944]:
+              - cell [ref=f40e945]:
+                - code [ref=f40e946]: textValue
+              - cell [ref=f40e947]:
+                - code [ref=f40e948]: string
+              - cell "-" [ref=f40e949]
+              - cell "Text content of the item for typeahead" [ref=f40e950]
+            - row [ref=f40e951]:
+              - cell [ref=f40e952]:
+                - code [ref=f40e953]: variant
+              - cell [ref=f40e954]:
+                - code [ref=f40e955]: "\"default\" | \"danger\""
+              - cell [ref=f40e956]:
+                - code [ref=f40e957]: "\"default\""
+              - cell "Visual variant of the item" [ref=f40e958]
+            - row [ref=f40e959]:
+              - cell [ref=f40e960]:
+                - code [ref=f40e961]: className
+              - cell [ref=f40e962]:
+                - code [ref=f40e963]: string
+              - cell "-" [ref=f40e964]
+              - cell "Additional CSS classes" [ref=f40e965]
+            - row [ref=f40e966]:
+              - cell [ref=f40e967]:
+                - code [ref=f40e968]: children
+              - cell [ref=f40e969]:
+                - code [ref=f40e970]: ReactNode | RenderFunction
+              - cell "-" [ref=f40e971]
+              - cell "Item content or render function" [ref=f40e972]
+        - paragraph [ref=f40e973]:
+          - text: All
+          - link "MenuItem" [ref=f40e974] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Menu.html#menuitem
+          - text: props are also supported.
+        - heading [level=3] [ref=f40e975]:
+          - link "Dropdown.ItemIndicator" [ref=f40e976] [cursor=pointer]:
+            - /url: "#dropdownitemindicator"
+          - button "Copy Anchor Link" [ref=f40e977]
+        - table [ref=f40e983]:
+          - rowgroup [ref=f40e984]:
+            - row [ref=f40e985]:
+              - columnheader "Prop" [ref=f40e986]
+              - columnheader "Type" [ref=f40e987]
+              - columnheader "Default" [ref=f40e988]
+              - columnheader "Description" [ref=f40e989]
+          - rowgroup [ref=f40e990]:
+            - row [ref=f40e991]:
+              - cell [ref=f40e992]:
+                - code [ref=f40e993]: type
+              - cell [ref=f40e994]:
+                - code [ref=f40e995]: "\"checkmark\" | \"dot\""
+              - cell [ref=f40e996]:
+                - code [ref=f40e997]: "\"checkmark\""
+              - cell "Type of indicator to display" [ref=f40e998]
+            - row [ref=f40e999]:
+              - cell [ref=f40e1000]:
+                - code [ref=f40e1001]: className
+              - cell [ref=f40e1002]:
+                - code [ref=f40e1003]: string
+              - cell "-" [ref=f40e1004]
+              - cell "Additional CSS classes" [ref=f40e1005]
+            - row [ref=f40e1006]:
+              - cell [ref=f40e1007]:
+                - code [ref=f40e1008]: children
+              - cell [ref=f40e1009]:
+                - code [ref=f40e1010]: ReactNode | RenderFunction
+              - cell "-" [ref=f40e1011]
+              - cell "Custom indicator content or render function" [ref=f40e1012]
+        - paragraph [ref=f40e1013]: "When using a render function, these values are provided:"
+        - table [ref=f40e1015]:
+          - rowgroup [ref=f40e1016]:
+            - row [ref=f40e1017]:
+              - columnheader "Prop" [ref=f40e1018]
+              - columnheader "Type" [ref=f40e1019]
+              - columnheader "Description" [ref=f40e1020]
+          - rowgroup [ref=f40e1021]:
+            - row [ref=f40e1022]:
+              - cell [ref=f40e1023]:
+                - code [ref=f40e1024]: isSelected
+              - cell [ref=f40e1025]:
+                - code [ref=f40e1026]: boolean
+              - cell "Whether the item is selected" [ref=f40e1027]
+            - row [ref=f40e1028]:
+              - cell [ref=f40e1029]:
+                - code [ref=f40e1030]: isIndeterminate
+              - cell [ref=f40e1031]:
+                - code [ref=f40e1032]: boolean
+              - cell "Whether the item is in an indeterminate state" [ref=f40e1033]
+        - heading [level=3] [ref=f40e1034]:
+          - link "Dropdown.SubmenuIndicator" [ref=f40e1035] [cursor=pointer]:
+            - /url: "#dropdownsubmenuindicator"
+          - button "Copy Anchor Link" [ref=f40e1036]
+        - table [ref=f40e1042]:
+          - rowgroup [ref=f40e1043]:
+            - row [ref=f40e1044]:
+              - columnheader "Prop" [ref=f40e1045]
+              - columnheader "Type" [ref=f40e1046]
+              - columnheader "Default" [ref=f40e1047]
+              - columnheader "Description" [ref=f40e1048]
+          - rowgroup [ref=f40e1049]:
+            - row [ref=f40e1050]:
+              - cell [ref=f40e1051]:
+                - code [ref=f40e1052]: className
+              - cell [ref=f40e1053]:
+                - code [ref=f40e1054]: string
+              - cell "-" [ref=f40e1055]
+              - cell "Additional CSS classes" [ref=f40e1056]
+            - row [ref=f40e1057]:
+              - cell [ref=f40e1058]:
+                - code [ref=f40e1059]: children
+              - cell [ref=f40e1060]:
+                - code [ref=f40e1061]: ReactNode
+              - cell "-" [ref=f40e1062]
+              - cell "Custom indicator content" [ref=f40e1063]
+        - heading [level=3] [ref=f40e1064]:
+          - link "Dropdown.SubmenuTrigger" [ref=f40e1065] [cursor=pointer]:
+            - /url: "#dropdownsubmenutrigger"
+          - button "Copy Anchor Link" [ref=f40e1066]
+        - table [ref=f40e1072]:
+          - rowgroup [ref=f40e1073]:
+            - row [ref=f40e1074]:
+              - columnheader "Prop" [ref=f40e1075]
+              - columnheader "Type" [ref=f40e1076]
+              - columnheader "Default" [ref=f40e1077]
+              - columnheader "Description" [ref=f40e1078]
+          - rowgroup [ref=f40e1079]:
+            - row [ref=f40e1080]:
+              - cell [ref=f40e1081]:
+                - code [ref=f40e1082]: className
+              - cell [ref=f40e1083]:
+                - code [ref=f40e1084]: string
+              - cell "-" [ref=f40e1085]
+              - cell "Additional CSS classes" [ref=f40e1086]
+            - row [ref=f40e1087]:
+              - cell [ref=f40e1088]:
+                - code [ref=f40e1089]: children
+              - cell [ref=f40e1090]:
+                - code [ref=f40e1091]: ReactNode
+              - cell "-" [ref=f40e1092]
+              - cell "Submenu trigger content" [ref=f40e1093]
+        - paragraph [ref=f40e1094]:
+          - text: All
+          - link "SubmenuTrigger" [ref=f40e1095] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Menu.html#submenutrigger
+          - text: props are also supported.
+        - heading [level=3] [ref=f40e1096]:
+          - link "Render Props" [ref=f40e1097] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f40e1098]
+        - paragraph [ref=f40e1103]: "When using render functions with Dropdown.Item, these values are provided:"
+        - table [ref=f40e1105]:
+          - rowgroup [ref=f40e1106]:
+            - row [ref=f40e1107]:
+              - columnheader "Prop" [ref=f40e1108]
+              - columnheader "Type" [ref=f40e1109]
+              - columnheader "Description" [ref=f40e1110]
+          - rowgroup [ref=f40e1111]:
+            - row [ref=f40e1112]:
+              - cell [ref=f40e1113]:
+                - code [ref=f40e1114]: isSelected
+              - cell [ref=f40e1115]:
+                - code [ref=f40e1116]: boolean
+              - cell "Whether the item is selected" [ref=f40e1117]
+            - row [ref=f40e1118]:
+              - cell [ref=f40e1119]:
+                - code [ref=f40e1120]: isFocused
+              - cell [ref=f40e1121]:
+                - code [ref=f40e1122]: boolean
+              - cell "Whether the item is focused" [ref=f40e1123]
+            - row [ref=f40e1124]:
+              - cell [ref=f40e1125]:
+                - code [ref=f40e1126]: isDisabled
+              - cell [ref=f40e1127]:
+                - code [ref=f40e1128]: boolean
+              - cell "Whether the item is disabled" [ref=f40e1129]
+            - row [ref=f40e1130]:
+              - cell [ref=f40e1131]:
+                - code [ref=f40e1132]: isPressed
+              - cell [ref=f40e1133]:
+                - code [ref=f40e1134]: boolean
+              - cell "Whether the item is being pressed" [ref=f40e1135]
+        - heading [level=2] [ref=f40e1136]:
+          - link "Accessibility" [ref=f40e1137] [cursor=pointer]:
+            - /url: "#accessibility"
+          - button "Copy Anchor Link" [ref=f40e1138]
+        - paragraph [ref=f40e1143]: "The Dropdown component implements the ARIA menu pattern and provides:"
+        - list [ref=f40e1144]:
+          - listitem [ref=f40e1145]: Full keyboard navigation support (arrow keys, home/end, typeahead)
+          - listitem [ref=f40e1146]: Screen reader announcements for actions and selection changes
+          - listitem [ref=f40e1147]: Proper focus management
+          - listitem [ref=f40e1148]: Support for disabled states
+          - listitem [ref=f40e1149]: Long press interaction support
+          - listitem [ref=f40e1150]: Submenu navigation
+        - paragraph [ref=f40e1151]:
+          - text: For more information, see the
+          - link "React Aria Menu documentation" [ref=f40e1152] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Menu.html#menu
+          - text: .
+        - heading [level=2] [ref=f40e1153]:
+          - link "Related Components" [ref=f40e1154] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f40e1155]
+        - generic [ref=f40e1160]:
+          - generic [ref=f40e1161]:
+            - link "Button" [ref=f40e1163] [cursor=pointer]:
+              - /url: /en/docs/components/button
+            - generic [ref=f40e1165]:
+              - link "Button":
+                - /url: /en/docs/components/button
+                - img "Button" [ref=f40e1166] [cursor=pointer]
+          - generic [ref=f40e1167]:
+            - link "Popover" [ref=f40e1169] [cursor=pointer]:
+              - /url: /en/docs/components/popover
+            - generic [ref=f40e1171]:
+              - link "Popover":
+                - /url: /en/docs/components/popover
+                - img "Popover" [ref=f40e1172] [cursor=pointer]
+          - generic [ref=f40e1173]:
+            - link "Separator" [ref=f40e1175] [cursor=pointer]:
+              - /url: /en/docs/components/separator
+            - generic [ref=f40e1177]:
+              - link "Separator":
+                - /url: /en/docs/components/separator
+                - img "Separator" [ref=f40e1178] [cursor=pointer]
+      - generic [ref=f40e1179]:
+        - link [ref=f40e1180] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+          - paragraph [ref=f40e1184]: Drawer
+          - paragraph [ref=f40e1185]: Slide-out panel for supplementary content and actions
+        - link [ref=f40e1186] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+          - paragraph [ref=f40e1190]: ErrorMessage
+          - paragraph [ref=f40e1191]: A low-level error message component for displaying errors
+    - generic [ref=f40e1192]:
+      - heading "On this page" [level=3] [ref=f40e1193]
+      - generic [ref=f40e1198]:
+        - link "Usage" [ref=f40e1199] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f40e1200] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f40e1201] [cursor=pointer]:
+          - /url: "#examples"
+        - link "With Icons" [ref=f40e1202] [cursor=pointer]:
+          - /url: "#with-icons"
+        - link "With Descriptions" [ref=f40e1203] [cursor=pointer]:
+          - /url: "#with-descriptions"
+        - link "With Disabled Items" [ref=f40e1204] [cursor=pointer]:
+          - /url: "#with-disabled-items"
+        - link "With Sections" [ref=f40e1205] [cursor=pointer]:
+          - /url: "#with-sections"
+        - link "With Multiple Selection" [ref=f40e1206] [cursor=pointer]:
+          - /url: "#with-multiple-selection"
+        - link "Controlled" [ref=f40e1207] [cursor=pointer]:
+          - /url: "#controlled"
+        - link "Controlled Open State" [ref=f40e1208] [cursor=pointer]:
+          - /url: "#controlled-open-state"
+        - link "With Single Selection" [ref=f40e1209] [cursor=pointer]:
+          - /url: "#with-single-selection"
+        - link "Single With Custom Indicator" [ref=f40e1210] [cursor=pointer]:
+          - /url: "#single-with-custom-indicator"
+        - link "With Section Level Selection" [ref=f40e1211] [cursor=pointer]:
+          - /url: "#with-section-level-selection"
+        - link "With Keyboard Shortcuts" [ref=f40e1212] [cursor=pointer]:
+          - /url: "#with-keyboard-shortcuts"
+        - link "With Submenus" [ref=f40e1213] [cursor=pointer]:
+          - /url: "#with-submenus"
+        - link "With Custom Submenu Indicator" [ref=f40e1214] [cursor=pointer]:
+          - /url: "#with-custom-submenu-indicator"
+        - link "Custom Trigger" [ref=f40e1215] [cursor=pointer]:
+          - /url: "#custom-trigger"
+        - link "Long Press Trigger" [ref=f40e1216] [cursor=pointer]:
+          - /url: "#long-press-trigger"
+        - link "Customization" [ref=f40e1217] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f40e1218] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f40e1219] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f40e1220] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f40e1221] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Menu Component Classes" [ref=f40e1222] [cursor=pointer]:
+          - /url: "#menu-component-classes"
+        - link "Interactive States" [ref=f40e1223] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f40e1224] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Dropdown" [ref=f40e1225] [cursor=pointer]:
+          - /url: "#dropdown"
+        - link "Dropdown.Trigger" [ref=f40e1226] [cursor=pointer]:
+          - /url: "#dropdowntrigger"
+        - link "Dropdown.Popover" [ref=f40e1227] [cursor=pointer]:
+          - /url: "#dropdownpopover"
+        - link "Dropdown.Menu" [ref=f40e1228] [cursor=pointer]:
+          - /url: "#dropdownmenu"
+        - link "Dropdown.Section" [ref=f40e1229] [cursor=pointer]:
+          - /url: "#dropdownsection"
+        - link "Dropdown.Item" [ref=f40e1230] [cursor=pointer]:
+          - /url: "#dropdownitem"
+        - link "Dropdown.ItemIndicator" [ref=f40e1231] [cursor=pointer]:
+          - /url: "#dropdownitemindicator"
+        - link "Dropdown.SubmenuIndicator" [ref=f40e1232] [cursor=pointer]:
+          - /url: "#dropdownsubmenuindicator"
+        - link "Dropdown.SubmenuTrigger" [ref=f40e1233] [cursor=pointer]:
+          - /url: "#dropdownsubmenutrigger"
+        - link "Render Props" [ref=f40e1234] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Accessibility" [ref=f40e1235] [cursor=pointer]:
+          - /url: "#accessibility"
+        - link "Related Components" [ref=f40e1236] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f40e1239]:
+        - generic [ref=f40e1240]:
+          - generic [ref=f40e1241]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f40e1242]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f40e1243] [cursor=pointer]
+  - generic [ref=f40e1245]:
+    - generic [ref=f40e1246]: Now available
+    - button "Close" [ref=f40e1260] [cursor=pointer]
+    - generic [ref=f40e1261]:
+      - generic [ref=f40e1262]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f40e1263]
+        - paragraph [ref=f40e1264]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f40e1265]:
+        - button "Close" [ref=f40e1266] [cursor=pointer]
+        - link "Explore Pro" [ref=f40e1267] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f40e1268]:
+    - button "Open data assistant" [ref=f41e3] [cursor=pointer]
+  - alert [ref=f40e1269]

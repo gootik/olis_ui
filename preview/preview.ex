@@ -437,12 +437,6 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "combo_box.js"])))
   end
 
-  get "/toolbar.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "toolbar.js"])))
-  end
-
   get "/color_field.js" do
     conn
     |> put_resp_content_type("text/javascript")

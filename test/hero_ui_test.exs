@@ -1071,6 +1071,8 @@ defmodule HeroUITest do
     assert html =~ "toolbar--vertical"
     assert html =~ "toolbar--attached"
     assert html =~ "data-hero-toolbar"
+    assert html =~ ~s(x-data="heroToolbar")
+    assert html =~ ~s|x-on:keydown="onKeyDown($event)"|
     assert html =~ "Actions"
 
     assert_raise ArgumentError, fn ->

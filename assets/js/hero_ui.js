@@ -6,7 +6,6 @@ import { installDateField } from "./date_field.js";
 import { installTimeField } from "./time_field.js";
 import { installDatePicker } from "./date_picker.js";
 import { installColorField } from "./color_field.js";
-import { installToolbar } from "./toolbar.js";
 import { installScrollShadow } from "./scroll_shadow.js";
 import { installAutocomplete } from "./autocomplete.js";
 import { installSheet } from "./sheet.js";
@@ -23,7 +22,6 @@ export function installHeroUI(root = document) {
   const removeTimeField = installTimeField(root);
   const removeDatePicker = installDatePicker(root);
   const removeColorField = installColorField(root);
-  const removeToolbar = installToolbar(root);
   const removeScrollShadow = installScrollShadow(root);
   const removeAutocomplete = installAutocomplete(root);
   const removeSheet = installSheet(root);
@@ -299,7 +297,6 @@ export function installHeroUI(root = document) {
     removeTimeField();
     removeDatePicker();
     removeColorField();
-    removeToolbar();
     removeScrollShadow();
     removeAutocomplete();
     removeSheet();

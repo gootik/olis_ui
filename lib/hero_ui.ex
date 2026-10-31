@@ -5894,6 +5894,10 @@ defmodule HeroUI do
       data-slot="toolbar"
       data-hero-toolbar
       data-orientation={@orientation}
+      x-data="heroToolbar"
+      x-on:focusin="onFocusIn($event)"
+      x-on:keydown="onKeyDown($event)"
+      x-on:phx:update.window="sync()"
       {@rest}
     >
       {render_slot(@inner_block)}

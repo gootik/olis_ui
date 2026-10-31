@@ -3,6 +3,7 @@ export function registerHeroPopover(Alpine) {
     ignoredState: null,
     pendingReason: null,
     destroyed: false,
+    motionTimer: null,
     trigger() {
       const ref = this.$refs.trigger;
       return ref?.matches('[data-hero-popover-trigger]') ? ref : ref?.querySelector('[data-hero-popover-trigger]');
@@ -17,6 +18,7 @@ export function registerHeroPopover(Alpine) {
     },
     destroy() {
       this.destroyed = true;
+      clearTimeout(this.motionTimer);
       const content = this.$refs.content;
       if (content?.matches(':popover-open')) content.hidePopover();
     },
@@ -89,6 +91,26 @@ export function registerHeroPopover(Alpine) {
       if (!close || close.closest('[data-hero-popover]') !== content || !content.matches(':popover-open')) return;
       if (this.$root.dataset.controlled === 'true') this.notify(false, 'close');
       else { this.pendingReason = 'close'; content.hidePopover(); trigger.focus({preventScroll:true}); }
+    },
+    beforeToggle(event) {
+      const content = this.$refs.content;
+      if (event.target !== content) return;
+      clearTimeout(this.motionTimer);
+      delete content.dataset.entering;
+      delete content.dataset.exiting;
+      const reduce = content.closest?.('[data-reduce-motion="true"]') || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      const state = event.newState === 'open' ? 'entering' : 'exiting';
+      content.dataset[state] = 'true';
+      // Browsers can omit animationend when an overlay is interrupted or removed.
+      this.motionTimer = setTimeout(() => { delete content.dataset[state]; this.motionTimer = null; }, 300);
+    },
+    animationEnd(event) {
+      if (event.target !== this.$refs.content || !event.animationName.startsWith('heroui-overlay-')) return;
+      clearTimeout(this.motionTimer);
+      this.motionTimer = null;
+      delete this.$refs.content.dataset.entering;
+      delete this.$refs.content.dataset.exiting;
     },
     toggle(event) {
       const content = this.$refs.content;

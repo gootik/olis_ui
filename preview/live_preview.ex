@@ -98,6 +98,10 @@ defmodule HeroUI.Preview.Live do
         topics: ["news"],
         rows: rows,
         table_selected: ["person-1"],
+        table_resize: "none",
+        listbox_selected: ["email"],
+        listbox_action: "none",
+        stream_has_more: true,
         sort_direction: "ascending",
         page: 1,
         bold: false,
@@ -182,6 +186,15 @@ defmodule HeroUI.Preview.Live do
   def handle_event("table_selection", %{"keys" => encoded}, socket),
     do: {:noreply, assign(socket, :table_selected, Jason.decode!(encoded))}
 
+  def handle_event("table_resize", %{"column" => key, "width" => width}, socket),
+    do: {:noreply, assign(socket, :table_resize, "#{key}: #{width}px")}
+
+  def handle_event("listbox_selection", %{"keys" => keys}, socket),
+    do: {:noreply, assign(socket, :listbox_selected, Jason.decode!(keys))}
+
+  def handle_event("listbox_action", %{"value" => value}, socket),
+    do: {:noreply, assign(socket, :listbox_action, value)}
+
   def handle_event("popover_change", %{"open" => open, "reason" => reason}, socket),
     do: {:noreply, assign(socket, controlled_popover_open: open == "true", popover_last: reason)}
 
@@ -210,6 +223,13 @@ defmodule HeroUI.Preview.Live do
 
   def handle_event("clear_people", _, socket),
     do: {:noreply, stream(socket, :people, [], reset: true)}
+
+  def handle_event("load_more_people", _, socket) do
+    {:noreply,
+     socket
+     |> assign(:stream_has_more, false)
+     |> stream_insert(:people, %{id: 101, name: "Jordan Park", role: "Researcher"})}
+  end
 
   def handle_event("page_changed", %{"page" => page}, socket) do
     {page, ""} = Integer.parse(page)
@@ -2060,6 +2080,37 @@ defmodule HeroUI.Preview.Live do
                 </p>
               </.preview_card>
               <.preview_card
+                title="Listbox sections"
+                description="Local multiple selection and actions."
+              >
+                <.listbox
+                  id="notification-list"
+                  label="Notifications"
+                  selection_mode="multiple"
+                  default_selected_keys={["email"]}
+                  on_selection_change="listbox_selection"
+                  on_action="listbox_action"
+                >
+                  <:section
+                    label="Delivery"
+                    items={[
+                      %{value: "email", label: "Email", description: "Send updates by email"},
+                      %{value: "push", label: "Push notifications"}
+                    ]}
+                  />
+                  <:section
+                    label="Other"
+                    items={[
+                      %{value: "sms", label: "SMS", disabled: true},
+                      %{value: "none", label: "Mute notifications", variant: "danger"}
+                    ]}
+                  />
+                </.listbox>
+                <p id="listbox-selection-state" class="mt-3 text-xs text-muted">
+                  Selected: {Enum.join(@listbox_selected, ", ")}; Action: {@listbox_action}
+                </p>
+              </.preview_card>
+              <.preview_card
                 title="Toolbar"
                 description="Use arrow keys to move between related controls."
                 class="lp-card-wide"
@@ -2934,12 +2985,35 @@ defmodule HeroUI.Preview.Live do
                     selection_mode="multiple"
                     selected_keys={@table_selected}
                     on_selection_change="table_selection"
+                    on_column_resize="table_resize"
                     sort_event="sort_people"
                     sort_by="name"
                     sort_direction={@sort_direction}
                   >
-                    <:col :let={person} label="Name" sort_key="name" row_header>{person.name}</:col>
-                    <:col :let={person} label="Role">{person.role}</:col>
+                    <:col
+                      :let={person}
+                      label="Name"
+                      key="name"
+                      sort_key="name"
+                      row_header
+                      resizable
+                      width={220}
+                      min_width={100}
+                      max_width={400}
+                    >
+                      {person.name}
+                    </:col>
+                    <:col
+                      :let={person}
+                      label="Role"
+                      key="role"
+                      resizable
+                      width={200}
+                      min_width={100}
+                      max_width={400}
+                    >
+                      {person.role}
+                    </:col>
                     <:footer>
                       <.pagination
                         class="max-w-full overflow-x-auto"
@@ -2954,6 +3028,9 @@ defmodule HeroUI.Preview.Live do
                   <p id="table-selection-state" class="mt-2 text-xs text-muted">
                     Selected: {Enum.join(@table_selected, ", ")}
                   </p>
+                  <p id="table-resize-state" class="mt-2 text-xs text-muted">
+                    Last resized column: {@table_resize}
+                  </p>
                   <h2>Streamed table</h2>
                   <.data_table
                     id="stream-table"
@@ -2961,6 +3038,8 @@ defmodule HeroUI.Preview.Live do
                     rows={@streams.people}
                     selection_mode="multiple"
                     row_label={fn person -> person.name end}
+                    on_load_more="load_more_people"
+                    has_more={@stream_has_more}
                   >
                     <:col :let={person} label="Name">{person.name}</:col>
                     <:col :let={person} label="Role">{person.role}</:col>

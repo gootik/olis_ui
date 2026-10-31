@@ -2624,6 +2624,67 @@ defmodule HeroUITest do
     assert populated =~ "Page 1 of 3"
   end
 
+  test "resizable table columns expose bounded accessible controls" do
+    cols = [
+      %{
+        label: "Name",
+        key: "name",
+        resizable: true,
+        width: 220,
+        min_width: 100,
+        max_width: 400,
+        sort_key: "name",
+        inner_block: fn _, row -> row.name end
+      },
+      %{label: "Role", key: "role", inner_block: fn _, row -> row.role end}
+    ]
+
+    attrs = %{
+      id: "people",
+      label: "People",
+      rows: [%{name: "Alex", role: "Designer"}],
+      col: cols,
+      sort_event: "sort",
+      on_column_resize: "resize"
+    }
+
+    html = render_component(&HeroUI.data_table/1, attrs)
+    assert html =~ ~s(data-table-column-key="name")
+    assert html =~ ~s(data-table-resizer="name")
+    assert html =~ ~s(aria-label="Resize Name column")
+    assert html =~ ~s(aria-valuemin="100")
+    assert html =~ ~s(aria-valuemax="400")
+    assert html =~ ~s(aria-valuenow="220")
+    assert html =~ ~s(phx-click="resize")
+    assert html =~ "table__resizable-container"
+    assert html =~ "table__column-resizer"
+    assert html =~ ~s(phx-value-sort="name")
+    refute html =~ ~s(data-table-resizer="role")
+
+    invalid = [
+      %{
+        label: "Name",
+        resizable: true,
+        width: 20,
+        min_width: 100,
+        inner_block: fn _, row -> row.name end
+      }
+    ]
+
+    assert_raise ArgumentError, ~r/table column widths/, fn ->
+      render_component(&HeroUI.data_table/1, %{attrs | col: invalid})
+    end
+
+    duplicate = [
+      %{label: "One", key: "same", inner_block: fn _, _ -> "one" end},
+      %{label: "Two", key: "same", inner_block: fn _, _ -> "two" end}
+    ]
+
+    assert_raise ArgumentError, ~r/column keys must be unique/, fn ->
+      render_component(&HeroUI.data_table/1, %{attrs | col: duplicate})
+    end
+  end
+
   test "tables expose Alpine grid navigation even without selection" do
     cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
 
@@ -2641,6 +2702,37 @@ defmodule HeroUITest do
     assert html =~ ~s(data-hero-table-row="true")
     assert html =~ ~s|x-bind:role="'grid'"|
     refute html =~ ~s(aria-selected=)
+  end
+
+  test "table load-more uses LiveView viewport events and reflects loading state" do
+    cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
+
+    attrs = %{
+      id: "people",
+      label: "People",
+      rows: [%{name: "Jane"}],
+      col: cols,
+      on_load_more: "load_more",
+      has_more: true
+    }
+
+    html = render_component(&HeroUI.data_table/1, attrs)
+    assert html =~ ~s(id="people-scroll")
+    assert html =~ ~s(phx-viewport-bottom="load_more")
+    assert html =~ ~s(id="people-load-more")
+    assert html =~ "Scroll for more"
+
+    loading = render_component(&HeroUI.data_table/1, Map.put(attrs, :loading, true))
+    refute loading =~ "phx-viewport-bottom"
+    assert loading =~ "Loading more"
+
+    done = render_component(&HeroUI.data_table/1, %{attrs | has_more: false})
+    refute done =~ "phx-viewport-bottom"
+    refute done =~ "people-load-more"
+
+    assert_raise ArgumentError, ~r/table id is required for load-more/, fn ->
+      render_component(&HeroUI.data_table/1, Map.delete(attrs, :id))
+    end
   end
 
   test "selectable tables reject ambiguous state and missing row keys" do
@@ -2949,6 +3041,73 @@ defmodule HeroUITest do
         label: "X",
         on_select: "choose",
         option: [hd(options), hd(options)]
+      })
+    end
+  end
+
+  test "listbox supports sections, local defaults, controlled state, actions and custom content" do
+    assigns = %{}
+
+    html =
+      rendered_to_string(~H"""
+      <HeroUI.listbox
+        id="choices"
+        label="Choices"
+        selection_mode="multiple"
+        default_selected_keys={["one"]}
+        on_selection_change="selection"
+        on_action="action"
+      >
+        <:option value="one" label="One" text_value="First"><strong>Custom One</strong></:option>
+        <:section
+          label="Other"
+          items={[
+            %{value: "two", label: "Two", description: "Second"},
+            %{value: "three", label: "Delete", variant: "danger", disabled: true}
+          ]}
+        />
+      </HeroUI.listbox>
+      """)
+
+    assert html =~ ~s(role="group")
+    assert html =~ ~s(aria-labelledby="choices-section-0")
+    assert html =~ ~s(data-controlled="false")
+    assert html =~ ~s(data-selection-mode="multiple")
+    assert html =~ ~s(data-text-value="First")
+    assert html =~ "<strong>Custom One</strong>"
+    assert html =~ "list-box-item--danger"
+    assert html =~ ~s(phx-click="selection")
+    assert html =~ ~s(phx-click="action")
+
+    none =
+      render_component(&HeroUI.listbox/1, %{
+        id: "actions",
+        label: "Actions",
+        selection_mode: "none",
+        on_action: "action",
+        option: [%{value: "run", label: "Run"}]
+      })
+
+    assert none =~ ~s(data-selection-mode="none")
+    refute none =~ "aria-selected="
+    refute none =~ "list-box-item__indicator"
+
+    assert_raise ArgumentError, ~r/unique string values/, fn ->
+      render_component(&HeroUI.listbox/1, %{
+        id: "dup",
+        label: "Dup",
+        option: [%{value: "a", label: "A"}],
+        section: [%{label: "Section", items: [%{value: "a", label: "Again"}]}]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/cannot combine/, fn ->
+      render_component(&HeroUI.listbox/1, %{
+        id: "dup",
+        label: "Dup",
+        selected_keys: [],
+        default_selected_keys: [],
+        option: [%{value: "a", label: "A"}]
       })
     end
   end

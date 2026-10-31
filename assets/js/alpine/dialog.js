@@ -3,14 +3,59 @@ export function registerHeroDialog(Alpine) {
   Alpine.data('heroDialog', () => ({
     ignoredCloseEvents: 0,
     destroyed: false,
+    closing: false,
+    animations: [],
     init() {
       const dialog = this.$root;
       if (!dialog.hasAttribute('data-hero-modal')) return;
       if (dialog.dataset.controlled === 'true' ? dialog.dataset.controlledOpen === 'true' : dialog.dataset.defaultOpen === 'true') this.show();
     },
-    show() { if (!this.$root.open) this.$root.showModal(); },
+    stopAnimations() {
+      for (const animation of this.animations) animation.cancel();
+      this.animations = [];
+    },
+    animate(opening) {
+      const dialog = this.$root;
+      if (typeof dialog.animate !== 'function' || dialog.closest?.('[data-reduce-motion="true"]') || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return null;
+      const placement = dialog.dataset.placement || 'auto';
+      const smallScreen = window.matchMedia?.('(max-width: 639px)').matches;
+      const offset = placement === 'top' ? '-0.25rem' : placement === 'bottom' || (placement === 'auto' && smallScreen) ? '0.25rem' : '0';
+      const scale = dialog.classList.contains('modal__dialog--full') ? 1 : 1.05;
+      const visible = {opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)'};
+      const hidden = opening ? {opacity: 0, transform: `translate3d(0, ${offset}, 0) scale(${scale})`} : {opacity: 0, transform: 'translate3d(0, 0, 0) scale(0.95)'};
+      const options = {duration: opening ? 250 : 100, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'};
+      const panel = dialog.animate(opening ? [hidden, visible] : [visible, hidden], options);
+      this.animations = [panel];
+      try {
+        this.animations.push(dialog.animate(opening ? [{opacity: 0}, {opacity: 1}] : [{opacity: 1}, {opacity: 0}], {duration: opening ? 150 : 100, easing: 'ease-out', pseudoElement: '::backdrop'}));
+      } catch (_) {
+        // Some browsers do not support animating native dialog backdrops.
+      }
+      for (const animation of this.animations) animation.finished.catch(() => {});
+      return panel;
+    },
+    show() {
+      if (this.$root.open) {
+        if (this.closing) { this.closing = false; this.stopAnimations(); }
+        return;
+      }
+      this.closing = false;
+      this.stopAnimations();
+      this.$root.showModal();
+      if (this.$root.hasAttribute('data-hero-modal')) this.animate(true);
+    },
     close() {
-      if (this.$root.open) { this.ignoredCloseEvents++; this.$root.close(); }
+      if (!this.$root.open || this.closing) return;
+      this.stopAnimations();
+      this.closing = true;
+      const panel = this.$root.hasAttribute('data-hero-modal') ? this.animate(false) : null;
+      const finish = () => {
+        if (!this.closing || this.destroyed) return;
+        this.closing = false;
+        this.animations = [];
+        if (this.$root.open) { this.ignoredCloseEvents++; this.$root.close(); }
+      };
+      if (panel) panel.finished.then(finish, () => {}); else finish();
     },
     notify(open, reason) {
       if (!this.$root.hasAttribute('data-hero-modal')) return;
@@ -23,7 +68,7 @@ export function registerHeroDialog(Alpine) {
       }
     },
     request(open, reason) {
-      if (this.$root.open === open) return;
+      if (open ? this.$root.open && !this.closing : !this.$root.open || this.closing) return;
       if (this.$root.dataset.controlled === 'true') { this.notify(open, reason); return; }
       if (open) this.show(); else this.close();
       this.notify(open, reason);
@@ -59,6 +104,8 @@ export function registerHeroDialog(Alpine) {
     onNativeClose(event) {
       if (event.target !== this.$root || this.destroyed) return;
       if (this.ignoredCloseEvents > 0) { this.ignoredCloseEvents--; return; }
+      this.closing = false;
+      this.stopAnimations();
       this.notify(false, 'native');
       if (this.$root.dataset.controlled === 'true' && this.$root.dataset.controlledOpen === 'true') this.show();
     },
@@ -66,6 +113,6 @@ export function registerHeroDialog(Alpine) {
       if (this.$root.dataset.controlled !== 'true') return;
       if (this.$root.dataset.controlledOpen === 'true') this.show(); else this.close();
     },
-    destroy() { this.destroyed = true; if (this.$root.open) this.$root.close(); }
+    destroy() { this.destroyed = true; this.stopAnimations(); if (this.$root.open) this.$root.close(); }
   }));
 }

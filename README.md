@@ -371,7 +371,19 @@ Tables accept lists or LiveView streams. Give a stream table a unique `id`; the 
 
 With Alpine, tables use grid keyboard navigation: Tab enters the grid, Up and Down move between rows, Right enters cells, and Left returns to the row. Home and End move to the first or last row or cell. Enter or Space activates sorting or selection. To interact with a cell's controls, press Enter to focus the first control; Tab and Shift+Tab move between controls, and Escape returns to the cell. Controls keep their native keyboard behavior while focused. Without Alpine, the native table and its controls remain available.
 
+For infinite loading, give the table an `id`, set `on_load_more` to a LiveView event or JS command, and set `has_more` while another page is available. LiveView's viewport binding requests the next page when the table's end is reached. Set `loading` while fetching to suspend further requests and show a loading indicator; use the `:load_more` slot to customize that content. The LiveView owns fetching, stream insertion, and the `has_more`/`loading` assigns.
+
 Selectable tables use `selection_mode="single"` or `"multiple"`. Supply a stable `row_id` function for list rows; streams use their stream DOM IDs as keys. `row_label` provides meaningful names for the selection controls. Pass `selected_keys` and `on_selection_change` for server-controlled selection, or `default_selected_keys` for Alpine-managed selection. The event receives a JSON-encoded `keys` list; decode it and assign the list back in controlled mode. Select-all applies to currently rendered enabled rows and preserves selections outside the rendered collection. Supply `disabled_keys` to prevent particular rows from being selected.
+
+Add `resizable` to a `:col` to let people adjust its width by dragging the header separator or using the keyboard. `width`, `min_width`, and `max_width` are pixel values; `key` keeps a column’s locally adjusted width associated with that column through LiveView patches. With a sortable header, focus the header and press F2, then Tab to reach its resizer; on the resizer, Left/Right change its width by 10 pixels, Shift changes it by 1 pixel, and Home/End use its bounds. Escape returns to the header. `on_column_resize` receives `"column"`, `"width"`, and JSON `"widths"` after a keyboard adjustment or completed drag. The corresponding `hero:table-column-resize` DOM event bubbles with `{key, width, widths}`.
+
+```heex
+<.data_table id="people" rows={@people} label="People" on_column_resize="resize_column">
+  <:col :let={person} key="name" label="Name" resizable width={220} min_width={100} max_width={400}>
+    {person.name}
+  </:col>
+</.data_table>
+```
 
 ```heex
 <.data_table id="people" rows={@people} label="People" row_id={&to_string(&1.id)}
@@ -388,7 +400,7 @@ Selectable tables use `selection_mode="single"` or `"multiple"`. Supply a stable
 </.data_table>
 ```
 
-Listboxes are server-controlled. `on_select` receives a `"value"` parameter; update the `selected` list in response. They support single or multiple selection, disabled options, descriptions, and keyboard navigation through the HeroUI Alpine providers.
+Listboxes support `single`, `multiple`, and `none` selection. Pass `selected_keys` for controlled selection or `default_selected_keys` for browser-managed selection; `on_selection_change` receives JSON-encoded `keys`, `value`, and `selected`. `on_action` receives `value` whenever an option is activated. The legacy `on_select` API remains server-controlled: update `selected` after receiving the `value`. Options support descriptions, disabled states, `text_value` for typeahead, `variant="danger"`, and non-interactive custom slot content. Group options using `:section` with a label and an `items` list. The registered Alpine providers handle keyboard navigation and local state.
 
 ```heex
 <.listbox id="workspace" label="Workspace" on_select="select_workspace" selected={[@workspace]}>

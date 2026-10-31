@@ -4781,6 +4781,8 @@ defmodule HeroUI do
   For server-side sorting, give columns `sort_key` and set `sort_event`; the
   event receives `%{"sort" => key}`. The caller owns the order and sort state.
   Use the `:empty` slot for custom empty content and `:footer` for pagination.
+  Set `on_load_more` and `has_more` to request the next page when the end of
+  the table reaches the viewport. The application owns loading and pagination.
   """
   attr(:id, :string, default: nil)
   attr(:rows, :any, required: true)
@@ -4797,6 +4799,10 @@ defmodule HeroUI do
   attr(:disabled_keys, :list, default: [])
   attr(:row_label, :any, default: nil)
   attr(:on_selection_change, :string, default: nil)
+  attr(:on_column_resize, :string, default: nil)
+  attr(:on_load_more, :any, default: nil)
+  attr(:has_more, :boolean, default: false)
+  attr(:loading, :boolean, default: false)
   attr(:target, :any, default: nil)
   attr(:class, :any, default: nil)
 
@@ -4804,17 +4810,26 @@ defmodule HeroUI do
     attr(:label, :string, required: true)
     attr(:sort_key, :string)
     attr(:row_header, :boolean)
+    attr(:key, :string)
+    attr(:resizable, :boolean)
+    attr(:width, :integer)
+    attr(:min_width, :integer)
+    attr(:max_width, :integer)
     attr(:class, :any)
   end
 
   slot(:empty)
   slot(:footer)
+  slot(:load_more)
 
   def data_table(assigns) do
     stream? = match?(%Phoenix.LiveView.LiveStream{}, assigns.rows)
 
     if stream? and is_nil(assigns.id),
       do: raise(ArgumentError, "a table id is required for stream rows")
+
+    if assigns.on_load_more && is_nil(assigns.id),
+      do: raise(ArgumentError, "a table id is required for load-more events")
 
     if !stream? and !is_list(assigns.rows),
       do: raise(ArgumentError, "table rows must be a list or LiveView stream")
@@ -4855,8 +4870,35 @@ defmodule HeroUI do
          do: raise(ArgumentError, "selectable table row ids must be unique nonempty strings")
     end
 
+    columns =
+      assigns.col
+      |> Enum.with_index()
+      |> Enum.map(fn {col, index} ->
+        key = Map.get(col, :key) || Integer.to_string(index)
+        min_width = Map.get(col, :min_width) || 48
+        max_width = Map.get(col, :max_width) || 2000
+        width = Map.get(col, :width)
+
+        unless is_binary(key) and key != "" and key != "__selection__" and
+                 is_integer(min_width) and min_width > 0 and
+                 is_integer(max_width) and max_width >= min_width and
+                 (is_nil(width) or (is_integer(width) and width >= min_width and width <= max_width)) do
+          raise ArgumentError,
+                "table column widths must be positive integer pixels within min_width and max_width"
+        end
+
+        Map.merge(col, %{column_key: key, min_width: min_width, max_width: max_width})
+      end)
+
+    keys = Enum.map(columns, & &1.column_key)
+
+    if length(Enum.uniq(keys)) != length(keys),
+      do: raise(ArgumentError, "table column keys must be unique")
+
     assigns =
       assign(assigns,
+        columns: columns,
+        resizable?: Enum.any?(columns, &Map.get(&1, :resizable, false)),
         stream?: stream?,
         empty?: !stream? and assigns.rows == [],
         selected_set: MapSet.new(selected),
@@ -4875,120 +4917,183 @@ defmodule HeroUI do
       x-on:keydown="keyDown($event)"
       x-on:focusin="focusIn($event)"
       x-on:focusout="focusOut($event)"
+      x-on:pointermove.window={if @resizable?, do: "resizeMove($event)"}
+      x-on:pointerup.window={if @resizable?, do: "resizeEnd($event)"}
+      x-on:pointercancel.window={if @resizable?, do: "resizeCancel($event)"}
       x-on:change={if @selection_mode != "none", do: "selectionChange($event)"}
       x-on:click={if @selection_mode != "none", do: "rowClick($event)"}
       x-on:phx:update.document="sync()"
     >
-      <div class="table__scroll-container">
-        <table
-          id={@id}
-          class="table__content"
-          aria-label={@label}
-          x-bind:role="'grid'"
-          tabindex="0"
-          x-bind:aria-multiselectable="$root.dataset.selectionMode === 'multiple' ? 'true' : null"
-        >
-          <thead class="table__header">
-            <tr>
-              <th :if={@selection_mode != "none"} scope="col" class="table__column">
-                <.table_selection_control
-                  :if={@selection_mode == "multiple"}
-                  label="Select all rows"
-                  select_all
-                />
-                <span :if={@selection_mode == "single"} class="sr-only">Selection</span>
-              </th>
-              <th
-                :for={col <- @col}
-                scope="col"
-                class={["table__column", Map.get(col, :class)]}
-                data-allows-sorting={if @sort_event && Map.get(col, :sort_key), do: "true"}
-                aria-sort={if @sort_by && @sort_by == Map.get(col, :sort_key), do: @sort_direction}
-              >
-                <button
-                  :if={@sort_event && Map.get(col, :sort_key)}
-                  type="button"
-                  class="table__sortable-column-header hui-table-sort"
-                  phx-click={@sort_event}
-                  phx-value-sort={col.sort_key}
-                >
-                  {col.label}<svg
-                    class="table__sortable-column-indicator"
-                    data-direction={if @sort_by == col.sort_key, do: @sort_direction}
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    aria-hidden="true"
-                  ><path
-                    d="m3 7.5 3-3 3 3"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  /></svg>
-                </button>
-                <span :if={!@sort_event || !Map.get(col, :sort_key)}>{col.label}</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody
-            id={if @stream?, do: "#{@id}-body"}
-            phx-update={if @stream?, do: "stream"}
-            class="table__body"
+      <div
+        id={if @on_load_more, do: "#{@id}-scroll"}
+        phx-viewport-bottom={if @on_load_more && @has_more && !@loading, do: @on_load_more}
+        phx-target={if @on_load_more, do: @target}
+      >
+        <div class={["table__scroll-container", @resizable? && "table__resizable-container"]}>
+          <table
+            id={@id}
+            class="table__content"
+            aria-label={@label}
+            x-bind:role="'grid'"
+            tabindex="0"
+            x-bind:aria-multiselectable="$root.dataset.selectionMode === 'multiple' ? 'true' : null"
+            phx-mounted={if @resizable?, do: Phoenix.LiveView.JS.ignore_attributes(["style"])}
           >
-            <tr
-              :for={item <- @rows}
-              id={table_row_id(item, @stream?, @row_id)}
-              class="table__row"
-              data-hero-table-row="true"
-              data-key={if @selection_mode != "none", do: table_row_id(item, @stream?, @row_id)}
-              data-selected={
-                if @selection_mode != "none" and
-                     MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id)),
-                   do: "true"
-              }
-              aria-selected={
-                if @selection_mode != "none",
-                  do: to_string(MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id)))
-              }
-            >
-              <td :if={@selection_mode != "none"} class="table__cell">
-                <.table_selection_control
-                  label={table_selection_label(item, @stream?, @row_id, @row_label)}
-                  selected={MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id))}
-                  disabled={MapSet.member?(@disabled_set, table_row_id(item, @stream?, @row_id))}
-                />
-              </td>
-              <%= for col <- @col do %>
-                <th :if={Map.get(col, :row_header, false)} scope="row" class="table__cell">
-                  {render_slot(col, table_row_value(item, @stream?))}
+            <colgroup :if={@resizable?}>
+              <col :if={@selection_mode != "none"} data-table-column-key="__selection__" />
+              <col
+                :for={col <- @columns}
+                data-table-column-key={col.column_key}
+                data-min-width={col.min_width}
+                data-max-width={col.max_width}
+                style={if Map.get(col, :width), do: "width: #{col.width}px"}
+                phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
+              />
+            </colgroup>
+            <thead class="table__header">
+              <tr>
+                <th :if={@selection_mode != "none"} scope="col" class="table__column">
+                  <.table_selection_control
+                    :if={@selection_mode == "multiple"}
+                    label="Select all rows"
+                    select_all
+                  />
+                  <span :if={@selection_mode == "single"} class="sr-only">Selection</span>
                 </th>
-                <td :if={!Map.get(col, :row_header, false)} class="table__cell">
-                  {render_slot(col, table_row_value(item, @stream?))}
-                </td>
-              <% end %>
-            </tr>
-            <tr
-              :if={@empty? || @stream?}
-              id={if @stream?, do: "#{@id}-empty"}
-              class={["table__row", @stream? && "hidden only:table-row"]}
+                <th
+                  :for={col <- @columns}
+                  scope="col"
+                  class={["table__column", Map.get(col, :class)]}
+                  data-allows-sorting={if @sort_event && Map.get(col, :sort_key), do: "true"}
+                  aria-sort={if @sort_by && @sort_by == Map.get(col, :sort_key), do: @sort_direction}
+                >
+                  <button
+                    :if={@sort_event && Map.get(col, :sort_key)}
+                    type="button"
+                    class="table__sortable-column-header hui-table-sort"
+                    phx-click={@sort_event}
+                    phx-value-sort={col.sort_key}
+                  >
+                    {col.label}<svg
+                      class="table__sortable-column-indicator"
+                      data-direction={if @sort_by == col.sort_key, do: @sort_direction}
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      aria-hidden="true"
+                    ><path
+                      d="m3 7.5 3-3 3 3"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg>
+                  </button>
+                  <span :if={!@sort_event || !Map.get(col, :sort_key)}>{col.label}</span>
+                  <div
+                    :if={Map.get(col, :resizable, false)}
+                    class="table__column-resizer z-10"
+                    role="separator"
+                    tabindex="0"
+                    aria-label={"Resize #{col.label} column"}
+                    aria-orientation="vertical"
+                    aria-valuemin={col.min_width}
+                    aria-valuemax={col.max_width}
+                    aria-valuenow={Map.get(col, :width)}
+                    data-table-resizer={col.column_key}
+                    x-on:focus="syncWidths()"
+                    x-on:pointerdown="resizeStart($event)"
+                    x-on:keydown="resizeKey($event)"
+                    x-on:click.stop
+                    phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-valuenow"])}
+                  ></div>
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              id={if @stream?, do: "#{@id}-body"}
+              phx-update={if @stream?, do: "stream"}
+              class="table__body"
             >
-              <td
-                class="table__cell"
-                colspan={length(@col) + if(@selection_mode == "none", do: 0, else: 1)}
+              <tr
+                :for={item <- @rows}
+                id={table_row_id(item, @stream?, @row_id)}
+                class="table__row"
+                data-hero-table-row="true"
+                data-key={if @selection_mode != "none", do: table_row_id(item, @stream?, @row_id)}
+                data-selected={
+                  if @selection_mode != "none" and
+                       MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id)),
+                     do: "true"
+                }
+                aria-selected={
+                  if @selection_mode != "none",
+                    do:
+                      to_string(MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id)))
+                }
               >
-                <%= if @empty == [] do %>
-                  {@empty_message}
-                <% else %>
-                  {render_slot(@empty)}
+                <td :if={@selection_mode != "none"} class="table__cell">
+                  <.table_selection_control
+                    label={table_selection_label(item, @stream?, @row_id, @row_label)}
+                    selected={MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id))}
+                    disabled={MapSet.member?(@disabled_set, table_row_id(item, @stream?, @row_id))}
+                  />
+                </td>
+                <%= for col <- @col do %>
+                  <th :if={Map.get(col, :row_header, false)} scope="row" class="table__cell">
+                    {render_slot(col, table_row_value(item, @stream?))}
+                  </th>
+                  <td :if={!Map.get(col, :row_header, false)} class="table__cell">
+                    {render_slot(col, table_row_value(item, @stream?))}
+                  </td>
                 <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+              <tr
+                :if={@empty? || @stream?}
+                id={if @stream?, do: "#{@id}-empty"}
+                class={["table__row", @stream? && "hidden only:table-row"]}
+              >
+                <td
+                  class="table__cell"
+                  colspan={length(@col) + if(@selection_mode == "none", do: 0, else: 1)}
+                >
+                  <%= if @empty == [] do %>
+                    {@empty_message}
+                  <% else %>
+                    {render_slot(@empty)}
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          :if={@on_load_more && @has_more}
+          id={"#{@id}-load-more"}
+          class="table__load-more-content"
+          data-slot="table-load-more-content"
+          aria-live="polite"
+        >
+          <%= if @load_more == [] do %>
+            <.spinner :if={@loading} size="sm" decorative />
+            <span class="text-sm text-muted">{if @loading,
+              do: "Loading more…",
+              else: "Scroll for more"}</span>
+          <% else %>
+            {render_slot(@load_more)}
+          <% end %>
+        </div>
       </div>
       <div :if={@footer != []} class="table__footer" data-slot="table-footer">
         {render_slot(@footer)}
       </div>
+      <button
+        :if={@on_column_resize}
+        type="button"
+        hidden
+        data-hero-table-resize-event
+        phx-click={@on_column_resize}
+        phx-target={@target}
+      ></button>
       <button
         :if={@on_selection_change}
         type="button"
@@ -6255,12 +6360,27 @@ defmodule HeroUI do
       <div
         id={"#{@id}-content"}
         popover="auto"
-        class={["popover", "hui-popover", "group/popover", @content_class]}
+        class={[
+          "popover",
+          "hui-popover",
+          "group/popover",
+          "transition-[display,overlay] duration-100 [transition-behavior:allow-discrete] motion-reduce:duration-0",
+          @content_class
+        ]}
         data-hero-popover
         x-ref="content"
+        x-on:beforetoggle="beforeToggle($event)"
         x-on:toggle="toggle($event)"
+        x-on:animationend="animationEnd($event)"
         data-placement={@placement |> String.split() |> hd()}
-        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style", "data-placement"])}
+        phx-mounted={
+          Phoenix.LiveView.JS.ignore_attributes([
+            "style",
+            "data-placement",
+            "data-entering",
+            "data-exiting"
+          ])
+        }
       >
         <svg
           :if={@show_arrow}
@@ -7175,39 +7295,81 @@ defmodule HeroUI do
   end
 
   @doc """
-  A server-controlled listbox. `on_select` receives `%{"value" => value}`;
-  the caller updates `selected`. Keyboard navigation requires HeroUI's Alpine providers.
+  A selectable listbox with keyboard navigation. Use `selected_keys` for
+  LiveView-controlled selection or `default_selected_keys` for local selection.
+  The existing `selected` and `on_select` API remains server-controlled.
+  `on_selection_change` receives JSON-encoded `keys`, and `on_action` receives
+  `value`. Group options with `:section` and its `items` list.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
-  attr(:on_select, :any, required: true)
-  attr(:selected, :list, default: [])
-  attr(:selection_mode, :string, default: "single", values: ~w(single multiple))
+  attr(:on_select, :any, default: nil)
+  attr(:on_selection_change, :any, default: nil)
+  attr(:on_action, :any, default: nil)
+  attr(:selected, :list, default: nil)
+  attr(:selected_keys, :list, default: nil)
+  attr(:default_selected_keys, :list, default: nil)
+  attr(:selection_mode, :string, default: "single", values: ~w(none single multiple))
   attr(:disabled, :boolean, default: false)
   attr(:target, :any, default: nil)
   attr(:class, :any, default: nil)
 
-  slot :option, required: true do
+  slot :option do
     attr(:value, :string, required: true)
     attr(:label, :string, required: true)
     attr(:description, :string)
     attr(:disabled, :boolean)
+    attr(:text_value, :string)
+    attr(:variant, :string, values: ~w(default danger))
+  end
+
+  slot :section do
+    attr(:label, :string, required: true)
+    attr(:items, :list, required: true)
   end
 
   def listbox(assigns) do
-    values = Enum.map(assigns.option, & &1.value)
+    options = assigns.option ++ Enum.flat_map(assigns.section, & &1.items)
+    values = Enum.map(options, &Map.get(&1, :value))
+    selected = assigns.selected_keys || assigns.selected || assigns.default_selected_keys || []
 
-    if length(values) != length(Enum.uniq(values)),
-      do: raise(ArgumentError, "listbox option values must be unique")
+    controlled =
+      !is_nil(assigns.selected_keys) || !is_nil(assigns.selected) ||
+        (!is_nil(assigns.on_select) && is_nil(assigns.default_selected_keys))
 
-    if assigns.selection_mode == "single" and length(assigns.selected) > 1,
+    if Enum.any?(
+         options,
+         &(not is_binary(Map.get(&1, :value)) or not is_binary(Map.get(&1, :label)))
+       ) or
+         length(values) != length(Enum.uniq(values)),
+       do: raise(ArgumentError, "listbox options require unique string values and labels")
+
+    if !is_nil(assigns.selected_keys) and !is_nil(assigns.selected),
+      do: raise(ArgumentError, "listbox cannot combine selected and selected_keys")
+
+    if controlled and !is_nil(assigns.default_selected_keys),
+      do: raise(ArgumentError, "listbox cannot combine controlled and default selection")
+
+    if Enum.any?(selected, &(not is_binary(&1))) or
+         length(selected) != length(Enum.uniq(selected)),
+       do: raise(ArgumentError, "listbox selected keys must be unique strings")
+
+    if assigns.selection_mode == "none" and selected != [],
+      do: raise(ArgumentError, "listbox with selection_mode none cannot have selected keys")
+
+    if assigns.selection_mode == "single" and length(selected) > 1,
       do: raise(ArgumentError, "single-selection listbox accepts at most one selected value")
 
-    enabled = Enum.reject(assigns.option, &Map.get(&1, :disabled, false))
-    active = Enum.find(enabled, &(&1.value in assigns.selected)) || List.first(enabled)
+    enabled = Enum.reject(options, &Map.get(&1, :disabled, false))
+    active = Enum.find(enabled, &(&1.value in selected)) || List.first(enabled)
 
     assigns =
-      assign(assigns, :active_id, if(active, do: listbox_option_id(assigns.id, active.value)))
+      assign(assigns,
+        active_id: if(active, do: listbox_option_id(assigns.id, active.value)),
+        selected_values: selected,
+        controlled: controlled,
+        encoded_selected: Jason.encode!(selected)
+      )
 
     ~H"""
     <div
@@ -7220,51 +7382,123 @@ defmodule HeroUI do
       tabindex={if @disabled, do: "-1", else: "0"}
       aria-activedescendant={@active_id}
       data-hero-listbox
+      data-selection-mode={@selection_mode}
+      data-controlled={to_string(@controlled)}
+      data-selected-keys={@encoded_selected}
       x-data="heroListbox"
       x-on:click="click($event)"
       x-on:keydown="keydown($event)"
       x-on:phx:update.window="sync()"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-activedescendant"])}
     >
-      <div
+      <.listbox_option
         :for={option <- @option}
-        id={listbox_option_id(@id, option.value)}
-        role="option"
-        aria-labelledby={"#{listbox_option_id(@id, option.value)}-label"}
-        aria-describedby={
-          if Map.get(option, :description), do: "#{listbox_option_id(@id, option.value)}-description"
-        }
-        aria-selected={to_string(option.value in @selected)}
-        aria-disabled={if @disabled || Map.get(option, :disabled, false), do: "true"}
-        data-disabled={if @disabled || Map.get(option, :disabled, false), do: "true"}
-        data-active={if listbox_option_id(@id, option.value) == @active_id, do: "true"}
-        phx-click={if !@disabled && !Map.get(option, :disabled, false), do: @on_select}
-        phx-value-value={option.value}
-        phx-target={@target}
-        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-active"])}
-        class="list-box-item list-box-item--default"
+        option={option}
+        id={@id}
+        selected={@selected_values}
+        active_id={@active_id}
+        disabled={@disabled}
+        selection_mode={@selection_mode}
+        on_select={@on_select}
+        target={@target}
+      />
+      <div
+        :for={{section, index} <- Enum.with_index(@section)}
+        class="list-box-section"
+        role="group"
+        aria-labelledby={"#{@id}-section-#{index}"}
       >
-        <span class="hui-listbox-text"><span
-          id={"#{listbox_option_id(@id, option.value)}-label"}
-          data-slot="label"
-        >{option.label}</span><span
-          :if={Map.get(option, :description)}
-          id={"#{listbox_option_id(@id, option.value)}-description"}
-          class="description"
-          data-slot="description"
-        >{option.description}</span></span>
-        <span
-          class="list-box-item__indicator"
-          aria-hidden="true"
-          hidden={option.value not in @selected}
-        ><svg data-slot="list-box-item-indicator--checkmark" viewBox="0 0 16 16" fill="none"><path
-          d="M3.5 8l3 3 6-6"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        /></svg></span>
+        <div id={"#{@id}-section-#{index}"} class="header" data-slot="header">{section.label}</div>
+        <.listbox_option
+          :for={option <- section.items}
+          option={option}
+          id={@id}
+          selected={@selected_values}
+          active_id={@active_id}
+          disabled={@disabled}
+          selection_mode={@selection_mode}
+          on_select={@on_select}
+          target={@target}
+        />
       </div>
+      <button
+        :if={@on_selection_change}
+        type="button"
+        hidden
+        data-hero-listbox-selection-event
+        phx-click={@on_selection_change}
+        phx-target={@target}
+      ></button>
+      <button
+        :if={@on_action}
+        type="button"
+        hidden
+        data-hero-listbox-action-event
+        phx-click={@on_action}
+        phx-target={@target}
+      ></button>
+    </div>
+    """
+  end
+
+  attr(:option, :map, required: true)
+  attr(:id, :string, required: true)
+  attr(:selected, :list, required: true)
+  attr(:active_id, :string, default: nil)
+  attr(:disabled, :boolean, required: true)
+  attr(:selection_mode, :string, required: true)
+  attr(:on_select, :any, default: nil)
+  attr(:target, :any, default: nil)
+
+  defp listbox_option(assigns) do
+    ~H"""
+    <div
+      id={listbox_option_id(@id, @option.value)}
+      role="option"
+      aria-labelledby={"#{listbox_option_id(@id, @option.value)}-label"}
+      aria-describedby={
+        if Map.get(@option, :description), do: "#{listbox_option_id(@id, @option.value)}-description"
+      }
+      aria-selected={if @selection_mode != "none", do: to_string(@option.value in @selected)}
+      aria-disabled={if @disabled || Map.get(@option, :disabled, false), do: "true"}
+      data-disabled={if @disabled || Map.get(@option, :disabled, false), do: "true"}
+      data-active={if listbox_option_id(@id, @option.value) == @active_id, do: "true"}
+      data-key={@option.value}
+      data-text-value={Map.get(@option, :text_value) || @option.label}
+      phx-click={if !@disabled && !Map.get(@option, :disabled, false), do: @on_select}
+      phx-value-value={@option.value}
+      phx-target={@target}
+      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-active"])}
+      class={["list-box-item", "list-box-item--#{Map.get(@option, :variant, "default")}"]}
+    >
+      <span class="hui-listbox-text"><span
+        id={"#{listbox_option_id(@id, @option.value)}-label"}
+        data-slot="label"
+      >
+        <%= if Map.get(@option, :inner_block) do %>
+          {render_slot(@option)}
+        <% else %>
+          {@option.label}
+        <% end %>
+      </span><span
+        :if={Map.get(@option, :description)}
+        id={"#{listbox_option_id(@id, @option.value)}-description"}
+        class="description"
+        data-slot="description"
+      >{@option.description}</span></span>
+      <span
+        :if={@selection_mode != "none"}
+        class="list-box-item__indicator"
+        aria-hidden="true"
+        hidden={@option.value not in @selected}
+        data-hero-listbox-indicator
+      ><svg data-slot="list-box-item-indicator--checkmark" viewBox="0 0 16 16" fill="none"><path
+        d="M3.5 8l3 3 6-6"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      /></svg></span>
     </div>
     """
   end

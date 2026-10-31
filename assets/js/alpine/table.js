@@ -6,6 +6,8 @@ export function registerHeroTable(Alpine) {
     let ownsFocus = false;
     let innerControlIndex = null;
     let root = null;
+    const columnWidths = new Map();
+    let resizeDrag = null;
     const onPointerDown = event => { if (!root?.contains(event.target)) ownsFocus = false; };
     const controls = 'a[href], button, input:not([type=hidden]), select, textarea, [contenteditable=true], [tabindex]';
     return ({
@@ -21,6 +23,12 @@ export function registerHeroTable(Alpine) {
     init() { root = this.$root; document.addEventListener('pointerdown', onPointerDown, true); this.keys = this.readKeys(); this.sync(); },
     destroy() {
       document.removeEventListener('pointerdown', onPointerDown, true);
+      if (resizeDrag) {
+        resizeDrag.handle.removeAttribute('data-resizing');
+        if (resizeDrag.handle.hasPointerCapture?.(resizeDrag.pointerId)) resizeDrag.handle.releasePointerCapture(resizeDrag.pointerId);
+      }
+      resizeDrag = null;
+      columnWidths.clear();
       for (const [node, value] of originalTabs) {
         if (value === null) node.removeAttribute('tabindex'); else node.setAttribute('tabindex', value);
       }
@@ -28,6 +36,117 @@ export function registerHeroTable(Alpine) {
       current = null;
     },
     table() { return this.$root.querySelector('table'); },
+    columns() { return [...(this.table()?.querySelectorAll(':scope > colgroup > col[data-table-column-key]') || [])]; },
+    columnBounds(col) { return [Number(col.dataset.minWidth || 48), Number(col.dataset.maxWidth || 2000)]; },
+    columnWidth(col, index) {
+      const header = this.headers()[index];
+      const measured = header?.getBoundingClientRect().width || parseFloat(col.style.width) || 0;
+      const [min, max] = this.columnBounds(col);
+      return Math.min(max, Math.max(min, Math.round(measured)));
+    },
+    initializeWidths() {
+      const cols = this.columns();
+      cols.forEach((col, index) => {
+        if (!columnWidths.has(col.dataset.tableColumnKey)) columnWidths.set(col.dataset.tableColumnKey, this.columnWidth(col, index));
+      });
+    },
+    syncWidths() {
+      const cols = this.columns();
+      if (!cols.length) return;
+      if (columnWidths.size) {
+        this.initializeWidths();
+        const keys = new Set(cols.map(col => col.dataset.tableColumnKey));
+        for (const key of columnWidths.keys()) if (!keys.has(key)) columnWidths.delete(key);
+        this.applyWidths();
+      } else {
+        cols.forEach((col, index) => {
+          const handle = this.headers()[index]?.querySelector('[data-table-resizer]');
+          if (handle) handle.setAttribute('aria-valuenow', String(this.columnWidth(col, index)));
+        });
+      }
+    },
+    applyWidths() {
+      const table = this.table(), cols = this.columns();
+      if (!table || !cols.length) return;
+      let total = 0;
+      cols.forEach((col, index) => {
+        const [min, max] = this.columnBounds(col);
+        const key = col.dataset.tableColumnKey;
+        const width = Math.min(max, Math.max(min, columnWidths.get(key) ?? this.columnWidth(col, index)));
+        columnWidths.set(key, width);
+        col.style.width = `${width}px`;
+        total += width;
+        this.headers()[index]?.querySelector('[data-table-resizer]')?.setAttribute('aria-valuenow', String(width));
+      });
+      table.style.tableLayout = 'fixed';
+      table.style.width = `${total}px`;
+    },
+    setColumnWidth(key, width) {
+      const col = this.columns().find(item => item.dataset.tableColumnKey === key);
+      if (!col) return false;
+      const [min, max] = this.columnBounds(col);
+      const bounded = Math.min(max, Math.max(min, Math.round(width)));
+      if (columnWidths.get(key) === bounded) return false;
+      columnWidths.set(key, bounded); this.applyWidths(); return true;
+    },
+    emitColumnResize(key) {
+      const width = columnWidths.get(key);
+      const widths = Object.fromEntries([...columnWidths].filter(([key]) => key !== '__selection__'));
+      this.$root.dispatchEvent(new CustomEvent('hero:table-column-resize', {bubbles: true, detail: {key, width, widths}}));
+      const button = this.$root.querySelector('[data-hero-table-resize-event]');
+      if (button) {
+        button.setAttribute('phx-value-column', key);
+        button.setAttribute('phx-value-width', String(width));
+        button.setAttribute('phx-value-widths', JSON.stringify(widths));
+        button.click();
+      }
+    },
+    resizeStart(event) {
+      if (event.button !== 0 || resizeDrag) return;
+      const handle = event.currentTarget, key = handle.dataset.tableResizer;
+      if (handle.closest('[data-hero-table]') !== this.$root) return;
+      this.initializeWidths(); this.applyWidths();
+      resizeDrag = {handle, key, pointerId: event.pointerId, startX: event.clientX, startWidth: columnWidths.get(key)};
+      handle.setAttribute('data-resizing', 'true');
+      handle.setPointerCapture?.(event.pointerId);
+      handle.focus({preventScroll: true});
+      event.preventDefault();
+    },
+    resizeMove(event) {
+      if (!resizeDrag || event.pointerId !== resizeDrag.pointerId) return;
+      const direction = getComputedStyle(this.table()).direction === 'rtl' ? -1 : 1;
+      this.setColumnWidth(resizeDrag.key, resizeDrag.startWidth + (event.clientX - resizeDrag.startX) * direction);
+      event.preventDefault();
+    },
+    resizeEnd(event) {
+      if (!resizeDrag || event.pointerId !== resizeDrag.pointerId) return;
+      const {handle, key, pointerId, startWidth} = resizeDrag;
+      resizeDrag = null;
+      handle.removeAttribute('data-resizing');
+      if (handle.hasPointerCapture?.(pointerId)) handle.releasePointerCapture(pointerId);
+      if (columnWidths.get(key) !== startWidth) this.emitColumnResize(key);
+    },
+    resizeCancel(event) {
+      if (!resizeDrag || event.pointerId !== resizeDrag.pointerId) return;
+      const {handle, key, pointerId, startWidth} = resizeDrag;
+      resizeDrag = null; this.setColumnWidth(key, startWidth);
+      handle.removeAttribute('data-resizing');
+      if (handle.hasPointerCapture?.(pointerId)) handle.releasePointerCapture(pointerId);
+    },
+    resizeKey(event) {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      const handle = event.currentTarget, key = handle.dataset.tableResizer;
+      const col = this.columns().find(item => item.dataset.tableColumnKey === key);
+      if (!col || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      this.initializeWidths();
+      const [min, max] = this.columnBounds(col), currentWidth = columnWidths.get(key);
+      const direction = getComputedStyle(this.table()).direction === 'rtl' ? -1 : 1;
+      const delta = (event.key === 'ArrowRight' ? 1 : -1) * direction * (event.shiftKey ? 1 : 10);
+      const next = event.key === 'Home' ? min : event.key === 'End' ? max : currentWidth + delta;
+      const changed = this.setColumnWidth(key, next);
+      event.preventDefault(); event.stopPropagation();
+      if (changed) this.emitColumnResize(key);
+    },
     headers() {
       const table = this.table();
       return [...table.querySelectorAll('thead th')].filter(cell => cell.closest('table') === table);
@@ -166,6 +285,10 @@ export function registerHeroTable(Alpine) {
           next = destination && (column < 0 ? destination : this.cells(destination)[column] || destination);
         } else if (header) next = last ? headers.at(-1) : headers[0];
         else if (row) next = column < 0 ? (last ? rows.at(-1) : rows[0]) : (last ? cells.at(-1) : cells[0]);
+      } else if (event.key === 'F2' && !event.ctrlKey && !event.metaKey) {
+        const control = this.cellControls(target)[0];
+        if (control) { event.preventDefault(); control.focus(); }
+        return;
       } else if ((event.key === ' ' || event.key === 'Enter') && !event.ctrlKey && !event.metaKey) {
         if (target === row) {
           const selection = row.querySelector('[data-hero-table-select-row]');
@@ -207,6 +330,7 @@ export function registerHeroTable(Alpine) {
       if (this.$root.dataset.controlled === 'true') this.keys = this.readKeys();
       if (['single', 'multiple'].includes(this.$root.dataset.selectionMode)) this.paint();
       this.syncFocus();
+      this.syncWidths();
     },
     setSelection(next) {
       if (next.length === this.keys.length && next.every(key => this.keys.includes(key))) { this.paint(); return; }

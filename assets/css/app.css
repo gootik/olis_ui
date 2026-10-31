@@ -9,3 +9,8 @@
 @source "../../lib";
 @source "../../preview";
 @source "../js";
+
+/* Preview typography follows the same Inter features as the design reference. */
+.preview-body {
+  font-feature-settings: "cv01", "ss03", "zero";
+}

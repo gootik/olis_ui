@@ -46,7 +46,8 @@
   position: absolute;
   inset-inline-start: 0;
   inset-inline-end: 0;
-  border-radius: min(32px, var(--radius-3xl));
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
 
   /* Motion state */
   --toast-y: var(--offset-collapsed, 0px);

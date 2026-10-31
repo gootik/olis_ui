@@ -25,7 +25,7 @@
 
 .table-root--primary {
   @apply bg-surface-secondary px-1 pb-1;
-  border-radius: min(32px, calc(var(--radius) * 2.5));
+  border-radius: 12px;
 }
 
 .table-root--secondary {
@@ -52,8 +52,8 @@
     th.table__column:first-child,
     [role="row"] > [role="presentation"]:first-of-type > .table__column
   ) {
-  border-start-start-radius: min(32px, var(--radius-2xl));
-  border-end-start-radius: min(32px, var(--radius-2xl));
+  border-start-start-radius: 12px;
+  border-end-start-radius: 12px;
 }
 
 .table-root--secondary
@@ -61,8 +61,8 @@
     th.table__column:last-child,
     [role="row"] > [role="presentation"]:last-of-type > .table__column
   ) {
-  border-start-end-radius: min(32px, var(--radius-2xl));
-  border-end-end-radius: min(32px, var(--radius-2xl));
+  border-start-end-radius: 12px;
+  border-end-end-radius: 12px;
 }
 
 /* Secondary: body has no shadow or rounded corners */
@@ -187,16 +187,16 @@
      (border-radius on <tbody> itself has no effect).
      Logical properties so corners follow `dir` in RTL. */
   & tr:first-child td:first-child {
-    border-start-start-radius: min(32px, var(--radius-2xl));
+    border-start-start-radius: 12px;
   }
   & tr:first-child td:last-child {
-    border-start-end-radius: min(32px, var(--radius-2xl));
+    border-start-end-radius: 12px;
   }
   & tr:last-child td:first-child {
-    border-end-start-radius: min(32px, var(--radius-2xl));
+    border-end-start-radius: 12px;
   }
   & tr:last-child td:last-child {
-    border-end-end-radius: min(32px, var(--radius-2xl));
+    border-end-end-radius: 12px;
   }
 
   /* Virtualized: elements are divs, not tr/td. VirtualizerItem wrappers
@@ -204,7 +204,7 @@
      itself and clip overflow instead. */
   &:not(tbody) {
     @apply relative h-full overflow-clip;
-    border-radius: min(32px, var(--radius-2xl));
+    border-radius: 12px;
   }
 }
 

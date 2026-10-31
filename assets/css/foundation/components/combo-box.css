@@ -130,7 +130,7 @@
 /* Similar to popover content styles */
 .combo-box__popover {
   @apply flex min-w-(--trigger-width) origin-(--trigger-anchor-point) flex-col overflow-hidden bg-overlay p-0 text-sm;
-  border-radius: min(32px, calc(var(--radius-2xl) + var(--spacing) * 1.5));
+  border-radius: 12px;
   box-shadow: var(--overlay-shadow);
 
   /* Focus state */

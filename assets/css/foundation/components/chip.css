@@ -1,7 +1,7 @@
 /* Adapted for OlisUI; see THIRD_PARTY_NOTICES.md. */
 /* Base styles */
 .chip {
-  @apply inline-flex w-fit shrink-0 items-center gap-0.5 rounded-2xl px-2 py-0.5 text-xs leading-5 font-medium;
+  @apply inline-flex w-fit shrink-0 items-center gap-0.5 rounded-full px-3 py-1 text-xs leading-4 font-normal;
 
   /* Default tokens */
   --chip-bg: var(--default);
@@ -58,7 +58,7 @@
 }
 
 .chip--lg {
-  @apply px-3 py-1 text-sm font-medium;
+  @apply px-3 py-1 text-sm font-normal;
 }
 
 /* ====================== */

@@ -10,17 +10,17 @@
   :root,
   :host {
     /* Primitive Colors (Do not change between light and dark) */
-    --white: oklch(100% 0 0);
-    --black: oklch(0% 0 0);
-    --snow: oklch(0.9911 0 0);
-    --eclipse: oklch(0.2103 0.0059 285.89);
+    --white: #fff;
+    --black: #08090a;
+    --snow: #fff;
+    --eclipse: #08090a;
 
     /* Spacing scale */
     --spacing: 0.25rem;
 
     /* Border */
-    --border-width: 1px;
-    --field-border-width: 0px;
+    --border-width: 0.5px;
+    --field-border-width: 1px;
     --disabled-opacity: 0.5;
 
     /* Ring offset - Used for focus ring */
@@ -32,17 +32,14 @@
 
     /* Radius */
     --radius: 0.5rem;
-    --field-radius: calc(var(--radius) * 1.5);
+    --field-radius: 0.375rem;
 
     /* Accent and status hues (shared with the dark theme) */
-    --accent: oklch(0.6204 0.195 253.83);
-    --accent-foreground: var(--snow);
+    --accent: #e34234;
+    --accent-foreground: #08090a;
 
-    --success: oklch(0.7329 0.1935 150.81);
+    --success: #27a644;
     --success-foreground: var(--eclipse);
-
-    /* no border by default on form fields */
-    --field-border: transparent;
 
     /* Skeleton Default Global Animation */
     --skeleton-animation: shimmer; /* shimmer, pulse, none */
@@ -52,15 +49,10 @@
     --tooltip-close-delay: 500ms;
   }
 
-  :root,
   .light,
-  .default,
   [data-theme="light"],
-  [data-theme="default"],
   :host(.light),
-  :host(.default),
-  :host([data-theme="light"]),
-  :host([data-theme="default"]) {
+  :host([data-theme="light"]) {
     color-scheme: light;
 
     /* == Light Theme Variables == */
@@ -96,6 +88,7 @@
     --default-foreground: var(--eclipse);
 
     /* Form Fields */
+    --field-border: var(--border);
     --field-background: var(--white);
     --field-foreground: oklch(0.2103 0.0059 285.89);
     --field-placeholder: var(--muted);
@@ -128,7 +121,7 @@
     --background-inverse: var(--foreground);
 
     --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
-    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--accent-foreground) 10%);
+    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--white) 10%);
     --success-hover: color-mix(in oklab, var(--success) 90%, var(--success-foreground) 10%);
     --warning-hover: color-mix(in oklab, var(--warning) 90%, var(--warning-foreground) 10%);
     --danger-hover: color-mix(in oklab, var(--danger) 90%, var(--danger-foreground) 10%);
@@ -190,32 +183,38 @@
       0 0 1px 0 rgba(0, 0, 0, 0.06);
   }
 
+  :root:not(.light):not([data-theme="light"]),
   .dark,
+  .default,
   [data-theme="dark"],
+  [data-theme="default"],
+  :host(:not(.light):not([data-theme="light"])),
   :host(.dark),
-  :host([data-theme="dark"]) {
+  :host(.default),
+  :host([data-theme="dark"]),
+  :host([data-theme="default"]) {
     color-scheme: dark;
     /* == Dark Theme Variables == */
 
     /* Base Colors */
-    --background: oklch(12% 0.005 285.823);
-    --foreground: var(--snow);
+    --background: #08090a;
+    --foreground: #fff;
 
     /* Surface: Used for non-overlay components (cards, accordions, disclosure groups) */
-    --surface: oklch(0.2103 0.0059 285.89);
+    --surface: #0f1011;
     --surface-foreground: var(--foreground);
 
-    --surface-secondary: oklch(0.257 0.0037 286.14);
+    --surface-secondary: #161718;
     --surface-secondary-foreground: var(--foreground);
 
-    --surface-tertiary: oklch(0.2721 0.0024 247.91);
+    --surface-tertiary: #23252a;
     --surface-tertiary-foreground: var(--foreground);
 
     /* Overlay: Used for floating/overlay components (tooltips, popovers, modals, menus) - lighter for contrast */
-    --overlay: oklch(0.2103 0.0059 285.89);
+    --overlay: #161718;
     --overlay-foreground: var(--foreground);
 
-    --muted: oklch(70.5% 0.015 286.067);
+    --muted: #8a8f98;
 
     --scrollbar: var(--scrollbar-thumb);
     --scrollbar-thumb: color-mix(in oklch, var(--foreground) 15%, transparent);
@@ -224,28 +223,29 @@
     --scrollbar-width: thin;
     --scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 
-    --default: oklch(27.4% 0.006 286.033);
-    --default-foreground: var(--snow);
+    --default: #23252a;
+    --default-foreground: #d0d6e0;
 
     /* Form Fields */
-    --field-background: oklch(0.2103 0.0059 285.89);
-    --field-foreground: var(--foreground);
+    --field-border: var(--border);
+    --field-background: #0f1011;
+    --field-foreground: #d0d6e0;
     --field-placeholder: var(--muted);
 
     /* Status Colors */
-    --warning: oklch(0.8203 0.1388 76.34);
+    --warning: #e4c75b;
     --warning-foreground: var(--eclipse);
 
-    --danger: oklch(0.594 0.1967 24.63);
+    --danger: #eb5757;
     --danger-foreground: var(--snow);
 
     /* Component Colors */
-    --segment: oklch(0.3964 0.01 285.93);
+    --segment: #383b3f;
     --segment-foreground: var(--foreground);
 
     /* Misc Colors */
-    --border: oklch(28% 0.006 286.033);
-    --separator: oklch(25% 0.006 286.033);
+    --border: #23252a;
+    --separator: #23252a;
     --focus: var(--accent);
     --link: var(--foreground);
 
@@ -253,8 +253,8 @@
     --backdrop: rgba(0, 0, 0, 0.6);
 
     /* Shadows */
-    --surface-shadow: 0 0 0 0 transparent inset; /* No shadow on dark mode */
-    --overlay-shadow: 0 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    --surface-shadow: inset 0 0 0 1px #23252a; /* No shadow on dark mode */
+    --overlay-shadow: inset 0 0 0 1px #23252a, 0 4px 32px rgb(8 9 10 / 60%);
     --field-shadow: 0 0 0 0 transparent inset; /* Transparent shadow to allow ring utilities to work */
 
     /* Calculated Colors */
@@ -265,7 +265,7 @@
     --background-inverse: var(--foreground);
 
     --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
-    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--accent-foreground) 10%);
+    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--white) 10%);
     --success-hover: color-mix(in oklab, var(--success) 90%, var(--success-foreground) 10%);
     --warning-hover: color-mix(in oklab, var(--warning) 90%, var(--warning-foreground) 10%);
     --danger-hover: color-mix(in oklab, var(--danger) 90%, var(--danger-foreground) 10%);
@@ -281,11 +281,7 @@
       var(--field-border, var(--border)) 88%,
       var(--field-foreground, var(--foreground)) 10%
     );
-    --field-border-focus: color-mix(
-      in oklab,
-      var(--field-border, var(--border)) 74%,
-      var(--field-foreground, var(--foreground)) 22%
-    );
+    --field-border-focus: #d0d6e0;
 
     --default-soft: color-mix(in oklab, var(--default) 50%, transparent);
     --default-soft-foreground: var(--default-foreground);

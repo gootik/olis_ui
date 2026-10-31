@@ -3,9 +3,9 @@
 
 /* Block */
 .card {
-  @apply relative flex flex-col gap-3 overflow-visible p-4;
-  @apply shadow-surface;
-  border-radius: min(32px, var(--radius-3xl));
+  @apply relative flex flex-col gap-3 overflow-visible p-6;
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
 }
 
 /* Element - header */

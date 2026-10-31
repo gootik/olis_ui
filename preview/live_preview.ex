@@ -14,7 +14,7 @@ defmodule OlisUI.Preview.Layout do
         <link rel="stylesheet" href="/olis_ui.css" />
         <link rel="stylesheet" href="/preview-fonts/index.css" />
         <script>
-          try { document.documentElement.dataset.theme = localStorage.getItem("preview-theme") || "light"; } catch (_) {}
+          try { document.documentElement.dataset.theme = localStorage.getItem("preview-theme") || "dark"; } catch (_) {}
         </script>
         <script type="module">
           import {Socket} from "/phoenix.mjs";
@@ -31,7 +31,7 @@ defmodule OlisUI.Preview.Layout do
           const updateNavigation = () => {
             const sections = [...document.querySelectorAll('.lp-intro, .lp-section')];
             const active = sections.filter(section => section.getBoundingClientRect().top <= 160).at(-1) || sections[0];
-            document.querySelectorAll('.lp-sidebar a[href^="#"]').forEach(link => {
+            document.querySelectorAll('.lp-navigation a[href^="#"]').forEach(link => {
               const selected = link.getAttribute('href') === `#${active?.id}`;
               link.classList.toggle('is-active', selected);
               if (selected) { link.setAttribute('aria-current', 'location'); } else { link.removeAttribute('aria-current'); }
@@ -58,7 +58,7 @@ defmodule OlisUI.Preview.Layout do
           window.liveSocket = socket;
         </script>
       </head>
-      <body class="lp-body m-0 bg-[#f8f9fb] text-zinc-900 dark:bg-[#101114] dark:text-zinc-100 font-preview text-sm">
+      <body class="lp-body preview-body m-0 bg-[#fafafa] font-preview text-sm text-[#111315] dark:bg-[#08090a] dark:text-white">
         {@inner_content}
       </body>
     </html>
@@ -482,6 +482,9 @@ defmodule OlisUI.Preview.Live do
   def handle_event("feedback_change", %{"feedback" => value}, socket),
     do: {:noreply, assign(socket, :feedback, value)}
 
+  def handle_event("clear_feedback", _, socket),
+    do: {:noreply, assign(socket, :feedback, "")}
+
   def handle_event("otp_change", %{"code" => value}, socket),
     do: {:noreply, assign(socket, :otp_value, value)}
 
@@ -597,15 +600,15 @@ defmodule OlisUI.Preview.Live do
   defp preview_card(assigns) do
     ~H"""
     <article class={[
-      "lp-card min-w-0 overflow-visible rounded-2xl border border-[#e8e8ed] bg-white dark:border-[#303138] dark:bg-[#18191d]",
-      @class == "lp-card-wide" && "min-[621px]:col-span-2",
+      "lp-card min-w-0 overflow-visible rounded-xl border border-[#e5e7eb] bg-white dark:border-[#23252a] dark:bg-[#0f1011]",
+      @class == "lp-card-wide" && "min-[700px]:col-span-2",
       @class
     ]}>
-      <header class="lp-card-header min-h-[76px] border-b border-[#e8e8ed] px-5 pt-[18px] pb-[15px] dark:border-[#303138] [&_h3]:m-0 [&_h3]:text-sm [&_h3]:font-bold [&_h3]:tracking-[-.015em] [&_p]:mb-0 [&_p]:mt-1.5 [&_p]:text-[11px] [&_p]:leading-normal [&_p]:text-zinc-500 dark:[&_p]:text-zinc-400">
+      <header class="lp-card-header min-h-[76px] border-b border-[#e5e7eb] px-6 py-4 dark:border-[#23252a] [&_h3]:m-0 [&_h3]:text-sm [&_h3]:font-[510] [&_h3]:tracking-[-.01em] [&_p]:mb-0 [&_p]:mt-1.5 [&_p]:text-xs [&_p]:leading-5 [&_p]:text-[#62666d] dark:[&_p]:text-[#8a8f98]">
         <h3>{@title}</h3>
         <p :if={@description}>{@description}</p>
       </header>
-      <div class="lp-demo min-w-0 px-5 py-[22px] max-[620px]:px-4 max-[620px]:py-5 [&>form]:max-w-full [&>div]:max-w-full [&>fieldset]:max-w-full [&_form>button]:mt-3 [&_form>button]:mr-[5px] [&_form+form]:mt-[22px] [&_form+div]:mt-[22px] [&_fieldset+div]:mt-[22px] [&_section>h2]:mb-[14px] [&_section>h2]:text-sm [&_section>h2]:font-bold [&_section>h2:not(:first-child)]:mt-[26px] [&_section>button]:mt-4 [&>button]:mr-1.5 [&>button]:mb-2.5">
+      <div class="lp-demo min-w-0 px-6 py-6 max-[620px]:px-4 [&>form]:max-w-full [&>div]:max-w-full [&>fieldset]:max-w-full [&_form>button]:mt-3 [&_form>button]:mr-1 [&_form+form]:mt-6 [&_form+div]:mt-6 [&_fieldset+div]:mt-6 [&_section>h2]:mb-3 [&_section>h2]:text-sm [&_section>h2]:font-[510] [&_section>h2:not(:first-child)]:mt-6 [&_section>button]:mt-4 [&>button]:mr-1.5 [&>button]:mb-2">
         {render_slot(@inner_block)}
       </div>
     </article>
@@ -615,125 +618,114 @@ defmodule OlisUI.Preview.Live do
   def render(assigns) do
     ~H"""
     <div class="lp-app min-h-screen">
-      <header class="lp-topbar sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-[#e8e8ed] bg-white px-[4%] dark:border-[#303138] dark:bg-[#18191d] max-[620px]:h-16 max-[620px]:px-4">
+      <header class="lp-topbar sticky top-0 z-30 flex h-16 items-center justify-between border-b border-[#e5e7eb] bg-[#fafafa] px-6 dark:border-[#23252a] dark:bg-[#08090a] sm:px-10">
         <a
           href="/"
-          class="lp-brand inline-flex items-center gap-2.5 whitespace-nowrap text-[15px] font-[750] tracking-[-.035em] text-zinc-900 no-underline dark:text-zinc-100 [&>span:last-child>span]:font-[450] [&>span:last-child>span]:tracking-[-.01em] [&>span:last-child>span]:text-zinc-500 dark:[&>span:last-child>span]:text-zinc-400"
+          class="lp-brand inline-flex items-center gap-2 whitespace-nowrap text-base font-[510] tracking-[-.01em] text-[#111315] no-underline dark:text-white [&>span:last-child>span]:font-normal [&>span:last-child>span]:text-[#62666d] dark:[&>span:last-child>span]:text-[#8a8f98]"
           aria-label="OlisUI for LiveView home"
-        ><span class="lp-brand-mark grid size-[31px] place-items-center rounded-[10px] bg-zinc-900 text-[19px] leading-none text-white dark:bg-zinc-100 dark:text-[#18191d]">✦</span><span>OlisUI
+        ><span class="lp-brand-mark grid size-7 place-items-center rounded-md bg-[#111315] text-base leading-none text-white dark:bg-white dark:text-[#08090a]">✦</span><span>OlisUI
         <span>for LiveView</span></span></a>
-        <div class="lp-top-actions flex items-center gap-[22px]">
-          <span class="lp-live inline-flex items-center gap-[7px] whitespace-nowrap text-xs text-zinc-500 dark:text-zinc-400 max-[620px]:hidden [&>span]:inline-block [&>span]:size-[7px] [&>span]:rounded-full [&>span]:bg-[#17c964]"><span></span>
+        <div class="lp-top-actions flex items-center gap-4 sm:gap-6">
+          <span class="lp-live inline-flex items-center gap-2 whitespace-nowrap text-xs text-[#62666d] dark:text-[#8a8f98] max-[620px]:hidden [&>span]:inline-block [&>span]:size-1.5 [&>span]:rounded-full [&>span]:bg-[#8a8f98]"><span></span>
           Live playground</span><button
             type="button"
-            class="lp-theme size-[34px] cursor-pointer rounded-full border border-[#e8e8ed] bg-white text-[17px] text-zinc-900 hover:bg-[#f3f4f6] dark:border-[#303138] dark:bg-[#18191d] dark:text-zinc-100 dark:hover:bg-[#22242a]"
+            class="lp-theme grid size-8 cursor-pointer place-items-center rounded-md border border-[#d8dadd] bg-transparent text-base text-[#111315] hover:bg-[#e9eaec] dark:border-[#23252a] dark:text-[#d0d6e0] dark:hover:bg-[#161718]"
             data-preview-theme
             aria-label="Toggle light and dark theme"
             title="Toggle theme"
           >◐</button><a
-            class="lp-top-link whitespace-nowrap text-xs font-[650] text-zinc-900 no-underline dark:text-zinc-100 max-[620px]:hidden [&>span]:ml-[5px] [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400"
+            class="lp-top-link whitespace-nowrap text-[13px] font-[510] text-[#111315] no-underline hover:underline dark:text-[#d0d6e0] max-[620px]:hidden [&>span]:ml-1 [&>span]:text-[#8a8f98]"
             href="/"
           >Component gallery <span aria-hidden="true">↗</span></a>
         </div>
       </header>
-      <div class="lp-layout mx-auto grid max-w-[1600px] grid-cols-[220px_minmax(0,1fr)] items-start max-[850px]:block">
-        <aside
-          class="lp-sidebar sticky top-[72px] h-[calc(100vh-72px)] overflow-auto border-r border-[#e8e8ed] pt-[42px] pr-5 pb-7 pl-7 dark:border-[#303138] max-[850px]:z-[19] max-[850px]:flex max-[850px]:h-auto max-[850px]:items-center max-[850px]:gap-3 max-[850px]:overflow-x-auto max-[850px]:border-r-0 max-[850px]:border-b max-[850px]:bg-white max-[850px]:px-5 max-[850px]:py-2.5 dark:max-[850px]:bg-[#18191d] max-[620px]:top-16 max-[620px]:px-3 max-[620px]:py-2"
+      <div class="lp-layout mx-auto max-w-[1200px]">
+        <nav
+          class="lp-navigation sticky top-16 z-20 flex items-center gap-2 overflow-x-auto border-b border-[#e5e7eb] bg-[#fafafa] px-6 py-2 dark:border-[#23252a] dark:bg-[#08090a] sm:px-10"
           aria-label="Preview navigation"
         >
-          <p class="lp-nav-label mx-2.5 mb-3 mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400 max-[850px]:hidden">
-            EXPLORE
-          </p>
           <a
-            class="lp-nav-intro is-active flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:shrink-0"
+            class="lp-nav-intro is-active shrink-0 rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span:last-child]:hidden"
             href="#overview"
             aria-current="location"
           ><span>Overview</span><span aria-hidden="true">↗</span></a>
-          <p class="lp-nav-label lp-nav-spaced mx-2.5 mb-3 mt-[34px] text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400 max-[850px]:hidden">
-            COMPONENTS
-          </p>
-          <nav class="lp-nav max-[850px]:flex max-[850px]:gap-1">
+          <div class="lp-nav flex items-center gap-1">
             <a
-              class="flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline hover:bg-[#f3f4f6] hover:text-zinc-900 aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:hover:bg-[#22242a] dark:hover:text-zinc-100 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:whitespace-nowrap [&>span]:text-[10px] [&>span]:font-normal [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400 max-[850px]:[&>span]:hidden"
+              class="flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span]:hidden"
               href="#forms"
             >Forms <span>01</span></a><a
-              class="flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline hover:bg-[#f3f4f6] hover:text-zinc-900 aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:hover:bg-[#22242a] dark:hover:text-zinc-100 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:whitespace-nowrap [&>span]:text-[10px] [&>span]:font-normal [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400 max-[850px]:[&>span]:hidden"
+              class="flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span]:hidden"
               href="#colors"
             >Colors <span>02</span></a><a
-              class="flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline hover:bg-[#f3f4f6] hover:text-zinc-900 aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:hover:bg-[#22242a] dark:hover:text-zinc-100 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:whitespace-nowrap [&>span]:text-[10px] [&>span]:font-normal [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400 max-[850px]:[&>span]:hidden"
+              class="flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span]:hidden"
               href="#dates"
             >Dates &amp; calendars <span>03</span></a><a
-              class="flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline hover:bg-[#f3f4f6] hover:text-zinc-900 aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:hover:bg-[#22242a] dark:hover:text-zinc-100 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:whitespace-nowrap [&>span]:text-[10px] [&>span]:font-normal [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400 max-[850px]:[&>span]:hidden"
+              class="flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span]:hidden"
               href="#selection"
             >Selection &amp; navigation <span>04</span></a><a
-              class="flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline hover:bg-[#f3f4f6] hover:text-zinc-900 aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:hover:bg-[#22242a] dark:hover:text-zinc-100 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:whitespace-nowrap [&>span]:text-[10px] [&>span]:font-normal [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400 max-[850px]:[&>span]:hidden"
+              class="flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span]:hidden"
               href="#overlays"
             >Overlays <span>05</span></a><a
-              class="flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline hover:bg-[#f3f4f6] hover:text-zinc-900 aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:hover:bg-[#22242a] dark:hover:text-zinc-100 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:whitespace-nowrap [&>span]:text-[10px] [&>span]:font-normal [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400 max-[850px]:[&>span]:hidden"
+              class="flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span]:hidden"
               href="#feedback"
             >Feedback <span>06</span></a><a
-              class="flex items-center justify-between gap-2.5 rounded-[9px] p-2.5 text-xs font-[550] text-zinc-500 no-underline hover:bg-[#f3f4f6] hover:text-zinc-900 aria-[current=location]:bg-[#eaf3ff] aria-[current=location]:font-bold aria-[current=location]:text-[#006fee] dark:text-zinc-400 dark:hover:bg-[#22242a] dark:hover:text-zinc-100 dark:aria-[current=location]:bg-[#162b45] dark:aria-[current=location]:text-[#70b2ff] max-[850px]:whitespace-nowrap [&>span]:text-[10px] [&>span]:font-normal [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400 max-[850px]:[&>span]:hidden"
+              class="flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-[13px] text-[#62666d] no-underline hover:text-[#111315] aria-[current=location]:bg-[#e9eaec] aria-[current=location]:text-[#111315] dark:text-[#8a8f98] dark:hover:text-white dark:aria-[current=location]:bg-[#161718] dark:aria-[current=location]:text-white [&>span]:hidden"
               href="#data"
             >Data display <span>07</span></a>
-          </nav>
-          <div class="lp-sidebar-note mt-12 rounded-[14px] bg-[#f3f4f6] p-4 dark:bg-[#22242a] max-[850px]:hidden [&_strong]:text-xs [&_p]:mb-0 [&_p]:mt-1.5 [&_p]:text-[11px] [&_p]:leading-[1.6] [&_p]:text-zinc-500 dark:[&_p]:text-zinc-400">
-            <span class="lp-note-icon mb-3 block text-[21px] text-[#006fee] dark:text-[#70b2ff]">✳&#xFE0E;</span><strong>Made for LiveView</strong><p>
-              Try the examples. Changes are handled by a connected Phoenix LiveView.
-            </p>
           </div>
-        </aside>
-        <main class="lp-main min-w-0 px-[clamp(24px,4.5vw,72px)] max-[850px]:px-6 max-[620px]:px-4">
+        </nav>
+        <main class="lp-main min-w-0 px-6 sm:px-10">
           <div
             id="overview"
-            class="lp-intro grid scroll-mt-[92px] grid-cols-[minmax(0,1fr)_minmax(250px,330px)] items-center gap-12 border-b border-[#e8e8ed] py-[70px] dark:border-[#303138] max-[850px]:scroll-mt-[145px] max-[850px]:gap-[30px] max-[850px]:py-[54px] max-[620px]:block max-[620px]:py-12"
+            class="lp-intro grid scroll-mt-32 grid-cols-[minmax(0,1fr)_minmax(260px,360px)] items-center gap-12 border-b border-[#e5e7eb] py-20 dark:border-[#23252a] max-[720px]:grid-cols-1 max-[720px]:gap-8 max-[620px]:py-14"
           >
-            <div class="lp-intro-copy [&>h1]:m-0 [&>h1]:text-[clamp(42px,5.4vw,68px)] [&>h1]:font-[720] [&>h1]:leading-[1.06] [&>h1]:tracking-[-.06em] max-[620px]:[&>h1]:text-[46px] [&>h1>span]:text-zinc-500 dark:[&>h1>span]:text-zinc-400 [&>p:not(.lp-eyebrow)]:mb-0 [&>p:not(.lp-eyebrow)]:mt-5 [&>p:not(.lp-eyebrow)]:max-w-[420px] [&>p:not(.lp-eyebrow)]:text-sm [&>p:not(.lp-eyebrow)]:leading-[1.7] [&>p:not(.lp-eyebrow)]:text-zinc-500 dark:[&>p:not(.lp-eyebrow)]:text-zinc-400">
-              <p class="lp-eyebrow mb-6 mt-0 flex items-center gap-2 text-[10px] font-[750] tracking-[.12em] text-zinc-500 dark:text-zinc-400 [&>span]:inline-block [&>span]:size-[7px] [&>span]:rounded-full [&>span]:bg-[#17c964]">
+            <div class="lp-intro-copy [&>h1]:m-0 [&>h1]:text-[clamp(48px,6vw,72px)] [&>h1]:font-[510] [&>h1]:leading-none [&>h1]:tracking-[-.022em] [&>h1>span]:text-[#8a8f98] [&>p:not(.lp-eyebrow)]:mb-0 [&>p:not(.lp-eyebrow)]:mt-5 [&>p:not(.lp-eyebrow)]:max-w-[480px] [&>p:not(.lp-eyebrow)]:text-base [&>p:not(.lp-eyebrow)]:leading-6 [&>p:not(.lp-eyebrow)]:text-[#62666d] dark:[&>p:not(.lp-eyebrow)]:text-[#8a8f98]">
+              <p class="lp-eyebrow mb-6 mt-0 flex items-center gap-2 text-[11px] font-[510] uppercase tracking-[.08em] text-[#62666d] dark:text-[#8a8f98] [&>span]:inline-block [&>span]:size-1.5 [&>span]:rounded-full [&>span]:bg-[#8a8f98]">
                 <span></span> THE LIVEVIEW PLAYGROUND
               </p><h1>
                 Components,<br /><span>in motion.</span>
               </h1><p>
                 Explore the building blocks, try their states, and see how they respond to real LiveView updates.
-              </p><div class="lp-intro-actions mt-7 flex flex-wrap items-center gap-[22px]">
+              </p><div class="lp-intro-actions mt-8 flex flex-wrap items-center gap-6">
                 <a
                   href="#forms"
-                  class="lp-primary-link inline-flex items-center gap-[25px] rounded-[10px] bg-zinc-900 px-[14px] py-3 text-xs font-bold text-white no-underline dark:bg-zinc-100 dark:text-[#18191d]"
+                  class="lp-primary-link inline-flex items-center gap-6 rounded-md bg-accent px-4 py-2.5 text-sm font-[510] text-accent-foreground no-underline hover:bg-accent-hover"
                 >Explore components <span aria-hidden="true">↘</span></a><a
                   href="/"
-                  class="lp-secondary-link text-xs font-bold text-zinc-900 no-underline dark:text-zinc-100 [&>span]:ml-[5px] [&>span]:text-zinc-500 dark:[&>span]:text-zinc-400"
+                  class="lp-secondary-link text-[13px] font-[510] text-[#111315] no-underline hover:underline dark:text-[#d0d6e0] [&>span]:ml-1 [&>span]:text-[#8a8f98]"
                 >View the gallery <span aria-hidden="true">↗</span></a>
               </div>
             </div>
             <div
-              class="lp-intro-panel rotate-2 rounded-[20px] border border-[#e8e8ed] bg-white p-[18px] shadow-[0_16px_44px_rgba(24,24,27,0.05)] dark:border-[#303138] dark:bg-[#18191d] max-[620px]:hidden"
+              class="lp-intro-panel rounded-xl border border-[#e5e7eb] bg-white p-6 dark:border-[#23252a] dark:bg-[#0f1011]"
               aria-hidden="true"
             >
-              <div class="lp-intro-panel-top flex items-center justify-between text-[9px] font-bold tracking-[.09em] text-zinc-500 dark:text-zinc-400 [&>span:last-child]:text-lg [&>span:last-child]:text-[#006fee] dark:[&>span:last-child]:text-[#70b2ff]">
+              <div class="lp-intro-panel-top flex items-center justify-between text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98] [&>span:last-child]:text-base">
                 <span>COMPONENT PREVIEW</span><span>✳&#xFE0E;</span>
-              </div><div class="lp-intro-sample my-[15px] flex items-center gap-3 rounded-[13px] border border-[#e8e8ed] px-3 py-5 dark:border-[#303138] [&_strong]:block [&_strong]:text-xs [&_small]:mt-1 [&_small]:block [&_small]:text-[10px] [&_small]:text-zinc-500 dark:[&_small]:text-zinc-400">
-                <div class="lp-sample-icon grid size-[38px] shrink-0 place-items-center rounded-xl bg-[#eaf3ff] text-xl text-[#006fee] dark:bg-[#162b45] dark:text-[#70b2ff]">
+              </div><div class="lp-intro-sample my-4 flex items-center gap-3 rounded-md border border-[#e5e7eb] bg-[#fafafa] p-4 dark:border-[#23252a] dark:bg-[#161718] [&_strong]:block [&_strong]:text-[13px] [&_strong]:font-[510] [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:text-[#8a8f98]">
+                <div class="lp-sample-icon grid size-9 shrink-0 place-items-center rounded-md bg-[#e9eaec] text-base text-[#62666d] dark:bg-[#23252a] dark:text-[#d0d6e0]">
                   ✦
                 </div><div>
                   <strong>Ready to build</strong><small>Thoughtful components, connected.</small>
-                </div><span class="lp-sample-check ml-auto font-bold text-[#17c964]">✓</span>
-              </div><div class="lp-intro-meta flex items-center justify-between text-[9px] font-[550] text-zinc-500 dark:text-zinc-400 [&>span:first-child]:flex [&>span:first-child]:items-center [&>span:first-child]:gap-1.5 [&_i]:inline-block [&_i]:size-[7px] [&_i]:rounded-full [&_i]:bg-[#17c964]">
+                </div><span class="lp-sample-check ml-auto text-[#8a8f98]">✓</span>
+              </div><div class="lp-intro-meta flex items-center justify-between text-[11px] text-[#8a8f98] [&>span:first-child]:flex [&>span:first-child]:items-center [&>span:first-child]:gap-2 [&_i]:inline-block [&_i]:size-1.5 [&_i]:rounded-full [&_i]:bg-[#8a8f98]">
                 <span><i></i> LiveView ready</span><span>01 — 07</span>
               </div>
             </div>
           </div>
           <section
             id="forms"
-            class="lp-section scroll-mt-20 pt-[62px] pb-3 max-[850px]:scroll-mt-[145px] max-[620px]:pt-12"
+            class="lp-section scroll-mt-32 pt-20 pb-4 max-[620px]:pt-14"
             aria-labelledby="forms-title"
           >
-            <div class="lp-section-heading mb-[22px] flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[27px] [&_h2]:font-bold [&_h2]:leading-[1.15] [&_h2]:tracking-[-.04em] [&>p]:mb-0.5 [&>p]:mt-0 [&>p]:text-right [&>p]:text-xs [&>p]:leading-normal [&>p]:text-zinc-500 dark:[&>p]:text-zinc-400 max-[620px]:[&>p]:mt-2.5 max-[620px]:[&>p]:text-left">
+            <div class="lp-section-heading mb-6 flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[32px] [&_h2]:font-[510] [&_h2]:leading-[1.13] [&_h2]:tracking-[-.022em] [&>p]:m-0 [&>p]:text-right [&>p]:text-[13px] [&>p]:leading-5 [&>p]:text-[#62666d] dark:[&>p]:text-[#8a8f98] max-[620px]:[&>p]:mt-2 max-[620px]:[&>p]:text-left">
               <div>
-                <p class="lp-kicker mb-[9px] mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400">
+                <p class="lp-kicker mb-3 mt-0 text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98]">
                   COMPONENTS
                 </p><h2 id="forms-title">Forms</h2>
               </div><p>Inputs, validation, and searchable choices.</p>
             </div>
-            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[700px]:grid-cols-2">
               <.preview_card title="Fieldset" description="Related fields, descriptions, and actions.">
                 <form phx-submit="fieldset_save">
                   <.fieldset
@@ -908,13 +900,14 @@ defmodule OlisUI.Preview.Live do
                     name="feedback"
                     label="Feedback"
                     multiline
-                    rows="3"
+                    rows="2"
                     value={@feedback}
+                    placeholder="Share your feedback..."
                     full_width
                   >
                     <:prefix>✎</:prefix>
                     <:suffix>
-                      <.button phx-click="increment" size="sm" variant="ghost">Update</.button>
+                      <.button phx-click="clear_feedback" size="sm" variant="ghost">Clear</.button>
                     </:suffix>
                   </.input_group>
                   <p
@@ -1175,18 +1168,18 @@ defmodule OlisUI.Preview.Live do
           </section>
           <section
             id="colors"
-            class="lp-section scroll-mt-20 pt-[62px] pb-3 max-[850px]:scroll-mt-[145px] max-[620px]:pt-12"
+            class="lp-section scroll-mt-32 pt-20 pb-4 max-[620px]:pt-14"
             aria-labelledby="colors-title"
           >
-            <div class="lp-section-heading mb-[22px] flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[27px] [&_h2]:font-bold [&_h2]:leading-[1.15] [&_h2]:tracking-[-.04em] [&>p]:mb-0.5 [&>p]:mt-0 [&>p]:text-right [&>p]:text-xs [&>p]:leading-normal [&>p]:text-zinc-500 dark:[&>p]:text-zinc-400 max-[620px]:[&>p]:mt-2.5 max-[620px]:[&>p]:text-left">
+            <div class="lp-section-heading mb-6 flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[32px] [&_h2]:font-[510] [&_h2]:leading-[1.13] [&_h2]:tracking-[-.022em] [&>p]:m-0 [&>p]:text-right [&>p]:text-[13px] [&>p]:leading-5 [&>p]:text-[#62666d] dark:[&>p]:text-[#8a8f98] max-[620px]:[&>p]:mt-2 max-[620px]:[&>p]:text-left">
               <div>
-                <p class="lp-kicker mb-[9px] mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400">
+                <p class="lp-kicker mb-3 mt-0 text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98]">
                   COMPONENTS
                 </p><h2 id="colors-title">Colors</h2>
               </div>
               <p>Preview and select colors with accessible controls.</p>
             </div>
-            <div class="lp-grid lp-grid--colors grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[621px]:[&>.lp-card-wide]:col-span-1">
+            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[700px]:grid-cols-2 lp-grid--colors">
               <.preview_card
                 title="Color swatches"
                 description="Sizes, shapes, and transparent colors."
@@ -1344,17 +1337,17 @@ defmodule OlisUI.Preview.Live do
           </section>
           <section
             id="dates"
-            class="lp-section scroll-mt-20 pt-[62px] pb-3 max-[850px]:scroll-mt-[145px] max-[620px]:pt-12"
+            class="lp-section scroll-mt-32 pt-20 pb-4 max-[620px]:pt-14"
             aria-labelledby="dates-title"
           >
-            <div class="lp-section-heading mb-[22px] flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[27px] [&_h2]:font-bold [&_h2]:leading-[1.15] [&_h2]:tracking-[-.04em] [&>p]:mb-0.5 [&>p]:mt-0 [&>p]:text-right [&>p]:text-xs [&>p]:leading-normal [&>p]:text-zinc-500 dark:[&>p]:text-zinc-400 max-[620px]:[&>p]:mt-2.5 max-[620px]:[&>p]:text-left">
+            <div class="lp-section-heading mb-6 flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[32px] [&_h2]:font-[510] [&_h2]:leading-[1.13] [&_h2]:tracking-[-.022em] [&>p]:m-0 [&>p]:text-right [&>p]:text-[13px] [&>p]:leading-5 [&>p]:text-[#62666d] dark:[&>p]:text-[#8a8f98] max-[620px]:[&>p]:mt-2 max-[620px]:[&>p]:text-left">
               <div>
-                <p class="lp-kicker mb-[9px] mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400">
+                <p class="lp-kicker mb-3 mt-0 text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98]">
                   COMPONENTS
                 </p><h2 id="dates-title">Dates &amp; calendars</h2>
               </div><p>Date input and selection, connected to LiveView.</p>
             </div>
-            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[700px]:grid-cols-2">
               <.preview_card
                 title="Time fields"
                 description="Enter a time with keyboard-friendly segments."
@@ -1558,19 +1551,19 @@ defmodule OlisUI.Preview.Live do
           </section>
           <section
             id="selection"
-            class="lp-section scroll-mt-20 pt-[62px] pb-3 max-[850px]:scroll-mt-[145px] max-[620px]:pt-12"
+            class="lp-section scroll-mt-32 pt-20 pb-4 max-[620px]:pt-14"
             aria-labelledby="selection-title"
           >
-            <div class="lp-section-heading mb-[22px] flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[27px] [&_h2]:font-bold [&_h2]:leading-[1.15] [&_h2]:tracking-[-.04em] [&>p]:mb-0.5 [&>p]:mt-0 [&>p]:text-right [&>p]:text-xs [&>p]:leading-normal [&>p]:text-zinc-500 dark:[&>p]:text-zinc-400 max-[620px]:[&>p]:mt-2.5 max-[620px]:[&>p]:text-left">
+            <div class="lp-section-heading mb-6 flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[32px] [&_h2]:font-[510] [&_h2]:leading-[1.13] [&_h2]:tracking-[-.022em] [&>p]:m-0 [&>p]:text-right [&>p]:text-[13px] [&>p]:leading-5 [&>p]:text-[#62666d] dark:[&>p]:text-[#8a8f98] max-[620px]:[&>p]:mt-2 max-[620px]:[&>p]:text-left">
               <div>
-                <p class="lp-kicker mb-[9px] mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400">
+                <p class="lp-kicker mb-3 mt-0 text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98]">
                   COMPONENTS
                 </p><h2 id="selection-title">
                   Selection &amp; navigation
                 </h2>
               </div><p>Choices, navigation, and grouped actions.</p>
             </div>
-            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[700px]:grid-cols-2">
               <.preview_card
                 title="Buttons"
                 description="Variants, sizes, and a focusable pending state."
@@ -2361,17 +2354,17 @@ defmodule OlisUI.Preview.Live do
           </section>
           <section
             id="overlays"
-            class="lp-section scroll-mt-20 pt-[62px] pb-3 max-[850px]:scroll-mt-[145px] max-[620px]:pt-12"
+            class="lp-section scroll-mt-32 pt-20 pb-4 max-[620px]:pt-14"
             aria-labelledby="overlays-title"
           >
-            <div class="lp-section-heading mb-[22px] flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[27px] [&_h2]:font-bold [&_h2]:leading-[1.15] [&_h2]:tracking-[-.04em] [&>p]:mb-0.5 [&>p]:mt-0 [&>p]:text-right [&>p]:text-xs [&>p]:leading-normal [&>p]:text-zinc-500 dark:[&>p]:text-zinc-400 max-[620px]:[&>p]:mt-2.5 max-[620px]:[&>p]:text-left">
+            <div class="lp-section-heading mb-6 flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[32px] [&_h2]:font-[510] [&_h2]:leading-[1.13] [&_h2]:tracking-[-.022em] [&>p]:m-0 [&>p]:text-right [&>p]:text-[13px] [&>p]:leading-5 [&>p]:text-[#62666d] dark:[&>p]:text-[#8a8f98] max-[620px]:[&>p]:mt-2 max-[620px]:[&>p]:text-left">
               <div>
-                <p class="lp-kicker mb-[9px] mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400">
+                <p class="lp-kicker mb-3 mt-0 text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98]">
                   COMPONENTS
                 </p><h2 id="overlays-title">Overlays</h2>
               </div><p>Dialogs and contextual actions.</p>
             </div>
-            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[700px]:grid-cols-2">
               <.preview_card
                 title="Sheets"
                 description="Swipe an edge panel or snap it between sizes."
@@ -2647,17 +2640,17 @@ defmodule OlisUI.Preview.Live do
           </section>
           <section
             id="feedback"
-            class="lp-section scroll-mt-20 pt-[62px] pb-3 max-[850px]:scroll-mt-[145px] max-[620px]:pt-12"
+            class="lp-section scroll-mt-32 pt-20 pb-4 max-[620px]:pt-14"
             aria-labelledby="feedback-title"
           >
-            <div class="lp-section-heading mb-[22px] flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[27px] [&_h2]:font-bold [&_h2]:leading-[1.15] [&_h2]:tracking-[-.04em] [&>p]:mb-0.5 [&>p]:mt-0 [&>p]:text-right [&>p]:text-xs [&>p]:leading-normal [&>p]:text-zinc-500 dark:[&>p]:text-zinc-400 max-[620px]:[&>p]:mt-2.5 max-[620px]:[&>p]:text-left">
+            <div class="lp-section-heading mb-6 flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[32px] [&_h2]:font-[510] [&_h2]:leading-[1.13] [&_h2]:tracking-[-.022em] [&>p]:m-0 [&>p]:text-right [&>p]:text-[13px] [&>p]:leading-5 [&>p]:text-[#62666d] dark:[&>p]:text-[#8a8f98] max-[620px]:[&>p]:mt-2 max-[620px]:[&>p]:text-left">
               <div>
-                <p class="lp-kicker mb-[9px] mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400">
+                <p class="lp-kicker mb-3 mt-0 text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98]">
                   COMPONENTS
                 </p><h2 id="feedback-title">Feedback</h2>
               </div><p>Keep people informed about changes.</p>
             </div>
-            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[700px]:grid-cols-2">
               <.preview_card
                 title="Toast notifications"
                 description="Send a notification in any of five variants."
@@ -2808,17 +2801,17 @@ defmodule OlisUI.Preview.Live do
           </section>
           <section
             id="data"
-            class="lp-section scroll-mt-20 pt-[62px] pb-3 max-[850px]:scroll-mt-[145px] max-[620px]:pt-12"
+            class="lp-section scroll-mt-32 pt-20 pb-4 max-[620px]:pt-14"
             aria-labelledby="data-title"
           >
-            <div class="lp-section-heading mb-[22px] flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[27px] [&_h2]:font-bold [&_h2]:leading-[1.15] [&_h2]:tracking-[-.04em] [&>p]:mb-0.5 [&>p]:mt-0 [&>p]:text-right [&>p]:text-xs [&>p]:leading-normal [&>p]:text-zinc-500 dark:[&>p]:text-zinc-400 max-[620px]:[&>p]:mt-2.5 max-[620px]:[&>p]:text-left">
+            <div class="lp-section-heading mb-6 flex items-end justify-between gap-6 max-[620px]:block [&_h2]:m-0 [&_h2]:text-[32px] [&_h2]:font-[510] [&_h2]:leading-[1.13] [&_h2]:tracking-[-.022em] [&>p]:m-0 [&>p]:text-right [&>p]:text-[13px] [&>p]:leading-5 [&>p]:text-[#62666d] dark:[&>p]:text-[#8a8f98] max-[620px]:[&>p]:mt-2 max-[620px]:[&>p]:text-left">
               <div>
-                <p class="lp-kicker mb-[9px] mt-0 text-[10px] font-[750] tracking-[.1em] text-zinc-500 dark:text-zinc-400">
+                <p class="lp-kicker mb-3 mt-0 text-[10px] font-[510] tracking-[.08em] text-[#62666d] dark:text-[#8a8f98]">
                   COMPONENTS
                 </p><h2 id="data-title">Data display</h2>
               </div><p>Tables and pagination with LiveView updates.</p>
             </div>
-            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+            <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[700px]:grid-cols-2">
               <.preview_card
                 title="Cards"
                 description="Four surface variants with composable sections."
@@ -3091,7 +3084,7 @@ defmodule OlisUI.Preview.Live do
               </.preview_card>
             </div>
           </section>
-          <footer class="lp-footer mt-[65px] flex justify-between gap-4 border-t border-[#e8e8ed] py-11 text-[11px] text-zinc-500 dark:border-[#303138] dark:text-zinc-400 [&>span]:font-[750] [&>span]:text-zinc-900 dark:[&>span]:text-zinc-100 [&>span_span]:font-normal [&>span_span]:text-zinc-500 dark:[&>span_span]:text-zinc-400 [&>a]:text-zinc-500 [&>a]:no-underline dark:[&>a]:text-zinc-400">
+          <footer class="lp-footer mt-20 flex justify-between gap-4 border-t border-[#e5e7eb] py-10 text-xs text-[#62666d] dark:border-[#23252a] dark:text-[#8a8f98] [&>span]:font-[510] [&>span]:text-[#111315] dark:[&>span]:text-white [&>span_span]:font-normal [&>span_span]:text-[#8a8f98] [&>a]:text-[#62666d] [&>a]:no-underline dark:[&>a]:text-[#8a8f98]">
             <span>OlisUI <span>for LiveView</span></span><a href="#overview">Back to top ↑</a>
           </footer>
           <.modal id="live-modal" title="Live update">
@@ -3149,7 +3142,7 @@ end
 
 defmodule OlisUI.Preview.Endpoint do
   use Phoenix.Endpoint, otp_app: :olis_ui
-  @session_options [store: :cookie, key: "_hero_preview", signing_salt: "previewsession"]
+  @session_options [store: :cookie, key: "_olis_preview", signing_salt: "previewsession"]
   socket("/live", Phoenix.LiveView.Socket,
     websocket: [connect_info: [session: @session_options]],
     longpoll: false

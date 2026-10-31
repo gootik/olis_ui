@@ -14,6 +14,19 @@ test("serves compiled Tailwind and component styles", async ({ request }) => {
   expect(css).not.toMatch(/@import\s+(?:url\()?\s*["'](?:@heroui|\.\/olis_ui)/);
 });
 
+test("uses dark styles by default and respects an explicit light theme", async ({ page }) => {
+  const body = page.locator("body");
+  const primaryAction = page.getByRole("link", { name: "Explore components" });
+
+  await page.evaluate(() => document.documentElement.removeAttribute("data-theme"));
+  await expect(body).toHaveCSS("background-color", "rgb(8, 9, 10)");
+  await expect(primaryAction).toHaveCSS("background-color", "rgb(227, 66, 52)");
+
+  await page.evaluate(() => document.documentElement.setAttribute("data-theme", "light"));
+  await expect(body).toHaveCSS("background-color", "rgb(250, 250, 250)");
+  await expect(primaryAction).toHaveCSS("background-color", "rgb(227, 66, 52)");
+});
+
 test("popover opens and completes its exit animation", async ({ page }) => {
   const trigger = page.getByRole("button", { name: "Open popover" });
   const popover = page.locator("#preview-popover-content");

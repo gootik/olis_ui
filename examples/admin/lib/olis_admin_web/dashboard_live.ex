@@ -36,7 +36,7 @@ defmodule OlisAdminWeb.DashboardLive do
         store_name: "Northstar Studio",
         contact_email: "hello@northstar.example",
         notifications: true,
-        dark_mode: false
+        dark_mode: true
       )
       |> refresh_orders()
 
@@ -324,17 +324,17 @@ defmodule OlisAdminWeb.DashboardLive do
   def render(assigns) do
     ~H"""
     <div class="min-h-screen" data-theme={if @dark_mode, do: "dark", else: "light"}>
-      <div class="min-h-screen bg-[#f7f8fa] text-foreground dark:bg-[#101114]">
+      <div class="min-h-screen bg-background text-foreground">
         <aside class="fixed inset-y-0 left-0 z-20 hidden w-60 flex-col border-r border-border bg-surface px-4 py-6 lg:flex">
           <div class="mb-10 flex items-center gap-3 px-2">
-            <span class="grid size-9 place-items-center rounded-xl bg-foreground text-lg font-bold text-background">✦</span>
+            <span class="grid size-9 place-items-center rounded-md bg-foreground text-lg font-medium text-background">✦</span>
             <div>
-              <p class="m-0 text-sm font-semibold tracking-tight">Northstar</p><p class="m-0 text-xs text-muted">
+              <p class="m-0 text-sm font-medium tracking-tight">Northstar</p><p class="m-0 text-xs text-muted">
                 Commerce workspace
               </p>
             </div>
           </div>
-          <p class="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
+          <p class="mb-2 px-3 text-[10px] font-medium uppercase tracking-[0.12em] text-muted">
             Workspace
           </p>
           <nav aria-label="Main navigation" class="space-y-1">
@@ -345,7 +345,7 @@ defmodule OlisAdminWeb.DashboardLive do
               phx-value-page={key}
               aria-current={if @page == key, do: "page"}
               class={[
-                "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium transition-colors",
+                "flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm font-medium transition-colors",
                 if(@page == key,
                   do: "bg-default text-foreground",
                   else: "text-muted hover:bg-default/60 hover:text-foreground"
@@ -355,8 +355,8 @@ defmodule OlisAdminWeb.DashboardLive do
               <.icon path={path} class="size-[18px] shrink-0" />{label}
             </button>
           </nav>
-          <div class="mt-auto rounded-2xl bg-surface-secondary p-4">
-            <p class="m-0 text-sm font-semibold">Your workspace</p>
+          <div class="mt-auto rounded-xl border border-border bg-surface-secondary p-4">
+            <p class="m-0 text-sm font-medium">Your workspace</p>
             <p class="mt-1 mb-3 text-xs leading-5 text-muted">
               A realistic sample built with OlisUI and LiveView.
             </p>
@@ -424,13 +424,13 @@ defmodule OlisAdminWeb.DashboardLive do
             </nav>
           </header>
 
-          <main class="mx-auto max-w-[1440px] px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
+          <main class="mx-auto max-w-[1200px] px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
             <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p class="mb-1 text-sm text-muted">
                   {if @page == "overview", do: "Friday, October 30, 2026", else: "Northstar workspace"}
                 </p>
-                <h1 class="m-0 text-2xl font-semibold tracking-tight sm:text-[28px]">
+                <h1 class="m-0 text-2xl font-medium tracking-tight sm:text-[28px]">
                   {page_title(@page)}
                 </h1>
                 <p class="mt-1 mb-0 text-sm text-muted">{page_description(@page)}</p>
@@ -488,14 +488,14 @@ defmodule OlisAdminWeb.DashboardLive do
                     <:content>
                       <div class="mb-5 flex flex-wrap items-start justify-between gap-3">
                         <div>
-                          <p class="m-0 text-base font-semibold">Revenue overview</p><p class="mt-1 mb-0 text-sm text-muted">
+                          <p class="m-0 text-base font-medium">Revenue overview</p><p class="mt-1 mb-0 text-sm text-muted">
                             Your sales performance over time
                           </p>
                         </div>
                         <div
                           role="group"
                           aria-label="Revenue period"
-                          class="flex rounded-xl bg-surface-secondary p-1"
+                          class="flex rounded-md bg-surface-secondary p-1"
                         >
                           <button
                             :for={period <- ["7 days", "30 days", "90 days"]}
@@ -506,7 +506,7 @@ defmodule OlisAdminWeb.DashboardLive do
                             class={[
                               "rounded-lg px-2.5 py-1.5 text-xs font-medium",
                               if(@period == period,
-                                do: "bg-surface text-foreground shadow-sm",
+                                do: "bg-surface text-foreground",
                                 else: "text-muted"
                               )
                             ]}
@@ -514,7 +514,7 @@ defmodule OlisAdminWeb.DashboardLive do
                         </div>
                       </div>
                       <div class="mb-4 flex items-baseline gap-3">
-                        <span class="text-[28px] font-semibold tracking-tight">$48,294.00</span><.chip
+                        <span class="text-[28px] font-medium tracking-tight">$48,294.00</span><.chip
                           size="sm"
                           color="success"
                           variant="soft"
@@ -540,7 +540,7 @@ defmodule OlisAdminWeb.DashboardLive do
                             class={[
                               "w-full max-w-8 rounded-t-md transition-all",
                               chart_class(height),
-                              if(index == 11, do: "bg-accent", else: "bg-accent/20")
+                              if(index == 11, do: "bg-[#d0d6e0]", else: "bg-[#383b3f]")
                             ]}
                           >
                           </div>
@@ -555,7 +555,7 @@ defmodule OlisAdminWeb.DashboardLive do
                   <.card class="border border-border shadow-none">
                     <:content>
                       <div class="mb-5">
-                        <p class="m-0 text-base font-semibold">Sales by category</p><p class="mt-1 mb-0 text-sm text-muted">
+                        <p class="m-0 text-base font-medium">Sales by category</p><p class="mt-1 mb-0 text-sm text-muted">
                           Where your revenue comes from
                         </p>
                       </div>
@@ -600,7 +600,7 @@ defmodule OlisAdminWeb.DashboardLive do
               <.card class="border border-border shadow-none">
                 <:content>
                   <div class="mb-5">
-                    <p class="m-0 text-base font-semibold">Customer directory</p><p class="mt-1 mb-0 text-sm text-muted">
+                    <p class="m-0 text-base font-medium">Customer directory</p><p class="mt-1 mb-0 text-sm text-muted">
                       People who have ordered from your store.
                     </p>
                   </div>
@@ -635,7 +635,7 @@ defmodule OlisAdminWeb.DashboardLive do
               <.card class="border border-border shadow-none">
                 <:content>
                   <div class="mb-5">
-                    <p class="m-0 text-base font-semibold">Products</p><p class="mt-1 mb-0 text-sm text-muted">
+                    <p class="m-0 text-base font-medium">Products</p><p class="mt-1 mb-0 text-sm text-muted">
                       Your best-selling items this month.
                     </p>
                   </div>
@@ -645,7 +645,7 @@ defmodule OlisAdminWeb.DashboardLive do
                       class="flex flex-wrap items-center gap-4 py-4 first:pt-0 last:pb-0"
                     >
                       <div class={[
-                        "grid size-12 place-items-center rounded-xl text-base font-semibold text-zinc-600",
+                        "grid size-12 place-items-center rounded-xl text-base font-medium text-zinc-600",
                         product.color
                       ]}>
                         {product.initial}
@@ -682,7 +682,7 @@ defmodule OlisAdminWeb.DashboardLive do
               <div class="grid gap-5 xl:grid-cols-[minmax(0,1.5fr)_minmax(260px,1fr)]">
                 <.card class="border border-border shadow-none">
                   <:content>
-                    <p class="m-0 text-base font-semibold">Store details</p><p class="mt-1 mb-5 text-sm text-muted">
+                    <p class="m-0 text-base font-medium">Store details</p><p class="mt-1 mb-5 text-sm text-muted">
                       Manage the details shown to your customers.
                     </p>
                     <form phx-submit="save_settings" class="space-y-4">
@@ -707,7 +707,7 @@ defmodule OlisAdminWeb.DashboardLive do
                 </.card>
                 <.card class="border border-border shadow-none">
                   <:content>
-                    <p class="m-0 text-base font-semibold">Notifications</p><p class="mt-1 mb-5 text-sm text-muted">
+                    <p class="m-0 text-base font-medium">Notifications</p><p class="mt-1 mb-5 text-sm text-muted">
                       Choose how your workspace keeps you informed.
                     </p>
                     <form phx-change="notifications">
@@ -820,7 +820,7 @@ defmodule OlisAdminWeb.DashboardLive do
           <p class="m-0 text-sm font-medium text-muted">{@label}</p>
           <.icon class="size-4 text-muted" path={@path} />
         </div>
-        <p class="mt-3 mb-1 text-2xl font-semibold tracking-tight">{@value}</p>
+        <p class="mt-3 mb-1 text-2xl font-medium tracking-tight">{@value}</p>
         <p class="m-0 text-xs text-muted">
           <span class="font-medium text-success">{@change}</span> {@note}
         </p>
@@ -846,7 +846,7 @@ defmodule OlisAdminWeb.DashboardLive do
       <:content>
         <div class="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h2 class="m-0 text-base font-semibold">
+            <h2 class="m-0 text-base font-medium">
               {if @compact, do: "Recent orders", else: "All orders"}
             </h2>
             <p class="mt-1 mb-0 text-sm text-muted">{@count} orders match your filters.</p>

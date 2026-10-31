@@ -217,15 +217,15 @@
   &[data-placement="bottom"] {
     @apply w-full;
     @apply max-h-[85vh];
-    border-start-start-radius: min(32px, var(--radius-2xl));
-    border-start-end-radius: min(32px, var(--radius-2xl));
+    border-start-start-radius: 12px;
+    border-start-end-radius: 12px;
   }
 
   &[data-placement="top"] {
     @apply w-full;
     @apply max-h-[85vh];
-    border-end-start-radius: min(32px, var(--radius-2xl));
-    border-end-end-radius: min(32px, var(--radius-2xl));
+    border-end-start-radius: 12px;
+    border-end-end-radius: 12px;
   }
 
   /* Left/right placement: auto width, full height */

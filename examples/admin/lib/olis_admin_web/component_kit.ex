@@ -217,10 +217,10 @@ defmodule OlisAdminWeb.ComponentKit do
               label="Product category"
               options={[{"Home", "home"}, {"Accessories", "accessories"}]}
             />
-            <.color_field id="kit-brand" label="Brand color" value="#3B82F6" />
-            <.color_swatch color="#3B82F6" label="Blue" />
-            <.color_swatch_picker id="kit-colors" name="color" label="Accent color" value="#3B82F6">
-              <:option value="#3B82F6" label="Blue" /><:option value="#F43F5E" label="Rose" />
+            <.color_field id="kit-brand" label="Brand color" value="#E34234" />
+            <.color_swatch color="#E34234" label="Vermilion" />
+            <.color_swatch_picker id="kit-colors" name="color" label="Accent color" value="#E34234">
+              <:option value="#E34234" label="Vermilion" /><:option value="#6366F1" label="Iris" />
             </.color_swatch_picker>
             <.listbox
               id="kit-workspaces"

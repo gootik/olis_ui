@@ -1,6 +1,6 @@
 # OlisUI for LiveView
 
-OlisUI is a component library for Phoenix LiveView. It combines Phoenix function components and native HTML with Tailwind CSS and Alpine.js for interactive behavior.
+OlisUI is a component library for Phoenix LiveView. It combines Phoenix function components and native HTML with Tailwind CSS and Alpine.js for interactive behavior. Its default design uses dark surfaces, restrained borders, compact controls, and a vermilion primary action, following the design reference in `LINEAR.MD` with a custom accent.
 
 OlisUI is an early foundation and its APIs are still evolving. It currently provides button, close button, input, text field, fieldset, input group, search field, one-time-code input, color field, color swatch, color swatch picker, autocomplete, combo box, date field, time field, date picker, calendar, range calendar, card, chip, checkbox, checkbox group, switch, switch group, avatar, avatar group, progress bar, progress circle, meter, spinner, separator, scroll shadow, skeleton, textarea, radio, radio group, keyboard key, link, surface, select, accordion, disclosure, disclosure group, alert, toast, badge, data table, modal, alert dialog, drawer, sheet, tabs, dropdown, tooltip, popover, slider, number field, pagination, toolbar, button groups, toggle buttons, breadcrumbs, listbox, and tag group components. Some advanced component behaviors remain to be built and verified.
 
@@ -12,7 +12,7 @@ The connected LiveView integration preview is at [http://localhost:4000/live-pre
 
 For a realistic interactive application, see the separate [admin dashboard example](examples/admin/README.md). It runs on port 4001 and demonstrates the components in a commerce workflow.
 
-For a review, use the sidebar to move between these sections and the top-right control to switch themes:
+For a review, use the navigation to move between these sections and the theme control to switch themes:
 
 - **Forms:** text and input groups, search, autocomplete, combo boxes, and validation.
 - **Selection & navigation:** buttons, checkboxes, switches, sliders, lists, tags, tabs, and accordions.
@@ -65,7 +65,9 @@ import OlisUI
 
 Generated Phoenix templates may rely on the original CoreComponents APIs; update those calls when switching imports. To keep the generated components unchanged, keep the existing import and call OlisUI components explicitly, for example `<OlisUI.button>Save</OlisUI.button>`, instead of importing `OlisUI` globally.
 
-OlisUI uses Tailwind CSS v4; see the [Phoenix installation guide](https://tailwindcss.com/docs/installation/framework-guides/phoenix) if your application does not have it yet. Restart the asset watcher after installation. Set `data-theme="dark"` on a parent element for dark mode. The `dark:` utilities follow the explicit `.dark` class or `data-theme="dark"`, so a light theme remains light even when the operating system prefers dark mode.
+OlisUI uses Tailwind CSS v4; see the [Phoenix installation guide](https://tailwindcss.com/docs/installation/framework-guides/phoenix) if your application does not have it yet. Restart the asset watcher after installation. The component palette and Tailwind `dark:` utilities default to dark. Set `data-theme="light"` on the document root for the light palette, or `data-theme="dark"` to select dark explicitly. Nested light sections inside a dark document do not isolate Tailwind `dark:` utilities.
+
+The type stack prefers Inter Variable, then Inter and system sans-serif fonts. Supply Inter in your application if you want the same typography as the preview; code and keyboard labels use a monospace fallback.
 
 ### Updating an existing installation
 
@@ -221,7 +223,7 @@ Switch groups arrange independent native switches. Add a `label` for a fieldset 
 </.switch_group>
 ```
 
-Input groups combine a native input with optional `:prefix` and `:suffix` slots. Pass `multiline` for a textarea, `variant="secondary"` for surfaces, and `full_width` to fill the available width. Slots can contain text, icons, or interactive controls; disable interactive slot controls explicitly when the field is disabled. Like `text_field`, an input group accepts a Phoenix form field and explicit error strings. With Alpine installed, clicking a noninteractive part of the group focuses its input.
+Input groups combine a native input with optional `:prefix` and `:suffix` slots. Pass `multiline` for a textarea, `variant="secondary"` for surfaces, and `full_width` to fill the available width. In multiline groups, suffix content appears below the textarea at the trailing edge, leaving the field free to resize vertically. Slots can contain text, icons, or interactive controls; disable interactive slot controls explicitly when the field is disabled. Like `text_field`, an input group accepts a Phoenix form field and explicit error strings. With Alpine installed, clicking a noninteractive part of the group focuses its input.
 
 ```heex
 <.input_group field={@form[:price]} label="Price" type="number" full_width>

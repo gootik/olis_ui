@@ -5,6 +5,7 @@
 
   min-height: 38px;
 
+  border-radius: 6px;
   border-width: var(--border-width-field);
   border-color: var(--field-border);
 

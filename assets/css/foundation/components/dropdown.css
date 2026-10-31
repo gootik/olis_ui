@@ -57,7 +57,7 @@
    */
   min-width: min(calc(var(--spacing) * 55), 100%, calc(100svw - 2rem));
   max-width: min(100%, calc(100svw - 2rem));
-  border-radius: min(32px, calc(var(--radius-2xl) + var(--spacing) * 1.5));
+  border-radius: 12px;
   box-shadow: var(--overlay-shadow);
 
   /* Focus state */

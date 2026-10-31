@@ -125,7 +125,7 @@
 /* Surface variant */
 .accordion--surface {
   @apply bg-surface;
-  border-radius: min(32px, var(--radius-3xl));
+  border-radius: 12px;
 
   .accordion__trigger {
     /* See the base trigger hover state for why `data-hovered` is left out here. */
@@ -149,13 +149,13 @@
 
   /* Special rounding for first and last items in surface variant */
   &:first-child [data-slot="accordion-trigger"] {
-    border-start-start-radius: min(32px, var(--radius-3xl));
-    border-start-end-radius: min(32px, var(--radius-3xl));
+    border-start-start-radius: 12px;
+    border-start-end-radius: 12px;
   }
 
   &:last-child:not(:has([data-slot="accordion-trigger"][aria-expanded="true"]))
     [data-slot="accordion-trigger"] {
-    border-end-start-radius: min(32px, var(--radius-3xl));
-    border-end-end-radius: min(32px, var(--radius-3xl));
+    border-end-start-radius: 12px;
+    border-end-end-radius: 12px;
   }
 }

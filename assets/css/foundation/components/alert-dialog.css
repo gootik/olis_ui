@@ -159,7 +159,7 @@
   @apply flex min-h-0 w-full flex-col;
   @apply max-h-full;
   @apply bg-overlay shadow-overlay outline-none;
-  border-radius: min(32px, var(--radius-3xl));
+  border-radius: 12px;
   @apply p-6;
   @apply overflow-clip;
   @apply pointer-events-auto;
@@ -244,7 +244,7 @@
 .alert-dialog__icon {
   @apply flex items-center justify-center;
   @apply size-10 shrink-0;
-  @apply rounded-3xl select-none;
+  @apply rounded-[6px] select-none;
 
   [data-slot="alert-dialog-default-icon"] {
     @apply box-content size-5;

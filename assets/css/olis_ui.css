@@ -1,6 +1,13 @@
-/* Match the explicit theme used by OlisUI's color tokens. */
+/* Dark utilities follow the default dark document and explicit dark themes. */
 @custom-variant dark {
-  &:is(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *) {
+  &:is(
+    :root:not(.light, [data-theme="light"]),
+    :root:not(.light, [data-theme="light"]) *,
+    .dark,
+    .dark *,
+    [data-theme="dark"],
+    [data-theme="dark"] *
+  ) {
     @slot;
 
     &::before,
@@ -10,33 +17,52 @@
   }
 }
 
-/* Theme tokens can be overridden on :root or any subtree. */
-:root {
-  --olis-background: #fff;
-  --olis-foreground: #11181c;
-  --olis-surface: #fff;
-  --olis-muted: #71717a;
-  --olis-border: #e4e4e7;
-  --olis-accent: #006fee;
-  --olis-accent-foreground: #fff;
-  --olis-danger: #f31260;
-  --olis-focus: #006fee;
-  --olis-radius: 14px;
-  --olis-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+/* Keep legacy component tokens aligned with the active semantic theme. */
+:root,
+.light,
+.dark,
+.default,
+[data-theme="light"],
+[data-theme="dark"],
+[data-theme="default"],
+:host {
+  --olis-background: var(--background);
+  --olis-foreground: var(--foreground);
+  --olis-surface: var(--surface);
+  --olis-muted: var(--muted);
+  --olis-border: var(--border);
+  --olis-default: var(--default);
+  --olis-accent: var(--accent);
+  --olis-accent-foreground: var(--accent-foreground);
+  --olis-danger: var(--danger);
+  --olis-success: var(--success);
+  --olis-warning: var(--warning);
+  --olis-field: var(--field-background);
+  --olis-focus: var(--focus);
+  --olis-radius: 6px;
+  --olis-shadow: var(--surface-shadow);
 }
 
-[data-theme="dark"] {
-  --olis-background: #000;
-  --olis-foreground: #eceeed;
-  --olis-surface: #18181b;
-  --olis-muted: #a1a1aa;
-  --olis-border: #3f3f46;
-  --olis-accent: #338ef7;
-  --olis-accent-foreground: #fff;
-  --olis-danger: #f54180;
-  --olis-focus: #338ef7;
+:root {
+  font-family: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings:
+    "cv01" 1,
+    "ss03" 1,
+    "zero" 1;
+  letter-spacing: -0.01em;
+}
 
-  color-scheme: dark;
+code,
+kbd,
+pre,
+samp,
+.kbd,
+.olis-kbd {
+  font-family: var(--font-mono);
+  font-feature-settings:
+    "cv01" 1,
+    "ss03" 1;
+  letter-spacing: -0.013em;
 }
 
 .olis-button,
@@ -193,8 +219,8 @@
 }
 
 .olis-card {
-  border: 1px solid var(--olis-border);
-  border-radius: calc(var(--olis-radius) + 4px);
+  border: 0.5px solid var(--olis-border);
+  border-radius: 12px;
   background: var(--olis-surface);
   color: var(--olis-foreground);
   box-shadow: var(--olis-shadow);
@@ -218,13 +244,13 @@
 }
 
 .olis-chip--success {
-  background: #d1fae5;
-  color: #065f46;
+  background: color-mix(in srgb, var(--olis-success) 15%, transparent);
+  color: var(--olis-success);
 }
 
 .olis-chip--warning {
-  background: #fef3c7;
-  color: #92400e;
+  background: color-mix(in srgb, var(--olis-warning) 15%, transparent);
+  color: var(--olis-warning);
 }
 
 .olis-chip--danger {
@@ -238,43 +264,10 @@
   }
 }
 
-/* OlisUI v3 default theme and component dimensions. */
-:root,
-[data-theme="light"] {
-  --olis-background: oklch(97.02% 0 0deg);
-  --olis-foreground: oklch(21.03% 0.0059 285.89deg);
-  --olis-surface: white;
-  --olis-muted: oklch(55.17% 0.0138 285.94deg);
-  --olis-border: oklch(90% 0.004 286.32deg);
-  --olis-default: oklch(94% 0.001 286.375deg);
-  --olis-accent: oklch(62.04% 0.195 253.83deg);
-  --olis-accent-foreground: oklch(99.11% 0 0deg);
-  --olis-danger: oklch(65.32% 0.2328 25.74deg);
-  --olis-success: oklch(73.29% 0.1935 150.81deg);
-  --olis-warning: oklch(78.19% 0.1585 72.33deg);
-  --olis-field: white;
-  --olis-radius: 12px;
-  --olis-focus: var(--olis-accent);
-  --olis-shadow:
-    0 2px 4px 0 rgb(0 0 0 / 4%), 0 1px 2px 0 rgb(0 0 0 / 6%), 0 0 1px 0 rgb(0 0 0 / 6%);
-}
-
-[data-theme="dark"] {
-  --olis-background: oklch(12% 0.005 285.823deg);
-  --olis-foreground: oklch(99.11% 0 0deg);
-  --olis-surface: oklch(21.03% 0.0059 285.89deg);
-  --olis-muted: oklch(70.5% 0.015 286.067deg);
-  --olis-border: oklch(28% 0.006 286.033deg);
-  --olis-default: oklch(27.4% 0.006 286.033deg);
-  --olis-field: var(--olis-surface);
-  --olis-danger: oklch(59.4% 0.1967 24.63deg);
-  --olis-warning: oklch(82.03% 0.1388 76.34deg);
-  --olis-shadow: 0 0 0 0 transparent inset;
-}
-
 .olis-button {
-  @apply rounded-3xl whitespace-nowrap;
+  @apply whitespace-nowrap;
 
+  border-radius: var(--olis-radius);
   border: 0;
   transition:
     transform 250ms ease,
@@ -341,7 +334,7 @@
 .olis-input {
   height: auto;
   min-height: 40px;
-  border: 0;
+  border: 1px solid var(--field-border);
   padding: 8px 12px;
   background: var(--olis-field);
 }
@@ -355,9 +348,9 @@
 }
 
 .olis-card {
-  @apply rounded-3xl flex flex-col gap-3;
+  @apply flex flex-col gap-3;
 
-  border: 0;
+  border-radius: 12px;
 }
 
 .olis-chip {
@@ -440,8 +433,8 @@
   display: block;
   width: 7px;
   height: 4px;
-  border-left: 2px solid white;
-  border-bottom: 2px solid white;
+  border-left: 2px solid var(--olis-accent-foreground);
+  border-bottom: 2px solid var(--olis-accent-foreground);
   transform: translate(4px, 4px) rotate(-45deg);
 }
 
@@ -607,7 +600,7 @@
 
   background: var(--olis-default);
   color: var(--olis-muted);
-  font-family: inherit;
+  font-family: var(--font-mono);
 }
 
 .olis-select {
@@ -653,15 +646,16 @@
 }
 
 .olis-alert {
-  @apply flex w-full items-start gap-4 rounded-3xl px-4 py-3;
+  @apply flex w-full items-start gap-4 px-4 py-3;
 
+  border-radius: 6px;
   background: var(--olis-surface);
   box-shadow: var(--olis-shadow);
   color: var(--olis-foreground);
 }
 
 .olis-alert-icon {
-  @apply flex size-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold;
+  @apply flex size-6 shrink-0 items-center justify-center rounded-full border text-xs font-[510];
 }
 
 .olis-alert-title {
@@ -695,8 +689,9 @@
 }
 
 .olis-badge {
-  @apply inline-flex min-h-7 min-w-7 items-center justify-center rounded-3xl border px-1 text-xs font-medium;
+  @apply inline-flex min-h-7 min-w-7 items-center justify-center border px-1 text-xs font-medium;
 
+  border-radius: 4px;
   background: var(--olis-default);
   color: var(--olis-foreground);
   border-color: var(--olis-background);
@@ -731,8 +726,9 @@
 }
 
 .olis-table-wrap {
-  @apply w-full overflow-x-auto rounded-3xl;
+  @apply w-full overflow-x-auto;
 
+  border-radius: 12px;
   background: var(--olis-surface);
   box-shadow: var(--olis-shadow);
 }

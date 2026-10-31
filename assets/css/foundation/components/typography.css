@@ -8,27 +8,27 @@
 }
 
 .typography-prose h1 {
-  @apply text-4xl font-semibold tracking-tight;
+  @apply text-4xl font-[510] tracking-tight;
 }
 
 .typography-prose h2 {
-  @apply text-3xl font-semibold tracking-tight;
+  @apply text-3xl font-[510] tracking-tight;
 }
 
 .typography-prose h3 {
-  @apply text-2xl font-semibold tracking-tight;
+  @apply text-2xl font-[510] tracking-tight;
 }
 
 .typography-prose h4 {
-  @apply text-xl font-semibold tracking-tight;
+  @apply text-xl font-[510] tracking-tight;
 }
 
 .typography-prose h5 {
-  @apply text-lg font-semibold tracking-tight;
+  @apply text-lg font-[510] tracking-tight;
 }
 
 .typography-prose h6 {
-  @apply text-base font-semibold tracking-tight;
+  @apply text-base font-[510] tracking-tight;
 }
 
 .typography-prose p {
@@ -68,7 +68,7 @@
 }
 
 .typography-prose strong {
-  @apply font-semibold text-foreground;
+  @apply font-[590] text-foreground;
 }
 
 .typography-prose em {
@@ -80,27 +80,27 @@
 }
 
 .typography--h1 {
-  @apply text-4xl font-semibold tracking-tight;
+  @apply text-4xl font-[510] tracking-tight;
 }
 
 .typography--h2 {
-  @apply text-3xl font-semibold tracking-tight;
+  @apply text-3xl font-[510] tracking-tight;
 }
 
 .typography--h3 {
-  @apply text-2xl font-semibold tracking-tight;
+  @apply text-2xl font-[510] tracking-tight;
 }
 
 .typography--h4 {
-  @apply text-xl font-semibold tracking-tight;
+  @apply text-xl font-[510] tracking-tight;
 }
 
 .typography--h5 {
-  @apply text-lg font-semibold tracking-tight;
+  @apply text-lg font-[510] tracking-tight;
 }
 
 .typography--h6 {
-  @apply text-base font-semibold tracking-tight;
+  @apply text-base font-[510] tracking-tight;
 }
 
 .typography--body {
@@ -156,9 +156,9 @@
 }
 
 .typography--weight-semibold {
-  @apply font-semibold;
+  @apply font-[590];
 }
 
 .typography--weight-bold {
-  @apply font-bold;
+  @apply font-[590];
 }

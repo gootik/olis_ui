@@ -193,7 +193,7 @@
  * RangeCalendar Cells
  * -------------------------------------------------------------------------- */
 .range-calendar__cell {
-  @apply relative z-1 mx-0 my-[2px] rounded-3xl p-0 outline-none;
+  @apply relative z-1 mx-0 my-[2px] rounded-[6px] p-0 outline-none;
   cursor: var(--cursor-interactive);
 
   will-change: background-color, border-color;
@@ -208,7 +208,7 @@
 
   /* Inner interactive circle/capsule (equivalent to React Aria "button-base") */
   .range-calendar__cell-button {
-    @apply flex aspect-square w-full items-center justify-center rounded-3xl text-sm font-medium text-foreground no-highlight;
+    @apply flex aspect-square w-full items-center justify-center rounded-[6px] text-sm font-medium text-foreground no-highlight;
 
     will-change: scale;
     transition: scale 200ms var(--ease-out);

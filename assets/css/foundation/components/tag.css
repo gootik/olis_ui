@@ -3,7 +3,7 @@
 .tag {
   --optical-offset: 0.031em;
 
-  @apply relative inline-flex items-center gap-1 rounded-xl font-medium select-none no-highlight;
+  @apply relative inline-flex items-center gap-1 rounded-[4px] font-normal select-none no-highlight;
 
   /* Default size - matches .tag--md */
   @apply px-2 py-1 text-xs;
@@ -65,7 +65,7 @@
 }
 
 .tag--lg {
-  @apply rounded-2xl px-2.5 py-1.5 text-sm;
+  @apply rounded-[4px] px-2.5 py-1.5 text-sm;
 }
 
 /* Variant */

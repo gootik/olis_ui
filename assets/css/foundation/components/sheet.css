@@ -61,11 +61,11 @@
 }
 
 .sheet__content--bottom {
-  @apply rounded-t-2xl;
+  @apply rounded-t-[12px];
 }
 
 .sheet__content--top {
-  @apply rounded-b-2xl;
+  @apply rounded-b-[12px];
 }
 
 .sheet__content--left,
@@ -74,15 +74,15 @@
 }
 
 .sheet__content--left {
-  @apply rounded-r-2xl;
+  @apply rounded-r-[12px];
 }
 
 .sheet__content--right {
-  @apply rounded-l-2xl;
+  @apply rounded-l-[12px];
 }
 
 .sheet__content[data-detached] {
-  @apply m-2 max-h-[calc(100%-1rem)] rounded-2xl;
+  @apply m-2 max-h-[calc(100%-1rem)] rounded-[12px];
 }
 
 .sheet__content--bottom[data-detached],
@@ -123,23 +123,23 @@
 }
 
 .sheet__content[data-detached] .sheet__dialog {
-  @apply rounded-2xl;
+  @apply rounded-[12px];
 }
 
 .sheet__dialog--bottom {
-  @apply rounded-t-2xl;
+  @apply rounded-t-[12px];
 }
 
 .sheet__dialog--top {
-  @apply rounded-b-2xl;
+  @apply rounded-b-[12px];
 }
 
 .sheet__dialog--left {
-  @apply rounded-r-2xl;
+  @apply rounded-r-[12px];
 }
 
 .sheet__dialog--right {
-  @apply rounded-l-2xl;
+  @apply rounded-l-[12px];
 }
 
 .sheet__header {
@@ -147,7 +147,7 @@
 }
 
 .sheet__heading {
-  @apply text-lg font-semibold;
+  @apply text-lg font-[590];
 }
 
 /* Scroll the body only once the sheet is fully expanded, so a swipe at a

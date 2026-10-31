@@ -17,7 +17,7 @@
 .input-otp__slot {
   @apply relative flex h-10 w-9.5 min-w-0 flex-1 items-center justify-center;
   @apply border bg-field text-field-foreground shadow-field;
-  @apply rounded-field text-sm font-semibold outline-none;
+  @apply rounded-field text-sm font-[590] outline-none;
 
   border-width: var(--border-width-field);
   border-color: var(--field-border);

@@ -23,6 +23,7 @@ import { registerHeroNumberField } from "./alpine/number_field.js";
 import { registerHeroTabs } from "./alpine/tabs.js";
 import { registerHeroToggleButtonGroup } from "./alpine/toggle_button_group.js";
 import { registerHeroAccordion } from "./alpine/accordion.js";
+import { registerHeroTable } from "./alpine/table.js";
 import { registerHeroDisclosure } from "./alpine/disclosure.js";
 
 /** Register Alpine state used by HeroUI components before calling Alpine.start(). */
@@ -53,4 +54,5 @@ export function registerHeroUIAlpine(Alpine) {
   registerHeroToggleButtonGroup(Alpine);
   registerHeroAccordion(Alpine);
   registerHeroDisclosure(Alpine);
+  registerHeroTable(Alpine);
 }

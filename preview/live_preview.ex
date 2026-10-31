@@ -97,6 +97,7 @@ defmodule HeroUI.Preview.Live do
         delivery: "standard",
         topics: ["news"],
         rows: rows,
+        table_selected: ["person-1"],
         sort_direction: "ascending",
         page: 1,
         bold: false,
@@ -173,6 +174,9 @@ defmodule HeroUI.Preview.Live do
 
     {:ok, socket}
   end
+
+  def handle_event("table_selection", %{"keys" => encoded}, socket),
+    do: {:noreply, assign(socket, :table_selected, Jason.decode!(encoded))}
 
   def handle_event("sort_people", %{"sort" => "name"}, socket) do
     direction =
@@ -1678,6 +1682,19 @@ defmodule HeroUI.Preview.Live do
                   </p>
                 </form>
               </.preview_card>
+              <.preview_card
+                title="Checkbox states"
+                description="Selected, indeterminate, and invalid choices."
+              >
+                <div class="flex flex-col gap-4">
+                  <.checkbox id="preview-checkbox-mixed" indeterminate>
+                    Select all notifications
+                  </.checkbox>
+                  <.checkbox id="preview-checkbox-mixed-invalid" indeterminate invalid>
+                    Invalid selection
+                  </.checkbox>
+                </div>
+              </.preview_card>
               <.preview_card title="Number fields" description="Bounds, step values, and validation.">
                 <div class="flex flex-col gap-5">
                   <.number_field
@@ -2654,14 +2671,21 @@ defmodule HeroUI.Preview.Live do
                   </.avatar_group>
                 </div>
               </.preview_card>
-              <.preview_card title="Progress" description="Visualize the current update count.">
-                <.progress_circle label="Updates" value={min(@count, 10)} max={10} />
-                <.meter
-                  label="Capacity"
-                  value={min(@count, 10)}
-                  max={10}
-                  value_text={"#{min(@count, 10)} of 10"}
-                />
+              <.preview_card
+                title="Progress & meter"
+                description="Determinate, indeterminate, and label-free indicators."
+              >
+                <div class="space-y-5">
+                  <.progress_bar label="Uploading" value={60} />
+                  <.progress_bar aria-label="Background upload" value={45} show_value={false} />
+                  <.progress_bar label="Processing" indeterminate />
+                  <.meter label="Capacity" value={7} max={10} value_text="7 of 10 GB" />
+                  <div class="flex items-center gap-4">
+                    <.progress_circle label="Updates" value={min(@count, 10)} max={10} />
+                    <.progress_circle label="Loading" indeterminate color="success" />
+                    <.progress_circle label="Complete" value={75} show_label />
+                  </div>
+                </div>
               </.preview_card>
             </div>
           </section>
@@ -2858,6 +2882,11 @@ defmodule HeroUI.Preview.Live do
                     id="people-table"
                     label="People"
                     rows={@rows}
+                    row_id={fn person -> "person-#{person.id}" end}
+                    row_label={fn person -> person.name end}
+                    selection_mode="multiple"
+                    selected_keys={@table_selected}
+                    on_selection_change="table_selection"
                     sort_event="sort_people"
                     sort_by="name"
                     sort_direction={@sort_direction}
@@ -2865,6 +2894,9 @@ defmodule HeroUI.Preview.Live do
                     <:col :let={person} label="Name" sort_key="name" row_header>{person.name}</:col>
                     <:col :let={person} label="Role">{person.role}</:col>
                   </.data_table>
+                  <p id="table-selection-state" class="mt-2 text-xs text-muted">
+                    Selected: {Enum.join(@table_selected, ", ")}
+                  </p>
                   <.pagination
                     class="max-w-full overflow-x-auto"
                     page={@page}
@@ -2874,7 +2906,13 @@ defmodule HeroUI.Preview.Live do
                     <:summary>Page {@page} of 10</:summary>
                   </.pagination>
                   <h2>Streamed table</h2>
-                  <.data_table id="stream-table" label="Streamed people" rows={@streams.people}>
+                  <.data_table
+                    id="stream-table"
+                    label="Streamed people"
+                    rows={@streams.people}
+                    selection_mode="multiple"
+                    row_label={fn person -> person.name end}
+                  >
                     <:col :let={person} label="Name">{person.name}</:col>
                     <:col :let={person} label="Role">{person.role}</:col>
                   </.data_table>

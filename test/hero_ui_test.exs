@@ -1141,7 +1141,12 @@ defmodule HeroUITest do
     html = render_component(&HeroUI.progress_bar/1, %{label: "Upload", value: 25, max: 50})
     assert html =~ ~s(aria-valuenow="25")
     assert html =~ "50%"
-    indeterminate = render_component(&HeroUI.progress_bar/1, %{label: "Loading"})
+    default = render_component(&HeroUI.progress_bar/1, %{label: "Loading"})
+    assert default =~ ~s(aria-valuenow="0")
+
+    indeterminate =
+      render_component(&HeroUI.progress_bar/1, %{label: "Loading", indeterminate: true})
+
     refute indeterminate =~ "aria-valuenow"
     assert indeterminate =~ "progress-bar__fill"
 
@@ -1797,6 +1802,33 @@ defmodule HeroUITest do
     assert switch =~ ~s(data-disabled="true")
   end
 
+  test "indeterminate checkbox exposes a mixed state independently of checked" do
+    slot = [%{inner_block: fn _, _ -> "Select all" end}]
+
+    mixed =
+      render_component(&HeroUI.checkbox/1, %{
+        id: "all",
+        name: "all",
+        checked: true,
+        indeterminate: true,
+        invalid: true,
+        inner_block: slot
+      })
+
+    assert mixed =~ ~s(data-indeterminate="true")
+    assert mixed =~ ~s(aria-checked="mixed")
+    assert mixed =~ ~s(aria-invalid="true")
+    assert mixed =~ ~s(name="all")
+    assert mixed =~ ~r/<input[^>]*\schecked(?:\s|>|=)/
+    assert mixed =~ ~s(data-slot="checkbox-default-indicator--indeterminate")
+    refute mixed =~ ~s(data-slot="checkbox-default-indicator--checkmark")
+
+    ordinary = render_component(&HeroUI.checkbox/1, %{id: "one", inner_block: slot})
+    refute ordinary =~ ~s(aria-checked="mixed")
+    refute ordinary =~ ~s(data-indeterminate="true")
+    assert ordinary =~ ~s(data-slot="checkbox-default-indicator--checkmark")
+  end
+
   test "dropdown renders native popover semantics and disabled items" do
     html =
       render_component(&HeroUI.dropdown/1, %{
@@ -2046,7 +2078,10 @@ defmodule HeroUITest do
     assert circle =~ "progress-circle--lg"
     assert circle =~ "progress-circle--success"
     assert circle =~ "progress-circle__fill-circle"
-    waiting = render_component(&HeroUI.progress_circle/1, %{label: "Waiting"})
+
+    waiting =
+      render_component(&HeroUI.progress_circle/1, %{label: "Waiting", indeterminate: true})
+
     refute waiting =~ "aria-valuenow"
 
     meter =
@@ -2068,6 +2103,62 @@ defmodule HeroUITest do
 
     assert_raise ArgumentError, fn ->
       render_component(&HeroUI.progress_circle/1, %{label: "Bad", value: 0, min: 10, max: 10})
+    end
+  end
+
+  test "progress indicators support accessible track-only and custom output states" do
+    track =
+      render_component(&HeroUI.progress_bar/1, %{
+        value: 45,
+        show_value: false,
+        rest: %{"aria-label" => "Upload progress", id: "upload-progress"}
+      })
+
+    assert track =~ ~s(aria-label="Upload progress")
+    assert track =~ ~s(id="upload-progress")
+    assert track =~ ~s(aria-valuenow="45")
+    assert track =~ ~s(aria-valuetext="45%")
+    refute track =~ "progress-bar__output"
+    refute track =~ ~s(data-slot="label")
+
+    custom =
+      render_component(&HeroUI.progress_bar/1, %{
+        label: "Upload",
+        value: 5,
+        max: 10,
+        value_text: "5 of 10 files"
+      })
+
+    assert custom =~ ~s(aria-valuetext="5 of 10 files")
+    assert custom =~ "5 of 10 files</span>"
+
+    meter =
+      render_component(&HeroUI.meter/1, %{
+        value: 25,
+        show_value: false,
+        rest: %{"aria-labelledby" => "capacity-title", "data-slot" => "custom-meter"}
+      })
+
+    assert meter =~ ~s(aria-labelledby="capacity-title")
+    assert meter =~ ~s(data-slot="custom-meter")
+    assert meter =~ ~s(aria-valuetext="25%")
+    refute meter =~ "aria-label="
+    refute meter =~ "meter__output"
+
+    circle =
+      render_component(&HeroUI.progress_circle/1, %{
+        label: "Uploading",
+        show_label: true,
+        value: 75,
+        value_text: "Three quarters complete"
+      })
+
+    assert circle =~ ~s(aria-valuetext="Three quarters complete")
+    assert circle =~ ~s(data-slot="label")
+    assert circle =~ "Uploading</span>"
+
+    assert_raise ArgumentError, ~r/provide label/, fn ->
+      render_component(&HeroUI.progress_bar/1, %{})
     end
   end
 
@@ -2370,6 +2461,66 @@ defmodule HeroUITest do
     assert empty =~ "Nothing here"
   end
 
+  test "selectable tables expose labelled native controls and stable selected state" do
+    cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
+
+    attrs = %{
+      id: "people",
+      label: "People",
+      rows: [%{id: "a", name: "Alice"}, %{id: "b", name: "Bob"}],
+      col: cols,
+      row_id: & &1.id,
+      row_label: & &1.name,
+      selection_mode: "multiple",
+      selected_keys: ["a"],
+      disabled_keys: ["b"],
+      on_selection_change: "select"
+    }
+
+    html = render_component(&HeroUI.data_table/1, attrs)
+    assert html =~ ~s(x-data="heroTable")
+    assert html =~ ~s(data-controlled="true")
+    assert html =~ ~s(aria-label="Select all rows")
+    assert html =~ ~s(aria-label="Select Alice")
+    assert html =~ ~s(aria-label="Select Bob")
+    assert html =~ ~s(data-key="a")
+    assert html =~ ~s(aria-selected="true")
+    assert html =~ ~s(phx-click="select")
+    assert html =~ ~r/aria-label="Select Bob"[^>]*disabled/s
+    assert html =~ ~r/aria-label="Select Alice"[^>]*checked/s
+    assert html =~ ~s(data-hero-table-select-all)
+    single = render_component(&HeroUI.data_table/1, %{attrs | selection_mode: "single"})
+    refute single =~ ~s(data-hero-table-select-all)
+  end
+
+  test "selectable tables reject ambiguous state and missing row keys" do
+    cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
+
+    attrs = %{
+      id: "people",
+      label: "People",
+      rows: [%{id: "a", name: "Alice"}],
+      col: cols,
+      row_id: & &1.id,
+      selection_mode: "single"
+    }
+
+    assert_raise ArgumentError, ~r/at most one/, fn ->
+      render_component(&HeroUI.data_table/1, Map.put(attrs, :selected_keys, ["a", "b"]))
+    end
+
+    assert_raise ArgumentError, ~r/row ids/, fn ->
+      render_component(&HeroUI.data_table/1, %{
+        attrs
+        | rows: [%{id: "a", name: "One"}, %{id: "a", name: "Two"}]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/row_id/, fn ->
+      render_component(&HeroUI.data_table/1, Map.delete(attrs, :row_id))
+    end
+  end
+
   test "pagination renders bounded pages and accessible current state" do
     html =
       render_component(&HeroUI.pagination/1, %{page: 5, total_pages: 10, on_change: "change_page"})
@@ -2504,6 +2655,9 @@ defmodule HeroUITest do
     assert html =~ "Updates"
     assert html =~ "Choose one"
     assert html =~ "checkbox-group"
+    assert {description_pos, _} = :binary.match(html, ~s(id="topics-description"))
+    assert {option_pos, _} = :binary.match(html, ~s(id="topics-option-bmV3cw"))
+    assert description_pos < option_pos
 
     assert_raise ArgumentError, fn ->
       render_component(&HeroUI.checkbox_group/1, %{

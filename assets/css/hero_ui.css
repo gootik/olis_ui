@@ -140,10 +140,11 @@ body:has(dialog.hui-native-modal[open]) { overflow:hidden; }
 .hui-visually-hidden-input { position:absolute; inset-block-start:0; inset-inline-start:0; width:1rem; height:1rem; margin:0; opacity:0; z-index:2; cursor:inherit; }
 .hui-native-checkbox:has(input:focus-visible) .checkbox__control { outline:2px solid var(--focus); outline-offset:2px; }
 .hui-native-checkbox .checkbox__indicator { visibility:hidden; }
-.hui-native-checkbox:has(input:checked) .checkbox__indicator { visibility:visible; }
-.hui-native-checkbox:has(input:checked) .checkbox__control::before { scale:1; opacity:1; }
+.hui-native-checkbox:has(input:checked) .checkbox__indicator,
+.hui-native-checkbox[data-indeterminate="true"] .checkbox__indicator { visibility:visible; }
+.hui-native-checkbox:not([data-indeterminate="true"]):has(input:checked) .checkbox__control::before { scale:1; opacity:1; }
 .hui-native-checkbox[data-invalid="true"]:has(input:checked) .checkbox__control::before { background:var(--danger); }
-.hui-native-checkbox[data-invalid="true"]:not(:has(input:checked)) .checkbox__control { outline:2px solid var(--danger); }
+.hui-native-checkbox[data-invalid="true"]:not([data-indeterminate="true"]):not(:has(input:checked)) .checkbox__control { outline:2px solid var(--danger); }
 
 .hui-dropdown { display:inline-flex; }
 .hui-dropdown-popover { position:fixed; inset:auto; margin:0; width:max-content; min-width:min(13.75rem, calc(100vw - 2rem)); max-width:calc(100vw - 2rem); max-height:min(24rem, calc(100dvh - 2rem)); border:0; }

@@ -1086,11 +1086,17 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A labelled native checkbox, with HeroUI styling."
+  @doc """
+  A labelled native checkbox, with HeroUI styling.
+
+  `indeterminate` displays a mixed state while leaving the native checked value
+  independently controlled. Keep it set until your application clears it.
+  """
   attr(:id, :string, required: true)
   attr(:name, :string, default: nil)
   attr(:value, :string, default: "true")
   attr(:checked, :boolean, default: false)
+  attr(:indeterminate, :boolean, default: false)
   attr(:disabled, :boolean, default: false)
   attr(:invalid, :boolean, default: false)
   attr(:description, :string, default: nil)
@@ -1107,6 +1113,11 @@ defmodule HeroUI do
       data-slot="checkbox"
       data-disabled={if @disabled, do: "true"}
       data-invalid={if @invalid, do: "true"}
+      data-indeterminate={if @indeterminate, do: "true"}
+      x-data="{}"
+      x-init="$el.querySelector('input').indeterminate = $el.dataset.indeterminate === 'true'"
+      x-on:change="$el.querySelector('input').indeterminate = $el.dataset.indeterminate === 'true'"
+      x-on:phx:update.window="$el.querySelector('input').indeterminate = $el.dataset.indeterminate === 'true'"
     >
       <span class="checkbox__content" data-slot="checkbox-content">
         <input
@@ -1116,6 +1127,7 @@ defmodule HeroUI do
           value={@value}
           checked={@checked}
           disabled={@disabled}
+          aria-checked={if @indeterminate, do: "mixed"}
           aria-labelledby={"#{@id}-label"}
           aria-describedby={if @description, do: "#{@id}-description"}
           aria-invalid={if @invalid, do: "true"}
@@ -1123,6 +1135,7 @@ defmodule HeroUI do
           {@rest}
         />
         <span class="checkbox__control" aria-hidden="true"><span class="checkbox__indicator"><svg
+          :if={!@indeterminate}
           data-slot="checkbox-default-indicator--checkmark"
           viewBox="0 0 16 16"
           fill="none"
@@ -1132,7 +1145,15 @@ defmodule HeroUI do
           stroke-width="2.5"
           stroke-linecap="round"
           stroke-linejoin="round"
-        /></svg></span></span>
+        /></svg><svg
+          :if={@indeterminate}
+          data-slot="checkbox-default-indicator--indeterminate"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+        ><line x1="21" x2="3" y1="12" y2="12" /></svg></span></span>
         <span id={"#{@id}-label"} data-slot="label">{render_slot(@inner_block)}</span>
       </span>
       <span :if={@description} id={"#{@id}-description"} class="description" data-slot="description">{@description}</span>
@@ -1195,6 +1216,7 @@ defmodule HeroUI do
     <fieldset id={@id} class={@class} disabled={@disabled} aria-describedby={@describedby}>
       <legend class="label">{@label}<span :if={@required} aria-hidden="true"> *</span></legend>
       <span :if={@required} id={"#{@id}-required"} class="sr-only">{@required_message}</span>
+      <span :if={@description} id={"#{@id}-description"} class="description block">{@description}</span>
       <div class="checkbox-group">
         <.checkbox
           :for={option <- @option}
@@ -1210,7 +1232,6 @@ defmodule HeroUI do
           {option.label}
         </.checkbox>
       </div>
-      <p :if={@description} id={"#{@id}-description"} class="description">{@description}</p>
       <div :if={@errors != []} id={"#{@id}-errors"} class="field-error" data-visible="true">
         <p :for={error <- @errors}>{error}</p>
       </div>
@@ -1409,70 +1430,118 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A labelled progress bar. Omit value for indeterminate progress."
-  attr(:value, :any, default: nil)
+  @doc "A progress bar. Pass `indeterminate` for ongoing work with no known completion value."
+  attr(:value, :any, default: 0)
   attr(:min, :any, default: 0)
   attr(:max, :any, default: 100)
-  attr(:label, :string, required: true)
+  attr(:label, :string, default: nil)
+  attr(:value_text, :string, default: nil)
+  attr(:show_value, :boolean, default: true)
+  attr(:indeterminate, :boolean, default: false)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:color, :string, default: "accent", values: ~w(default accent success warning danger))
   attr(:class, :any, default: nil)
+  attr(:rest, :global)
 
   def progress_bar(assigns) do
+    value = if assigns.indeterminate, do: nil, else: assigns.value
+
     assigns =
-      assign(assigns, :percent, range_percent!(assigns.value, assigns.min, assigns.max, true))
+      assigns
+      |> assign(:current_value, value)
+      |> assign(:percent, range_percent!(value, assigns.min, assigns.max, true))
+      |> progress_accessible_name!("progress-bar")
 
     ~H"""
     <div
       class={["progress-bar", "progress-bar--#{@size}", "progress-bar--#{@color}", @class]}
+      data-slot={@data_slot}
       role="progressbar"
-      aria-label={@label}
+      aria-label={@accessible_label}
       aria-valuemin={@min}
       aria-valuemax={@max}
-      aria-valuenow={@value}
+      aria-valuenow={@current_value}
+      aria-valuetext={if !is_nil(@percent), do: @value_text || "#{round(@percent)}%"}
+      {@rest}
     >
-      <span data-slot="label">{@label}</span><span
-        :if={!is_nil(@percent)}
+      <span :if={@label} class="label" data-slot="label">{@label}</span><span
+        :if={@show_value && !is_nil(@percent)}
         class="progress-bar__output"
-      >{round(@percent)}%</span>
-      <div class="progress-bar__track">
-        <div class="progress-bar__fill" style={if !is_nil(@percent), do: "width: #{@percent}%"}></div>
+        data-slot="progress-bar-output"
+      >{@value_text || "#{round(@percent)}%"}</span>
+      <div class="progress-bar__track" data-slot="progress-bar-track">
+        <div
+          class="progress-bar__fill"
+          data-slot="progress-bar-fill"
+          style={if !is_nil(@percent), do: "width: #{@percent}%"}
+        >
+        </div>
       </div>
     </div>
     """
   end
 
-  @doc "A circular progress indicator. Omit value for indeterminate progress."
-  attr(:value, :any, default: nil)
+  @doc "A circular progress indicator. Pass `indeterminate` when progress is unknown."
+  attr(:value, :any, default: 0)
   attr(:min, :any, default: 0)
   attr(:max, :any, default: 100)
-  attr(:label, :string, required: true)
+  attr(:label, :string, default: nil)
+  attr(:show_label, :boolean, default: false)
+  attr(:value_text, :string, default: nil)
+  attr(:indeterminate, :boolean, default: false)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:color, :string, default: "accent", values: ~w(default accent success warning danger))
   attr(:class, :any, default: nil)
+  attr(:rest, :global)
 
   def progress_circle(assigns) do
-    percent = range_percent!(assigns.value, assigns.min, assigns.max, true)
+    value = if assigns.indeterminate, do: nil, else: assigns.value
+    percent = range_percent!(value, assigns.min, assigns.max, true)
     circumference = 2 * :math.pi() * 16
 
     offset =
       if is_nil(percent), do: circumference * 0.75, else: circumference * (1 - percent / 100)
 
-    assigns = assign(assigns, circumference: circumference, offset: offset)
+    assigns =
+      assigns
+      |> assign(
+        circumference: circumference,
+        offset: offset,
+        current_value: value,
+        percent: percent
+      )
+      |> progress_accessible_name!("progress-circle")
 
     ~H"""
     <div
       class={["progress-circle", "progress-circle--#{@size}", "progress-circle--#{@color}", @class]}
+      data-slot={@data_slot}
       role="progressbar"
-      aria-label={@label}
+      aria-label={@accessible_label}
       aria-valuemin={@min}
       aria-valuemax={@max}
-      aria-valuenow={@value}
+      aria-valuenow={@current_value}
+      aria-valuetext={if !is_nil(@percent), do: @value_text || "#{round(@percent)}%"}
+      {@rest}
     >
-      <svg class="progress-circle__track" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <circle class="progress-circle__track-circle" cx="18" cy="18" r="16" stroke-width="4" />
+      <svg
+        class="progress-circle__track"
+        data-slot="progress-circle-track"
+        viewBox="0 0 36 36"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle
+          class="progress-circle__track-circle"
+          data-slot="progress-circle-track-circle"
+          cx="18"
+          cy="18"
+          r="16"
+          stroke-width="4"
+        />
         <circle
           class="progress-circle__fill-circle"
+          data-slot="progress-circle-fill-circle"
           cx="18"
           cy="18"
           r="16"
@@ -1483,41 +1552,68 @@ defmodule HeroUI do
           transform="rotate(-90 18 18)"
         />
       </svg>
+      <span :if={@show_label && @label} data-slot="label" class="ms-3">{@label}</span>
     </div>
     """
   end
 
   @doc "A labelled measurement within a known range."
-  attr(:value, :any, required: true)
+  attr(:value, :any, default: 0)
   attr(:min, :any, default: 0)
   attr(:max, :any, default: 100)
-  attr(:label, :string, required: true)
+  attr(:label, :string, default: nil)
   attr(:value_text, :string, default: nil)
+  attr(:show_value, :boolean, default: true)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:color, :string, default: "accent", values: ~w(default accent success warning danger))
   attr(:class, :any, default: nil)
+  attr(:rest, :global)
 
   def meter(assigns) do
     assigns =
-      assign(assigns, :percent, range_percent!(assigns.value, assigns.min, assigns.max, false))
+      assigns
+      |> assign(:percent, range_percent!(assigns.value, assigns.min, assigns.max, false))
+      |> progress_accessible_name!("meter")
 
     ~H"""
     <div
       class={["meter", "meter--#{@size}", "meter--#{@color}", @class]}
+      data-slot={@data_slot}
       role="meter"
-      aria-label={@label}
+      aria-label={@accessible_label}
       aria-valuemin={@min}
       aria-valuemax={@max}
       aria-valuenow={@value}
-      aria-valuetext={@value_text}
+      aria-valuetext={@value_text || "#{round(@percent)}%"}
+      {@rest}
     >
-      <span data-slot="label">{@label}</span><span class="meter__output">{@value_text ||
+      <span :if={@label} class="label" data-slot="label">{@label}</span><span
+        :if={@show_value}
+        class="meter__output"
+        data-slot="meter-output"
+      >{@value_text ||
         "#{round(@percent)}%"}</span>
-      <div class="meter__track">
-        <div class="meter__fill" style={"width: #{@percent}%"}></div>
+      <div class="meter__track" data-slot="meter-track">
+        <div class="meter__fill" data-slot="meter-fill" style={"width: #{@percent}%"}></div>
       </div>
     </div>
     """
+  end
+
+  defp progress_accessible_name!(assigns, default_slot) do
+    rest = assigns.rest
+    explicit_label = Map.get(rest, :"aria-label") || Map.get(rest, "aria-label")
+    labelledby = Map.get(rest, :"aria-labelledby") || Map.get(rest, "aria-labelledby")
+
+    unless assigns.label || explicit_label || labelledby do
+      raise ArgumentError, "provide label, aria-label, or aria-labelledby"
+    end
+
+    assign(assigns,
+      accessible_label: explicit_label || if(!labelledby, do: assigns.label),
+      data_slot: Map.get(rest, :"data-slot") || Map.get(rest, "data-slot") || default_slot,
+      rest: Map.drop(rest, [:"aria-label", "aria-label", :"data-slot", "data-slot"])
+    )
   end
 
   defp range_percent!(value, min, max, allow_nil?) do
@@ -4694,6 +4790,13 @@ defmodule HeroUI do
   attr(:sort_by, :string, default: nil)
   attr(:sort_direction, :string, default: "ascending", values: ~w(ascending descending))
   attr(:empty_message, :string, default: "No results found.")
+  attr(:selection_mode, :string, default: "none", values: ~w(none single multiple))
+  attr(:selected_keys, :list, default: nil)
+  attr(:default_selected_keys, :list, default: [])
+  attr(:disabled_keys, :list, default: [])
+  attr(:row_label, :any, default: nil)
+  attr(:on_selection_change, :string, default: nil)
+  attr(:target, :any, default: nil)
   attr(:class, :any, default: nil)
 
   slot :col, required: true do
@@ -4712,14 +4815,75 @@ defmodule HeroUI do
     if !stream? and !is_list(assigns.rows),
       do: raise(ArgumentError, "table rows must be a list or LiveView stream")
 
-    assigns = assign(assigns, stream?: stream?, empty?: !stream? and assigns.rows == [])
+    selected = assigns.selected_keys || assigns.default_selected_keys
+
+    if assigns.selection_mode != "none" and
+         (is_nil(assigns.id) or (!stream? and !is_function(assigns.row_id, 1))),
+       do:
+         raise(
+           ArgumentError,
+           "selectable tables require an id and a row_id function for list rows"
+         )
+
+    if assigns.selection_mode == "none" and
+         (assigns.selected_keys != nil or assigns.default_selected_keys != [] or
+            assigns.on_selection_change != nil),
+       do: raise(ArgumentError, "table selection options require single or multiple selection")
+
+    if assigns.selected_keys != nil and assigns.default_selected_keys != [],
+      do: raise(ArgumentError, "selected_keys and default_selected_keys cannot be combined")
+
+    if Enum.any?(selected ++ assigns.disabled_keys, &(not is_binary(&1) or &1 == "")) or
+         length(Enum.uniq(selected)) != length(selected),
+       do: raise(ArgumentError, "table selection keys must be unique nonempty strings")
+
+    if assigns.selection_mode == "single" and length(selected) > 1,
+      do: raise(ArgumentError, "single-selection tables allow at most one selected key")
+
+    if !is_nil(assigns.row_label) and !is_function(assigns.row_label, 1),
+      do: raise(ArgumentError, "row_label must be a function")
+
+    if assigns.selection_mode != "none" and !stream? do
+      keys = Enum.map(assigns.rows, assigns.row_id)
+
+      if Enum.any?(keys, &(not is_binary(&1) or &1 == "")) or
+           length(Enum.uniq(keys)) != length(keys),
+         do: raise(ArgumentError, "selectable table row ids must be unique nonempty strings")
+    end
+
+    assigns =
+      assign(assigns,
+        stream?: stream?,
+        empty?: !stream? and assigns.rows == [],
+        selected_set: MapSet.new(selected),
+        disabled_set: MapSet.new(assigns.disabled_keys),
+        encoded_selected: Jason.encode!(selected)
+      )
 
     ~H"""
-    <div class={["table-root", "table-root--#{@variant}", @class]}>
+    <div
+      class={["table-root", "table-root--#{@variant}", @class]}
+      data-hero-table={if @selection_mode != "none", do: "true"}
+      data-selection-mode={if @selection_mode != "none", do: @selection_mode}
+      data-selected-keys={if @selection_mode != "none", do: @encoded_selected}
+      data-controlled={if @selection_mode != "none", do: to_string(!is_nil(@selected_keys))}
+      x-data={if @selection_mode != "none", do: "heroTable"}
+      x-on:change={if @selection_mode != "none", do: "selectionChange($event)"}
+      x-on:click={if @selection_mode != "none", do: "rowClick($event)"}
+      x-on:phx:update.document={if @selection_mode != "none", do: "sync()"}
+    >
       <div class="table__scroll-container">
         <table id={@id} class="table__content" aria-label={@label}>
           <thead class="table__header">
             <tr>
+              <th :if={@selection_mode != "none"} scope="col" class="table__column">
+                <.table_selection_control
+                  :if={@selection_mode == "multiple"}
+                  label="Select all rows"
+                  select_all
+                />
+                <span :if={@selection_mode == "single"} class="sr-only">Selection</span>
+              </th>
               <th
                 :for={col <- @col}
                 scope="col"
@@ -4757,7 +4921,29 @@ defmodule HeroUI do
             phx-update={if @stream?, do: "stream"}
             class="table__body"
           >
-            <tr :for={item <- @rows} id={table_row_id(item, @stream?, @row_id)} class="table__row">
+            <tr
+              :for={item <- @rows}
+              id={table_row_id(item, @stream?, @row_id)}
+              class="table__row"
+              data-hero-table-row={if @selection_mode != "none", do: "true"}
+              data-key={if @selection_mode != "none", do: table_row_id(item, @stream?, @row_id)}
+              data-selected={
+                if @selection_mode != "none" and
+                     MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id)),
+                   do: "true"
+              }
+              aria-selected={
+                if @selection_mode != "none",
+                  do: to_string(MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id)))
+              }
+            >
+              <td :if={@selection_mode != "none"} class="table__cell">
+                <.table_selection_control
+                  label={table_selection_label(item, @stream?, @row_id, @row_label)}
+                  selected={MapSet.member?(@selected_set, table_row_id(item, @stream?, @row_id))}
+                  disabled={MapSet.member?(@disabled_set, table_row_id(item, @stream?, @row_id))}
+                />
+              </td>
               <%= for col <- @col do %>
                 <th :if={Map.get(col, :row_header, false)} scope="row" class="table__cell">
                   {render_slot(col, table_row_value(item, @stream?))}
@@ -4768,13 +4954,75 @@ defmodule HeroUI do
               <% end %>
             </tr>
             <tr :if={@empty?} class="table__row">
-              <td class="table__cell" colspan={length(@col)}>{@empty_message}</td>
+              <td
+                class="table__cell"
+                colspan={length(@col) + if(@selection_mode == "none", do: 0, else: 1)}
+              >
+                {@empty_message}
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <button
+        :if={@on_selection_change}
+        type="button"
+        hidden
+        data-hero-table-selection-event
+        phx-click={@on_selection_change}
+        phx-target={@target}
+      ></button>
     </div>
     """
+  end
+
+  attr(:label, :string, required: true)
+  attr(:select_all, :boolean, default: false)
+  attr(:selected, :boolean, default: false)
+  attr(:disabled, :boolean, default: false)
+
+  defp table_selection_control(assigns) do
+    ~H"""
+    <label
+      class="checkbox checkbox--primary hui-native-checkbox group"
+      data-slot="checkbox"
+      data-disabled={if @disabled, do: "true"}
+    >
+      <span class="checkbox__content" data-slot="checkbox-content">
+        <input
+          type="checkbox"
+          class="hui-visually-hidden-input"
+          aria-label={@label}
+          checked={@selected}
+          disabled={@disabled}
+          data-hero-table-select-all={if @select_all, do: "true"}
+          data-hero-table-select-row={if !@select_all, do: "true"}
+        />
+        <span class="checkbox__control" aria-hidden="true"><span class="checkbox__indicator"><svg
+          class="group-data-[indeterminate=true]:hidden"
+          data-slot="checkbox-default-indicator--checkmark"
+          viewBox="0 0 16 16"
+          fill="none"
+        ><path
+          d="M3.5 8l3 3 6-6"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        /></svg><svg
+          class="hidden group-data-[indeterminate=true]:block"
+          data-slot="checkbox-default-indicator--indeterminate"
+          viewBox="0 0 16 16"
+          fill="none"
+        ><path d="M4 8h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" /></svg></span></span>
+      </span>
+    </label>
+    """
+  end
+
+  defp table_selection_label(item, stream?, row_id, row_label) do
+    value = table_row_value(item, stream?)
+    "Select #{if row_label, do: row_label.(value), else: table_row_id(item, stream?, row_id)}"
   end
 
   defp table_row_value({_id, row}, true), do: row

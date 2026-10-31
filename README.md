@@ -76,6 +76,15 @@ The standalone label, link, typography, and spinner components use HeroUI's styl
 
 Skeletons accept `animation_type="shimmer"`, `"pulse"`, or `"none"`, for example `<.skeleton animation_type="pulse" class="h-4 w-40" />`. When omitted, Alpine reads the document root's `--skeleton-animation` at initialization; without Alpine or a supported value, shimmer is used. Set `animation_type="none"` on child skeletons inside a parent with `skeleton--shimmer` for a synchronized effect.
 
+Progress bars and meters accept a visible `label`, or `aria-label`/`aria-labelledby` for a label-free indicator. Set `show_value={false}` to display just the track, and use `value_text` for a custom visible and accessible value. Progress bars and circles start at zero; pass `indeterminate` when the amount of progress is unknown (`value={nil}` also remains supported). A circle's label is accessible by default and can be displayed with `show_label`.
+
+```heex
+<.progress_bar label="Uploading" value={45} />
+<.progress_bar aria-label="Loading" indeterminate show_value={false} />
+<.meter label="Storage" value={7} max={10} value_text="7 of 10 GB" />
+<.progress_circle label="Uploading" value={75} show_label />
+```
+
 ```heex
 <.label for="email" required>Email</.label>
 <.input id="email" type="email" required />
@@ -350,6 +359,16 @@ Pagination supports either LiveView events (`on_change`) or URL generation (`hre
 
 Tables accept lists or LiveView streams. Give a stream table a unique `id`; the component supplies the stream container and row IDs. For server-driven sorting, add `sort_key` to a column and set `sort_event`, `sort_by`, and `sort_direction`. The event receives the selected key as `"sort"`; your LiveView sorts the data and updates those assigns. Stream empty states must be handled by the caller.
 
+Selectable tables use `selection_mode="single"` or `"multiple"`. Supply a stable `row_id` function for list rows; streams use their stream DOM IDs as keys. `row_label` provides meaningful names for the selection controls. Pass `selected_keys` and `on_selection_change` for server-controlled selection, or `default_selected_keys` for Alpine-managed selection. The event receives a JSON-encoded `keys` list; decode it and assign the list back in controlled mode. Select-all applies to currently rendered enabled rows and preserves selections outside the rendered collection. Supply `disabled_keys` to prevent particular rows from being selected.
+
+```heex
+<.data_table id="people" rows={@people} label="People" row_id={&to_string(&1.id)}
+  row_label={& &1.name} selection_mode="multiple" selected_keys={@selected}
+  on_selection_change="select_people">
+  <:col :let={person} label="Name">{person.name}</:col>
+</.data_table>
+```
+
 ```heex
 <.data_table id="people" label="People" rows={@streams.people}>
   <:col :let={person} label="Name" row_header>{person.name}</:col>
@@ -542,6 +561,8 @@ Tooltips show noninteractive descriptions on hover or focus using the HeroUI Alp
 ```
 
 Avatars use the HeroUI Alpine providers to reveal initials if an image fails to load. Badge placement classes can be used inside `.badge_anchor`.
+
+A checkbox accepts `indeterminate` for a mixed visual and accessible state. It is independent of `checked`: activating the control changes its checked value while the mixed state remains until the application clears `indeterminate`. Alpine keeps the native checkbox state synchronized.
 
 Checkbox groups render native multi-value inputs and append `[]` to the supplied name. When all options are unchecked, the key is absent from the submitted form; treat it as an empty list. `required` adds an accessible instruction but group-level validation belongs on the server, since HTML checkbox `required` would require every option.
 

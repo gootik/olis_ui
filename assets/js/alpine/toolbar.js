@@ -4,20 +4,36 @@ export function registerHeroToolbar(Alpine) {
     const originals = new Map();
     const selector = 'button, a[href], input:not([type="hidden"]), select, textarea, [contenteditable="true"], [tabindex]';
     let observer = null;
+    let resizeObserver = null;
+    const observed = new Set();
     let active = null;
 
     return {
       init() {
-        this.sync();
         observer = new MutationObserver(() => this.sync());
         observer.observe(this.$root, {
           subtree: true, childList: true, attributes: true,
-          attributeFilter: ['disabled', 'aria-disabled', 'hidden', 'inert', 'aria-hidden']
+          attributeFilter: ['disabled', 'aria-disabled', 'hidden', 'inert', 'aria-hidden', 'class', 'style']
         });
+        // Visibility may also be controlled by a wrapper around the toolbar.
+        for (let parent = this.$root.parentElement; parent; parent = parent.parentElement) {
+          observer.observe(parent, {
+            attributes: true,
+            attributeFilter: ['hidden', 'inert', 'aria-hidden', 'class', 'style']
+          });
+        }
+        if (typeof ResizeObserver !== 'undefined') {
+          resizeObserver = new ResizeObserver(() => this.sync());
+          resizeObserver.observe(this.$root);
+        }
+        this.sync();
       },
       destroy() {
         observer?.disconnect();
         observer = null;
+        resizeObserver?.disconnect();
+        resizeObserver = null;
+        observed.clear();
         for (const [element, value] of originals) {
           if (value === null) element.removeAttribute('tabindex');
           else element.setAttribute('tabindex', value);
@@ -38,6 +54,17 @@ export function registerHeroToolbar(Alpine) {
       },
       sync(preferred = null) {
         const toolbar = this.$root;
+        if (resizeObserver) {
+          // Individual controls can appear or disappear at a responsive breakpoint
+          // without changing the toolbar's own dimensions.
+          const controls = new Set(toolbar.querySelectorAll(selector));
+          for (const element of observed) {
+            if (!controls.has(element)) { resizeObserver.unobserve(element); observed.delete(element); }
+          }
+          for (const element of controls) {
+            if (!observed.has(element)) { resizeObserver.observe(element); observed.add(element); }
+          }
+        }
         for (const element of toolbar.querySelectorAll('[aria-disabled="true"]')) {
           if (!element.matches(selector) || element.closest('[data-hero-toolbar]') !== toolbar || element.closest('[popover], dialog, [role="menu"], [role="listbox"], [role="tablist"]')) continue;
           if (!originals.has(element)) originals.set(element, element.getAttribute('tabindex'));

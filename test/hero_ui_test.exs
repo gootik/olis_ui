@@ -3,6 +3,80 @@ defmodule HeroUITest do
   import Phoenix.LiveViewTest
   import Phoenix.Component, only: [sigil_H: 2]
 
+  test "surface exposes HeroUI background variants without imposing layout" do
+    slot = [%{inner_block: fn _, _ -> "Content" end}]
+
+    for variant <- ~w(default secondary tertiary transparent) do
+      html = render_component(&HeroUI.surface/1, %{variant: variant, inner_block: slot})
+      assert html =~ "surface--#{variant}"
+      assert html =~ ~s(data-slot="surface")
+      refute html =~ "hui-surface"
+    end
+
+    custom =
+      render_component(&HeroUI.surface/1, %{
+        class: "rounded-3xl p-6",
+        rest: %{"data-slot" => "custom-surface", "aria-label" => "Overview"},
+        inner_block: slot
+      })
+
+    assert custom =~ ~s(data-slot="custom-surface")
+    assert custom =~ ~s(aria-label="Overview")
+    assert custom =~ "rounded-3xl p-6"
+  end
+
+  test "ui_form delegates to Phoenix forms, including captured form data and HTTP options" do
+    html =
+      render_component(&HeroUI.ui_form/1, %{
+        for: %{"email" => "person@example.com"},
+        as: :account,
+        action: "/accounts",
+        method: "put",
+        csrf_token: "test-token",
+        rest: %{"phx-submit" => "save", "class" => "space-y-4"},
+        inner_block: [
+          %{inner_block: fn _, form -> "#{form.name}:#{form[:email].value}" end}
+        ]
+      })
+
+    assert html =~ ~s(action="/accounts")
+    assert html =~ ~s(method="post")
+    assert html =~ ~r/name="_method"[^>]*value="put"/
+    assert html =~ ~r/name="_csrf_token"[^>]*value="test-token"/
+    assert html =~ ~s(phx-submit="save")
+    assert html =~ ~s(class="space-y-4")
+    assert html =~ "account:person@example.com"
+  end
+
+  test "standalone descriptions and errors use HeroUI styles and explicit visibility" do
+    content = [%{inner_block: fn _, _ -> "Helpful message" end}]
+
+    description =
+      render_component(&HeroUI.description/1, %{
+        class: "custom",
+        rest: %{id: "help"},
+        inner_block: content
+      })
+
+    assert description =~ ~s(class="description custom")
+    assert description =~ ~s(id="help")
+    assert description =~ ~s(data-slot="description")
+
+    error = render_component(&HeroUI.field_error/1, %{inner_block: content})
+    assert error =~ ~s(class="field-error )
+    assert error =~ ~s(data-slot="field-error")
+    assert error =~ ~s(data-visible="true")
+    refute error =~ " hidden"
+
+    hidden = render_component(&HeroUI.field_error/1, %{visible: false, inner_block: content})
+    assert hidden =~ "hidden"
+    refute hidden =~ "data-visible"
+
+    message = render_component(&HeroUI.error_message/1, %{inner_block: content})
+    assert message =~ ~s(class="error-message )
+    assert message =~ ~s(data-slot="error-message")
+  end
+
   test "label applies HeroUI form states and associates with the control" do
     html =
       render_component(&HeroUI.label/1, %{
@@ -48,6 +122,21 @@ defmodule HeroUITest do
     assert_raise ArgumentError, ~r/exactly one/, fn ->
       render_component(&HeroUI.ui_link/1, %{href: "/one", patch: "/two", inner_block: slot})
     end
+  end
+
+  test "skeleton supports the HeroUI animation variants and theme default" do
+    for animation <- ~w(shimmer pulse none) do
+      html = render_component(&HeroUI.skeleton/1, %{animation_type: animation, class: "h-4"})
+      assert html =~ "skeleton--#{animation}"
+      assert html =~ "h-4"
+      assert html =~ ~s(aria-hidden="true")
+      refute html =~ "x-data"
+    end
+
+    default = render_component(&HeroUI.skeleton/1, %{})
+    assert default =~ "skeleton--shimmer"
+    assert default =~ "--skeleton-animation"
+    assert default =~ "x-bind:class"
   end
 
   test "spinners use HeroUI gradients with unique IDs and accessible states" do
@@ -277,6 +366,8 @@ defmodule HeroUITest do
     assert html =~ ~s(data-controlled-open="false")
     assert html =~ ~s(data-snap-points-json="[200,&quot;50%&quot;]")
     assert html =~ ~s(phx-click="sheet_change")
+    assert html =~ ~s(x-data="heroSheet")
+    assert html =~ ~s|x-on:touchmove="touchmove($event)"|
     assert html =~ "Sheet body"
     assert html =~ "Footer"
 
@@ -389,6 +480,34 @@ defmodule HeroUITest do
     end
   end
 
+  test "read-only switches preserve native form controls and expose aria state" do
+    slot = [%{inner_block: fn _, _ -> "Locked" end}]
+
+    readonly =
+      render_component(&HeroUI.switch/1, %{
+        id: "locked",
+        name: "locked",
+        checked: true,
+        read_only: true,
+        inner_block: slot
+      })
+
+    assert readonly =~ ~s(aria-readonly="true")
+    assert readonly =~ ~s(data-readonly="true")
+    assert readonly =~ ~s(name="locked")
+    assert readonly =~ ~r/<input[^>]*checked/
+    refute readonly =~ ~r/<input[^>]*\sdisabled(?:\s|>|=)/
+    assert readonly =~ "x-on:click.capture"
+
+    external =
+      render_component(&HeroUI.switch/1, %{
+        id: "external",
+        rest: %{"aria-label" => "Locked", "aria-readonly" => "true"}
+      })
+
+    assert external =~ ~s(data-readonly="true")
+  end
+
   test "autocomplete keeps a native form control and renders searchable enhancement" do
     form = Phoenix.Component.to_form(%{"country" => "jp"}, as: :trip)
 
@@ -409,6 +528,8 @@ defmodule HeroUITest do
     assert html =~ ~s(data-hero-autocomplete-native)
     assert html =~ ~s(data-hero-autocomplete-search)
     assert html =~ ~s(data-hero-autocomplete-clear)
+    assert html =~ ~s(x-data="heroAutocomplete")
+    assert html =~ ~s|x-on:reset.document="reset($event)"|
     assert html =~ ~s(popover="auto")
 
     multiple =
@@ -514,6 +635,8 @@ defmodule HeroUITest do
     assert html =~ ~s(max="17:00:00")
     assert html =~ ~s(step="1")
     assert html =~ ~s(data-hour-cycle="24")
+    assert html =~ ~s(x-data="heroTimeField")
+    assert html =~ ~s|x-on:reset.document="reset($event)"|
     assert html =~ ~s(aria-invalid="true")
     assert html =~ ~s(aria-describedby="meeting_starts_at-description meeting_starts_at-errors")
     assert html =~ "is too early"
@@ -837,7 +960,80 @@ defmodule HeroUITest do
         id: "bad",
         label: "Bad",
         tag: tags,
-        selection_mode: "single"
+        selection_mode: "single",
+        selected: ["news", "travel"]
+      })
+    end
+  end
+
+  test "tag group customizes remove buttons per tag without changing removal semantics" do
+    tags = [%{value: "news", label: "News"}, %{value: "travel", label: "Travel", disabled: true}]
+
+    html =
+      render_component(&HeroUI.tag_group/1, %{
+        id: "topics-custom",
+        label: "Topics",
+        tag: tags,
+        on_remove: "remove",
+        remove_button: [
+          %{
+            value: "news",
+            label: "Delete news",
+            class: "custom-remove",
+            inner_block: fn _, _ -> "Custom icon" end
+          },
+          %{value: "removed", label: "Removed item"}
+        ]
+      })
+
+    assert html =~ ~s(aria-label="Delete news")
+    assert html =~ "custom-remove"
+    assert html =~ "Custom icon"
+    assert html =~ ~s(aria-label="Remove Travel")
+    assert html =~ ~r/<button\b[^>]*aria-label="Delete news"[^>]*phx-click="remove"/s
+    assert html =~ ~r/<button\b[^>]*aria-label="Remove Travel"[^>]*disabled/s
+
+    label_only =
+      render_component(
+        fn assigns ->
+          ~H"""
+          <HeroUI.tag_group id="label-only" label="Topics" on_remove="remove">
+            <:tag value="news" label="News" />
+            <:remove_button value="news" label="Delete news" />
+          </HeroUI.tag_group>
+          """
+        end,
+        %{}
+      )
+
+    assert label_only =~ ~s(aria-label="Delete news")
+    assert label_only =~ ~s(<svg aria-hidden="true")
+
+    no_remove =
+      render_component(&HeroUI.tag_group/1, %{
+        id: "no-remove",
+        label: "Topics",
+        tag: tags,
+        remove_button: [%{value: "news", label: "Delete news"}]
+      })
+
+    refute no_remove =~ "data-hero-tag-remove"
+
+    assert_raise ArgumentError, ~r/remove button values must be unique/, fn ->
+      render_component(&HeroUI.tag_group/1, %{
+        id: "duplicate",
+        label: "Topics",
+        tag: tags,
+        remove_button: [%{value: "news"}, %{value: "news"}]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/remove button labels must not be empty/, fn ->
+      render_component(&HeroUI.tag_group/1, %{
+        id: "blank",
+        label: "Topics",
+        tag: tags,
+        remove_button: [%{value: "news", label: " "}]
       })
     end
   end
@@ -857,6 +1053,69 @@ defmodule HeroUITest do
     assert html =~ "remove_tag"
     assert html =~ ~s(phx-value-value="elixir")
     assert html =~ ~s(aria-keyshortcuts="Delete Backspace")
+  end
+
+  test "tag group supports controlled keys and uncontrolled defaults" do
+    tags = [%{value: "news", label: "News"}, %{value: "travel", label: "Travel"}]
+
+    uncontrolled =
+      render_component(&HeroUI.tag_group/1, %{
+        id: "topics-local",
+        label: "Topics",
+        tag: tags,
+        selection_mode: "multiple",
+        default_selected_keys: ["news"],
+        on_selection_change: Phoenix.LiveView.JS.push("changed")
+      })
+
+    assert uncontrolled =~ ~s(data-controlled="false")
+    assert uncontrolled =~ "topics-local-selection-event"
+    assert uncontrolled =~ "changed"
+    assert uncontrolled =~ ~r/aria-label="News"[^>]*aria-selected="true"/s
+
+    controlled =
+      render_component(&HeroUI.tag_group/1, %{
+        id: "topics-control",
+        label: "Topics",
+        tag: tags,
+        selection_mode: "single",
+        selected_keys: ["travel"],
+        on_selection_change: "changed"
+      })
+
+    assert controlled =~ ~s(data-controlled="true")
+    assert controlled =~ ~r/aria-label="Travel"[^>]*aria-selected="true"/s
+
+    legacy =
+      render_component(&HeroUI.tag_group/1, %{
+        id: "topics-legacy",
+        label: "Topics",
+        tag: tags,
+        selection_mode: "multiple",
+        on_select: "select"
+      })
+
+    assert legacy =~ ~s(data-controlled="true")
+    assert legacy =~ ~s(phx-click="select")
+
+    assert_raise ArgumentError, ~r/selected or selected_keys/, fn ->
+      render_component(&HeroUI.tag_group/1, %{
+        id: "bad",
+        label: "Bad",
+        tag: tags,
+        selected: [],
+        selected_keys: []
+      })
+    end
+
+    assert_raise ArgumentError, ~r/unique strings/, fn ->
+      render_component(&HeroUI.tag_group/1, %{
+        id: "bad",
+        label: "Bad",
+        tag: tags,
+        default_selected_keys: ["news", "news"]
+      })
+    end
   end
 
   test "checkbox and switch render native controls" do
@@ -1007,6 +1266,9 @@ defmodule HeroUITest do
     assert html =~ ~s(role="combobox")
     assert html =~ ~s(aria-controls="pet_animal-listbox")
     assert html =~ ~s(data-hero-combo-native)
+    assert html =~ ~s(x-data="heroComboBox")
+    assert html =~ ~s|x-on:input="input($event)"|
+    assert html =~ ~s|x-on:reset.window="reset($event)"|
   end
 
   test "custom combo box has a text input and datalist without JavaScript" do
@@ -1103,6 +1365,8 @@ defmodule HeroUITest do
     assert html =~ ~s(aria-describedby="theme_color-description")
     assert html =~ ~s(data-hero-color-preview)
     assert html =~ ~s(data-channel="hex")
+    assert html =~ ~s(x-data="heroColorField")
+    assert html =~ ~s|x-on:submit.window.capture="submit($event)"|
     assert html =~ "pattern=\"#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})\""
 
     alpha =
@@ -1218,6 +1482,28 @@ defmodule HeroUITest do
     assert html =~ ~s(--toast-width: 360px)
     assert html =~ ~s(role="region")
     assert html =~ ~s(phx-update="ignore")
+    assert html =~ ~s(x-for="item in items")
+    assert html =~ ~s|x-bind:phx-click="actionCommand(item)"|
+    assert html =~ ~s(data-slot="spinner")
+
+    assigns = %{}
+
+    custom =
+      rendered_to_string(~H"""
+      <HeroUI.toast_region id="custom-toasts">
+        <:indicator name="star"><span>★</span></:indicator>
+      </HeroUI.toast_region>
+      """)
+
+    assert custom =~ "data-indicators=\"[&quot;star&quot;]\""
+    assert custom =~ "<span>★</span>"
+
+    assert_raise ArgumentError, ~r/indicator names/, fn ->
+      render_component(&HeroUI.toast_region/1, %{
+        id: "invalid-indicators",
+        indicator: [%{name: "bad name", inner_block: fn _, _ -> "!" end}]
+      })
+    end
 
     assert_raise ArgumentError, fn ->
       render_component(&HeroUI.toast_region/1, %{id: "bad", max_visible: 0})
@@ -1427,6 +1713,8 @@ defmodule HeroUITest do
     assert html =~ ~s(aria-labelledby="edit-title")
     assert html =~ ~s(data-dismissible="false")
     assert html =~ "data-hero-dialog-close"
+    assert html =~ ~s(x-data="heroDialog")
+    assert html =~ ~s|x-on:cancel="onCancel($event)"|
     assert html =~ "Details"
     assert html =~ "phx-mounted"
   end
@@ -1553,6 +1841,13 @@ defmodule HeroUITest do
       })
 
     assert html =~ ~s(role="menuitemradio")
+    assert html =~ ~s(x-data="heroDropdown")
+    assert html =~ ~s|x-on:click.capture="click($event)"|
+    assert html =~ ~s|x-on:keydown="keydown($event)"|
+    assert html =~ ~s|x-on:toggle.capture="toggle($event)"|
+    assert html =~ ~s|x-on:scroll.window.capture="reposition()"|
+    assert html =~ ~s|x-on:phx:update.document="reposition()"|
+    assert html =~ ~r/data-hero-dropdown-submenu-trigger[\s\S]*?phx-mounted=/
     assert html =~ ~s(aria-checked="true")
     assert html =~ ~s(phx-click="sort")
     assert html =~ ~s(phx-click="action")
@@ -1615,6 +1910,7 @@ defmodule HeroUITest do
     assert alert =~ ~s(aria-describedby="confirm-description")
     assert alert =~ ~s(phx-click="confirm")
     assert alert =~ ~s(data-dismissible="false")
+    assert alert =~ ~s(x-data="heroDialog")
 
     drawer =
       render_component(&HeroUI.drawer/1, %{
@@ -1634,6 +1930,81 @@ defmodule HeroUITest do
     assert drawer =~ ~s(data-slot="drawer-body")
     assert drawer =~ ~s(data-backdrop="opaque")
     assert drawer =~ "backdrop:bg-backdrop"
+    assert drawer =~ ~s(data-controlled="false")
+    assert drawer =~ ~s|x-on:pointerdown="pointerDown($event)"|
+    assert drawer =~ "touch-pan-y"
+
+    default_drawer =
+      render_component(&HeroUI.drawer/1, %{
+        id: "default-drawer",
+        title: "Default",
+        inner_block: slot
+      })
+
+    assert default_drawer =~ ~s(data-placement="bottom")
+
+    with_handle =
+      render_component(&HeroUI.drawer/1, %{
+        id: "handle",
+        title: "Handle",
+        placement: "bottom",
+        show_handle: true,
+        inner_block: slot
+      })
+
+    assert with_handle =~ ~s(data-slot="drawer-handle")
+    assert with_handle =~ "touch-pan-x"
+    refute drawer =~ ~s(data-slot="drawer-handle")
+
+    controlled =
+      render_component(&HeroUI.drawer/1, %{
+        id: "controlled",
+        title: "Controlled",
+        open: true,
+        on_open_change: "drawer_change",
+        target: "#settings",
+        close_label: "Dismiss",
+        inner_block: slot
+      })
+
+    assert controlled =~ ~s(data-controlled="true")
+    assert controlled =~ ~s(data-controlled-open="true")
+    assert controlled =~ ~s(phx-click="drawer_change")
+    assert controlled =~ ~s(phx-target="#settings")
+    assert controlled =~ ">Dismiss</button>"
+
+    no_close =
+      render_component(&HeroUI.drawer/1, %{
+        id: "no-close",
+        title: "No close",
+        show_close: false,
+        inner_block: slot
+      })
+
+    refute no_close =~ "data-hero-dialog-close"
+
+    assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
+      render_component(&HeroUI.drawer/1, %{
+        id: "bad-drawer",
+        title: "Bad",
+        open: false,
+        default_open: true,
+        inner_block: slot
+      })
+    end
+
+    assigns = %{}
+
+    composed =
+      rendered_to_string(~H"""
+      <HeroUI.drawer id="custom-close" title="Custom">
+        Details
+        <:close :let={attrs}><HeroUI.button {attrs}>Done</HeroUI.button></:close>
+      </HeroUI.drawer>
+      """)
+
+    assert composed =~ "data-hero-dialog-close"
+    assert composed =~ ">Done</button>"
 
     blurred =
       render_component(&HeroUI.drawer/1, %{
@@ -1713,6 +2084,45 @@ defmodule HeroUITest do
     assert tooltip =~ ~s(data-requested-placement="top")
     assert tooltip =~ ~s(data-slot="tooltip-content")
 
+    composed =
+      render_component(&HeroUI.tooltip/1, %{
+        id: "composed-tip",
+        show_arrow: true,
+        trigger: [
+          %{
+            inner_block: fn _, attrs ->
+              Phoenix.HTML.raw(
+                ~s|<a href="/docs" aria-describedby="#{attrs["aria-describedby"]}">Docs</a>|
+              )
+            end
+          }
+        ],
+        content: [%{inner_block: fn _, _ -> Phoenix.HTML.raw("<strong>Details</strong>") end}]
+      })
+
+    assert composed =~ ~s(aria-describedby="composed-tip-content")
+    assert composed =~ ~s(data-slot="overlay-arrow")
+    assert composed =~ ~s(data-offset="7")
+    assert composed =~ "<strong>Details</strong>"
+    refute composed =~ "<button"
+
+    assigns = %{}
+
+    heex =
+      rendered_to_string(~H"""
+      <HeroUI.tooltip id="heex-tip" show_arrow>
+        <:trigger :let={attrs}><HeroUI.button {attrs}>Save</HeroUI.button></:trigger>
+        <:content><strong>Save</strong> the changes.</:content>
+      </HeroUI.tooltip>
+      """)
+
+    assert heex =~ ~s(aria-describedby="heex-tip-content")
+    assert heex =~ "<strong>Save</strong>"
+
+    assert_raise ArgumentError, ~r/either text or a content slot/, fn ->
+      render_component(&HeroUI.tooltip/1, %{id: "missing-content", inner_block: slot})
+    end
+
     left =
       render_component(&HeroUI.tooltip/1, %{
         id: "left-tip",
@@ -1745,6 +2155,8 @@ defmodule HeroUITest do
       })
 
     assert popover =~ ~s(popovertarget="details-content")
+    assert popover =~ ~s(x-data="heroPopover")
+    assert popover =~ ~s|x-on:toggle="toggle($event)"|
     assert popover =~ ~s(aria-labelledby="details-title")
     assert popover =~ ~s(role="dialog")
   end
@@ -1759,6 +2171,8 @@ defmodule HeroUITest do
       })
 
     assert slider =~ ~s(type="range")
+    assert slider =~ ~s(x-data="heroSlider")
+    assert slider =~ ~s|x-on:input.capture="input($event)"|
     assert slider =~ ~s(for="volume")
     assert slider =~ "width: 25.0%"
 
@@ -2118,8 +2532,8 @@ defmodule HeroUITest do
 
     local = render_component(&HeroUI.toggle_button/1, %{default_pressed: true, inner_block: slot})
     assert local =~ ~s(aria-pressed="true")
-    assert local =~ ~s|x-bind:aria-pressed="selected.toString()"|
-    assert local =~ ~s(x-on:click="selected = !selected")
+    assert local =~ "selected.toString()"
+    assert local =~ "selected = !selected"
 
     group =
       render_component(&HeroUI.toggle_button_group/1, %{label: "Formatting", inner_block: slot})
@@ -2135,6 +2549,69 @@ defmodule HeroUITest do
     assert crumbs =~ ~s(href="/")
     assert crumbs =~ ~s(aria-current="page")
     assert crumbs =~ "breadcrumbs__separator"
+  end
+
+  test "toggle button group disables descendants natively and marks inherited sizes" do
+    slot = [%{inner_block: fn _, _ -> "Buttons" end}]
+
+    group =
+      render_component(&HeroUI.toggle_button_group/1, %{
+        label: "Formatting",
+        size: "sm",
+        disabled: true,
+        inner_block: slot
+      })
+
+    assert group =~ ~r/<fieldset[^>]*\sdisabled(?:\s|>|=)/
+    assert group =~ ~s(aria-disabled="true")
+    assert group =~ ~s(data-hero-toggle-size="sm")
+    assert group =~ ~s(x-data="heroToggleButtonGroup")
+    default = render_component(&HeroUI.toggle_button/1, %{inner_block: slot})
+    assert default =~ "toggle-button--md"
+    refute default =~ ~s(data-hero-toggle-size=)
+    explicit = render_component(&HeroUI.toggle_button/1, %{size: "lg", inner_block: slot})
+    assert explicit =~ "toggle-button--lg"
+    assert explicit =~ ~s(data-hero-toggle-size="lg")
+  end
+
+  test "toggle button groups opt into controlled and uncontrolled selection" do
+    slot = [%{inner_block: fn _, _ -> "Buttons" end}]
+
+    single =
+      render_component(&HeroUI.toggle_button_group/1, %{
+        label: "Alignment",
+        selection_mode: "single",
+        selected_keys: ["left"],
+        inner_block: slot
+      })
+
+    assert single =~ ~s(role="group")
+    assert single =~ ~s(data-selection-mode="single")
+    assert single =~ ~s(data-controlled="true")
+    assert single =~ ~s(x-data="heroToggleButtonGroup")
+
+    multiple =
+      render_component(&HeroUI.toggle_button_group/1, %{
+        label: "Style",
+        selection_mode: "multiple",
+        default_selected_keys: ["bold"],
+        on_selection_change: "style",
+        inner_block: slot
+      })
+
+    assert multiple =~ ~s(role="group")
+    assert multiple =~ ~s(data-selection-mode="multiple")
+    assert multiple =~ ~s(data-controlled="false")
+    assert multiple =~ ~s(phx-click="style")
+
+    assert_raise ArgumentError, ~r/at most one key/, fn ->
+      render_component(&HeroUI.toggle_button_group/1, %{
+        label: "Bad",
+        selection_mode: "single",
+        selected_keys: ["a", "b"],
+        inner_block: slot
+      })
+    end
   end
 
   test "listbox renders selected, disabled, and described options" do
@@ -2153,6 +2630,9 @@ defmodule HeroUITest do
       })
 
     assert html =~ ~s(role="listbox")
+    assert html =~ ~s(x-data="heroListbox")
+    assert html =~ ~s|x-on:keydown="keydown($event)"|
+    assert html =~ ~s|x-on:phx:update.window="sync()"|
     assert html =~ ~s(aria-label="Spaces")
     assert html =~ ~s(aria-selected="true")
     assert html =~ ~s(aria-disabled="true")
@@ -2183,5 +2663,46 @@ defmodule HeroUITest do
     assert html =~ ~s(aria-controls="plan-listbox")
     assert html =~ ~s(popover="auto")
     assert html =~ ~s(phx-update="ignore")
+  end
+
+  test "standalone header and empty state use HeroUI markup and preserve native semantics" do
+    header =
+      render_component(&HeroUI.header/1, %{
+        as: "h2",
+        rest: %{"data-slot" => "custom-header", id: "results-title"},
+        inner_block: [%{inner_block: fn _, _ -> "Results" end}]
+      })
+
+    assert header =~ "<h2 "
+    assert header =~ ~s(id="results-title")
+    assert header =~ ~s(data-slot="custom-header")
+    assert header =~ ~s(class="header")
+    assert header =~ "Results"
+
+    default = render_component(&HeroUI.empty_state/1, %{})
+    assert default =~ ~s(data-slot="empty-state")
+    assert default =~ ~s(class="empty-state")
+    assert default =~ "No results found"
+
+    custom =
+      render_component(&HeroUI.empty_state/1, %{
+        as: "p",
+        message: "Nothing yet",
+        rest: %{"aria-live" => "polite", role: "status"}
+      })
+
+    assert custom =~ "<p "
+    assert custom =~ ~s(role="status")
+    assert custom =~ ~s(aria-live="polite")
+    assert custom =~ "Nothing yet"
+
+    content =
+      render_component(&HeroUI.empty_state/1, %{
+        message: "Hidden default",
+        inner_block: [%{inner_block: fn _, _ -> "No projects" end}]
+      })
+
+    assert content =~ "No projects"
+    refute content =~ "Hidden default"
   end
 end

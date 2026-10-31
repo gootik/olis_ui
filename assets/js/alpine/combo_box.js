@@ -1,6 +1,7 @@
-/** Combobox enhancement. The native control owns the form value. */
-export function installComboBox(root = document) {
-  if (typeof HTMLElement.prototype.showPopover !== 'function') return () => {};
+export function registerHeroComboBox(Alpine) {
+  Alpine.data('heroComboBox', () => {
+  const supportsPopover = typeof HTMLElement !== 'undefined' && typeof HTMLElement.prototype.showPopover === 'function';
+  let root, resetTimer = null, nativeAttrs = null;
   const states = new WeakMap();
   const pointerOpen = new WeakMap();
   const parts = field => ({
@@ -230,19 +231,64 @@ export function installComboBox(root = document) {
     const field = event.target.closest('[data-hero-combo]'), state = states.get(field);
     if (state && state.value !== currentValue(event.target)) sync(field);
   }
-  function syncAll() { root.querySelectorAll('[data-hero-combo]').forEach(sync); }
-  function reposition() { root.querySelectorAll('[data-hero-combo][data-enhanced="true"]').forEach(position); }
-  function onReset() { setTimeout(() => { root.querySelectorAll('[data-hero-combo]').forEach(field => { const {native, input, popup, error} = parts(field), state = states.get(field); if (!state) return; state.value = currentValue(native); state.query = ''; state.order = initialOrder(field); if (!custom(field)) input.value = native.multiple ? '' : selectedText(native); error.hidden = true; error.textContent = ''; if (popup.matches(':popover-open')) popup.hidePopover(); }); syncAll(); }, 0); }
-  syncAll();
-  root.addEventListener('input', onInput); root.addEventListener('change', onChange); root.addEventListener('keydown', onKeyDown);
-  root.addEventListener('click', onClick); root.addEventListener('pointerdown', onPointerDown); root.addEventListener('focusin', onFocusIn); root.addEventListener('focusout', onFocusOut);
-  root.addEventListener('toggle', onToggle, true); root.addEventListener('invalid', onInvalid, true); root.addEventListener('reset', onReset);
-  document.addEventListener('phx:update', syncAll); window.addEventListener('resize', reposition); window.addEventListener('scroll', reposition, true);
-  return () => {
-    root.removeEventListener('input', onInput); root.removeEventListener('change', onChange); root.removeEventListener('keydown', onKeyDown);
-    root.removeEventListener('click', onClick); root.removeEventListener('pointerdown', onPointerDown); root.removeEventListener('focusin', onFocusIn); root.removeEventListener('focusout', onFocusOut);
-    root.removeEventListener('toggle', onToggle, true); root.removeEventListener('invalid', onInvalid, true); root.removeEventListener('reset', onReset);
-    document.removeEventListener('phx:update', syncAll); window.removeEventListener('resize', reposition); window.removeEventListener('scroll', reposition, true);
-    root.querySelectorAll('[data-hero-combo]').forEach(field => { const {native, ui, input, trigger, popup} = parts(field); if (popup?.matches(':popover-open')) popup.hidePopover(); if (ui) ui.hidden = !custom(field); if (custom(field) && input) { input.setAttribute('list', `${input.id}-suggestions`); ['role','aria-controls','aria-expanded','aria-autocomplete','aria-activedescendant'].forEach(attr => input.removeAttribute(attr)); if (trigger) trigger.hidden = true; } if (native) { native.removeAttribute('aria-hidden'); native.removeAttribute('tabindex'); } delete field.dataset.enhanced; });
+  function syncCurrent() { if (root?.isConnected) sync(root); }
+  function owns(event) { return event.target.closest?.('[data-hero-combo]') === root; }
+  function restore(native, attr, value) {
+    if (!native) return;
+    if (value === null) native.removeAttribute(attr); else native.setAttribute(attr, value);
+  }
+  return {
+    init() {
+      root = this.$root;
+      const native = parts(root).native;
+      if (native) nativeAttrs = {hidden: native.getAttribute('aria-hidden'), tabindex: native.getAttribute('tabindex')};
+      if (supportsPopover) syncCurrent();
+    },
+    destroy() {
+      if (resetTimer !== null) clearTimeout(resetTimer);
+      if (!supportsPopover || !root) return;
+      const {native, ui, input, trigger, popup} = parts(root);
+      if (popup?.matches(':popover-open')) popup.hidePopover();
+      if (ui) ui.hidden = !custom(root);
+      if (custom(root) && input) {
+        input.setAttribute('list', `${input.id}-suggestions`);
+        ['role', 'aria-controls', 'aria-expanded', 'aria-autocomplete', 'aria-activedescendant'].forEach(attr => input.removeAttribute(attr));
+        if (trigger) trigger.hidden = true;
+      }
+      restore(native, 'aria-hidden', nativeAttrs?.hidden ?? null);
+      restore(native, 'tabindex', nativeAttrs?.tabindex ?? null);
+      delete root.dataset.enhanced;
+      states.delete(root);
+      pointerOpen.delete(root);
+    },
+    input(event) { if (supportsPopover && owns(event)) onInput(event); },
+    change(event) { if (supportsPopover && owns(event)) onChange(event); },
+    keydown(event) { if (supportsPopover && owns(event)) onKeyDown(event); },
+    click(event) { if (supportsPopover && owns(event)) onClick(event); },
+    pointerdown(event) { if (supportsPopover && owns(event)) onPointerDown(event); },
+    focusin(event) { if (supportsPopover && owns(event)) onFocusIn(event); },
+    focusout(event) { if (supportsPopover && owns(event)) onFocusOut(event); },
+    toggle(event) { if (supportsPopover && owns(event)) onToggle(event); },
+    invalid(event) { if (supportsPopover && owns(event)) onInvalid(event); },
+    reset(event) {
+      const {native, input} = parts(root);
+      const form = custom(root) ? input?.form : native?.form;
+      if (!supportsPopover || !form || event.target !== form) return;
+      if (resetTimer !== null) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        resetTimer = null;
+        if (!root?.isConnected) return;
+        const {native, input, popup, error} = parts(root), state = states.get(root);
+        if (!state) return;
+        state.value = currentValue(native); state.query = ''; state.order = initialOrder(root);
+        if (!custom(root)) input.value = native.multiple ? '' : selectedText(native);
+        error.hidden = true; error.textContent = '';
+        if (popup.matches(':popover-open')) popup.hidePopover();
+        syncCurrent();
+      }, 0);
+    },
+    sync() { if (supportsPopover) syncCurrent(); },
+    position() { if (supportsPopover && root?.dataset.enhanced === 'true') position(root); }
   };
+  });
 }

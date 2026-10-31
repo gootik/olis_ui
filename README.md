@@ -60,7 +60,21 @@ Restart the asset watcher after adding the dependency. The components migrated t
 
 `translate_error/1` is the application's error translation function (Phoenix generators commonly provide one in `CoreComponents`). Errors are explicit so applications control translation and when validation appears. A standalone field needs an `id` and can receive `name`, `value`, and a list of error strings. `text_field` associates its label, description, and errors with the input; when invalid, it hides the description and associates the visible errors instead. Use `invalid` to mark a field invalid without an error message, or `multiline` and `rows` for a textarea. If there is no visible `label`, provide `aria-label` or `aria-labelledby`. Use `.input` directly when composing your own field.
 
-The standalone label, link, typography, and spinner components use HeroUI's styles and native HTML. A required label displays an indicator; set `required` on the input as well. Links accept `href`, `patch`, or `navigate`. Spinners default to the accent color and announce `Loading`; pass a descriptive `label`, or use `decorative` inside an already named control.
+`ui_form` delegates to Phoenix's form component, including `:let`, `phx-change`, `phx-submit`, and normal HTTP form options. Its name avoids a conflict with Phoenix's own `.form`; both use the same API. When composing fields yourself, use `.description` for help text, `.field_error` for validation errors, and `.error_message` for errors on non-form components. Link the message IDs to their controls with `aria-describedby`. Field errors are visible by default; set `visible={false}` to hide them. Validation, error translation, and visibility are controlled by the application.
+
+```heex
+<.ui_form for={@form} :let={form} phx-change="validate" phx-submit="save" class="space-y-3">
+  <.label for={form[:email].id}>Email</.label>
+  <.input id={form[:email].id} name={form[:email].name} value={form[:email].value}
+    aria-describedby="email-help" />
+  <.description id="email-help">We'll send your receipt here.</.description>
+  <.button type="submit">Save</.button>
+</.ui_form>
+```
+
+The standalone label, link, typography, and spinner components use HeroUI's styles and native HTML. A required label displays an indicator; set `required` on the input as well. Links accept `href`, `patch`, or `navigate`. Spinners default to the accent color and announce `Loading`; pass a descriptive `label`, or use `decorative` inside an already named control. A switch with `read_only` remains focusable and submits its checked value; preventing user changes requires the HeroUI Alpine setup.
+
+Skeletons accept `animation_type="shimmer"`, `"pulse"`, or `"none"`, for example `<.skeleton animation_type="pulse" class="h-4 w-40" />`. When omitted, Alpine reads the document root's `--skeleton-animation` at initialization; without Alpine or a supported value, shimmer is used. Set `animation_type="none"` on child skeletons inside a parent with `skeleton--shimmer` for a synchronized effect.
 
 ```heex
 <.label for="email" required>Email</.label>
@@ -76,6 +90,8 @@ The standalone label, link, typography, and spinner components use HeroUI's styl
 Use `<.close_button label="Dismiss notification" phx-click="dismiss" />` for an icon-only dismissal action. It defaults to `type="button"` and the accessible label `Close`; pass `disabled`, Tailwind classes, or custom icon content as needed. Like a normal button, it requires a click handler or another dismissal mechanism supplied by the surrounding component.
 
 Cards accept `variant="default"`, `"secondary"`, `"tertiary"`, or `"transparent"`. Use `:title`, `:description`, `:content`, and `:footer` slots for HeroUI's section styles, or pass ordinary content directly. Set `heading_level` to fit the page outline and give the title an `id` when the card needs an accessible name.
+
+Surfaces use the same four semantic background variants as HeroUI. They do not add padding, rounding, or a shadow: compose those with Tailwind classes, for example `<.surface variant="secondary" class="rounded-3xl p-6">…</.surface>`. Pass `variant="secondary"` explicitly to nested inputs when a lower-emphasis field is desired.
 
 ```heex
 <.card variant="secondary" role="article" aria-labelledby="project-title">
@@ -137,7 +153,7 @@ Avatar groups inherit `size`, `color`, and `variant` from the group, with per-av
 </.avatar_group>
 ```
 
-Time fields submit a native ISO time value and progressively enhance to keyboard-editable segments after installing the JavaScript module. They accept a Phoenix form field or `id`, `name`, and `value`, along with `min` and `max` times, validation errors, and `:prefix`/`:suffix` slots. Use `hour_cycle={12}` or `hour_cycle={24}` to override the locale, and `granularity="hour"`, `"minute"`, or `"second"` to choose the smallest displayed unit.
+Time fields submit a native ISO time value and progressively enhance to keyboard-editable segments after registering the HeroUI Alpine components. They accept a Phoenix form field or `id`, `name`, and `value`, along with `min` and `max` times, validation errors, and `:prefix`/`:suffix` slots. Use `hour_cycle={12}` or `hour_cycle={24}` to override the locale, and `granularity="hour"`, `"minute"`, or `"second"` to choose the smallest displayed unit.
 
 ```heex
 <.time_field field={@form[:starts_at]} label="Start time" min="09:00" max="17:00" required />
@@ -189,7 +205,7 @@ const liveSocket = new LiveSocket("/live", Socket, {
 liveSocket.connect();
 ```
 
-Start Alpine and connect the LiveSocket only once. Search Field, Number Field, Tabs, grouped Accordion, Disclosure, and Toolbar use Alpine for their client-side behavior; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
+Start Alpine and connect the LiveSocket only once. Interactive components use the registered Alpine providers; `installHeroUI` remains necessary for Calendar, DateField, and DatePicker. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
 
 Accordion groups use keyed item slots. By default only one item can be open; use `allows_multiple_expanded` for independent panels. `default_expanded_keys` initializes browser-managed state, while `expanded_keys` and `on_expanded_change` let LiveView control it. The event receives `"key"`, `"expanded"` (`"true"` or `"false"`), and `"keys"` (a JSON-encoded list). Update the assign in the event handler. Set `variant="surface"`, `hide_separator`, `disabled`, or `heading_level` as needed; individual items also accept `disabled`. An optional `:indicator` slot replaces the chevron. The earlier `<.accordion title="...">...</.accordion>` form remains available as a native disclosure.
 
@@ -218,7 +234,7 @@ Open a modal with a button whose `data-hero-dialog-open` matches the modal ID:
 </.modal>
 ```
 
-Sheets are swipeable modal panels. Open one with `data-hero-sheet-open`, close it with `data-hero-sheet-close` or its built-in close button, and choose `placement="bottom"`, `"top"`, `"left"`, or `"right"`. `detached` adds space around the panel. Use `snap_points` for partial positions; numbers are pixels and strings support `px`, `%`, `vh`, `vw`, `rem`, and `em` units. A fully expanded position is added automatically. Sheets can be nested and use native modal focus containment.
+Sheets are swipeable modal panels managed by the HeroUI Alpine providers. Open one with `data-hero-sheet-open`, close it with `data-hero-sheet-close` or its built-in close button, and choose `placement="bottom"`, `"top"`, `"left"`, or `"right"`. `detached` adds space around the panel. Use `snap_points` for partial positions; numbers are pixels and strings support `px`, `%`, `vh`, `vw`, `rem`, and `em` units. A fully expanded position is added automatically. Sheets can be nested and use native modal focus containment.
 
 ```heex
 <.button data-hero-sheet-open="filters">Filters</.button>
@@ -230,9 +246,18 @@ Sheets are swipeable modal panels. Open one with `data-hero-sheet-open`, close i
 
 For LiveView-controlled state, pass `open={@sheet_open}` and `on_open_change="sheet_open_change"`. The event sends `"open"` as `"true"` or `"false"` and a `"reason"` of `"trigger"`, `"close"`, `"backdrop"`, `"escape"`, `"swipe"`, or `"parent"` when an ancestor sheet closes; update the assign in your handler. Omit `open` to manage the sheet in the browser, optionally setting `default_open`. Set `dismissible={false}` to prevent outside, Escape, and swipe dismissal; explicit close buttons still work.
 
-The native dialog contains focus and restores it on close. Escape and backdrop clicks dismiss it by default; `dismissible={false}` disables those dismissals. The Close button is always available. A LiveView mount command preserves the native `open` attribute across updates. Mount the client module once per page; the installer returns a cleanup function for teardown.
+The native dialog contains focus and restores it on close. Escape and backdrop clicks dismiss it by default; `dismissible={false}` disables those dismissals. The Close button is always available. The HeroUI Alpine providers manage opening and dismissal, and a LiveView mount command preserves the native `open` attribute across updates.
 
-Alert dialogs and drawers use the same opener as modals. Alert dialogs require an explicit cancel or confirm action and send `on_confirm` as a LiveView event. Drawers support `top`, `bottom`, `left`, and `right` placement and `opaque`, `blur`, or `transparent` backdrops. They use the registered HeroUI Alpine providers for opening and dismissal, animate unless reduced motion is requested, and retain native focus containment during exit. Set `dismissible={false}` to prevent backdrop and Escape dismissal.
+Alert dialogs and drawers use the same opener as modals. Alert dialogs require an explicit cancel or confirm action and send `on_confirm` as a LiveView event. Drawers support `top`, `bottom`, `left`, and `right` placement and `opaque`, `blur`, or `transparent` backdrops. The default placement is `bottom`, matching HeroUI v3; set `placement="right"` to retain the earlier default. They use the registered HeroUI Alpine providers for opening and dismissal, animate unless reduced motion is requested, and retain native focus containment during exit. Set `dismissible={false}` to prevent backdrop, Escape, and swipe dismissal.
+
+Use `default_open` for initial browser-managed state, or pass `open={@drawer_open}` and `on_open_change="drawer_open_change"` to let LiveView control it. The event carries `"open"` and a `"reason"` (`"trigger"`, `"close"`, `"escape"`, `"backdrop"`, `"swipe"`, or `"native"`); update the assign in the handler. User actions also dispatch a bubbling `hero:drawer-open-change` browser event. For a controlled drawer, these events request a change; the parent decides whether to update `open`. Drag the header or footer to dismiss; `show_handle` adds a visible drag handle. Interactive controls and the scrollable body retain their normal behavior. Set `close_label` to change the default button text, `show_close={false}` to omit it, or provide a `:close` slot with its supplied attributes on your own button.
+
+```heex
+<.drawer id="settings" title="Settings" open={@drawer_open} on_open_change="drawer_open_change">
+  Update your settings.
+  <:close :let={attrs}><.button {attrs}>Done</.button></:close>
+</.drawer>
+```
 
 ```heex
 <.button data-hero-dialog-open="confirm-delete">Delete</.button>
@@ -293,9 +318,9 @@ Use sections to group items and provide each selectable item with a unique strin
 
 `selection_mode` accepts `"none"`, `"single"`, or `"multiple"` on the dropdown, a section, or a submenu item. Each group maintains its own selection. `on_selection_change` receives `"key"`, `"selected"` (`"true"` or `"false"`), and `"keys"` (a JSON-encoded list). When `selected_keys` is supplied, update it in the event handler; otherwise, `default_selected_keys` initializes browser-managed state. An item’s `on_click` or the dropdown’s `on_action` receives its `"key"` when provided. Single-selection and action menus close after selection by default; multiple-selection menus remain open. Override this with `close_on_select`.
 
-Dropdowns require a browser with the Popover API and the HeroUI JavaScript installer. Keyboard users can open with Enter, Space, or arrow keys and navigate items with arrow keys, Home, End, and type-ahead. Arrow keys open and close submenus according to text direction; Escape closes the current menu and restores focus.
+Dropdowns require a browser with the Popover API and the HeroUI Alpine providers. Keyboard users can open with Enter, Space, or arrow keys and navigate items with arrow keys, Home, End, and type-ahead. Arrow keys open and close submenus according to text direction; Escape closes the current menu and restores focus.
 
-Slider and number field use native range and number inputs. Install the HeroUI JavaScript for slider pointer interaction and live output, and register the HeroUI Alpine components for number-field step buttons. Inputs submit through Phoenix forms.
+Slider and number field use native range and number inputs. Register the HeroUI Alpine components for slider pointer interaction and live output, and for number-field step buttons. Inputs submit through Phoenix forms.
 
 Number fields accept `field={@form[:quantity]}` or an `id`, `name`, and `value`, plus `min`, `max`, `step`, `description`, and explicit `errors`. Buttons disable at the reachable bounds and for disabled or read-only inputs. Replace the icons using the `:increment_icon` and `:decrement_icon` slots. The native number input uses the browser's numeric entry behavior; locale-specific currency, percentage, and unit formatting are not yet implemented.
 
@@ -319,7 +344,7 @@ Button groups accept ordinary button content, or named `:button` slots that inhe
 </.button_group>
 ```
 
-Toggle buttons manage their own state with Alpine when `pressed` is omitted; use `default_pressed` for the initial state. To control a toggle from LiveView, pass `pressed`, handle `phx-click`, and update the assign. Group related toggles with `.toggle_button_group`; breadcrumbs use `:item` slots and mark the last item as the current page.
+Toggle buttons manage their own state with Alpine when `pressed` is omitted; use `default_pressed` for the initial state. To control a toggle from LiveView, pass `pressed`, handle `phx-click`, and update the assign. Group related toggles with `.toggle_button_group`. Set `selection_mode="single"` or `"multiple"` to coordinate children, each with a unique `value`, `data-key`, or `id`; omit it to keep independent toggles. Managed groups support `selected_keys` or `default_selected_keys`, `disallow_empty_selection`, and `on_selection_change`, which receives the full key list as a JSON string in `"keys"`. With Alpine, a group `size` applies to children without an explicit size; `disabled` natively disables every descendant. Breadcrumbs use `:item` slots and mark the last item as the current page.
 
 Pagination supports either LiveView events (`on_change`) or URL generation (`href={fn page -> ... end}`). The event receives the requested page as `"page"`; the application owns page bounds, loading, and URL state. Use the optional `:summary` slot for result counts.
 
@@ -332,7 +357,7 @@ Tables accept lists or LiveView streams. Give a stream table a unique `id`; the 
 </.data_table>
 ```
 
-Listboxes are server-controlled. `on_select` receives a `"value"` parameter; update the `selected` list in response. They support single or multiple selection, disabled options, descriptions, and keyboard navigation. `installHeroUI` provides the keyboard behavior.
+Listboxes are server-controlled. `on_select` receives a `"value"` parameter; update the `selected` list in response. They support single or multiple selection, disabled options, descriptions, and keyboard navigation through the HeroUI Alpine providers.
 
 ```heex
 <.listbox id="workspace" label="Workspace" on_select="select_workspace" selected={[@workspace]}>
@@ -341,7 +366,7 @@ Listboxes are server-controlled. `on_select` receives a `"value"` parameter; upd
 </.listbox>
 ```
 
-Tag groups are also server-controlled. Handle `on_select` and `on_remove` events using their `"value"` parameter, then update the selected list or tag slots. They support `none`, `single`, and `multiple` selection, disabled tags, size and surface variants, and optional custom tag content. With the registered HeroUI Alpine components, arrow keys move between tags, Enter or Space selects, and Delete or Backspace removes a focused tag. The remove buttons are also individually focusable.
+Tag groups support server-controlled `selected` / `on_select` and `on_remove` events using their `"value"` parameter. For full selection sets, use `selected_keys` for controlled selection or `default_selected_keys` for Alpine-managed selection, with `on_selection_change` receiving a JSON-encoded `"keys"` parameter. Supplying `on_select` without either selected keys or explicit defaults retains the original server-controlled behavior. They support `none`, `single`, and `multiple` selection, disabled tags, size and surface variants, and optional custom tag content. With the registered HeroUI Alpine components, arrow keys move between tags, Enter or Space selects, and Delete or Backspace removes a focused tag. The remove buttons are also individually focusable.
 
 ```heex
 <.tag_group id="topics" label="Topics" selection_mode="multiple" selected={@topics}
@@ -351,16 +376,18 @@ Tag groups are also server-controlled. Handle `on_select` and `on_remove` events
 </.tag_group>
 ```
 
+To customize one remove button, add `<:remove_button value="news" label="Remove news from topics">...</:remove_button>` directly inside the group. Its value matches a `:tag`; use non-interactive icon or text content. Omit the content to retain the default icon, and use `class` for button styling. Removal still uses the group's `on_remove` event.
+
 Single selects progressively enhance to a HeroUI-styled listbox when the HeroUI Alpine providers and browser Popover API are available. The native select remains the form control and fallback; multiple selects and size-based listboxes remain native. Associate a `<label for="...">` or provide an accessible label.
 
-Autocomplete combines a select with a search field inside its popover. It accepts the same option formats as `Phoenix.HTML.Form.options_for_select/2`, including groups and disabled options. Set `selection_mode="multiple"` and provide a list for multiple selection; the form name gets a `[]` suffix and an empty selection omits the form key. `clearable` adds a clear button. The JavaScript installer and Popover API provide filtering and keyboard navigation; otherwise the native select remains available.
+Autocomplete combines a select with a search field inside its popover. It accepts the same option formats as `Phoenix.HTML.Form.options_for_select/2`, including groups and disabled options. Set `selection_mode="multiple"` and provide a list for multiple selection; the form name gets a `[]` suffix and an empty selection omits the form key. `clearable` adds a clear button. The registered HeroUI Alpine components and Popover API provide filtering and keyboard navigation; otherwise the native select remains available.
 
 ```heex
 <.autocomplete field={@form[:country]} label="Destination" clearable
   options={[{"Canada", "ca"}, {"Japan", "jp"}, {"Spain", "es"}]} />
 ```
 
-The combo box filters options by label and normally submits selected option keys through a native select. It accepts the same option formats as `Phoenix.HTML.Form.options_for_select/2`, including groups and disabled options; reserve the empty string for no selection. Use a form `phx-change` to receive selection changes and update its `value`. The JavaScript installer and Popover API provide the searchable interface; without them, the native select remains available.
+The combo box filters options by label and normally submits selected option keys through a native select. It accepts the same option formats as `Phoenix.HTML.Form.options_for_select/2`, including groups and disabled options; reserve the empty string for no selection. Use a form `phx-change` to receive selection changes and update its `value`. The HeroUI Alpine providers and Popover API provide the searchable interface; without them, the native select remains available.
 
 ```heex
 <.combo_box field={@form[:animal]} label="Favorite animal" placeholder="Search animals..."
@@ -392,7 +419,7 @@ Toolbars group related controls and support keyboard navigation. Provide a label
 
 With the HeroUI Alpine providers installed, Tab enters the toolbar at one control, arrow keys move between enabled controls, and Home and End move to the first and last controls. Set `orientation="vertical"` for up/down navigation. Text inputs and other controls retain their own arrow-key behavior. Without JavaScript, the controls remain individually reachable with Tab.
 
-Color fields edit hex values using a normal text input. By default they accept three- or six-digit hex values, with or without `#`. With JavaScript installed, blur expands shorthand and uppercases valid values; invalid edits revert to the last committed value, and the swatch follows that value. Set `allow_alpha` to accept four- or eight-digit hex values. Without JavaScript, the input remains usable and native pattern validation checks its value.
+Color fields edit hex values using a normal text input. By default they accept three- or six-digit hex values, with or without `#`. With the HeroUI Alpine providers installed, blur expands shorthand and uppercases valid values; invalid edits revert to the last committed value, and the swatch follows that value. Set `allow_alpha` to accept four- or eight-digit hex values. Without JavaScript, the input remains usable and native pattern validation checks its value.
 
 ```heex
 <.color_field field={@form[:brand_color]} label="Brand color" required />
@@ -427,9 +454,31 @@ Toast notifications need one region inside your LiveView and the registered Hero
 })}
 ```
 
-The variants are `default`, `accent`, `success`, `warning`, and `danger`. A timeout of `0` keeps a toast open. Optional `action: %{label: "Undo", event: "undo", params: %{id: "123"}}` renders a LiveView action button; place the region inside the LiveView that handles that event. Use `region` to target a specific region when there is more than one. The stack expands and pauses its timers on hover or focus; Alt+T moves focus to it.
+The variants are `default`, `accent`, `success`, `warning`, and `danger`. A timeout of `0` keeps a toast open. Optional `action: %{label: "Undo", event: "undo", params: %{id: "123"}}` renders a LiveView action button; place the region inside the LiveView that handles that event. Use `region` to target a specific region when there is more than one. The stack expands and pauses its timers on hover or focus; Alt+T moves focus to it. Escape collapses the stack and releases focus without dismissing a toast.
 
-From JavaScript, import `toast`, `updateToast`, `dismissToast`, or `clearToasts` from `hero_ui.js`. `toast("Saved", {variant: "success"})` returns an ID; pass it to `updateToast(id, {title: "Updated"})` or `dismissToast(id)`. LiveView can also push `hero:toast-update`, `hero:toast-close`, and `hero:toast-clear` events. Custom indicator content and promise helpers are not implemented yet.
+From JavaScript, import `toast`, `toastPromise`, `updateToast`, `dismissToast`, or `clearToasts` from `hero_ui.js`. `toast("Saved", {variant: "success"})` returns an ID; pass it to `updateToast(id, {title: "Updated"})` or `dismissToast(id)`. LiveView can also push `hero:toast-update`, `hero:toast-close`, and `hero:toast-clear` events. Set `isLoading: true` in JavaScript or `is_loading: true` in a LiveView event to show a spinner. Loading toasts are persistent unless a timeout is supplied; updating the title or clearing the loading flag starts the region's normal timeout.
+
+`toast.loading` creates a persistent loading toast. `toast.promise` (also exported as `toastPromise`) accepts a promise or a function returning one, shows a spinner, and updates the same toast on success or failure. It returns the toast ID; the supplied promise can be awaited separately. A formatter receives the resolved value or error and returns plain text. Pass `region` or a settlement `timeout` in the third argument; use `timeout: 0` to keep the settled toast open.
+
+```js
+toast.promise(uploadFile(), {
+  loading: "Uploading…",
+  success: file => `${file.name} uploaded`,
+  error: "Upload failed"
+}, {region: "notifications"});
+```
+
+Declare custom decorative indicators on the region, then select one by name in a toast event. Event titles and descriptions remain plain text; arbitrary event HTML is not rendered.
+
+```heex
+<.toast_region id="notifications">
+  <:indicator name="star"><span class="text-warning">★</span></:indicator>
+</.toast_region>
+```
+
+```elixir
+push_event(socket, "hero:toast", %{title: "Added to favorites", indicator: "star"})
+```
 
 Date fields provide editable month, day, and year segments backed by a native date input. They accept a Phoenix form field, `Date` or ISO date values, `min`, `max`, `required`, `read_only`, `disabled`, and a `locale`. The segment order follows the browser locale; values are submitted as ISO Gregorian dates. Use the arrow keys to move between or adjust segments, type digits to edit, and use Backspace or Delete to clear a segment. The native date input remains available without JavaScript. Partial and invalid dates are blocked from submission when enhanced. Localized digit entry, non-Gregorian calendars, and date-time granularities are not yet supported.
 
@@ -479,10 +528,14 @@ One-time-code fields use one native input for form submission, keyboard editing,
   allowed_pattern="[0-9]*" pattern="[0-9]{6}" required />
 ```
 
-Tooltips show plain descriptive text on hover or focus using the HeroUI Alpine providers. The trigger slot is rendered inside a button and should not contain another interactive element. Set `placement` to `top`, `bottom`, `left`, or `right`; the tooltip flips when it would overflow. `delay` and `close_delay` are milliseconds and default to the HeroUI theme values. Popovers can contain interactive content and use the JavaScript installer. Both use the browser Popover API.
+Tooltips show noninteractive descriptions on hover or focus using the HeroUI Alpine providers. The default slot labels a built-in button. Use `:trigger` to wrap one existing focusable element and `:content` for rich inline content. Pass the trigger slot's attributes to the element for a server-rendered `aria-describedby`; Alpine also associates the first focusable element automatically and preserves existing description IDs. Set `placement` to `top`, `bottom`, `left`, or `right`; the tooltip flips when it would overflow. Use `show_arrow` for an arrow. `delay` and `close_delay` are milliseconds and default to the HeroUI theme values. Popovers can contain interactive content and use the HeroUI Alpine providers. Both use the browser Popover API.
 
 ```heex
 <.tooltip id="save-tip" text="Save your changes">Save help</.tooltip>
+<.tooltip id="save-detail" show_arrow>
+  <:trigger :let={attrs}><.button {attrs}>Save</.button></:trigger>
+  <:content><strong>Save</strong> your changes.</:content>
+</.tooltip>
 <.popover id="details" trigger="Details" title="More information">
   <p>Additional content</p>
 </.popover>
@@ -511,6 +564,13 @@ Radio groups render native radios in a labelled fieldset, so arrow-key selection
 Checkbox and switch are native controls; include your own hidden input when your form needs an explicit unchecked value. Progress bars and progress circles accept `label`, `value`, `min`, and `max`; omit `value` for an indeterminate indicator. Meters represent a value in a known range and accept optional `value_text` for units.
 
 Buttons default to `type="button"`; specify `type="submit"` for forms. Icon-only buttons need an accessible name, for example `<.button icon_only aria-label="Close">…</.button>`. Standard HTML and `phx-*` attributes are forwarded to the underlying element. The `class` attribute adds application classes.
+
+Section headers and empty states are available as standalone components. The header renders a `<header>` by default; use `as="h2"` or another supported tag to match the document outline. The empty state defaults to “No results found”; pass `message` or slot content to customize it, and supply a `role` or live-region attributes when appropriate for the context.
+
+```heex
+<.header as="h2">Projects</.header>
+<.empty_state role="status">No projects match your search.</.empty_state>
+```
 
 ## Development
 

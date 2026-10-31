@@ -100,10 +100,6 @@
 .hui-radio input:checked { border:5px solid var(--hui-accent); }
 .hui-radio input:focus-visible { outline:2px solid var(--hui-focus); outline-offset:2px; }
 .hui-kbd { @apply inline-flex h-6 items-center rounded-lg px-2 text-sm font-medium whitespace-nowrap; background:var(--hui-default); color:var(--hui-muted); font-family:inherit; }
-.hui-surface { @apply rounded-3xl; background:var(--hui-surface); color:var(--hui-foreground); box-shadow:var(--hui-shadow); }
-.hui-surface--secondary { background:color-mix(in oklab,var(--hui-surface) 96%,var(--hui-foreground)); }
-.hui-surface--tertiary { background:color-mix(in oklab,var(--hui-surface) 92%,var(--hui-foreground)); }
-.hui-surface--transparent { background:transparent; box-shadow:none; }
 .hui-select { @apply cursor-pointer; }
 .hui-accordion { @apply border-b; border-color:var(--hui-border); color:var(--hui-foreground); }
 .hui-accordion summary { @apply flex items-center justify-between gap-4 py-4 text-sm font-medium cursor-pointer; list-style:none; }
@@ -263,13 +259,3 @@ dialog.hui-native-drawer[data-placement="bottom"][open] { inset:auto 0 0; width:
 .color-input-group__prefix [data-hero-color-preview] { display:flex; }
 
 .color-input-group__input { min-width:0; }
-
-/* HeroUI groups place separators between adjacent buttons. */
-.button-group--horizontal > .button + .button::before,
-.toggle-button-group--horizontal:not(.toggle-button-group--detached) > .toggle-button + .toggle-button::before {
-  content:""; position:absolute; pointer-events:none; inset-inline-start:-1px; top:25%; width:1px; height:50%; border-radius:2px; background:currentColor; opacity:.15;
-}
-.button-group--vertical > .button + .button::before,
-.toggle-button-group--vertical:not(.toggle-button-group--detached) > .toggle-button + .toggle-button::before {
-  content:""; position:absolute; pointer-events:none; inset-inline-start:25%; top:-1px; width:50%; height:1px; border-radius:2px; background:currentColor; opacity:.15;
-}

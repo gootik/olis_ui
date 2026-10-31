@@ -1,8 +1,9 @@
 /** Searchable select enhancement. The native select remains the form control. */
-export function installAutocomplete(root = document) {
-  if (typeof HTMLElement.prototype.showPopover !== 'function') return () => {};
+export function heroAutocomplete() {
+  let root;
+  const supported = typeof HTMLElement.prototype.showPopover === 'function';
   const states=new WeakMap(), pointerOpen=new WeakMap();
-  const fields=()=>root.querySelectorAll('[data-hero-autocomplete]');
+  const fields=()=>root?.matches?.('[data-hero-autocomplete]') ? [root] : [];
   const parts=field=>({native:field.querySelector('[data-hero-autocomplete-native]'),ui:field.querySelector('[data-hero-autocomplete-ui]'),group:field.querySelector('[data-hero-autocomplete-group]'),trigger:field.querySelector('[data-hero-autocomplete-trigger]'),value:field.querySelector('[data-hero-autocomplete-value]'),clear:field.querySelector('[data-hero-autocomplete-clear]'),popup:field.querySelector('[data-hero-autocomplete-popup]'),search:field.querySelector('[data-hero-autocomplete-search]'),list:field.querySelector('[data-hero-autocomplete-list]'),empty:field.querySelector('[data-hero-autocomplete-empty]'),error:field.querySelector('[data-hero-autocomplete-error]')});
   const selected=native=>[...native.selectedOptions].filter(option=>native.multiple || option.value !== '');
   const selectable=list=>[...list.querySelectorAll('[role="option"]')].filter(option=>option.getAttribute('aria-disabled') !== 'true');
@@ -156,7 +157,35 @@ export function installAutocomplete(root = document) {
   }
   function syncAll() { fields().forEach(sync); }
   function reposition() { fields().forEach(position); }
-  function onReset() { setTimeout(()=>{ fields().forEach(field=>{ const {popup,search,error}=parts(field); if (popup.matches(':popover-open')) popup.hidePopover(); search.value=''; error.hidden=true; error.textContent=''; }); syncAll(); },0); }
-  syncAll(); root.addEventListener('input',onInput); root.addEventListener('change',onChange); root.addEventListener('keydown',onKeyDown); root.addEventListener('pointerdown',onPointerDown); root.addEventListener('click',onClick); root.addEventListener('focusout',onFocusOut); root.addEventListener('toggle',onToggle,true); root.addEventListener('invalid',onInvalid,true); root.addEventListener('reset',onReset); document.addEventListener('phx:update',syncAll); window.addEventListener('resize',reposition); window.addEventListener('scroll',reposition,true);
-  return ()=>{ root.removeEventListener('input',onInput); root.removeEventListener('change',onChange); root.removeEventListener('keydown',onKeyDown); root.removeEventListener('pointerdown',onPointerDown); root.removeEventListener('click',onClick); root.removeEventListener('focusout',onFocusOut); root.removeEventListener('toggle',onToggle,true); root.removeEventListener('invalid',onInvalid,true); root.removeEventListener('reset',onReset); document.removeEventListener('phx:update',syncAll); window.removeEventListener('resize',reposition); window.removeEventListener('scroll',reposition,true); fields().forEach(field=>{ const {native,ui,popup}=parts(field); if (popup?.matches(':popover-open')) popup.hidePopover(); if (ui) ui.hidden=true; if (native) { native.removeAttribute('aria-hidden'); native.removeAttribute('tabindex'); } delete field.dataset.enhanced; }); };
+  function onReset(event) {
+    if (!root || parts(root).native?.form !== event.target) return;
+    setTimeout(() => {
+      if (!root.isConnected) return;
+      const {popup,search,error}=parts(root);
+      if (popup.matches(':popover-open')) popup.hidePopover();
+      search.value=''; error.hidden=true; error.textContent=''; sync(root);
+    },0);
+  }
+  return {
+    init() { root=this.$root; if (supported) sync(root); },
+    input(event) { if (supported) onInput(event); },
+    change(event) { if (supported) onChange(event); },
+    keydown(event) { if (supported) onKeyDown(event); },
+    pointerdown(event) { if (supported) onPointerDown(event); },
+    click(event) { if (supported) onClick(event); },
+    focusout(event) { if (supported) onFocusOut(event); },
+    toggle(event) { if (supported) onToggle(event); },
+    invalid(event) { if (supported) onInvalid(event); },
+    reset(event) { if (supported) onReset(event); },
+    update() { if (supported) syncAll(); },
+    reposition() { if (supported) reposition(); },
+    destroy() {
+      if (!supported || !root) return;
+      const {native,ui,popup}=parts(root);
+      if (popup?.matches(':popover-open')) popup.hidePopover();
+      if (ui) ui.hidden=true;
+      if (native) { native.removeAttribute('aria-hidden'); native.removeAttribute('tabindex'); }
+      delete root.dataset.enhanced;
+    }
+  };
 }

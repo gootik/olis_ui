@@ -6,6 +6,68 @@ defmodule HeroUI do
   """
   use Phoenix.Component, global_prefixes: ~w(x-)
 
+  @doc """
+  A Phoenix form with native submission, validation and LiveView support.
+
+  Uses the same options and slot form value as `Phoenix.Component.form/1`. Named
+  `ui_form` to avoid an import conflict with Phoenix's built-in `form` component.
+  """
+  attr(:for, :any, required: true)
+  attr(:action, :string)
+  attr(:as, :atom)
+  attr(:csrf_token, :any)
+  attr(:errors, :list)
+  attr(:method, :string)
+  attr(:multipart, :boolean, default: false)
+  attr(:rest, :global, include: ~w(autocomplete name rel enctype novalidate target))
+  slot(:inner_block, required: true)
+
+  def ui_form(assigns), do: Phoenix.Component.form(assigns)
+
+  @doc "Supplementary text for a form field or other component."
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def description(assigns) do
+    ~H"""
+    <span class={["description", @class]} data-slot="description" {@rest}>
+      {render_slot(@inner_block)}
+    </span>
+    """
+  end
+
+  @doc "A field validation message. Control visibility explicitly with `visible`."
+  attr(:visible, :boolean, default: true)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def field_error(assigns) do
+    ~H"""
+    <span
+      class={["field-error", @class]}
+      data-slot="field-error"
+      data-visible={if @visible, do: "true"}
+      hidden={!@visible}
+      {@rest}
+    >{render_slot(@inner_block)}</span>
+    """
+  end
+
+  @doc "An error message for a non-form component such as a tag group."
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def error_message(assigns) do
+    ~H"""
+    <span class={["error-message", @class]} data-slot="error-message" {@rest}>
+      {render_slot(@inner_block)}
+    </span>
+    """
+  end
+
   @doc "A native button with HeroUI variants and an optional focusable pending state."
   attr(:variant, :string,
     default: "primary",
@@ -725,6 +787,51 @@ defmodule HeroUI do
     """
   end
 
+  @doc "A HeroUI-styled section header. Use `as` to select an appropriate semantic tag."
+  attr(:as, :string, default: "header", values: ~w(header div span h1 h2 h3 h4 h5 h6))
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def header(assigns) do
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "header"
+
+    rest = Map.drop(assigns.rest, [:"data-slot", "data-slot"])
+    assigns = assign(assigns, data_slot: data_slot, rest: rest)
+
+    ~H"""
+    <.dynamic_tag tag_name={@as} class={["header", @class]} data-slot={@data_slot} {@rest}>
+      {render_slot(@inner_block)}
+    </.dynamic_tag>
+    """
+  end
+
+  @doc "A styled empty result message, with customizable content and semantic tag."
+  attr(:as, :string, default: "div", values: ~w(div p span))
+  attr(:message, :string, default: "No results found")
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block)
+
+  def empty_state(assigns) do
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "empty-state"
+
+    rest = Map.drop(assigns.rest, [:"data-slot", "data-slot"])
+    assigns = assign(assigns, data_slot: data_slot, rest: rest)
+
+    ~H"""
+    <.dynamic_tag tag_name={@as} class={["empty-state", @class]} data-slot={@data_slot} {@rest}>
+      <%= if @inner_block == [] do %>
+        {@message}
+      <% else %>
+        {render_slot(@inner_block)}
+      <% end %>
+    </.dynamic_tag>
+    """
+  end
+
   @doc """
   A card surface with optional header, title, description, content, and footer slots.
   Unslotted content remains a direct child of the card for backwards compatibility.
@@ -947,13 +1054,35 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A placeholder for content that is loading. Set its dimensions with CSS."
+  @doc """
+  A placeholder for content that is loading. Set its dimensions with CSS.
+
+  Set `animation_type` to `"shimmer"`, `"pulse"`, or `"none"`. When omitted,
+  the `--skeleton-animation` CSS variable on the document root sets the default;
+  shimmer is used when the variable is unset or Alpine has not initialized.
+  """
+  attr(:animation_type, :string, default: nil, values: [nil | ~w(shimmer pulse none)])
   attr(:class, :any, default: nil)
   attr(:rest, :global)
 
   def skeleton(assigns) do
     ~H"""
-    <div class={["skeleton", "skeleton--shimmer", @class]} aria-hidden="true" {@rest}></div>
+    <div
+      class={["skeleton", "skeleton--#{@animation_type || "shimmer"}", @class]}
+      x-data={
+        if is_nil(@animation_type),
+          do:
+            "{ animation: getComputedStyle(document.documentElement).getPropertyValue('--skeleton-animation').trim() }"
+      }
+      x-bind:class={
+        if is_nil(@animation_type),
+          do:
+            "{ 'skeleton--shimmer': !['pulse', 'none'].includes(animation), 'skeleton--pulse': animation === 'pulse', 'skeleton--none': animation === 'none' }"
+      }
+      aria-hidden="true"
+      {@rest}
+    >
+    </div>
     """
   end
 
@@ -1094,7 +1223,8 @@ defmodule HeroUI do
 
   Supply an `id` or Phoenix `field`. When omitting the visible label, provide
   `aria-label` or `aria-labelledby`. An unchecked switch submits no value;
-  add a hidden input if your form needs an explicit false value.
+  add a hidden input if your form needs an explicit false value. `read_only`
+  preserves focus and form submission but prevents user changes with Alpine.
   """
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:id, :string, default: nil)
@@ -1102,6 +1232,7 @@ defmodule HeroUI do
   attr(:value, :string, default: "true")
   attr(:checked, :boolean, default: nil)
   attr(:disabled, :boolean, default: false)
+  attr(:read_only, :boolean, default: false)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:description, :string, default: nil)
   attr(:errors, :list, default: [])
@@ -1138,6 +1269,12 @@ defmodule HeroUI do
 
     {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
     {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+    {external_readonly, rest} = Map.pop(rest, :"aria-readonly")
+    {external_readonly_string, rest} = Map.pop(rest, "aria-readonly")
+
+    effective_readonly =
+      assigns.read_only || external_readonly in [true, "true"] ||
+        external_readonly_string in [true, "true"]
 
     describedby =
       [
@@ -1154,6 +1291,11 @@ defmodule HeroUI do
       |> assign(:rest, rest)
       |> assign(:describedby, describedby)
       |> assign(:explicit_label, explicit_label)
+      |> assign(:effective_readonly, effective_readonly)
+      |> assign(
+        :aria_readonly,
+        if(effective_readonly, do: "true", else: external_readonly || external_readonly_string)
+      )
 
     ~H"""
     <label
@@ -1167,6 +1309,9 @@ defmodule HeroUI do
       data-slot="switch"
       data-disabled={if @disabled, do: "true"}
       data-invalid={if @invalid || @errors != [], do: "true"}
+      data-readonly={if @effective_readonly, do: "true"}
+      x-data="{}"
+      x-on:click.capture="if ($el.dataset.readonly === 'true' && $event.target === $el.control) { $event.preventDefault(); $event.stopPropagation() }"
     >
       <span class="switch__content" data-slot="switch-content">
         <input
@@ -1179,6 +1324,7 @@ defmodule HeroUI do
           disabled={@disabled}
           aria-labelledby={if !@explicit_label, do: "#{@id}-label"}
           aria-invalid={if @invalid || @errors != [], do: "true"}
+          aria-readonly={@aria_readonly}
           aria-describedby={if @describedby != "", do: @describedby}
           class="peer sr-only"
           {@rest}
@@ -1935,15 +2081,21 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A semantic surface for grouped content."
+  @doc "A HeroUI surface; use Tailwind classes to add spacing, borders, or rounding."
   attr(:variant, :string, default: "default", values: ~w(default secondary tertiary transparent))
   attr(:class, :any, default: nil)
   attr(:rest, :global)
   slot(:inner_block, required: true)
 
   def surface(assigns) do
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "surface"
+
+    rest = Map.drop(assigns.rest, [:"data-slot", "data-slot"])
+    assigns = assign(assigns, data_slot: data_slot, rest: rest)
+
     ~H"""
-    <div class={["hui-surface", "hui-surface--#{@variant}", @class]} {@rest}>
+    <div class={["surface", "surface--#{@variant}", @class]} data-slot={@data_slot} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
@@ -2035,6 +2187,12 @@ defmodule HeroUI do
       class={["color-field", @full_width && "color-field--full-width", @class]}
       data-slot="color-field"
       data-hero-color-field
+      x-data="heroColorField"
+      x-on:focusout="focusout($event)"
+      x-on:change="change($event)"
+      x-on:submit.window.capture="submit($event)"
+      x-on:reset.window="reset($event)"
+      x-on:phx:update.window="sync()"
       data-channel={@channel}
       data-allow-alpha={to_string(@allow_alpha)}
       data-preview-color={@preview_color}
@@ -2364,7 +2522,19 @@ defmodule HeroUI do
   attr(:expanded, :boolean, default: false)
   attr(:class, :any, default: nil)
 
+  slot :indicator do
+    attr(:name, :string, required: true)
+  end
+
   def toast_region(assigns) do
+    names = Enum.map(assigns.indicator, & &1.name)
+
+    if length(names) != length(Enum.uniq(names)) ||
+         Enum.any?(names, &(not is_binary(&1) || not Regex.match?(~r/\A[a-zA-Z0-9_-]+\z/, &1))),
+       do: raise(ArgumentError, "toast indicator names must be unique alphanumeric identifiers")
+
+    assigns = assign(assigns, :indicator_names, names)
+
     if assigns.width <= 0 || assigns.gap < 0 || assigns.max_visible < 1 || assigns.timeout < 0,
       do:
         raise(
@@ -2379,10 +2549,29 @@ defmodule HeroUI do
       data-slot="toast-region"
       data-hero-toast-region
       x-data="heroToastRegion"
+      x-on:hero:toast.window="show($event.detail)"
+      x-on:phx:hero:toast.window="show($event.detail)"
+      x-on:hero:toast-update.window="update($event.detail)"
+      x-on:phx:hero:toast-update.window="update($event.detail)"
+      x-on:hero:toast-close.window="closeEvent($event.detail)"
+      x-on:phx:hero:toast-close.window="closeEvent($event.detail)"
+      x-on:hero:toast-clear.window="clearEvent($event.detail)"
+      x-on:phx:hero:toast-clear.window="clearEvent($event.detail)"
+      x-on:pointerenter="pointerEnter($event)"
+      x-on:pointermove="pointerEnter($event)"
+      x-on:pointerleave="pointerLeave($event)"
+      x-on:focusin="focusIn($event)"
+      x-on:focusout="focusOut($event)"
+      x-on:keydown.document="keydown($event)"
+      x-on:visibilitychange.document="reconcile()"
+      x-on:focus.window="reconcile()"
+      x-on:blur.window="reconcile()"
+      x-on:resize.window="layout()"
       data-placement={@placement}
       data-gap={@gap}
       data-max-visible={@max_visible}
       data-timeout={@timeout}
+      data-indicators={Jason.encode!(@indicator_names)}
       data-expanded={to_string(@expanded)}
       style={"--toast-width: #{@width}px; --gap: #{@gap}px"}
       role="region"
@@ -2390,7 +2579,155 @@ defmodule HeroUI do
       tabindex="-1"
       phx-update="ignore"
     >
-      <ol data-hero-toast-list class="contents"></ol>
+      <ol data-hero-toast-list class="contents">
+        <template x-for="item in items" x-bind:key="item.uid">
+          <li class="contents">
+            <div
+              class="toast"
+              x-bind:class="`toast--${$root.dataset.placement} toast--${variant(item.data.variant)}`"
+              data-slot="toast"
+              data-hero-toast
+              x-bind:data-toast-uid="item.uid"
+              x-bind:data-index="item.index"
+              x-bind:data-frontmost="String(item.index === 0)"
+              x-bind:data-placement="$root.dataset.placement"
+              x-bind:data-expanded="item.expanded ? 'true' : null"
+              x-bind:data-hidden="item.hidden ? 'true' : null"
+              x-bind:data-entering="item.entering ? 'true' : null"
+              x-bind:data-exiting="item.exiting ? 'true' : null"
+              x-bind:aria-hidden="item.hidden || item.exiting ? 'true' : null"
+              x-bind:inert="item.hidden || item.exiting"
+              x-bind:tabindex="!item.hidden && (item.index === 0 || item.expanded) ? 0 : -1"
+              x-bind:style="style(item)"
+              role="alertdialog"
+              aria-modal="false"
+              x-bind:aria-labelledby="`${item.uid}-title`"
+              x-bind:aria-describedby="item.data.description ? `${item.uid}-description` : null"
+            >
+              <template x-if="loading(item)">
+                <div class="toast__indicator" data-slot="toast-indicator" aria-hidden="true">
+                  <span class="spinner spinner--sm spinner--current" data-slot="spinner">
+                    <svg data-slot="spinner-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <defs>
+                        <linearGradient
+                          x-bind:id="`${item.uid}-spinner-1`"
+                          x1="50%"
+                          x2="50%"
+                          y1="5.271%"
+                          y2="91.793%"
+                        >
+                          <stop offset="0%" stop-color="currentColor" /><stop
+                            offset="100%"
+                            stop-color="currentColor"
+                            stop-opacity="0.55"
+                          />
+                        </linearGradient>
+                        <linearGradient
+                          x-bind:id="`${item.uid}-spinner-2`"
+                          x1="50%"
+                          x2="50%"
+                          y1="15.24%"
+                          y2="87.15%"
+                        >
+                          <stop offset="0%" stop-color="currentColor" stop-opacity="0" /><stop
+                            offset="100%"
+                            stop-color="currentColor"
+                            stop-opacity="0.55"
+                          />
+                        </linearGradient>
+                      </defs>
+                      <g fill="none">
+                        <path
+                          d="M8.749.021a1.5 1.5 0 0 1 .497 2.958A7.5 7.5 0 0 0 3 10.375a7.5 7.5 0 0 0 7.5 7.5v3c-5.799 0-10.5-4.7-10.5-10.5C0 5.23 3.726.865 8.749.021"
+                          x-bind:fill="`url(#${item.uid}-spinner-1)`"
+                          transform="translate(1.5 1.625)"
+                        />
+                        <path
+                          d="M15.392 2.673a1.5 1.5 0 0 1 2.119-.115A10.48 10.48 0 0 1 21 10.375c0 5.8-4.701 10.5-10.5 10.5v-3a7.5 7.5 0 0 0 5.007-13.084a1.5 1.5 0 0 1-.115-2.118"
+                          x-bind:fill="`url(#${item.uid}-spinner-2)`"
+                          transform="translate(1.5 1.625)"
+                        />
+                      </g>
+                    </svg>
+                  </span>
+                </div>
+              </template>
+              <template
+                :for={indicator <- @indicator}
+                x-if={"!loading(item) && item.data.indicator === #{Jason.encode!(indicator.name)}"}
+              >
+                <div class="toast__indicator" data-slot="toast-indicator" aria-hidden="true">
+                  {render_slot(indicator)}
+                </div>
+              </template>
+              <template x-if="!loading(item) && item.data.indicator !== false && !customIndicator(item)">
+                <div class="toast__indicator" data-slot="toast-indicator">
+                  <svg
+                    data-slot="toast-default-icon"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    height="16"
+                    aria-hidden="true"
+                  ><path
+                    x-bind:d="iconPath(item.data.variant)"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  /></svg>
+                </div>
+              </template>
+              <div class="toast__content" data-slot="toast-content" role="alert" aria-atomic="true">
+                <span
+                  class="toast__title"
+                  data-slot="toast-title"
+                  x-bind:id="`${item.uid}-title`"
+                  x-text="item.data.title"
+                ></span>
+                <template x-if="item.data.description">
+                  <span
+                    class="toast__description"
+                    data-slot="toast-description"
+                    x-bind:id="`${item.uid}-description`"
+                    x-text="item.data.description"
+                  ></span>
+                </template>
+              </div>
+              <template x-if="item.data.action && item.data.action.label">
+                <button
+                  type="button"
+                  class="button button--md button--tertiary toast__action"
+                  data-slot="toast-action-button"
+                  data-hero-toast-action
+                  x-bind:phx-click="actionCommand(item)"
+                  x-on:click="action(item)"
+                  x-text="item.data.action.label"
+                ></button>
+              </template>
+              <button
+                type="button"
+                class="close-button close-button--default toast__close-button"
+                data-slot="toast-close"
+                data-hero-toast-close
+                aria-label="Close"
+                x-on:click="close(item)"
+              >
+                <svg
+                  data-slot="close-button-icon"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                  aria-hidden="true"
+                ><path
+                  d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                /></svg>
+              </button>
+            </div>
+          </li>
+        </template>
+      </ol>
     </div>
     """
   end
@@ -2603,6 +2940,16 @@ defmodule HeroUI do
       class={["time-field", @full_width && "time-field--full-width", @class]}
       data-slot="time-field"
       data-hero-time-field
+      x-data="heroTimeField"
+      x-on:keydown="keydown($event)"
+      x-on:beforeinput="beforeinput($event)"
+      x-on:paste="paste($event)"
+      x-on:focusin="focusin($event)"
+      x-on:click="click($event)"
+      x-on:invalid.capture="invalid($event)"
+      x-on:change="change($event)"
+      x-on:reset.document="reset($event)"
+      x-on:phx:update.document="update()"
       data-locale={@locale}
       data-hour-cycle={@hour_cycle}
       data-granularity={@granularity}
@@ -3216,6 +3563,19 @@ defmodule HeroUI do
       ]}
       data-slot="autocomplete"
       data-hero-autocomplete
+      x-data="heroAutocomplete"
+      x-on:input="input($event)"
+      x-on:change="change($event)"
+      x-on:keydown="keydown($event)"
+      x-on:pointerdown="pointerdown($event)"
+      x-on:click="click($event)"
+      x-on:focusout="focusout($event)"
+      x-on:toggle.capture="toggle($event)"
+      x-on:invalid.capture="invalid($event)"
+      x-on:reset.document="reset($event)"
+      x-on:phx:update.document="update()"
+      x-on:resize.window="reposition()"
+      x-on:scroll.window.capture="reposition()"
       data-variant={@variant}
       data-full-width={to_string(@full_width)}
       data-placeholder={@placeholder}
@@ -3485,6 +3845,20 @@ defmodule HeroUI do
       id={"#{@id}-combo"}
       class={["combo-box", @full_width && "combo-box--full-width", @class]}
       data-hero-combo
+      x-data="heroComboBox"
+      x-on:input="input($event)"
+      x-on:change="change($event)"
+      x-on:keydown="keydown($event)"
+      x-on:click="click($event)"
+      x-on:pointerdown="pointerdown($event)"
+      x-on:focusin="focusin($event)"
+      x-on:focusout="focusout($event)"
+      x-on:toggle.capture="toggle($event)"
+      x-on:invalid.capture="invalid($event)"
+      x-on:reset.window="reset($event)"
+      x-on:phx:update.window="sync()"
+      x-on:resize.window="position()"
+      x-on:scroll.window.capture="position()"
       data-custom={to_string(@allows_custom_value)}
       data-selection-mode={@selection_mode}
       data-selected-order={if @selection_mode == "multiple", do: Jason.encode!(@value || [])}
@@ -4412,7 +4786,7 @@ defmodule HeroUI do
   @doc """
   A modal dialog using the browser's focus containment and Escape behavior.
 
-  Load `installHeroUI` as described in the README. Open it with a button carrying
+  Install the HeroUI Alpine providers as described in the README. Open it with a button carrying
   `data-hero-dialog-open={id}`. Provide a unique id and a concise title.
   """
   attr(:id, :string, required: true)
@@ -4429,6 +4803,10 @@ defmodule HeroUI do
       id={@id}
       class={["modal__dialog", "modal__dialog--#{@size}", "hui-native-modal", @class]}
       data-hero-dialog
+      x-data="heroDialog"
+      x-on:click.window="openFromTrigger($event)"
+      x-on:click="onClick($event)"
+      x-on:cancel="onCancel($event)"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["open"])}
       data-dismissible={to_string(@dismissible)}
       aria-labelledby={"#{@id}-title"}
@@ -4447,7 +4825,7 @@ defmodule HeroUI do
 
   @doc """
   A swipeable modal sheet. Open it with `data-hero-sheet-open={id}` and install
-  the HeroUI JavaScript module. Supply `open` and `on_open_change` for
+  the HeroUI Alpine providers. Supply `open` and `on_open_change` for
   server-controlled state, or use `default_open` for client-managed state.
   """
   attr(:id, :string, required: true)
@@ -4461,7 +4839,7 @@ defmodule HeroUI do
   attr(:snap_points, :list, default: [])
   attr(:open, :boolean, default: nil)
   attr(:default_open, :boolean, default: false)
-  attr(:on_open_change, :string, default: nil)
+  attr(:on_open_change, :any, default: nil)
   attr(:target, :any, default: nil)
   attr(:class, :any, default: nil)
   attr(:body_class, :any, default: nil)
@@ -4492,6 +4870,21 @@ defmodule HeroUI do
         "backdrop:bg-transparent"
       ]}
       data-hero-sheet
+      x-data="heroSheet"
+      x-on:click.window="openFromTrigger($event)"
+      x-on:click="click($event)"
+      x-on:cancel="cancel($event)"
+      x-on:close="close($event)"
+      x-on:pointerdown="pointerdown($event)"
+      x-on:pointermove="pointermove($event)"
+      x-on:pointerup="pointerup($event)"
+      x-on:pointercancel="pointercancel($event)"
+      x-on:touchstart.passive="touchstart($event)"
+      x-on:touchmove="touchmove($event)"
+      x-on:touchend="touchend($event)"
+      x-on:touchcancel="touchcancel($event)"
+      x-on:resize.window="resize()"
+      x-on:phx:update.window="sync()"
       data-slot="sheet-overlay"
       data-placement={@placement}
       data-dismissible={to_string(@dismissible)}
@@ -4773,7 +5166,7 @@ defmodule HeroUI do
 
   @doc """
   An action or selection menu with sections and nested submenus.
-  Install `installHeroUI` and use a browser with the Popover API.
+  Register HeroUI's Alpine providers and use a browser with the Popover API.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
@@ -4825,7 +5218,22 @@ defmodule HeroUI do
       do: raise(ArgumentError, "dropdown requires at least one item or section")
 
     ~H"""
-    <div id={@id} class={["dropdown", "hui-dropdown", @class]} data-hero-dropdown>
+    <div
+      id={@id}
+      class={["dropdown", "hui-dropdown", @class]}
+      data-hero-dropdown
+      x-data="heroDropdown"
+      x-on:click.capture="click($event)"
+      x-on:keydown="keydown($event)"
+      x-on:toggle.capture="toggle($event)"
+      x-on:focusout="focusout($event)"
+      x-on:pointerover="pointerover($event)"
+      x-on:pointerout="pointerout($event)"
+      x-on:pointermove="pointermove($event)"
+      x-on:resize.window="reposition()"
+      x-on:scroll.window.capture="reposition()"
+      x-on:phx:update.document="reposition()"
+    >
       <button
         type="button"
         class={["button", "button--md", "button--#{@variant}", "dropdown__trigger"]}
@@ -4999,6 +5407,7 @@ defmodule HeroUI do
         aria-haspopup="menu"
         aria-expanded="false"
         aria-controls={"#{@id}-submenu"}
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-expanded"])}
       >
         <.dropdown_item_content entry={@entry} mode="none" checked={false} controlled={true} />
         <span
@@ -5134,7 +5543,7 @@ defmodule HeroUI do
 
   @doc """
   An alert dialog for decisions that require an explicit response.
-  Open it with `data-hero-dialog-open` and install the HeroUI JavaScript module.
+  Open it with `data-hero-dialog-open` and install the HeroUI Alpine providers.
   The cancel action receives initial focus; confirmation sends `on_confirm` to LiveView.
   """
   attr(:id, :string, required: true)
@@ -5161,6 +5570,10 @@ defmodule HeroUI do
       aria-describedby={"#{@id}-description"}
       class={["alert-dialog__dialog", "alert-dialog__dialog--#{@size}", "hui-native-modal", @class]}
       data-hero-dialog
+      x-data="heroDialog"
+      x-on:click.window="openFromTrigger($event)"
+      x-on:click="onClick($event)"
+      x-on:cancel="onCancel($event)"
       data-dismissible="false"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["open"])}
     >
@@ -5190,17 +5603,30 @@ defmodule HeroUI do
   A modal drawer attached to an edge of the viewport.
   Open it with `data-hero-dialog-open={id}`. Requires HeroUI's Alpine providers.
   The backdrop can be `opaque` (default), `blur`, or `transparent`.
+  Use `default_open` for initial client state or `open` and `on_open_change`
+  for LiveView-controlled state. A `:close` slot can replace the default control.
   """
   attr(:id, :string, required: true)
   attr(:title, :string, required: true)
-  attr(:placement, :string, default: "right", values: ~w(top bottom left right))
+  attr(:placement, :string, default: "bottom", values: ~w(top bottom left right))
   attr(:dismissible, :boolean, default: true)
   attr(:backdrop, :string, default: "opaque", values: ~w(opaque blur transparent))
+  attr(:open, :boolean, default: nil)
+  attr(:default_open, :boolean, default: false)
+  attr(:on_open_change, :any, default: nil)
+  attr(:target, :any, default: nil)
+  attr(:show_close, :boolean, default: true)
+  attr(:close_label, :string, default: "Close")
+  attr(:show_handle, :boolean, default: false)
   attr(:class, :any, default: nil)
   slot(:inner_block, required: true)
   slot(:footer)
+  slot(:close)
 
   def drawer(assigns) do
+    if !is_nil(assigns.open) && assigns.default_open,
+      do: raise(ArgumentError, "drawer cannot use open and default_open together")
+
     ~H"""
     <dialog
       id={@id}
@@ -5222,44 +5648,108 @@ defmodule HeroUI do
       x-on:click.window="openFromTrigger($event)"
       x-on:click="onClick($event)"
       x-on:cancel.prevent="onCancel()"
+      x-on:close="onNativeClose($event)"
+      x-on:phx:update.window="sync()"
+      x-on:pointerdown="pointerDown($event)"
+      x-on:pointermove="pointerMove($event)"
+      x-on:pointerup="pointerUp($event)"
+      x-on:pointercancel="pointerCancel($event)"
+      x-on:lostpointercapture="lostPointerCapture($event)"
       data-dismissible={to_string(@dismissible)}
-      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["open"])}
+      data-controlled={to_string(!is_nil(@open))}
+      data-controlled-open={if !is_nil(@open), do: to_string(@open)}
+      data-default-open={to_string(@default_open)}
+      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["open", "style"])}
     >
-      <header class="drawer__header" data-slot="drawer-header">
+      <div
+        :if={@show_handle}
+        class={[
+          "drawer__handle",
+          if(@placement in ["top", "bottom"], do: "touch-pan-x", else: "touch-pan-y")
+        ]}
+        data-slot="drawer-handle"
+        data-hero-drawer-drag
+        aria-hidden="true"
+      >
+        <span data-slot="drawer-handle-bar"></span>
+      </div>
+      <header
+        class={[
+          "drawer__header",
+          if(@placement in ["top", "bottom"], do: "touch-pan-x", else: "touch-pan-y")
+        ]}
+        data-slot="drawer-header"
+        data-hero-drawer-drag
+      >
         <h2 id={"#{@id}-title"} class="drawer__heading" data-slot="drawer-heading">{@title}</h2>
       </header>
       <div class="drawer__body" data-slot="drawer-body">{render_slot(@inner_block)}</div>
-      <div class="drawer__footer" data-slot="drawer-footer">
-        {render_slot(@footer)}<button
-          type="button"
-          class="button button--md button--tertiary"
-          data-hero-dialog-close
-        >Close</button>
+      <div
+        class={[
+          "drawer__footer",
+          if(@placement in ["top", "bottom"], do: "touch-pan-x", else: "touch-pan-y")
+        ]}
+        data-slot="drawer-footer"
+        data-hero-drawer-drag
+      >
+        {render_slot(@footer)}
+        <%= if @close != [] do %>
+          {render_slot(@close, %{"data-hero-dialog-close" => true})}
+        <% else %>
+          <button
+            :if={@show_close}
+            type="button"
+            class="button button--md button--tertiary"
+            data-hero-dialog-close
+          >{@close_label}</button>
+        <% end %>
       </div>
+      <button
+        :if={@on_open_change}
+        type="button"
+        hidden
+        data-hero-drawer-event
+        phx-click={@on_open_change}
+        phx-target={@target}
+      ></button>
     </dialog>
     """
   end
 
   @doc """
   A noninteractive description shown on focus or hover. Requires HeroUI's Alpine providers.
-  The slot is the content of the trigger button; do not nest interactive elements inside it.
+  The default slot labels a built-in button. Use `:trigger` to provide an existing
+  interactive element and `:content` for rich, noninteractive inline content.
   """
   attr(:id, :string, required: true)
-  attr(:text, :string, required: true)
+  attr(:text, :string, default: nil)
   attr(:placement, :string, default: "top", values: ~w(top bottom left right))
   attr(:delay, :integer, default: nil)
   attr(:close_delay, :integer, default: nil)
-  attr(:offset, :integer, default: 3)
+  attr(:offset, :integer, default: nil)
+  attr(:show_arrow, :boolean, default: false)
   attr(:class, :any, default: nil)
   attr(:trigger_class, :any, default: nil)
-  slot(:inner_block, required: true)
+  slot(:inner_block)
+  slot(:trigger)
+  slot(:content)
 
   def tooltip(assigns) do
+    if (is_nil(assigns.text) && assigns.content == []) ||
+         (!is_nil(assigns.text) && assigns.content != []),
+       do: raise(ArgumentError, "tooltip requires either text or a content slot")
+
+    if assigns.inner_block == [] && assigns.trigger == [],
+      do: raise(ArgumentError, "tooltip requires a default slot or a trigger slot")
+
     if assigns.delay && assigns.delay < 0,
       do: raise(ArgumentError, "tooltip delay must be nonnegative")
 
     if assigns.close_delay && assigns.close_delay < 0,
       do: raise(ArgumentError, "tooltip close delay must be nonnegative")
+
+    assigns =
+      assign(assigns, :resolved_offset, assigns.offset || if(assigns.show_arrow, do: 7, else: 3))
 
     ~H"""
     <span
@@ -5268,7 +5758,7 @@ defmodule HeroUI do
       data-delay={@delay}
       data-close-delay={@close_delay}
       data-requested-placement={@placement}
-      data-offset={@offset}
+      data-offset={@resolved_offset}
       x-data="heroTooltip"
       x-on:pointerenter="enter($event)"
       x-on:pointerleave="leave($event)"
@@ -5280,6 +5770,7 @@ defmodule HeroUI do
       x-on:phx:update.window="updated()"
     >
       <button
+        :if={@trigger == []}
         type="button"
         class={["button", "button--md", "button--tertiary", "tooltip__trigger", @trigger_class]}
         aria-describedby={"#{@id}-content"}
@@ -5287,22 +5778,43 @@ defmodule HeroUI do
         x-ref="trigger"
       >{render_slot(@inner_block)}</button>
       <span
+        :if={@trigger != []}
+        class={["inline-flex", @trigger_class]}
+        data-hero-tooltip-trigger
+        data-slot="tooltip-trigger"
+        x-ref="trigger"
+      >{render_slot(@trigger, %{"aria-describedby" => "#{@id}-content"})}</span>
+      <span
         id={"#{@id}-content"}
         role="tooltip"
         popover="manual"
-        class="tooltip hui-tooltip"
+        class="tooltip hui-tooltip group/tooltip overflow-visible"
         data-hero-tooltip
         data-slot="tooltip-content"
         x-ref="content"
         data-placement={@placement}
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style", "data-placement"])}
-      >{@text}</span>
+      ><svg
+        :if={@show_arrow}
+        data-slot="overlay-arrow"
+        aria-hidden="true"
+        viewBox="0 0 12 12"
+        width="12"
+        height="12"
+        fill="none"
+        class="pointer-events-none absolute size-3 group-data-[placement=top]/tooltip:-bottom-3 group-data-[placement=top]/tooltip:left-1/2 group-data-[placement=top]/tooltip:-translate-x-1/2 group-data-[placement=bottom]/tooltip:-top-3 group-data-[placement=bottom]/tooltip:left-1/2 group-data-[placement=bottom]/tooltip:-translate-x-1/2 group-data-[placement=left]/tooltip:-right-3 group-data-[placement=left]/tooltip:top-1/2 group-data-[placement=left]/tooltip:-translate-y-1/2 group-data-[placement=right]/tooltip:-left-3 group-data-[placement=right]/tooltip:top-1/2 group-data-[placement=right]/tooltip:-translate-y-1/2"
+      ><path d="M0 0C5.48483 8 6.5 8 12 0Z" /></svg>
+      <%= if @content != [] do %>
+        {render_slot(@content)}
+      <% else %>
+        {@text}
+      <% end %></span>
     </span>
     """
   end
 
   @doc """
-  A nonmodal, interactive popover anchored to a button. Requires `installHeroUI`.
+  A nonmodal, interactive popover anchored to a button. Requires HeroUI's Alpine components.
   """
   attr(:id, :string, required: true)
   attr(:trigger, :string, required: true)
@@ -5312,10 +5824,18 @@ defmodule HeroUI do
 
   def popover(assigns) do
     ~H"""
-    <div class={["hui-popover-root", @class]}>
+    <div
+      class={["hui-popover-root", @class]}
+      x-data="heroPopover"
+      x-on:click="close($event)"
+      x-on:resize.window="position()"
+      x-on:scroll.window.capture="position()"
+      x-on:phx:update.document="sync()"
+    >
       <button
         type="button"
         class="button button--md button--secondary popover__trigger"
+        x-ref="trigger"
         popovertarget={"#{@id}-content"}
         aria-controls={"#{@id}-content"}
         aria-expanded="false"
@@ -5330,6 +5850,8 @@ defmodule HeroUI do
         tabindex="-1"
         class="popover popover__dialog hui-popover"
         data-hero-popover
+        x-ref="content"
+        x-on:toggle="toggle($event)"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
       >
         <span id={"#{@id}-title"} class="popover__heading">{@title}</span>
@@ -5340,7 +5862,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A single-value or multi-thumb slider. Requires `installHeroUI` for pointer interaction and live updates."
+  @doc "A single-value or multi-thumb slider. Requires HeroUI's Alpine components for pointer interaction and live updates."
   attr(:id, :string, required: true)
   attr(:name, :string, default: nil)
   attr(:label, :string, required: true)
@@ -5409,6 +5931,14 @@ defmodule HeroUI do
       data-orientation={@orientation}
       data-disabled={if @disabled, do: "true"}
       data-hero-slider
+      x-data="heroSlider"
+      x-on:input.capture="input($event)"
+      x-on:pointerdown="start($event)"
+      x-on:pointermove="move($event)"
+      x-on:pointerup="end($event)"
+      x-on:pointercancel="end($event)"
+      x-on:reset.document="reset($event)"
+      x-on:phx:update.document="sync()"
     >
       <label for={if @multiple, do: "#{@id}-0", else: @id} data-slot="label">{@label}</label>
       <output class="slider__output" data-hero-slider-output>{Enum.join(@values, " – ")}</output>
@@ -6026,7 +6556,7 @@ defmodule HeroUI do
   attr(:pressed, :boolean, default: nil)
   attr(:default_pressed, :boolean, default: false)
   attr(:disabled, :boolean, default: false)
-  attr(:size, :string, default: "md", values: ~w(sm md lg))
+  attr(:size, :string, default: nil, values: [nil, "sm", "md", "lg"])
   attr(:variant, :string, default: "default", values: ~w(default ghost))
   attr(:icon_only, :boolean, default: false)
   attr(:class, :any, default: nil)
@@ -6045,16 +6575,29 @@ defmodule HeroUI do
       aria-pressed={to_string(@selected)}
       data-selected={if @selected, do: "true"}
       data-slot="toggle-button"
+      data-hero-toggle-size={@size}
       x-data={if @uncontrolled, do: "{ selected: #{to_string(@selected)} }"}
-      x-bind:aria-pressed={if @uncontrolled, do: "selected.toString()"}
-      x-bind:data-selected={if @uncontrolled, do: "selected ? 'true' : null"}
-      x-on:click={if @uncontrolled, do: "selected = !selected"}
+      x-bind:aria-pressed={
+        if @uncontrolled,
+          do:
+            "$el.closest('[data-hero-toggle-group]')?.dataset.heroToggleGroup !== 'managed' ? selected.toString() : null"
+      }
+      x-bind:data-selected={
+        if @uncontrolled,
+          do:
+            "$el.closest('[data-hero-toggle-group]')?.dataset.heroToggleGroup !== 'managed' && selected ? 'true' : null"
+      }
+      x-on:click={
+        if @uncontrolled,
+          do:
+            "if ($el.closest('[data-hero-toggle-group]')?.dataset.heroToggleGroup !== 'managed') selected = !selected"
+      }
       phx-mounted={
         if @uncontrolled, do: Phoenix.LiveView.JS.ignore_attributes(["aria-pressed", "data-selected"])
       }
       class={[
         "toggle-button",
-        "toggle-button--#{@size}",
+        "toggle-button--#{@size || "md"}",
         "toggle-button--#{@variant}",
         @icon_only && "toggle-button--icon-only",
         @class
@@ -6064,19 +6607,66 @@ defmodule HeroUI do
     """
   end
 
-  @doc "Groups related toggle buttons; each button's pressed state is managed by the caller."
+  @doc """
+  Groups toggle buttons. The default retains independently managed buttons.
+  Set `selection_mode` to `single` or `multiple` to manage the group. Give each
+  child a unique `value`, `data-key`, or `id`. Pass `selected_keys` for LiveView
+  control, or `default_selected_keys` for Alpine-managed selection. The
+  `on_selection_change` event receives a JSON-encoded `keys` parameter. Group
+  `size` is inherited unless a child specifies its own; `disabled` disables all
+  descendants using a native fieldset.
+  """
   attr(:label, :string, required: true)
   attr(:orientation, :string, default: "horizontal", values: ~w(horizontal vertical))
   attr(:detached, :boolean, default: false)
   attr(:full_width, :boolean, default: false)
+  attr(:size, :string, default: nil, values: [nil, "sm", "md", "lg"])
+  attr(:disabled, :boolean, default: false)
+  attr(:selection_mode, :string, default: nil, values: [nil, "single", "multiple"])
+  attr(:selected_keys, :list, default: nil)
+  attr(:default_selected_keys, :list, default: [])
+  attr(:disallow_empty_selection, :boolean, default: false)
+  attr(:on_selection_change, :any, default: nil)
+  attr(:target, :any, default: nil)
   attr(:class, :any, default: nil)
+  attr(:rest, :global)
   slot(:inner_block, required: true)
 
   def toggle_button_group(assigns) do
+    keys = assigns.selected_keys || assigns.default_selected_keys
+
+    if !is_list(keys) || Enum.any?(keys, &(not is_binary(&1) || &1 == "")) ||
+         length(keys) != length(Enum.uniq(keys)),
+       do: raise(ArgumentError, "toggle button group keys must be unique nonempty strings")
+
+    if assigns.selection_mode == "single" && length(keys) > 1,
+      do: raise(ArgumentError, "single-selection toggle button groups accept at most one key")
+
+    if is_nil(assigns.selection_mode) &&
+         (!is_nil(assigns.selected_keys) || assigns.default_selected_keys != [] ||
+            assigns.disallow_empty_selection || !is_nil(assigns.on_selection_change)),
+       do: raise(ArgumentError, "set selection_mode to manage group selection")
+
+    assigns = assign(assigns, :encoded_keys, Jason.encode!(keys))
+
     ~H"""
-    <div
+    <fieldset
       role="group"
       aria-label={@label}
+      aria-disabled={if @disabled, do: "true"}
+      disabled={@disabled}
+      data-hero-toggle-size={@size}
+      data-hero-toggle-group={if @selection_mode, do: "managed", else: "independent"}
+      data-selection-mode={@selection_mode}
+      data-orientation={@orientation}
+      data-controlled={if @selection_mode, do: to_string(!is_nil(@selected_keys))}
+      data-selected-keys={if @selection_mode, do: @encoded_keys}
+      data-disallow-empty={if @selection_mode, do: to_string(@disallow_empty_selection)}
+      x-data="heroToggleButtonGroup"
+      x-on:click={if @selection_mode, do: "click($event)"}
+      x-on:focusin={if @selection_mode, do: "focus($event)"}
+      x-on:keydown={if @selection_mode, do: "keydown($event)"}
+      x-on:phx:update.window="sync()"
       class={[
         "toggle-button-group",
         "toggle-button-group--#{@orientation}",
@@ -6084,9 +6674,18 @@ defmodule HeroUI do
         @full_width && "toggle-button-group--full-width",
         @class
       ]}
+      {@rest}
     >
       {render_slot(@inner_block)}
-    </div>
+      <button
+        :if={@selection_mode && @on_selection_change}
+        type="button"
+        hidden
+        data-hero-toggle-group-event
+        phx-click={@on_selection_change}
+        phx-target={@target}
+      ></button>
+    </fieldset>
     """
   end
 
@@ -6138,11 +6737,11 @@ defmodule HeroUI do
 
   @doc """
   A server-controlled listbox. `on_select` receives `%{"value" => value}`;
-  the caller updates `selected`. Keyboard navigation requires `installHeroUI`.
+  the caller updates `selected`. Keyboard navigation requires HeroUI's Alpine providers.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
-  attr(:on_select, :string, required: true)
+  attr(:on_select, :any, required: true)
   attr(:selected, :list, default: [])
   attr(:selection_mode, :string, default: "single", values: ~w(single multiple))
   attr(:disabled, :boolean, default: false)
@@ -6182,6 +6781,10 @@ defmodule HeroUI do
       tabindex={if @disabled, do: "-1", else: "0"}
       aria-activedescendant={@active_id}
       data-hero-listbox
+      x-data="heroListbox"
+      x-on:click="click($event)"
+      x-on:keydown="keydown($event)"
+      x-on:phx:update.window="sync()"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-activedescendant"])}
     >
       <div
@@ -6228,16 +6831,23 @@ defmodule HeroUI do
   end
 
   @doc """
-  A server-controlled group of selectable or removable tags. Events receive
-  `%{"value" => value}`; update `selected` or the tag slots in the LiveView.
+  A group of selectable or removable tags. `selected` and `on_select` keep the
+  existing server-controlled API; `on_select` receives `%{"value" => value}`.
+  Use `selected_keys` for controlled selection, or `default_selected_keys` for
+  Alpine-managed selection. `on_selection_change` receives JSON-encoded `keys`.
+  The optional `:remove_button` slot customizes a tag's removal button by
+  `value`; its content must not include interactive elements.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
   attr(:description, :string, default: nil)
   attr(:errors, :list, default: [])
   attr(:selection_mode, :string, default: "none", values: ~w(none single multiple))
-  attr(:selected, :list, default: [])
+  attr(:selected, :list, default: nil)
+  attr(:selected_keys, :list, default: nil)
+  attr(:default_selected_keys, :list, default: nil)
   attr(:on_select, :any, default: nil)
+  attr(:on_selection_change, :any, default: nil)
   attr(:on_remove, :any, default: nil)
   attr(:disabled, :boolean, default: false)
   attr(:target, :any, default: nil)
@@ -6251,6 +6861,12 @@ defmodule HeroUI do
     attr(:disabled, :boolean)
   end
 
+  slot :remove_button do
+    attr(:value, :string, required: true)
+    attr(:label, :string)
+    attr(:class, :any)
+  end
+
   slot(:empty)
 
   def tag_group(assigns) do
@@ -6259,14 +6875,43 @@ defmodule HeroUI do
     if length(values) != length(Enum.uniq(values)),
       do: raise(ArgumentError, "tag values must be unique")
 
-    if assigns.selection_mode == "single" and length(assigns.selected) > 1,
+    remove_values = Enum.map(assigns.remove_button, & &1.value)
+
+    if length(remove_values) != length(Enum.uniq(remove_values)),
+      do: raise(ArgumentError, "remove button values must be unique")
+
+    if Enum.any?(assigns.remove_button, fn slot ->
+         label = Map.get(slot, :label)
+         !is_nil(label) && (!is_binary(label) || String.trim(label) == "")
+       end),
+       do: raise(ArgumentError, "remove button labels must not be empty")
+
+    if !is_nil(assigns.selected) && !is_nil(assigns.selected_keys),
+      do: raise(ArgumentError, "provide selected or selected_keys, not both")
+
+    if (!is_nil(assigns.selected) || !is_nil(assigns.selected_keys)) &&
+         !is_nil(assigns.default_selected_keys),
+       do:
+         raise(
+           ArgumentError,
+           "default_selected_keys cannot be combined with controlled selection"
+         )
+
+    selected = assigns.selected || assigns.selected_keys || assigns.default_selected_keys || []
+
+    if Enum.any?(selected, &(not is_binary(&1))) ||
+         length(selected) != length(Enum.uniq(selected)),
+       do: raise(ArgumentError, "selected tag keys must be unique strings")
+
+    if assigns.selection_mode == "single" and length(selected) > 1,
       do: raise(ArgumentError, "single-selection tag group accepts at most one selected value")
 
-    if assigns.selection_mode != "none" and is_nil(assigns.on_select),
-      do: raise(ArgumentError, "selectable tag groups require on_select")
+    controlled =
+      !is_nil(assigns.selected) || !is_nil(assigns.selected_keys) ||
+        (!is_nil(assigns.on_select) && is_nil(assigns.default_selected_keys))
 
     enabled = Enum.reject(assigns.tag, &Map.get(&1, :disabled, false))
-    active = Enum.find(enabled, &(&1.value in assigns.selected)) || List.first(enabled)
+    active = Enum.find(enabled, &(&1.value in selected)) || List.first(enabled)
 
     describedby =
       [
@@ -6279,6 +6924,10 @@ defmodule HeroUI do
     assigns =
       assigns
       |> assign(:active_value, if(active, do: active.value))
+      |> assign(:remove_buttons, Map.new(assigns.remove_button, &{&1.value, &1}))
+      |> assign(:selected_values, selected)
+      |> assign(:controlled, controlled)
+      |> assign(:encoded_selected, Jason.encode!(selected))
       |> assign(:describedby, describedby)
 
     ~H"""
@@ -6289,6 +6938,10 @@ defmodule HeroUI do
         class="tag-group__list"
         data-slot="tag-group-list"
         data-hero-tag-group
+        data-selection-mode={@selection_mode}
+        data-controlled={to_string(@controlled)}
+        data-selected-keys={@encoded_selected}
+        data-selection-event-id={if @on_selection_change, do: "#{@id}-selection-event"}
         x-data="heroTagGroup"
         x-on:focusin="onFocus($event)"
         x-on:click="onClick($event)"
@@ -6308,11 +6961,12 @@ defmodule HeroUI do
           class={["tag", "tag--#{@size}", "tag--#{@variant}"]}
           data-slot="tag"
           data-hero-tag
+          data-key={tag.value}
           data-selection-mode={@selection_mode}
           data-disabled={if @disabled || Map.get(tag, :disabled, false), do: "true"}
-          data-selected={if @selection_mode != "none" && tag.value in @selected, do: "true"}
+          data-selected={if @selection_mode != "none" && tag.value in @selected_values, do: "true"}
           aria-label={tag.label}
-          aria-selected={if @selection_mode != "none", do: to_string(tag.value in @selected)}
+          aria-selected={if @selection_mode != "none", do: to_string(tag.value in @selected_values)}
           aria-disabled={if @disabled || Map.get(tag, :disabled, false), do: "true"}
           aria-keyshortcuts={
             if @on_remove && !@disabled && !Map.get(tag, :disabled, false), do: "Delete Backspace"
@@ -6334,22 +6988,29 @@ defmodule HeroUI do
             <button
               :if={@on_remove}
               type="button"
-              class="close-button close-button--default tag__remove-button"
+              class={[
+                "close-button close-button--default tag__remove-button",
+                get_in(@remove_buttons, [tag.value, :class])
+              ]}
               data-slot="tag-remove-button"
               data-hero-tag-remove
-              aria-label={"Remove #{tag.label}"}
+              aria-label={get_in(@remove_buttons, [tag.value, :label]) || "Remove #{tag.label}"}
               value={tag.value}
               disabled={@disabled || Map.get(tag, :disabled, false)}
               phx-click={@on_remove}
               phx-value-value={tag.value}
               phx-target={@target}
             >
-              <svg aria-hidden="true" viewBox="0 0 16 16"><path
-                fill="currentColor"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
-              /></svg>
+              <%= if get_in(@remove_buttons, [tag.value, :inner_block]) do %>
+                <span aria-hidden="true" class="contents">{render_slot(@remove_buttons[tag.value])}</span>
+              <% else %>
+                <svg aria-hidden="true" viewBox="0 0 16 16"><path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                /></svg>
+              <% end %>
             </button>
           </div>
         </div>
@@ -6357,6 +7018,14 @@ defmodule HeroUI do
           <div role="gridcell">{render_slot(@empty)}</div>
         </div>
       </div>
+      <button
+        :if={@on_selection_change}
+        id={"#{@id}-selection-event"}
+        type="button"
+        hidden
+        phx-click={@on_selection_change}
+        phx-target={@target}
+      ></button>
       <p :if={@description} id={"#{@id}-description"} class="description" data-slot="description">
         {@description}
       </p>

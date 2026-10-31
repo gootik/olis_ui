@@ -10,7 +10,7 @@ function advance(ms) { const limit=now+ms; for (;;) { const entries=[...timers].
 globalThis.window={innerWidth:300,innerHeight:200};
 globalThis.getComputedStyle=()=>({getPropertyValue(name) {return name==='--tooltip-delay' ? '0.1s' : '200ms';}});
 let opened=false,anchor={left:100,right:140,top:10,bottom:30,width:40,height:20};
-const tip={dataset:{},style:{},matches() {return opened;},showPopover(){opened=true;},hidePopover(){opened=false;},getBoundingClientRect(){return {width:80,height:30};}};
+const tip={dataset:{},style:{},querySelector(){return null;},matches() {return opened;},showPopover(){opened=true;},hidePopover(){opened=false;},getBoundingClientRect(){return {width:80,height:30};}};
 const trigger={getBoundingClientRect(){return anchor;}};
 const tooltip=providers.heroTooltip();
 tooltip.$root={dataset:{requestedPlacement:'top',offset:'3'},isConnected:true,contains(){return false;}};

@@ -1,6 +1,7 @@
 /** Keyboard, selection and submenu behavior for HeroUI dropdowns. */
-export function installDropdown(root = document) {
-  if (typeof HTMLElement.prototype.showPopover !== 'function') return () => {};
+export function heroDropdown() {
+  let root;
+  const supported = typeof HTMLElement !== 'undefined' && typeof HTMLElement.prototype.showPopover === 'function';
   const selector='[data-hero-dropdown-menu]', itemSelector='[data-hero-dropdown-item]';
   const searches=new WeakMap(), hoverTimers=new Map();
   let keyboardNavigation=false;
@@ -122,6 +123,40 @@ export function installDropdown(root = document) {
   function onPointerOut(event) { const item=event.target.closest?.('[data-hero-dropdown-submenu-trigger]'); if (!item || item.contains(event.relatedTarget)) return; const menu=parentMenu(item); clearTimeout(hoverTimers.get(menu)); }
   function onPointerMove(event) { if (event.pointerType!=='touch') keyboardNavigation=false; }
   function reposition() { root.querySelectorAll(`${selector}:popover-open`).forEach(position); }
-  root.addEventListener('click',onClick,true); root.addEventListener('keydown',onKeyDown); root.addEventListener('toggle',onToggle,true); root.addEventListener('focusout',onFocusOut); root.addEventListener('pointerover',onPointerOver); root.addEventListener('pointerout',onPointerOut); root.addEventListener('pointermove',onPointerMove); window.addEventListener('resize',reposition); window.addEventListener('scroll',reposition,true);
-  return ()=>{ root.removeEventListener('click',onClick,true); root.removeEventListener('keydown',onKeyDown); root.removeEventListener('toggle',onToggle,true); root.removeEventListener('focusout',onFocusOut); root.removeEventListener('pointerover',onPointerOver); root.removeEventListener('pointerout',onPointerOut); root.removeEventListener('pointermove',onPointerMove); window.removeEventListener('resize',reposition); window.removeEventListener('scroll',reposition,true); for (const timer of hoverTimers.values()) clearTimeout(timer); hoverTimers.clear(); root.querySelectorAll(`${selector}:popover-open`).forEach(menu=>menu.hidePopover()); };
+  return {
+    init() { root = this.$root; },
+    click(event) { if (supported) onClick(event); },
+    keydown(event) { if (supported) onKeyDown(event); },
+    toggle(event) { if (supported) onToggle(event); },
+    focusout(event) { if (supported) onFocusOut(event); },
+    pointerover(event) { if (supported) onPointerOver(event); },
+    pointerout(event) { if (supported) onPointerOut(event); },
+    pointermove(event) { if (supported) onPointerMove(event); },
+    reposition() { if (supported) reposition(); },
+    destroy() {
+      for (const timer of hoverTimers.values()) clearTimeout(timer);
+      hoverTimers.clear();
+      if (supported) root.querySelectorAll(`${selector}:popover-open`).forEach(menu=>menu.hidePopover());
+    }
+  };
+}
+
+/** Compatibility adapter for standalone consumers; LiveView components use Alpine bindings. */
+export function installDropdown(root = document) {
+  const dropdown = heroDropdown();
+  dropdown.$root = root;
+  dropdown.init();
+  const listeners = [
+    [root, 'click', dropdown.click, true], [root, 'keydown', dropdown.keydown],
+    [root, 'toggle', dropdown.toggle, true], [root, 'focusout', dropdown.focusout],
+    [root, 'pointerover', dropdown.pointerover], [root, 'pointerout', dropdown.pointerout],
+    [root, 'pointermove', dropdown.pointermove], [window, 'resize', dropdown.reposition],
+    [window, 'scroll', dropdown.reposition, true], [document, 'phx:update', dropdown.reposition]
+  ];
+  if (typeof HTMLElement.prototype.showPopover !== 'function') return () => dropdown.destroy();
+  listeners.forEach(([target, type, listener, capture]) => target.addEventListener(type, listener, capture));
+  return () => {
+    listeners.forEach(([target, type, listener, capture]) => target.removeEventListener(type, listener, capture));
+    dropdown.destroy();
+  };
 }

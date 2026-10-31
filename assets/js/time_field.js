@@ -1,7 +1,8 @@
 /** Segmented time input with a native form control as the source of truth. */
-export function installTimeField(root = document) {
+export function heroTimeField() {
+  let root;
   const states = new WeakMap();
-  const fields = () => root.querySelectorAll('[data-hero-time-field]');
+  const fields = () => root?.matches?.('[data-hero-time-field]') ? [root] : [];
   const parts = field => ({native:field.querySelector('[data-hero-time-native]'), ui:field.querySelector('[data-hero-time-ui]'), group:field.querySelector('[data-hero-time-group]'), segments:field.querySelector('[data-hero-time-segments]'), error:field.querySelector('[data-hero-time-error]')});
   const pad = value => String(value).padStart(2, '0');
   const locale = field => field.dataset.locale || field.closest('[lang]')?.lang || navigator.language || 'en-US';
@@ -134,7 +135,34 @@ export function installTimeField(root = document) {
   function onInvalid(event) { const native=event.target; if (!native.matches?.('[data-hero-time-native]')) return; const field=native.closest('[data-hero-time-field]'); if (field.dataset.enhanced !== 'true') return; event.preventDefault(); const {error,segments}=parts(field); error.textContent=native.validationMessage; error.hidden=false; paint(field); segments.querySelector('[data-hero-time-segment]:not([aria-disabled])')?.focus(); }
   function onChange(event) { if (event.target.matches?.('[data-hero-time-native]')) sync(event.target.closest('[data-hero-time-field]')); }
   function syncAll() { fields().forEach(sync); }
-  function onReset() { setTimeout(()=>{ fields().forEach(field=>{ const {native,error}=parts(field), state=states.get(field); if (!state) return; state.values=parse(native.value,state.config,field.dataset.granularity); state.lastValue=native.value; state.buffer=''; error.hidden=true; error.textContent=''; }); syncAll(); },0); }
-  syncAll(); root.addEventListener('keydown',onKeyDown); root.addEventListener('beforeinput',onBeforeInput); root.addEventListener('paste',onPaste); root.addEventListener('focusin',onFocus); root.addEventListener('click',onClick); root.addEventListener('invalid',onInvalid,true); root.addEventListener('change',onChange); root.addEventListener('reset',onReset); document.addEventListener('phx:update',syncAll);
-  return ()=>{ root.removeEventListener('keydown',onKeyDown); root.removeEventListener('beforeinput',onBeforeInput); root.removeEventListener('paste',onPaste); root.removeEventListener('focusin',onFocus); root.removeEventListener('click',onClick); root.removeEventListener('invalid',onInvalid,true); root.removeEventListener('change',onChange); root.removeEventListener('reset',onReset); document.removeEventListener('phx:update',syncAll); fields().forEach(field=>{ const {native,ui}=parts(field),state=states.get(field); if (state?.managedError) native.setCustomValidity(''); native.removeAttribute('aria-hidden'); native.removeAttribute('tabindex'); ui.hidden=true; delete field.dataset.enhanced; }); };
+  function onReset(event) {
+    if (!root || parts(root).native?.form !== event.target) return;
+    setTimeout(() => {
+      if (!root.isConnected) return;
+      const {native,error}=parts(root), state=states.get(root);
+      if (!state) return;
+      state.values=parse(native.value,state.config,root.dataset.granularity);
+      state.lastValue=native.value; state.buffer=''; error.hidden=true; error.textContent='';
+      sync(root);
+    },0);
+  }
+  return {
+    init() { root=this.$root; sync(root); },
+    keydown(event) { onKeyDown(event); },
+    beforeinput(event) { onBeforeInput(event); },
+    paste(event) { onPaste(event); },
+    focusin(event) { onFocus(event); },
+    click(event) { onClick(event); },
+    invalid(event) { onInvalid(event); },
+    change(event) { onChange(event); },
+    reset(event) { onReset(event); },
+    update() { syncAll(); },
+    destroy() {
+      if (!root) return;
+      const {native,ui}=parts(root), state=states.get(root);
+      if (state?.managedError) native.setCustomValidity('');
+      native.removeAttribute('aria-hidden'); native.removeAttribute('tabindex');
+      ui.hidden=true; delete root.dataset.enhanced;
+    }
+  };
 }

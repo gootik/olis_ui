@@ -419,18 +419,6 @@ defmodule HeroUI.Preview.Router do
     )
   end
 
-  get "/combo_box.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "combo_box.js"])))
-  end
-
-  get "/color_field.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "color_field.js"])))
-  end
-
   get "/toast.js" do
     conn
     |> put_resp_content_type("text/javascript")
@@ -461,12 +449,6 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "autocomplete.js"])))
   end
 
-  get "/sheet.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "sheet.js"])))
-  end
-
   get "/dropdown.js" do
     conn
     |> put_resp_content_type("text/javascript")
@@ -477,6 +459,26 @@ defmodule HeroUI.Preview.Router do
     conn
     |> put_resp_content_type("text/javascript")
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "calendar.js"])))
+  end
+
+  # Providers are deliberately served from this fixed directory for unbundled preview imports.
+  get "/alpine/:name" do
+    path = Path.join([File.cwd!(), "assets", "js", "alpine", name])
+
+    if Regex.match?(~r/\A[a-z0-9_]+\.js\z/, name) do
+      case File.read(path) do
+        {:ok, contents} ->
+          conn
+          |> put_resp_content_type("text/javascript")
+          |> put_resp_header("cache-control", "no-store")
+          |> send_resp(200, contents)
+
+        {:error, _} ->
+          send_resp(conn, 404, "Not found")
+      end
+    else
+      send_resp(conn, 404, "Not found")
+    end
   end
 
   get "/hero_ui_alpine.js" do

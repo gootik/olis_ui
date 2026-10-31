@@ -88,6 +88,7 @@ defmodule HeroUI.Preview.Live do
         terms: false,
         alerts: false,
         switch_news: true,
+        switch_read_only: true,
         switch_marketing: false,
         switch_updates: true,
         plan: "starter",
@@ -100,6 +101,8 @@ defmodule HeroUI.Preview.Live do
         page: 1,
         bold: false,
         italic: false,
+        toggle_group_formats: ["bold"],
+        toggle_group_disabled: false,
         underline: false,
         disclosure_expanded: ["account"],
         disclosure_last: "none",
@@ -107,6 +110,8 @@ defmodule HeroUI.Preview.Live do
         accordion_last: "none",
         controlled_sheet_open: false,
         sheet_last: "none",
+        controlled_drawer_open: false,
+        drawer_last: "none",
         toolbar_action: "none",
         tabs_selection: "overview",
         dropdown_sort: "newest",
@@ -160,7 +165,9 @@ defmodule HeroUI.Preview.Live do
         feedback: "",
         otp_value: "",
         tag_values: ["news", "travel", "gaming", "shopping"],
-        selected_tags: ["news"]
+        selected_tags: ["news"],
+        local_tag_selection: "none",
+        local_tag_values: ["news", "travel", "gaming"]
       )
       |> stream(:people, rows)
 
@@ -235,6 +242,11 @@ defmodule HeroUI.Preview.Live do
     do:
       {:noreply,
        assign(socket, controlled_sheet_open: open == "true", sheet_last: "#{open}: #{reason}")}
+
+  def handle_event("drawer_open_change", %{"open" => open, "reason" => reason}, socket),
+    do:
+      {:noreply,
+       assign(socket, controlled_drawer_open: open == "true", drawer_last: "#{open}: #{reason}")}
 
   def handle_event("toolbar_action", %{"action" => action}, socket)
       when action in ~w(Copy Cut Undo Redo),
@@ -322,6 +334,15 @@ defmodule HeroUI.Preview.Live do
 
   def handle_event("toast_undo", %{"id" => id}, socket),
     do: {:noreply, assign(socket, :toast_action, "Undo #{id}")}
+
+  def handle_event("show_toast_star", _, socket),
+    do:
+      {:noreply,
+       push_event(socket, "hero:toast", %{
+         title: "Added to favorites",
+         indicator: "star",
+         timeout: 4000
+       })}
 
   def handle_event("booking_change", %{"booking_date" => value}, socket),
     do: {:noreply, socket |> assign(:booking_date, value) |> update(:booking_changes, &(&1 + 1))}
@@ -429,12 +450,28 @@ defmodule HeroUI.Preview.Live do
     {:noreply, assign(socket, :selected_tags, selected)}
   end
 
+  def handle_event("preview_local_tag_selection", %{"keys" => keys}, socket),
+    do: {:noreply, assign(socket, :local_tag_selection, keys)}
+
+  def handle_event("preview_remove_local_tag", %{"value" => value}, socket),
+    do: {:noreply, update(socket, :local_tag_values, &List.delete(&1, value))}
+
   def handle_event("remove_tag", %{"value" => value}, socket) do
     {:noreply,
      assign(socket,
        tag_values: List.delete(socket.assigns.tag_values, value),
        selected_tags: List.delete(socket.assigns.selected_tags, value)
      )}
+  end
+
+  def handle_event("preview_toggle_group_disabled", _, socket),
+    do: {:noreply, update(socket, :toggle_group_disabled, &(!&1))}
+
+  def handle_event("preview_toggle_group_change", %{"keys" => encoded}, socket) do
+    case Jason.decode(encoded) do
+      {:ok, keys} when is_list(keys) -> {:noreply, assign(socket, :toggle_group_formats, keys)}
+      _ -> {:noreply, socket}
+    end
   end
 
   def handle_event("increment", _, socket), do: {:noreply, update(socket, :count, &(&1 + 1))}
@@ -453,6 +490,9 @@ defmodule HeroUI.Preview.Live do
 
   def handle_event("close_button_clicked", _, socket),
     do: {:noreply, update(socket, :close_button_count, &(&1 + 1))}
+
+  def handle_event("toggle_switch_read_only", _, socket),
+    do: {:noreply, update(socket, :switch_read_only, &(!&1))}
 
   def handle_event("switch_group_change", params, socket) do
     {:noreply,
@@ -739,6 +779,36 @@ defmodule HeroUI.Preview.Live do
                     disabled
                   />
                 </div>
+              </.preview_card>
+              <.preview_card
+                title="Form primitives"
+                description="Compose Phoenix forms with standalone labels, descriptions, and errors."
+              >
+                <.ui_form
+                  :let={form}
+                  for={%{"email" => "not-an-email"}}
+                  as={:preview}
+                  class="flex flex-col gap-3"
+                >
+                  <div class="flex flex-col gap-1">
+                    <.label for={form[:email].id}>Email</.label>
+                    <.input
+                      id={form[:email].id}
+                      name={form[:email].name}
+                      value={form[:email].value}
+                      type="email"
+                      invalid
+                      aria-describedby="composed-email-help composed-email-error"
+                    />
+                    <.description id="composed-email-help">
+                      We'll send your receipt here.
+                    </.description>
+                    <.field_error id="composed-email-error">
+                      Enter a valid email address.
+                    </.field_error>
+                  </div>
+                  <.error_message>Some items need your attention.</.error_message>
+                </.ui_form>
               </.preview_card>
               <.preview_card
                 title="Search field"
@@ -1708,6 +1778,20 @@ defmodule HeroUI.Preview.Live do
                   <.switch id="switch-preview-medium" checked>Medium</.switch>
                   <.switch id="switch-preview-large" size="lg">Large</.switch>
                   <.switch id="switch-preview-disabled" checked disabled>Disabled</.switch>
+                  <.switch
+                    id="switch-preview-readonly"
+                    name="readonly_preference"
+                    checked
+                    read_only={@switch_read_only}
+                  >
+                    Read-only setting
+                  </.switch>
+                  <.button
+                    id="switch-readonly-toggle"
+                    size="sm"
+                    variant="secondary"
+                    phx-click="toggle_switch_read_only"
+                  >{if @switch_read_only, do: "Make editable", else: "Make read-only"}</.button>
                   <.switch id="switch-preview-icon-only" aria-label="Toggle sound" />
                 </div>
               </.preview_card>
@@ -1818,6 +1902,33 @@ defmodule HeroUI.Preview.Live do
                 >
                   Selected topics: {Enum.join(@selected_tags, ", ")}
                 </p>
+                <.tag_group
+                  id="preview-tags-local"
+                  label="Local selection"
+                  selection_mode="multiple"
+                  default_selected_keys={["news"]}
+                  on_selection_change="preview_local_tag_selection"
+                  on_remove="preview_remove_local_tag"
+                >
+                  <:tag
+                    :for={value <- @local_tag_values}
+                    value={value}
+                    label={String.capitalize(value)}
+                  />
+                  <:tag value="disabled" label="Disabled" disabled />
+                  <:remove_button value="travel" label="Remove Travel from local selection">
+                    <svg viewBox="0 0 16 16" fill="none"><circle
+                      cx="8"
+                      cy="8"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    /><path d="M5.5 5.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.5" /></svg>
+                  </:remove_button>
+                </.tag_group>
+                <p id="local-tag-state" class="mt-3 mb-0 text-xs text-zinc-500 dark:text-zinc-400">
+                  Selection event: {@local_tag_selection}
+                </p>
               </.preview_card>
               <.preview_card
                 title="Toggle buttons"
@@ -1828,6 +1939,46 @@ defmodule HeroUI.Preview.Live do
                   <.toggle_button id="toggle-preview-initial" variant="ghost" default_pressed>Following</.toggle_button>
                   <.toggle_button disabled>Disabled</.toggle_button>
                 </div>
+                <p class="mt-4 mb-2 text-xs text-muted">Group size and disabled state</p>
+                <.toggle_button_group
+                  label="Group inheritance"
+                  size="sm"
+                  disabled={@toggle_group_disabled}
+                >
+                  <.toggle_button id="toggle-group-inherited">Inherited small</.toggle_button>
+                  <.toggle_button id="toggle-group-override" size="lg">Explicit large</.toggle_button>
+                </.toggle_button_group>
+                <.button
+                  id="toggle-group-disabled-control"
+                  size="sm"
+                  variant="secondary"
+                  phx-click="preview_toggle_group_disabled"
+                >{if @toggle_group_disabled, do: "Enable group", else: "Disable group"}</.button>
+                <p class="mt-4 mb-2 text-xs text-muted">Single selection (local)</p>
+                <.toggle_button_group
+                  label="Alignment"
+                  selection_mode="single"
+                  default_selected_keys={["left"]}
+                  disallow_empty_selection
+                >
+                  <.toggle_button value="left">Left</.toggle_button>
+                  <.toggle_button value="center">Center</.toggle_button>
+                  <.toggle_button value="right">Right</.toggle_button>
+                </.toggle_button_group>
+                <p class="mt-4 mb-2 text-xs text-muted">Multiple selection (LiveView)</p>
+                <.toggle_button_group
+                  label="Text style"
+                  selection_mode="multiple"
+                  selected_keys={@toggle_group_formats}
+                  on_selection_change="preview_toggle_group_change"
+                >
+                  <.toggle_button value="bold">Bold</.toggle_button>
+                  <.toggle_button value="italic">Italic</.toggle_button>
+                  <.toggle_button value="underline">Underline</.toggle_button>
+                </.toggle_button_group>
+                <p id="toggle-group-state" class="mt-2 mb-0 text-xs text-muted">
+                  Selected: {Enum.join(@toggle_group_formats, ", ")}
+                </p>
               </.preview_card>
               <.preview_card
                 title="Listbox & actions"
@@ -2285,6 +2436,12 @@ defmodule HeroUI.Preview.Live do
                   >
                     {String.capitalize(side)}
                   </.tooltip>
+                  <.tooltip id="tooltip-rich" show_arrow delay={0} close_delay={0}>
+                    <:trigger :let={attrs}>
+                      <.button variant="secondary" {attrs}>Rich tooltip</.button>
+                    </:trigger>
+                    <:content><strong>Helpful detail:</strong> save your changes.</:content>
+                  </.tooltip>
                 </div>
               </.preview_card>
               <.preview_card
@@ -2297,6 +2454,10 @@ defmodule HeroUI.Preview.Live do
                 <.button data-hero-dialog-open="live-drawer" variant="secondary">Open drawer</.button>
                 <.button data-hero-dialog-open="live-drawer-blur" variant="secondary">Blurred drawer</.button>
                 <.button data-hero-dialog-open="live-drawer-clear" variant="secondary">Transparent drawer</.button>
+                <.button data-hero-dialog-open="live-drawer-controlled" variant="secondary">Controlled drawer</.button>
+                <p id="drawer-state" class="mt-3 text-xs text-muted">
+                  Last drawer change: {@drawer_last}
+                </p>
                 <.alert_dialog
                   id="live-alert"
                   title="Confirm update"
@@ -2305,9 +2466,19 @@ defmodule HeroUI.Preview.Live do
                 >
                   This will increment the counter.
                 </.alert_dialog>
-                <.drawer id="live-drawer" title="Drawer settings" placement="right">
+                <.drawer id="live-drawer" title="Drawer settings" placement="right" show_handle>
                   <p id="drawer-count">Drawer updates: {@count}</p>
                   <.button phx-click="increment">Update drawer</.button>
+                </.drawer>
+                <.drawer
+                  id="live-drawer-controlled"
+                  title="Controlled drawer"
+                  show_handle
+                  open={@controlled_drawer_open}
+                  on_open_change="drawer_open_change"
+                >
+                  <p>LiveView controls whether this drawer is open.</p>
+                  <:close :let={attrs}><.button variant="secondary" {attrs}>Done</.button></:close>
                 </.drawer>
                 <.drawer
                   id="live-drawer-blur"
@@ -2358,7 +2529,9 @@ defmodule HeroUI.Preview.Live do
                 description="Send a notification in any of five variants."
               >
                 <section aria-label="Toast preview">
-                  <.toast_region id="preview-toasts" placement="bottom" />
+                  <.toast_region id="preview-toasts" placement="bottom">
+                    <:indicator name="star"><span class="text-lg text-warning">★</span></:indicator>
+                  </.toast_region>
                   <div class="lp-inline flex flex-wrap items-center gap-2.5">
                     <.button
                       :for={variant <- ~w(default accent success warning danger)}
@@ -2367,6 +2540,7 @@ defmodule HeroUI.Preview.Live do
                       size="sm"
                       variant="secondary"
                     >{String.capitalize(variant)} toast</.button>
+                    <.button phx-click="show_toast_star" size="sm" variant="secondary">Custom indicator</.button>
                   </div>
                   <p
                     id="toast-action-state"
@@ -2527,6 +2701,26 @@ defmodule HeroUI.Preview.Live do
                 </div>
               </.preview_card>
               <.preview_card
+                title="Surfaces"
+                description="Semantic backgrounds for grouping content."
+                class="lp-card-wide"
+              >
+                <div class="grid grid-cols-1 gap-3 min-[621px]:grid-cols-2">
+                  <.surface
+                    :for={variant <- ~w(default secondary tertiary transparent)}
+                    id={"surface-#{variant}"}
+                    variant={variant}
+                    class={[
+                      "flex flex-col gap-3 rounded-3xl p-6",
+                      variant == "transparent" && "border border-border"
+                    ]}
+                  >
+                    <p class="m-0 text-sm font-medium">{String.capitalize(variant)} surface</p>
+                    <p class="m-0 text-sm text-muted">A background for related content.</p>
+                  </.surface>
+                </div>
+              </.preview_card>
+              <.preview_card
                 title="Typography"
                 description="Semantic type, muted text, and inline code."
               >
@@ -2559,6 +2753,19 @@ defmodule HeroUI.Preview.Live do
                   </div>
                 </div>
               </.preview_card>
+              <.preview_card
+                title="Skeleton"
+                description="Shimmer, pulse, and static loading placeholders."
+              >
+                <div class="grid gap-4 sm:grid-cols-3">
+                  <div :for={animation <- ~w(shimmer pulse none)} class="space-y-3">
+                    <p class="m-0 text-sm font-medium">{String.capitalize(animation)}</p>
+                    <.skeleton animation_type={animation} class="h-16 w-full rounded-xl" />
+                    <.skeleton animation_type={animation} class="h-3 w-4/5" />
+                    <.skeleton animation_type={animation} class="h-3 w-3/5" />
+                  </div>
+                </div>
+              </.preview_card>
               <.preview_card title="Spinners" description="Sizes and semantic colors.">
                 <div class="flex flex-wrap items-center gap-4">
                   <.spinner size="sm" label="Loading small" />
@@ -2566,6 +2773,14 @@ defmodule HeroUI.Preview.Live do
                   <.spinner size="lg" color="success" label="Loading success" />
                   <.spinner size="xl" color="danger" label="Loading danger" />
                 </div>
+              </.preview_card>
+              <.preview_card
+                title="Empty state & header"
+                description="Section labels and empty results."
+              >
+                <.header as="h3">Projects</.header>
+                <.empty_state />
+                <.empty_state as="p">Try a different search.</.empty_state>
               </.preview_card>
               <.preview_card title="Scroll shadow" description="Fade edges as content scrolls.">
                 <.scroll_shadow

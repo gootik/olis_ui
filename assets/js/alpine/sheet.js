@@ -1,12 +1,15 @@
-/** Native modal sheets with pointer dragging and optional LiveView-controlled state. */
-export function installSheet(root = document) {
+import { gestureAxis, gestureDirection } from './gesture.js';
+
+export function registerHeroSheet(Alpine) {
+  // Sheets share a stack and scroll lock, while each Alpine component owns its listeners.
+  {
+  const root = globalThis.document;
   const selector='dialog[data-hero-sheet]', states=new Map(), stack=[];
   let addedScrollLock=false;
-  const sheets=()=>root.querySelectorAll(selector);
   const parts=sheet=>({content:sheet.querySelector(':scope > [data-hero-sheet-content]'),backdrop:sheet.querySelector(':scope > [data-hero-sheet-backdrop]'),handle:sheet.querySelector(':scope > [data-hero-sheet-content] [data-hero-sheet-handle]'),body:sheet.querySelector(':scope > [data-hero-sheet-content] [data-hero-sheet-body]'),event:sheet.querySelector(':scope > [data-hero-sheet-event]')});
   const reduced=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  const horizontal=sheet=>['left','right'].includes(sheet.dataset.placement);
-  const outward=sheet=>['top','left'].includes(sheet.dataset.placement) ? -1 : 1;
+  const horizontal=sheet=>gestureAxis(sheet.dataset.placement)==='X';
+  const outward=sheet=>gestureDirection(sheet.dataset.placement);
   const axis=sheet=>horizontal(sheet) ? 'X' : 'Y';
   function notify(sheet,open,reason) {
     sheet.dispatchEvent(new CustomEvent('hero:sheet-open-change',{bubbles:true,detail:{open,reason}}));
@@ -102,14 +105,6 @@ export function installSheet(root = document) {
       else if (sheet.dataset.controlledOpen!=='true' && sheet.open) hide(sheet);
     }
   }
-  function onClick(event) {
-    const opener=event.target.closest?.('[data-hero-sheet-open]');
-    if (opener && root.contains(opener)) { const id=opener.getAttribute('data-hero-sheet-open'),sheet=document.getElementById(id); if (sheet?.matches(selector) && root.contains(sheet)) { sync(sheet); request(sheet,true,'trigger'); } return; }
-    const closer=event.target.closest?.('[data-hero-sheet-close]');
-    if (closer && root.contains(closer)) { const sheet=closer.closest(selector); if (sheet) request(sheet,false,'close'); return; }
-    const backdrop=event.target.closest?.('[data-hero-sheet-backdrop]'),sheet=backdrop?.parentElement;
-    if (sheet?.matches(selector) && sheet.dataset.dismissible==='true') request(sheet,false,'backdrop');
-  }
   function onCancel(event) { const sheet=event.target; if (!sheet.matches?.(selector)) return; event.preventDefault(); if (sheet.dataset.dismissible==='true') request(sheet,false,'escape'); }
   function onClose(event) {
     const sheet=event.target, state=states.get(sheet); if (!state) return;
@@ -184,18 +179,58 @@ export function installSheet(root = document) {
   }
   function onTouchEnd(event) { finishTouch(event); }
   function onTouchCancel(event) { finishTouch(event,true); }
-  function onResize() {
-    for (const [sheet,state] of states) {
-      if (!sheet.open || state.drag || state.touch || state.closing) continue;
-      state.animation?.cancel(); state.animation=null;
-      const oldVisible=(state.full || 0)-state.distance, oldEntries=[...(state.entries || []),{index:-1,value:state.full || 0}];
-      const selected=oldEntries.reduce((best,entry)=>Math.abs(entry.value-oldVisible)<Math.abs(best.value-oldVisible) ? entry : best,oldEntries[0]);
-      const {full,entries}=geometry(sheet), visible=selected.index===-1 ? full : (entries.find(entry=>entry.index===selected.index)?.value ?? full);
-      apply(sheet,full-visible);
-    }
+  function onResize(sheet) {
+    const state=states.get(sheet);
+    if (!state || !sheet.open || state.drag || state.touch || state.closing) return;
+    state.animation?.cancel(); state.animation=null;
+    const oldVisible=(state.full || 0)-state.distance, oldEntries=[...(state.entries || []),{index:-1,value:state.full || 0}];
+    const selected=oldEntries.reduce((best,entry)=>Math.abs(entry.value-oldVisible)<Math.abs(best.value-oldVisible) ? entry : best,oldEntries[0]);
+    const {full,entries}=geometry(sheet), visible=selected.index===-1 ? full : (entries.find(entry=>entry.index===selected.index)?.value ?? full);
+    apply(sheet,full-visible);
   }
   function onPointerCancel(event) { finishDrag(event,true); }
-  function syncAll() { sheets().forEach(sync); for (const sheet of states.keys()) if (!sheet.isConnected) { states.get(sheet).animation?.cancel(); states.delete(sheet); } }
-  syncAll(); root.addEventListener('click',onClick); root.addEventListener('cancel',onCancel,true); root.addEventListener('close',onClose,true); root.addEventListener('pointerdown',onPointerDown); root.addEventListener('pointermove',onPointerMove); root.addEventListener('pointerup',finishDrag); root.addEventListener('pointercancel',onPointerCancel); root.addEventListener('touchstart',onTouchStart,{passive:true}); root.addEventListener('touchmove',onTouchMove,{passive:false}); root.addEventListener('touchend',onTouchEnd); root.addEventListener('touchcancel',onTouchCancel); window.addEventListener('resize',onResize); document.addEventListener('phx:update',syncAll);
-  return ()=>{ root.removeEventListener('click',onClick); root.removeEventListener('cancel',onCancel,true); root.removeEventListener('close',onClose,true); root.removeEventListener('pointerdown',onPointerDown); root.removeEventListener('pointermove',onPointerMove); root.removeEventListener('pointerup',finishDrag); root.removeEventListener('pointercancel',onPointerCancel); root.removeEventListener('touchstart',onTouchStart); root.removeEventListener('touchmove',onTouchMove); root.removeEventListener('touchend',onTouchEnd); root.removeEventListener('touchcancel',onTouchCancel); window.removeEventListener('resize',onResize); document.removeEventListener('phx:update',syncAll); states.forEach((state,sheet)=>{ state.animation?.cancel(); if (sheet.open) sheet.close(); }); states.clear(); stack.length=0; if (addedScrollLock) document.documentElement.classList.remove('overflow-hidden'); };
+  Alpine.data('heroSheet', () => ({
+    init() { sync(this.$root); },
+    destroy() {
+      const sheet=this.$root, state=states.get(sheet);
+      if (!state) return;
+      for (const child of [...sheet.querySelectorAll(selector)].reverse()) {
+        const childState=states.get(child); childState?.animation?.cancel();
+        if (child.open) child.close();
+      }
+      state.animation?.cancel(); state.animation=null; state.drag=null; state.touch=null;
+      if (sheet.open) sheet.close();
+      const {content,backdrop,handle}=parts(sheet);
+      content?.style.removeProperty('transform');
+      backdrop?.style.removeProperty('opacity');
+      if (handle) delete handle.dataset.dragging;
+      states.delete(sheet);
+      updateStack();
+    },
+    openFromTrigger(event) {
+      const opener=event.target.closest?.('[data-hero-sheet-open]');
+      if (!opener || opener.getAttribute('data-hero-sheet-open')!==this.$root.id ||
+          opener.matches(':disabled, [aria-disabled="true"]')) return;
+      sync(this.$root); request(this.$root,true,'trigger');
+    },
+    click(event) {
+      const closer=event.target.closest?.('[data-hero-sheet-close]');
+      if (closer && closer.closest(selector)===this.$root) { request(this.$root,false,'close'); return; }
+      const backdrop=event.target.closest?.('[data-hero-sheet-backdrop]');
+      if (backdrop?.parentElement===this.$root && this.$root.dataset.dismissible==='true') request(this.$root,false,'backdrop');
+    },
+    cancel(event) { if (event.target===this.$root) onCancel(event); },
+    close(event) { if (event.target===this.$root) onClose(event); },
+    pointerdown(event) { if (event.target.closest?.(selector)===this.$root) onPointerDown(event); },
+    pointermove(event) { if (event.target.closest?.(selector)===this.$root) onPointerMove(event); },
+    pointerup(event) { if (event.target.closest?.(selector)===this.$root) finishDrag(event); },
+    pointercancel(event) { if (event.target.closest?.(selector)===this.$root) onPointerCancel(event); },
+    touchstart(event) { if (event.target.closest?.(selector)===this.$root) onTouchStart(event); },
+    touchmove(event) { if (event.target.closest?.(selector)===this.$root) onTouchMove(event); },
+    touchend(event) { if (event.target.closest?.(selector)===this.$root) onTouchEnd(event); },
+    touchcancel(event) { if (event.target.closest?.(selector)===this.$root) onTouchCancel(event); },
+    resize() { onResize(this.$root); },
+    sync() { if (this.$root.isConnected) sync(this.$root); }
+  }));
+  }
 }

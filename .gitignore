@@ -6,3 +6,5 @@
 /priv/static/hero_ui.css
 
 /node_modules/
+
+/.playwright-cli/

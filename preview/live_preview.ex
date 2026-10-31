@@ -11,6 +11,7 @@ defmodule HeroUI.Preview.Layout do
         <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
         <title>LiveView integration preview</title>
         <link rel="stylesheet" href="/hero_ui.css" />
+        <link rel="stylesheet" href="/preview-fonts/index.css" />
         <script>
           try { document.documentElement.dataset.theme = localStorage.getItem("preview-theme") || "light"; } catch (_) {}
         </script>
@@ -56,7 +57,7 @@ defmodule HeroUI.Preview.Layout do
           window.liveSocket = socket;
         </script>
       </head>
-      <body class="lp-body m-0 bg-[#f8f9fb] text-zinc-900 dark:bg-[#101114] dark:text-zinc-100 font-sans text-sm">
+      <body class="lp-body m-0 bg-[#f8f9fb] text-zinc-900 dark:bg-[#101114] dark:text-zinc-100 font-preview text-sm">
         {@inner_content}
       </body>
     </html>
@@ -2532,20 +2533,32 @@ defmodule HeroUI.Preview.Live do
                 description="Open each overlay to explore its behavior."
                 class="lp-card-wide"
               >
-                <.button data-hero-dialog-open="live-modal">Open modal</.button>
-                <.button data-hero-dialog-open="live-modal-controlled" variant="secondary">Controlled modal</.button>
-                <.button data-hero-dialog-open="live-modal-bottom" variant="secondary">Bottom modal</.button>
-                <.button data-hero-dialog-open="live-alert" variant="danger-soft">Open alert dialog</.button>
-                <.button data-hero-dialog-open="live-drawer" variant="secondary">Open drawer</.button>
-                <.button data-hero-dialog-open="live-drawer-blur" variant="secondary">Blurred drawer</.button>
-                <.button data-hero-dialog-open="live-drawer-clear" variant="secondary">Transparent drawer</.button>
-                <.button data-hero-dialog-open="live-drawer-controlled" variant="secondary">Controlled drawer</.button>
-                <p id="drawer-state" class="mt-3 text-xs text-muted">
-                  Last drawer change: {@drawer_last}
-                </p>
-                <p id="modal-state" class="mt-3 text-xs text-muted">
-                  Last modal change: {@modal_last}
-                </p>
+                <div class="space-y-5">
+                  <div>
+                    <p class="mb-2 text-xs font-medium text-muted">Modals</p>
+                    <div class="flex flex-wrap gap-2">
+                      <.button data-hero-dialog-open="live-modal">Open modal</.button>
+                      <.button data-hero-dialog-open="live-modal-controlled" variant="secondary">Controlled modal</.button>
+                      <.button data-hero-dialog-open="live-modal-bottom" variant="secondary">Bottom modal</.button>
+                      <.button data-hero-dialog-open="live-alert" variant="danger-soft">Open alert dialog</.button>
+                    </div>
+                    <p id="modal-state" class="mt-2 mb-0 text-xs text-muted">
+                      Last modal change: {@modal_last}
+                    </p>
+                  </div>
+                  <div>
+                    <p class="mb-2 text-xs font-medium text-muted">Drawers</p>
+                    <div class="flex flex-wrap gap-2">
+                      <.button data-hero-dialog-open="live-drawer" variant="secondary">Open drawer</.button>
+                      <.button data-hero-dialog-open="live-drawer-blur" variant="secondary">Blurred drawer</.button>
+                      <.button data-hero-dialog-open="live-drawer-clear" variant="secondary">Transparent drawer</.button>
+                      <.button data-hero-dialog-open="live-drawer-controlled" variant="secondary">Controlled drawer</.button>
+                    </div>
+                    <p id="drawer-state" class="mt-2 mb-0 text-xs text-muted">
+                      Last drawer change: {@drawer_last}
+                    </p>
+                  </div>
+                </div>
                 <.alert_dialog
                   id="live-alert"
                   title="Confirm update"
@@ -2584,45 +2597,50 @@ defmodule HeroUI.Preview.Live do
                 >
                   <p>Review the panel with a transparent backdrop.</p>
                 </.drawer>
-                <.tooltip id="preview-tip" text="This is a helpful hint" delay={0}>
-                  Hover or focus
-                </.tooltip>
-                <.popover id="preview-popover" trigger="Open popover" title="Quick settings">
-                  <p id="popover-count">Popover updates: {@count}</p>
-                  <.button phx-click="increment">Update popover</.button>
-                </.popover>
-                <.popover
-                  id="preview-popover-custom"
-                  title="Project details"
-                  placement="top"
-                  show_arrow
-                  show_close={false}
-                  content_class="w-64"
-                >
-                  <:trigger_content :let={attrs}>
-                    <.button variant="secondary" {attrs}>Project details</.button>
-                  </:trigger_content>
-                  <p class="m-0 text-sm text-muted">Review the project before continuing.</p>
-                </.popover>
-                <.popover
-                  id="preview-popover-controlled"
-                  trigger="Controlled popover"
-                  title="Notifications"
-                  open={@controlled_popover_open}
-                  on_open_change="popover_change"
-                  placement="right"
-                  content_class="w-64"
-                >
-                  <p class="m-0 text-sm text-muted">Open state is controlled by LiveView.</p>
-                </.popover>
-                <p id="popover-state" class="mt-3 text-xs text-muted">
-                  Last popover change: {@popover_last}
-                </p>
-                <.dropdown id="preview-actions" label="Actions">
-                  <:item label="Update count" on_click="increment" />
-                  <:item label="Unavailable" disabled />
-                  <:item label="Open gallery" href="/" />
-                </.dropdown>
+                <div class="mt-5">
+                  <p class="mb-2 text-xs font-medium text-muted">Popovers & menus</p>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <.tooltip id="preview-tip" text="This is a helpful hint" delay={0}>
+                      Hover or focus
+                    </.tooltip>
+                    <.popover id="preview-popover" trigger="Open popover" title="Quick settings">
+                      <p id="popover-count">Popover updates: {@count}</p>
+                      <.button phx-click="increment">Update popover</.button>
+                    </.popover>
+                    <.popover
+                      id="preview-popover-custom"
+                      title="Project details"
+                      placement="top"
+                      show_arrow
+                      show_close={false}
+                      content_class="w-64"
+                    >
+                      <:trigger_content :let={attrs}>
+                        <.button variant="secondary" {attrs}>Project details</.button>
+                      </:trigger_content>
+                      <p class="m-0 text-sm text-muted">Review the project before continuing.</p>
+                    </.popover>
+                    <.popover
+                      id="preview-popover-controlled"
+                      trigger="Controlled popover"
+                      title="Notifications"
+                      open={@controlled_popover_open}
+                      on_open_change="popover_change"
+                      placement="right"
+                      content_class="w-64"
+                    >
+                      <p class="m-0 text-sm text-muted">Open state is controlled by LiveView.</p>
+                    </.popover>
+                    <.dropdown id="preview-actions" label="Actions">
+                      <:item label="Update count" on_click="increment" />
+                      <:item label="Unavailable" disabled />
+                      <:item label="Open gallery" href="/" />
+                    </.dropdown>
+                  </div>
+                  <p id="popover-state" class="mt-2 mb-0 text-xs text-muted">
+                    Last popover change: {@popover_last}
+                  </p>
+                </div>
               </.preview_card>
             </div>
           </section>
@@ -2852,6 +2870,25 @@ defmodule HeroUI.Preview.Live do
                     Readable content with sensible defaults.
                   </.typography>
                   <.typography type="code">mix phx.server</.typography>
+                  <.typography_prose>
+                    <p>Prose can include <strong>emphasis</strong> and inline links.</p>
+                  </.typography_prose>
+                </div>
+              </.preview_card>
+              <.preview_card
+                title="Breadcrumbs & shortcuts"
+                description="A navigation trail and keyboard hints."
+              >
+                <div class="space-y-4">
+                  <.breadcrumbs label="Example navigation">
+                    <:item label="Overview" href="#overview" />
+                    <:item label="Components" href="#data" />
+                    <:item label="Current" />
+                  </.breadcrumbs>
+                  <p class="m-0 flex items-center gap-2 text-sm text-muted">
+                    Shortcut example
+                    <.kbd>⌘</.kbd><.kbd>K</.kbd>
+                  </p>
                 </div>
               </.preview_card>
               <.preview_card

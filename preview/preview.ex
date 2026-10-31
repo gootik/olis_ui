@@ -11,11 +11,12 @@ defmodule HeroUI.Preview do
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>HeroUI for LiveView — Component preview</title>
         <link rel="stylesheet" href="/hero_ui.css" />
+        <link rel="stylesheet" href="/preview-fonts/index.css" />
         <script>
           try { document.documentElement.dataset.theme = localStorage.getItem('preview-theme') || 'light'; } catch (_) {}
         </script>
       </head>
-      <body class="m-0 bg-[#fafaf8] font-sans text-sm text-[#18191a] dark:bg-[#101112] dark:text-[#f1f2ef]">
+      <body class="m-0 bg-[#fafaf8] font-preview text-sm text-[#18191a] dark:bg-[#101112] dark:text-[#f1f2ef]">
         <header class="topbar sticky top-0 z-[2] flex h-[72px] items-center justify-between border-b border-[#e9eae7] bg-[#fafaf8] px-[5%] dark:border-[#303230] dark:bg-[#101112] max-[520px]:h-16">
           <a
             class="brand flex items-center gap-[9px] text-base font-[750] tracking-[-.04em] [&>span:last-child]:font-[450] [&>span:last-child]:tracking-normal [&>span:last-child]:text-[#73767a] dark:[&>span:last-child]:text-[#a0a39e]"
@@ -408,6 +409,35 @@ defmodule HeroUI.Preview.Router do
     |> put_resp_content_type("text/css")
     |> put_resp_header("cache-control", "no-store")
     |> send_resp(200, File.read!(Application.app_dir(:hero_ui, "priv/static/hero_ui.css")))
+  end
+
+  get "/preview-fonts/index.css" do
+    conn
+    |> put_resp_content_type("text/css")
+    |> send_resp(
+      200,
+      File.read!(
+        Path.join([File.cwd!(), "node_modules", "@fontsource-variable", "inter", "index.css"])
+      )
+    )
+  end
+
+  get "/preview-fonts/files/:name" do
+    if Regex.match?(
+         ~r/\Ainter-(?:cyrillic-ext|cyrillic|greek-ext|greek|vietnamese|latin-ext|latin)-wght-normal\.woff2\z/,
+         name
+       ) do
+      conn
+      |> put_resp_content_type("font/woff2")
+      |> send_resp(
+        200,
+        File.read!(
+          Path.join([File.cwd!(), "node_modules", "@fontsource-variable", "inter", "files", name])
+        )
+      )
+    else
+      send_resp(conn, 404, "Not found")
+    end
   end
 
   get "/avatar-demo.svg" do

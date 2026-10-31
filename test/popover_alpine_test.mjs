@@ -44,5 +44,9 @@ assert.deepEqual(root.events.at(-1), {open:false,reason:'dismiss'}); assert.equa
 popover.toggle({target:content}); assert.equal(root.events.length, count + 1);
 root.dataset.controlledOpen = 'false'; popover.sync(); popover.toggle({target:content});
 assert.equal(content.open, false); assert.equal(root.events.length, count + 1);
+// A LiveView replacement can dispatch an update before Alpine removes the old listener.
+popover.$root = undefined;
+assert.doesNotThrow(() => { popover.sync(); popover.position(); popover.toggle({target: content}); });
+popover.$root = root;
 popover.destroy();
 console.log('Popover placement, flipping, controlled events and dismissal passed');

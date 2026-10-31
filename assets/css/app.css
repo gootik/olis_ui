@@ -1,5 +1,8 @@
 @import "@heroui/styles/css";
 @import "./hero_ui.css";
+@theme {
+  --font-preview: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
 @source "../../lib";
 @source "../../preview";
 @source "../js";

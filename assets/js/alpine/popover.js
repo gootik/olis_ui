@@ -10,7 +10,7 @@ export function registerHeroPopover(Alpine) {
     },
     init() {
       this.$nextTick(() => {
-        if (this.destroyed) return;
+        if (this.destroyed || !this.$root) return;
         const root = this.$root;
         const open = root.dataset.controlled === 'true' ? root.dataset.controlledOpen === 'true' : root.dataset.defaultOpen === 'true';
         if (open) this.setOpen(true);
@@ -37,6 +37,7 @@ export function registerHeroPopover(Alpine) {
       this.trigger()?.setAttribute('aria-expanded', String(!!content?.matches(':popover-open')));
     },
     position() {
+      if (this.destroyed || !this.$root || this.$root.isConnected === false) return;
       const trigger = this.trigger(), content = this.$refs.content;
       if (!trigger || !content?.matches(':popover-open')) return;
       const anchor = trigger.getBoundingClientRect(), box = content.getBoundingClientRect(), margin = 8;
@@ -114,7 +115,7 @@ export function registerHeroPopover(Alpine) {
     },
     toggle(event) {
       const content = this.$refs.content;
-      if (this.destroyed || event.target !== content) return;
+      if (this.destroyed || !this.$root || event.target !== content) return;
       const open = content.matches(':popover-open');
       this.updateExpanded();
       if (open) { this.position(); this.$refs.dialog?.focus({preventScroll:true}); }
@@ -127,6 +128,7 @@ export function registerHeroPopover(Alpine) {
       this.pendingReason = null;
     },
     sync() {
+      if (this.destroyed || !this.$root || this.$root.isConnected === false) return;
       const content = this.$refs.content;
       if (!content) return;
       if (this.$root.dataset.controlled === 'true') this.setOpen(this.$root.dataset.controlledOpen === 'true');

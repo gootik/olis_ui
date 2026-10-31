@@ -53,4 +53,24 @@ defmodule HeroUI.PreviewAlpineModulesTest do
       assert (conn(:get, path) |> HeroUI.Preview.Router.call([])).status == 404
     end
   end
+
+  test "the preview serves its local font files and rejects unknown paths" do
+    stylesheet = conn(:get, "/preview-fonts/index.css") |> HeroUI.Preview.Router.call([])
+    assert stylesheet.status == 200
+
+    files =
+      Regex.scan(~r|url\(\./files/([^)]*)\)|, stylesheet.resp_body, capture: :all_but_first)
+      |> List.flatten()
+
+    assert files != []
+
+    for file <- files do
+      response = conn(:get, "/preview-fonts/files/" <> file) |> HeroUI.Preview.Router.call([])
+      assert response.status == 200
+      assert get_resp_header(response, "content-type") |> hd() =~ "font/woff2"
+    end
+
+    assert (conn(:get, "/preview-fonts/files/unknown.woff2")
+            |> HeroUI.Preview.Router.call([])).status == 404
+  end
 end

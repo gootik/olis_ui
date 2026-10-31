@@ -10,30 +10,44 @@ Run `mix deps.get`, `npm ci`, and `mix preview`, then open [http://localhost:400
 
 The connected LiveView integration preview is at [http://localhost:4000/live-preview](http://localhost:4000/live-preview).
 
+For a review, use the sidebar to move between these sections and the top-right control to switch themes:
+
+- **Forms:** text and input groups, search, autocomplete, combo boxes, and validation.
+- **Selection & navigation:** buttons, checkboxes, switches, sliders, lists, tags, tabs, and accordions.
+- **Overlays:** sheets, dropdowns, tooltips, dialogs, drawers, and popovers.
+- **Feedback:** toasts, alerts, chips, avatars, and progress indicators.
+- **Data display:** cards, surfaces, typography, breadcrumbs, shortcuts, skeletons, pagination, and tables.
+- **Colors** and **Dates & calendars:** the existing color, date, time, and calendar examples. ColorPicker, DatePicker, and DateRangePicker need further work and were deferred.
+
+The live preview includes examples driven by LiveView, including selection, sorting, forms, and notifications. Browser find can locate a component by the title on its preview card. The project is unpublished and the preview is intended for review; it does not establish complete visual, behavior, or accessibility parity with HeroUI.
+
 ## Installation
 
-The package is not published yet. Add it as a path dependency while developing locally:
+The package is not published yet. The examples below assume your Phoenix project and this checkout are sibling directories, with this checkout named `olis-components`. Add it as a path dependency while developing locally:
 
 ```elixir
 {:hero_ui, path: "../olis-components"}
 ```
 
-Run `mix deps.get`. Import the components in your application's HTML helpers (usually in `lib/my_app_web.ex`):
+Run `mix deps.get`. To use the unqualified component names shown below, replace the existing CoreComponents import in your application's HTML helpers (usually in `lib/my_app_web.ex`) with the following, using your application's module name:
 
 ```elixir
+import MyAppWeb.CoreComponents, except: [button: 1, input: 1, header: 1]
 import HeroUI
 ```
+
+Generated Phoenix templates may rely on the original CoreComponents APIs; update those calls when switching imports. To keep the generated components unchanged, keep the existing import and call HeroUI components explicitly, for example `<HeroUI.button>Save</HeroUI.button>`, instead of importing `HeroUI` globally.
 
 Use Tailwind CSS v4 in the host application, following the [Phoenix installation guide](https://tailwindcss.com/docs/installation/framework-guides/phoenix). Install the official styles package in the directory used by your asset build (`npm install --save-exact @heroui/styles@3.2.7`). Your Tailwind CLI must resolve that package and its dependencies. Add these imports to `assets/css/app.css` (the HeroUI import includes Tailwind):
 
 ```css
 @import "@heroui/styles/css";
-@import "../../deps/hero_ui/assets/css/hero_ui.css";
-@source "../../deps/hero_ui/lib";
-@source "../../deps/hero_ui/assets/js";
+@import "../../../olis-components/assets/css/hero_ui.css";
+@source "../../../olis-components/lib";
+@source "../../../olis-components/assets/js";
 ```
 
-Restart the asset watcher after adding the dependency. The components migrated to official styles use HeroUI theme variables such as `--accent`; remaining components currently use `--hui-*` tokens. Set `data-theme="dark"` on a parent element for dark mode. The `dark:` utilities follow the explicit `.dark` class or `data-theme="dark"`, so a light theme remains light even when the operating system prefers dark mode.
+These paths are relative to `assets/css/app.css`; adjust them if the checkout is elsewhere. A Git dependency checked out by Mix under `deps/hero_ui` instead uses `../../deps/hero_ui/...`. Restart the asset watcher after adding the dependency. The components migrated to official styles use HeroUI theme variables such as `--accent`; remaining components currently use `--hui-*` tokens. Set `data-theme="dark"` on a parent element for dark mode. The `dark:` utilities follow the explicit `.dark` class or `data-theme="dark"`, so a light theme remains light even when the operating system prefers dark mode.
 
 ## Usage
 
@@ -193,8 +207,8 @@ import Alpine from "alpinejs";
 import collapse from "@alpinejs/collapse";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
-import { registerHeroUIAlpine } from "../../deps/hero_ui/assets/js/alpine.js";
-import { installHeroUI } from "../../deps/hero_ui/assets/js/hero_ui.js";
+import { registerHeroUIAlpine } from "../../../olis-components/assets/js/alpine.js";
+import { installHeroUI } from "../../../olis-components/assets/js/hero_ui.js";
 
 window.Alpine = Alpine;
 Alpine.plugin(collapse);
@@ -214,7 +228,7 @@ const liveSocket = new LiveSocket("/live", Socket, {
 liveSocket.connect();
 ```
 
-Start Alpine and connect the LiveSocket only once. Interactive components use the registered Alpine providers; `installHeroUI` remains necessary for Calendar, DateField, and DatePicker. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
+These JavaScript paths are relative to `assets/js/app.js` and follow the sibling checkout layout above. For a Git dependency under `deps/hero_ui`, use `../../deps/hero_ui/...` instead. Start Alpine and connect the LiveSocket only once. Interactive components use the registered Alpine providers; `installHeroUI` remains necessary for Calendar, DateField, and DatePicker. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
 
 Accordion groups use keyed item slots. By default only one item can be open; use `allows_multiple_expanded` for independent panels. `default_expanded_keys` initializes browser-managed state, while `expanded_keys` and `on_expanded_change` let LiveView control it. The event receives `"key"`, `"expanded"` (`"true"` or `"false"`), and `"keys"` (a JSON-encoded list). Update the assign in the event handler. Set `variant="surface"`, `hide_separator`, `disabled`, or `heading_level` as needed; individual items also accept `disabled`. An optional `:indicator` slot replaces the chevron. The earlier `<.accordion title="...">...</.accordion>` form remains available as a native disclosure.
 
@@ -628,4 +642,4 @@ Section headers and empty states are available as standalone components. The hea
 
 ## Development
 
-Run `mix deps.get`, `npm ci`, `mix tailwind preview`, `mix format --check-formatted`, and `mix test`. The local preview uses the Phoenix Tailwind Mix integration with a pinned npm CLI; `mix preview` builds the stylesheet at startup. Rebuild or restart the preview after changing CSS. Host Phoenix applications can use their own Tailwind v4 build and watcher.
+Run `mix deps.get`, `npm ci`, `mix tailwind preview`, `mix format --check-formatted`, `mix test`, and `node --test test/*alpine_test.mjs`. The local preview uses the Phoenix Tailwind Mix integration with a pinned npm CLI; `mix preview` builds the stylesheet at startup. Rebuild or restart the preview after changing CSS. Host Phoenix applications can use their own Tailwind v4 build and watcher. The automated Elixir and JavaScript suites are supplemented by manual Chromium and Firefox smoke checks; they do not cover every component or browser.

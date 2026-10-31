@@ -1,0 +1,646 @@
+- generic [active] [ref=f24e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f24e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f24e3]: Pro
+    - generic [ref=f24e4]:
+      - generic [ref=f24e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f24e6]:
+    - complementary [ref=f24e7]:
+      - generic [ref=f24e9]:
+        - paragraph [ref=f24e10]: Overview
+        - link "All Components (React)" [ref=f24e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f24e12]: Components
+        - link "Accordion" [ref=f24e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f24e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f24e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f24e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f24e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f24e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f24e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f24e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f24e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f24e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f24e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f24e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f24e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f24e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f24e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f24e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f24e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f24e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f24e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f24e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f24e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f24e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f24e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f24e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f24e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f24e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f24e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f24e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f24e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f24e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f24e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f24e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f24e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f24e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f24e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f24e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f24e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f24e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f24e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f24e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f24e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f24e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f24e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f24e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f24e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f24e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f24e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f24e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f24e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f24e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f24e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f24e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f24e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f24e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f24e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f24e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f24e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f24e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f24e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f24e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f24e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f24e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f24e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f24e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f24e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f24e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f24e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f24e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f24e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f24e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f24e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f24e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f24e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f24e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f24e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f24e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f24e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f24e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f24e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f24e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f24e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f24e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f24e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f24e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f24e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f24e110]:
+      - generic [ref=f24e111]:
+        - generic [ref=f24e113]:
+          - link "HeroUI" [ref=f24e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f24e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f24e126]:
+          - text: Search
+          - generic [ref=f24e130]:
+            - generic [ref=f24e131]: ⌘
+            - generic [ref=f24e132]: K
+        - generic [ref=f24e133]:
+          - generic [ref=f24e134]:
+            - button "Ask AI" [ref=f24e136] [cursor=pointer]
+            - button [ref=f24e137] [cursor=pointer]:
+              - button "Design theme" [ref=f24e138]:
+                - generic [ref=f24e139]: Theme
+            - link "31.1k" [ref=f24e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f24e142]:
+            - button "Choose a language" [ref=f24e143] [cursor=pointer]
+            - generic [ref=f24e144] [cursor=pointer]:
+              - button "light" [ref=f24e145]
+              - button "dark" [ref=f24e152]
+              - button "system" [ref=f24e155]
+      - generic [ref=f24e159]:
+        - link "Getting Started" [ref=f24e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f24e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f24e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f24e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f24e188]:
+          - tab "Web" [selected] [ref=f24e189] [cursor=pointer]
+          - tab "Native" [ref=f24e193] [cursor=pointer]
+    - article [ref=f24e196]:
+      - generic [ref=f24e197]:
+        - generic [ref=f24e198]:
+          - heading "Disclosure" [level=1] [ref=f24e199]
+          - group [ref=f24e201]:
+            - button "Copy Markdown" [ref=f24e202] [cursor=pointer]
+            - button "More options" [ref=f24e203] [cursor=pointer]
+        - paragraph [ref=f24e204]: A disclosure is a collapsible section with a header containing a heading and a trigger button, and a panel that wraps the content.
+        - generic [ref=f24e205]:
+          - link "Figma" [ref=f24e206] [cursor=pointer]:
+            - /url: https://www.figma.com/community/file/1546526812159103429
+          - link "Storybook" [ref=f24e207] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-navigation-disclosure--docs
+          - link "React Aria" [ref=f24e208] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Disclosure
+          - link "Source" [ref=f24e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/disclosure/disclosure.tsx
+          - link "Styles source" [ref=f24e210] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/disclosure.css
+      - generic [ref=f24e211]:
+        - heading [level=2] [ref=f24e212]:
+          - link "Usage" [ref=f24e213] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f24e214]
+        - figure [ref=f24e219]:
+          - button "Copy Text" [ref=f24e221] [cursor=pointer]
+          - region [ref=f24e222]:
+            - code [ref=f24e224]:
+              - generic [ref=f24e225]: "import { Disclosure } from '@heroui/react';"
+        - generic [ref=f24e226]:
+          - generic [ref=f24e230]:
+            - heading [level=3] [ref=f24e231]:
+              - button "Preview HeroUI Native" [expanded] [ref=f24e232] [cursor=pointer]
+            - group "Preview HeroUI Native" [ref=f24e233]:
+              - generic [ref=f24e235]:
+                - paragraph [ref=f24e236]: Scan this QR code with your camera app to preview the HeroUI native components.
+                - img "Expo Go QR Code" [ref=f24e237]
+                - paragraph [ref=f24e238]: Expo must be installed on your device.
+                - button "Download on App Store" [ref=f24e239] [cursor=pointer]
+          - generic [ref=f24e243]:
+            - figure [ref=f24e245]:
+              - button "Copy Text" [ref=f24e247] [cursor=pointer]
+              - region [ref=f24e248]:
+                - code [ref=f24e250]:
+                  - generic [ref=f24e251]: "\"use client\";"
+                  - generic [ref=f24e253]: "import {QrCode} from \"@gravity-ui/icons\";"
+                  - generic [ref=f24e254]: "import {Button, Disclosure} from \"@heroui/react\";"
+                  - generic [ref=f24e255]: "import {Icon} from \"@iconify/react\";"
+            - button "Expand code" [ref=f24e256] [cursor=pointer]
+        - heading [level=2] [ref=f24e257]:
+          - link "Anatomy" [ref=f24e258] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f24e259]
+        - figure [ref=f24e264]:
+          - button "Copy Text" [ref=f24e266] [cursor=pointer]
+          - region [ref=f24e267]:
+            - code [ref=f24e269]:
+              - generic [ref=f24e270]: "import { Disclosure } from '@heroui/react';"
+              - generic [ref=f24e272]: export default () => (
+              - generic [ref=f24e273]: <Disclosure>
+              - generic [ref=f24e274]: <Disclosure.Heading>
+              - generic [ref=f24e275]: <Disclosure.Trigger>
+              - generic [ref=f24e276]: <Disclosure.Indicator />
+              - generic [ref=f24e277]: </Disclosure.Trigger>
+              - generic [ref=f24e278]: </Disclosure.Heading>
+              - generic [ref=f24e279]: <Disclosure.Content/>
+              - generic [ref=f24e280]: </Disclosure>
+              - generic [ref=f24e281]: )
+        - heading [level=2] [ref=f24e282]:
+          - link "Examples" [ref=f24e283] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f24e284]
+        - heading [level=3] [ref=f24e289]:
+          - link "Render Function" [ref=f24e290] [cursor=pointer]:
+            - /url: "#render-function"
+          - button "Copy Anchor Link" [ref=f24e291]
+        - heading [level=2] [ref=f24e297]:
+          - link "Customization" [ref=f24e298] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f24e299]
+        - heading [level=3] [ref=f24e304]:
+          - link "Tailwind CSS" [ref=f24e305] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f24e306]
+        - heading [level=3] [ref=f24e312]:
+          - link "Global CSS" [ref=f24e313] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f24e314]
+        - paragraph [ref=f24e319]:
+          - text: To customize the Disclosure component classes, you can use the
+          - code [ref=f24e320]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f24e321] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f24e322]:
+          - button "Copy Text" [ref=f24e324] [cursor=pointer]
+          - region [ref=f24e325]:
+            - code [ref=f24e327]:
+              - generic [ref=f24e328]: "@layer components {"
+              - generic [ref=f24e329]: ".disclosure {"
+              - generic [ref=f24e330]: "@apply relative;"
+              - generic [ref=f24e331]: "}"
+              - generic [ref=f24e333]: ".disclosure__trigger {"
+              - generic [ref=f24e334]: "@apply cursor-pointer;"
+              - generic [ref=f24e335]: "}"
+              - generic [ref=f24e337]: ".disclosure__indicator {"
+              - generic [ref=f24e338]: "@apply transition-transform duration-300;"
+              - generic [ref=f24e339]: "}"
+              - generic [ref=f24e341]: ".disclosure__content {"
+              - generic [ref=f24e342]: "@apply overflow-hidden transition-all;"
+              - generic [ref=f24e343]: "}"
+              - generic [ref=f24e344]: "}"
+        - heading [level=2] [ref=f24e345]:
+          - link "Styling Reference" [ref=f24e346] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f24e347]
+        - paragraph [ref=f24e352]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f24e353] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f24e354]:
+          - link "CSS Classes" [ref=f24e355] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f24e356]
+        - paragraph [ref=f24e361]:
+          - text: The Disclosure component uses these CSS classes (
+          - link "View source styles" [ref=f24e362] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/disclosure.css
+          - text: "):"
+        - heading [level=4] [ref=f24e363]:
+          - link "Base Classes" [ref=f24e364] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f24e365]
+        - list [ref=f24e370]:
+          - listitem [ref=f24e371]:
+            - code [ref=f24e372]: .disclosure
+            - text: "- Base container styles"
+          - listitem [ref=f24e373]:
+            - code [ref=f24e374]: .disclosure__heading
+            - text: "- Heading wrapper"
+          - listitem [ref=f24e375]:
+            - code [ref=f24e376]: .disclosure__trigger
+            - text: "- Trigger button styles"
+          - listitem [ref=f24e377]:
+            - code [ref=f24e378]: .disclosure__indicator
+            - text: "- Chevron indicator styles"
+          - listitem [ref=f24e379]:
+            - code [ref=f24e380]: .disclosure__content
+            - text: "- Content container with animations"
+        - heading [level=3] [ref=f24e381]:
+          - link "Interactive States" [ref=f24e382] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f24e383]
+        - paragraph [ref=f24e388]: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list [ref=f24e389]:
+          - listitem [ref=f24e390]:
+            - strong [ref=f24e391]: Expanded
+            - text: ":"
+            - code [ref=f24e392]: "[data-expanded=\"true\"]"
+            - text: on indicator for rotation
+          - listitem [ref=f24e393]:
+            - strong [ref=f24e394]: Focus
+            - text: ":"
+            - code [ref=f24e395]: :focus-visible
+            - text: or
+            - code [ref=f24e396]: "[data-focus-visible=\"true\"]"
+            - text: on trigger
+          - listitem [ref=f24e397]:
+            - strong [ref=f24e398]: Disabled
+            - text: ":"
+            - code [ref=f24e399]: :disabled
+            - text: or
+            - code [ref=f24e400]: "[aria-disabled=\"true\"]"
+            - text: on trigger
+          - listitem [ref=f24e401]:
+            - strong [ref=f24e402]: Hidden
+            - text: ":"
+            - code [ref=f24e403]: "[aria-hidden=\"false\"]"
+            - text: on content for visibility
+        - heading [level=2] [ref=f24e404]:
+          - link "API Reference" [ref=f24e405] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f24e406]
+        - heading [level=3] [ref=f24e411]:
+          - link "Disclosure" [ref=f24e412] [cursor=pointer]:
+            - /url: "#disclosure"
+          - button "Copy Anchor Link" [ref=f24e413]
+        - table [ref=f24e419]:
+          - rowgroup [ref=f24e420]:
+            - row [ref=f24e421]:
+              - columnheader "Prop" [ref=f24e422]
+              - columnheader "Type" [ref=f24e423]
+              - columnheader "Default" [ref=f24e424]
+              - columnheader "Description" [ref=f24e425]
+          - rowgroup [ref=f24e426]:
+            - row [ref=f24e427]:
+              - cell [ref=f24e428]:
+                - code [ref=f24e429]: isExpanded
+              - cell [ref=f24e430]:
+                - code [ref=f24e431]: boolean
+              - cell [ref=f24e432]:
+                - code [ref=f24e433]: "false"
+              - cell "Controls the expanded state" [ref=f24e434]
+            - row [ref=f24e435]:
+              - cell [ref=f24e436]:
+                - code [ref=f24e437]: onExpandedChange
+              - cell [ref=f24e438]:
+                - code [ref=f24e439]: "(isExpanded: boolean) => void"
+              - cell "-" [ref=f24e440]
+              - cell "Callback when expanded state changes" [ref=f24e441]
+            - row [ref=f24e442]:
+              - cell [ref=f24e443]:
+                - code [ref=f24e444]: isDisabled
+              - cell [ref=f24e445]:
+                - code [ref=f24e446]: boolean
+              - cell [ref=f24e447]:
+                - code [ref=f24e448]: "false"
+              - cell "Whether the disclosure is disabled" [ref=f24e449]
+            - row [ref=f24e450]:
+              - cell [ref=f24e451]:
+                - code [ref=f24e452]: children
+              - cell [ref=f24e453]:
+                - code [ref=f24e454]: ReactNode | RenderFunction
+              - cell "-" [ref=f24e455]
+              - cell "Content to render" [ref=f24e456]
+            - row [ref=f24e457]:
+              - cell [ref=f24e458]:
+                - code [ref=f24e459]: className
+              - cell [ref=f24e460]:
+                - code [ref=f24e461]: string
+              - cell "-" [ref=f24e462]
+              - cell "Additional CSS classes" [ref=f24e463]
+            - row [ref=f24e464]:
+              - cell [ref=f24e465]:
+                - code [ref=f24e466]: render
+              - cell [ref=f24e467]:
+                - code [ref=f24e468]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, DisclosureRenderProps>
+              - cell "-" [ref=f24e469]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f24e470]
+        - heading [level=3] [ref=f24e471]:
+          - link "DisclosureTrigger" [ref=f24e472] [cursor=pointer]:
+            - /url: "#disclosuretrigger"
+          - button "Copy Anchor Link" [ref=f24e473]
+        - table [ref=f24e479]:
+          - rowgroup [ref=f24e480]:
+            - row [ref=f24e481]:
+              - columnheader "Prop" [ref=f24e482]
+              - columnheader "Type" [ref=f24e483]
+              - columnheader "Default" [ref=f24e484]
+              - columnheader "Description" [ref=f24e485]
+          - rowgroup [ref=f24e486]:
+            - row [ref=f24e487]:
+              - cell [ref=f24e488]:
+                - code [ref=f24e489]: children
+              - cell [ref=f24e490]:
+                - code [ref=f24e491]: ReactNode | RenderFunction
+              - cell "-" [ref=f24e492]
+              - cell "Trigger content" [ref=f24e493]
+            - row [ref=f24e494]:
+              - cell [ref=f24e495]:
+                - code [ref=f24e496]: className
+              - cell [ref=f24e497]:
+                - code [ref=f24e498]: string
+              - cell "-" [ref=f24e499]
+              - cell "Additional CSS classes" [ref=f24e500]
+        - heading [level=3] [ref=f24e501]:
+          - link "DisclosureContent" [ref=f24e502] [cursor=pointer]:
+            - /url: "#disclosurecontent"
+          - button "Copy Anchor Link" [ref=f24e503]
+        - table [ref=f24e509]:
+          - rowgroup [ref=f24e510]:
+            - row [ref=f24e511]:
+              - columnheader "Prop" [ref=f24e512]
+              - columnheader "Type" [ref=f24e513]
+              - columnheader "Default" [ref=f24e514]
+              - columnheader "Description" [ref=f24e515]
+          - rowgroup [ref=f24e516]:
+            - row [ref=f24e517]:
+              - cell [ref=f24e518]:
+                - code [ref=f24e519]: children
+              - cell [ref=f24e520]:
+                - code [ref=f24e521]: ReactNode
+              - cell "-" [ref=f24e522]
+              - cell "Content to show/hide" [ref=f24e523]
+            - row [ref=f24e524]:
+              - cell [ref=f24e525]:
+                - code [ref=f24e526]: className
+              - cell [ref=f24e527]:
+                - code [ref=f24e528]: string
+              - cell "-" [ref=f24e529]
+              - cell "Additional CSS classes" [ref=f24e530]
+            - row [ref=f24e531]:
+              - cell [ref=f24e532]:
+                - code [ref=f24e533]: render
+              - cell [ref=f24e534]:
+                - code [ref=f24e535]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, DisclosureContentRenderProps>
+              - cell "-" [ref=f24e536]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f24e537]
+        - heading [level=3] [ref=f24e538]:
+          - link "Render Props" [ref=f24e539] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f24e540]
+        - paragraph [ref=f24e545]: "When using the render prop pattern, these values are provided:"
+        - table [ref=f24e547]:
+          - rowgroup [ref=f24e548]:
+            - row [ref=f24e549]:
+              - columnheader "Prop" [ref=f24e550]
+              - columnheader "Type" [ref=f24e551]
+              - columnheader "Description" [ref=f24e552]
+          - rowgroup [ref=f24e553]:
+            - row [ref=f24e554]:
+              - cell [ref=f24e555]:
+                - code [ref=f24e556]: isExpanded
+              - cell [ref=f24e557]:
+                - code [ref=f24e558]: boolean
+              - cell "Current expanded state" [ref=f24e559]
+            - row [ref=f24e560]:
+              - cell [ref=f24e561]:
+                - code [ref=f24e562]: isDisabled
+              - cell [ref=f24e563]:
+                - code [ref=f24e564]: boolean
+              - cell "Whether disclosure is disabled" [ref=f24e565]
+        - heading [level=2] [ref=f24e566]:
+          - link "Related Showcases" [ref=f24e567] [cursor=pointer]:
+            - /url: "#related-showcases"
+          - button "Copy Anchor Link" [ref=f24e568]
+        - link "new Your browser does not support the video tag. Apple iPhone 17 Pro Disclosure" [ref=f24e574] [cursor=pointer]:
+          - /url: /en/showcase/apple-iphone-disclosure?returnUrl=%2Fen%2Fdocs%2Freact%2Fcomponents%2Fdisclosure
+          - generic [ref=f24e575]:
+            - generic [ref=f24e576]: new
+            - generic [ref=f24e578]: Your browser does not support the video tag.
+            - generic [ref=f24e580]: Apple iPhone 17 Pro Disclosure
+        - heading [level=2] [ref=f24e582]:
+          - link "Related Components" [ref=f24e583] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f24e584]
+        - generic [ref=f24e589]:
+          - generic [ref=f24e590]:
+            - link "Accordion" [ref=f24e592] [cursor=pointer]:
+              - /url: /en/docs/components/accordion
+            - generic [ref=f24e594]:
+              - link "Accordion":
+                - /url: /en/docs/components/accordion
+                - img "Accordion" [ref=f24e595] [cursor=pointer]
+          - generic [ref=f24e596]:
+            - link "DisclosureGroup" [ref=f24e598] [cursor=pointer]:
+              - /url: /en/docs/components/disclosure-group
+            - generic [ref=f24e600]:
+              - link "DisclosureGroup":
+                - /url: /en/docs/components/disclosure-group
+                - img "DisclosureGroup" [ref=f24e601] [cursor=pointer]
+          - generic [ref=f24e602]:
+            - link "Button" [ref=f24e604] [cursor=pointer]:
+              - /url: /en/docs/components/button
+            - generic [ref=f24e606]:
+              - link "Button":
+                - /url: /en/docs/components/button
+                - img "Button" [ref=f24e607] [cursor=pointer]
+      - generic [ref=f24e608]:
+        - link [ref=f24e609] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+          - paragraph [ref=f24e613]: Description
+          - paragraph [ref=f24e614]: Provides supplementary text for form fields and other components
+        - link [ref=f24e615] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+          - paragraph [ref=f24e619]: DisclosureGroup
+          - paragraph [ref=f24e620]: Container that manages multiple Disclosure items with coordinated expanded states
+    - generic [ref=f24e621]:
+      - heading "On this page" [level=3] [ref=f24e622]
+      - generic [ref=f24e627]:
+        - link "Usage" [ref=f24e628] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f24e629] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f24e630] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Render Function" [ref=f24e631] [cursor=pointer]:
+          - /url: "#render-function"
+        - link "Customization" [ref=f24e632] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f24e633] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f24e634] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f24e635] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f24e636] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f24e637] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f24e638] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Disclosure" [ref=f24e639] [cursor=pointer]:
+          - /url: "#disclosure"
+        - link "DisclosureTrigger" [ref=f24e640] [cursor=pointer]:
+          - /url: "#disclosuretrigger"
+        - link "DisclosureContent" [ref=f24e641] [cursor=pointer]:
+          - /url: "#disclosurecontent"
+        - link "Render Props" [ref=f24e642] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Related Showcases" [ref=f24e643] [cursor=pointer]:
+          - /url: "#related-showcases"
+        - link "Related Components" [ref=f24e644] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f24e647]:
+        - generic [ref=f24e648]:
+          - generic [ref=f24e649]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f24e650]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f24e651] [cursor=pointer]
+  - generic [ref=f24e653]:
+    - generic [ref=f24e654]: Now available
+    - button "Close" [ref=f24e668] [cursor=pointer]
+    - generic [ref=f24e669]:
+      - generic [ref=f24e670]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f24e671]
+        - paragraph [ref=f24e672]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f24e673]:
+        - button "Close" [ref=f24e674] [cursor=pointer]
+        - link "Explore Pro" [ref=f24e675] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f24e676]
+  - alert [ref=f24e677]

@@ -2,7 +2,7 @@
 
 A starting point for a Phoenix LiveView component library inspired by [HeroUI](https://github.com/heroui-inc/heroui). It uses Phoenix function components and native HTML, with Tailwind CSS v4 and a small JavaScript module for interactive components. The initial API follows HeroUI **v3** naming where practical; this is an independent project and is not affiliated with HeroUI.
 
-This is an early foundation, not a complete port. It currently provides button, input, text field, input group, search field, one-time-code input, color swatch, color swatch picker, combo box, date field, date picker, calendar, range calendar, card, chip, checkbox, checkbox group, switch, avatar, progress bar, progress circle, meter, spinner, separator, skeleton, textarea, radio, radio group, keyboard key, link, surface, select, accordion, alert, toast, badge, data table, modal, alert dialog, drawer, tabs, dropdown, tooltip, popover, slider, number field, pagination, button groups, toggle buttons, breadcrumbs, listbox, and tag group components. Exact visual and behavioral parity with HeroUI and more complex interactive components are still to be built.
+This is an early foundation, not a complete port. It currently provides button, input, text field, input group, search field, one-time-code input, color field, color swatch, color swatch picker, autocomplete, combo box, date field, time field, date picker, calendar, range calendar, card, chip, checkbox, checkbox group, switch, switch group, avatar, avatar group, progress bar, progress circle, meter, spinner, separator, scroll shadow, skeleton, textarea, radio, radio group, keyboard key, link, surface, select, accordion, disclosure, disclosure group, alert, toast, badge, data table, modal, alert dialog, drawer, tabs, dropdown, tooltip, popover, slider, number field, pagination, toolbar, button groups, toggle buttons, breadcrumbs, listbox, and tag group components. Exact visual and behavioral parity with HeroUI and more complex interactive components are still to be built.
 
 ## Preview
 
@@ -30,9 +30,10 @@ Use Tailwind CSS v4 in the host application, following the [Phoenix installation
 @import "@heroui/styles/css";
 @import "../../deps/hero_ui/assets/css/hero_ui.css";
 @source "../../deps/hero_ui/lib";
+@source "../../deps/hero_ui/assets/js";
 ```
 
-Restart the asset watcher after adding the dependency. The components migrated to official styles use HeroUI theme variables such as `--accent`; remaining components currently use `--hui-*` tokens. Set `data-theme="dark"` on a parent element for dark mode.
+Restart the asset watcher after adding the dependency. The components migrated to official styles use HeroUI theme variables such as `--accent`; remaining components currently use `--hui-*` tokens. Set `data-theme="dark"` on a parent element for dark mode. The `dark:` utilities follow the explicit `.dark` class or `data-theme="dark"`, so a light theme remains light even when the operating system prefers dark mode.
 
 ## Usage
 
@@ -58,6 +59,41 @@ Restart the asset watcher after adding the dependency. The components migrated t
 
 `translate_error/1` is the application's error translation function (Phoenix generators commonly provide one in `CoreComponents`). Errors are explicit so applications control translation and when validation appears. A standalone field needs an `id` and can receive `name`, `value`, and a list of error strings. `text_field` associates its label, description, and errors with the input. Use `.input` directly when composing your own field; give it a label or `aria-label`.
 
+Scroll shadows fade the edges of a constrained scrollable region. Set a height or width with Tailwind classes, and give the region a label and `tabindex="0"` when keyboard users need to scroll it. Use `orientation="horizontal"`, `hide_scrollbar`, `size`, or `offset` as needed. `visibility` can explicitly select `top`, `bottom`, `left`, `right`, `both`, or `none`; the default `auto` follows scroll position. With `installHeroUI`, automatic changes dispatch a bubbling `hero:scroll-shadow-change` event and can also send a LiveView event via `on_visibility_change`, with a `"visibility"` parameter. The callback fires on changes after the initial measurement.
+
+```heex
+<.scroll_shadow id="activity" class="max-h-48" tabindex="0" role="region" aria-label="Activity">
+  <p :for={event <- @events}>{event.message}</p>
+</.scroll_shadow>
+```
+
+HeroUI's CSS supplies automatic fades without JavaScript in browsers that support scroll-driven animations. In other browsers, install the JavaScript module for automatic detection; explicitly selected visibility also works without it.
+
+Avatar groups inherit `size`, `color`, and `variant` from the group, with per-avatar overrides available. Set `max` to show an automatic overflow count, use `grid` for a wrapping layout, or choose `overlap="ring"` for a solid seam. An explicit `:count` slot replaces the automatic count and supplies its own accessible label. Give meaningful groups a role and label.
+
+```heex
+<.avatar_group role="group" aria-label="Project team" max={2} variant="soft">
+  <:avatar name="Jane Doe" />
+  <:avatar name="Alex Kim" color="accent" />
+  <:avatar name="Morgan Lee" />
+</.avatar_group>
+```
+
+Time fields submit a native ISO time value and progressively enhance to keyboard-editable segments after installing the JavaScript module. They accept a Phoenix form field or `id`, `name`, and `value`, along with `min` and `max` times, validation errors, and `:prefix`/`:suffix` slots. Use `hour_cycle={12}` or `hour_cycle={24}` to override the locale, and `granularity="hour"`, `"minute"`, or `"second"` to choose the smallest displayed unit.
+
+```heex
+<.time_field field={@form[:starts_at]} label="Start time" min="09:00" max="17:00" required />
+```
+
+Switch groups arrange independent native switches. Add a `label` for a fieldset legend and set `orientation="horizontal"` for a row. Each switch submits its `value` only when checked; include a hidden input when your form needs an explicit unchecked value. Switches also accept `description`, `errors`, `label_position="start"`, and an optional `:icon` slot.
+
+```heex
+<.switch_group label="Notifications">
+  <input type="hidden" name="updates" value="false" />
+  <.switch id="updates" name="updates" checked={@updates}>Product updates</.switch>
+</.switch_group>
+```
+
 Input groups combine a native input with optional `:prefix` and `:suffix` slots. Pass `multiline` for a textarea, `variant="secondary"` for surfaces, and `full_width` to fill the available width. Slots can contain text, icons, or interactive controls; disable interactive slot controls explicitly when the field is disabled. Like `text_field`, an input group accepts a Phoenix form field and explicit error strings.
 
 ```heex
@@ -72,6 +108,15 @@ For interactive components, install the event delegation once in your applicatio
 ```js
 import { installHeroUI } from "../../deps/hero_ui/assets/js/hero_ui.js";
 installHeroUI();
+```
+
+Disclosures use native `<details>` and work without JavaScript. A group permits one open item by default; add `allows_multiple_expanded` to allow several. Use `default_expanded_keys` for browser-managed state or pass `expanded_keys` and `on_toggle` to manage state in LiveView. The toggle event sends the item `"key"` and the desired `"expanded"` state as `"true"` or `"false"`; update `expanded_keys` in the event handler. Install the JavaScript module for animated transitions and event synchronization.
+
+```heex
+<.disclosure_group id="settings" default_expanded_keys={["account"]}>
+  <:item key="account" title="Account">Account settings</:item>
+  <:item key="billing" title="Billing">Billing settings</:item>
+</.disclosure_group>
 ```
 
 Open a modal with a button whose `data-hero-dialog-open` matches the modal ID:
@@ -151,6 +196,13 @@ Tag groups are also server-controlled. Handle `on_select` and `on_remove` events
 
 Single selects progressively enhance to a HeroUI-styled listbox when the JavaScript installer and browser Popover API are available. The native select remains the form control and fallback; multiple selects and size-based listboxes remain native. Associate a `<label for="...">` or provide an accessible label.
 
+Autocomplete combines a select with a search field inside its popover. It accepts the same option formats as `Phoenix.HTML.Form.options_for_select/2`, including groups and disabled options. Set `selection_mode="multiple"` and provide a list for multiple selection; the form name gets a `[]` suffix and an empty selection omits the form key. `clearable` adds a clear button. The JavaScript installer and Popover API provide filtering and keyboard navigation; otherwise the native select remains available.
+
+```heex
+<.autocomplete field={@form[:country]} label="Destination" clearable
+  options={[{"Canada", "ca"}, {"Japan", "jp"}, {"Spain", "es"}]} />
+```
+
 The combo box filters options by label and normally submits selected option keys through a native select. It accepts the same option formats as `Phoenix.HTML.Form.options_for_select/2`, including groups and disabled options; reserve the empty string for no selection. Use a form `phx-change` to receive selection changes and update its `value`. The JavaScript installer and Popover API provide the searchable interface; without them, the native select remains available.
 
 ```heex
@@ -171,6 +223,26 @@ For multiple keys, set `selection_mode="multiple"` and supply a list as `value`.
 <.combo_box field={@form[:animals]} label="Favorite animals" selection_mode="multiple"
   selected_placeholder="No animals selected" options={[{"Cat", "cat"}, {"Dog", "dog"}]} />
 ```
+
+Toolbars group related controls and support keyboard navigation. Provide a label and compose the controls you need:
+
+```heex
+<.toolbar label="Editing actions" attached>
+  <.button phx-click="copy" variant="tertiary">Copy</.button>
+  <.button phx-click="paste" variant="tertiary">Paste</.button>
+</.toolbar>
+```
+
+With `installHeroUI`, Tab enters the toolbar at one control, arrow keys move between enabled controls, and Home and End move to the first and last controls. Set `orientation="vertical"` for up/down navigation. Text inputs and other controls retain their own arrow-key behavior. Without JavaScript, the controls remain individually reachable with Tab.
+
+Color fields edit hex values using a normal text input. By default they accept three- or six-digit hex values, with or without `#`. With JavaScript installed, blur expands shorthand and uppercases valid values; invalid edits revert to the last committed value, and the swatch follows that value. Set `allow_alpha` to accept four- or eight-digit hex values. Without JavaScript, the input remains usable and native pattern validation checks its value.
+
+```heex
+<.color_field field={@form[:brand_color]} label="Brand color" required />
+<.color_field name="hue" id="hue" label="Hue" channel="hue" value={@hue} />
+```
+
+For `red`, `green`, `blue`, `hue`, `saturation`, `lightness`, `brightness`, or `alpha`, the field submits the numeric channel value: RGB channels range from 0–255, hue from 0–360, and percentage channels from 0–100. Use `min`, `max`, and `step` to override these defaults. Unlike HeroUI's React color objects, channel fields do not convert or synchronize a shared color automatically; update the color in your LiveView. Prefix and suffix slots allow custom content, and `show_swatch={false}` hides the default hex preview.
 
 Color swatches display a CSS color with a transparency pattern, in `xs` through `xl` sizes and `circle` or `square` shapes. Color swatch pickers use native radio inputs, so they work with Phoenix form fields, keyboard navigation, and standard form submission without JavaScript. Provide an accessible label for each color:
 

@@ -1,0 +1,1236 @@
+- generic [active] [ref=f20e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f20e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f20e3]: Pro
+    - generic [ref=f20e4]:
+      - generic [ref=f20e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f20e6]:
+    - complementary [ref=f20e7]:
+      - generic [ref=f20e9]:
+        - paragraph [ref=f20e10]: Overview
+        - link "All Components (React)" [ref=f20e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f20e12]: Components
+        - link "Accordion" [ref=f20e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f20e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f20e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f20e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f20e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f20e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f20e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f20e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f20e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f20e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f20e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f20e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f20e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f20e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f20e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f20e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f20e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f20e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f20e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f20e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f20e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f20e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f20e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f20e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f20e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f20e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f20e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f20e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f20e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f20e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f20e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f20e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f20e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f20e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f20e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f20e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f20e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f20e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f20e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f20e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f20e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f20e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f20e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f20e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f20e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f20e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f20e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f20e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f20e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f20e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f20e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f20e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f20e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f20e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f20e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f20e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f20e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f20e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f20e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f20e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f20e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f20e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f20e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f20e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f20e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f20e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f20e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f20e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f20e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f20e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f20e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f20e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f20e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f20e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f20e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f20e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f20e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f20e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f20e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f20e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f20e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f20e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f20e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f20e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f20e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f20e110]:
+      - generic [ref=f20e111]:
+        - generic [ref=f20e113]:
+          - link "HeroUI" [ref=f20e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f20e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f20e126]:
+          - text: Search
+          - generic [ref=f20e130]:
+            - generic [ref=f20e131]: ⌘
+            - generic [ref=f20e132]: K
+        - generic [ref=f20e133]:
+          - generic [ref=f20e134]:
+            - button "Ask AI" [ref=f20e136] [cursor=pointer]
+            - button [ref=f20e137] [cursor=pointer]:
+              - button "Design theme" [ref=f20e138]:
+                - generic [ref=f20e139]: Theme
+            - link "31.1k" [ref=f20e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f20e142]:
+            - button "Choose a language" [ref=f20e143] [cursor=pointer]
+            - generic [ref=f20e144] [cursor=pointer]:
+              - button "light" [ref=f20e145]
+              - button "dark" [ref=f20e152]
+              - button "system" [ref=f20e155]
+      - generic [ref=f20e159]:
+        - link "Getting Started" [ref=f20e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f20e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f20e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f20e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f20e188]:
+          - tab "Web" [selected] [ref=f20e189] [cursor=pointer]
+          - tab "Native" [ref=f20e193] [cursor=pointer]
+    - article [ref=f20e196]:
+      - generic [ref=f20e197]:
+        - generic [ref=f20e198]:
+          - heading "ColorField" [level=1] [ref=f20e199]
+          - group [ref=f20e201]:
+            - button "Copy Markdown" [ref=f20e202] [cursor=pointer]
+            - button "More options" [ref=f20e203] [cursor=pointer]
+        - paragraph [ref=f20e204]: Color input field with labels, descriptions, and validation built on React Aria ColorField
+        - generic [ref=f20e205]:
+          - link "Storybook" [ref=f20e206] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-colors-colorfield--docs
+          - link "React Aria" [ref=f20e207] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/ColorField
+          - link "Source" [ref=f20e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/color-field/color-field.tsx
+          - link "Styles source" [ref=f20e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/color-field.css
+      - generic [ref=f20e210]:
+        - heading [level=2] [ref=f20e211]:
+          - link "Usage" [ref=f20e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f20e213]
+        - figure [ref=f20e218]:
+          - button "Copy Text" [ref=f20e220] [cursor=pointer]
+          - region [ref=f20e221]:
+            - code [ref=f20e223]:
+              - generic [ref=f20e224]: "import { ColorField, parseColor } from '@heroui/react';"
+        - heading [level=2] [ref=f20e226]:
+          - link "Anatomy" [ref=f20e227] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f20e228]
+        - figure [ref=f20e233]:
+          - button "Copy Text" [ref=f20e235] [cursor=pointer]
+          - region [ref=f20e236]:
+            - code [ref=f20e238]:
+              - generic [ref=f20e239]: "import {ColorField, Label, ColorSwatch, Description, FieldError, parseColor} from '@heroui/react';"
+              - generic [ref=f20e241]: export default () => (
+              - generic [ref=f20e242]: <ColorField>
+              - generic [ref=f20e243]: <Label />
+              - generic [ref=f20e244]: <ColorField.Group>
+              - generic [ref=f20e245]: <ColorField.Prefix>
+              - generic [ref=f20e246]: <ColorSwatch color="#000000" />
+              - generic [ref=f20e247]: </ColorField.Prefix>
+              - generic [ref=f20e248]: <ColorField.Input />
+              - generic [ref=f20e249]: </ColorField.Group>
+              - generic [ref=f20e250]: <Description />
+              - generic [ref=f20e251]: <FieldError />
+              - generic [ref=f20e252]: </ColorField>
+              - generic [ref=f20e253]: )
+        - blockquote [ref=f20e254]:
+          - paragraph [ref=f20e255]:
+            - strong [ref=f20e256]: ColorField
+            - text: combines label, color input, description, and error into a single accessible component.
+        - heading [level=2] [ref=f20e257]:
+          - link "Examples" [ref=f20e258] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f20e259]
+        - heading [level=3] [ref=f20e264]:
+          - link "Variants" [ref=f20e265] [cursor=pointer]:
+            - /url: "#variants"
+          - button "Copy Anchor Link" [ref=f20e266]
+        - paragraph [ref=f20e271]: "The ColorField.Group component supports two visual variants:"
+        - list [ref=f20e272]:
+          - listitem [ref=f20e273]:
+            - strong [ref=f20e274]:
+              - code [ref=f20e275]: primary
+            - text: (default) - Standard styling with shadow, suitable for most use cases
+          - listitem [ref=f20e276]:
+            - strong [ref=f20e277]:
+              - code [ref=f20e278]: secondary
+            - text: "- Lower emphasis variant without shadow, suitable for use in Surface components"
+        - heading [level=3] [ref=f20e280]:
+          - link "On Surface" [ref=f20e281] [cursor=pointer]:
+            - /url: "#on-surface"
+          - button "Copy Anchor Link" [ref=f20e282]
+        - paragraph [ref=f20e287]:
+          - text: When used inside a
+          - link "Surface" [ref=f20e288] [cursor=pointer]:
+            - /url: /en/docs/react/components/surface
+          - text: component, use
+          - code [ref=f20e289]: variant="secondary"
+          - text: on ColorField.Group to apply the lower emphasis variant suitable for surface backgrounds.
+        - heading [level=3] [ref=f20e291]:
+          - link "With Description" [ref=f20e292] [cursor=pointer]:
+            - /url: "#with-description"
+          - button "Copy Anchor Link" [ref=f20e293]
+        - heading [level=3] [ref=f20e299]:
+          - link "Required Field" [ref=f20e300] [cursor=pointer]:
+            - /url: "#required-field"
+          - button "Copy Anchor Link" [ref=f20e301]
+        - heading [level=3] [ref=f20e307]:
+          - link "Disabled State" [ref=f20e308] [cursor=pointer]:
+            - /url: "#disabled-state"
+          - button "Copy Anchor Link" [ref=f20e309]
+        - heading [level=3] [ref=f20e315]:
+          - link "Full Width" [ref=f20e316] [cursor=pointer]:
+            - /url: "#full-width"
+          - button "Copy Anchor Link" [ref=f20e317]
+        - heading [level=3] [ref=f20e323]:
+          - link "Validation" [ref=f20e324] [cursor=pointer]:
+            - /url: "#validation"
+          - button "Copy Anchor Link" [ref=f20e325]
+        - paragraph [ref=f20e330]:
+          - text: Use
+          - code [ref=f20e331]: isInvalid
+          - text: together with
+          - code [ref=f20e332]: FieldError
+          - text: to surface validation messages.
+        - heading [level=3] [ref=f20e334]:
+          - link "Channel Editing" [ref=f20e335] [cursor=pointer]:
+            - /url: "#channel-editing"
+          - button "Copy Anchor Link" [ref=f20e336]
+        - paragraph [ref=f20e341]:
+          - text: ColorField supports editing individual color channels (hue, saturation, lightness, red, green, blue, alpha) by setting the
+          - code [ref=f20e342]: colorSpace
+          - text: and
+          - code [ref=f20e343]: channel
+          - text: props.
+        - heading [level=3] [ref=f20e345]:
+          - link "Controlled" [ref=f20e346] [cursor=pointer]:
+            - /url: "#controlled"
+          - button "Copy Anchor Link" [ref=f20e347]
+        - paragraph [ref=f20e352]: Control the value to synchronize with other components or state management.
+        - heading [level=3] [ref=f20e354]:
+          - link "Form Example" [ref=f20e355] [cursor=pointer]:
+            - /url: "#form-example"
+          - button "Copy Anchor Link" [ref=f20e356]
+        - paragraph [ref=f20e361]: Complete form example with validation and submission handling.
+        - heading [level=3] [ref=f20e363]:
+          - link "Render Function" [ref=f20e364] [cursor=pointer]:
+            - /url: "#render-function"
+          - button "Copy Anchor Link" [ref=f20e365]
+        - heading [level=2] [ref=f20e371]:
+          - link "Customization" [ref=f20e372] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f20e373]
+        - heading [level=3] [ref=f20e378]:
+          - link "Tailwind CSS" [ref=f20e379] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f20e380]
+        - heading [level=3] [ref=f20e386]:
+          - link "Global CSS" [ref=f20e387] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f20e388]
+        - paragraph [ref=f20e393]:
+          - text: ColorField has minimal default styling. Override the
+          - code [ref=f20e394]: .color-field
+          - text: class to customize the container styling.
+        - figure [ref=f20e395]:
+          - button "Copy Text" [ref=f20e397] [cursor=pointer]
+          - region [ref=f20e398]:
+            - code [ref=f20e400]:
+              - generic [ref=f20e401]: "@layer components {"
+              - generic [ref=f20e402]: ".color-field {"
+              - generic [ref=f20e403]: "@apply flex flex-col gap-1;"
+              - generic [ref=f20e405]: "&[data-invalid=\"true\"],"
+              - generic [ref=f20e406]: "&[aria-invalid=\"true\"] {"
+              - generic [ref=f20e407]: "[data-slot=\"description\"] {"
+              - generic [ref=f20e408]: "@apply hidden;"
+              - generic [ref=f20e409]: "}"
+              - generic [ref=f20e410]: "}"
+              - generic [ref=f20e412]: "[data-slot=\"label\"] {"
+              - generic [ref=f20e413]: "@apply w-fit;"
+              - generic [ref=f20e414]: "}"
+              - generic [ref=f20e416]: "[data-slot=\"description\"] {"
+              - generic [ref=f20e417]: "@apply px-1;"
+              - generic [ref=f20e418]: "}"
+              - generic [ref=f20e419]: "}"
+              - generic [ref=f20e420]: "}"
+        - heading [level=2] [ref=f20e421]:
+          - link "Styling Reference" [ref=f20e422] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f20e423]
+        - paragraph [ref=f20e428]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f20e429] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f20e430]:
+          - link "CSS Classes" [ref=f20e431] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f20e432]
+        - list [ref=f20e437]:
+          - listitem [ref=f20e438]:
+            - code [ref=f20e439]: .color-field
+            - text: – Root container with minimal styling (
+            - code [ref=f20e440]: flex flex-col gap-1
+            - text: )
+        - blockquote [ref=f20e441]:
+          - paragraph [ref=f20e442]:
+            - strong [ref=f20e443]: "Note:"
+            - text: Child components (
+            - link "Label" [ref=f20e444] [cursor=pointer]:
+              - /url: /en/docs/react/components/label
+            - text: ","
+            - link "Description" [ref=f20e445] [cursor=pointer]:
+              - /url: /en/docs/react/components/description
+            - text: ","
+            - link "FieldError" [ref=f20e446] [cursor=pointer]:
+              - /url: /en/docs/react/components/field-error
+            - text: ) have their own CSS classes and styling. See their respective documentation for customization options. ColorField.Group styling is documented below in the API Reference section.
+        - heading [level=3] [ref=f20e447]:
+          - link "Interactive States" [ref=f20e448] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f20e449]
+        - paragraph [ref=f20e454]: "ColorField automatically manages these data attributes based on its state:"
+        - list [ref=f20e455]:
+          - listitem [ref=f20e456]:
+            - strong [ref=f20e457]: Invalid
+            - text: ":"
+            - code [ref=f20e458]: "[data-invalid=\"true\"]"
+            - text: or
+            - code [ref=f20e459]: "[aria-invalid=\"true\"]"
+            - text: "- Automatically hides the description slot when invalid"
+          - listitem [ref=f20e460]:
+            - strong [ref=f20e461]: Required
+            - text: ":"
+            - code [ref=f20e462]: "[data-required=\"true\"]"
+            - text: "- Applied when"
+            - code [ref=f20e463]: isRequired
+            - text: is true
+          - listitem [ref=f20e464]:
+            - strong [ref=f20e465]: Disabled
+            - text: ":"
+            - code [ref=f20e466]: "[data-disabled=\"true\"]"
+            - text: "- Applied when"
+            - code [ref=f20e467]: isDisabled
+            - text: is true
+          - listitem [ref=f20e468]:
+            - strong [ref=f20e469]: Focus Within
+            - text: ":"
+            - code [ref=f20e470]: "[data-focus-within=\"true\"]"
+            - text: "- Applied when any child input is focused"
+        - heading [level=2] [ref=f20e471]:
+          - link "API Reference" [ref=f20e472] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f20e473]
+        - heading [level=3] [ref=f20e478]:
+          - link "ColorField" [ref=f20e479] [cursor=pointer]:
+            - /url: "#colorfield"
+          - button "Copy Anchor Link" [ref=f20e480]
+        - paragraph [ref=f20e485]:
+          - text: ColorField inherits all props from React Aria's
+          - link "ColorField" [ref=f20e486] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/ColorField.md
+          - text: component.
+        - heading [level=4] [ref=f20e487]:
+          - link "Base Props" [ref=f20e488] [cursor=pointer]:
+            - /url: "#base-props"
+          - button "Copy Anchor Link" [ref=f20e489]
+        - table [ref=f20e495]:
+          - rowgroup [ref=f20e496]:
+            - row [ref=f20e497]:
+              - columnheader "Prop" [ref=f20e498]
+              - columnheader "Type" [ref=f20e499]
+              - columnheader "Default" [ref=f20e500]
+              - columnheader "Description" [ref=f20e501]
+          - rowgroup [ref=f20e502]:
+            - row [ref=f20e503]:
+              - cell [ref=f20e504]:
+                - code [ref=f20e505]: children
+              - cell [ref=f20e506]:
+                - code [ref=f20e507]: "React.ReactNode | (values: ColorFieldRenderProps) => React.ReactNode"
+              - cell "-" [ref=f20e508]
+              - cell "Child components (Label, ColorField.Group, etc.) or render function." [ref=f20e509]
+            - row [ref=f20e510]:
+              - cell [ref=f20e511]:
+                - code [ref=f20e512]: className
+              - cell [ref=f20e513]:
+                - code [ref=f20e514]: "string | (values: ColorFieldRenderProps) => string"
+              - cell "-" [ref=f20e515]
+              - cell "CSS classes for styling, supports render props." [ref=f20e516]
+            - row [ref=f20e517]:
+              - cell [ref=f20e518]:
+                - code [ref=f20e519]: style
+              - cell [ref=f20e520]:
+                - code [ref=f20e521]: "React.CSSProperties | (values: ColorFieldRenderProps) => React.CSSProperties"
+              - cell "-" [ref=f20e522]
+              - cell "Inline styles, supports render props." [ref=f20e523]
+            - row [ref=f20e524]:
+              - cell [ref=f20e525]:
+                - code [ref=f20e526]: fullWidth
+              - cell [ref=f20e527]:
+                - code [ref=f20e528]: boolean
+              - cell [ref=f20e529]:
+                - code [ref=f20e530]: "false"
+              - cell "Whether the color field should take full width of its container" [ref=f20e531]
+            - row [ref=f20e532]:
+              - cell [ref=f20e533]:
+                - code [ref=f20e534]: id
+              - cell [ref=f20e535]:
+                - code [ref=f20e536]: string
+              - cell "-" [ref=f20e537]
+              - cell "The element's unique identifier." [ref=f20e538]
+            - row [ref=f20e539]:
+              - cell [ref=f20e540]:
+                - code [ref=f20e541]: render
+              - cell [ref=f20e542]:
+                - code [ref=f20e543]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorFieldRenderProps>
+              - cell "-" [ref=f20e544]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f20e545]
+        - heading [level=4] [ref=f20e546]:
+          - link "Value Props" [ref=f20e547] [cursor=pointer]:
+            - /url: "#value-props"
+          - button "Copy Anchor Link" [ref=f20e548]
+        - table [ref=f20e554]:
+          - rowgroup [ref=f20e555]:
+            - row [ref=f20e556]:
+              - columnheader "Prop" [ref=f20e557]
+              - columnheader "Type" [ref=f20e558]
+              - columnheader "Default" [ref=f20e559]
+              - columnheader "Description" [ref=f20e560]
+          - rowgroup [ref=f20e561]:
+            - row [ref=f20e562]:
+              - cell [ref=f20e563]:
+                - code [ref=f20e564]: value
+              - cell [ref=f20e565]:
+                - code [ref=f20e566]: Color | null
+              - cell "-" [ref=f20e567]
+              - cell "Current value (controlled)." [ref=f20e568]
+            - row [ref=f20e569]:
+              - cell [ref=f20e570]:
+                - code [ref=f20e571]: defaultValue
+              - cell [ref=f20e572]:
+                - code [ref=f20e573]: Color | null
+              - cell "-" [ref=f20e574]
+              - cell "Default value (uncontrolled)." [ref=f20e575]
+            - row [ref=f20e576]:
+              - cell [ref=f20e577]:
+                - code [ref=f20e578]: onChange
+              - cell [ref=f20e579]:
+                - code [ref=f20e580]: "(color: Color | null) => void"
+              - cell "-" [ref=f20e581]
+              - cell "Handler called when the value changes." [ref=f20e582]
+        - heading [level=4] [ref=f20e583]:
+          - link "Channel Props" [ref=f20e584] [cursor=pointer]:
+            - /url: "#channel-props"
+          - button "Copy Anchor Link" [ref=f20e585]
+        - table [ref=f20e591]:
+          - rowgroup [ref=f20e592]:
+            - row [ref=f20e593]:
+              - columnheader "Prop" [ref=f20e594]
+              - columnheader "Type" [ref=f20e595]
+              - columnheader "Default" [ref=f20e596]
+              - columnheader "Description" [ref=f20e597]
+          - rowgroup [ref=f20e598]:
+            - row [ref=f20e599]:
+              - cell [ref=f20e600]:
+                - code [ref=f20e601]: colorSpace
+              - cell [ref=f20e602]:
+                - code [ref=f20e603]: ColorSpace
+              - cell "-" [ref=f20e604]
+              - cell [ref=f20e605]:
+                - text: The color space that the color field operates in when
+                - code [ref=f20e606]: channel
+                - text: is provided.
+            - row [ref=f20e607]:
+              - cell [ref=f20e608]:
+                - code [ref=f20e609]: channel
+              - cell [ref=f20e610]:
+                - code [ref=f20e611]: ColorChannel
+              - cell "-" [ref=f20e612]
+              - cell "The color channel to edit. If not provided, edits hex value." [ref=f20e613]
+        - heading [level=4] [ref=f20e614]:
+          - link "Validation Props" [ref=f20e615] [cursor=pointer]:
+            - /url: "#validation-props"
+          - button "Copy Anchor Link" [ref=f20e616]
+        - table [ref=f20e622]:
+          - rowgroup [ref=f20e623]:
+            - row [ref=f20e624]:
+              - columnheader "Prop" [ref=f20e625]
+              - columnheader "Type" [ref=f20e626]
+              - columnheader "Default" [ref=f20e627]
+              - columnheader "Description" [ref=f20e628]
+          - rowgroup [ref=f20e629]:
+            - row [ref=f20e630]:
+              - cell [ref=f20e631]:
+                - code [ref=f20e632]: isRequired
+              - cell [ref=f20e633]:
+                - code [ref=f20e634]: boolean
+              - cell [ref=f20e635]:
+                - code [ref=f20e636]: "false"
+              - cell "Whether user input is required before form submission." [ref=f20e637]
+            - row [ref=f20e638]:
+              - cell [ref=f20e639]:
+                - code [ref=f20e640]: isInvalid
+              - cell [ref=f20e641]:
+                - code [ref=f20e642]: boolean
+              - cell "-" [ref=f20e643]
+              - cell "Whether the value is invalid." [ref=f20e644]
+            - row [ref=f20e645]:
+              - cell [ref=f20e646]:
+                - code [ref=f20e647]: validate
+              - cell [ref=f20e648]:
+                - code [ref=f20e649]: "(value: Color) => ValidationError | true | null | undefined"
+              - cell "-" [ref=f20e650]
+              - cell "Custom validation function." [ref=f20e651]
+            - row [ref=f20e652]:
+              - cell [ref=f20e653]:
+                - code [ref=f20e654]: validationBehavior
+              - cell [ref=f20e655]:
+                - code [ref=f20e656]: "'native' | 'aria'"
+              - cell [ref=f20e657]:
+                - code [ref=f20e658]: "'native'"
+              - cell "Whether to use native HTML form validation or ARIA attributes." [ref=f20e659]
+        - heading [level=4] [ref=f20e660]:
+          - link "State Props" [ref=f20e661] [cursor=pointer]:
+            - /url: "#state-props"
+          - button "Copy Anchor Link" [ref=f20e662]
+        - table [ref=f20e668]:
+          - rowgroup [ref=f20e669]:
+            - row [ref=f20e670]:
+              - columnheader "Prop" [ref=f20e671]
+              - columnheader "Type" [ref=f20e672]
+              - columnheader "Default" [ref=f20e673]
+              - columnheader "Description" [ref=f20e674]
+          - rowgroup [ref=f20e675]:
+            - row [ref=f20e676]:
+              - cell [ref=f20e677]:
+                - code [ref=f20e678]: isDisabled
+              - cell [ref=f20e679]:
+                - code [ref=f20e680]: boolean
+              - cell "-" [ref=f20e681]
+              - cell "Whether the input is disabled." [ref=f20e682]
+            - row [ref=f20e683]:
+              - cell [ref=f20e684]:
+                - code [ref=f20e685]: isReadOnly
+              - cell [ref=f20e686]:
+                - code [ref=f20e687]: boolean
+              - cell "-" [ref=f20e688]
+              - cell "Whether the input can be selected but not changed." [ref=f20e689]
+            - row [ref=f20e690]:
+              - cell [ref=f20e691]:
+                - code [ref=f20e692]: isWheelDisabled
+              - cell [ref=f20e693]:
+                - code [ref=f20e694]: boolean
+              - cell "-" [ref=f20e695]
+              - cell "Whether to disable changing the value with scroll." [ref=f20e696]
+        - heading [level=4] [ref=f20e697]:
+          - link "Form Props" [ref=f20e698] [cursor=pointer]:
+            - /url: "#form-props"
+          - button "Copy Anchor Link" [ref=f20e699]
+        - table [ref=f20e705]:
+          - rowgroup [ref=f20e706]:
+            - row [ref=f20e707]:
+              - columnheader "Prop" [ref=f20e708]
+              - columnheader "Type" [ref=f20e709]
+              - columnheader "Default" [ref=f20e710]
+              - columnheader "Description" [ref=f20e711]
+          - rowgroup [ref=f20e712]:
+            - row [ref=f20e713]:
+              - cell [ref=f20e714]:
+                - code [ref=f20e715]: name
+              - cell [ref=f20e716]:
+                - code [ref=f20e717]: string
+              - cell "-" [ref=f20e718]
+              - cell "Name of the input element, for HTML form submission." [ref=f20e719]
+            - row [ref=f20e720]:
+              - cell [ref=f20e721]:
+                - code [ref=f20e722]: autoFocus
+              - cell [ref=f20e723]:
+                - code [ref=f20e724]: boolean
+              - cell "-" [ref=f20e725]
+              - cell "Whether the element should receive focus on render." [ref=f20e726]
+        - heading [level=4] [ref=f20e727]:
+          - link "Accessibility Props" [ref=f20e728] [cursor=pointer]:
+            - /url: "#accessibility-props"
+          - button "Copy Anchor Link" [ref=f20e729]
+        - table [ref=f20e735]:
+          - rowgroup [ref=f20e736]:
+            - row [ref=f20e737]:
+              - columnheader "Prop" [ref=f20e738]
+              - columnheader "Type" [ref=f20e739]
+              - columnheader "Default" [ref=f20e740]
+              - columnheader "Description" [ref=f20e741]
+          - rowgroup [ref=f20e742]:
+            - row [ref=f20e743]:
+              - cell [ref=f20e744]:
+                - code [ref=f20e745]: aria-label
+              - cell [ref=f20e746]:
+                - code [ref=f20e747]: string
+              - cell "-" [ref=f20e748]
+              - cell "Accessibility label when no visible label is present." [ref=f20e749]
+            - row [ref=f20e750]:
+              - cell [ref=f20e751]:
+                - code [ref=f20e752]: aria-labelledby
+              - cell [ref=f20e753]:
+                - code [ref=f20e754]: string
+              - cell "-" [ref=f20e755]
+              - cell "ID of elements that label this field." [ref=f20e756]
+            - row [ref=f20e757]:
+              - cell [ref=f20e758]:
+                - code [ref=f20e759]: aria-describedby
+              - cell [ref=f20e760]:
+                - code [ref=f20e761]: string
+              - cell "-" [ref=f20e762]
+              - cell "ID of elements that describe this field." [ref=f20e763]
+            - row [ref=f20e764]:
+              - cell [ref=f20e765]:
+                - code [ref=f20e766]: aria-details
+              - cell [ref=f20e767]:
+                - code [ref=f20e768]: string
+              - cell "-" [ref=f20e769]
+              - cell "ID of elements with additional details." [ref=f20e770]
+        - heading [level=3] [ref=f20e771]:
+          - link "Composition Components" [ref=f20e772] [cursor=pointer]:
+            - /url: "#composition-components"
+          - button "Copy Anchor Link" [ref=f20e773]
+        - paragraph [ref=f20e778]: "ColorField works with these separate components that should be imported and used directly:"
+        - list [ref=f20e779]:
+          - listitem [ref=f20e780]:
+            - strong [ref=f20e781]: Label
+            - text: "- Field label component from"
+            - code [ref=f20e782]: "@heroui/react"
+          - listitem [ref=f20e783]:
+            - strong [ref=f20e784]: ColorField.Group
+            - text: "- Color input group component (documented below)"
+          - listitem [ref=f20e785]:
+            - strong [ref=f20e786]: ColorField.Input
+            - text: "- Input element within ColorField.Group"
+          - listitem [ref=f20e787]:
+            - strong [ref=f20e788]: ColorField.Prefix
+            - text: /
+            - strong [ref=f20e789]: ColorField.Suffix
+            - text: "- Prefix and suffix slots for the input group"
+          - listitem [ref=f20e790]:
+            - strong [ref=f20e791]: ColorSwatch
+            - text: "- Color preview component from"
+            - code [ref=f20e792]: "@heroui/react"
+          - listitem [ref=f20e793]:
+            - strong [ref=f20e794]: Description
+            - text: "- Helper text component from"
+            - code [ref=f20e795]: "@heroui/react"
+          - listitem [ref=f20e796]:
+            - strong [ref=f20e797]: FieldError
+            - text: "- Validation error message from"
+            - code [ref=f20e798]: "@heroui/react"
+        - paragraph [ref=f20e799]: "Each of these components has its own props API. Use them directly within ColorField for composition:"
+        - figure [ref=f20e800]:
+          - button "Copy Text" [ref=f20e802] [cursor=pointer]
+          - region [ref=f20e803]:
+            - code [ref=f20e805]:
+              - generic [ref=f20e806]: "import {ColorField, Label, ColorSwatch, Description, FieldError, parseColor} from '@heroui/react';"
+              - generic [ref=f20e808]: <ColorField
+              - generic [ref=f20e809]: isRequired
+              - generic [ref=f20e810]: "isInvalid={hasError}"
+              - generic [ref=f20e811]: "value={color}"
+              - generic [ref=f20e812]: "onChange={setColor}"
+              - generic [ref=f20e813]: ">"
+              - generic [ref=f20e814]: <Label>Brand Color</Label>
+              - generic [ref=f20e815]: <ColorField.Group>
+              - generic [ref=f20e816]: <ColorField.Prefix>
+              - generic [ref=f20e817]: "<ColorSwatch color={color?.toString(\"hex\") || \"#E4E4E7\"} />"
+              - generic [ref=f20e818]: </ColorField.Prefix>
+              - generic [ref=f20e819]: <ColorField.Input />
+              - generic [ref=f20e820]: </ColorField.Group>
+              - generic [ref=f20e821]: <Description>Select your brand's primary color.</Description>
+              - generic [ref=f20e822]: <FieldError>Please enter a valid color.</FieldError>
+              - generic [ref=f20e823]: </ColorField>
+        - heading [level=3] [ref=f20e824]:
+          - link "Color Types" [ref=f20e825] [cursor=pointer]:
+            - /url: "#color-types"
+          - button "Copy Anchor Link" [ref=f20e826]
+        - paragraph [ref=f20e831]:
+          - text: ColorField uses
+          - code [ref=f20e832]: Color
+          - text: "objects from React Aria Components:"
+        - figure [ref=f20e833]:
+          - button "Copy Text" [ref=f20e835] [cursor=pointer]
+          - region [ref=f20e836]:
+            - code [ref=f20e838]:
+              - generic [ref=f20e839]: "import {parseColor} from '@heroui/react';"
+              - generic [ref=f20e841]: // Parse from hex string
+              - generic [ref=f20e842]: const color = parseColor('#3B82F6');
+              - generic [ref=f20e844]: // Get hex string from color
+              - generic [ref=f20e845]: const hex = color.toString('hex'); // "#3b82f6"
+              - generic [ref=f20e847]: // Get RGB values
+              - generic [ref=f20e848]: const rgb = color.toString('rgb'); // "rgb(59, 130, 246)"
+              - generic [ref=f20e850]: // Use in ColorField
+              - generic [ref=f20e851]: "<ColorField value={color} onChange={setColor}>"
+              - generic [ref=f20e852]: "{/* ... */}"
+              - generic [ref=f20e853]: </ColorField>
+        - heading [level=3] [ref=f20e854]:
+          - link "Render Props" [ref=f20e855] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f20e856]
+        - paragraph [ref=f20e861]:
+          - text: When using render props with
+          - code [ref=f20e862]: className
+          - text: ","
+          - code [ref=f20e863]: style
+          - text: ", or"
+          - code [ref=f20e864]: children
+          - text: ", these values are available:"
+        - table [ref=f20e866]:
+          - rowgroup [ref=f20e867]:
+            - row [ref=f20e868]:
+              - columnheader "Prop" [ref=f20e869]
+              - columnheader "Type" [ref=f20e870]
+              - columnheader "Description" [ref=f20e871]
+          - rowgroup [ref=f20e872]:
+            - row [ref=f20e873]:
+              - cell [ref=f20e874]:
+                - code [ref=f20e875]: isDisabled
+              - cell [ref=f20e876]:
+                - code [ref=f20e877]: boolean
+              - cell "Whether the field is disabled." [ref=f20e878]
+            - row [ref=f20e879]:
+              - cell [ref=f20e880]:
+                - code [ref=f20e881]: isInvalid
+              - cell [ref=f20e882]:
+                - code [ref=f20e883]: boolean
+              - cell "Whether the field is currently invalid." [ref=f20e884]
+            - row [ref=f20e885]:
+              - cell [ref=f20e886]:
+                - code [ref=f20e887]: isReadOnly
+              - cell [ref=f20e888]:
+                - code [ref=f20e889]: boolean
+              - cell "Whether the field is read-only." [ref=f20e890]
+            - row [ref=f20e891]:
+              - cell [ref=f20e892]:
+                - code [ref=f20e893]: isRequired
+              - cell [ref=f20e894]:
+                - code [ref=f20e895]: boolean
+              - cell "Whether the field is required." [ref=f20e896]
+            - row [ref=f20e897]:
+              - cell [ref=f20e898]:
+                - code [ref=f20e899]: isFocused
+              - cell [ref=f20e900]:
+                - code [ref=f20e901]: boolean
+              - cell "Whether the field is currently focused." [ref=f20e902]
+            - row [ref=f20e903]:
+              - cell [ref=f20e904]:
+                - code [ref=f20e905]: isFocusWithin
+              - cell [ref=f20e906]:
+                - code [ref=f20e907]: boolean
+              - cell "Whether any child element is focused." [ref=f20e908]
+            - row [ref=f20e909]:
+              - cell [ref=f20e910]:
+                - code [ref=f20e911]: isFocusVisible
+              - cell [ref=f20e912]:
+                - code [ref=f20e913]: boolean
+              - cell "Whether focus is visible (keyboard navigation)." [ref=f20e914]
+        - heading [level=3] [ref=f20e915]:
+          - link "ColorField.Group" [ref=f20e916] [cursor=pointer]:
+            - /url: "#colorfieldgroup"
+          - button "Copy Anchor Link" [ref=f20e917]
+        - paragraph [ref=f20e922]:
+          - text: ColorField.Group accepts all props from React Aria's
+          - code [ref=f20e923]: Group
+          - text: "component plus the following:"
+        - table [ref=f20e925]:
+          - rowgroup [ref=f20e926]:
+            - row [ref=f20e927]:
+              - columnheader "Prop" [ref=f20e928]
+              - columnheader "Type" [ref=f20e929]
+              - columnheader "Default" [ref=f20e930]
+              - columnheader "Description" [ref=f20e931]
+          - rowgroup [ref=f20e932]:
+            - row [ref=f20e933]:
+              - cell [ref=f20e934]:
+                - code [ref=f20e935]: className
+              - cell [ref=f20e936]:
+                - code [ref=f20e937]: string
+              - cell "-" [ref=f20e938]
+              - cell "Tailwind classes merged with the component styles." [ref=f20e939]
+            - row [ref=f20e940]:
+              - cell [ref=f20e941]:
+                - code [ref=f20e942]: fullWidth
+              - cell [ref=f20e943]:
+                - code [ref=f20e944]: boolean
+              - cell [ref=f20e945]:
+                - code [ref=f20e946]: "false"
+              - cell "Whether the color input group should take full width of its container" [ref=f20e947]
+            - row [ref=f20e948]:
+              - cell [ref=f20e949]:
+                - code [ref=f20e950]: variant
+              - cell [ref=f20e951]:
+                - code [ref=f20e952]: "\"primary\" | \"secondary\""
+              - cell [ref=f20e953]:
+                - code [ref=f20e954]: "\"primary\""
+              - cell [ref=f20e955]:
+                - text: Visual variant of the component.
+                - code [ref=f20e956]: primary
+                - text: is the default style with shadow.
+                - code [ref=f20e957]: secondary
+                - text: is a lower emphasis variant without shadow, suitable for use in surfaces.
+            - row [ref=f20e958]:
+              - cell [ref=f20e959]:
+                - code [ref=f20e960]: render
+              - cell [ref=f20e961]:
+                - code [ref=f20e962]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, GroupRenderProps>
+              - cell "-" [ref=f20e963]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f20e964]
+        - heading [level=3] [ref=f20e965]:
+          - link "ColorField.Input" [ref=f20e966] [cursor=pointer]:
+            - /url: "#colorfieldinput"
+          - button "Copy Anchor Link" [ref=f20e967]
+        - paragraph [ref=f20e972]:
+          - text: ColorField.Input accepts all props from React Aria's
+          - code [ref=f20e973]: Input
+          - text: "component plus the following:"
+        - table [ref=f20e975]:
+          - rowgroup [ref=f20e976]:
+            - row [ref=f20e977]:
+              - columnheader "Prop" [ref=f20e978]
+              - columnheader "Type" [ref=f20e979]
+              - columnheader "Default" [ref=f20e980]
+              - columnheader "Description" [ref=f20e981]
+          - rowgroup [ref=f20e982]:
+            - row [ref=f20e983]:
+              - cell [ref=f20e984]:
+                - code [ref=f20e985]: className
+              - cell [ref=f20e986]:
+                - code [ref=f20e987]: string
+              - cell "-" [ref=f20e988]
+              - cell "Tailwind classes merged with the component styles." [ref=f20e989]
+            - row [ref=f20e990]:
+              - cell [ref=f20e991]:
+                - code [ref=f20e992]: placeholder
+              - cell [ref=f20e993]:
+                - code [ref=f20e994]: string
+              - cell "-" [ref=f20e995]
+              - cell "Placeholder text shown when empty." [ref=f20e996]
+        - heading [level=3] [ref=f20e997]:
+          - link "ColorField.Prefix" [ref=f20e998] [cursor=pointer]:
+            - /url: "#colorfieldprefix"
+          - button "Copy Anchor Link" [ref=f20e999]
+        - paragraph [ref=f20e1004]:
+          - text: ColorField.Prefix accepts standard HTML
+          - code [ref=f20e1005]: div
+          - text: "attributes:"
+        - table [ref=f20e1007]:
+          - rowgroup [ref=f20e1008]:
+            - row [ref=f20e1009]:
+              - columnheader "Prop" [ref=f20e1010]
+              - columnheader "Type" [ref=f20e1011]
+              - columnheader "Default" [ref=f20e1012]
+              - columnheader "Description" [ref=f20e1013]
+          - rowgroup [ref=f20e1014]:
+            - row [ref=f20e1015]:
+              - cell [ref=f20e1016]:
+                - code [ref=f20e1017]: className
+              - cell [ref=f20e1018]:
+                - code [ref=f20e1019]: string
+              - cell "-" [ref=f20e1020]
+              - cell "Tailwind classes merged with the component styles." [ref=f20e1021]
+            - row [ref=f20e1022]:
+              - cell [ref=f20e1023]:
+                - code [ref=f20e1024]: children
+              - cell [ref=f20e1025]:
+                - code [ref=f20e1026]: ReactNode
+              - cell "-" [ref=f20e1027]
+              - cell "Content to display in the prefix slot." [ref=f20e1028]
+        - heading [level=3] [ref=f20e1029]:
+          - link "ColorField.Suffix" [ref=f20e1030] [cursor=pointer]:
+            - /url: "#colorfieldsuffix"
+          - button "Copy Anchor Link" [ref=f20e1031]
+        - paragraph [ref=f20e1036]:
+          - text: ColorField.Suffix accepts standard HTML
+          - code [ref=f20e1037]: div
+          - text: "attributes:"
+        - table [ref=f20e1039]:
+          - rowgroup [ref=f20e1040]:
+            - row [ref=f20e1041]:
+              - columnheader "Prop" [ref=f20e1042]
+              - columnheader "Type" [ref=f20e1043]
+              - columnheader "Default" [ref=f20e1044]
+              - columnheader "Description" [ref=f20e1045]
+          - rowgroup [ref=f20e1046]:
+            - row [ref=f20e1047]:
+              - cell [ref=f20e1048]:
+                - code [ref=f20e1049]: className
+              - cell [ref=f20e1050]:
+                - code [ref=f20e1051]: string
+              - cell "-" [ref=f20e1052]
+              - cell "Tailwind classes merged with the component styles." [ref=f20e1053]
+            - row [ref=f20e1054]:
+              - cell [ref=f20e1055]:
+                - code [ref=f20e1056]: children
+              - cell [ref=f20e1057]:
+                - code [ref=f20e1058]: ReactNode
+              - cell "-" [ref=f20e1059]
+              - cell "Content to display in the suffix slot." [ref=f20e1060]
+        - heading [level=2] [ref=f20e1061]:
+          - link "ColorField.Group Styling" [ref=f20e1062] [cursor=pointer]:
+            - /url: "#colorfieldgroup-styling"
+          - button "Copy Anchor Link" [ref=f20e1063]
+        - heading [level=3] [ref=f20e1068]:
+          - link "Customizing the component classes" [ref=f20e1069] [cursor=pointer]:
+            - /url: "#customizing-the-component-classes"
+          - button "Copy Anchor Link" [ref=f20e1070]
+        - paragraph [ref=f20e1075]:
+          - text: The base classes power every instance. Override them once with
+          - code [ref=f20e1076]: "@layer components"
+          - text: .
+        - figure [ref=f20e1077]:
+          - button "Copy Text" [ref=f20e1079] [cursor=pointer]
+          - region [ref=f20e1080]:
+            - code [ref=f20e1082]:
+              - generic [ref=f20e1083]: "@layer components {"
+              - generic [ref=f20e1084]: ".color-input-group {"
+              - generic [ref=f20e1085]: "@apply inline-flex h-9 items-center overflow-hidden rounded-field border bg-field text-sm text-field-foreground shadow-field outline-none;"
+              - generic [ref=f20e1087]: "&:hover,"
+              - generic [ref=f20e1088]: "&[data-hovered=\"true\"] {"
+              - generic [ref=f20e1089]: "@apply bg-field-hover;"
+              - generic [ref=f20e1090]: "}"
+              - generic [ref=f20e1092]: "&[data-focus-within=\"true\"],"
+              - generic [ref=f20e1093]: "&:focus-within {"
+              - generic [ref=f20e1094]: "@apply status-focused-field;"
+              - generic [ref=f20e1095]: "}"
+              - generic [ref=f20e1097]: "&[data-invalid=\"true\"] {"
+              - generic [ref=f20e1098]: "@apply status-invalid-field;"
+              - generic [ref=f20e1099]: "}"
+              - generic [ref=f20e1101]: "&[data-disabled=\"true\"],"
+              - generic [ref=f20e1102]: "&[aria-disabled=\"true\"] {"
+              - generic [ref=f20e1103]: "@apply status-disabled;"
+              - generic [ref=f20e1104]: "}"
+              - generic [ref=f20e1105]: "}"
+              - generic [ref=f20e1107]: ".color-input-group__input {"
+              - generic [ref=f20e1108]: "@apply flex flex-1 items-center rounded-none border-0 bg-transparent px-3 py-2 shadow-none outline-none;"
+              - generic [ref=f20e1109]: "}"
+              - generic [ref=f20e1111]: .color-input-group__prefix,
+              - generic [ref=f20e1112]: ".color-input-group__suffix {"
+              - generic [ref=f20e1113]: "@apply shrink-0 text-field-placeholder flex items-center;"
+              - generic [ref=f20e1114]: "}"
+              - generic [ref=f20e1115]: "}"
+        - heading [level=3] [ref=f20e1116]:
+          - link "ColorField.Group CSS Classes" [ref=f20e1117] [cursor=pointer]:
+            - /url: "#colorfieldgroup-css-classes"
+          - button "Copy Anchor Link" [ref=f20e1118]
+        - list [ref=f20e1123]:
+          - listitem [ref=f20e1124]:
+            - code [ref=f20e1125]: .color-input-group
+            - text: – Root container styling
+          - listitem [ref=f20e1126]:
+            - code [ref=f20e1127]: .color-input-group__input
+            - text: – Input wrapper styling
+          - listitem [ref=f20e1128]:
+            - code [ref=f20e1129]: .color-input-group__prefix
+            - text: – Prefix element styling
+          - listitem [ref=f20e1130]:
+            - code [ref=f20e1131]: .color-input-group__suffix
+            - text: – Suffix element styling
+        - heading [level=3] [ref=f20e1132]:
+          - link "ColorField.Group Interactive States" [ref=f20e1133] [cursor=pointer]:
+            - /url: "#colorfieldgroup-interactive-states"
+          - button "Copy Anchor Link" [ref=f20e1134]
+        - list [ref=f20e1139]:
+          - listitem [ref=f20e1140]:
+            - strong [ref=f20e1141]: Hover
+            - text: ":"
+            - code [ref=f20e1142]: :hover
+            - text: or
+            - code [ref=f20e1143]: "[data-hovered=\"true\"]"
+          - listitem [ref=f20e1144]:
+            - strong [ref=f20e1145]: Focus Within
+            - text: ":"
+            - code [ref=f20e1146]: "[data-focus-within=\"true\"]"
+            - text: or
+            - code [ref=f20e1147]: :focus-within
+          - listitem [ref=f20e1148]:
+            - strong [ref=f20e1149]: Invalid
+            - text: ":"
+            - code [ref=f20e1150]: "[data-invalid=\"true\"]"
+            - text: (also syncs with
+            - code [ref=f20e1151]: aria-invalid
+            - text: )
+          - listitem [ref=f20e1152]:
+            - strong [ref=f20e1153]: Disabled
+            - text: ":"
+            - code [ref=f20e1154]: "[data-disabled=\"true\"]"
+            - text: or
+            - code [ref=f20e1155]: "[aria-disabled=\"true\"]"
+        - heading [level=2] [ref=f20e1156]:
+          - link "Related Components" [ref=f20e1157] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f20e1158]
+        - generic [ref=f20e1163]:
+          - generic [ref=f20e1164]:
+            - link "ColorSwatch" [ref=f20e1166] [cursor=pointer]:
+              - /url: /en/docs/components/color-swatch
+            - generic [ref=f20e1168]:
+              - link "ColorSwatch":
+                - /url: /en/docs/components/color-swatch
+                - img "ColorSwatch" [ref=f20e1169] [cursor=pointer]
+          - generic [ref=f20e1170]:
+            - link "ColorSwatchPicker" [ref=f20e1172] [cursor=pointer]:
+              - /url: /en/docs/components/color-swatch-picker
+            - generic [ref=f20e1174]:
+              - link "ColorSwatchPicker":
+                - /url: /en/docs/components/color-swatch-picker
+                - img "ColorSwatchPicker" [ref=f20e1175] [cursor=pointer]
+          - generic [ref=f20e1176]:
+            - link "ColorPicker" [ref=f20e1178] [cursor=pointer]:
+              - /url: /en/docs/components/color-picker
+            - generic [ref=f20e1180]:
+              - link "ColorPicker":
+                - /url: /en/docs/components/color-picker
+                - img "ColorPicker" [ref=f20e1181] [cursor=pointer]
+      - generic [ref=f20e1182]:
+        - link [ref=f20e1183] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+          - paragraph [ref=f20e1187]: ColorArea
+          - paragraph [ref=f20e1188]: A 2D color picker that allows users to select colors from a gradient area
+        - link [ref=f20e1189] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+          - paragraph [ref=f20e1193]: ColorPicker
+          - paragraph [ref=f20e1194]: A composable color picker that synchronizes color value between multiple color components
+    - generic [ref=f20e1195]:
+      - heading "On this page" [level=3] [ref=f20e1196]
+      - generic [ref=f20e1201]:
+        - link "Usage" [ref=f20e1202] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f20e1203] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f20e1204] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Variants" [ref=f20e1205] [cursor=pointer]:
+          - /url: "#variants"
+        - link "On Surface" [ref=f20e1206] [cursor=pointer]:
+          - /url: "#on-surface"
+        - link "With Description" [ref=f20e1207] [cursor=pointer]:
+          - /url: "#with-description"
+        - link "Required Field" [ref=f20e1208] [cursor=pointer]:
+          - /url: "#required-field"
+        - link "Disabled State" [ref=f20e1209] [cursor=pointer]:
+          - /url: "#disabled-state"
+        - link "Full Width" [ref=f20e1210] [cursor=pointer]:
+          - /url: "#full-width"
+        - link "Validation" [ref=f20e1211] [cursor=pointer]:
+          - /url: "#validation"
+        - link "Channel Editing" [ref=f20e1212] [cursor=pointer]:
+          - /url: "#channel-editing"
+        - link "Controlled" [ref=f20e1213] [cursor=pointer]:
+          - /url: "#controlled"
+        - link "Form Example" [ref=f20e1214] [cursor=pointer]:
+          - /url: "#form-example"
+        - link "Render Function" [ref=f20e1215] [cursor=pointer]:
+          - /url: "#render-function"
+        - link "Customization" [ref=f20e1216] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f20e1217] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f20e1218] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f20e1219] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f20e1220] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f20e1221] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f20e1222] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "ColorField" [ref=f20e1223] [cursor=pointer]:
+          - /url: "#colorfield"
+        - link "Base Props" [ref=f20e1224] [cursor=pointer]:
+          - /url: "#base-props"
+        - link "Value Props" [ref=f20e1225] [cursor=pointer]:
+          - /url: "#value-props"
+        - link "Channel Props" [ref=f20e1226] [cursor=pointer]:
+          - /url: "#channel-props"
+        - link "Validation Props" [ref=f20e1227] [cursor=pointer]:
+          - /url: "#validation-props"
+        - link "State Props" [ref=f20e1228] [cursor=pointer]:
+          - /url: "#state-props"
+        - link "Form Props" [ref=f20e1229] [cursor=pointer]:
+          - /url: "#form-props"
+        - link "Accessibility Props" [ref=f20e1230] [cursor=pointer]:
+          - /url: "#accessibility-props"
+        - link "Composition Components" [ref=f20e1231] [cursor=pointer]:
+          - /url: "#composition-components"
+        - link "Color Types" [ref=f20e1232] [cursor=pointer]:
+          - /url: "#color-types"
+        - link "Render Props" [ref=f20e1233] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "ColorField.Group" [ref=f20e1234] [cursor=pointer]:
+          - /url: "#colorfieldgroup"
+        - link "ColorField.Input" [ref=f20e1235] [cursor=pointer]:
+          - /url: "#colorfieldinput"
+        - link "ColorField.Prefix" [ref=f20e1236] [cursor=pointer]:
+          - /url: "#colorfieldprefix"
+        - link "ColorField.Suffix" [ref=f20e1237] [cursor=pointer]:
+          - /url: "#colorfieldsuffix"
+        - link "ColorField.Group Styling" [ref=f20e1238] [cursor=pointer]:
+          - /url: "#colorfieldgroup-styling"
+        - link "Customizing the component classes" [ref=f20e1239] [cursor=pointer]:
+          - /url: "#customizing-the-component-classes"
+        - link "ColorField.Group CSS Classes" [ref=f20e1240] [cursor=pointer]:
+          - /url: "#colorfieldgroup-css-classes"
+        - link "ColorField.Group Interactive States" [ref=f20e1241] [cursor=pointer]:
+          - /url: "#colorfieldgroup-interactive-states"
+        - link "Related Components" [ref=f20e1242] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f20e1245]:
+        - generic [ref=f20e1246]:
+          - generic [ref=f20e1247]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f20e1248]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f20e1249] [cursor=pointer]
+  - generic [ref=f20e1251]:
+    - generic [ref=f20e1252]: Now available
+    - button "Close" [ref=f20e1266] [cursor=pointer]
+    - generic [ref=f20e1267]:
+      - generic [ref=f20e1268]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f20e1269]
+        - paragraph [ref=f20e1270]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f20e1271]:
+        - button "Close" [ref=f20e1272] [cursor=pointer]
+        - link "Explore Pro" [ref=f20e1273] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - text: "* * * *"
+  - iframe [ref=f20e1274]:
+    - button "Open data assistant" [ref=f21e3] [cursor=pointer]
+  - alert [ref=f20e1275]

@@ -1,0 +1,1222 @@
+- generic [active] [ref=f34e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f34e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f34e3]: Pro
+    - generic [ref=f34e4]:
+      - generic [ref=f34e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f34e6]:
+    - complementary [ref=f34e7]:
+      - generic [ref=f34e9]:
+        - paragraph [ref=f34e10]: Overview
+        - link "All Components (React)" [ref=f34e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f34e12]: Components
+        - link "Accordion" [ref=f34e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f34e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f34e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f34e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f34e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f34e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f34e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f34e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f34e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f34e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f34e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f34e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f34e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f34e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f34e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f34e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f34e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f34e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f34e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f34e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f34e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f34e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f34e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f34e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f34e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f34e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f34e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f34e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f34e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f34e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f34e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f34e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f34e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f34e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f34e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f34e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f34e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f34e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f34e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f34e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f34e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f34e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f34e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f34e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f34e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f34e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f34e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f34e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f34e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f34e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f34e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f34e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f34e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f34e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f34e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f34e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f34e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f34e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f34e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f34e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f34e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f34e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f34e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f34e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f34e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f34e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f34e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f34e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f34e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f34e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f34e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f34e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f34e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f34e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f34e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f34e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f34e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f34e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f34e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f34e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f34e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f34e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f34e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f34e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f34e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f34e110]:
+      - generic [ref=f34e111]:
+        - generic [ref=f34e113]:
+          - link "HeroUI" [ref=f34e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f34e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f34e126]:
+          - text: Search
+          - generic [ref=f34e130]:
+            - generic [ref=f34e131]: ⌘
+            - generic [ref=f34e132]: K
+        - generic [ref=f34e133]:
+          - generic [ref=f34e134]:
+            - button "Ask AI" [ref=f34e136] [cursor=pointer]
+            - button [ref=f34e137] [cursor=pointer]:
+              - button "Design theme" [ref=f34e138]:
+                - generic [ref=f34e139]: Theme
+            - link "31.1k" [ref=f34e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f34e142]:
+            - button "Choose a language" [ref=f34e143] [cursor=pointer]
+            - generic [ref=f34e144] [cursor=pointer]:
+              - button "light" [ref=f34e145]
+              - button "dark" [ref=f34e152]
+              - button "system" [ref=f34e155]
+      - generic [ref=f34e159]:
+        - link "Getting Started" [ref=f34e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f34e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f34e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f34e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f34e188]:
+          - tab "Web" [selected] [ref=f34e189] [cursor=pointer]
+          - tab "Native" [ref=f34e193] [cursor=pointer]
+    - article [ref=f34e196]:
+      - generic [ref=f34e197]:
+        - generic [ref=f34e198]:
+          - heading "Autocomplete" [level=1] [ref=f34e199]
+          - group [ref=f34e201]:
+            - button "Copy Markdown" [ref=f34e202] [cursor=pointer]
+            - button "More options" [ref=f34e203] [cursor=pointer]
+        - paragraph [ref=f34e204]: An autocomplete combines a select with filtering, allowing users to search and select from a list of options
+        - generic [ref=f34e205]:
+          - link "Storybook" [ref=f34e206] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-pickers-autocomplete--docs
+          - link "React Aria" [ref=f34e207] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Select
+          - link "Source" [ref=f34e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/autocomplete/autocomplete.tsx
+          - link "Styles source" [ref=f34e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/autocomplete.css
+      - generic [ref=f34e210]:
+        - heading [level=2] [ref=f34e211]:
+          - link "Usage" [ref=f34e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f34e213]
+        - figure [ref=f34e218]:
+          - button "Copy Text" [ref=f34e220] [cursor=pointer]
+          - region [ref=f34e221]:
+            - code [ref=f34e223]:
+              - generic [ref=f34e224]: "import { Autocomplete, useFilter } from \"@heroui/react\";"
+        - generic [ref=f34e225]:
+          - generic [ref=f34e228]:
+            - generic [ref=f34e229]: States to Visit
+            - group [ref=f34e230] [cursor=pointer]:
+              - generic [ref=f34e231]: Select states
+              - button "Select states States to Visit"
+            - listbox [ref=f34e236]:
+              - option [ref=f34e237]
+              - option [ref=f34e238]: Florida
+              - option [ref=f34e239]: Delaware
+              - option [ref=f34e240]: California
+              - option [ref=f34e241]: Texas
+              - option [ref=f34e242]: New York
+              - option [ref=f34e243]: Washington
+          - generic [ref=f34e247]:
+            - figure [ref=f34e249]:
+              - button "Copy Text" [ref=f34e251] [cursor=pointer]
+              - region [ref=f34e252]:
+                - code [ref=f34e254]:
+                  - generic [ref=f34e255]: "\"use client\";"
+                  - generic [ref=f34e257]: "import type {Key} from \"@heroui/react\";"
+                  - generic [ref=f34e259]: "import {"
+            - button "Expand code" [ref=f34e260] [cursor=pointer]
+        - heading [level=2] [ref=f34e261]:
+          - link "Anatomy" [ref=f34e262] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f34e263]
+        - figure [ref=f34e268]:
+          - button "Copy Text" [ref=f34e270] [cursor=pointer]
+          - region [ref=f34e271]:
+            - code [ref=f34e273]:
+              - generic [ref=f34e274]: "import {Autocomplete, Label, Description, SearchField, ListBox} from \"@heroui/react\";"
+              - generic [ref=f34e276]: export default () => (
+              - generic [ref=f34e277]: <Autocomplete>
+              - generic [ref=f34e278]: <Label />
+              - generic [ref=f34e279]: <Autocomplete.Trigger>
+              - generic [ref=f34e280]: <Autocomplete.Value />
+              - generic [ref=f34e281]: <Autocomplete.ClearButton />
+              - generic [ref=f34e282]: <Autocomplete.Indicator />
+              - generic [ref=f34e283]: </Autocomplete.Trigger>
+              - generic [ref=f34e284]: <Description />
+              - generic [ref=f34e285]: <Autocomplete.Popover>
+              - generic [ref=f34e286]: <Autocomplete.Filter>
+              - generic [ref=f34e287]: <SearchField>
+              - generic [ref=f34e288]: <SearchField.Group>
+              - generic [ref=f34e289]: <SearchField.SearchIcon />
+              - generic [ref=f34e290]: <SearchField.Input />
+              - generic [ref=f34e291]: </SearchField.Group>
+              - generic [ref=f34e292]: </SearchField>
+              - generic [ref=f34e293]: <ListBox>
+              - generic [ref=f34e294]: <ListBox.Item>
+              - generic [ref=f34e295]: <Label />
+              - generic [ref=f34e296]: <ListBox.ItemIndicator />
+              - generic [ref=f34e297]: </ListBox.Item>
+              - generic [ref=f34e298]: </ListBox>
+              - generic [ref=f34e299]: </Autocomplete.Filter>
+              - generic [ref=f34e300]: </Autocomplete.Popover>
+              - generic [ref=f34e301]: </Autocomplete>
+              - generic [ref=f34e302]: );
+        - heading [level=2] [ref=f34e303]:
+          - link "Examples" [ref=f34e304] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f34e305]
+        - heading [level=3] [ref=f34e310]:
+          - link "Variants" [ref=f34e311] [cursor=pointer]:
+            - /url: "#variants"
+          - button "Copy Anchor Link" [ref=f34e312]
+        - paragraph [ref=f34e317]: "The Autocomplete component supports two visual variants:"
+        - list [ref=f34e318]:
+          - listitem [ref=f34e319]:
+            - strong [ref=f34e320]:
+              - code [ref=f34e321]: primary
+            - text: (default) - Standard styling with shadow, suitable for most use cases
+          - listitem [ref=f34e322]:
+            - strong [ref=f34e323]:
+              - code [ref=f34e324]: secondary
+            - text: "- Lower emphasis variant without shadow, suitable for use in Surface components"
+        - heading [level=3] [ref=f34e326]:
+          - link "Full Width" [ref=f34e327] [cursor=pointer]:
+            - /url: "#full-width"
+          - button "Copy Anchor Link" [ref=f34e328]
+        - heading [level=3] [ref=f34e334]:
+          - link "With Description" [ref=f34e335] [cursor=pointer]:
+            - /url: "#with-description"
+          - button "Copy Anchor Link" [ref=f34e336]
+        - heading [level=3] [ref=f34e342]:
+          - link "Required" [ref=f34e343] [cursor=pointer]:
+            - /url: "#required"
+          - button "Copy Anchor Link" [ref=f34e344]
+        - heading [level=3] [ref=f34e350]:
+          - link "Disabled" [ref=f34e351] [cursor=pointer]:
+            - /url: "#disabled"
+          - button "Copy Anchor Link" [ref=f34e352]
+        - heading [level=3] [ref=f34e358]:
+          - link "With Disabled Options" [ref=f34e359] [cursor=pointer]:
+            - /url: "#with-disabled-options"
+          - button "Copy Anchor Link" [ref=f34e360]
+        - heading [level=3] [ref=f34e366]:
+          - link "Allows Empty Collection" [ref=f34e367] [cursor=pointer]:
+            - /url: "#allows-empty-collection"
+          - button "Copy Anchor Link" [ref=f34e368]
+        - paragraph [ref=f34e373]:
+          - text: The
+          - code [ref=f34e374]: allowsEmptyCollection
+          - text: prop enables the autocomplete to function even when there are no items in the collection. This is useful for scenarios where the list might be empty initially or when all items are filtered out.
+        - heading [level=3] [ref=f34e376]:
+          - link "With Sections" [ref=f34e377] [cursor=pointer]:
+            - /url: "#with-sections"
+          - button "Copy Anchor Link" [ref=f34e378]
+        - heading [level=3] [ref=f34e384]:
+          - link "Multiple Select" [ref=f34e385] [cursor=pointer]:
+            - /url: "#multiple-select"
+          - button "Copy Anchor Link" [ref=f34e386]
+        - paragraph [ref=f34e397]:
+          - text: In multiple mode, a bare
+          - code [ref=f34e398]: <Autocomplete.Value />
+          - text: renders a copy of each selected item's
+          - code [ref=f34e399]: ListBox.Item
+          - text: children in the trigger, joined with locale-aware separators. Text-only items read as plain text, but visual content such as checkboxes or avatars appears once per selected item, and render function children are always called with
+          - code [ref=f34e400]: "isSelected: false"
+          - text: .
+        - paragraph [ref=f34e401]:
+          - text: To display selected values as plain text, use the
+          - code [ref=f34e402]: selectedText
+          - text: render prop, which joins the
+          - code [ref=f34e403]: textValue
+          - text: "of each selected item:"
+        - figure [ref=f34e404]:
+          - button "Copy Text" [ref=f34e406] [cursor=pointer]
+          - region [ref=f34e407]:
+            - code [ref=f34e409]:
+              - generic [ref=f34e410]: <Autocomplete.Value>
+              - generic [ref=f34e411]: "{({isPlaceholder, defaultChildren, selectedText}) =>"
+              - generic [ref=f34e412]: "isPlaceholder ? defaultChildren : selectedText"
+              - generic [ref=f34e413]: "}"
+              - generic [ref=f34e414]: </Autocomplete.Value>
+        - paragraph [ref=f34e415]:
+          - text: For richer layouts such as removable tags, render your own content from
+          - code [ref=f34e416]: state.selectedItems
+          - text: as shown in the example above.
+        - heading [level=3] [ref=f34e417]:
+          - link "Controlled" [ref=f34e418] [cursor=pointer]:
+            - /url: "#controlled"
+          - button "Copy Anchor Link" [ref=f34e419]
+        - heading [level=3] [ref=f34e425]:
+          - link "Controlled Multiple" [ref=f34e426] [cursor=pointer]:
+            - /url: "#controlled-multiple"
+          - button "Copy Anchor Link" [ref=f34e427]
+        - heading [level=3] [ref=f34e433]:
+          - link "Controlled Open State" [ref=f34e434] [cursor=pointer]:
+            - /url: "#controlled-open-state"
+          - button "Copy Anchor Link" [ref=f34e435]
+        - heading [level=3] [ref=f34e441]:
+          - link "Asynchronous Filtering" [ref=f34e442] [cursor=pointer]:
+            - /url: "#asynchronous-filtering"
+          - button "Copy Anchor Link" [ref=f34e443]
+        - heading [level=3] [ref=f34e449]:
+          - link "Custom Indicator" [ref=f34e450] [cursor=pointer]:
+            - /url: "#custom-indicator"
+          - button "Copy Anchor Link" [ref=f34e451]
+        - heading [level=3] [ref=f34e457]:
+          - link "Custom Value" [ref=f34e458] [cursor=pointer]:
+            - /url: "#custom-value"
+          - button "Copy Anchor Link" [ref=f34e459]
+        - paragraph [ref=f34e464]: "You can customize the displayed value using render props:"
+        - heading [level=3] [ref=f34e466]:
+          - link "In Surface" [ref=f34e467] [cursor=pointer]:
+            - /url: "#in-surface"
+          - button "Copy Anchor Link" [ref=f34e468]
+        - paragraph [ref=f34e473]:
+          - text: When used inside a
+          - link "Surface" [ref=f34e474] [cursor=pointer]:
+            - /url: /en/docs/react/components/surface
+          - text: component, use
+          - code [ref=f34e475]: variant="secondary"
+          - text: to apply the lower emphasis variant suitable for surface backgrounds.
+        - heading [level=3] [ref=f34e477]:
+          - link "Virtualization" [ref=f34e478] [cursor=pointer]:
+            - /url: "#virtualization"
+          - button "Copy Anchor Link" [ref=f34e479]
+        - paragraph [ref=f34e484]:
+          - text: Autocomplete supports virtualization through
+          - link "Virtualizer" [ref=f34e485] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Virtualizer
+          - text: ", enabling efficient rendering of large datasets by displaying only the rows visible within the viewport."
+        - heading [level=2] [ref=f34e487]:
+          - link "Advanced Examples" [ref=f34e488] [cursor=pointer]:
+            - /url: "#advanced-examples"
+          - button "Copy Anchor Link" [ref=f34e489]
+        - heading [level=3] [ref=f34e494]:
+          - link "User Selection" [ref=f34e495] [cursor=pointer]:
+            - /url: "#user-selection"
+          - button "Copy Anchor Link" [ref=f34e496]
+        - heading [level=3] [ref=f34e502]:
+          - link "User Selection Multiple" [ref=f34e503] [cursor=pointer]:
+            - /url: "#user-selection-multiple"
+          - button "Copy Anchor Link" [ref=f34e504]
+        - heading [level=3] [ref=f34e510]:
+          - link "Location Search" [ref=f34e511] [cursor=pointer]:
+            - /url: "#location-search"
+          - button "Copy Anchor Link" [ref=f34e512]
+        - heading [level=3] [ref=f34e518]:
+          - link "Tag Group Selection" [ref=f34e519] [cursor=pointer]:
+            - /url: "#tag-group-selection"
+          - button "Copy Anchor Link" [ref=f34e520]
+        - heading [level=3] [ref=f34e526]:
+          - link "Email Recipients" [ref=f34e527] [cursor=pointer]:
+            - /url: "#email-recipients"
+          - button "Copy Anchor Link" [ref=f34e528]
+        - heading [level=2] [ref=f34e534]:
+          - link "Customization" [ref=f34e535] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f34e536]
+        - heading [level=3] [ref=f34e541]:
+          - link "Tailwind CSS" [ref=f34e542] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f34e543]
+        - heading [level=3] [ref=f34e549]:
+          - link "Global CSS" [ref=f34e550] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f34e551]
+        - paragraph [ref=f34e556]:
+          - text: To customize the Autocomplete component classes, you can use the
+          - code [ref=f34e557]: "@layer components"
+          - text: directive.
+        - paragraph [ref=f34e558]:
+          - link "Learn more" [ref=f34e559] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f34e560]:
+          - button "Copy Text" [ref=f34e562] [cursor=pointer]
+          - region [ref=f34e563]:
+            - code [ref=f34e565]:
+              - generic [ref=f34e566]: "@layer components {"
+              - generic [ref=f34e567]: ".autocomplete {"
+              - generic [ref=f34e568]: "@apply flex flex-col gap-1;"
+              - generic [ref=f34e569]: "}"
+              - generic [ref=f34e571]: ".autocomplete__trigger {"
+              - generic [ref=f34e572]: "@apply rounded-lg border border-border bg-surface p-2;"
+              - generic [ref=f34e573]: "}"
+              - generic [ref=f34e575]: ".autocomplete__value {"
+              - generic [ref=f34e576]: "@apply text-current;"
+              - generic [ref=f34e577]: "}"
+              - generic [ref=f34e579]: ".autocomplete__clear-button {"
+              - generic [ref=f34e580]: "@apply text-muted hover:text-foreground;"
+              - generic [ref=f34e581]: "}"
+              - generic [ref=f34e583]: ".autocomplete__indicator {"
+              - generic [ref=f34e584]: "@apply text-muted;"
+              - generic [ref=f34e585]: "}"
+              - generic [ref=f34e587]: ".autocomplete__popover {"
+              - generic [ref=f34e588]: "@apply rounded-lg border border-border bg-surface p-2;"
+              - generic [ref=f34e589]: "}"
+              - generic [ref=f34e590]: "}"
+        - heading [level=2] [ref=f34e591]:
+          - link "Styling Reference" [ref=f34e592] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f34e593]
+        - paragraph [ref=f34e598]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f34e599] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f34e600]:
+          - link "CSS Classes" [ref=f34e601] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f34e602]
+        - paragraph [ref=f34e607]:
+          - text: The Autocomplete component uses these CSS classes (
+          - link "View source styles" [ref=f34e608] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/autocomplete.css
+          - text: "):"
+        - heading [level=4] [ref=f34e609]:
+          - link "Base Classes" [ref=f34e610] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f34e611]
+        - list [ref=f34e616]:
+          - listitem [ref=f34e617]:
+            - code [ref=f34e618]: .autocomplete
+            - text: "- Base autocomplete container"
+          - listitem [ref=f34e619]:
+            - code [ref=f34e620]: .autocomplete__trigger
+            - text: "- The button that triggers the autocomplete"
+          - listitem [ref=f34e621]:
+            - code [ref=f34e622]: .autocomplete__value
+            - text: "- The displayed value or placeholder"
+          - listitem [ref=f34e623]:
+            - code [ref=f34e624]: .autocomplete__clear-button
+            - text: "- The clear button that removes the selected value"
+          - listitem [ref=f34e625]:
+            - code [ref=f34e626]: .autocomplete__indicator
+            - text: "- The dropdown indicator icon"
+          - listitem [ref=f34e627]:
+            - code [ref=f34e628]: .autocomplete__popover
+            - text: "- The popover container"
+          - listitem [ref=f34e629]:
+            - code [ref=f34e630]: .autocomplete__filter
+            - text: "- The filter wrapper"
+        - heading [level=4] [ref=f34e631]:
+          - link "Variant Classes" [ref=f34e632] [cursor=pointer]:
+            - /url: "#variant-classes-toc"
+          - button "Copy Anchor Link" [ref=f34e633]
+        - list [ref=f34e638]:
+          - listitem [ref=f34e639]:
+            - code [ref=f34e640]: .autocomplete--primary
+            - text: "- Primary variant with shadow (default)"
+          - listitem [ref=f34e641]:
+            - code [ref=f34e642]: .autocomplete--secondary
+            - text: "- Secondary variant without shadow, suitable for use in surfaces"
+        - heading [level=4] [ref=f34e643]:
+          - link "State Classes" [ref=f34e644] [cursor=pointer]:
+            - /url: "#state-classes-toc"
+          - button "Copy Anchor Link" [ref=f34e645]
+        - list [ref=f34e650]:
+          - listitem [ref=f34e651]:
+            - code [ref=f34e652]: .autocomplete[data-invalid="true"]
+            - text: "- Invalid state"
+          - listitem [ref=f34e653]:
+            - code [ref=f34e654]: .autocomplete__trigger[data-focus-visible="true"]
+            - text: "- Focused trigger state"
+          - listitem [ref=f34e655]:
+            - code [ref=f34e656]: .autocomplete__trigger[data-disabled="true"]
+            - text: "- Disabled trigger state"
+          - listitem [ref=f34e657]:
+            - code [ref=f34e658]: .autocomplete__value[data-placeholder="true"]
+            - text: "- Placeholder state"
+          - listitem [ref=f34e659]:
+            - code [ref=f34e660]: .autocomplete__clear-button[data-empty="true"]
+            - text: "- Clear button hidden when no selection"
+          - listitem [ref=f34e661]:
+            - code [ref=f34e662]: .autocomplete__indicator[data-open="true"]
+            - text: "- Open indicator state"
+        - heading [level=3] [ref=f34e663]:
+          - link "Interactive States" [ref=f34e664] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f34e665]
+        - paragraph [ref=f34e670]: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list [ref=f34e671]:
+          - listitem [ref=f34e672]:
+            - strong [ref=f34e673]: Hover
+            - text: ":"
+            - code [ref=f34e674]: :hover
+            - text: or
+            - code [ref=f34e675]: "[data-hovered=\"true\"]"
+            - text: on trigger
+          - listitem [ref=f34e676]:
+            - strong [ref=f34e677]: Focus
+            - text: ":"
+            - code [ref=f34e678]: :focus-visible
+            - text: or
+            - code [ref=f34e679]: "[data-focus-visible=\"true\"]"
+            - text: on trigger
+          - listitem [ref=f34e680]:
+            - strong [ref=f34e681]: Disabled
+            - text: ":"
+            - code [ref=f34e682]: :disabled
+            - text: or
+            - code [ref=f34e683]: "[data-disabled=\"true\"]"
+            - text: on autocomplete
+          - listitem [ref=f34e684]:
+            - strong [ref=f34e685]: Open
+            - text: ":"
+            - code [ref=f34e686]: "[data-open=\"true\"]"
+            - text: on indicator
+        - heading [level=2] [ref=f34e687]:
+          - link "API Reference" [ref=f34e688] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f34e689]
+        - heading [level=3] [ref=f34e694]:
+          - link "Autocomplete" [ref=f34e695] [cursor=pointer]:
+            - /url: "#autocomplete"
+          - button "Copy Anchor Link" [ref=f34e696]
+        - table [ref=f34e702]:
+          - rowgroup [ref=f34e703]:
+            - row [ref=f34e704]:
+              - columnheader "Prop" [ref=f34e705]
+              - columnheader "Type" [ref=f34e706]
+              - columnheader "Default" [ref=f34e707]
+              - columnheader "Description" [ref=f34e708]
+          - rowgroup [ref=f34e709]:
+            - row [ref=f34e710]:
+              - cell [ref=f34e711]:
+                - code [ref=f34e712]: placeholder
+              - cell [ref=f34e713]:
+                - code [ref=f34e714]: string
+              - cell [ref=f34e715]:
+                - code [ref=f34e716]: "'Select an item'"
+              - cell "Temporary text that occupies the autocomplete when it is empty" [ref=f34e717]
+            - row [ref=f34e718]:
+              - cell [ref=f34e719]:
+                - code [ref=f34e720]: selectionMode
+              - cell [ref=f34e721]:
+                - code [ref=f34e722]: "\"single\" | \"multiple\""
+              - cell [ref=f34e723]:
+                - code [ref=f34e724]: "\"single\""
+              - cell "Whether single or multiple selection is enabled" [ref=f34e725]
+            - row [ref=f34e726]:
+              - cell [ref=f34e727]:
+                - code [ref=f34e728]: allowsEmptyCollection
+              - cell [ref=f34e729]:
+                - code [ref=f34e730]: boolean
+              - cell [ref=f34e731]:
+                - code [ref=f34e732]: "false"
+              - cell "Whether the autocomplete allows an empty collection. When true, the autocomplete can function even with no items." [ref=f34e733]
+            - row [ref=f34e734]:
+              - cell [ref=f34e735]:
+                - code [ref=f34e736]: isOpen
+              - cell [ref=f34e737]:
+                - code [ref=f34e738]: boolean
+              - cell "-" [ref=f34e739]
+              - cell "Sets the open state of the popover (controlled)" [ref=f34e740]
+            - row [ref=f34e741]:
+              - cell [ref=f34e742]:
+                - code [ref=f34e743]: defaultOpen
+              - cell [ref=f34e744]:
+                - code [ref=f34e745]: boolean
+              - cell "-" [ref=f34e746]
+              - cell "Sets the default open state of the popover (uncontrolled)" [ref=f34e747]
+            - row [ref=f34e748]:
+              - cell [ref=f34e749]:
+                - code [ref=f34e750]: onOpenChange
+              - cell [ref=f34e751]:
+                - code [ref=f34e752]: "(isOpen: boolean) => void"
+              - cell "-" [ref=f34e753]
+              - cell "Handler called when the open state changes" [ref=f34e754]
+            - row [ref=f34e755]:
+              - cell [ref=f34e756]:
+                - code [ref=f34e757]: disabledKeys
+              - cell [ref=f34e758]:
+                - code [ref=f34e759]: Iterable<Key>
+              - cell "-" [ref=f34e760]
+              - cell "Keys of disabled items" [ref=f34e761]
+            - row [ref=f34e762]:
+              - cell [ref=f34e763]:
+                - code [ref=f34e764]: isDisabled
+              - cell [ref=f34e765]:
+                - code [ref=f34e766]: boolean
+              - cell "-" [ref=f34e767]
+              - cell "Whether the autocomplete is disabled" [ref=f34e768]
+            - row [ref=f34e769]:
+              - cell [ref=f34e770]:
+                - code [ref=f34e771]: value
+              - cell [ref=f34e772]:
+                - code [ref=f34e773]: Key | Key[] | null
+              - cell "-" [ref=f34e774]
+              - cell "Current value (controlled)" [ref=f34e775]
+            - row [ref=f34e776]:
+              - cell [ref=f34e777]:
+                - code [ref=f34e778]: defaultValue
+              - cell [ref=f34e779]:
+                - code [ref=f34e780]: Key | Key[] | null
+              - cell "-" [ref=f34e781]
+              - cell "Default value (uncontrolled)" [ref=f34e782]
+            - row [ref=f34e783]:
+              - cell [ref=f34e784]:
+                - code [ref=f34e785]: onChange
+              - cell [ref=f34e786]:
+                - code [ref=f34e787]: "(value: Key | Key[] | null) => void"
+              - cell "-" [ref=f34e788]
+              - cell "Handler called when the value changes" [ref=f34e789]
+            - row [ref=f34e790]:
+              - cell [ref=f34e791]:
+                - code [ref=f34e792]: isRequired
+              - cell [ref=f34e793]:
+                - code [ref=f34e794]: boolean
+              - cell "-" [ref=f34e795]
+              - cell "Whether user input is required" [ref=f34e796]
+            - row [ref=f34e797]:
+              - cell [ref=f34e798]:
+                - code [ref=f34e799]: isInvalid
+              - cell [ref=f34e800]:
+                - code [ref=f34e801]: boolean
+              - cell "-" [ref=f34e802]
+              - cell "Whether the autocomplete value is invalid" [ref=f34e803]
+            - row [ref=f34e804]:
+              - cell [ref=f34e805]:
+                - code [ref=f34e806]: name
+              - cell [ref=f34e807]:
+                - code [ref=f34e808]: string
+              - cell "-" [ref=f34e809]
+              - cell "The name of the input, used when submitting an HTML form" [ref=f34e810]
+            - row [ref=f34e811]:
+              - cell [ref=f34e812]:
+                - code [ref=f34e813]: fullWidth
+              - cell [ref=f34e814]:
+                - code [ref=f34e815]: boolean
+              - cell [ref=f34e816]:
+                - code [ref=f34e817]: "false"
+              - cell "Whether the autocomplete should take full width of its container" [ref=f34e818]
+            - row [ref=f34e819]:
+              - cell [ref=f34e820]:
+                - code [ref=f34e821]: variant
+              - cell [ref=f34e822]:
+                - code [ref=f34e823]: "\"primary\" | \"secondary\""
+              - cell [ref=f34e824]:
+                - code [ref=f34e825]: "\"primary\""
+              - cell [ref=f34e826]:
+                - text: Visual variant of the component.
+                - code [ref=f34e827]: primary
+                - text: is the default style with shadow.
+                - code [ref=f34e828]: secondary
+                - text: is a lower emphasis variant without shadow, suitable for use in surfaces.
+            - row [ref=f34e829]:
+              - cell [ref=f34e830]:
+                - code [ref=f34e831]: className
+              - cell [ref=f34e832]:
+                - code [ref=f34e833]: string
+              - cell "-" [ref=f34e834]
+              - cell "Additional CSS classes" [ref=f34e835]
+            - row [ref=f34e836]:
+              - cell [ref=f34e837]:
+                - code [ref=f34e838]: children
+              - cell [ref=f34e839]:
+                - code [ref=f34e840]: ReactNode | RenderFunction
+              - cell "-" [ref=f34e841]
+              - cell "Autocomplete content or render function" [ref=f34e842]
+        - heading [level=3] [ref=f34e843]:
+          - link "Autocomplete.Trigger" [ref=f34e844] [cursor=pointer]:
+            - /url: "#autocompletetrigger"
+          - button "Copy Anchor Link" [ref=f34e845]
+        - table [ref=f34e851]:
+          - rowgroup [ref=f34e852]:
+            - row [ref=f34e853]:
+              - columnheader "Prop" [ref=f34e854]
+              - columnheader "Type" [ref=f34e855]
+              - columnheader "Default" [ref=f34e856]
+              - columnheader "Description" [ref=f34e857]
+          - rowgroup [ref=f34e858]:
+            - row [ref=f34e859]:
+              - cell [ref=f34e860]:
+                - code [ref=f34e861]: className
+              - cell [ref=f34e862]:
+                - code [ref=f34e863]: string
+              - cell "-" [ref=f34e864]
+              - cell "Additional CSS classes" [ref=f34e865]
+            - row [ref=f34e866]:
+              - cell [ref=f34e867]:
+                - code [ref=f34e868]: children
+              - cell [ref=f34e869]:
+                - code [ref=f34e870]: ReactNode | RenderFunction
+              - cell "-" [ref=f34e871]
+              - cell "Trigger content or render function" [ref=f34e872]
+        - heading [level=3] [ref=f34e873]:
+          - link "Autocomplete.Value" [ref=f34e874] [cursor=pointer]:
+            - /url: "#autocompletevalue"
+          - button "Copy Anchor Link" [ref=f34e875]
+        - table [ref=f34e881]:
+          - rowgroup [ref=f34e882]:
+            - row [ref=f34e883]:
+              - columnheader "Prop" [ref=f34e884]
+              - columnheader "Type" [ref=f34e885]
+              - columnheader "Default" [ref=f34e886]
+              - columnheader "Description" [ref=f34e887]
+          - rowgroup [ref=f34e888]:
+            - row [ref=f34e889]:
+              - cell [ref=f34e890]:
+                - code [ref=f34e891]: className
+              - cell [ref=f34e892]:
+                - code [ref=f34e893]: string
+              - cell "-" [ref=f34e894]
+              - cell "Additional CSS classes" [ref=f34e895]
+            - row [ref=f34e896]:
+              - cell [ref=f34e897]:
+                - code [ref=f34e898]: children
+              - cell [ref=f34e899]:
+                - code [ref=f34e900]: ReactNode | RenderFunction
+              - cell "-" [ref=f34e901]
+              - cell "Value content or render function" [ref=f34e902]
+        - heading [level=3] [ref=f34e903]:
+          - link "Autocomplete.Indicator" [ref=f34e904] [cursor=pointer]:
+            - /url: "#autocompleteindicator"
+          - button "Copy Anchor Link" [ref=f34e905]
+        - table [ref=f34e911]:
+          - rowgroup [ref=f34e912]:
+            - row [ref=f34e913]:
+              - columnheader "Prop" [ref=f34e914]
+              - columnheader "Type" [ref=f34e915]
+              - columnheader "Default" [ref=f34e916]
+              - columnheader "Description" [ref=f34e917]
+          - rowgroup [ref=f34e918]:
+            - row [ref=f34e919]:
+              - cell [ref=f34e920]:
+                - code [ref=f34e921]: className
+              - cell [ref=f34e922]:
+                - code [ref=f34e923]: string
+              - cell "-" [ref=f34e924]
+              - cell "Additional CSS classes" [ref=f34e925]
+            - row [ref=f34e926]:
+              - cell [ref=f34e927]:
+                - code [ref=f34e928]: children
+              - cell [ref=f34e929]:
+                - code [ref=f34e930]: ReactNode
+              - cell "-" [ref=f34e931]
+              - cell "Custom indicator content" [ref=f34e932]
+        - heading [level=3] [ref=f34e933]:
+          - link "Autocomplete.ClearButton" [ref=f34e934] [cursor=pointer]:
+            - /url: "#autocompleteclearbutton"
+          - button "Copy Anchor Link" [ref=f34e935]
+        - table [ref=f34e941]:
+          - rowgroup [ref=f34e942]:
+            - row [ref=f34e943]:
+              - columnheader "Prop" [ref=f34e944]
+              - columnheader "Type" [ref=f34e945]
+              - columnheader "Default" [ref=f34e946]
+              - columnheader "Description" [ref=f34e947]
+          - rowgroup [ref=f34e948]:
+            - row [ref=f34e949]:
+              - cell [ref=f34e950]:
+                - code [ref=f34e951]: className
+              - cell [ref=f34e952]:
+                - code [ref=f34e953]: string
+              - cell "-" [ref=f34e954]
+              - cell "Additional CSS classes" [ref=f34e955]
+            - row [ref=f34e956]:
+              - cell [ref=f34e957]:
+                - code [ref=f34e958]: onClick
+              - cell [ref=f34e959]:
+                - code [ref=f34e960]: "(e: MouseEvent) => void"
+              - cell "-" [ref=f34e961]
+              - cell "Handler called when button is clicked" [ref=f34e962]
+            - row [ref=f34e963]:
+              - cell [ref=f34e964]:
+                - code [ref=f34e965]: ref
+              - cell [ref=f34e966]:
+                - code [ref=f34e967]: RefObject<HTMLButtonElement>
+              - cell "-" [ref=f34e968]
+              - cell "Ref to the clear button element" [ref=f34e969]
+        - heading [level=3] [ref=f34e970]:
+          - link "Autocomplete.Popover" [ref=f34e971] [cursor=pointer]:
+            - /url: "#autocompletepopover"
+          - button "Copy Anchor Link" [ref=f34e972]
+        - table [ref=f34e978]:
+          - rowgroup [ref=f34e979]:
+            - row [ref=f34e980]:
+              - columnheader "Prop" [ref=f34e981]
+              - columnheader "Type" [ref=f34e982]
+              - columnheader "Default" [ref=f34e983]
+              - columnheader "Description" [ref=f34e984]
+          - rowgroup [ref=f34e985]:
+            - row [ref=f34e986]:
+              - cell [ref=f34e987]:
+                - code [ref=f34e988]: placement
+              - cell [ref=f34e989]:
+                - code [ref=f34e990]: "\"bottom\" | \"bottom left\" | \"bottom right\" | \"bottom start\" | \"bottom end\" | \"top\" | \"top left\" | \"top right\" | \"top start\" | \"top end\" | \"left\" | \"left top\" | \"left bottom\" | \"start\" | \"start top\" | \"start bottom\" | \"right\" | \"right top\" | \"right bottom\" | \"end\" | \"end top\" | \"end bottom\""
+              - cell [ref=f34e991]:
+                - code [ref=f34e992]: "\"bottom\""
+              - cell "Placement of the popover relative to the trigger" [ref=f34e993]
+            - row [ref=f34e994]:
+              - cell [ref=f34e995]:
+                - code [ref=f34e996]: className
+              - cell [ref=f34e997]:
+                - code [ref=f34e998]: string
+              - cell "-" [ref=f34e999]
+              - cell "Additional CSS classes" [ref=f34e1000]
+            - row [ref=f34e1001]:
+              - cell [ref=f34e1002]:
+                - code [ref=f34e1003]: children
+              - cell [ref=f34e1004]:
+                - code [ref=f34e1005]: ReactNode
+              - cell "-" [ref=f34e1006]
+              - cell "Content children" [ref=f34e1007]
+        - heading [level=3] [ref=f34e1008]:
+          - link "Autocomplete.Filter" [ref=f34e1009] [cursor=pointer]:
+            - /url: "#autocompletefilter"
+          - button "Copy Anchor Link" [ref=f34e1010]
+        - table [ref=f34e1016]:
+          - rowgroup [ref=f34e1017]:
+            - row [ref=f34e1018]:
+              - columnheader "Prop" [ref=f34e1019]
+              - columnheader "Type" [ref=f34e1020]
+              - columnheader "Default" [ref=f34e1021]
+              - columnheader "Description" [ref=f34e1022]
+          - rowgroup [ref=f34e1023]:
+            - row [ref=f34e1024]:
+              - cell [ref=f34e1025]:
+                - code [ref=f34e1026]: filter
+              - cell [ref=f34e1027]:
+                - code [ref=f34e1028]: "(text: string, input: string) => boolean"
+              - cell "-" [ref=f34e1029]
+              - cell "Custom filter function" [ref=f34e1030]
+            - row [ref=f34e1031]:
+              - cell [ref=f34e1032]:
+                - code [ref=f34e1033]: inputValue
+              - cell [ref=f34e1034]:
+                - code [ref=f34e1035]: string
+              - cell "-" [ref=f34e1036]
+              - cell "Controlled input value" [ref=f34e1037]
+            - row [ref=f34e1038]:
+              - cell [ref=f34e1039]:
+                - code [ref=f34e1040]: onInputChange
+              - cell [ref=f34e1041]:
+                - code [ref=f34e1042]: "(value: string) => void"
+              - cell "-" [ref=f34e1043]
+              - cell "Handler called when input value changes" [ref=f34e1044]
+            - row [ref=f34e1045]:
+              - cell [ref=f34e1046]:
+                - code [ref=f34e1047]: children
+              - cell [ref=f34e1048]:
+                - code [ref=f34e1049]: ReactNode
+              - cell "-" [ref=f34e1050]
+              - cell "Filter content (SearchField and ListBox)" [ref=f34e1051]
+        - heading [level=3] [ref=f34e1052]:
+          - link "useFilter Hook" [ref=f34e1053] [cursor=pointer]:
+            - /url: "#usefilter-hook"
+          - button "Copy Anchor Link" [ref=f34e1054]
+        - paragraph [ref=f34e1059]:
+          - text: The
+          - code [ref=f34e1060]: useFilter
+          - text: hook from React Aria provides filtering functions for autocomplete functionality.
+        - figure [ref=f34e1061]:
+          - button "Copy Text" [ref=f34e1063] [cursor=pointer]
+          - region [ref=f34e1064]:
+            - code [ref=f34e1066]:
+              - generic [ref=f34e1067]: "import {useFilter} from \"@heroui/react\";"
+              - generic [ref=f34e1069]: "const {contains} = useFilter({sensitivity: \"base\"});"
+              - generic [ref=f34e1071]: "<Autocomplete.Filter filter={contains}>"
+              - generic [ref=f34e1072]: <SearchField>...</SearchField>
+              - generic [ref=f34e1073]: <ListBox>...</ListBox>
+              - generic [ref=f34e1074]: </Autocomplete.Filter>
+        - paragraph [ref=f34e1075]:
+          - strong [ref=f34e1076]: "Options:"
+        - table [ref=f34e1078]:
+          - rowgroup [ref=f34e1079]:
+            - row [ref=f34e1080]:
+              - columnheader "Option" [ref=f34e1081]
+              - columnheader "Type" [ref=f34e1082]
+              - columnheader "Default" [ref=f34e1083]
+              - columnheader "Description" [ref=f34e1084]
+          - rowgroup [ref=f34e1085]:
+            - row [ref=f34e1086]:
+              - cell [ref=f34e1087]:
+                - code [ref=f34e1088]: sensitivity
+              - cell [ref=f34e1089]:
+                - code [ref=f34e1090]: "\"base\" | \"accent\" | \"case\" | \"variant\""
+              - cell [ref=f34e1091]:
+                - code [ref=f34e1092]: "\"base\""
+              - cell "Locale sensitivity for matching" [ref=f34e1093]
+        - paragraph [ref=f34e1094]:
+          - strong [ref=f34e1095]: "Returns:"
+        - table [ref=f34e1097]:
+          - rowgroup [ref=f34e1098]:
+            - row [ref=f34e1099]:
+              - columnheader "Function" [ref=f34e1100]
+              - columnheader "Type" [ref=f34e1101]
+              - columnheader "Description" [ref=f34e1102]
+          - rowgroup [ref=f34e1103]:
+            - row [ref=f34e1104]:
+              - cell [ref=f34e1105]:
+                - code [ref=f34e1106]: contains
+              - cell [ref=f34e1107]:
+                - code [ref=f34e1108]: "(string: string, substring: string) => boolean"
+              - cell "Returns whether a string contains a given substring" [ref=f34e1109]
+            - row [ref=f34e1110]:
+              - cell [ref=f34e1111]:
+                - code [ref=f34e1112]: startsWith
+              - cell [ref=f34e1113]:
+                - code [ref=f34e1114]: "(string: string, substring: string) => boolean"
+              - cell "Returns whether a string starts with a given substring" [ref=f34e1115]
+            - row [ref=f34e1116]:
+              - cell [ref=f34e1117]:
+                - code [ref=f34e1118]: endsWith
+              - cell [ref=f34e1119]:
+                - code [ref=f34e1120]: "(string: string, substring: string) => boolean"
+              - cell "Returns whether a string ends with a given substring" [ref=f34e1121]
+        - heading [level=3] [ref=f34e1122]:
+          - link "Render Props" [ref=f34e1123] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f34e1124]
+        - paragraph [ref=f34e1129]: "When using render functions with Autocomplete.Value, these values are provided:"
+        - table [ref=f34e1131]:
+          - rowgroup [ref=f34e1132]:
+            - row [ref=f34e1133]:
+              - columnheader "Prop" [ref=f34e1134]
+              - columnheader "Type" [ref=f34e1135]
+              - columnheader "Description" [ref=f34e1136]
+          - rowgroup [ref=f34e1137]:
+            - row [ref=f34e1138]:
+              - cell [ref=f34e1139]:
+                - code [ref=f34e1140]: defaultChildren
+              - cell [ref=f34e1141]:
+                - code [ref=f34e1142]: ReactNode
+              - cell "The default rendered value. In multiple mode this is a copy of each selected item's children joined with locale-aware separators" [ref=f34e1143]
+            - row [ref=f34e1144]:
+              - cell [ref=f34e1145]:
+                - code [ref=f34e1146]: isPlaceholder
+              - cell [ref=f34e1147]:
+                - code [ref=f34e1148]: boolean
+              - cell "Whether the value is a placeholder" [ref=f34e1149]
+            - row [ref=f34e1150]:
+              - cell [ref=f34e1151]:
+                - code [ref=f34e1152]: state
+              - cell [ref=f34e1153]:
+                - code [ref=f34e1154]: SelectState
+              - cell [ref=f34e1155]:
+                - text: The state of the autocomplete. Use
+                - code [ref=f34e1156]: state.selectedItems
+                - text: for the selected collection nodes
+            - row [ref=f34e1157]:
+              - cell [ref=f34e1158]:
+                - code [ref=f34e1159]: selectedItems
+              - cell [ref=f34e1160]:
+                - code [ref=f34e1161]: (T | null)[]
+              - cell "The values of the currently selected items" [ref=f34e1162]
+            - row [ref=f34e1163]:
+              - cell [ref=f34e1164]:
+                - code [ref=f34e1165]: selectedText
+              - cell [ref=f34e1166]:
+                - code [ref=f34e1167]: string
+              - cell [ref=f34e1168]:
+                - text: The
+                - code [ref=f34e1169]: textValue
+                - text: of the selected items joined with locale-aware separators
+        - heading [level=2] [ref=f34e1170]:
+          - link "Accessibility" [ref=f34e1171] [cursor=pointer]:
+            - /url: "#accessibility"
+          - button "Copy Anchor Link" [ref=f34e1172]
+        - paragraph [ref=f34e1177]: "The Autocomplete component implements the ARIA select pattern with filtering and provides:"
+        - list [ref=f34e1178]:
+          - listitem [ref=f34e1179]: Full keyboard navigation support
+          - listitem [ref=f34e1180]: Screen reader announcements for selection changes
+          - listitem [ref=f34e1181]: Proper focus management
+          - listitem [ref=f34e1182]: Support for disabled states
+          - listitem [ref=f34e1183]: Search functionality with filtering
+          - listitem [ref=f34e1184]: HTML form integration
+        - paragraph [ref=f34e1185]:
+          - text: For more information, see the
+          - link "React Aria Select documentation" [ref=f34e1186] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Select.html
+          - text: .
+        - heading [level=2] [ref=f34e1187]:
+          - link "Related Components" [ref=f34e1188] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f34e1189]
+        - generic [ref=f34e1194]:
+          - generic [ref=f34e1195]:
+            - link "Listbox" [ref=f34e1197] [cursor=pointer]:
+              - /url: /en/docs/components/list-box
+            - generic [ref=f34e1199]:
+              - link "Listbox":
+                - /url: /en/docs/components/list-box
+                - img "Listbox" [ref=f34e1200] [cursor=pointer]
+          - generic [ref=f34e1201]:
+            - link "Popover" [ref=f34e1203] [cursor=pointer]:
+              - /url: /en/docs/components/popover
+            - generic [ref=f34e1205]:
+              - link "Popover":
+                - /url: /en/docs/components/popover
+                - img "Popover" [ref=f34e1206] [cursor=pointer]
+          - generic [ref=f34e1207]:
+            - link "Input" [ref=f34e1209] [cursor=pointer]:
+              - /url: /en/docs/components/input
+            - generic [ref=f34e1211]:
+              - link "Input":
+                - /url: /en/docs/components/input
+                - img "Input" [ref=f34e1212] [cursor=pointer]
+      - generic [ref=f34e1213]:
+        - link [ref=f34e1214] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+          - paragraph [ref=f34e1218]: AlertDialog
+          - paragraph [ref=f34e1219]: Modal dialog for critical confirmations requiring user attention and explicit action
+        - link [ref=f34e1220] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+          - paragraph [ref=f34e1224]: Avatar
+          - paragraph [ref=f34e1225]: Display user profile images with customizable fallback content
+    - generic [ref=f34e1226]:
+      - heading "On this page" [level=3] [ref=f34e1227]
+      - generic [ref=f34e1232]:
+        - link "Usage" [ref=f34e1233] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f34e1234] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f34e1235] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Variants" [ref=f34e1236] [cursor=pointer]:
+          - /url: "#variants"
+        - link "Full Width" [ref=f34e1237] [cursor=pointer]:
+          - /url: "#full-width"
+        - link "With Description" [ref=f34e1238] [cursor=pointer]:
+          - /url: "#with-description"
+        - link "Required" [ref=f34e1239] [cursor=pointer]:
+          - /url: "#required"
+        - link "Disabled" [ref=f34e1240] [cursor=pointer]:
+          - /url: "#disabled"
+        - link "With Disabled Options" [ref=f34e1241] [cursor=pointer]:
+          - /url: "#with-disabled-options"
+        - link "Allows Empty Collection" [ref=f34e1242] [cursor=pointer]:
+          - /url: "#allows-empty-collection"
+        - link "With Sections" [ref=f34e1243] [cursor=pointer]:
+          - /url: "#with-sections"
+        - link "Multiple Select" [ref=f34e1244] [cursor=pointer]:
+          - /url: "#multiple-select"
+        - link "Controlled" [ref=f34e1245] [cursor=pointer]:
+          - /url: "#controlled"
+        - link "Controlled Multiple" [ref=f34e1246] [cursor=pointer]:
+          - /url: "#controlled-multiple"
+        - link "Controlled Open State" [ref=f34e1247] [cursor=pointer]:
+          - /url: "#controlled-open-state"
+        - link "Asynchronous Filtering" [ref=f34e1248] [cursor=pointer]:
+          - /url: "#asynchronous-filtering"
+        - link "Custom Indicator" [ref=f34e1249] [cursor=pointer]:
+          - /url: "#custom-indicator"
+        - link "Custom Value" [ref=f34e1250] [cursor=pointer]:
+          - /url: "#custom-value"
+        - link "In Surface" [ref=f34e1251] [cursor=pointer]:
+          - /url: "#in-surface"
+        - link "Virtualization" [ref=f34e1252] [cursor=pointer]:
+          - /url: "#virtualization"
+        - link "Advanced Examples" [ref=f34e1253] [cursor=pointer]:
+          - /url: "#advanced-examples"
+        - link "User Selection" [ref=f34e1254] [cursor=pointer]:
+          - /url: "#user-selection"
+        - link "User Selection Multiple" [ref=f34e1255] [cursor=pointer]:
+          - /url: "#user-selection-multiple"
+        - link "Location Search" [ref=f34e1256] [cursor=pointer]:
+          - /url: "#location-search"
+        - link "Tag Group Selection" [ref=f34e1257] [cursor=pointer]:
+          - /url: "#tag-group-selection"
+        - link "Email Recipients" [ref=f34e1258] [cursor=pointer]:
+          - /url: "#email-recipients"
+        - link "Customization" [ref=f34e1259] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f34e1260] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f34e1261] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f34e1262] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f34e1263] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f34e1264] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f34e1265] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Autocomplete" [ref=f34e1266] [cursor=pointer]:
+          - /url: "#autocomplete"
+        - link "Autocomplete.Trigger" [ref=f34e1267] [cursor=pointer]:
+          - /url: "#autocompletetrigger"
+        - link "Autocomplete.Value" [ref=f34e1268] [cursor=pointer]:
+          - /url: "#autocompletevalue"
+        - link "Autocomplete.Indicator" [ref=f34e1269] [cursor=pointer]:
+          - /url: "#autocompleteindicator"
+        - link "Autocomplete.ClearButton" [ref=f34e1270] [cursor=pointer]:
+          - /url: "#autocompleteclearbutton"
+        - link "Autocomplete.Popover" [ref=f34e1271] [cursor=pointer]:
+          - /url: "#autocompletepopover"
+        - link "Autocomplete.Filter" [ref=f34e1272] [cursor=pointer]:
+          - /url: "#autocompletefilter"
+        - link "useFilter Hook" [ref=f34e1273] [cursor=pointer]:
+          - /url: "#usefilter-hook"
+        - link "Render Props" [ref=f34e1274] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Accessibility" [ref=f34e1275] [cursor=pointer]:
+          - /url: "#accessibility"
+        - link "Related Components" [ref=f34e1276] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f34e1279]:
+        - generic [ref=f34e1280]:
+          - generic [ref=f34e1281]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f34e1282]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f34e1283] [cursor=pointer]
+  - generic [ref=f34e1285]:
+    - generic [ref=f34e1286]: Now available
+    - button "Close" [ref=f34e1300] [cursor=pointer]
+    - generic [ref=f34e1301]:
+      - generic [ref=f34e1302]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f34e1303]
+        - paragraph [ref=f34e1304]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f34e1305]:
+        - button "Close" [ref=f34e1306] [cursor=pointer]
+        - link "Explore Pro" [ref=f34e1307] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f34e1308]:
+    - button "Open data assistant" [ref=f35e3] [cursor=pointer]
+  - alert [ref=f34e1309]

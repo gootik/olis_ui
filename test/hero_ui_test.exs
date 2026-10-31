@@ -2,6 +2,309 @@ defmodule HeroUITest do
   use ExUnit.Case, async: true
   import Phoenix.LiveViewTest
 
+  test "switches connect descriptions and errors and switch groups preserve independent controls" do
+    switch =
+      render_component(&HeroUI.switch/1, %{
+        id: "news",
+        name: "news",
+        checked: true,
+        description: "Account activity",
+        errors: ["is unavailable"],
+        label_position: "start",
+        inner_block: [%{inner_block: fn _, _ -> "Updates" end}]
+      })
+
+    assert switch =~ ~s(role="switch")
+    assert switch =~ ~s(aria-labelledby="news-label")
+    assert switch =~ ~s(aria-describedby="news-description news-errors")
+    assert switch =~ ~s(aria-invalid="true")
+    assert switch =~ "-order-1"
+    assert switch =~ "Account activity"
+
+    group =
+      render_component(&HeroUI.switch_group/1, %{
+        id: "preferences",
+        label: "Preferences",
+        description: "Control updates",
+        orientation: "horizontal",
+        disabled: true,
+        inner_block: [%{inner_block: fn _, _ -> Phoenix.HTML.raw(switch) end}]
+      })
+
+    assert group =~ "switch-group--horizontal"
+    assert group =~ ~s(data-slot="switch-group-items")
+    assert group =~ ~s(aria-describedby="preferences-description")
+    assert group =~ ~r/<fieldset[^>]*disabled/
+    assert group =~ "Preferences"
+    assert group =~ ~s(name="news")
+
+    assert_raise ArgumentError, ~r/requires an id/, fn ->
+      render_component(&HeroUI.switch_group/1, %{
+        description: "Missing id",
+        inner_block: [%{inner_block: fn _, _ -> "" end}]
+      })
+    end
+  end
+
+  test "autocomplete keeps a native form control and renders searchable enhancement" do
+    form = Phoenix.Component.to_form(%{"country" => "jp"}, as: :trip)
+
+    html =
+      render_component(&HeroUI.autocomplete/1, %{
+        field: form[:country],
+        label: "Destination",
+        options: [{"Japan", "jp"}, [key: "France", value: "fr", disabled: true]],
+        description: "Choose a destination",
+        required: true,
+        clearable: true
+      })
+
+    assert html =~ ~s(name="trip[country]")
+    assert html =~ ~s(selected value="jp")
+    assert html =~ ~s(disabled value="fr")
+    assert html =~ ~s(aria-describedby="trip_country-description")
+    assert html =~ ~s(data-hero-autocomplete-native)
+    assert html =~ ~s(data-hero-autocomplete-search)
+    assert html =~ ~s(data-hero-autocomplete-clear)
+    assert html =~ ~s(popover="auto")
+
+    multiple =
+      render_component(&HeroUI.autocomplete/1, %{
+        id: "places",
+        name: "places",
+        label: "Places",
+        options: [{"Japan", "jp"}, {"Spain", "es"}],
+        selection_mode: "multiple",
+        value: ["jp", "es"]
+      })
+
+    assert multiple =~ ~s(name="places[]")
+    assert multiple =~ ~s(aria-multiselectable="true")
+    assert multiple =~ ~s(selected value="jp")
+    assert multiple =~ ~s(selected value="es")
+
+    assert_raise ArgumentError, ~r/requires a list value/, fn ->
+      render_component(&HeroUI.autocomplete/1, %{
+        id: "bad",
+        label: "Bad",
+        options: [],
+        selection_mode: "multiple",
+        value: "jp"
+      })
+    end
+  end
+
+  test "scroll shadows render automatic and controlled fade configurations" do
+    content = [%{inner_block: fn _, _ -> "Scrollable content" end}]
+
+    auto =
+      render_component(&HeroUI.scroll_shadow/1, %{
+        id: "feed",
+        inner_block: content,
+        class: "max-h-48",
+        on_visibility_change: "edges"
+      })
+
+    assert auto =~ ~s(data-scroll-shadow-mode="auto")
+    assert auto =~ "scroll-shadow--vertical"
+    assert auto =~ "scroll-shadow--fade"
+    assert auto =~ ~s(data-scroll-shadow-size="40")
+    assert auto =~ ~s(phx-click="edges")
+    assert auto =~ "Scrollable content"
+    refute auto =~ ~s(style=)
+
+    manual =
+      render_component(&HeroUI.scroll_shadow/1, %{
+        inner_block: content,
+        orientation: "horizontal",
+        visibility: "both",
+        size: 60,
+        offset: 8,
+        hide_scrollbar: true
+      })
+
+    assert manual =~ "scroll-shadow--horizontal"
+    assert manual =~ "scroll-shadow--hide-scrollbar"
+    assert manual =~ ~s(data-scroll-shadow-mode="manual")
+    assert manual =~ ~s(data-left-right-scroll="true")
+    assert manual =~ "--scroll-shadow-size: 60px"
+    assert manual =~ "--scroll-shadow-offset: 8px"
+
+    disabled =
+      render_component(&HeroUI.scroll_shadow/1, %{
+        inner_block: content,
+        visibility: "both",
+        enabled: false
+      })
+
+    assert disabled =~ ~s(data-scroll-shadow-mode="manual")
+    refute disabled =~ ~s(data-top-bottom-scroll="true")
+
+    assert_raise ArgumentError, ~r/non-negative integers/, fn ->
+      render_component(&HeroUI.scroll_shadow/1, %{inner_block: content, size: -1})
+    end
+  end
+
+  test "time field renders native form values and validation semantics" do
+    form = Phoenix.Component.to_form(%{"starts_at" => "09:30"}, as: :meeting)
+
+    html =
+      render_component(&HeroUI.time_field/1, %{
+        field: form[:starts_at],
+        label: "Starts at",
+        min: "09:00",
+        max: ~T[17:00:00],
+        description: "Office hours",
+        errors: ["is too early"],
+        required: true,
+        hour_cycle: 24,
+        granularity: "second"
+      })
+
+    assert html =~ ~s(type="time")
+    assert html =~ ~s(name="meeting[starts_at]")
+    assert html =~ ~s(value="09:30")
+    assert html =~ ~s(min="09:00:00")
+    assert html =~ ~s(max="17:00:00")
+    assert html =~ ~s(step="1")
+    assert html =~ ~s(data-hour-cycle="24")
+    assert html =~ ~s(aria-invalid="true")
+    assert html =~ ~s(aria-describedby="meeting_starts_at-description meeting_starts_at-errors")
+    assert html =~ "is too early"
+
+    assert_raise ArgumentError, ~r/min must not exceed max/, fn ->
+      render_component(&HeroUI.time_field/1, %{
+        id: "invalid",
+        label: "Time",
+        min: "18:00",
+        max: "09:00"
+      })
+    end
+
+    assert_raise ArgumentError, ~r/bounds must be ISO 8601 times/, fn ->
+      render_component(&HeroUI.time_field/1, %{id: "invalid", label: "Time", min: "25:00"})
+    end
+  end
+
+  test "avatar groups inherit styles, limit visible avatars, and expose a count" do
+    people = [
+      %{name: "Jane Doe"},
+      %{name: "Alex Kim", color: "success"},
+      %{name: "Morgan Lee"}
+    ]
+
+    html =
+      render_component(&HeroUI.avatar_group/1, %{
+        avatar: people,
+        size: "lg",
+        color: "accent",
+        variant: "soft",
+        max: 2,
+        role: "group",
+        "aria-label": "Project team"
+      })
+
+    assert html =~ ~s(role="group")
+    assert html =~ ~s(aria-label="Project team")
+    assert html =~ "avatar-group--clip"
+    assert html =~ "avatar--lg"
+    assert html =~ "avatar--soft"
+    assert html =~ "avatar__fallback--accent"
+    assert html =~ "avatar__fallback--success"
+    assert html =~ ~s(aria-label="Jane Doe")
+    refute html =~ ~s(aria-label="Morgan Lee")
+    assert html =~ ~s(aria-label="1 more")
+    assert html =~ "+1"
+
+    custom =
+      render_component(&HeroUI.avatar_group/1, %{
+        avatar: people,
+        max: 1,
+        grid: true,
+        count: [%{label: "Nine more reviewers", inner_block: fn _, _ -> "+9" end}]
+      })
+
+    assert custom =~ "avatar-group--grid"
+    refute custom =~ "avatar-group--clip"
+    assert custom =~ ~s(aria-label="Nine more reviewers")
+    assert custom =~ "+9"
+    refute custom =~ "+2"
+
+    none = render_component(&HeroUI.avatar_group/1, %{avatar: people, max: 0, overlap: "ring"})
+    assert none =~ "avatar-group--ring"
+    assert none =~ ~s(aria-label="3 more")
+    refute none =~ ~s(aria-label="Jane Doe")
+
+    assert_raise ArgumentError, ~r/non-negative integer/, fn ->
+      render_component(&HeroUI.avatar_group/1, %{avatar: people, max: -1})
+    end
+  end
+
+  test "disclosures render native state, accessible content, and disabled triggers" do
+    html =
+      render_component(&HeroUI.disclosure/1, %{
+        id: "details",
+        title: "Details",
+        open: true,
+        disabled: true,
+        inner_block: [%{inner_block: fn _, _ -> "More information" end}]
+      })
+
+    assert html =~ ~s(id="details")
+    assert html =~ ~s(aria-controls="details-content")
+    assert html =~ ~s(aria-labelledby="details-trigger")
+    assert html =~ ~s(aria-disabled="true")
+    assert html =~ ~s(tabindex="-1")
+    assert html =~ "More information"
+    assert html =~ ~r/<details[^>]*\sopen(?:=|\s|>)/
+  end
+
+  test "disclosure groups enforce unique keys and support exclusive or multiple expansion" do
+    items = [
+      %{key: "one", title: "One", inner_block: fn _, _ -> "First" end},
+      %{key: "two", title: "Two", inner_block: fn _, _ -> "Second" end}
+    ]
+
+    html =
+      render_component(&HeroUI.disclosure_group/1, %{
+        id: "group",
+        item: items,
+        expanded_keys: ["one"],
+        on_toggle: "toggle"
+      })
+
+    assert length(Regex.scan(~r/name="group-disclosure-group"/, html)) == 2
+    assert length(Regex.scan(~r/<details[^>]*\sopen(?:=|\s|>)/, html)) == 1
+    assert html =~ ~s(phx-value-key="one")
+    assert html =~ ~s(phx-click="toggle")
+
+    multiple =
+      render_component(&HeroUI.disclosure_group/1, %{
+        id: "multiple",
+        item: items,
+        allows_multiple_expanded: true,
+        default_expanded_keys: ["one", "two"]
+      })
+
+    assert length(Regex.scan(~r/<details[^>]*\sopen(?:=|\s|>)/, multiple)) == 2
+    refute multiple =~ ~s(name="multiple-disclosure-group")
+
+    assert_raise ArgumentError, ~r/keys must be unique/, fn ->
+      render_component(&HeroUI.disclosure_group/1, %{
+        id: "duplicate",
+        item: [hd(items), hd(items)]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/at most one expanded key/, fn ->
+      render_component(&HeroUI.disclosure_group/1, %{
+        id: "exclusive",
+        item: items,
+        expanded_keys: ["one", "two"]
+      })
+    end
+  end
+
   test "button renders a safe default and forwards LiveView attributes" do
     html =
       render_component(&HeroUI.button/1, %{
@@ -291,6 +594,85 @@ defmodule HeroUITest do
         options: []
       })
     end
+  end
+
+  test "toolbars expose labelled orientation and attached styling" do
+    inner = [%{inner_block: fn _, _ -> "Actions" end}]
+
+    html =
+      render_component(&HeroUI.toolbar/1, %{
+        id: "tools",
+        label: "Editing",
+        orientation: "vertical",
+        attached: true,
+        inner_block: inner
+      })
+
+    assert html =~ ~s(role="toolbar")
+    assert html =~ ~s(aria-label="Editing")
+    assert html =~ ~s(aria-orientation="vertical")
+    assert html =~ "toolbar--vertical"
+    assert html =~ "toolbar--attached"
+    assert html =~ "data-hero-toolbar"
+    assert html =~ "Actions"
+
+    assert_raise ArgumentError, fn ->
+      render_component(&HeroUI.toolbar/1, %{inner_block: inner})
+    end
+  end
+
+  test "color fields expose normalized hex input and bounded channel input" do
+    form = Phoenix.Component.to_form(%{"color" => "#abc"}, as: :theme)
+
+    html =
+      render_component(&HeroUI.color_field/1, %{
+        field: form[:color],
+        label: "Brand color",
+        description: "Enter a color",
+        required: true
+      })
+
+    assert html =~ ~s(name="theme[color]")
+    assert html =~ ~s(value="#AABBCC")
+    assert html =~ ~s(aria-describedby="theme_color-description")
+    assert html =~ ~s(data-hero-color-preview)
+    assert html =~ ~s(data-channel="hex")
+    assert html =~ "pattern=\"#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})\""
+
+    alpha =
+      render_component(&HeroUI.color_field/1, %{
+        id: "alpha",
+        label: "Alpha color",
+        value: "#abcd",
+        allow_alpha: true
+      })
+
+    assert alpha =~ ~s(value="#AABBCCDD")
+
+    channel =
+      render_component(&HeroUI.color_field/1, %{
+        id: "hue",
+        label: "Hue",
+        channel: "hue",
+        value: 120
+      })
+
+    assert channel =~ ~s(type="number")
+    assert channel =~ ~s(min="0")
+    assert channel =~ ~s(max="360")
+    refute channel =~ ~s(data-hero-color-preview)
+
+    invalid =
+      render_component(&HeroUI.color_field/1, %{
+        id: "bad-color",
+        label: "Color",
+        value: "invalid",
+        errors: ["Invalid color"]
+      })
+
+    assert invalid =~ ~s(value="invalid")
+    assert invalid =~ "Invalid color"
+    assert invalid =~ "#E4E4E7"
   end
 
   test "color swatches and palettes expose native, labelled form controls" do

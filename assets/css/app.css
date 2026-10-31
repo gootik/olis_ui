@@ -2,3 +2,4 @@
 @import "./hero_ui.css";
 @source "../../lib";
 @source "../../preview";
+@source "../js";

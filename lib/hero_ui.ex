@@ -712,11 +712,31 @@ defmodule HeroUI do
   attr(:checked, :boolean, default: false)
   attr(:disabled, :boolean, default: false)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
+  attr(:description, :string, default: nil)
+  attr(:errors, :list, default: [])
+  attr(:invalid, :boolean, default: false)
+  attr(:label_position, :string, default: "end", values: ~w(start end))
   attr(:class, :any, default: nil)
   attr(:rest, :global, include: ~w(required form))
   slot(:inner_block, required: true)
+  slot(:icon)
 
   def switch(assigns) do
+    {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
+    {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+
+    describedby =
+      [
+        external_description,
+        external_description_string,
+        assigns.description && "#{assigns.id}-description",
+        assigns.errors != [] && "#{assigns.id}-errors"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join(" ")
+
+    assigns = assigns |> assign(:rest, rest) |> assign(:describedby, describedby)
+
     ~H"""
     <label
       class={["switch", "switch--#{@size}", "hui-native-switch", @class]}
@@ -732,13 +752,81 @@ defmodule HeroUI do
           value={@value}
           checked={@checked}
           disabled={@disabled}
+          aria-labelledby={"#{@id}-label"}
+          aria-invalid={if @invalid || @errors != [], do: "true"}
+          aria-describedby={if @describedby != "", do: @describedby}
           class="hui-visually-hidden-input"
           {@rest}
         />
-        <span class="switch__control" aria-hidden="true"><span class="switch__thumb"></span></span>
-        <span data-slot="label">{render_slot(@inner_block)}</span>
+        <span class="switch__control" aria-hidden="true"><span class="switch__thumb"><span
+          :if={@icon != []}
+          class="switch__icon"
+        >{render_slot(@icon)}</span></span></span>
+        <span id={"#{@id}-label"} data-slot="label" class={@label_position == "start" && "-order-1"}>{render_slot(
+          @inner_block
+        )}</span>
       </span>
+      <span :if={@description} id={"#{@id}-description"} class="description" data-slot="description">{@description}</span>
+      <span
+        :if={@errors != []}
+        id={"#{@id}-errors"}
+        class="field-error"
+        data-slot="field-error"
+        data-visible="true"
+      ><span :for={error <- @errors} class="block">{error}</span></span>
     </label>
+    """
+  end
+
+  @doc "A group of independent switches with vertical or horizontal layout."
+  attr(:id, :string, default: nil)
+  attr(:label, :string, default: nil)
+  attr(:description, :string, default: nil)
+  attr(:orientation, :string, default: "vertical", values: ~w(vertical horizontal))
+  attr(:disabled, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def switch_group(assigns) do
+    if assigns.description && is_nil(assigns.id),
+      do: raise(ArgumentError, "switch_group requires an id when description is provided")
+
+    {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
+    {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+
+    describedby =
+      [
+        external_description,
+        external_description_string,
+        assigns.description && "#{assigns.id}-description"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join(" ")
+
+    assigns = assigns |> assign(:rest, rest) |> assign(:describedby, describedby)
+
+    ~H"""
+    <fieldset
+      id={@id}
+      class={[
+        "switch-group",
+        "switch-group--#{@orientation}",
+        "disabled:[&_.switch]:opacity-50",
+        @class
+      ]}
+      disabled={@disabled}
+      aria-describedby={if @describedby != "", do: @describedby}
+      data-slot="switch-group"
+      data-orientation={@orientation}
+      {@rest}
+    >
+      <legend :if={@label} class="label">{@label}</legend>
+      <div class="switch-group__items" data-slot="switch-group-items">
+        {render_slot(@inner_block)}
+      </div>
+      <p :if={@description} id={"#{@id}-description"} class="description">{@description}</p>
+    </fieldset>
     """
   end
 
@@ -870,6 +958,93 @@ defmodule HeroUI do
     if is_nil(value), do: nil, else: (value - min) / (max - min) * 100
   end
 
+  @doc "A scrollable region with fading edges that reflect its scroll position."
+  attr(:id, :string, default: nil)
+  attr(:orientation, :string, default: "vertical", values: ~w(vertical horizontal))
+  attr(:size, :integer, default: 40)
+  attr(:offset, :integer, default: 0)
+  attr(:hide_scrollbar, :boolean, default: false)
+  attr(:enabled, :boolean, default: true)
+  attr(:visibility, :string, default: "auto", values: ~w(auto both top bottom left right none))
+  attr(:on_visibility_change, :string, default: nil)
+  attr(:target, :any, default: nil)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def scroll_shadow(assigns) do
+    if !is_integer(assigns.size) || assigns.size < 0 || !is_integer(assigns.offset) ||
+         assigns.offset < 0,
+       do: raise(ArgumentError, "scroll shadow size and offset must be non-negative integers")
+
+    auto = assigns.enabled && assigns.visibility == "auto"
+    visibility = if assigns.enabled, do: assigns.visibility, else: "none"
+
+    style =
+      [
+        assigns.size != 40 && "--scroll-shadow-size: #{assigns.size}px",
+        assigns.offset != 0 && "--scroll-shadow-offset: #{assigns.offset}px"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join("; ")
+
+    assigns =
+      assigns
+      |> assign(:auto, auto)
+      |> assign(:effective_visibility, visibility)
+      |> assign(:variable_style, if(style == "", do: nil, else: style))
+
+    ~H"""
+    <div
+      id={@id}
+      class={[
+        "scroll-shadow",
+        "scroll-shadow--#{@orientation}",
+        "scroll-shadow--fade",
+        @hide_scrollbar && "scroll-shadow--hide-scrollbar",
+        @class
+      ]}
+      data-slot="scroll-shadow"
+      data-hero-scroll-shadow
+      data-orientation={@orientation}
+      data-scroll-shadow-mode={if @auto, do: "auto", else: "manual"}
+      data-scroll-shadow-size={@size}
+      data-scroll-shadow-offset={@offset}
+      data-scroll-shadow-visibility={@effective_visibility}
+      data-top-scroll={
+        if !@auto && @orientation == "vertical" && @effective_visibility == "top", do: "true"
+      }
+      data-bottom-scroll={
+        if !@auto && @orientation == "vertical" && @effective_visibility == "bottom", do: "true"
+      }
+      data-top-bottom-scroll={
+        if !@auto && @orientation == "vertical" && @effective_visibility == "both", do: "true"
+      }
+      data-left-scroll={
+        if !@auto && @orientation == "horizontal" && @effective_visibility == "left", do: "true"
+      }
+      data-right-scroll={
+        if !@auto && @orientation == "horizontal" && @effective_visibility == "right", do: "true"
+      }
+      data-left-right-scroll={
+        if !@auto && @orientation == "horizontal" && @effective_visibility == "both", do: "true"
+      }
+      {if @variable_style, do: %{style: @variable_style}, else: %{}}
+      {@rest}
+    >
+      {render_slot(@inner_block)}
+      <button
+        :if={@on_visibility_change}
+        type="button"
+        hidden
+        data-hero-scroll-shadow-event
+        phx-click={@on_visibility_change}
+        phx-target={@target}
+      ></button>
+    </div>
+    """
+  end
+
   @doc "A person or entity represented by an image or fallback initials."
   attr(:src, :string, default: nil)
   attr(:name, :string, required: true)
@@ -906,6 +1081,99 @@ defmodule HeroUI do
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-failed"])}
       />
     </span>
+    """
+  end
+
+  @doc "A stacked or grid group of avatars with an optional overflow count."
+  attr(:size, :string, default: "md", values: ~w(sm md lg))
+  attr(:color, :string, default: "default", values: ~w(default accent success warning danger))
+  attr(:variant, :string, default: "default", values: ~w(default soft))
+  attr(:max, :integer, default: nil)
+  attr(:grid, :boolean, default: false)
+  attr(:overlap, :string, default: "clip", values: ~w(clip ring))
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+
+  slot :avatar do
+    attr(:name, :string, required: true)
+    attr(:src, :string)
+    attr(:fallback, :string)
+    attr(:size, :string)
+    attr(:color, :string)
+    attr(:variant, :string)
+    attr(:class, :any)
+  end
+
+  slot :count do
+    attr(:label, :string, required: true)
+    attr(:size, :string)
+    attr(:color, :string)
+    attr(:variant, :string)
+    attr(:class, :any)
+  end
+
+  def avatar_group(assigns) do
+    if !is_nil(assigns.max) && (!is_integer(assigns.max) || assigns.max < 0),
+      do: raise(ArgumentError, "avatar group max must be a non-negative integer")
+
+    if length(assigns.count) > 1,
+      do: raise(ArgumentError, "avatar group accepts at most one count slot")
+
+    {visible, hidden} = Enum.split(assigns.avatar, assigns.max || length(assigns.avatar))
+
+    assigns =
+      assigns
+      |> assign(:visible, visible)
+      |> assign(:hidden_count, length(hidden))
+      |> assign(:count_slot, List.first(assigns.count))
+
+    ~H"""
+    <div
+      class={[
+        "avatar-group",
+        @grid && "avatar-group--grid",
+        !@grid && "avatar-group--#{@overlap}",
+        @class
+      ]}
+      data-slot="avatar-group"
+      {@rest}
+    >
+      <.avatar
+        :for={person <- @visible}
+        name={person.name}
+        src={Map.get(person, :src)}
+        fallback={Map.get(person, :fallback)}
+        size={Map.get(person, :size) || @size}
+        color={Map.get(person, :color) || @color}
+        variant={Map.get(person, :variant) || @variant}
+        class={Map.get(person, :class)}
+      />
+      <span
+        :if={@count_slot || @hidden_count > 0}
+        class={[
+          "avatar",
+          "avatar-group__count",
+          "avatar--#{(@count_slot && Map.get(@count_slot, :size)) || @size}",
+          ((@count_slot && Map.get(@count_slot, :variant)) || @variant) == "soft" && "avatar--soft",
+          @count_slot && Map.get(@count_slot, :class)
+        ]}
+        role="img"
+        aria-label={if @count_slot, do: @count_slot.label, else: "#{@hidden_count} more"}
+        data-slot="avatar-group-count"
+      >
+        <span
+          class={[
+            "avatar__fallback",
+            "avatar__fallback--#{(@count_slot && Map.get(@count_slot, :color)) || @color}"
+          ]}
+          aria-hidden="true"
+        ><%= if @count_slot do %>
+          {render_slot(@count_slot)}
+        <% else %>
+          +{@hidden_count}
+        <% end %></span>
+      </span>
+    </div>
     """
   end
 
@@ -1079,6 +1347,201 @@ defmodule HeroUI do
     </div>
     """
   end
+
+  @doc "An editable hex color or numeric color channel with HeroUI input styling."
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:id, :string, default: nil)
+  attr(:name, :string, default: nil)
+  attr(:value, :any, default: nil)
+  attr(:label, :string, required: true)
+  attr(:description, :string, default: nil)
+  attr(:errors, :list, default: [])
+
+  attr(:channel, :string,
+    default: "hex",
+    values: ~w(hex red green blue hue saturation lightness brightness alpha)
+  )
+
+  attr(:allow_alpha, :boolean, default: false)
+  attr(:show_swatch, :boolean, default: nil)
+  attr(:swatch_color, :string, default: nil)
+  attr(:placeholder, :string, default: nil)
+  attr(:min, :any, default: nil)
+  attr(:max, :any, default: nil)
+  attr(:step, :any, default: nil)
+  attr(:variant, :string, default: "primary", values: ~w(primary secondary))
+  attr(:disabled, :boolean, default: false)
+  attr(:read_only, :boolean, default: false)
+  attr(:required, :boolean, default: false)
+  attr(:full_width, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global, include: ~w(autocomplete autofocus form))
+  slot(:prefix)
+  slot(:suffix)
+
+  def color_field(assigns) do
+    field = assigns.field
+    id = assigns.id || (field && field.id)
+    if is_nil(id), do: raise(ArgumentError, "color_field requires an id or field")
+    value = if is_nil(assigns.value) && field, do: field.value, else: assigns.value
+
+    normalized =
+      if assigns.channel == "hex", do: normalize_color_field(value, assigns.allow_alpha)
+
+    value = normalized || value
+    preview_color = assigns.swatch_color || normalized || "#E4E4E7"
+    preview_color = safe_swatch_color(preview_color)
+    {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
+    {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+    {autocomplete, rest} = Map.pop(rest, :autocomplete)
+    {autocomplete_string, rest} = Map.pop(rest, "autocomplete")
+
+    describedby =
+      [
+        external_description,
+        external_description_string,
+        assigns.errors == [] && assigns.description && "#{id}-description",
+        assigns.errors != [] && "#{id}-errors"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join(" ")
+
+    channel_max =
+      case assigns.channel do
+        channel when channel in ~w(red green blue) -> 255
+        "hue" -> 360
+        _ -> 100
+      end
+
+    show_swatch =
+      if is_nil(assigns.show_swatch), do: assigns.channel == "hex", else: assigns.show_swatch
+
+    assigns =
+      assigns
+      |> assign(:show_swatch, show_swatch)
+      |> assign(:id, id)
+      |> assign(:name, assigns.name || (field && field.name))
+      |> assign(:value, value)
+      |> assign(:preview_color, preview_color)
+      |> assign(:rest, rest)
+      |> assign(:autocomplete, autocomplete || autocomplete_string || "off")
+      |> assign(:describedby, describedby)
+      |> assign(:channel_max, channel_max)
+
+    ~H"""
+    <div
+      id={"#{@id}-color-field"}
+      class={["color-field", @full_width && "color-field--full-width", @class]}
+      data-slot="color-field"
+      data-hero-color-field
+      data-channel={@channel}
+      data-allow-alpha={to_string(@allow_alpha)}
+      data-preview-color={@preview_color}
+      data-preview-override={to_string(!is_nil(@swatch_color))}
+      data-invalid={if @errors != [], do: "true"}
+      data-disabled={if @disabled, do: "true"}
+      data-required={if @required, do: "true"}
+    >
+      <label class="label" data-slot="label" for={@id}>{@label}</label>
+      <div
+        class={[
+          "color-input-group",
+          "color-input-group--#{@variant}",
+          @full_width && "color-input-group--full-width"
+        ]}
+        role="presentation"
+        data-slot="color-input-group"
+        data-invalid={if @errors != [], do: "true"}
+        data-disabled={if @disabled, do: "true"}
+      >
+        <div
+          :if={@prefix != [] || @show_swatch}
+          class="color-input-group__prefix"
+          data-slot="color-input-group-prefix"
+        >
+          <%= if @prefix != [] do %>
+            {render_slot(@prefix)}
+          <% else %>
+            <span id={"#{@id}-color-preview"} data-hero-color-preview phx-update="ignore">
+              <.color_swatch
+                color={@preview_color}
+                label={"Color preview: #{@preview_color}"}
+                size="xs"
+              />
+            </span>
+          <% end %>
+        </div>
+        <input
+          id={@id}
+          name={@name}
+          type={if @channel == "hex", do: "text", else: "number"}
+          value={@value}
+          class="color-input-group__input"
+          data-slot="color-input-group-input"
+          data-hero-color-input
+          autocomplete={@autocomplete}
+          autocorrect="off"
+          spellcheck="false"
+          inputmode={if @channel == "hex", do: "text", else: "numeric"}
+          placeholder={@placeholder}
+          disabled={@disabled}
+          readonly={@read_only}
+          required={@required}
+          pattern={
+            if @channel == "hex",
+              do:
+                if(@allow_alpha,
+                  do: "#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})",
+                  else: "#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})"
+                )
+          }
+          min={if @channel != "hex", do: @min || 0}
+          max={if @channel != "hex", do: @max || @channel_max}
+          step={if @channel != "hex", do: @step || 1}
+          aria-invalid={if @errors != [], do: "true"}
+          aria-describedby={if @describedby != "", do: @describedby}
+          {@rest}
+        />
+        <div
+          :if={@suffix != []}
+          class="color-input-group__suffix"
+          data-slot="color-input-group-suffix"
+        >
+          {render_slot(@suffix)}
+        </div>
+      </div>
+      <p :if={@description} id={"#{@id}-description"} class="description" data-slot="description">
+        {@description}
+      </p>
+      <div
+        :if={@errors != []}
+        id={"#{@id}-errors"}
+        class="field-error"
+        data-visible="true"
+        data-slot="field-error"
+      >
+        <p :for={error <- @errors}>{error}</p>
+      </div>
+    </div>
+    """
+  end
+
+  defp normalize_color_field(value, allow_alpha) when is_binary(value) do
+    value = String.trim(value)
+    hex = if String.starts_with?(value, "#"), do: String.slice(value, 1..-1//1), else: value
+    allowed = if allow_alpha, do: [3, 4, 6, 8], else: [3, 6]
+
+    if byte_size(hex) in allowed && Regex.match?(~r/\A[0-9a-fA-F]+\z/, hex) do
+      hex =
+        if byte_size(hex) in [3, 4],
+          do: hex |> String.graphemes() |> Enum.map_join(&(&1 <> &1)),
+          else: hex
+
+      "#" <> String.upcase(hex)
+    end
+  end
+
+  defp normalize_color_field(_, _), do: nil
 
   @doc "A color preview with HeroUI sizes, shapes, and transparency pattern."
   attr(:color, :string, required: true)
@@ -1325,7 +1788,7 @@ defmodule HeroUI do
       tabindex="-1"
       phx-update="ignore"
     >
-      <ol data-hero-toast-list style="display:contents"></ol>
+      <ol data-hero-toast-list class="contents"></ol>
     </div>
     """
   end
@@ -1473,6 +1936,164 @@ defmodule HeroUI do
     </div>
     """
   end
+
+  @doc "A segmented time field backed by a native time input."
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:id, :string, default: nil)
+  attr(:name, :string, default: nil)
+  attr(:value, :any, default: nil)
+  attr(:label, :string, required: true)
+  attr(:description, :string, default: nil)
+  attr(:errors, :list, default: [])
+  attr(:min, :any, default: nil)
+  attr(:max, :any, default: nil)
+  attr(:locale, :string, default: nil)
+  attr(:hour_cycle, :integer, default: nil, values: [nil, 12, 24])
+  attr(:granularity, :string, default: "minute", values: ~w(hour minute second))
+  attr(:variant, :string, default: "primary", values: ~w(primary secondary))
+  attr(:disabled, :boolean, default: false)
+  attr(:read_only, :boolean, default: false)
+  attr(:required, :boolean, default: false)
+  attr(:full_width, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global, include: ~w(autocomplete autofocus form))
+  slot(:prefix)
+  slot(:suffix)
+
+  def time_field(assigns) do
+    field = assigns.field
+    id = assigns.id || (field && field.id)
+    if is_nil(id), do: raise(ArgumentError, "time_field requires an id or field")
+    value = if is_nil(assigns.value) && field, do: field.value, else: assigns.value
+    min = time_field_bound!(assigns.min)
+    max = time_field_bound!(assigns.max)
+
+    if min && max && Time.compare(min, max) == :gt,
+      do: raise(ArgumentError, "time_field min must not exceed max")
+
+    {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
+    {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+
+    describedby =
+      [
+        external_description,
+        external_description_string,
+        assigns.description && "#{id}-description",
+        assigns.errors != [] && "#{id}-errors"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join(" ")
+
+    assigns =
+      assigns
+      |> assign(:id, id)
+      |> assign(:name, assigns.name || (field && field.name))
+      |> assign(:value, if(match?(%Time{}, value), do: Time.to_iso8601(value), else: value))
+      |> assign(:min, min && Time.to_iso8601(min))
+      |> assign(:max, max && Time.to_iso8601(max))
+      |> assign(:step, %{"hour" => 3600, "minute" => 60, "second" => 1}[assigns.granularity])
+      |> assign(:rest, rest)
+      |> assign(:describedby, describedby)
+
+    ~H"""
+    <div
+      id={"#{@id}-time-field"}
+      class={["time-field", @full_width && "time-field--full-width", @class]}
+      data-slot="time-field"
+      data-hero-time-field
+      data-locale={@locale}
+      data-hour-cycle={@hour_cycle}
+      data-granularity={@granularity}
+      data-variant={@variant}
+      data-invalid={if @errors != [], do: "true"}
+      data-disabled={if @disabled, do: "true"}
+      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-enhanced"])}
+    >
+      <label id={"#{@id}-label"} class="label" data-slot="label" for={@id}>{@label}</label>
+      <input
+        id={@id}
+        name={@name}
+        type="time"
+        value={@value}
+        min={@min}
+        max={@max}
+        step={@step}
+        class={[
+          "input",
+          "input--#{@variant}",
+          @full_width && "input--full-width",
+          "aria-hidden:pointer-events-none aria-hidden:absolute aria-hidden:size-px aria-hidden:opacity-0"
+        ]}
+        disabled={@disabled}
+        readonly={@read_only}
+        required={@required}
+        aria-invalid={if @errors != [], do: "true"}
+        aria-describedby={if @describedby != "", do: @describedby}
+        data-hero-time-native
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
+        {@rest}
+      />
+      <div id={"#{@id}-time-enhanced"} data-hero-time-ui phx-update="ignore" hidden>
+        <div
+          class={[
+            "date-input-group",
+            "date-input-group--#{@variant}",
+            @full_width && "date-input-group--full-width"
+          ]}
+          data-slot="date-input-group"
+          data-hero-time-group
+          role="group"
+          aria-labelledby={"#{@id}-label"}
+        >
+          <span
+            :if={@prefix != []}
+            class="date-input-group__prefix"
+            data-slot="date-input-group-prefix"
+          >{render_slot(@prefix)}</span>
+          <div
+            class="date-input-group__input"
+            data-slot="date-input-group-input"
+            data-hero-time-segments
+          >
+          </div>
+          <span
+            :if={@suffix != []}
+            class="date-input-group__suffix"
+            data-slot="date-input-group-suffix"
+          >{render_slot(@suffix)}</span>
+        </div>
+        <p
+          id={"#{@id}-native-error"}
+          class="field-error"
+          data-visible="true"
+          data-hero-time-error
+          hidden
+        >
+        </p>
+      </div>
+      <p :if={@description} id={"#{@id}-description"} class="description" data-slot="description">
+        {@description}
+      </p>
+      <div :if={@errors != []} id={"#{@id}-errors"} class="field-error" data-visible="true">
+        <p :for={error <- @errors}>{error}</p>
+      </div>
+    </div>
+    """
+  end
+
+  defp time_field_bound!(nil), do: nil
+  defp time_field_bound!(%Time{} = time), do: time
+
+  defp time_field_bound!(value) when is_binary(value) do
+    value = if Regex.match?(~r/\A\d{2}:\d{2}\z/, value), do: value <> ":00", else: value
+
+    case Time.from_iso8601(value) do
+      {:ok, time} -> time
+      _ -> raise ArgumentError, "time_field bounds must be ISO 8601 times"
+    end
+  end
+
+  defp time_field_bound!(_), do: raise(ArgumentError, "time_field bounds must be ISO 8601 times")
 
   @doc "A segmented date field with a calendar popover."
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -1923,6 +2544,272 @@ defmodule HeroUI do
 
   defp calendar_value(value), do: calendar_iso(value)
 
+  @doc "A select with a searchable popover, backed by a native form control."
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:id, :string, default: nil)
+  attr(:name, :string, default: nil)
+  attr(:value, :any, default: nil)
+  attr(:label, :string, required: true)
+  attr(:options, :list, required: true)
+  attr(:placeholder, :string, default: "Select an item")
+  attr(:search_placeholder, :string, default: "Search...")
+  attr(:empty_message, :string, default: "No matching options")
+  attr(:description, :string, default: nil)
+  attr(:errors, :list, default: [])
+  attr(:variant, :string, default: "primary", values: ~w(primary secondary))
+  attr(:selection_mode, :string, default: "single", values: ~w(single multiple))
+  attr(:disabled, :boolean, default: false)
+  attr(:required, :boolean, default: false)
+  attr(:clearable, :boolean, default: false)
+  attr(:allows_empty_collection, :boolean, default: false)
+  attr(:full_width, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global, include: ~w(form))
+
+  def autocomplete(assigns) do
+    field = assigns.field
+    id = assigns.id || (field && field.id)
+    if is_nil(id), do: raise(ArgumentError, "autocomplete requires an id or field")
+    value = if is_nil(assigns.value) && field, do: field.value, else: assigns.value
+
+    if assigns.selection_mode == "multiple" && !is_nil(value) && !is_list(value),
+      do: raise(ArgumentError, "multiple-selection autocomplete requires a list value")
+
+    name = assigns.name || (field && field.name)
+
+    name =
+      if assigns.selection_mode == "multiple" && name && !String.ends_with?(name, "[]"),
+        do: name <> "[]",
+        else: name
+
+    {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
+    {external_description_string, rest} = Map.pop(rest, "aria-describedby")
+
+    describedby =
+      [
+        external_description,
+        external_description_string,
+        assigns.description && assigns.errors == [] && "#{id}-description",
+        assigns.errors != [] && "#{id}-errors"
+      ]
+      |> Enum.filter(& &1)
+      |> Enum.join(" ")
+
+    assigns =
+      assigns
+      |> assign(:id, id)
+      |> assign(:name, name)
+      |> assign(:value, value)
+      |> assign(:rest, rest)
+      |> assign(:describedby, describedby)
+
+    ~H"""
+    <div
+      id={"#{@id}-autocomplete"}
+      class={[
+        "autocomplete",
+        "autocomplete--#{@variant}",
+        @full_width && "autocomplete--full-width",
+        @class
+      ]}
+      data-slot="autocomplete"
+      data-hero-autocomplete
+      data-variant={@variant}
+      data-full-width={to_string(@full_width)}
+      data-placeholder={@placeholder}
+      data-search-placeholder={@search_placeholder}
+      data-empty-message={@empty_message}
+      data-clearable={to_string(@clearable)}
+      data-allows-empty={to_string(@allows_empty_collection)}
+      data-invalid={if @errors != [], do: "true"}
+      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-enhanced"])}
+    >
+      <label id={"#{@id}-label"} class="label" data-slot="label" for={@id}>{@label}</label>
+      <select
+        id={@id}
+        name={@name}
+        class={[
+          "select__trigger",
+          "aria-hidden:pointer-events-none aria-hidden:absolute aria-hidden:size-px aria-hidden:opacity-0",
+          @full_width && "w-full"
+        ]}
+        multiple={@selection_mode == "multiple"}
+        disabled={@disabled}
+        required={@required}
+        aria-invalid={if @errors != [], do: "true"}
+        aria-describedby={if @describedby != "", do: @describedby}
+        data-hero-autocomplete-native
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
+        {@rest}
+      >
+        <option :if={@selection_mode == "single"} value="">{@placeholder}</option>
+        {Phoenix.HTML.Form.options_for_select(@options, @value)}
+      </select>
+      <span :if={@required} id={"#{@id}-required-hint"} class="sr-only">Required</span>
+      <div id={"#{@id}-enhanced"} data-hero-autocomplete-ui phx-update="ignore" hidden>
+        <div
+          class={["autocomplete__trigger", @full_width && "autocomplete__trigger--full-width"]}
+          data-slot="autocomplete-trigger"
+          data-hero-autocomplete-group
+          role="group"
+        >
+          <span
+            id={"#{@id}-value"}
+            class="autocomplete__value pointer-events-none"
+            data-slot="autocomplete-value"
+            data-hero-autocomplete-value
+            data-placeholder="true"
+          >{@placeholder}</span>
+          <button
+            type="button"
+            class="autocomplete__clear-button z-10"
+            data-slot="autocomplete-clear-button"
+            data-hero-autocomplete-clear
+            data-empty="true"
+            aria-label={"Clear #{@label}"}
+            hidden={!@clearable}
+          >
+            <svg
+              data-slot="autocomplete-clear-button-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+              fill="none"
+            ><path
+              d="M4 4l8 8M12 4l-8 8"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            /></svg>
+          </button>
+          <button
+            type="button"
+            class="absolute inset-0 rounded-[inherit]"
+            data-hero-autocomplete-trigger
+            aria-labelledby={"#{@id}-label #{@id}-value"}
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls={"#{@id}-listbox"}
+          >
+            <svg
+              class="autocomplete__indicator"
+              data-slot="autocomplete-default-indicator"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+              fill="none"
+            ><path
+              d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06"
+              fill="currentColor"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            /></svg>
+          </button>
+        </div>
+        <div
+          id={"#{@id}-popup"}
+          class="autocomplete__popover fixed m-0 max-h-[calc(100dvh-1rem)] max-w-[calc(100vw-1rem)] border-0 [inset:auto] [&:not(:popover-open)]:hidden"
+          data-slot="autocomplete-popover"
+          data-hero-autocomplete-popup
+          popover="auto"
+          role="dialog"
+          aria-labelledby={"#{@id}-label"}
+          tabindex="-1"
+        >
+          <div class="autocomplete__filter flex min-h-0 flex-col" data-slot="autocomplete-filter">
+            <div
+              class="search-field search-field--secondary"
+              data-slot="search-field"
+              data-hero-autocomplete-search-field
+              data-empty="true"
+            >
+              <div class="search-field__group" data-slot="search-field-group">
+                <svg
+                  class="search-field__search-icon"
+                  data-slot="search-field-search-icon"
+                  aria-hidden="true"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                ><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5" /><path
+                  d="m10.5 10.5 3 3"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                /></svg>
+                <input
+                  type="search"
+                  class="search-field__input"
+                  data-slot="search-field-input"
+                  data-hero-autocomplete-search
+                  placeholder={@search_placeholder}
+                  aria-label={"Search #{@label}"}
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-expanded="false"
+                  aria-controls={"#{@id}-listbox"}
+                  autocomplete="off"
+                />
+                <button
+                  type="button"
+                  class="close-button close-button--default search-field__clear-button"
+                  data-slot="search-field-clear-button"
+                  data-hero-autocomplete-search-clear
+                  slot="clear"
+                  aria-label="Clear search"
+                  tabindex="-1"
+                >
+                  <svg
+                    data-slot="close-button-icon"
+                    aria-hidden="true"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  ><path
+                    d="M4 4l8 8M12 4l-8 8"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  /></svg>
+                </button>
+              </div>
+            </div>
+            <div
+              id={"#{@id}-listbox"}
+              class="list-box"
+              role="listbox"
+              data-slot="list-box"
+              data-hero-autocomplete-list
+              aria-labelledby={"#{@id}-label"}
+              aria-multiselectable={if @selection_mode == "multiple", do: "true"}
+            >
+            </div>
+            <div
+              class="empty-state"
+              data-slot="empty-state"
+              data-hero-autocomplete-empty
+              role="status"
+              hidden
+            >
+              {@empty_message}
+            </div>
+          </div>
+        </div>
+        <p
+          id={"#{@id}-native-error"}
+          class="field-error"
+          data-visible="true"
+          data-hero-autocomplete-error
+          hidden
+        >
+        </p>
+      </div>
+      <p :if={@description} id={"#{@id}-description"} class="description" data-slot="description">
+        {@description}
+      </p>
+      <div :if={@errors != []} id={"#{@id}-errors"} class="field-error" data-visible="true">
+        <p :for={error <- @errors}>{error}</p>
+      </div>
+    </div>
+    """
+  end
+
   @doc "A searchable combo box backed by a native form control."
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:id, :string, default: nil)
@@ -2300,6 +3187,176 @@ defmodule HeroUI do
         <div class="accordion__body-inner">{render_slot(@inner_block)}</div>
       </div>
     </details>
+    """
+  end
+
+  @doc "A disclosure with a native summary and optional LiveView state handling."
+  attr(:id, :string, required: true)
+  attr(:title, :string, default: nil)
+  attr(:open, :boolean, default: false)
+  attr(:controlled, :boolean, default: false)
+  attr(:disabled, :boolean, default: false)
+  attr(:name, :string, default: nil)
+  attr(:value, :string, default: nil)
+  attr(:on_toggle, :string, default: nil)
+
+  attr(:variant, :string,
+    default: "secondary",
+    values: ~w(primary secondary tertiary outline ghost danger danger-soft)
+  )
+
+  attr(:full_width, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:trigger_class, :any, default: nil)
+  attr(:content_class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:trigger)
+  slot(:inner_block, required: true)
+
+  def disclosure(assigns) do
+    if is_nil(assigns.title) && assigns.trigger == [],
+      do: raise(ArgumentError, "disclosure requires a title or trigger slot")
+
+    ~H"""
+    <details
+      id={@id}
+      class={[
+        "disclosure",
+        "hui-disclosure",
+        "[&[open]:not([data-hero-closing=true])_[data-slot=disclosure-indicator]]:-rotate-180",
+        @class
+      ]}
+      data-slot="disclosure"
+      data-hero-disclosure
+      data-disabled={if @disabled, do: "true"}
+      data-expanded={if @open, do: "true"}
+      open={@open}
+      name={@name}
+      phx-mounted={if !@controlled, do: Phoenix.LiveView.JS.ignore_attributes(["open"])}
+      {@rest}
+    >
+      <summary
+        id={"#{@id}-trigger"}
+        class={[
+          "disclosure__trigger",
+          "inline-flex list-none [&::-webkit-details-marker]:hidden",
+          "button",
+          "button--md",
+          "button--#{@variant}",
+          @full_width && "button--full-width",
+          @disabled && "pointer-events-none cursor-not-allowed opacity-50",
+          @trigger_class
+        ]}
+        data-slot="disclosure-trigger"
+        data-hero-disclosure-trigger
+        aria-controls={"#{@id}-content"}
+        aria-disabled={if @disabled, do: "true"}
+        tabindex={if @disabled, do: "-1"}
+        phx-click={if !@disabled, do: @on_toggle}
+        phx-value-key={@value || @id}
+        phx-value-expanded={to_string(!@open)}
+      >
+        <span class="hui-disclosure-label flex-1 text-start"><%= if @trigger != [] do %>
+          {render_slot(@trigger)}
+        <% else %>
+          {@title}
+        <% end %></span>
+        <svg
+          class="disclosure__indicator"
+          data-slot="disclosure-indicator"
+          aria-hidden="true"
+          viewBox="0 0 16 16"
+          fill="none"
+        >
+          <path
+            d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06"
+            fill="currentColor"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </summary>
+      <div
+        id={"#{@id}-content"}
+        class={["disclosure__content", "h-auto opacity-100", @content_class]}
+        data-slot="disclosure-content"
+        data-hero-disclosure-content
+        role="group"
+        aria-labelledby={"#{@id}-trigger"}
+      >
+        <div class="disclosure__body" data-slot="disclosure-body">
+          <div class="disclosure__body-inner">{render_slot(@inner_block)}</div>
+        </div>
+      </div>
+    </details>
+    """
+  end
+
+  @doc "A group of disclosures with single or multiple expanded items."
+  attr(:id, :string, required: true)
+  attr(:expanded_keys, :list, default: nil)
+  attr(:default_expanded_keys, :list, default: [])
+  attr(:allows_multiple_expanded, :boolean, default: false)
+  attr(:disabled, :boolean, default: false)
+  attr(:on_toggle, :string, default: nil)
+
+  attr(:variant, :string,
+    default: "secondary",
+    values: ~w(primary secondary tertiary outline ghost danger danger-soft)
+  )
+
+  attr(:class, :any, default: nil)
+  attr(:trigger_class, :any, default: nil)
+  attr(:rest, :global)
+
+  slot :item, required: true do
+    attr(:key, :string, required: true)
+    attr(:title, :string, required: true)
+    attr(:disabled, :boolean)
+  end
+
+  def disclosure_group(assigns) do
+    keys = Enum.map(assigns.item, & &1.key)
+
+    if length(keys) != length(Enum.uniq(keys)),
+      do: raise(ArgumentError, "disclosure keys must be unique")
+
+    expanded = assigns.expanded_keys || assigns.default_expanded_keys
+
+    if !assigns.allows_multiple_expanded && length(Enum.uniq(expanded)) > 1,
+      do: raise(ArgumentError, "single disclosure groups allow at most one expanded key")
+
+    assigns =
+      assigns
+      |> assign(:expanded, MapSet.new(expanded))
+      |> assign(:controlled, !is_nil(assigns.expanded_keys))
+
+    ~H"""
+    <div
+      id={@id}
+      class={["disclosure-group", @class]}
+      data-slot="disclosure-group"
+      data-hero-disclosure-group
+      data-allows-multiple-expanded={to_string(@allows_multiple_expanded)}
+      {@rest}
+    >
+      <.disclosure
+        :for={item <- @item}
+        id={"#{@id}-#{Base.url_encode64(item.key, padding: false)}"}
+        title={item.title}
+        value={item.key}
+        open={MapSet.member?(@expanded, item.key)}
+        controlled={@controlled}
+        name={if !@allows_multiple_expanded, do: "#{@id}-disclosure-group"}
+        disabled={@disabled || Map.get(item, :disabled, false)}
+        on_toggle={@on_toggle}
+        variant={@variant}
+        full_width
+        trigger_class={@trigger_class}
+      >
+        {render_slot(item)}
+      </.disclosure>
+    </div>
     """
   end
 
@@ -3138,6 +4195,39 @@ defmodule HeroUI do
     |> Enum.reverse()
   end
 
+  @doc "A toolbar of related controls with orientation-aware keyboard navigation."
+  attr(:id, :string, default: nil)
+  attr(:label, :string, default: nil)
+  attr(:orientation, :string, default: "horizontal", values: ~w(horizontal vertical))
+  attr(:attached, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def toolbar(assigns) do
+    if is_nil(assigns.label) && !Map.has_key?(assigns.rest, :"aria-label") &&
+         !Map.has_key?(assigns.rest, "aria-label") &&
+         !Map.has_key?(assigns.rest, :"aria-labelledby") &&
+         !Map.has_key?(assigns.rest, "aria-labelledby"),
+       do: raise(ArgumentError, "toolbar requires a label or aria-labelledby")
+
+    ~H"""
+    <div
+      id={@id}
+      role="toolbar"
+      aria-label={@label}
+      aria-orientation={@orientation}
+      class={["toolbar", "toolbar--#{@orientation}", @attached && "toolbar--attached", @class]}
+      data-slot="toolbar"
+      data-hero-toolbar
+      data-orientation={@orientation}
+      {@rest}
+    >
+      {render_slot(@inner_block)}
+    </div>
+    """
+  end
+
   @doc "Groups adjacent buttons using HeroUI's attached button styles."
   attr(:label, :string, default: nil)
   attr(:orientation, :string, default: "horizontal", values: ~w(horizontal vertical))
@@ -3447,7 +4537,7 @@ defmodule HeroUI do
           phx-value-value={tag.value}
           phx-target={@target}
         >
-          <div role="gridcell" style="display:contents">
+          <div role="gridcell" class="contents">
             <%= if Map.get(tag, :inner_block) do %>
               {render_slot(tag)}
             <% else %>

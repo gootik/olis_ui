@@ -50,11 +50,11 @@ export function installDateField(root = document) {
     const {native, segments} = parts(field), state = states.get(field), active = document.activeElement?.dataset.heroDateSegment;
     segments.replaceChildren();
     for (const part of formatParts(field)) {
-      const span = document.createElement('span'); span.className = 'date-input-group__segment'; span.dataset.slot = 'date-input-group-segment';
+      const span = document.createElement('span'); span.className = 'date-input-group__segment caret-transparent'; span.dataset.slot = 'date-input-group-segment';
       if (['year', 'month', 'day'].includes(part.type)) {
         span.dataset.type = part.type; span.dataset.heroDateSegment = part.type; span.setAttribute('role', 'spinbutton');
         span.id = `${native.id}-${part.type}`; span.setAttribute('aria-label', part.type); span.setAttribute('aria-labelledby', `${span.id} ${native.id}-label`);
-        span.setAttribute('inputmode', 'numeric'); span.setAttribute('enterkeyhint', 'next'); span.setAttribute('spellcheck', 'false'); span.setAttribute('autocorrect', 'off'); span.style.caretColor = 'transparent';
+        span.setAttribute('inputmode', 'numeric'); span.setAttribute('enterkeyhint', 'next'); span.setAttribute('spellcheck', 'false'); span.setAttribute('autocorrect', 'off');
       } else { span.dataset.type = 'literal'; span.setAttribute('aria-hidden', 'true'); span.textContent = part.value; }
       segments.appendChild(span);
     }

@@ -72,7 +72,7 @@ export function installToast(root = document) {
     const region=selectedRegion(detail); if (!region) return;
     const state=stateFor(region), id=String(detail.id ?? `toast-${Date.now()}-${++nextToastId}`), previous=state.items.find(item=>item.id===id && !item.exiting);
     if (previous) { update({...detail,id}); return; }
-    const li=node('li'); li.style.display='contents'; const el=node('div','toast'); el.dataset.slot='toast'; el.dataset.heroToast=''; el.setAttribute('role','alertdialog'); el.setAttribute('aria-modal','false'); li.appendChild(el);
+    const li=node('li','contents'); const el=node('div','toast'); el.dataset.slot='toast'; el.dataset.heroToast=''; el.setAttribute('role','alertdialog'); el.setAttribute('aria-modal','false'); li.appendChild(el);
     const item={id,uid:`${region.id}-toast-${++serial}`,li,el,data:{...detail},state,remaining:null,timer:null,exiting:false}; itemContent(item); state.items.unshift(item); region.querySelector('[data-hero-toast-list]').prepend(li);
     const timeout=Number(detail.timeout ?? region.dataset.timeout); item.remaining=Number.isFinite(timeout) && timeout > 0 ? timeout : null;
     el.dataset.entering='true'; layout(state); requestAnimationFrame(() => requestAnimationFrame(() => { if (el.isConnected) delete el.dataset.entering; })); startItem(state,item);

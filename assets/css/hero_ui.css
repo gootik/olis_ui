@@ -1,3 +1,11 @@
+/* Match the explicit theme used by HeroUI's color tokens. */
+@custom-variant dark {
+  &:is(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+    &::before, &::after { @slot; }
+  }
+}
+
 /* Theme tokens can be overridden on :root or any subtree. */
 :root {
   --hui-background: #fff; --hui-foreground: #11181c; --hui-surface: #fff;
@@ -263,3 +271,23 @@ dialog.hui-native-drawer[data-placement="bottom"][open] { inset:auto 0 0; width:
 .hui-swatch-picker__option:has(input:checked) .color-swatch-picker__indicator > * { transform:scale(1) translateZ(0); }
 .hui-swatch-picker__option:has(input:focus-visible) { outline:2px solid var(--focus); outline-offset:2px; }
 .hui-swatch-picker__option:has(input:disabled) { opacity:.5; cursor:not-allowed; }
+.color-input-group:has(.color-input-group__input:disabled) { opacity:.5; }
+.color-input-group__input[type="number"] { appearance:textfield; -moz-appearance:textfield; }
+.color-input-group__input[type="number"]::-webkit-inner-spin-button,
+.color-input-group__input[type="number"]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+
+/* Swatches can be nested inside inline wrappers, including color field prefixes. */
+.color-swatch { display:inline-block; }
+.color-input-group__prefix [data-hero-color-preview] { display:flex; }
+
+.color-input-group__input { min-width:0; }
+
+/* HeroUI groups place separators between adjacent buttons. */
+.button-group--horizontal > .button + .button::before,
+.toggle-button-group--horizontal:not(.toggle-button-group--detached) > .toggle-button + .toggle-button::before {
+  content:""; position:absolute; pointer-events:none; inset-inline-start:-1px; top:25%; width:1px; height:50%; border-radius:2px; background:currentColor; opacity:.15;
+}
+.button-group--vertical > .button + .button::before,
+.toggle-button-group--vertical:not(.toggle-button-group--detached) > .toggle-button + .toggle-button::before {
+  content:""; position:absolute; pointer-events:none; inset-inline-start:25%; top:-1px; width:50%; height:1px; border-radius:2px; background:currentColor; opacity:.15;
+}

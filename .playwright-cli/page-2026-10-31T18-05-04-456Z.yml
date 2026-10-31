@@ -1,0 +1,1495 @@
+- generic [ref=f34e1]:
+  - link:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic: Pro
+    - generic:
+      - generic: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic:
+    - generic:
+      - complementary:
+        - generic:
+          - generic:
+            - paragraph: Overview
+            - link:
+              - /url: /en/docs/react/components
+              - text: All Components (React)
+            - paragraph: Components
+            - link:
+              - /url: /en/docs/react/components/accordion
+              - text: Accordion
+            - link:
+              - /url: /en/docs/react/components/alert
+              - text: Alert
+            - link:
+              - /url: /en/docs/react/components/alert-dialog
+              - text: AlertDialog
+            - link:
+              - /url: /en/docs/react/components/autocomplete
+              - text: Autocomplete
+            - link:
+              - /url: /en/docs/react/components/avatar
+              - text: Avatar
+            - link:
+              - /url: /en/docs/react/components/avatar-group
+              - generic: New
+              - text: AvatarGroup
+            - link:
+              - /url: /en/docs/react/components/badge
+              - text: Badge
+            - link:
+              - /url: /en/docs/react/components/breadcrumbs
+              - text: Breadcrumbs
+            - link:
+              - /url: /en/docs/react/components/button
+              - text: Button
+            - link:
+              - /url: /en/docs/react/components/button-group
+              - text: ButtonGroup
+            - link:
+              - /url: /en/docs/react/components/calendar
+              - generic: Updated
+              - text: Calendar
+            - link:
+              - /url: /en/docs/react/components/card
+              - text: Card
+            - link:
+              - /url: /en/docs/react/components/checkbox
+              - generic: Updated
+              - text: Checkbox
+            - link:
+              - /url: /en/docs/react/components/checkbox-group
+              - generic: Updated
+              - text: CheckboxGroup
+            - link:
+              - /url: /en/docs/react/components/chip
+              - text: Chip
+            - link:
+              - /url: /en/docs/react/components/close-button
+              - text: CloseButton
+            - link:
+              - /url: /en/docs/react/components/color-area
+              - text: ColorArea
+            - link:
+              - /url: /en/docs/react/components/color-field
+              - text: ColorField
+            - link:
+              - /url: /en/docs/react/components/color-picker
+              - text: ColorPicker
+            - link:
+              - /url: /en/docs/react/components/color-slider
+              - text: ColorSlider
+            - link:
+              - /url: /en/docs/react/components/color-swatch
+              - text: ColorSwatch
+            - link:
+              - /url: /en/docs/react/components/color-swatch-picker
+              - text: ColorSwatchPicker
+            - link:
+              - /url: /en/docs/react/components/combo-box
+              - generic: New
+              - text: ComboBox
+            - link:
+              - /url: /en/docs/react/components/date-field
+              - text: DateField
+            - link:
+              - /url: /en/docs/react/components/date-picker
+              - text: DatePicker
+            - link:
+              - /url: /en/docs/react/components/date-range-picker
+              - text: DateRangePicker
+            - link:
+              - /url: /en/docs/react/components/description
+              - text: Description
+            - link:
+              - /url: /en/docs/react/components/disclosure
+              - text: Disclosure
+            - link:
+              - /url: /en/docs/react/components/disclosure-group
+              - text: DisclosureGroup
+            - link:
+              - /url: /en/docs/react/components/drawer
+              - text: Drawer
+            - link:
+              - /url: /en/docs/react/components/dropdown
+              - text: Dropdown
+            - link:
+              - /url: /en/docs/react/components/error-message
+              - text: ErrorMessage
+            - link:
+              - /url: /en/docs/react/components/field-error
+              - text: FieldError
+            - link:
+              - /url: /en/docs/react/components/fieldset
+              - text: Fieldset
+            - link:
+              - /url: /en/docs/react/components/form
+              - text: Form
+            - link:
+              - /url: /en/docs/react/components/input
+              - text: Input
+            - link:
+              - /url: /en/docs/react/components/input-group
+              - text: InputGroup
+            - link:
+              - /url: /en/docs/react/components/input-otp
+              - text: InputOTP
+            - link:
+              - /url: /en/docs/react/components/kbd
+              - text: Kbd
+            - link:
+              - /url: /en/docs/react/components/label
+              - text: Label
+            - link:
+              - /url: /en/docs/react/components/link
+              - text: Link
+            - link:
+              - /url: /en/docs/react/components/list-box
+              - text: ListBox
+            - link:
+              - /url: /en/docs/react/components/meter
+              - text: Meter
+            - link:
+              - /url: /en/docs/react/components/modal
+              - text: Modal
+            - link:
+              - /url: /en/docs/react/components/number-field
+              - text: NumberField
+            - link:
+              - /url: /en/docs/react/components/pagination
+              - text: Pagination
+            - link:
+              - /url: /en/docs/react/components/popover
+              - text: Popover
+            - link:
+              - /url: /en/docs/react/components/progress-bar
+              - text: ProgressBar
+            - link:
+              - /url: /en/docs/react/components/progress-circle
+              - text: ProgressCircle
+            - link:
+              - /url: /en/docs/react/components/radio-group
+              - generic: Updated
+              - text: RadioGroup
+            - link:
+              - /url: /en/docs/react/components/range-calendar
+              - text: RangeCalendar
+            - link:
+              - /url: /en/docs/react/components/scroll-shadow
+              - text: ScrollShadow
+            - link:
+              - /url: /en/docs/react/components/search-field
+              - text: SearchField
+            - link:
+              - /url: /en/docs/react/components/select
+              - text: Select
+            - link:
+              - /url: /en/docs/react/components/separator
+              - text: Separator
+            - link:
+              - /url: /en/docs/react/components/sheet
+              - generic: New
+              - text: Sheet
+            - link:
+              - /url: /en/docs/react/components/skeleton
+              - text: Skeleton
+            - link:
+              - /url: /en/docs/react/components/slider
+              - text: Slider
+            - link:
+              - /url: /en/docs/react/components/spinner
+              - text: Spinner
+            - link:
+              - /url: /en/docs/react/components/surface
+              - text: Surface
+            - link:
+              - /url: /en/docs/react/components/switch
+              - generic: Updated
+              - text: Switch
+            - link:
+              - /url: /en/docs/react/components/table
+              - generic: Updated
+              - text: Table
+            - link:
+              - /url: /en/docs/react/components/tabs
+              - generic: New
+              - text: Tabs
+            - link:
+              - /url: /en/docs/react/components/tag-group
+              - text: TagGroup
+            - link:
+              - /url: /en/docs/react/components/text-area
+              - text: TextArea
+            - link:
+              - /url: /en/docs/react/components/text-field
+              - text: TextField
+            - link:
+              - /url: /en/docs/react/components/time-field
+              - text: TimeField
+            - link:
+              - /url: /en/docs/react/components/toast
+              - generic: Updated
+              - text: Toast
+            - link:
+              - /url: /en/docs/react/components/toggle-button
+              - text: ToggleButton
+            - link:
+              - /url: /en/docs/react/components/toggle-button-group
+              - text: ToggleButtonGroup
+            - link:
+              - /url: /en/docs/react/components/toolbar
+              - text: Toolbar
+            - link:
+              - /url: /en/docs/react/components/tooltip
+              - generic: Updated
+              - text: Tooltip
+            - link:
+              - /url: /en/docs/react/components/typography
+              - text: Typography
+    - banner:
+      - generic:
+        - generic:
+          - generic:
+            - link:
+              - /url: /
+              - generic: HeroUI
+            - button:
+              - generic: v3.2.7
+        - button:
+          - text: Search
+          - generic:
+            - generic: ⌘
+            - generic: K
+        - generic:
+          - generic:
+            - generic:
+              - button
+            - button:
+              - button:
+                - generic: Theme
+            - link:
+              - /url: https://github.com/heroui-inc/heroui
+              - generic: 31.1k
+          - generic:
+            - button
+            - generic:
+              - button
+              - button
+              - button
+      - generic:
+        - link:
+          - /url: /en/docs/react/getting-started
+          - generic: Getting Started
+        - link:
+          - /url: /en/docs/react/components
+          - generic: Components
+        - link:
+          - /url: /en/docs/react/releases
+          - generic: Releases
+        - link:
+          - /url: /en/docs/react/migration
+          - generic: Migration
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - tablist:
+                  - tab [selected]: Web
+                  - tab: Native
+    - article:
+      - generic:
+        - generic:
+          - heading [level=1]: Autocomplete
+          - generic:
+            - group:
+              - button: Copy Markdown
+              - button
+        - paragraph: An autocomplete combines a select with filtering, allowing users to search and select from a list of options
+        - generic:
+          - link:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-pickers-autocomplete--docs
+            - text: Storybook
+          - link:
+            - /url: https://react-aria.adobe.com/Select
+            - text: React Aria
+          - link:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/autocomplete/autocomplete.tsx
+            - text: Source
+          - link:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/autocomplete.css
+            - text: Styles source
+      - generic:
+        - heading [level=2]:
+          - link:
+            - /url: "#usage"
+            - text: Usage
+          - button:
+            - generic: Copy Anchor Link
+        - figure:
+          - generic:
+            - button
+          - region:
+            - generic:
+              - code:
+                - generic: "import { Autocomplete, useFilter } from \"@heroui/react\";"
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: States to Visit
+                - group:
+                  - generic: Select states
+                - generic [aria-hidden]:
+                  - generic:
+                    - listbox:
+                      - option
+                      - option: Florida
+                      - option: Delaware
+                      - option: California
+                      - option: Texas
+                      - option: New York
+                      - option: Washington
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - figure:
+                      - generic:
+                        - button
+                      - region:
+                        - generic:
+                          - code:
+                            - generic: "\"use client\";"
+                            - generic: "import type {Key} from \"@heroui/react\";"
+                            - generic: "import {"
+                  - button: Expand code
+        - heading [level=2]:
+          - link:
+            - /url: "#anatomy"
+            - text: Anatomy
+          - button:
+            - generic: Copy Anchor Link
+        - figure:
+          - generic:
+            - button
+          - region:
+            - generic:
+              - code:
+                - generic: "import {Autocomplete, Label, Description, SearchField, ListBox} from \"@heroui/react\";"
+                - generic: export default () => (
+                - generic: <Autocomplete>
+                - generic: <Label />
+                - generic: <Autocomplete.Trigger>
+                - generic: <Autocomplete.Value />
+                - generic: <Autocomplete.ClearButton />
+                - generic: <Autocomplete.Indicator />
+                - generic: </Autocomplete.Trigger>
+                - generic: <Description />
+                - generic: <Autocomplete.Popover>
+                - generic: <Autocomplete.Filter>
+                - generic: <SearchField>
+                - generic: <SearchField.Group>
+                - generic: <SearchField.SearchIcon />
+                - generic: <SearchField.Input />
+                - generic: </SearchField.Group>
+                - generic: </SearchField>
+                - generic: <ListBox>
+                - generic: <ListBox.Item>
+                - generic: <Label />
+                - generic: <ListBox.ItemIndicator />
+                - generic: </ListBox.Item>
+                - generic: </ListBox>
+                - generic: </Autocomplete.Filter>
+                - generic: </Autocomplete.Popover>
+                - generic: </Autocomplete>
+                - generic: );
+        - heading [level=2]:
+          - link:
+            - /url: "#examples"
+            - text: Examples
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#variants"
+            - text: Variants
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph: "The Autocomplete component supports two visual variants:"
+        - list:
+          - listitem:
+            - strong:
+              - code: primary
+            - text: (default) - Standard styling with shadow, suitable for most use cases
+          - listitem:
+            - strong:
+              - code: secondary
+            - text: "- Lower emphasis variant without shadow, suitable for use in Surface components"
+        - heading [level=3]:
+          - link:
+            - /url: "#full-width"
+            - text: Full Width
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#with-description"
+            - text: With Description
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#required"
+            - text: Required
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#disabled"
+            - text: Disabled
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#with-disabled-options"
+            - text: With Disabled Options
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#allows-empty-collection"
+            - text: Allows Empty Collection
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph:
+          - text: The
+          - code: allowsEmptyCollection
+          - text: prop enables the autocomplete to function even when there are no items in the collection. This is useful for scenarios where the list might be empty initially or when all items are filtered out.
+        - heading [level=3]:
+          - link:
+            - /url: "#with-sections"
+            - text: With Sections
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#multiple-select"
+            - text: Multiple Select
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - generic:
+            - generic:
+              - paragraph:
+                - text: In multiple mode, a bare
+                - code: <Autocomplete.Value />
+                - text: renders a copy of each selected item's
+                - code: ListBox.Item
+                - text: children in the trigger, joined with locale-aware separators. Text-only items read as plain text, but visual content such as checkboxes or avatars appears once per selected item, and render function children are always called with
+                - code: "isSelected: false"
+                - text: .
+        - paragraph:
+          - text: To display selected values as plain text, use the
+          - code: selectedText
+          - text: render prop, which joins the
+          - code: textValue
+          - text: "of each selected item:"
+        - figure:
+          - generic:
+            - button
+          - region:
+            - generic:
+              - code:
+                - generic: <Autocomplete.Value>
+                - generic: "{({isPlaceholder, defaultChildren, selectedText}) =>"
+                - generic: "isPlaceholder ? defaultChildren : selectedText"
+                - generic: "}"
+                - generic: </Autocomplete.Value>
+        - paragraph:
+          - text: For richer layouts such as removable tags, render your own content from
+          - code: state.selectedItems
+          - text: as shown in the example above.
+        - heading [level=3]:
+          - link:
+            - /url: "#controlled"
+            - text: Controlled
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#controlled-multiple"
+            - text: Controlled Multiple
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#controlled-open-state"
+            - text: Controlled Open State
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#asynchronous-filtering"
+            - text: Asynchronous Filtering
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#custom-indicator"
+            - text: Custom Indicator
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#custom-value"
+            - text: Custom Value
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph: "You can customize the displayed value using render props:"
+        - heading [level=3]:
+          - link:
+            - /url: "#in-surface"
+            - text: In Surface
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph:
+          - text: When used inside a
+          - link:
+            - /url: /en/docs/react/components/surface
+            - text: Surface
+          - text: component, use
+          - code: variant="secondary"
+          - text: to apply the lower emphasis variant suitable for surface backgrounds.
+        - heading [level=3]:
+          - link:
+            - /url: "#virtualization"
+            - text: Virtualization
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph:
+          - text: Autocomplete supports virtualization through
+          - link:
+            - /url: https://react-aria.adobe.com/Virtualizer
+            - text: Virtualizer
+          - text: ", enabling efficient rendering of large datasets by displaying only the rows visible within the viewport."
+        - heading [level=2]:
+          - link:
+            - /url: "#advanced-examples"
+            - text: Advanced Examples
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#user-selection"
+            - text: User Selection
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#user-selection-multiple"
+            - text: User Selection Multiple
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#location-search"
+            - text: Location Search
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#tag-group-selection"
+            - text: Tag Group Selection
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#email-recipients"
+            - text: Email Recipients
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=2]:
+          - link:
+            - /url: "#customization"
+            - text: Customization
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#tailwind-css"
+            - text: Tailwind CSS
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#global-css"
+            - text: Global CSS
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph:
+          - text: To customize the Autocomplete component classes, you can use the
+          - code: "@layer components"
+          - text: directive.
+        - paragraph:
+          - link:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+            - text: Learn more
+          - text: .
+        - figure:
+          - generic:
+            - button
+          - region:
+            - generic:
+              - code:
+                - generic: "@layer components {"
+                - generic: ".autocomplete {"
+                - generic: "@apply flex flex-col gap-1;"
+                - generic: "}"
+                - generic: ".autocomplete__trigger {"
+                - generic: "@apply rounded-lg border border-border bg-surface p-2;"
+                - generic: "}"
+                - generic: ".autocomplete__value {"
+                - generic: "@apply text-current;"
+                - generic: "}"
+                - generic: ".autocomplete__clear-button {"
+                - generic: "@apply text-muted hover:text-foreground;"
+                - generic: "}"
+                - generic: ".autocomplete__indicator {"
+                - generic: "@apply text-muted;"
+                - generic: "}"
+                - generic: ".autocomplete__popover {"
+                - generic: "@apply rounded-lg border border-border bg-surface p-2;"
+                - generic: "}"
+                - generic: "}"
+        - heading [level=2]:
+          - link:
+            - /url: "#styling-reference"
+            - text: Styling Reference
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph:
+          - text: HeroUI follows the
+          - link:
+            - /url: https://getbem.com/
+            - text: BEM
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3]:
+          - link:
+            - /url: "#css-classes"
+            - text: CSS Classes
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph:
+          - text: The Autocomplete component uses these CSS classes (
+          - link:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/autocomplete.css
+            - text: View source styles
+          - text: "):"
+        - heading [level=4]:
+          - link:
+            - /url: "#base-classes-toc"
+            - text: Base Classes
+          - button:
+            - generic: Copy Anchor Link
+        - list:
+          - listitem:
+            - code: .autocomplete
+            - text: "- Base autocomplete container"
+          - listitem:
+            - code: .autocomplete__trigger
+            - text: "- The button that triggers the autocomplete"
+          - listitem:
+            - code: .autocomplete__value
+            - text: "- The displayed value or placeholder"
+          - listitem:
+            - code: .autocomplete__clear-button
+            - text: "- The clear button that removes the selected value"
+          - listitem:
+            - code: .autocomplete__indicator
+            - text: "- The dropdown indicator icon"
+          - listitem:
+            - code: .autocomplete__popover
+            - text: "- The popover container"
+          - listitem:
+            - code: .autocomplete__filter
+            - text: "- The filter wrapper"
+        - heading [level=4]:
+          - link:
+            - /url: "#variant-classes-toc"
+            - text: Variant Classes
+          - button:
+            - generic: Copy Anchor Link
+        - list:
+          - listitem:
+            - code: .autocomplete--primary
+            - text: "- Primary variant with shadow (default)"
+          - listitem:
+            - code: .autocomplete--secondary
+            - text: "- Secondary variant without shadow, suitable for use in surfaces"
+        - heading [level=4]:
+          - link:
+            - /url: "#state-classes-toc"
+            - text: State Classes
+          - button:
+            - generic: Copy Anchor Link
+        - list:
+          - listitem:
+            - code: .autocomplete[data-invalid="true"]
+            - text: "- Invalid state"
+          - listitem:
+            - code: .autocomplete__trigger[data-focus-visible="true"]
+            - text: "- Focused trigger state"
+          - listitem:
+            - code: .autocomplete__trigger[data-disabled="true"]
+            - text: "- Disabled trigger state"
+          - listitem:
+            - code: .autocomplete__value[data-placeholder="true"]
+            - text: "- Placeholder state"
+          - listitem:
+            - code: .autocomplete__clear-button[data-empty="true"]
+            - text: "- Clear button hidden when no selection"
+          - listitem:
+            - code: .autocomplete__indicator[data-open="true"]
+            - text: "- Open indicator state"
+        - heading [level=3]:
+          - link:
+            - /url: "#interactive-states"
+            - text: Interactive States
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list:
+          - listitem:
+            - strong: Hover
+            - text: ":"
+            - code: :hover
+            - text: or
+            - code: "[data-hovered=\"true\"]"
+            - text: on trigger
+          - listitem:
+            - strong: Focus
+            - text: ":"
+            - code: :focus-visible
+            - text: or
+            - code: "[data-focus-visible=\"true\"]"
+            - text: on trigger
+          - listitem:
+            - strong: Disabled
+            - text: ":"
+            - code: :disabled
+            - text: or
+            - code: "[data-disabled=\"true\"]"
+            - text: on autocomplete
+          - listitem:
+            - strong: Open
+            - text: ":"
+            - code: "[data-open=\"true\"]"
+            - text: on indicator
+        - heading [level=2]:
+          - link:
+            - /url: "#api-reference"
+            - text: API Reference
+          - button:
+            - generic: Copy Anchor Link
+        - heading [level=3]:
+          - link:
+            - /url: "#autocomplete"
+            - text: Autocomplete
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: placeholder
+                - cell:
+                  - code: string
+                - cell:
+                  - code: "'Select an item'"
+                - cell: Temporary text that occupies the autocomplete when it is empty
+              - row:
+                - cell:
+                  - code: selectionMode
+                - cell:
+                  - code: "\"single\" | \"multiple\""
+                - cell:
+                  - code: "\"single\""
+                - cell: Whether single or multiple selection is enabled
+              - row:
+                - cell:
+                  - code: allowsEmptyCollection
+                - cell:
+                  - code: boolean
+                - cell:
+                  - code: "false"
+                - cell: Whether the autocomplete allows an empty collection. When true, the autocomplete can function even with no items.
+              - row:
+                - cell:
+                  - code: isOpen
+                - cell:
+                  - code: boolean
+                - cell: "-"
+                - cell: Sets the open state of the popover (controlled)
+              - row:
+                - cell:
+                  - code: defaultOpen
+                - cell:
+                  - code: boolean
+                - cell: "-"
+                - cell: Sets the default open state of the popover (uncontrolled)
+              - row:
+                - cell:
+                  - code: onOpenChange
+                - cell:
+                  - code: "(isOpen: boolean) => void"
+                - cell: "-"
+                - cell: Handler called when the open state changes
+              - row:
+                - cell:
+                  - code: disabledKeys
+                - cell:
+                  - code: Iterable<Key>
+                - cell: "-"
+                - cell: Keys of disabled items
+              - row:
+                - cell:
+                  - code: isDisabled
+                - cell:
+                  - code: boolean
+                - cell: "-"
+                - cell: Whether the autocomplete is disabled
+              - row:
+                - cell:
+                  - code: value
+                - cell:
+                  - code: Key | Key[] | null
+                - cell: "-"
+                - cell: Current value (controlled)
+              - row:
+                - cell:
+                  - code: defaultValue
+                - cell:
+                  - code: Key | Key[] | null
+                - cell: "-"
+                - cell: Default value (uncontrolled)
+              - row:
+                - cell:
+                  - code: onChange
+                - cell:
+                  - code: "(value: Key | Key[] | null) => void"
+                - cell: "-"
+                - cell: Handler called when the value changes
+              - row:
+                - cell:
+                  - code: isRequired
+                - cell:
+                  - code: boolean
+                - cell: "-"
+                - cell: Whether user input is required
+              - row:
+                - cell:
+                  - code: isInvalid
+                - cell:
+                  - code: boolean
+                - cell: "-"
+                - cell: Whether the autocomplete value is invalid
+              - row:
+                - cell:
+                  - code: name
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: The name of the input, used when submitting an HTML form
+              - row:
+                - cell:
+                  - code: fullWidth
+                - cell:
+                  - code: boolean
+                - cell:
+                  - code: "false"
+                - cell: Whether the autocomplete should take full width of its container
+              - row:
+                - cell:
+                  - code: variant
+                - cell:
+                  - code: "\"primary\" | \"secondary\""
+                - cell:
+                  - code: "\"primary\""
+                - cell:
+                  - text: Visual variant of the component.
+                  - code: primary
+                  - text: is the default style with shadow.
+                  - code: secondary
+                  - text: is a lower emphasis variant without shadow, suitable for use in surfaces.
+              - row:
+                - cell:
+                  - code: className
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: Additional CSS classes
+              - row:
+                - cell:
+                  - code: children
+                - cell:
+                  - code: ReactNode | RenderFunction
+                - cell: "-"
+                - cell: Autocomplete content or render function
+        - heading [level=3]:
+          - link:
+            - /url: "#autocompletetrigger"
+            - text: Autocomplete.Trigger
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: className
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: Additional CSS classes
+              - row:
+                - cell:
+                  - code: children
+                - cell:
+                  - code: ReactNode | RenderFunction
+                - cell: "-"
+                - cell: Trigger content or render function
+        - heading [level=3]:
+          - link:
+            - /url: "#autocompletevalue"
+            - text: Autocomplete.Value
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: className
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: Additional CSS classes
+              - row:
+                - cell:
+                  - code: children
+                - cell:
+                  - code: ReactNode | RenderFunction
+                - cell: "-"
+                - cell: Value content or render function
+        - heading [level=3]:
+          - link:
+            - /url: "#autocompleteindicator"
+            - text: Autocomplete.Indicator
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: className
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: Additional CSS classes
+              - row:
+                - cell:
+                  - code: children
+                - cell:
+                  - code: ReactNode
+                - cell: "-"
+                - cell: Custom indicator content
+        - heading [level=3]:
+          - link:
+            - /url: "#autocompleteclearbutton"
+            - text: Autocomplete.ClearButton
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: className
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: Additional CSS classes
+              - row:
+                - cell:
+                  - code: onClick
+                - cell:
+                  - code: "(e: MouseEvent) => void"
+                - cell: "-"
+                - cell: Handler called when button is clicked
+              - row:
+                - cell:
+                  - code: ref
+                - cell:
+                  - code: RefObject<HTMLButtonElement>
+                - cell: "-"
+                - cell: Ref to the clear button element
+        - heading [level=3]:
+          - link:
+            - /url: "#autocompletepopover"
+            - text: Autocomplete.Popover
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: placement
+                - cell:
+                  - code: "\"bottom\" | \"bottom left\" | \"bottom right\" | \"bottom start\" | \"bottom end\" | \"top\" | \"top left\" | \"top right\" | \"top start\" | \"top end\" | \"left\" | \"left top\" | \"left bottom\" | \"start\" | \"start top\" | \"start bottom\" | \"right\" | \"right top\" | \"right bottom\" | \"end\" | \"end top\" | \"end bottom\""
+                - cell:
+                  - code: "\"bottom\""
+                - cell: Placement of the popover relative to the trigger
+              - row:
+                - cell:
+                  - code: className
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: Additional CSS classes
+              - row:
+                - cell:
+                  - code: children
+                - cell:
+                  - code: ReactNode
+                - cell: "-"
+                - cell: Content children
+        - heading [level=3]:
+          - link:
+            - /url: "#autocompletefilter"
+            - text: Autocomplete.Filter
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: filter
+                - cell:
+                  - code: "(text: string, input: string) => boolean"
+                - cell: "-"
+                - cell: Custom filter function
+              - row:
+                - cell:
+                  - code: inputValue
+                - cell:
+                  - code: string
+                - cell: "-"
+                - cell: Controlled input value
+              - row:
+                - cell:
+                  - code: onInputChange
+                - cell:
+                  - code: "(value: string) => void"
+                - cell: "-"
+                - cell: Handler called when input value changes
+              - row:
+                - cell:
+                  - code: children
+                - cell:
+                  - code: ReactNode
+                - cell: "-"
+                - cell: Filter content (SearchField and ListBox)
+        - heading [level=3]:
+          - link:
+            - /url: "#usefilter-hook"
+            - text: useFilter Hook
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph:
+          - text: The
+          - code: useFilter
+          - text: hook from React Aria provides filtering functions for autocomplete functionality.
+        - figure:
+          - generic:
+            - button
+          - region:
+            - generic:
+              - code:
+                - generic: "import {useFilter} from \"@heroui/react\";"
+                - generic: "const {contains} = useFilter({sensitivity: \"base\"});"
+                - generic: "<Autocomplete.Filter filter={contains}>"
+                - generic: <SearchField>...</SearchField>
+                - generic: <ListBox>...</ListBox>
+                - generic: </Autocomplete.Filter>
+        - paragraph:
+          - strong: "Options:"
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Option
+                - columnheader: Type
+                - columnheader: Default
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: sensitivity
+                - cell:
+                  - code: "\"base\" | \"accent\" | \"case\" | \"variant\""
+                - cell:
+                  - code: "\"base\""
+                - cell: Locale sensitivity for matching
+        - paragraph:
+          - strong: "Returns:"
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Function
+                - columnheader: Type
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: contains
+                - cell:
+                  - code: "(string: string, substring: string) => boolean"
+                - cell: Returns whether a string contains a given substring
+              - row:
+                - cell:
+                  - code: startsWith
+                - cell:
+                  - code: "(string: string, substring: string) => boolean"
+                - cell: Returns whether a string starts with a given substring
+              - row:
+                - cell:
+                  - code: endsWith
+                - cell:
+                  - code: "(string: string, substring: string) => boolean"
+                - cell: Returns whether a string ends with a given substring
+        - heading [level=3]:
+          - link:
+            - /url: "#render-props"
+            - text: Render Props
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph: "When using render functions with Autocomplete.Value, these values are provided:"
+        - generic:
+          - table:
+            - rowgroup:
+              - row:
+                - columnheader: Prop
+                - columnheader: Type
+                - columnheader: Description
+            - rowgroup:
+              - row:
+                - cell:
+                  - code: defaultChildren
+                - cell:
+                  - code: ReactNode
+                - cell: The default rendered value. In multiple mode this is a copy of each selected item's children joined with locale-aware separators
+              - row:
+                - cell:
+                  - code: isPlaceholder
+                - cell:
+                  - code: boolean
+                - cell: Whether the value is a placeholder
+              - row:
+                - cell:
+                  - code: state
+                - cell:
+                  - code: SelectState
+                - cell:
+                  - text: The state of the autocomplete. Use
+                  - code: state.selectedItems
+                  - text: for the selected collection nodes
+              - row:
+                - cell:
+                  - code: selectedItems
+                - cell:
+                  - code: (T | null)[]
+                - cell: The values of the currently selected items
+              - row:
+                - cell:
+                  - code: selectedText
+                - cell:
+                  - code: string
+                - cell:
+                  - text: The
+                  - code: textValue
+                  - text: of the selected items joined with locale-aware separators
+        - heading [level=2]:
+          - link:
+            - /url: "#accessibility"
+            - text: Accessibility
+          - button:
+            - generic: Copy Anchor Link
+        - paragraph: "The Autocomplete component implements the ARIA select pattern with filtering and provides:"
+        - list:
+          - listitem: Full keyboard navigation support
+          - listitem: Screen reader announcements for selection changes
+          - listitem: Proper focus management
+          - listitem: Support for disabled states
+          - listitem: Search functionality with filtering
+          - listitem: HTML form integration
+        - paragraph:
+          - text: For more information, see the
+          - link:
+            - /url: https://react-spectrum.adobe.com/react-aria/Select.html
+            - text: React Aria Select documentation
+          - text: .
+        - heading [level=2]:
+          - link:
+            - /url: "#related-components"
+            - text: Related Components
+          - button:
+            - generic: Copy Anchor Link
+        - generic:
+          - generic:
+            - generic:
+              - link:
+                - /url: /en/docs/components/list-box
+                - generic: Listbox
+          - generic:
+            - generic:
+              - link:
+                - /url: /en/docs/components/popover
+                - generic: Popover
+          - generic:
+            - generic:
+              - link:
+                - /url: /en/docs/components/input
+                - generic: Input
+      - generic:
+        - link:
+          - /url: /en/docs/react/components/alert-dialog
+          - generic:
+            - paragraph: AlertDialog
+          - paragraph: Modal dialog for critical confirmations requiring user attention and explicit action
+        - link:
+          - /url: /en/docs/react/components/avatar
+          - generic:
+            - paragraph: Avatar
+          - paragraph: Display user profile images with customizable fallback content
+    - generic:
+      - heading [level=3]: On this page
+      - generic:
+        - generic:
+          - generic:
+            - link:
+              - /url: "#usage"
+              - text: Usage
+            - link:
+              - /url: "#anatomy"
+              - text: Anatomy
+            - link:
+              - /url: "#examples"
+              - text: Examples
+            - link:
+              - /url: "#variants"
+              - text: Variants
+            - link:
+              - /url: "#full-width"
+              - text: Full Width
+            - link:
+              - /url: "#with-description"
+              - text: With Description
+            - link:
+              - /url: "#required"
+              - text: Required
+            - link:
+              - /url: "#disabled"
+              - text: Disabled
+            - link:
+              - /url: "#with-disabled-options"
+              - text: With Disabled Options
+            - link:
+              - /url: "#allows-empty-collection"
+              - text: Allows Empty Collection
+            - link:
+              - /url: "#with-sections"
+              - text: With Sections
+            - link:
+              - /url: "#multiple-select"
+              - text: Multiple Select
+            - link:
+              - /url: "#controlled"
+              - text: Controlled
+            - link:
+              - /url: "#controlled-multiple"
+              - text: Controlled Multiple
+            - link:
+              - /url: "#controlled-open-state"
+              - text: Controlled Open State
+            - link:
+              - /url: "#asynchronous-filtering"
+              - text: Asynchronous Filtering
+            - link:
+              - /url: "#custom-indicator"
+              - text: Custom Indicator
+            - link:
+              - /url: "#custom-value"
+              - text: Custom Value
+            - link:
+              - /url: "#in-surface"
+              - text: In Surface
+            - link:
+              - /url: "#virtualization"
+              - text: Virtualization
+            - link:
+              - /url: "#advanced-examples"
+              - text: Advanced Examples
+            - link:
+              - /url: "#user-selection"
+              - text: User Selection
+            - link:
+              - /url: "#user-selection-multiple"
+              - text: User Selection Multiple
+            - link:
+              - /url: "#location-search"
+              - text: Location Search
+            - link:
+              - /url: "#tag-group-selection"
+              - text: Tag Group Selection
+            - link:
+              - /url: "#email-recipients"
+              - text: Email Recipients
+            - link:
+              - /url: "#customization"
+              - text: Customization
+            - link:
+              - /url: "#tailwind-css"
+              - text: Tailwind CSS
+            - link:
+              - /url: "#global-css"
+              - text: Global CSS
+            - link:
+              - /url: "#styling-reference"
+              - text: Styling Reference
+            - link:
+              - /url: "#css-classes"
+              - text: CSS Classes
+            - link:
+              - /url: "#interactive-states"
+              - text: Interactive States
+            - link:
+              - /url: "#api-reference"
+              - text: API Reference
+            - link:
+              - /url: "#autocomplete"
+              - text: Autocomplete
+            - link:
+              - /url: "#autocompletetrigger"
+              - text: Autocomplete.Trigger
+            - link:
+              - /url: "#autocompletevalue"
+              - text: Autocomplete.Value
+            - link:
+              - /url: "#autocompleteindicator"
+              - text: Autocomplete.Indicator
+            - link:
+              - /url: "#autocompleteclearbutton"
+              - text: Autocomplete.ClearButton
+            - link:
+              - /url: "#autocompletepopover"
+              - text: Autocomplete.Popover
+            - link:
+              - /url: "#autocompletefilter"
+              - text: Autocomplete.Filter
+            - link:
+              - /url: "#usefilter-hook"
+              - text: useFilter Hook
+            - link:
+              - /url: "#render-props"
+              - text: Render Props
+            - link:
+              - /url: "#accessibility"
+              - text: Accessibility
+            - link:
+              - /url: "#related-components"
+              - text: Related Components
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic: Hero Newsletter
+              - textbox:
+                - /placeholder: name@email.com
+            - button:
+              - generic: Subscribe
+  - generic:
+    - generic: Now available
+    - button
+    - generic:
+      - generic:
+        - heading [level=3]: Build faster with HeroUI Pro
+        - paragraph: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic:
+        - button: Close
+        - link:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+          - text: Explore Pro
+  - iframe [ref=f34e1308]:
+    - button "Open data assistant" [ref=f35e3] [cursor=pointer]
+  - alert
+  - dialog "States to Visit" [ref=f34e1311]:
+    - button "Dismiss" [ref=f34e1313]
+    - group [ref=f34e1315]:
+      - searchbox "Search options" [active] [ref=f34e1316]
+      - button "Clear search"
+    - listbox "Suggestions States to Visit" [ref=f34e1317]:
+      - option "Florida" [ref=f34e1318] [cursor=pointer]
+      - option "Delaware" [ref=f34e1322] [cursor=pointer]
+      - option "California" [ref=f34e1326] [cursor=pointer]
+      - option "Texas" [ref=f34e1330] [cursor=pointer]
+      - option "New York" [ref=f34e1334] [cursor=pointer]
+      - option "Washington" [ref=f34e1338] [cursor=pointer]
+    - button "Dismiss" [ref=f34e1343]

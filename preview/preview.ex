@@ -5,70 +5,101 @@ defmodule HeroUI.Preview do
   def page(assigns) do
     ~H"""
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en" class="scroll-smooth">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>HeroUI for LiveView — Component preview</title>
         <link rel="stylesheet" href="/hero_ui.css" />
-        <link rel="stylesheet" href="/preview.css" />
         <script>
           try { document.documentElement.dataset.theme = localStorage.getItem('preview-theme') || 'light'; } catch (_) {}
         </script>
       </head>
-      <body>
-        <header class="topbar">
-          <a class="brand" href="#top"><span class="brand-mark">✳</span>
+      <body class="m-0 bg-[#fafaf8] font-sans text-sm text-[#18191a] dark:bg-[#101112] dark:text-[#f1f2ef]">
+        <header class="topbar sticky top-0 z-[2] flex h-[72px] items-center justify-between border-b border-[#e9eae7] bg-[#fafaf8] px-[5%] dark:border-[#303230] dark:bg-[#101112] max-[520px]:h-16">
+          <a
+            class="brand flex items-center gap-[9px] text-base font-[750] tracking-[-.04em] [&>span:last-child]:font-[450] [&>span:last-child]:tracking-normal [&>span:last-child]:text-[#73767a] dark:[&>span:last-child]:text-[#a0a39e]"
+            href="#top"
+          ><span class="brand-mark grid size-[29px] place-items-center rounded-[9px] bg-[#d9f99d] text-[21px] text-[#111] dark:bg-[#9bbf5c]">✳&#xFE0E;</span>
           HeroUI <span>for LiveView</span></a>
-          <div class="top-actions">
-            <span class="version">EARLY PREVIEW</span><button
-              class="theme-toggle"
+          <div class="top-actions flex items-center gap-[22px]">
+            <span class="version text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] max-[520px]:hidden">EARLY PREVIEW</span><button
+              class="theme-toggle size-9 cursor-pointer rounded-full border border-[#e9eae7] bg-white text-[19px] text-[#18191a] dark:border-[#303230] dark:bg-[#1a1b1d] dark:text-[#f1f2ef]"
               type="button"
               id="theme-toggle"
               aria-label="Toggle color theme"
             >◐</button>
           </div>
         </header>
-        <div class="layout" id="top">
-          <aside class="sidebar">
-            <p class="nav-label">EXPLORE</p>
-            <a class="nav-current" href="#overview">Overview <span>↗</span></a>
-            <p class="nav-label">COMPONENTS</p>
+        <div
+          class="layout mx-auto grid max-w-[1440px] grid-cols-[230px_minmax(0,1fr)] max-[850px]:block"
+          id="top"
+        >
+          <aside class="sidebar border-r border-[#e9eae7] pt-[52px] pr-[26px] pb-[30px] pl-8 dark:border-[#303230] max-[850px]:hidden [&>a]:flex [&>a]:justify-between [&>a]:rounded-[9px] [&>a]:px-3 [&>a]:py-[11px] [&>a]:text-[#73767a] dark:[&>a]:text-[#a0a39e] hover:[&>a]:bg-[#f3f4f1] hover:[&>a]:font-semibold hover:[&>a]:text-[#18191a] dark:hover:[&>a]:bg-[#222421] dark:hover:[&>a]:text-[#f1f2ef]">
+            <p class="nav-label text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] mb-4 ml-3">
+              EXPLORE
+            </p>
+            <a
+              class="nav-current mb-[38px] bg-[#f3f4f1] font-semibold !text-[#18191a] dark:bg-[#222421] dark:!text-[#f1f2ef]"
+              href="#overview"
+            >Overview <span>↗</span></a>
+            <p class="nav-label text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] mb-4 ml-3">
+              COMPONENTS
+            </p>
             <a href="#buttons">Button</a><a href="#inputs">Input</a><a href="#cards">Card</a><a href="#chips">Chip</a><a href="#controls">Controls</a><a href="#feedback">Feedback</a>
-            <div class="sidebar-note">
+            <div class="sidebar-note mt-[100px] rounded-[14px] bg-[#f3f4f1] p-[18px] dark:bg-[#222421] [&>span]:mb-3.5 [&>span]:block [&>span]:text-[22px] [&>strong]:text-xs [&>p]:mb-0 [&>p]:text-xs [&>p]:leading-[1.6] [&>p]:text-[#73767a] dark:[&>p]:text-[#a0a39e]">
               <span>✦</span><strong>Built for LiveView</strong><p>
                 Familiar components, right in your HEEx templates.
               </p>
             </div>
           </aside>
-          <main>
-            <section class="intro" id="overview">
-              <div class="eyebrow"><span></span> THE COMPONENT LIBRARY</div>
+          <main class="min-w-0 px-[6%]">
+            <section
+              class="intro border-b border-[#e9eae7] pt-[82px] pb-[74px] dark:border-[#303230] max-[850px]:py-[60px] [&>h1]:my-[25px] [&>h1]:text-[clamp(48px,7vw,82px)] [&>h1]:font-[650] [&>h1]:leading-[1.02] [&>h1]:tracking-[-.065em] max-[520px]:[&>h1]:text-[51px] [&_em]:font-[450] [&_em]:not-italic [&_em]:text-[#999e95] [&>p]:max-w-[490px] [&>p]:text-base [&>p]:leading-[1.75] [&>p]:text-[#73767a] dark:[&>p]:text-[#a0a39e]"
+              id="overview"
+            >
+              <div class="eyebrow inline-flex items-center gap-2 text-[10px] font-[750] tracking-[.12em] [&>span]:size-[7px] [&>span]:rounded-full [&>span]:bg-[#83bd37]">
+                <span></span> THE COMPONENT LIBRARY
+              </div>
               <h1>Build something<br /><em>beautiful.</em></h1>
               <p>
                 A first look at HeroUI-inspired components for Phoenix LiveView. Thoughtful defaults, flexible styling, and a little less boilerplate.
               </p>
-              <div class="intro-actions">
-                <a href="#buttons" class="intro-link">Explore components <span>↘</span></a><span class="intro-caption">DESIGNED FOR THE WAY YOU BUILD</span>
+              <div class="intro-actions mt-[30px] flex items-center gap-[25px]">
+                <a
+                  href="#buttons"
+                  class="intro-link rounded-[10px] bg-[#18191a] px-[17px] py-3.5 font-semibold text-[#fafaf8] dark:bg-[#f1f2ef] dark:text-[#101112] [&>span]:ml-5"
+                >Explore components <span>↘</span></a><span class="intro-caption text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] text-[9px] max-[520px]:hidden">DESIGNED FOR THE WAY YOU BUILD</span>
               </div>
             </section>
-            <div class="section-heading">
+            <div class="section-heading flex items-end justify-between pt-[68px] pb-9 [&_h2]:mt-2.5 [&_h2]:text-4xl [&_h2]:tracking-[-.05em] [&_h2_span]:text-[#98bd66] [&>p]:m-0 [&>p]:leading-[1.6] [&>p]:text-[#73767a] dark:[&>p]:text-[#a0a39e] max-[520px]:[&>p]:hidden">
               <div>
-                <p class="overline">THE BUILDING BLOCKS</p><h2>Components <span>✳</span></h2>
+                <p class="text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">
+                  THE BUILDING BLOCKS
+                </p><h2>Components <span>✳&#xFE0E;</span></h2>
               </div><p>A growing collection of essentials.<br />Explore the first five below.</p>
             </div>
-            <section class="showcase" id="buttons">
-              <div class="showcase-title">
+            <section
+              class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+              id="buttons"
+            >
+              <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                 <div>
-                  <span class="number">01 / ACTION</span><h3>Button</h3><p>
+                  <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">01 / ACTION</span><h3>
+                    Button
+                  </h3><p>
                     Give every action the right amount of emphasis.
                   </p>
                 </div><code>&lt;.button&gt;</code>
               </div>
-              <div class="demo">
-                <div class="demo-label">VARIANTS <span>7 OPTIONS</span></div><div class="demo-row">
+              <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
+                <div class="demo-label text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] mb-5 flex justify-between text-[9px] [&>span]:font-medium">
+                  VARIANTS <span>7 OPTIONS</span>
+                </div><div class="demo-row flex flex-wrap items-center gap-2.5">
                   <.button>Primary</.button><.button variant="secondary">Secondary</.button><.button variant="tertiary">Tertiary</.button><.button variant="outline">Outline</.button><.button variant="ghost">Ghost</.button><.button variant="danger">Danger</.button><.button variant="danger-soft">Danger soft</.button>
-                </div><div class="divider"></div><div class="demo-label">SIZES & STATES</div><div class="demo-row">
+                </div><div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><div class="demo-label text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] mb-5 flex justify-between text-[9px] [&>span]:font-medium">
+                  SIZES & STATES
+                </div><div class="demo-row flex flex-wrap items-center gap-2.5">
                   <.button size="sm">Small</.button><.button>Medium</.button><.button size="lg">Large</.button><.button disabled>Disabled</.button><.button
                     icon_only
                     aria-label="Add"
@@ -76,16 +107,23 @@ defmodule HeroUI.Preview do
                 </div>
               </div>
             </section>
-            <section class="showcase" id="inputs">
-              <div class="showcase-title">
+            <section
+              class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+              id="inputs"
+            >
+              <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                 <div>
-                  <span class="number">02 / INPUT</span><h3>Input & text field</h3><p>
+                  <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">02 / INPUT</span><h3>
+                    Input & text field
+                  </h3><p>
                     Clear, accessible inputs for the details that matter.
                   </p>
                 </div><code>&lt;.text_field&gt;</code>
               </div>
-              <div class="demo">
-                <div class="demo-label">FORM FIELDS <span>LABELS & FEEDBACK</span></div><div class="fields">
+              <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
+                <div class="demo-label text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] mb-5 flex justify-between text-[9px] [&>span]:font-medium">
+                  FORM FIELDS <span>LABELS & FEEDBACK</span>
+                </div><div class="fields grid grid-cols-3 gap-[22px] max-[850px]:grid-cols-1">
                   <.text_field
                     id="preview-name"
                     label="Your name"
@@ -101,18 +139,26 @@ defmodule HeroUI.Preview do
                 </div>
               </div>
             </section>
-            <div class="two-column">
-              <section class="showcase" id="cards">
-                <div class="showcase-title">
+            <div class="two-column grid grid-cols-2 gap-[26px] max-[850px]:grid-cols-1 max-[850px]:gap-0">
+              <section
+                class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+                id="cards"
+              >
+                <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                   <div>
-                    <span class="number">03 / LAYOUT</span><h3>Card</h3><p>
+                    <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">03 / LAYOUT</span><h3>
+                      Card
+                    </h3><p>
                       A home for related content.
                     </p>
                   </div><code>&lt;.card&gt;</code>
-                </div><div class="demo card-demo">
+                </div><div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d] card-demo min-h-[245px] [&_h4]:mt-[18px] [&_h4]:mb-[7px] [&_h4]:text-base [&_p]:mb-4 [&_p]:text-xs [&_p]:leading-[1.6] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                   <.card>
-                    <div class="sample-card-top">
-                      <span class="sample-icon">✳</span><.chip color="success" variant="soft">
+                    <div class="sample-card-top flex items-center justify-between">
+                      <span class="sample-icon grid size-9 place-items-center rounded-[11px] bg-[#d9f99d] text-[21px] text-[#111] dark:bg-[#9bbf5c]">✳&#xFE0E;</span><.chip
+                        color="success"
+                        variant="soft"
+                      >
                         Active
                       </.chip>
                     </div><h4>Everything in its place.</h4><p>
@@ -121,15 +167,22 @@ defmodule HeroUI.Preview do
                   </.card>
                 </div>
               </section>
-              <section class="showcase" id="chips">
-                <div class="showcase-title">
+              <section
+                class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+                id="chips"
+              >
+                <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                   <div>
-                    <span class="number">04 / DISPLAY</span><h3>Chip</h3><p>
+                    <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">04 / DISPLAY</span><h3>
+                      Chip
+                    </h3><p>
                       Small labels, useful context.
                     </p>
                   </div><code>&lt;.chip&gt;</code>
-                </div><div class="demo chip-demo">
-                  <div class="demo-label">STATUS & CATEGORY</div><div class="demo-row">
+                </div><div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d] chip-demo min-h-[245px] [&_.demo-row]:pt-5">
+                  <div class="demo-label text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] mb-5 flex justify-between text-[9px] [&>span]:font-medium">
+                    STATUS & CATEGORY
+                  </div><div class="demo-row flex flex-wrap items-center gap-2.5">
                     <.chip>Default</.chip><.chip color="accent" variant="soft">In progress</.chip><.chip
                       color="success"
                       variant="soft"
@@ -145,16 +198,21 @@ defmodule HeroUI.Preview do
                 </div>
               </section>
             </div>
-            <section class="showcase" id="controls">
-              <div class="showcase-title">
+            <section
+              class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+              id="controls"
+            >
+              <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                 <div>
-                  <span class="number">05 / INPUT</span><h3>Checkbox & switch</h3><p>
+                  <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">05 / INPUT</span><h3>
+                    Checkbox & switch
+                  </h3><p>
                     Native controls with clear selected and disabled states.
                   </p>
                 </div><code>&lt;.checkbox&gt;</code>
               </div>
-              <div class="demo">
-                <div class="demo-row">
+              <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
+                <div class="demo-row flex flex-wrap items-center gap-2.5">
                   <.checkbox id="check-one" checked>Selected</.checkbox><.checkbox id="check-two">
                     Unselected
                   </.checkbox><.checkbox id="check-three" disabled>Disabled</.checkbox><.switch
@@ -166,47 +224,60 @@ defmodule HeroUI.Preview do
                 </div>
               </div>
             </section>
-            <section class="showcase" id="feedback">
-              <div class="showcase-title">
+            <section
+              class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+              id="feedback"
+            >
+              <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                 <div>
-                  <span class="number">06 / FEEDBACK</span><h3>Feedback & identity</h3><p>
+                  <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">06 / FEEDBACK</span><h3>
+                    Feedback & identity
+                  </h3><p>
                     Progress, loading, separators, and avatars.
                   </p>
                 </div><code>&lt;.progress_bar&gt;</code>
               </div>
-              <div class="demo">
-                <div class="demo-row">
+              <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
+                <div class="demo-row flex flex-wrap items-center gap-2.5">
                   <.avatar name="Jane Doe" size="sm" /><.avatar name="Alex Kim" /><.avatar
                     name="Morgan Lee"
                     size="lg"
                   /><.spinner size="sm" /><.spinner /><.spinner size="lg" />
-                </div><div class="divider"></div><.progress_bar label="Uploading" value={65} /><div class="divider">
-                </div>
-                <div class="demo-row">
+                </div><div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><.progress_bar
+                  label="Uploading"
+                  value={65}
+                /><div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div>
+                <div class="demo-row flex flex-wrap items-center gap-2.5">
                   <.progress_circle label="Uploading" value={65} size="sm" /><.progress_circle
                     label="Uploading"
                     value={65}
                   /><.progress_circle label="Uploading" value={65} size="lg" color="success" /><.progress_circle label="Loading" />
                 </div>
-                <div class="divider"></div><.meter
+                <div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><.meter
                   label="Storage"
                   value={42}
                   max={100}
                   value_text="42 GB of 100 GB"
-                /><div class="divider"></div><.skeleton style="height: 16px; width: 70%;" /><div style="height: 12px">
-                </div><.skeleton style="height: 16px; width: 45%;" /><div class="divider"></div><.separator />
+                /><div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><.skeleton class="h-4 w-[70%]" /><div class="h-3">
+                </div><.skeleton class="h-4 w-[45%]" /><div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]">
+                </div><.separator />
               </div>
             </section>
-            <section class="showcase" id="more-components">
-              <div class="showcase-title">
+            <section
+              class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+              id="more-components"
+            >
+              <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                 <div>
-                  <span class="number">07 / MORE PRIMITIVES</span><h3>More essentials</h3><p>
+                  <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">07 / MORE PRIMITIVES</span><h3>
+                    More essentials
+                  </h3><p>
                     Native inputs and useful building blocks.
                   </p>
                 </div><code>&lt;.radio&gt;</code>
               </div>
-              <div class="demo">
-                <div class="demo-row">
+              <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
+                <div class="demo-row flex flex-wrap items-center gap-2.5">
                   <.radio id="radio-one" name="plan" value="starter" checked>Starter</.radio><.radio
                     id="radio-two"
                     name="plan"
@@ -214,36 +285,47 @@ defmodule HeroUI.Preview do
                   >
                     Pro
                   </.radio><.kbd>⌘ K</.kbd><.ui_link href="#top">Back to top</.ui_link>
-                </div><div class="divider"></div><label for="preview-notes" class="hui-label">Notes</label><.textarea
+                </div><div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><label
+                  for="preview-notes"
+                  class="hui-label"
+                >Notes</label><.textarea
                   id="preview-notes"
                   placeholder="Add a note…"
                   rows="3"
                 />
               </div>
             </section>
-            <section class="showcase" id="more-patterns">
-              <div class="showcase-title">
+            <section
+              class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+              id="more-patterns"
+            >
+              <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                 <div>
-                  <span class="number">08 / PATTERNS</span><h3>More components</h3><p>
+                  <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">08 / PATTERNS</span><h3>
+                    More components
+                  </h3><p>
                     Selection, feedback, disclosure, and structured data.
                   </p>
                 </div>
               </div>
-              <div class="demo">
+              <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
                 <label for="preview-select" class="hui-label">Plan</label><.select
                   id="preview-select"
                   options={[{"Starter", "starter"}, {"Pro", "pro"}]}
                   value="pro"
                 />
-                <div class="divider"></div><.alert title="Your changes are saved" color="success">
+                <div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><.alert
+                  title="Your changes are saved"
+                  color="success"
+                >
                   Your workspace is up to date.
                 </.alert>
-                <div class="divider"></div><.accordion title="What is included?">
+                <div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><.accordion title="What is included?">
                   All the essentials to get started.
                 </.accordion><.accordion title="Can I change my plan?">
                   You can update your plan at any time.
                 </.accordion>
-                <div class="divider"></div><.data_table
+                <div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><.data_table
                   label="Team members"
                   rows={[
                     %{name: "Alex Kim", role: "Designer"},
@@ -258,15 +340,20 @@ defmodule HeroUI.Preview do
                 </.data_table>
               </div>
             </section>
-            <section class="showcase" id="dialogs">
-              <div class="showcase-title">
+            <section
+              class="showcase mb-[54px] scroll-mt-[95px] [&_h3]:mt-[9px] [&_h3]:mb-[7px] [&_h3]:text-[23px] [&_h3]:tracking-[-.04em] [&_code]:whitespace-nowrap [&_code]:rounded-md [&_code]:bg-[#f3f4f1] [&_code]:px-[9px] [&_code]:py-[7px] [&_code]:text-[11px] [&_code]:text-[#73767a] dark:[&_code]:bg-[#222421] dark:[&_code]:text-[#a0a39e]"
+              id="dialogs"
+            >
+              <div class="showcase-title mb-[18px] flex items-start justify-between gap-3 max-[520px]:flex-wrap [&_p]:m-0 [&_p]:leading-[1.5] [&_p]:text-[#73767a] dark:[&_p]:text-[#a0a39e]">
                 <div>
-                  <span class="number">09 / OVERLAY</span><h3>Modal</h3><p>
+                  <span class="number text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e]">09 / OVERLAY</span><h3>
+                    Modal
+                  </h3><p>
                     A focused space for a short task or message.
                   </p>
                 </div><code>&lt;.modal&gt;</code>
               </div>
-              <div class="demo">
+              <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
                 <.button data-hero-dialog-open="preview-modal">Open modal</.button><.modal
                   id="preview-modal"
                   title="Edit profile"
@@ -277,13 +364,13 @@ defmodule HeroUI.Preview do
                 </.modal>
               </div>
             </section>
-            <footer>
-              <span>✳ &nbsp; HeroUI for LiveView</span><span>AN EARLY LOOK · MADE WITH PHOENIX</span><a href="#top">Back to top ↑</a>
+            <footer class="flex justify-between gap-[15px] border-t border-[#e9eae7] pt-7 pb-10 text-[11px] text-[#73767a] dark:border-[#303230] dark:text-[#a0a39e] [&>span:first-child]:font-bold [&>span:first-child]:text-[#18191a] dark:[&>span:first-child]:text-[#f1f2ef] [&>span:nth-child(2)]:text-[9px] [&>span:nth-child(2)]:tracking-[.08em] max-[520px]:[&>span:nth-child(2)]:hidden">
+              <span>✳&#xFE0E; &nbsp; HeroUI for LiveView</span><span>AN EARLY LOOK · MADE WITH PHOENIX</span><a href="#top">Back to top ↑</a>
             </footer>
           </main>
         </div>
         <script type="module">
-          import { installHeroUI } from "/hero_ui.js";
+          import { installHeroUI } from "/hero_ui.js?v=autocomplete";
           installHeroUI();
         </script>
         <script>
@@ -312,6 +399,7 @@ defmodule HeroUI.Preview.Router do
   get "/hero_ui.css" do
     conn
     |> put_resp_content_type("text/css")
+    |> put_resp_header("cache-control", "no-store")
     |> send_resp(200, File.read!(Application.app_dir(:hero_ui, "priv/static/hero_ui.css")))
   end
 
@@ -348,6 +436,24 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "combo_box.js"])))
   end
 
+  get "/disclosure.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "disclosure.js"])))
+  end
+
+  get "/toolbar.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "toolbar.js"])))
+  end
+
+  get "/color_field.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "color_field.js"])))
+  end
+
   get "/toast.js" do
     conn
     |> put_resp_content_type("text/javascript")
@@ -366,6 +472,24 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "date_field.js"])))
   end
 
+  get "/time_field.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "time_field.js"])))
+  end
+
+  get "/scroll_shadow.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "scroll_shadow.js"])))
+  end
+
+  get "/autocomplete.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "autocomplete.js"])))
+  end
+
   get "/calendar.js" do
     conn
     |> put_resp_content_type("text/javascript")
@@ -375,6 +499,7 @@ defmodule HeroUI.Preview.Router do
   get "/hero_ui.js" do
     conn
     |> put_resp_content_type("text/javascript")
+    |> put_resp_header("cache-control", "no-store")
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "hero_ui.js"])))
   end
 
@@ -391,18 +516,6 @@ defmodule HeroUI.Preview.Router do
       200,
       File.read!(Application.app_dir(:phoenix_live_view, "priv/static/phoenix_live_view.esm.js"))
     )
-  end
-
-  get "/live-preview.css" do
-    conn
-    |> put_resp_content_type("text/css")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "preview", "live_preview.css"])))
-  end
-
-  get "/preview.css" do
-    conn
-    |> put_resp_content_type("text/css")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "preview", "preview.css"])))
   end
 
   match(_, do: send_resp(conn, 404, "Not found"))

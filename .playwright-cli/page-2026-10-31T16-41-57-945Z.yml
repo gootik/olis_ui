@@ -1,0 +1,407 @@
+- main [ref=f11e3]:
+  - navigation "Breadcrumb" [ref=f11e4]:
+    - list [ref=f11e5]:
+      - listitem [ref=f11e6]:
+        - link "Home" [ref=f11e7] [cursor=pointer]:
+          - /url: /
+      - listitem [ref=f11e10]:
+        - link "Components" [ref=f11e11] [cursor=pointer]:
+          - /url: /#buttons
+      - listitem [ref=f11e14]:
+        - generic [ref=f11e15]: Preview
+  - heading "LiveView integration preview" [level=1] [ref=f11e16]
+  - paragraph [ref=f11e17]: Open the dialog and update its content through LiveView.
+  - generic [ref=f11e18]:
+    - generic [ref=f11e19]:
+      - generic [ref=f11e20]: Search
+      - generic [ref=f11e21]:
+        - searchbox "Search" [ref=f11e22]
+        - button [disabled] [aria-hidden]
+    - paragraph [ref=f11e23]: "Query:"
+  - generic [ref=f11e24]:
+    - generic [ref=f11e25]:
+      - generic [ref=f11e26]: Event date
+      - textbox [aria-hidden]: 2026-11-10
+      - group "Event date, November 2026" [ref=f11e547]:
+        - generic [ref=f11e642]:
+          - heading "November 2026" [level=2] [ref=f11e643]
+          - button "Previous month" [ref=f11e644] [cursor=pointer]
+          - button "Next month" [ref=f11e647] [cursor=pointer]
+        - grid "Event date, November 2026" [ref=f11e650]:
+          - rowgroup [aria-hidden] [ref=f11e651]:
+            - row [ref=f11e652]:
+              - columnheader [ref=f11e653]: Sun
+              - columnheader [ref=f11e654]: Mon
+              - columnheader [ref=f11e655]: Tue
+              - columnheader [ref=f11e656]: Wed
+              - columnheader [ref=f11e657]: Thu
+              - columnheader [ref=f11e658]: Fri
+              - columnheader [ref=f11e659]: Sat
+          - rowgroup [ref=f11e660]:
+            - row [ref=f11e661]:
+              - gridcell [ref=f11e662]:
+                - button "Sunday, November 1, 2026" [ref=f11e663] [cursor=pointer]: "1"
+              - gridcell [ref=f11e664]:
+                - button "Monday, November 2, 2026" [ref=f11e665] [cursor=pointer]: "2"
+              - gridcell [ref=f11e666]:
+                - button "Tuesday, November 3, 2026" [ref=f11e667] [cursor=pointer]: "3"
+              - gridcell [ref=f11e668]:
+                - button "Wednesday, November 4, 2026" [ref=f11e669] [cursor=pointer]: "4"
+              - gridcell [ref=f11e670]:
+                - button "Thursday, November 5, 2026" [ref=f11e671] [cursor=pointer]: "5"
+              - gridcell [ref=f11e672]:
+                - button "Friday, November 6, 2026" [ref=f11e673] [cursor=pointer]: "6"
+              - gridcell [ref=f11e674]:
+                - button "Saturday, November 7, 2026" [ref=f11e675] [cursor=pointer]: "7"
+            - row [ref=f11e676]:
+              - gridcell [ref=f11e677]:
+                - button "Sunday, November 8, 2026" [ref=f11e678] [cursor=pointer]: "8"
+              - gridcell [ref=f11e679]:
+                - button "Monday, November 9, 2026" [ref=f11e680] [cursor=pointer]: "9"
+              - gridcell [selected] [ref=f11e681]:
+                - button "Tuesday, November 10, 2026, selected" [ref=f11e682] [cursor=pointer]: "10"
+              - gridcell [ref=f11e683]:
+                - button "Wednesday, November 11, 2026" [ref=f11e684] [cursor=pointer]: "11"
+              - gridcell [ref=f11e685]:
+                - button "Thursday, November 12, 2026" [ref=f11e686] [cursor=pointer]: "12"
+              - gridcell [ref=f11e687]:
+                - button "Friday, November 13, 2026" [ref=f11e688] [cursor=pointer]: "13"
+              - gridcell [ref=f11e689]:
+                - button "Saturday, November 14, 2026" [ref=f11e690] [cursor=pointer]: "14"
+            - row [ref=f11e691]:
+              - gridcell [ref=f11e692]:
+                - button "Sunday, November 15, 2026" [ref=f11e693] [cursor=pointer]: "15"
+              - gridcell [ref=f11e694]:
+                - button "Monday, November 16, 2026" [ref=f11e695] [cursor=pointer]: "16"
+              - gridcell [ref=f11e696]:
+                - button "Tuesday, November 17, 2026" [ref=f11e697] [cursor=pointer]: "17"
+              - gridcell [ref=f11e698]:
+                - button "Wednesday, November 18, 2026" [ref=f11e699] [cursor=pointer]: "18"
+              - gridcell [ref=f11e700]:
+                - button "Thursday, November 19, 2026" [ref=f11e701] [cursor=pointer]: "19"
+              - gridcell [ref=f11e702]:
+                - button "Friday, November 20, 2026" [ref=f11e703] [cursor=pointer]: "20"
+              - gridcell [ref=f11e704]:
+                - button "Saturday, November 21, 2026" [ref=f11e705] [cursor=pointer]: "21"
+            - row [ref=f11e706]:
+              - gridcell [ref=f11e707]:
+                - button "Sunday, November 22, 2026" [ref=f11e708] [cursor=pointer]: "22"
+              - gridcell [ref=f11e709]:
+                - button "Monday, November 23, 2026" [ref=f11e710] [cursor=pointer]: "23"
+              - gridcell [ref=f11e711]:
+                - button "Tuesday, November 24, 2026" [ref=f11e712] [cursor=pointer]: "24"
+              - gridcell [ref=f11e713]:
+                - button "Wednesday, November 25, 2026" [ref=f11e714] [cursor=pointer]: "25"
+              - gridcell [ref=f11e715]:
+                - button "Thursday, November 26, 2026" [ref=f11e716] [cursor=pointer]: "26"
+              - gridcell [ref=f11e717]:
+                - button "Friday, November 27, 2026" [ref=f11e718] [cursor=pointer]: "27"
+              - gridcell [ref=f11e719]:
+                - button "Saturday, November 28, 2026" [ref=f11e720] [cursor=pointer]: "28"
+            - row [ref=f11e721]:
+              - gridcell [ref=f11e722]:
+                - button "Sunday, November 29, 2026" [ref=f11e723] [cursor=pointer]: "29"
+              - gridcell [ref=f11e724]:
+                - button "Monday, November 30, 2026" [ref=f11e725] [cursor=pointer]: "30"
+              - gridcell [disabled] [ref=f11e726]:
+                - button "Tuesday, December 1, 2026" [disabled] [ref=f11e727] [cursor=pointer]: "1"
+              - gridcell [disabled] [ref=f11e728]:
+                - button "Wednesday, December 2, 2026" [disabled] [ref=f11e729] [cursor=pointer]: "2"
+              - gridcell [disabled] [ref=f11e730]:
+                - button "Thursday, December 3, 2026" [disabled] [ref=f11e731] [cursor=pointer]: "3"
+              - gridcell [disabled] [ref=f11e732]:
+                - button "Friday, December 4, 2026" [disabled] [ref=f11e733] [cursor=pointer]: "4"
+              - gridcell [disabled] [ref=f11e734]:
+                - button "Saturday, December 5, 2026" [disabled] [ref=f11e735] [cursor=pointer]: "5"
+    - button "Submit date" [ref=f11e122] [cursor=pointer]
+    - button "Set November 10" [active] [ref=f11e123] [cursor=pointer]
+    - paragraph [ref=f11e124]: "Date: 2026-11-10; Submitted: none; Changes: 2"
+  - generic [ref=f11e125]:
+    - generic [ref=f11e126]:
+      - generic [ref=f11e127]: Favorite Animals
+      - listbox [aria-hidden]:
+        - group:
+          - option: Aardvark
+          - option [selected]: Cat
+          - option: Dog
+          - option [disabled]: Kangaroo
+          - option: Panda
+        - group:
+          - option: Snake
+      - generic [ref=f11e128]:
+        - generic [ref=f11e129]:
+          - combobox "Favorite Animals" [ref=f11e130]
+          - button "Show Favorite Animals options" [ref=f11e131] [cursor=pointer]
+        - generic [aria-hidden] [ref=f11e134]: Cat
+    - button "Submit animals" [ref=f11e135] [cursor=pointer]
+    - paragraph [ref=f11e136]: "Selected: cat; Submitted: none; Changes: 0"
+  - generic [ref=f11e137]:
+    - generic [ref=f11e138]:
+      - generic [ref=f11e139]: Any animal
+      - generic [ref=f11e141]:
+        - combobox "Any animal" [ref=f11e142]: Otter
+        - button "Show Any animal options" [ref=f11e143] [cursor=pointer]
+    - button "Submit custom animal" [ref=f11e146] [cursor=pointer]
+    - button "Set Dragon" [ref=f11e147] [cursor=pointer]
+    - paragraph [ref=f11e148]: "Value: Otter; Submitted: none"
+  - generic [ref=f11e149]:
+    - generic [ref=f11e150]:
+      - generic [ref=f11e151]: Favorite Animal
+      - combobox [aria-hidden]
+      - generic [ref=f11e153]:
+        - combobox "Favorite Animal" [ref=f11e154]
+        - button "Show Favorite Animal options" [ref=f11e155] [cursor=pointer]
+    - button "Submit animal" [ref=f11e158] [cursor=pointer]
+    - paragraph [ref=f11e159]: "Selected: ; Submitted: none; Changes: 0"
+  - generic [ref=f11e160]:
+    - generic [ref=f11e161]:
+      - generic [ref=f11e162]: Set a price
+      - generic [ref=f11e163]:
+        - generic [ref=f11e164]: $
+        - spinbutton "Set a price" [ref=f11e165]: "10"
+        - generic [ref=f11e166]: USD
+      - paragraph [ref=f11e167]: What customers would pay
+    - paragraph [ref=f11e168]: "Price: 10"
+  - generic [ref=f11e169]:
+    - generic [ref=f11e170]:
+      - generic [ref=f11e171]: Feedback
+      - generic [ref=f11e172]:
+        - generic [ref=f11e173]: ✎
+        - textbox "Feedback" [ref=f11e174]
+        - button "Update" [ref=f11e176] [cursor=pointer]
+    - paragraph [ref=f11e177]: "Feedback:"
+  - generic [ref=f11e179]:
+    - generic [ref=f11e180]: Amount
+    - generic [ref=f11e181]:
+      - generic [ref=f11e182]: $
+      - spinbutton "Amount" [invalid] [ref=f11e183]: "-1"
+    - paragraph [ref=f11e185]: Amount must be positive
+  - group [ref=f11e186]:
+    - generic [ref=f11e187]:
+      - generic [ref=f11e188]: Unavailable price
+      - generic:
+        - generic: $
+        - spinbutton "Unavailable price" [disabled]: "10"
+        - generic: USD
+  - generic [ref=f11e189]:
+    - generic [ref=f11e190]:
+      - generic [ref=f11e191]: Search error
+      - generic [ref=f11e192]:
+        - searchbox "Search error" [invalid] [ref=f11e193]: x
+        - button "Clear search" [ref=f11e194] [cursor=pointer]
+      - paragraph [ref=f11e196]: Enter at least two characters
+    - generic [ref=f11e197]:
+      - text: Code error
+      - generic [ref=f11e198]:
+        - generic [ref=f11e200]:
+          - generic [ref=f11e201]: "1"
+          - generic [ref=f11e203]: "2"
+        - textbox "Code error" [invalid] [ref=f11e211]: "12"
+      - paragraph [ref=f11e213]: Enter the full code
+  - generic [ref=f11e214]:
+    - generic [ref=f11e215]: Topics
+    - grid "Topics" [ref=f11e216]:
+      - row "News" [selected] [ref=f11e217] [cursor=pointer]:
+        - gridcell [ref=f11e218]:
+          - text: News
+          - button "Remove News" [ref=f11e219]
+      - row "Travel" [ref=f11e220] [cursor=pointer]:
+        - gridcell [ref=f11e221]:
+          - text: Travel
+          - button "Remove Travel" [ref=f11e222]
+      - row "Gaming" [ref=f11e223] [cursor=pointer]:
+        - gridcell [ref=f11e224]:
+          - text: Gaming
+          - button "Remove Gaming" [ref=f11e225]
+      - row "Shopping" [ref=f11e226] [cursor=pointer]:
+        - gridcell [ref=f11e227]:
+          - text: Shopping
+          - button "Remove Shopping" [ref=f11e228]
+      - row "Disabled" [disabled]:
+        - gridcell "Disabled Remove Disabled" [disabled]:
+          - text: Disabled
+          - button "Remove Disabled" [disabled]
+    - paragraph [ref=f11e229]: Select or remove topics
+  - paragraph [ref=f11e230]: "Selected topics: news"
+  - generic [ref=f11e231]:
+    - generic [ref=f11e232]:
+      - text: Verify account
+      - paragraph [ref=f11e233]: Enter your six-digit code
+      - textbox "Verify account" [ref=f11e245]
+    - paragraph [ref=f11e246]: "Digits entered: 0"
+  - button "Open modal" [ref=f11e247] [cursor=pointer]
+  - button "Open alert dialog" [ref=f11e248] [cursor=pointer]
+  - button "Open drawer" [ref=f11e249] [cursor=pointer]
+  - button "Hover or focus" [ref=f11e251] [cursor=pointer]
+  - button "Open popover" [ref=f11e253] [cursor=pointer]
+  - button "Actions" [ref=f11e255] [cursor=pointer]
+  - generic [ref=f11e256]:
+    - img "Casey Jones" [ref=f11e257]:
+      - generic [aria-hidden] [ref=f11e258]: CJ
+    - img "Alex Kim" [ref=f11e259]:
+      - generic [aria-hidden] [ref=f11e260]: AK
+    - generic [ref=f11e261]:
+      - img "Jane Doe" [ref=f11e262]:
+        - generic [aria-hidden] [ref=f11e263]: JD
+      - generic [ref=f11e264]: "3"
+  - status [ref=f11e266]:
+    - generic [ref=f11e270]:
+      - generic [ref=f11e271]: Profile updated
+      - generic [ref=f11e272]: Your settings are saved.
+  - generic [ref=f11e273]:
+    - group "Editing actions" [ref=f11e274]:
+      - button "Copy" [ref=f11e275] [cursor=pointer]
+      - button "Paste" [ref=f11e276] [cursor=pointer]
+    - group "Text formatting" [ref=f11e277]:
+      - button "Bold" [ref=f11e278] [cursor=pointer]
+      - button "Italic" [ref=f11e279] [cursor=pointer]
+  - listbox "Workspace" [ref=f11e281]:
+    - option "Alpha" [selected] [ref=f11e282] [cursor=pointer]:
+      - generic [ref=f11e283]:
+        - generic: Alpha
+        - generic: Main workspace
+    - option "Beta" [ref=f11e287] [cursor=pointer]
+    - option "Unavailable" [disabled]
+  - paragraph [ref=f11e289]: "Workspace: alpha"
+  - paragraph [ref=f11e290]: "Bold: false; Italic: false"
+  - paragraph [ref=f11e291]: "Updates: 0"
+  - progressbar "Updates" [ref=f11e292]
+  - meter "Capacity" [ref=f11e296]:
+    - generic [ref=f11e298]: 0 of 10
+  - generic [ref=f11e300]:
+    - tablist "Account sections" [ref=f11e302]:
+      - tab "Profile" [selected] [ref=f11e303] [cursor=pointer]
+      - tab "Security" [ref=f11e305] [cursor=pointer]
+      - tab "Disabled" [disabled]
+    - tabpanel "Profile" [ref=f11e306]:
+      - paragraph [ref=f11e307]: Profile settings
+  - generic [ref=f11e308]:
+    - heading "Sortable table" [level=2] [ref=f11e309]
+    - table "People" [ref=f11e312]:
+      - rowgroup [ref=f11e313]:
+        - row [ref=f11e314]:
+          - columnheader [ref=f11e315] [cursor=pointer]:
+            - button "Name" [ref=f11e316]
+          - columnheader "Role" [ref=f11e319]
+      - rowgroup [ref=f11e320]:
+        - row [ref=f11e321]:
+          - rowheader "Alex Kim" [ref=f11e322]
+          - cell "Designer" [ref=f11e323]
+        - row [ref=f11e324]:
+          - rowheader "Jane Smith" [ref=f11e325]
+          - cell "Developer" [ref=f11e326]
+        - row [ref=f11e327]:
+          - rowheader "Morgan Lee" [ref=f11e328]
+          - cell "Engineer" [ref=f11e329]
+        - row [ref=f11e330]:
+          - rowheader "Taylor Brown" [ref=f11e331]
+          - cell "Product Manager" [ref=f11e332]
+    - navigation "Pagination" [ref=f11e333]:
+      - generic [ref=f11e334]: Page 1 of 10
+      - list [ref=f11e335]:
+        - listitem [ref=f11e336]:
+          - button "Previous" [disabled]
+        - listitem [ref=f11e337]:
+          - button "Page 1" [ref=f11e338] [cursor=pointer]: "1"
+        - listitem [ref=f11e339]:
+          - button "Page 2" [ref=f11e340] [cursor=pointer]: "2"
+        - listitem [ref=f11e341]:
+          - generic [aria-hidden] [ref=f11e342]: …
+        - listitem [ref=f11e343]:
+          - button "Page 10" [ref=f11e344] [cursor=pointer]: "10"
+        - listitem [ref=f11e345]:
+          - button "Next" [ref=f11e346] [cursor=pointer]
+    - heading "Streamed table" [level=2] [ref=f11e351]
+    - table "Streamed people" [ref=f11e354]:
+      - rowgroup [ref=f11e355]:
+        - row [ref=f11e356]:
+          - columnheader "Name" [ref=f11e357]
+          - columnheader "Role" [ref=f11e358]
+      - rowgroup [ref=f11e359]:
+        - row [ref=f11e360]:
+          - cell "Alex Kim" [ref=f11e361]
+          - cell "Designer" [ref=f11e362]
+        - row [ref=f11e363]:
+          - cell "Jane Smith" [ref=f11e364]
+          - cell "Developer" [ref=f11e365]
+        - row [ref=f11e366]:
+          - cell "Morgan Lee" [ref=f11e367]
+          - cell "Engineer" [ref=f11e368]
+        - row [ref=f11e369]:
+          - cell "Taylor Brown" [ref=f11e370]
+          - cell "Product Manager" [ref=f11e371]
+    - button "Add person" [ref=f11e372] [cursor=pointer]
+  - generic [ref=f11e373]:
+    - generic [ref=f11e375] [cursor=pointer]:
+      - checkbox "Accept terms" [ref=f11e376]
+      - generic [ref=f11e377]: Accept terms
+    - generic [ref=f11e379] [cursor=pointer]:
+      - switch "Enable alerts" [ref=f11e380]
+      - generic [ref=f11e381]: Enable alerts
+    - generic [ref=f11e382]: Plan
+    - generic [ref=f11e384]:
+      - combobox [aria-hidden]
+      - combobox "Plan" [ref=f11e386] [cursor=pointer]:
+        - generic [ref=f11e387]: Starter
+    - generic [ref=f11e390]:
+      - generic [ref=f11e391]: Volume
+      - status [ref=f11e392]: "40"
+      - slider "Volume" [ref=f11e393]: "40"
+    - generic [ref=f11e394]:
+      - generic [ref=f11e395]: Quantity
+      - generic [ref=f11e396]:
+        - button "Decrease Quantity" [ref=f11e397] [cursor=pointer]: −
+        - spinbutton "Quantity" [ref=f11e398]: "1"
+        - button "Increase Quantity" [ref=f11e399] [cursor=pointer]: +
+    - group "Delivery" [ref=f11e400]:
+      - generic [ref=f11e402]:
+        - generic [ref=f11e403] [cursor=pointer]:
+          - generic [ref=f11e404]:
+            - radio "Standard" [checked] [ref=f11e405]
+            - generic [ref=f11e406]: Standard
+          - generic [ref=f11e407]: Three to five days
+        - generic [ref=f11e409] [cursor=pointer]:
+          - radio "Express" [ref=f11e410]
+          - generic [ref=f11e411]: Express
+        - generic:
+          - generic:
+            - radio "Overnight" [disabled]
+            - generic: Overnight
+      - paragraph [ref=f11e412]: Choose a delivery speed.
+    - group "Interests" [ref=f11e413]:
+      - generic [ref=f11e415]:
+        - generic [ref=f11e416] [cursor=pointer]:
+          - generic [ref=f11e417]:
+            - checkbox "News" [checked] [ref=f11e418]
+            - generic [ref=f11e419]: News
+          - generic [ref=f11e420]: Product announcements
+        - generic [ref=f11e422] [cursor=pointer]:
+          - checkbox "Events" [ref=f11e423]
+          - generic [ref=f11e424]: Events
+        - generic:
+          - generic:
+            - checkbox "Research" [disabled]
+            - generic: Research
+      - paragraph [ref=f11e425]: Choose any topics you like.
+    - paragraph [ref=f11e426]: "Interests: news"
+    - paragraph [ref=f11e427]: "Delivery: standard"
+    - paragraph [ref=f11e428]: "Volume: 40; Quantity: 1"
+    - paragraph [ref=f11e429]: "Terms: false; Alerts: false; Plan: starter"
+  - generic [ref=f11e430]:
+    - text: Grouped plans
+    - generic [ref=f11e432]:
+      - combobox [aria-hidden]
+      - combobox "Grouped plans" [ref=f11e434] [cursor=pointer]:
+        - generic [ref=f11e435]: Starter
+    - text: Multiple choices
+    - listbox "Multiple choices" [ref=f11e440] [cursor=pointer]:
+      - option "One" [ref=f11e441]
+      - option "Two" [ref=f11e442]
+  - generic [ref=f11e443]:
+    - generic [ref=f11e444]: Required choice
+    - generic [ref=f11e446]:
+      - combobox [aria-hidden]
+      - combobox "Required choice" [ref=f11e448] [cursor=pointer]:
+        - generic [ref=f11e449]: Choose an option
+    - button "Submit choice" [ref=f11e452] [cursor=pointer]
+    - paragraph [ref=f11e453]: "Submitted: none"

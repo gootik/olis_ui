@@ -1,0 +1,36 @@
+- main [ref=f15e3]:
+  - heading "LiveView integration preview" [level=1] [ref=f15e4]
+  - paragraph [ref=f15e5]: Open the dialog and update its content through LiveView.
+  - button "Open modal" [ref=f15e6] [cursor=pointer]
+  - button "Open alert dialog" [ref=f15e7] [cursor=pointer]
+  - button "Open drawer" [ref=f15e8] [cursor=pointer]
+  - generic [ref=f15e9]:
+    - button "Actions" [expanded] [ref=f15e10] [cursor=pointer]
+    - menu "Actions" [ref=f15e45]:
+      - generic [ref=f15e46]:
+        - menuitem "Update count" [active] [ref=f15e47] [cursor=pointer]
+        - menuitem "Unavailable" [disabled] [ref=f15e48]
+        - menuitem "Open gallery" [ref=f15e49] [cursor=pointer]
+  - paragraph [ref=f15e11]: "Updates: 0"
+  - progressbar "Updates" [ref=f15e12]
+  - meter "Capacity" [ref=f15e16]:
+    - generic [ref=f15e18]: 0 of 10
+  - generic [ref=f15e20]:
+    - tablist "Account sections" [ref=f15e22]:
+      - tab "Profile" [selected] [ref=f15e23] [cursor=pointer]
+      - tab "Security" [ref=f15e25] [cursor=pointer]
+      - tab "Disabled" [disabled]
+    - tabpanel "Profile" [ref=f15e26]:
+      - paragraph [ref=f15e27]: Profile settings
+  - generic [ref=f15e28]:
+    - generic [ref=f15e30] [cursor=pointer]:
+      - checkbox "Accept terms" [ref=f15e31]
+      - generic [ref=f15e33]: Accept terms
+    - generic [ref=f15e35] [cursor=pointer]:
+      - switch "Enable alerts" [ref=f15e36]
+      - generic [ref=f15e39]: Enable alerts
+    - generic [ref=f15e40]: Plan
+    - combobox "Plan" [ref=f15e43] [cursor=pointer]:
+      - option "Starter" [selected]
+      - option "Pro"
+    - paragraph [ref=f15e44]: "Terms: false; Alerts: false; Plan: starter"

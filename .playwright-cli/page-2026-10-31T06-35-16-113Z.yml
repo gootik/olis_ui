@@ -1,0 +1,202 @@
+- main [ref=f37e3]:
+  - navigation "Breadcrumb" [ref=f37e4]:
+    - list [ref=f37e5]:
+      - listitem [ref=f37e6]:
+        - link "Home" [ref=f37e7] [cursor=pointer]:
+          - /url: /
+      - listitem [ref=f37e10]:
+        - link "Components" [ref=f37e11] [cursor=pointer]:
+          - /url: /#buttons
+      - listitem [ref=f37e14]:
+        - generic [ref=f37e15]: Preview
+  - heading "LiveView integration preview" [level=1] [ref=f37e16]
+  - paragraph [ref=f37e17]: Open the dialog and update its content through LiveView.
+  - generic [ref=f37e18]:
+    - generic [ref=f37e19]:
+      - generic [ref=f37e20]: Search
+      - generic [ref=f37e21]:
+        - searchbox "Search" [ref=f37e22]
+        - button [disabled] [aria-hidden]
+    - paragraph [ref=f37e23]: "Query:"
+  - generic [ref=f37e24]:
+    - generic [ref=f37e25]:
+      - text: Verify account
+      - paragraph [ref=f37e26]: Enter your six-digit code
+      - textbox "Verify account" [ref=f37e38]
+    - paragraph [ref=f37e39]: "Digits entered: 0"
+  - button "Open modal" [ref=f37e40] [cursor=pointer]
+  - button "Open alert dialog" [ref=f37e41] [cursor=pointer]
+  - button "Open drawer" [ref=f37e42] [cursor=pointer]
+  - button "Hover or focus" [ref=f37e44] [cursor=pointer]
+  - button "Open popover" [ref=f37e46] [cursor=pointer]
+  - button "Actions" [ref=f37e48] [cursor=pointer]
+  - generic [ref=f37e49]:
+    - img "Casey Jones" [ref=f37e50]:
+      - generic [aria-hidden] [ref=f37e51]: CJ
+    - img "Alex Kim" [ref=f37e52]:
+      - generic [aria-hidden] [ref=f37e53]: AK
+    - generic [ref=f37e54]:
+      - img "Jane Doe" [ref=f37e55]:
+        - generic [aria-hidden] [ref=f37e56]: JD
+      - generic [ref=f37e57]: "3"
+  - status [ref=f37e59]:
+    - generic [ref=f37e63]:
+      - generic [ref=f37e64]: Profile updated
+      - generic [ref=f37e65]: Your settings are saved.
+  - generic [ref=f37e66]:
+    - group "Editing actions" [ref=f37e67]:
+      - button "Copy" [ref=f37e68] [cursor=pointer]
+      - button "Paste" [ref=f37e69] [cursor=pointer]
+    - group "Text formatting" [ref=f37e70]:
+      - button "Bold" [ref=f37e71] [cursor=pointer]
+      - button "Italic" [ref=f37e72] [cursor=pointer]
+  - listbox "Workspace" [ref=f37e74]:
+    - option "Alpha" [selected] [ref=f37e75] [cursor=pointer]:
+      - generic [ref=f37e76]:
+        - generic: Alpha
+        - generic: Main workspace
+    - option "Beta" [ref=f37e80] [cursor=pointer]
+    - option "Unavailable" [disabled]
+  - paragraph [ref=f37e82]: "Workspace: alpha"
+  - paragraph [ref=f37e83]: "Bold: false; Italic: false"
+  - paragraph [ref=f37e84]: "Updates: 0"
+  - progressbar "Updates" [ref=f37e85]
+  - meter "Capacity" [ref=f37e89]:
+    - generic [ref=f37e91]: 0 of 10
+  - generic [ref=f37e93]:
+    - tablist "Account sections" [ref=f37e95]:
+      - tab "Profile" [selected] [ref=f37e96] [cursor=pointer]
+      - tab "Security" [ref=f37e98] [cursor=pointer]
+      - tab "Disabled" [disabled]
+    - tabpanel "Profile" [ref=f37e99]:
+      - paragraph [ref=f37e100]: Profile settings
+  - generic [ref=f37e101]:
+    - heading "Sortable table" [level=2] [ref=f37e102]
+    - table "People" [ref=f37e105]:
+      - rowgroup [ref=f37e106]:
+        - row [ref=f37e107]:
+          - columnheader [ref=f37e108] [cursor=pointer]:
+            - button "Name" [ref=f37e109]
+          - columnheader "Role" [ref=f37e112]
+      - rowgroup [ref=f37e113]:
+        - row [ref=f37e114]:
+          - rowheader "Alex Kim" [ref=f37e115]
+          - cell "Designer" [ref=f37e116]
+        - row [ref=f37e117]:
+          - rowheader "Jane Smith" [ref=f37e118]
+          - cell "Developer" [ref=f37e119]
+        - row [ref=f37e120]:
+          - rowheader "Morgan Lee" [ref=f37e121]
+          - cell "Engineer" [ref=f37e122]
+        - row [ref=f37e123]:
+          - rowheader "Taylor Brown" [ref=f37e124]
+          - cell "Product Manager" [ref=f37e125]
+    - navigation "Pagination" [ref=f37e126]:
+      - generic [ref=f37e127]: Page 1 of 10
+      - list [ref=f37e128]:
+        - listitem [ref=f37e129]:
+          - button "Previous" [disabled]
+        - listitem [ref=f37e130]:
+          - button "Page 1" [ref=f37e131] [cursor=pointer]: "1"
+        - listitem [ref=f37e132]:
+          - button "Page 2" [ref=f37e133] [cursor=pointer]: "2"
+        - listitem [ref=f37e134]:
+          - generic [aria-hidden] [ref=f37e135]: …
+        - listitem [ref=f37e136]:
+          - button "Page 10" [ref=f37e137] [cursor=pointer]: "10"
+        - listitem [ref=f37e138]:
+          - button "Next" [ref=f37e139] [cursor=pointer]
+    - heading "Streamed table" [level=2] [ref=f37e144]
+    - table "Streamed people" [ref=f37e147]:
+      - rowgroup [ref=f37e148]:
+        - row [ref=f37e149]:
+          - columnheader "Name" [ref=f37e150]
+          - columnheader "Role" [ref=f37e151]
+      - rowgroup [ref=f37e152]:
+        - row [ref=f37e153]:
+          - cell "Alex Kim" [ref=f37e154]
+          - cell "Designer" [ref=f37e155]
+        - row [ref=f37e156]:
+          - cell "Jane Smith" [ref=f37e157]
+          - cell "Developer" [ref=f37e158]
+        - row [ref=f37e159]:
+          - cell "Morgan Lee" [ref=f37e160]
+          - cell "Engineer" [ref=f37e161]
+        - row [ref=f37e162]:
+          - cell "Taylor Brown" [ref=f37e163]
+          - cell "Product Manager" [ref=f37e164]
+    - button "Add person" [ref=f37e165] [cursor=pointer]
+  - generic [ref=f37e166]:
+    - generic [ref=f37e168] [cursor=pointer]:
+      - checkbox "Accept terms" [ref=f37e169]
+      - generic [ref=f37e170]: Accept terms
+    - generic [ref=f37e172] [cursor=pointer]:
+      - switch "Enable alerts" [ref=f37e173]
+      - generic [ref=f37e174]: Enable alerts
+    - generic [ref=f37e175]: Plan
+    - generic [ref=f37e177]:
+      - combobox [aria-hidden]
+      - combobox "Plan" [ref=f37e179] [cursor=pointer]:
+        - generic [ref=f37e180]: Starter
+    - generic [ref=f37e183]:
+      - generic [ref=f37e184]: Volume
+      - status [ref=f37e185]: "40"
+      - slider "Volume" [ref=f37e186]: "40"
+    - generic [ref=f37e187]:
+      - generic [ref=f37e188]: Quantity
+      - generic [ref=f37e189]:
+        - button "Decrease Quantity" [ref=f37e190] [cursor=pointer]: −
+        - spinbutton "Quantity" [ref=f37e191]: "1"
+        - button "Increase Quantity" [ref=f37e192] [cursor=pointer]: +
+    - group "Delivery" [ref=f37e193]:
+      - generic [ref=f37e195]:
+        - generic [ref=f37e196] [cursor=pointer]:
+          - generic [ref=f37e197]:
+            - radio "Standard" [checked] [ref=f37e198]
+            - generic [ref=f37e199]: Standard
+          - generic [ref=f37e200]: Three to five days
+        - generic [ref=f37e202] [cursor=pointer]:
+          - radio "Express" [ref=f37e203]
+          - generic [ref=f37e204]: Express
+        - generic:
+          - generic:
+            - radio "Overnight" [disabled]
+            - generic: Overnight
+      - paragraph [ref=f37e205]: Choose a delivery speed.
+    - group "Interests" [ref=f37e206]:
+      - generic [ref=f37e208]:
+        - generic [ref=f37e209] [cursor=pointer]:
+          - generic [ref=f37e210]:
+            - checkbox "News" [checked] [ref=f37e211]
+            - generic [ref=f37e212]: News
+          - generic [ref=f37e213]: Product announcements
+        - generic [ref=f37e215] [cursor=pointer]:
+          - checkbox "Events" [ref=f37e216]
+          - generic [ref=f37e217]: Events
+        - generic:
+          - generic:
+            - checkbox "Research" [disabled]
+            - generic: Research
+      - paragraph [ref=f37e218]: Choose any topics you like.
+    - paragraph [ref=f37e219]: "Interests: news"
+    - paragraph [ref=f37e220]: "Delivery: standard"
+    - paragraph [ref=f37e221]: "Volume: 40; Quantity: 1"
+    - paragraph [ref=f37e222]: "Terms: false; Alerts: false; Plan: starter"
+  - generic [ref=f37e223]:
+    - text: Grouped plans
+    - generic [ref=f37e225]:
+      - combobox [aria-hidden]
+      - combobox "Grouped plans" [ref=f37e227] [cursor=pointer]:
+        - generic [ref=f37e228]: Starter
+    - text: Multiple choices
+    - listbox "Multiple choices" [ref=f37e233] [cursor=pointer]:
+      - option "One" [ref=f37e234]
+      - option "Two" [ref=f37e235]
+  - generic [ref=f37e236]:
+    - generic [ref=f37e237]: Required choice
+    - generic [ref=f37e239]:
+      - combobox [aria-hidden]
+      - combobox "Required choice" [ref=f37e241] [cursor=pointer]:
+        - generic [ref=f37e242]: Choose an option
+    - button "Submit choice" [ref=f37e245] [cursor=pointer]
+    - paragraph [ref=f37e246]: "Submitted: none"

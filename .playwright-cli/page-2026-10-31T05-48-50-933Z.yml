@@ -1,0 +1,252 @@
+- generic [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - link "✳ HeroUI for LiveView" [ref=f3e3] [cursor=pointer]:
+      - /url: "#top"
+      - generic [ref=f3e4]: ✳
+      - text: HeroUI
+      - generic [ref=f3e5]: for LiveView
+    - generic [ref=f3e6]:
+      - generic [ref=f3e7]: EARLY PREVIEW
+      - button "Toggle color theme" [ref=f3e8] [cursor=pointer]: ◐
+  - generic [ref=f3e9]:
+    - complementary [ref=f3e10]:
+      - paragraph [ref=f3e11]: EXPLORE
+      - link "Overview ↗" [ref=f3e12] [cursor=pointer]:
+        - /url: "#overview"
+        - text: Overview
+        - generic [ref=f3e13]: ↗
+      - paragraph [ref=f3e14]: COMPONENTS
+      - link "Button" [ref=f3e15] [cursor=pointer]:
+        - /url: "#buttons"
+      - link "Input" [ref=f3e16] [cursor=pointer]:
+        - /url: "#inputs"
+      - link "Card" [ref=f3e17] [cursor=pointer]:
+        - /url: "#cards"
+      - link "Chip" [ref=f3e18] [cursor=pointer]:
+        - /url: "#chips"
+      - link "Controls" [ref=f3e19] [cursor=pointer]:
+        - /url: "#controls"
+      - link "Feedback" [ref=f3e20] [cursor=pointer]:
+        - /url: "#feedback"
+      - generic [ref=f3e21]:
+        - generic [ref=f3e22]: ✦
+        - strong [ref=f3e23]: Built for LiveView
+        - paragraph [ref=f3e24]: Familiar components, right in your HEEx templates.
+    - main [ref=f3e25]:
+      - generic [ref=f3e26]:
+        - generic [ref=f3e27]: THE COMPONENT LIBRARY
+        - heading [level=1] [ref=f3e29]:
+          - text: Build something
+          - emphasis [ref=f3e30]: beautiful.
+        - paragraph [ref=f3e31]: A first look at HeroUI-inspired components for Phoenix LiveView. Thoughtful defaults, flexible styling, and a little less boilerplate.
+        - generic [ref=f3e32]:
+          - link "Explore components ↘" [ref=f3e33] [cursor=pointer]:
+            - /url: "#buttons"
+          - generic [ref=f3e34]: DESIGNED FOR THE WAY YOU BUILD
+      - generic [ref=f3e35]:
+        - generic [ref=f3e36]:
+          - paragraph [ref=f3e37]: THE BUILDING BLOCKS
+          - heading "Components ✳" [level=2] [ref=f3e38]
+        - paragraph [ref=f3e39]: A growing collection of essentials.Explore the first five below.
+      - generic [ref=f3e40]:
+        - generic [ref=f3e41]:
+          - generic [ref=f3e42]:
+            - text: 01 / ACTION
+            - heading "Button" [level=3] [ref=f3e43]
+            - paragraph [ref=f3e44]: Give every action the right amount of emphasis.
+          - code [ref=f3e45]: <.button>
+        - generic [ref=f3e46]:
+          - generic [ref=f3e47]:
+            - text: VARIANTS
+            - generic [ref=f3e48]: 7 OPTIONS
+          - generic [ref=f3e49]:
+            - button "Primary" [ref=f3e50] [cursor=pointer]
+            - button "Secondary" [ref=f3e51] [cursor=pointer]
+            - button "Tertiary" [ref=f3e52] [cursor=pointer]
+            - button "Outline" [ref=f3e53] [cursor=pointer]
+            - button "Ghost" [ref=f3e54] [cursor=pointer]
+            - button "Danger" [ref=f3e55] [cursor=pointer]
+            - button "Danger soft" [ref=f3e56] [cursor=pointer]
+          - generic [ref=f3e58]: SIZES & STATES
+          - generic [ref=f3e59]:
+            - button "Small" [ref=f3e60] [cursor=pointer]
+            - button "Medium" [ref=f3e61] [cursor=pointer]
+            - button "Large" [ref=f3e62] [cursor=pointer]
+            - button "Disabled" [disabled]
+            - button "Add" [ref=f3e63] [cursor=pointer]: +
+      - generic [ref=f3e64]:
+        - generic [ref=f3e65]:
+          - generic [ref=f3e66]:
+            - text: 02 / INPUT
+            - heading "Input & text field" [level=3] [ref=f3e67]
+            - paragraph [ref=f3e68]: Clear, accessible inputs for the details that matter.
+          - code [ref=f3e69]: <.text_field>
+        - generic [ref=f3e70]:
+          - generic [ref=f3e71]:
+            - text: FORM FIELDS
+            - generic [ref=f3e72]: LABELS & FEEDBACK
+          - generic [ref=f3e73]:
+            - generic [ref=f3e74]:
+              - generic [ref=f3e75]: Your name
+              - textbox "Your name" [ref=f3e76]:
+                - /placeholder: Jane Smith
+              - paragraph [ref=f3e77]: This is how we'll address you.
+            - generic [ref=f3e78]:
+              - generic [ref=f3e79]: Email address
+              - textbox "Email address" [invalid] [ref=f3e80]: hello@example
+              - paragraph [ref=f3e82]: Please enter a valid email address.
+            - generic [ref=f3e83]:
+              - generic [ref=f3e84]: Workspace
+              - textbox "Workspace" [disabled]: Acme Studio
+      - generic [ref=f3e85]:
+        - generic [ref=f3e86]:
+          - generic [ref=f3e87]:
+            - generic [ref=f3e88]:
+              - text: 03 / LAYOUT
+              - heading "Card" [level=3] [ref=f3e89]
+              - paragraph [ref=f3e90]: A home for related content.
+            - code [ref=f3e91]: <.card>
+          - generic [ref=f3e93]:
+            - generic [ref=f3e94]:
+              - generic [ref=f3e95]: ✳
+              - generic [ref=f3e96]: Active
+            - heading "Everything in its place." [level=4] [ref=f3e98]
+            - paragraph [ref=f3e99]: Bring your ideas together in a space that feels just right.
+            - button "View project ↗" [ref=f3e100] [cursor=pointer]
+        - generic [ref=f3e101]:
+          - generic [ref=f3e102]:
+            - generic [ref=f3e103]:
+              - text: 04 / DISPLAY
+              - heading "Chip" [level=3] [ref=f3e104]
+              - paragraph [ref=f3e105]: Small labels, useful context.
+            - code [ref=f3e106]: <.chip>
+          - generic [ref=f3e107]:
+            - generic [ref=f3e108]: STATUS & CATEGORY
+            - generic [ref=f3e109]:
+              - generic [ref=f3e110]: Default
+              - generic [ref=f3e112]: In progress
+              - generic [ref=f3e114]: Success
+              - generic [ref=f3e116]: Pending
+              - generic [ref=f3e118]: Attention
+      - generic [ref=f3e120]:
+        - generic [ref=f3e121]:
+          - generic [ref=f3e122]:
+            - text: 05 / INPUT
+            - heading "Checkbox & switch" [level=3] [ref=f3e123]
+            - paragraph [ref=f3e124]: Native controls with clear selected and disabled states.
+          - code [ref=f3e125]: <.checkbox>
+        - generic [ref=f3e127]:
+          - generic [ref=f3e128] [cursor=pointer]:
+            - checkbox "Selected" [checked] [ref=f3e129]
+            - generic [ref=f3e130]: Selected
+          - generic [ref=f3e131] [cursor=pointer]:
+            - checkbox "Unselected" [ref=f3e132]
+            - generic [ref=f3e133]: Unselected
+          - generic [ref=f3e134]:
+            - checkbox "Disabled" [disabled] [ref=f3e135]
+            - generic [ref=f3e136]: Disabled
+          - generic [ref=f3e137] [cursor=pointer]:
+            - switch "Notifications" [checked] [ref=f3e138]
+            - generic [ref=f3e141]: Notifications
+          - generic [ref=f3e142] [cursor=pointer]:
+            - switch "Airplane mode" [ref=f3e143]
+            - generic [ref=f3e146]: Airplane mode
+      - generic [ref=f3e147]:
+        - generic [ref=f3e148]:
+          - generic [ref=f3e149]:
+            - text: 06 / FEEDBACK
+            - heading "Feedback & identity" [level=3] [ref=f3e150]
+            - paragraph [ref=f3e151]: Progress, loading, separators, and avatars.
+          - code [ref=f3e152]: <.progress_bar>
+        - generic [ref=f3e153]:
+          - generic [ref=f3e154]:
+            - img "Jane Doe" [ref=f3e155]:
+              - generic [aria-hidden] [ref=f3e156]: J
+            - img "Alex Kim" [ref=f3e157]:
+              - generic [aria-hidden] [ref=f3e158]: A
+            - img "Morgan Lee" [ref=f3e159]:
+              - generic [aria-hidden] [ref=f3e160]: M
+            - status "Loading" [ref=f3e161]
+            - status "Loading" [ref=f3e164]
+            - status "Loading" [ref=f3e167]
+          - progressbar "Uploading" [ref=f3e171]:
+            - generic [ref=f3e173]: 65%
+      - generic [ref=f3e179]:
+        - generic [ref=f3e180]:
+          - generic [ref=f3e181]:
+            - text: 07 / MORE PRIMITIVES
+            - heading "More essentials" [level=3] [ref=f3e182]
+            - paragraph [ref=f3e183]: Native inputs and useful building blocks.
+          - code [ref=f3e184]: <.radio>
+        - generic [ref=f3e185]:
+          - generic [ref=f3e186]:
+            - generic [ref=f3e187] [cursor=pointer]:
+              - radio "Starter" [checked] [ref=f3e188]
+              - generic [ref=f3e189]: Starter
+            - generic [ref=f3e190] [cursor=pointer]:
+              - radio "Pro" [ref=f3e191]
+              - generic [ref=f3e192]: Pro
+            - generic [ref=f3e193]: ⌘ K
+            - link "Back to top" [ref=f3e194] [cursor=pointer]:
+              - /url: "#top"
+          - text: Notes
+          - textbox "Notes" [ref=f3e196]:
+            - /placeholder: Add a note…
+      - generic [ref=f3e197]:
+        - generic [ref=f3e199]:
+          - text: 08 / PATTERNS
+          - heading "More components" [level=3] [ref=f3e200]
+          - paragraph [ref=f3e201]: Selection, feedback, disclosure, and structured data.
+        - generic [ref=f3e202]:
+          - text: Plan
+          - combobox "Plan" [ref=f3e203] [cursor=pointer]:
+            - option "Starter"
+            - option "Pro" [selected]
+          - status [ref=f3e205]:
+            - generic [aria-hidden] [ref=f3e206]: i
+            - generic [ref=f3e207]:
+              - generic [ref=f3e208]: Your changes are saved
+              - generic [ref=f3e209]: Your workspace is up to date.
+          - group [ref=f3e211]:
+            - generic "What is included?" [ref=f3e212] [cursor=pointer]:
+              - text: What is included?
+              - generic [aria-hidden] [ref=f3e213]: ⌄
+          - group [ref=f3e214]:
+            - generic "Can I change my plan?" [ref=f3e215] [cursor=pointer]:
+              - text: Can I change my plan?
+              - generic [aria-hidden] [ref=f3e216]: ⌄
+          - table "Team members" [ref=f3e219]:
+            - rowgroup [ref=f3e220]:
+              - row [ref=f3e221]:
+                - columnheader "Name" [ref=f3e222]
+                - columnheader "Role" [ref=f3e223]
+                - columnheader "Status" [ref=f3e224]
+            - rowgroup [ref=f3e225]:
+              - row [ref=f3e226]:
+                - cell "Alex Kim" [ref=f3e227]
+                - cell "Designer" [ref=f3e228]
+                - cell "Active" [ref=f3e229]
+              - row [ref=f3e231]:
+                - cell "Jane Smith" [ref=f3e232]
+                - cell "Developer" [ref=f3e233]
+                - cell "Active" [ref=f3e234]
+      - generic [ref=f3e236]:
+        - generic [ref=f3e237]:
+          - generic [ref=f3e238]:
+            - text: 09 / OVERLAY
+            - heading "Modal" [level=3] [ref=f3e239]
+            - paragraph [ref=f3e240]: A focused space for a short task or message.
+          - code [ref=f3e241]: <.modal>
+        - generic [ref=f3e242]:
+          - button "Open modal" [ref=f3e243] [cursor=pointer]
+          - dialog [ref=f3e248]:
+            - heading "Edit profile" [level=2] [ref=f3e250]
+            - generic [ref=f3e251]: Update your profile details here.
+            - generic [ref=f3e252]:
+              - button "Save changes" [disabled]
+              - button "Close" [active] [ref=f3e254] [cursor=pointer]
+      - generic [ref=f3e244]:
+        - generic [ref=f3e245]: ✳ HeroUI for LiveView
+        - generic [ref=f3e246]: AN EARLY LOOK · MADE WITH PHOENIX
+        - link "Back to top ↑" [ref=f3e247] [cursor=pointer]:
+          - /url: "#top"

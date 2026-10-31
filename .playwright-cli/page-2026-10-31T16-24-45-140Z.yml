@@ -1,0 +1,1583 @@
+- generic [active] [ref=f2e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f2e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f2e3]: Pro
+    - generic [ref=f2e4]:
+      - generic [ref=f2e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f2e6]:
+    - complementary [ref=f2e7]:
+      - generic [ref=f2e9]:
+        - paragraph [ref=f2e10]: Overview
+        - link "All Components (React)" [ref=f2e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f2e12]: Components
+        - link "Accordion" [ref=f2e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f2e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f2e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f2e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f2e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f2e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f2e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f2e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f2e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f2e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f2e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f2e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f2e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f2e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f2e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f2e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f2e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f2e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f2e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f2e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f2e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f2e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f2e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f2e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f2e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f2e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f2e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f2e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f2e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f2e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f2e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f2e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f2e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f2e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f2e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f2e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f2e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f2e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f2e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f2e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f2e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f2e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f2e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f2e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f2e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f2e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f2e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f2e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f2e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f2e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f2e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f2e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f2e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f2e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f2e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f2e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f2e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f2e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f2e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f2e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f2e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f2e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f2e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f2e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f2e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f2e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f2e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f2e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f2e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f2e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f2e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f2e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f2e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f2e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f2e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f2e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f2e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f2e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f2e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f2e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f2e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f2e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f2e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f2e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f2e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f2e110]:
+      - generic [ref=f2e111]:
+        - generic [ref=f2e113]:
+          - link "HeroUI" [ref=f2e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f2e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f2e126]:
+          - text: Search
+          - generic [ref=f2e130]:
+            - generic [ref=f2e131]: ⌘
+            - generic [ref=f2e132]: K
+        - generic [ref=f2e133]:
+          - generic [ref=f2e134]:
+            - button "Ask AI" [ref=f2e136] [cursor=pointer]
+            - button [ref=f2e137] [cursor=pointer]:
+              - button "Design theme" [ref=f2e138]:
+                - generic [ref=f2e139]: Theme
+            - link "31.1k" [ref=f2e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f2e142]:
+            - button "Choose a language" [ref=f2e143] [cursor=pointer]
+            - generic [ref=f2e144] [cursor=pointer]:
+              - button "light" [ref=f2e145]
+              - button "dark" [ref=f2e152]
+              - button "system" [ref=f2e155]
+      - generic [ref=f2e159]:
+        - link "Getting Started" [ref=f2e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f2e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f2e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f2e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f2e188]:
+          - tab "Web" [selected] [ref=f2e189] [cursor=pointer]
+          - tab "Native" [ref=f2e193] [cursor=pointer]
+    - article [ref=f2e196]:
+      - generic [ref=f2e197]:
+        - generic [ref=f2e198]:
+          - heading "ComboBox New" [level=1] [ref=f2e199]:
+            - text: ComboBox
+            - generic [ref=f2e200]: New
+          - group [ref=f2e203]:
+            - button "Copy Markdown" [ref=f2e204] [cursor=pointer]
+            - button "More options" [ref=f2e205] [cursor=pointer]
+        - paragraph [ref=f2e206]: A combo box combines a text input with a listbox, allowing users to filter a list of options to items matching a query
+        - generic [ref=f2e207]:
+          - link "Storybook" [ref=f2e208] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-pickers-combobox--docs
+          - link "React Aria" [ref=f2e209] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/ComboBox
+          - link "Source" [ref=f2e210] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/combo-box/combo-box.tsx
+          - link "Styles source" [ref=f2e211] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/combo-box.css
+      - generic [ref=f2e212]:
+        - heading [level=2] [ref=f2e213]:
+          - link "Usage" [ref=f2e214] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f2e215]
+        - figure [ref=f2e220]:
+          - button "Copy Text" [ref=f2e222] [cursor=pointer]
+          - region [ref=f2e223]:
+            - code [ref=f2e225]:
+              - generic [ref=f2e226]: "import { ComboBox } from '@heroui/react';"
+        - generic [ref=f2e227]:
+          - generic [ref=f2e230]:
+            - generic [ref=f2e231]: Favorite Animal
+            - group [ref=f2e232]:
+              - combobox "Favorite Animal" [ref=f2e233]
+              - button "Show suggestions Favorite Animal" [ref=f2e234] [cursor=pointer]
+          - generic [ref=f2e240]:
+            - figure [ref=f2e242]:
+              - button "Copy Text" [ref=f2e244] [cursor=pointer]
+              - region [ref=f2e245]:
+                - code [ref=f2e247]:
+                  - generic [ref=f2e248]: "\"use client\";"
+                  - generic [ref=f2e250]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e252]: "export function Default() {"
+            - button "Expand code" [ref=f2e253] [cursor=pointer]
+        - heading [level=2] [ref=f2e254]:
+          - link "Anatomy" [ref=f2e255] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f2e256]
+        - figure [ref=f2e261]:
+          - button "Copy Text" [ref=f2e263] [cursor=pointer]
+          - region [ref=f2e264]:
+            - code [ref=f2e266]:
+              - generic [ref=f2e267]: "import { ComboBox, Input, Label, Description, Header, ListBox, Separator } from '@heroui/react';"
+              - generic [ref=f2e269]: export default () => (
+              - generic [ref=f2e270]: <ComboBox>
+              - generic [ref=f2e271]: <Label />
+              - generic [ref=f2e272]: <ComboBox.InputGroup>
+              - generic [ref=f2e273]: <Input />
+              - generic [ref=f2e274]: <ComboBox.Trigger />
+              - generic [ref=f2e275]: </ComboBox.InputGroup>
+              - generic [ref=f2e276]: "{/* Displays the selected values, primarily used for multiple selection */}"
+              - generic [ref=f2e277]: <ComboBox.Value />
+              - generic [ref=f2e278]: <Description />
+              - generic [ref=f2e279]: <ComboBox.Popover>
+              - generic [ref=f2e280]: <ListBox>
+              - generic [ref=f2e281]: <ListBox.Item>
+              - generic [ref=f2e282]: <Label />
+              - generic [ref=f2e283]: <Description />
+              - generic [ref=f2e284]: <ListBox.ItemIndicator />
+              - generic [ref=f2e285]: </ListBox.Item>
+              - generic [ref=f2e286]: <ListBox.Section>
+              - generic [ref=f2e287]: <Header />
+              - generic [ref=f2e288]: <ListBox.Item>
+              - generic [ref=f2e289]: <Label />
+              - generic [ref=f2e290]: </ListBox.Item>
+              - generic [ref=f2e291]: </ListBox.Section>
+              - generic [ref=f2e292]: </ListBox>
+              - generic [ref=f2e293]: </ComboBox.Popover>
+              - generic [ref=f2e294]: </ComboBox>
+              - generic [ref=f2e295]: )
+        - heading [level=2] [ref=f2e296]:
+          - link "Examples" [ref=f2e297] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f2e298]
+        - heading [level=3] [ref=f2e303]:
+          - link "Full Width" [ref=f2e304] [cursor=pointer]:
+            - /url: "#full-width"
+          - button "Copy Anchor Link" [ref=f2e305]
+        - generic [ref=f2e310]:
+          - generic [ref=f2e314]:
+            - generic [ref=f2e315]: Favorite Animal
+            - group [ref=f2e316]:
+              - combobox "Favorite Animal" [ref=f2e317]
+              - button "Show suggestions Favorite Animal" [ref=f2e318] [cursor=pointer]
+          - generic [ref=f2e324]:
+            - figure [ref=f2e326]:
+              - button "Copy Text" [ref=f2e328] [cursor=pointer]
+              - region [ref=f2e329]:
+                - code [ref=f2e331]:
+                  - generic [ref=f2e332]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e334]: "export function FullWidth() {"
+                  - generic [ref=f2e335]: return (
+                  - generic [ref=f2e336]: <div className="w-[400px] space-y-4">
+            - button "Expand code" [ref=f2e337] [cursor=pointer]
+        - heading [level=3] [ref=f2e338]:
+          - link "With Description" [ref=f2e339] [cursor=pointer]:
+            - /url: "#with-description"
+          - button "Copy Anchor Link" [ref=f2e340]
+        - generic [ref=f2e345]:
+          - generic [ref=f2e348]:
+            - generic [ref=f2e349]: Favorite Animal
+            - group [ref=f2e350]:
+              - combobox "Favorite Animal" [ref=f2e351]
+              - button "Show suggestions Favorite Animal" [ref=f2e352] [cursor=pointer]
+            - generic [ref=f2e355]: Search and select your favorite animal
+          - generic [ref=f2e359]:
+            - figure [ref=f2e361]:
+              - button "Copy Text" [ref=f2e363] [cursor=pointer]
+              - region [ref=f2e364]:
+                - code [ref=f2e366]:
+                  - generic [ref=f2e367]: "\"use client\";"
+                  - generic [ref=f2e369]: "import {ComboBox, Description, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e371]: "export function WithDescription() {"
+            - button "Expand code" [ref=f2e372] [cursor=pointer]
+        - heading [level=3] [ref=f2e373]:
+          - link "Required" [ref=f2e374] [cursor=pointer]:
+            - /url: "#required"
+          - button "Copy Anchor Link" [ref=f2e375]
+        - generic [ref=f2e380]:
+          - generic [ref=f2e383]:
+            - generic [ref=f2e384]:
+              - generic [ref=f2e385]: Favorite Animal*
+              - group [ref=f2e386]:
+                - combobox "Favorite Animal*" [ref=f2e387]
+                - button "Show suggestions Favorite Animal*" [ref=f2e388] [cursor=pointer]
+            - button "Submit" [ref=f2e391] [cursor=pointer]
+          - generic [ref=f2e395]:
+            - figure [ref=f2e397]:
+              - button "Copy Text" [ref=f2e399] [cursor=pointer]
+              - region [ref=f2e400]:
+                - code [ref=f2e402]:
+                  - generic [ref=f2e403]: "\"use client\";"
+                  - generic [ref=f2e405]: "import {Button, ComboBox, FieldError, Form, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e407]: "export function Required() {"
+            - button "Expand code" [ref=f2e408] [cursor=pointer]
+        - heading [level=3] [ref=f2e409]:
+          - link "Disabled" [ref=f2e410] [cursor=pointer]:
+            - /url: "#disabled"
+          - button "Copy Anchor Link" [ref=f2e411]
+        - generic [ref=f2e416]:
+          - generic [ref=f2e419]:
+            - generic: Favorite Animal
+            - group [ref=f2e420]:
+              - combobox "Favorite Animal" [disabled]: Cat
+              - button "Show suggestions Favorite Animal" [disabled] [ref=f2e421]
+          - generic [ref=f2e427]:
+            - figure [ref=f2e429]:
+              - button "Copy Text" [ref=f2e431] [cursor=pointer]
+              - region [ref=f2e432]:
+                - code [ref=f2e434]:
+                  - generic [ref=f2e435]: "\"use client\";"
+                  - generic [ref=f2e437]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e439]: "export function Disabled() {"
+            - button "Expand code" [ref=f2e440] [cursor=pointer]
+        - heading [level=3] [ref=f2e441]:
+          - link "With Disabled Options" [ref=f2e442] [cursor=pointer]:
+            - /url: "#with-disabled-options"
+          - button "Copy Anchor Link" [ref=f2e443]
+        - generic [ref=f2e448]:
+          - generic [ref=f2e451]:
+            - generic [ref=f2e452]: Animal
+            - group [ref=f2e453]:
+              - combobox "Animal" [ref=f2e454]
+              - button "Show suggestions Animal" [ref=f2e455] [cursor=pointer]
+          - generic [ref=f2e461]:
+            - figure [ref=f2e463]:
+              - button "Copy Text" [ref=f2e465] [cursor=pointer]
+              - region [ref=f2e466]:
+                - code [ref=f2e468]:
+                  - generic [ref=f2e469]: "\"use client\";"
+                  - generic [ref=f2e471]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e473]: "export function WithDisabledOptions() {"
+            - button "Expand code" [ref=f2e474] [cursor=pointer]
+        - heading [level=3] [ref=f2e475]:
+          - link "With Sections" [ref=f2e476] [cursor=pointer]:
+            - /url: "#with-sections"
+          - button "Copy Anchor Link" [ref=f2e477]
+        - generic [ref=f2e482]:
+          - generic [ref=f2e485]:
+            - generic [ref=f2e486]: Country
+            - group [ref=f2e487]:
+              - combobox "Country" [ref=f2e488]
+              - button "Show suggestions Country" [ref=f2e489] [cursor=pointer]
+          - generic [ref=f2e495]:
+            - figure [ref=f2e497]:
+              - button "Copy Text" [ref=f2e499] [cursor=pointer]
+              - region [ref=f2e500]:
+                - code [ref=f2e502]:
+                  - generic [ref=f2e503]: "\"use client\";"
+                  - generic [ref=f2e505]: "import {ComboBox, Header, Input, Label, ListBox, Separator} from \"@heroui/react\";"
+                  - generic [ref=f2e507]: "export function WithSections() {"
+            - button "Expand code" [ref=f2e508] [cursor=pointer]
+        - heading [level=3] [ref=f2e509]:
+          - link "Controlled" [ref=f2e510] [cursor=pointer]:
+            - /url: "#controlled"
+          - button "Copy Anchor Link" [ref=f2e511]
+        - generic [ref=f2e516]:
+          - generic [ref=f2e519]:
+            - generic [ref=f2e520]:
+              - generic [ref=f2e521]: Animal (controlled)
+              - group [ref=f2e522]:
+                - combobox "Animal (controlled)" [ref=f2e523]: Cat
+                - button "Show suggestions Animal (controlled)" [ref=f2e524] [cursor=pointer]
+            - paragraph [ref=f2e527]: "Selected: Cat"
+          - generic [ref=f2e531]:
+            - figure [ref=f2e533]:
+              - button "Copy Text" [ref=f2e535] [cursor=pointer]
+              - region [ref=f2e536]:
+                - code [ref=f2e538]:
+                  - generic [ref=f2e539]: "\"use client\";"
+                  - generic [ref=f2e541]: "import type {Key} from \"@heroui/react\";"
+                  - generic [ref=f2e543]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+            - button "Expand code" [ref=f2e544] [cursor=pointer]
+        - heading [level=3] [ref=f2e545]:
+          - link "Controlled Input Value" [ref=f2e546] [cursor=pointer]:
+            - /url: "#controlled-input-value"
+          - button "Copy Anchor Link" [ref=f2e547]
+        - generic [ref=f2e552]:
+          - generic [ref=f2e555]:
+            - generic [ref=f2e556]:
+              - generic [ref=f2e557]: Search (controlled input)
+              - group [ref=f2e558]:
+                - combobox "Search (controlled input)" [ref=f2e559]
+                - button "Show suggestions Search (controlled input)" [ref=f2e560] [cursor=pointer]
+            - paragraph [ref=f2e563]: "Input value: (empty)"
+          - generic [ref=f2e567]:
+            - figure [ref=f2e569]:
+              - button "Copy Text" [ref=f2e571] [cursor=pointer]
+              - region [ref=f2e572]:
+                - code [ref=f2e574]:
+                  - generic [ref=f2e575]: "\"use client\";"
+                  - generic [ref=f2e577]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e578]: "import {useState} from \"react\";"
+            - button "Expand code" [ref=f2e580] [cursor=pointer]
+        - heading [level=3] [ref=f2e581]:
+          - link "Asynchronous Loading" [ref=f2e582] [cursor=pointer]:
+            - /url: "#asynchronous-loading"
+          - button "Copy Anchor Link" [ref=f2e583]
+        - generic [ref=f2e588]:
+          - generic [ref=f2e591]:
+            - generic [ref=f2e592]: Pick a Character
+            - group [ref=f2e593]:
+              - combobox "Pick a Character" [ref=f2e594]
+              - button "Show suggestions Pick a Character" [ref=f2e595] [cursor=pointer]
+          - generic [ref=f2e601]:
+            - figure [ref=f2e603]:
+              - button "Copy Text" [ref=f2e605] [cursor=pointer]
+              - region [ref=f2e606]:
+                - code [ref=f2e608]:
+                  - generic [ref=f2e609]: "\"use client\";"
+                  - generic [ref=f2e611]: "import {"
+                  - generic [ref=f2e612]: Collection,
+                  - generic [ref=f2e613]: ComboBox,
+            - button "Expand code" [ref=f2e614] [cursor=pointer]
+        - heading [level=3] [ref=f2e615]:
+          - link "Default Selected Key" [ref=f2e616] [cursor=pointer]:
+            - /url: "#default-selected-key"
+          - button "Copy Anchor Link" [ref=f2e617]
+        - generic [ref=f2e622]:
+          - generic [ref=f2e625]:
+            - generic [ref=f2e626]: Favorite Animal
+            - group [ref=f2e627]:
+              - combobox "Favorite Animal" [ref=f2e628]: Cat
+              - button "Show suggestions Favorite Animal" [ref=f2e629] [cursor=pointer]
+          - generic [ref=f2e635]:
+            - figure [ref=f2e637]:
+              - button "Copy Text" [ref=f2e639] [cursor=pointer]
+              - region [ref=f2e640]:
+                - code [ref=f2e642]:
+                  - generic [ref=f2e643]: "\"use client\";"
+                  - generic [ref=f2e645]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e647]: "export function DefaultSelectedKey() {"
+            - button "Expand code" [ref=f2e648] [cursor=pointer]
+        - heading [level=3] [ref=f2e649]:
+          - link "Allows Custom Value" [ref=f2e650] [cursor=pointer]:
+            - /url: "#allows-custom-value"
+          - button "Copy Anchor Link" [ref=f2e651]
+        - generic [ref=f2e656]:
+          - generic [ref=f2e659]:
+            - generic [ref=f2e660]: Favorite Animal
+            - group [ref=f2e661]:
+              - combobox "Favorite Animal" [ref=f2e662]
+              - button "Show suggestions Favorite Animal" [ref=f2e663] [cursor=pointer]
+            - generic [ref=f2e666]: You can type any animal name, even if it's not in the list
+          - generic [ref=f2e670]:
+            - figure [ref=f2e672]:
+              - button "Copy Text" [ref=f2e674] [cursor=pointer]
+              - region [ref=f2e675]:
+                - code [ref=f2e677]:
+                  - generic [ref=f2e678]: "\"use client\";"
+                  - generic [ref=f2e680]: "import {ComboBox, Description, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e682]: "export function AllowsCustomValue() {"
+            - button "Expand code" [ref=f2e683] [cursor=pointer]
+        - heading [level=3] [ref=f2e684]:
+          - link "Custom Indicator" [ref=f2e685] [cursor=pointer]:
+            - /url: "#custom-indicator"
+          - button "Copy Anchor Link" [ref=f2e686]
+        - generic [ref=f2e691]:
+          - generic [ref=f2e694]:
+            - generic [ref=f2e695]: Favorite Animal
+            - group [ref=f2e696]:
+              - combobox "Favorite Animal" [ref=f2e697]
+              - button "Show suggestions Favorite Animal" [ref=f2e698] [cursor=pointer]
+          - generic [ref=f2e705]:
+            - figure [ref=f2e707]:
+              - button "Copy Text" [ref=f2e709] [cursor=pointer]
+              - region [ref=f2e710]:
+                - code [ref=f2e712]:
+                  - generic [ref=f2e713]: "\"use client\";"
+                  - generic [ref=f2e715]: "import {ChevronsExpandVertical} from \"@gravity-ui/icons\";"
+                  - generic [ref=f2e716]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+            - button "Expand code" [ref=f2e718] [cursor=pointer]
+        - heading [level=3] [ref=f2e719]:
+          - link "Custom Value" [ref=f2e720] [cursor=pointer]:
+            - /url: "#custom-value"
+          - button "Copy Anchor Link" [ref=f2e721]
+        - generic [ref=f2e726]:
+          - generic [ref=f2e729]:
+            - generic [ref=f2e730]: User
+            - group [ref=f2e731]:
+              - combobox "User" [ref=f2e732]
+              - button "Show suggestions User" [ref=f2e733] [cursor=pointer]
+          - generic [ref=f2e739]:
+            - figure [ref=f2e741]:
+              - button "Copy Text" [ref=f2e743] [cursor=pointer]
+              - region [ref=f2e744]:
+                - code [ref=f2e746]:
+                  - generic [ref=f2e747]: "\"use client\";"
+                  - generic [ref=f2e749]: "import {"
+                  - generic [ref=f2e750]: Avatar,
+                  - generic [ref=f2e751]: AvatarFallback,
+            - button "Expand code" [ref=f2e752] [cursor=pointer]
+        - heading [level=3] [ref=f2e753]:
+          - link "Custom Filtering" [ref=f2e754] [cursor=pointer]:
+            - /url: "#custom-filtering"
+          - button "Copy Anchor Link" [ref=f2e755]
+        - generic [ref=f2e760]:
+          - generic [ref=f2e763]:
+            - generic [ref=f2e764]: Animal (custom filter)
+            - group [ref=f2e765]:
+              - combobox "Animal (custom filter)" [ref=f2e766]
+              - button "Show suggestions Animal (custom filter)" [ref=f2e767] [cursor=pointer]
+          - generic [ref=f2e773]:
+            - figure [ref=f2e775]:
+              - button "Copy Text" [ref=f2e777] [cursor=pointer]
+              - region [ref=f2e778]:
+                - code [ref=f2e780]:
+                  - generic [ref=f2e781]: "\"use client\";"
+                  - generic [ref=f2e783]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e785]: "export function CustomFiltering() {"
+            - button "Expand code" [ref=f2e786] [cursor=pointer]
+        - heading [level=3] [ref=f2e787]:
+          - link "Render Function" [ref=f2e788] [cursor=pointer]:
+            - /url: "#render-function"
+          - button "Copy Anchor Link" [ref=f2e789]
+        - generic [ref=f2e794]:
+          - generic [ref=f2e797]:
+            - generic [ref=f2e798]: Favorite Animal
+            - group [ref=f2e799]:
+              - combobox "Favorite Animal" [ref=f2e800]
+              - button "Show suggestions Favorite Animal" [ref=f2e801] [cursor=pointer]
+          - generic [ref=f2e807]:
+            - figure [ref=f2e809]:
+              - button "Copy Text" [ref=f2e811] [cursor=pointer]
+              - region [ref=f2e812]:
+                - code [ref=f2e814]:
+                  - generic [ref=f2e815]: "\"use client\";"
+                  - generic [ref=f2e817]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e819]: "export function RenderFunction() {"
+            - button "Expand code" [ref=f2e820] [cursor=pointer]
+        - heading [level=3] [ref=f2e821]:
+          - link "Menu Trigger" [ref=f2e822] [cursor=pointer]:
+            - /url: "#menu-trigger"
+          - button "Copy Anchor Link" [ref=f2e823]
+        - paragraph [ref=f2e828]:
+          - text: Use the
+          - code [ref=f2e829]: menuTrigger
+          - text: "prop to control when the popover opens:"
+        - list [ref=f2e830]:
+          - listitem [ref=f2e831]:
+            - code [ref=f2e832]: focus
+            - text: "(default): popover opens when the user focuses the input"
+          - listitem [ref=f2e833]:
+            - code [ref=f2e834]: input
+            - text: ": popover opens when the user edits the input text"
+          - listitem [ref=f2e835]:
+            - code [ref=f2e836]: manual
+            - text: ": popover only opens when the user presses the trigger button or uses the arrow keys"
+        - generic [ref=f2e837]:
+          - generic [ref=f2e840]:
+            - generic [ref=f2e841]:
+              - paragraph [ref=f2e842]: Focus (default)
+              - generic [ref=f2e843]:
+                - generic [ref=f2e844]: Favorite Animal
+                - group [ref=f2e845]:
+                  - combobox "Favorite Animal" [ref=f2e846]
+                  - button "Show suggestions Favorite Animal" [ref=f2e847] [cursor=pointer]
+                - generic [ref=f2e850]: Popover opens when the input is focused
+            - generic [ref=f2e851]:
+              - paragraph [ref=f2e852]: Input
+              - generic [ref=f2e853]:
+                - generic [ref=f2e854]: Favorite Animal
+                - group [ref=f2e855]:
+                  - combobox "Favorite Animal" [ref=f2e856]
+                  - button "Show suggestions Favorite Animal" [ref=f2e857] [cursor=pointer]
+                - generic [ref=f2e860]: Popover opens when the user edits the input text
+            - generic [ref=f2e861]:
+              - paragraph [ref=f2e862]: Manual
+              - generic [ref=f2e863]:
+                - generic [ref=f2e864]: Favorite Animal
+                - group [ref=f2e865]:
+                  - combobox "Favorite Animal" [ref=f2e866]
+                  - button "Show suggestions Favorite Animal" [ref=f2e867] [cursor=pointer]
+                - generic [ref=f2e870]: Popover only opens when the trigger button is pressed or arrow keys are used
+          - generic [ref=f2e874]:
+            - figure [ref=f2e876]:
+              - button "Copy Text" [ref=f2e878] [cursor=pointer]
+              - region [ref=f2e879]:
+                - code [ref=f2e881]:
+                  - generic [ref=f2e882]: "\"use client\";"
+                  - generic [ref=f2e884]: "import {ComboBox, Description, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e886]: "export function MenuTrigger() {"
+            - button "Expand code" [ref=f2e887] [cursor=pointer]
+        - heading [level=3] [ref=f2e888]:
+          - link "Form Value" [ref=f2e889] [cursor=pointer]:
+            - /url: "#form-value"
+          - button "Copy Anchor Link" [ref=f2e890]
+        - paragraph [ref=f2e895]:
+          - text: Use the
+          - code [ref=f2e896]: formValue
+          - text: prop to control whether the selected item's key or text is submitted in forms.
+          - code [ref=f2e897]: key
+          - text: is the default. When
+          - code [ref=f2e898]: allowsCustomValue
+          - text: is true, the text is always submitted.
+        - generic [ref=f2e899]:
+          - generic [ref=f2e902]:
+            - generic [ref=f2e903]:
+              - generic [ref=f2e904]: Animal*
+              - group [ref=f2e905]:
+                - combobox "Animal*" [ref=f2e906]
+                - button "Show suggestions Animal*" [ref=f2e907] [cursor=pointer]
+              - generic [ref=f2e910]: Submits the selected key
+            - generic [ref=f2e911]:
+              - generic [ref=f2e912]: Animal (text)*
+              - group [ref=f2e913]:
+                - combobox "Animal (text)*" [ref=f2e914]
+                - button "Show suggestions Animal (text)*" [ref=f2e915] [cursor=pointer]
+              - generic [ref=f2e918]: Submits the selected text
+            - button "Submit" [ref=f2e919] [cursor=pointer]
+          - generic [ref=f2e923]:
+            - figure [ref=f2e925]:
+              - button "Copy Text" [ref=f2e927] [cursor=pointer]
+              - region [ref=f2e928]:
+                - code [ref=f2e930]:
+                  - generic [ref=f2e931]: "\"use client\";"
+                  - generic [ref=f2e933]: "import {"
+                  - generic [ref=f2e934]: Button,
+                  - generic [ref=f2e935]: ComboBox,
+            - button "Expand code" [ref=f2e936] [cursor=pointer]
+        - heading [level=3] [ref=f2e937]:
+          - link "Validation Behavior" [ref=f2e938] [cursor=pointer]:
+            - /url: "#validation-behavior"
+          - button "Copy Anchor Link" [ref=f2e939]
+        - paragraph [ref=f2e944]:
+          - text: Use the
+          - code [ref=f2e945]: validationBehavior
+          - text: "prop to control how validation is displayed:"
+        - list [ref=f2e946]:
+          - listitem [ref=f2e947]:
+            - code [ref=f2e948]: native
+            - text: "(default): blocks form submission when the value is missing or invalid"
+          - listitem [ref=f2e949]:
+            - code [ref=f2e950]: aria
+            - text: ": shows errors in realtime and does not block submission"
+        - generic [ref=f2e951]:
+          - generic [ref=f2e954]:
+            - generic [ref=f2e955]:
+              - generic [ref=f2e956]:
+                - generic [ref=f2e957]: Animal (native)*
+                - group [ref=f2e958]:
+                  - combobox "Animal (native)*" [ref=f2e959]
+                  - button "Show suggestions Animal (native)*" [ref=f2e960] [cursor=pointer]
+                - generic [ref=f2e963]: Blocks submission when the value is missing
+              - button "Submit" [ref=f2e964] [cursor=pointer]
+            - generic [ref=f2e965]:
+              - generic [ref=f2e966]:
+                - generic [ref=f2e967]: Animal (ARIA)*
+                - group [ref=f2e968]:
+                  - combobox "Animal (ARIA)*" [ref=f2e969]
+                  - button "Show suggestions Animal (ARIA)*" [ref=f2e970] [cursor=pointer]
+                - generic [ref=f2e973]: Shows errors in realtime and does not block submission
+              - button "Submit" [ref=f2e974] [cursor=pointer]
+          - generic [ref=f2e978]:
+            - figure [ref=f2e980]:
+              - button "Copy Text" [ref=f2e982] [cursor=pointer]
+              - region [ref=f2e983]:
+                - code [ref=f2e985]:
+                  - generic [ref=f2e986]: "\"use client\";"
+                  - generic [ref=f2e988]: "import {"
+                  - generic [ref=f2e989]: Button,
+                  - generic [ref=f2e990]: ComboBox,
+            - button "Expand code" [ref=f2e991] [cursor=pointer]
+        - heading [level=3] [ref=f2e992]:
+          - link "Custom Validation" [ref=f2e993] [cursor=pointer]:
+            - /url: "#custom-validation"
+          - button "Copy Anchor Link" [ref=f2e994]
+        - paragraph [ref=f2e999]:
+          - text: Use the
+          - code [ref=f2e1000]: validate
+          - text: prop to return an error message when the value is invalid, or
+          - code [ref=f2e1001]: "true"
+          - text: when it is valid.
+        - generic [ref=f2e1002]:
+          - generic [ref=f2e1005]:
+            - generic [ref=f2e1006]:
+              - generic [ref=f2e1007]: Favorite Animal*
+              - group [ref=f2e1008]:
+                - combobox "Favorite Animal*" [ref=f2e1009]
+                - button "Show suggestions Favorite Animal*" [ref=f2e1010] [cursor=pointer]
+            - button "Submit" [ref=f2e1013] [cursor=pointer]
+          - generic [ref=f2e1017]:
+            - figure [ref=f2e1019]:
+              - button "Copy Text" [ref=f2e1021] [cursor=pointer]
+              - region [ref=f2e1022]:
+                - code [ref=f2e1024]:
+                  - generic [ref=f2e1025]: "\"use client\";"
+                  - generic [ref=f2e1027]: "import {Button, ComboBox, FieldError, Form, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e1029]: const animals = [
+            - button "Expand code" [ref=f2e1030] [cursor=pointer]
+        - heading [level=3] [ref=f2e1031]:
+          - link "Read Only" [ref=f2e1032] [cursor=pointer]:
+            - /url: "#read-only"
+          - button "Copy Anchor Link" [ref=f2e1033]
+        - paragraph [ref=f2e1038]:
+          - text: Use the
+          - code [ref=f2e1039]: isReadOnly
+          - text: prop to make the ComboBox read-only. The selected value can be focused, but it cannot be changed.
+        - generic [ref=f2e1040]:
+          - generic [ref=f2e1043]:
+            - generic [ref=f2e1044]: Favorite Animal
+            - group [ref=f2e1045]:
+              - combobox "Favorite Animal" [ref=f2e1046]: Cat
+              - button "Show suggestions Favorite Animal" [disabled] [ref=f2e1047]
+          - generic [ref=f2e1053]:
+            - figure [ref=f2e1055]:
+              - button "Copy Text" [ref=f2e1057] [cursor=pointer]
+              - region [ref=f2e1058]:
+                - code [ref=f2e1060]:
+                  - generic [ref=f2e1061]: "\"use client\";"
+                  - generic [ref=f2e1063]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e1065]: const animals = [
+            - button "Expand code" [ref=f2e1066] [cursor=pointer]
+        - heading [level=3] [ref=f2e1067]:
+          - link "Multiple Selection" [ref=f2e1068] [cursor=pointer]:
+            - /url: "#multiple-selection"
+          - button "Copy Anchor Link" [ref=f2e1069]
+        - paragraph [ref=f2e1074]:
+          - text: Set
+          - code [ref=f2e1075]: selectionMode="multiple"
+          - text: to allow selecting more than one option. In multiple selection mode, use
+          - code [ref=f2e1076]: ComboBox.Value
+          - text: to display the selected items and pass
+          - code [ref=f2e1077]: selectionMode="multiple"
+          - text: to the inner
+          - code [ref=f2e1078]: ListBox
+          - text: as well. Selection is controlled with the
+          - code [ref=f2e1079]: value
+          - text: /
+          - code [ref=f2e1080]: defaultValue
+          - text: (
+          - code [ref=f2e1081]: Key[]
+          - text: ) props and the
+          - code [ref=f2e1082]: onChange
+          - text: handler.
+        - generic [ref=f2e1083]:
+          - generic [ref=f2e1086]:
+            - generic [ref=f2e1087]: Favorite Animals
+            - group [ref=f2e1088]:
+              - combobox "Favorite Animals" [ref=f2e1089]
+              - button "Show suggestions Favorite Animals" [ref=f2e1090] [cursor=pointer]
+            - generic [ref=f2e1093]: No animals selected
+          - generic [ref=f2e1097]:
+            - figure [ref=f2e1099]:
+              - button "Copy Text" [ref=f2e1101] [cursor=pointer]
+              - region [ref=f2e1102]:
+                - code [ref=f2e1104]:
+                  - generic [ref=f2e1105]: "\"use client\";"
+                  - generic [ref=f2e1107]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e1109]: "export function MultipleSelection() {"
+            - button "Expand code" [ref=f2e1110] [cursor=pointer]
+        - heading [level=3] [ref=f2e1111]:
+          - link "In Surface" [ref=f2e1112] [cursor=pointer]:
+            - /url: "#in-surface"
+          - button "Copy Anchor Link" [ref=f2e1113]
+        - paragraph [ref=f2e1118]:
+          - text: When used inside a
+          - link "Surface" [ref=f2e1119] [cursor=pointer]:
+            - /url: /en/docs/react/components/surface
+          - text: component, use
+          - code [ref=f2e1120]: variant="secondary"
+          - text: to apply the lower emphasis variant suitable for surface backgrounds.
+        - generic [ref=f2e1121]:
+          - generic [ref=f2e1125]:
+            - generic [ref=f2e1126]:
+              - generic [ref=f2e1127]: Favorite Animal*
+              - group [ref=f2e1128]:
+                - combobox "Favorite Animal*" [ref=f2e1129]
+                - button "Show suggestions Favorite Animal*" [ref=f2e1130] [cursor=pointer]
+            - button "Submit" [ref=f2e1133] [cursor=pointer]
+          - generic [ref=f2e1137]:
+            - figure [ref=f2e1139]:
+              - button "Copy Text" [ref=f2e1141] [cursor=pointer]
+              - region [ref=f2e1142]:
+                - code [ref=f2e1144]:
+                  - generic [ref=f2e1145]: "\"use client\";"
+                  - generic [ref=f2e1147]: "import {Button, ComboBox, FieldError, Form, Input, Label, ListBox, Surface} from \"@heroui/react\";"
+                  - generic [ref=f2e1149]: "export function OnSurface() {"
+            - button "Expand code" [ref=f2e1150] [cursor=pointer]
+        - heading [level=2] [ref=f2e1151]:
+          - link "Customization" [ref=f2e1152] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f2e1153]
+        - heading [level=3] [ref=f2e1158]:
+          - link "Tailwind CSS" [ref=f2e1159] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f2e1160]
+        - generic [ref=f2e1165]:
+          - generic [ref=f2e1168]:
+            - generic [ref=f2e1169]: Framework
+            - group [ref=f2e1170]:
+              - combobox "Framework" [ref=f2e1171]
+              - button "Show suggestions Framework" [ref=f2e1172] [cursor=pointer]
+          - generic [ref=f2e1178]:
+            - figure [ref=f2e1180]:
+              - button "Copy Text" [ref=f2e1182] [cursor=pointer]
+              - region [ref=f2e1183]:
+                - code [ref=f2e1185]:
+                  - generic [ref=f2e1186]: "import {ComboBox, Input, Label, ListBox} from \"@heroui/react\";"
+                  - generic [ref=f2e1188]: const itemClass =
+                  - generic [ref=f2e1189]: "\"rounded-lg data-[focused=true]:bg-muted/70 data-[selected=true]:font-medium data-[selected=true]:text-foreground\";"
+            - button "Expand code" [ref=f2e1191] [cursor=pointer]
+        - heading [level=3] [ref=f2e1192]:
+          - link "Global CSS" [ref=f2e1193] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f2e1194]
+        - paragraph [ref=f2e1199]:
+          - text: To customize the ComboBox component classes, you can use the
+          - code [ref=f2e1200]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f2e1201] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f2e1202]:
+          - button "Copy Text" [ref=f2e1204] [cursor=pointer]
+          - region [ref=f2e1205]:
+            - code [ref=f2e1207]:
+              - generic [ref=f2e1208]: "@layer components {"
+              - generic [ref=f2e1209]: ".combo-box {"
+              - generic [ref=f2e1210]: "@apply flex flex-col gap-1;"
+              - generic [ref=f2e1211]: "}"
+              - generic [ref=f2e1213]: ".combo-box__input-group {"
+              - generic [ref=f2e1214]: "@apply relative inline-flex items-center;"
+              - generic [ref=f2e1215]: "}"
+              - generic [ref=f2e1217]: ".combo-box__trigger {"
+              - generic [ref=f2e1218]: "@apply absolute right-0 text-muted;"
+              - generic [ref=f2e1219]: "}"
+              - generic [ref=f2e1221]: ".combo-box__popover {"
+              - generic [ref=f2e1222]: "@apply rounded-lg border border-border bg-surface p-2;"
+              - generic [ref=f2e1223]: "}"
+              - generic [ref=f2e1224]: "}"
+        - heading [level=2] [ref=f2e1225]:
+          - link "Styling Reference" [ref=f2e1226] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f2e1227]
+        - paragraph [ref=f2e1232]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f2e1233] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f2e1234]:
+          - link "CSS Classes" [ref=f2e1235] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f2e1236]
+        - paragraph [ref=f2e1241]:
+          - text: The ComboBox component uses these CSS classes (
+          - link "View source styles" [ref=f2e1242] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/combo-box.css
+          - text: "):"
+        - heading [level=4] [ref=f2e1243]:
+          - link "Base Classes" [ref=f2e1244] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f2e1245]
+        - list [ref=f2e1250]:
+          - listitem [ref=f2e1251]:
+            - code [ref=f2e1252]: .combo-box
+            - text: "- Base ComboBox container"
+          - listitem [ref=f2e1253]:
+            - code [ref=f2e1254]: .combo-box__input-group
+            - text: "- Container for the input and trigger button"
+          - listitem [ref=f2e1255]:
+            - code [ref=f2e1256]: .combo-box__value
+            - text: "- The selected value display (used in multiple selection)"
+          - listitem [ref=f2e1257]:
+            - code [ref=f2e1258]: .combo-box__trigger
+            - text: "- The button that triggers the popover"
+          - listitem [ref=f2e1259]:
+            - code [ref=f2e1260]: .combo-box__popover
+            - text: "- The popover container"
+        - heading [level=4] [ref=f2e1261]:
+          - link "State Classes" [ref=f2e1262] [cursor=pointer]:
+            - /url: "#state-classes-toc"
+          - button "Copy Anchor Link" [ref=f2e1263]
+        - list [ref=f2e1268]:
+          - listitem [ref=f2e1269]:
+            - code [ref=f2e1270]: .combo-box[data-invalid="true"]
+            - text: "- Invalid state"
+          - listitem [ref=f2e1271]:
+            - code [ref=f2e1272]: .combo-box[data-disabled="true"]
+            - text: "- Disabled ComboBox state"
+          - listitem [ref=f2e1273]:
+            - code [ref=f2e1274]: .combo-box__trigger[data-focus-visible="true"]
+            - text: "- Focused trigger state"
+          - listitem [ref=f2e1275]:
+            - code [ref=f2e1276]: .combo-box__trigger[data-disabled="true"]
+            - text: "- Disabled trigger state"
+          - listitem [ref=f2e1277]:
+            - code [ref=f2e1278]: .combo-box__trigger[data-open="true"]
+            - text: "- Open trigger state"
+        - heading [level=3] [ref=f2e1279]:
+          - link "Interactive States" [ref=f2e1280] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f2e1281]
+        - paragraph [ref=f2e1286]: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list [ref=f2e1287]:
+          - listitem [ref=f2e1288]:
+            - strong [ref=f2e1289]: Hover
+            - text: ":"
+            - code [ref=f2e1290]: :hover
+            - text: or
+            - code [ref=f2e1291]: "[data-hovered=\"true\"]"
+            - text: on trigger
+          - listitem [ref=f2e1292]:
+            - strong [ref=f2e1293]: Focus
+            - text: ":"
+            - code [ref=f2e1294]: :focus-visible
+            - text: or
+            - code [ref=f2e1295]: "[data-focus-visible=\"true\"]"
+            - text: on trigger
+          - listitem [ref=f2e1296]:
+            - strong [ref=f2e1297]: Disabled
+            - text: ":"
+            - code [ref=f2e1298]: :disabled
+            - text: or
+            - code [ref=f2e1299]: "[data-disabled=\"true\"]"
+            - text: on ComboBox
+          - listitem [ref=f2e1300]:
+            - strong [ref=f2e1301]: Open
+            - text: ":"
+            - code [ref=f2e1302]: "[data-open=\"true\"]"
+            - text: on trigger
+        - heading [level=2] [ref=f2e1303]:
+          - link "API Reference" [ref=f2e1304] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f2e1305]
+        - heading [level=3] [ref=f2e1310]:
+          - link "ComboBox" [ref=f2e1311] [cursor=pointer]:
+            - /url: "#combobox"
+          - button "Copy Anchor Link" [ref=f2e1312]
+        - table [ref=f2e1318]:
+          - rowgroup [ref=f2e1319]:
+            - row [ref=f2e1320]:
+              - columnheader "Prop" [ref=f2e1321]
+              - columnheader "Type" [ref=f2e1322]
+              - columnheader "Default" [ref=f2e1323]
+              - columnheader "Description" [ref=f2e1324]
+          - rowgroup [ref=f2e1325]:
+            - row [ref=f2e1326]:
+              - cell [ref=f2e1327]:
+                - code [ref=f2e1328]: inputValue
+              - cell [ref=f2e1329]:
+                - code [ref=f2e1330]: string
+              - cell "-" [ref=f2e1331]
+              - cell "Current input value (controlled)" [ref=f2e1332]
+            - row [ref=f2e1333]:
+              - cell [ref=f2e1334]:
+                - code [ref=f2e1335]: defaultInputValue
+              - cell [ref=f2e1336]:
+                - code [ref=f2e1337]: string
+              - cell "-" [ref=f2e1338]
+              - cell "Default input value (uncontrolled)" [ref=f2e1339]
+            - row [ref=f2e1340]:
+              - cell [ref=f2e1341]:
+                - code [ref=f2e1342]: onInputChange
+              - cell [ref=f2e1343]:
+                - code [ref=f2e1344]: "(value: string) => void"
+              - cell "-" [ref=f2e1345]
+              - cell "Handler called when the input value changes" [ref=f2e1346]
+            - row [ref=f2e1347]:
+              - cell [ref=f2e1348]:
+                - code [ref=f2e1349]: selectionMode
+              - cell [ref=f2e1350]:
+                - code [ref=f2e1351]: "\"single\" | \"multiple\""
+              - cell [ref=f2e1352]:
+                - code [ref=f2e1353]: "\"single\""
+              - cell "Whether single or multiple selection is enabled" [ref=f2e1354]
+            - row [ref=f2e1355]:
+              - cell [ref=f2e1356]:
+                - code [ref=f2e1357]: selectedKey
+              - cell [ref=f2e1358]:
+                - code [ref=f2e1359]: Key | null
+              - cell "-" [ref=f2e1360]
+              - cell "Current selected key (controlled, single selection)" [ref=f2e1361]
+            - row [ref=f2e1362]:
+              - cell [ref=f2e1363]:
+                - code [ref=f2e1364]: defaultSelectedKey
+              - cell [ref=f2e1365]:
+                - code [ref=f2e1366]: Key | null
+              - cell "-" [ref=f2e1367]
+              - cell "Default selected key (uncontrolled, single selection)" [ref=f2e1368]
+            - row [ref=f2e1369]:
+              - cell [ref=f2e1370]:
+                - code [ref=f2e1371]: onSelectionChange
+              - cell [ref=f2e1372]:
+                - code [ref=f2e1373]: "(key: Key | null) => void"
+              - cell "-" [ref=f2e1374]
+              - cell "Handler called when the selection changes (single selection)" [ref=f2e1375]
+            - row [ref=f2e1376]:
+              - cell [ref=f2e1377]:
+                - code [ref=f2e1378]: value
+              - cell [ref=f2e1379]:
+                - code [ref=f2e1380]: Key | null | Key[]
+              - cell "-" [ref=f2e1381]
+              - cell [ref=f2e1382]:
+                - text: The currently selected keys (controlled).
+                - code [ref=f2e1383]: Key[]
+                - text: when
+                - code [ref=f2e1384]: selectionMode="multiple"
+            - row [ref=f2e1385]:
+              - cell [ref=f2e1386]:
+                - code [ref=f2e1387]: defaultValue
+              - cell [ref=f2e1388]:
+                - code [ref=f2e1389]: Key | null | Key[]
+              - cell "-" [ref=f2e1390]
+              - cell [ref=f2e1391]:
+                - text: The initial selected keys (uncontrolled).
+                - code [ref=f2e1392]: Key[]
+                - text: when
+                - code [ref=f2e1393]: selectionMode="multiple"
+            - row [ref=f2e1394]:
+              - cell [ref=f2e1395]:
+                - code [ref=f2e1396]: onChange
+              - cell [ref=f2e1397]:
+                - code [ref=f2e1398]: "(value: Key | null | Key[]) => void"
+              - cell "-" [ref=f2e1399]
+              - cell "Handler called when the selection changes" [ref=f2e1400]
+            - row [ref=f2e1401]:
+              - cell [ref=f2e1402]:
+                - code [ref=f2e1403]: items
+              - cell [ref=f2e1404]:
+                - code [ref=f2e1405]: Iterable<T>
+              - cell "-" [ref=f2e1406]
+              - cell "The items to display in the listbox" [ref=f2e1407]
+            - row [ref=f2e1408]:
+              - cell [ref=f2e1409]:
+                - code [ref=f2e1410]: disabledKeys
+              - cell [ref=f2e1411]:
+                - code [ref=f2e1412]: Iterable<Key>
+              - cell "-" [ref=f2e1413]
+              - cell "Keys of disabled items" [ref=f2e1414]
+            - row [ref=f2e1415]:
+              - cell [ref=f2e1416]:
+                - code [ref=f2e1417]: defaultFilter
+              - cell [ref=f2e1418]:
+                - code [ref=f2e1419]: "(text: string, inputValue: string) => boolean"
+              - cell "-" [ref=f2e1420]
+              - cell "Custom filter function for filtering items" [ref=f2e1421]
+            - row [ref=f2e1422]:
+              - cell [ref=f2e1423]:
+                - code [ref=f2e1424]: isDisabled
+              - cell [ref=f2e1425]:
+                - code [ref=f2e1426]: boolean
+              - cell "-" [ref=f2e1427]
+              - cell "Whether the ComboBox is disabled" [ref=f2e1428]
+            - row [ref=f2e1429]:
+              - cell [ref=f2e1430]:
+                - code [ref=f2e1431]: isReadOnly
+              - cell [ref=f2e1432]:
+                - code [ref=f2e1433]: boolean
+              - cell "-" [ref=f2e1434]
+              - cell "Whether the input can be selected but not changed by the user" [ref=f2e1435]
+            - row [ref=f2e1436]:
+              - cell [ref=f2e1437]:
+                - code [ref=f2e1438]: isRequired
+              - cell [ref=f2e1439]:
+                - code [ref=f2e1440]: boolean
+              - cell "-" [ref=f2e1441]
+              - cell "Whether user input is required" [ref=f2e1442]
+            - row [ref=f2e1443]:
+              - cell [ref=f2e1444]:
+                - code [ref=f2e1445]: isInvalid
+              - cell [ref=f2e1446]:
+                - code [ref=f2e1447]: boolean
+              - cell "-" [ref=f2e1448]
+              - cell "Whether the ComboBox value is invalid" [ref=f2e1449]
+            - row [ref=f2e1450]:
+              - cell [ref=f2e1451]:
+                - code [ref=f2e1452]: validate
+              - cell [ref=f2e1453]:
+                - code [ref=f2e1454]: "(value: ComboBoxValidationValue) => ValidationError | true | null | undefined"
+              - cell "-" [ref=f2e1455]
+              - cell [ref=f2e1456]:
+                - text: A function that returns an error message if a given value is invalid. Validation errors are displayed to the user when the form is submitted if
+                - code [ref=f2e1457]: validationBehavior="native"
+                - text: . For realtime validation, use the
+                - code [ref=f2e1458]: isInvalid
+                - text: prop instead
+            - row [ref=f2e1459]:
+              - cell [ref=f2e1460]:
+                - code [ref=f2e1461]: validationBehavior
+              - cell [ref=f2e1462]:
+                - code [ref=f2e1463]: "\"native\" | \"aria\""
+              - cell [ref=f2e1464]:
+                - code [ref=f2e1465]: "\"native\""
+              - cell "Whether to use native HTML form validation to prevent form submission when the value is missing or invalid, or mark the field as required or invalid via ARIA" [ref=f2e1466]
+            - row [ref=f2e1467]:
+              - cell [ref=f2e1468]:
+                - code [ref=f2e1469]: name
+              - cell [ref=f2e1470]:
+                - code [ref=f2e1471]: string
+              - cell "-" [ref=f2e1472]
+              - cell "The name of the input, used when submitting an HTML form" [ref=f2e1473]
+            - row [ref=f2e1474]:
+              - cell [ref=f2e1475]:
+                - code [ref=f2e1476]: form
+              - cell [ref=f2e1477]:
+                - code [ref=f2e1478]: string
+              - cell "-" [ref=f2e1479]
+              - cell [ref=f2e1480]:
+                - text: The id of a
+                - code [ref=f2e1481]: <form>
+                - text: element to associate the input with
+            - row [ref=f2e1482]:
+              - cell [ref=f2e1483]:
+                - code [ref=f2e1484]: formValue
+              - cell [ref=f2e1485]:
+                - code [ref=f2e1486]: "\"text\" | \"key\""
+              - cell [ref=f2e1487]:
+                - code [ref=f2e1488]: "\"key\""
+              - cell [ref=f2e1489]:
+                - text: Whether the text or key of the selected item is submitted as part of an HTML form. When
+                - code [ref=f2e1490]: allowsCustomValue
+                - text: is
+                - code [ref=f2e1491]: "true"
+                - text: ", this option does not apply and the text is always submitted"
+            - row [ref=f2e1492]:
+              - cell [ref=f2e1493]:
+                - code [ref=f2e1494]: autoComplete
+              - cell [ref=f2e1495]:
+                - code [ref=f2e1496]: string
+              - cell "-" [ref=f2e1497]
+              - cell "Describes the type of autocomplete functionality" [ref=f2e1498]
+            - row [ref=f2e1499]:
+              - cell [ref=f2e1500]:
+                - code [ref=f2e1501]: autoFocus
+              - cell [ref=f2e1502]:
+                - code [ref=f2e1503]: boolean
+              - cell "-" [ref=f2e1504]
+              - cell "Whether the element should receive focus on render" [ref=f2e1505]
+            - row [ref=f2e1506]:
+              - cell [ref=f2e1507]:
+                - code [ref=f2e1508]: allowsCustomValue
+              - cell [ref=f2e1509]:
+                - code [ref=f2e1510]: boolean
+              - cell "-" [ref=f2e1511]
+              - cell "Whether the ComboBox allows custom values not in the list" [ref=f2e1512]
+            - row [ref=f2e1513]:
+              - cell [ref=f2e1514]:
+                - code [ref=f2e1515]: allowsEmptyCollection
+              - cell [ref=f2e1516]:
+                - code [ref=f2e1517]: boolean
+              - cell "-" [ref=f2e1518]
+              - cell "Whether the ComboBox allows an empty collection" [ref=f2e1519]
+            - row [ref=f2e1520]:
+              - cell [ref=f2e1521]:
+                - code [ref=f2e1522]: menuTrigger
+              - cell [ref=f2e1523]:
+                - code [ref=f2e1524]: "\"focus\" | \"input\" | \"manual\""
+              - cell [ref=f2e1525]:
+                - code [ref=f2e1526]: "\"focus\""
+              - cell "The interaction required to display the ComboBox menu" [ref=f2e1527]
+            - row [ref=f2e1528]:
+              - cell [ref=f2e1529]:
+                - code [ref=f2e1530]: shouldFocusWrap
+              - cell [ref=f2e1531]:
+                - code [ref=f2e1532]: boolean
+              - cell "-" [ref=f2e1533]
+              - cell "Whether keyboard navigation is circular" [ref=f2e1534]
+            - row [ref=f2e1535]:
+              - cell [ref=f2e1536]:
+                - code [ref=f2e1537]: fullWidth
+              - cell [ref=f2e1538]:
+                - code [ref=f2e1539]: boolean
+              - cell [ref=f2e1540]:
+                - code [ref=f2e1541]: "false"
+              - cell "Whether the ComboBox should take full width of its container" [ref=f2e1542]
+            - row [ref=f2e1543]:
+              - cell [ref=f2e1544]:
+                - code [ref=f2e1545]: variant
+              - cell [ref=f2e1546]:
+                - code [ref=f2e1547]: "\"primary\" | \"secondary\""
+              - cell [ref=f2e1548]:
+                - code [ref=f2e1549]: "\"primary\""
+              - cell [ref=f2e1550]:
+                - text: Visual variant of the component.
+                - code [ref=f2e1551]: primary
+                - text: is the default style with shadow.
+                - code [ref=f2e1552]: secondary
+                - text: is a lower emphasis variant without shadow, suitable for use in surfaces.
+            - row [ref=f2e1553]:
+              - cell [ref=f2e1554]:
+                - code [ref=f2e1555]: className
+              - cell [ref=f2e1556]:
+                - code [ref=f2e1557]: string
+              - cell "-" [ref=f2e1558]
+              - cell "Additional CSS classes" [ref=f2e1559]
+            - row [ref=f2e1560]:
+              - cell [ref=f2e1561]:
+                - code [ref=f2e1562]: children
+              - cell [ref=f2e1563]:
+                - code [ref=f2e1564]: ReactNode | RenderFunction
+              - cell "-" [ref=f2e1565]
+              - cell "ComboBox content or render function" [ref=f2e1566]
+            - row [ref=f2e1567]:
+              - cell [ref=f2e1568]:
+                - code [ref=f2e1569]: render
+              - cell [ref=f2e1570]:
+                - code [ref=f2e1571]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, ComboBoxRenderProps>
+              - cell "-" [ref=f2e1572]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f2e1573]
+        - heading [level=3] [ref=f2e1574]:
+          - link "ComboBox.InputGroup" [ref=f2e1575] [cursor=pointer]:
+            - /url: "#comboboxinputgroup"
+          - button "Copy Anchor Link" [ref=f2e1576]
+        - table [ref=f2e1582]:
+          - rowgroup [ref=f2e1583]:
+            - row [ref=f2e1584]:
+              - columnheader "Prop" [ref=f2e1585]
+              - columnheader "Type" [ref=f2e1586]
+              - columnheader "Default" [ref=f2e1587]
+              - columnheader "Description" [ref=f2e1588]
+          - rowgroup [ref=f2e1589]:
+            - row [ref=f2e1590]:
+              - cell [ref=f2e1591]:
+                - code [ref=f2e1592]: className
+              - cell [ref=f2e1593]:
+                - code [ref=f2e1594]: string
+              - cell "-" [ref=f2e1595]
+              - cell "Additional CSS classes" [ref=f2e1596]
+            - row [ref=f2e1597]:
+              - cell [ref=f2e1598]:
+                - code [ref=f2e1599]: children
+              - cell [ref=f2e1600]:
+                - code [ref=f2e1601]: ReactNode
+              - cell "-" [ref=f2e1602]
+              - cell "InputGroup content" [ref=f2e1603]
+        - heading [level=3] [ref=f2e1604]:
+          - link "ComboBox.Value" [ref=f2e1605] [cursor=pointer]:
+            - /url: "#comboboxvalue"
+          - button "Copy Anchor Link" [ref=f2e1606]
+        - paragraph [ref=f2e1611]: Renders the selected values of a ComboBox, or a placeholder if no value is selected. By default the selected items are rendered as a comma separated list. Use the render function to customize this (for example, to display tags).
+        - table [ref=f2e1613]:
+          - rowgroup [ref=f2e1614]:
+            - row [ref=f2e1615]:
+              - columnheader "Prop" [ref=f2e1616]
+              - columnheader "Type" [ref=f2e1617]
+              - columnheader "Default" [ref=f2e1618]
+              - columnheader "Description" [ref=f2e1619]
+          - rowgroup [ref=f2e1620]:
+            - row [ref=f2e1621]:
+              - cell [ref=f2e1622]:
+                - code [ref=f2e1623]: placeholder
+              - cell [ref=f2e1624]:
+                - code [ref=f2e1625]: ReactNode
+              - cell "-" [ref=f2e1626]
+              - cell "A value to display when no items are selected" [ref=f2e1627]
+            - row [ref=f2e1628]:
+              - cell [ref=f2e1629]:
+                - code [ref=f2e1630]: className
+              - cell [ref=f2e1631]:
+                - code [ref=f2e1632]: "string | (values: ComboBoxValueRenderProps) => string"
+              - cell "-" [ref=f2e1633]
+              - cell "Additional CSS classes" [ref=f2e1634]
+            - row [ref=f2e1635]:
+              - cell [ref=f2e1636]:
+                - code [ref=f2e1637]: children
+              - cell [ref=f2e1638]:
+                - code [ref=f2e1639]: "ReactNode | (values: ComboBoxValueRenderProps) => ReactNode"
+              - cell "-" [ref=f2e1640]
+              - cell "Custom render function for the selected values" [ref=f2e1641]
+        - heading [level=3] [ref=f2e1642]:
+          - link "ComboBox.Trigger" [ref=f2e1643] [cursor=pointer]:
+            - /url: "#comboboxtrigger"
+          - button "Copy Anchor Link" [ref=f2e1644]
+        - table [ref=f2e1650]:
+          - rowgroup [ref=f2e1651]:
+            - row [ref=f2e1652]:
+              - columnheader "Prop" [ref=f2e1653]
+              - columnheader "Type" [ref=f2e1654]
+              - columnheader "Default" [ref=f2e1655]
+              - columnheader "Description" [ref=f2e1656]
+          - rowgroup [ref=f2e1657]:
+            - row [ref=f2e1658]:
+              - cell [ref=f2e1659]:
+                - code [ref=f2e1660]: className
+              - cell [ref=f2e1661]:
+                - code [ref=f2e1662]: string
+              - cell "-" [ref=f2e1663]
+              - cell "Additional CSS classes" [ref=f2e1664]
+            - row [ref=f2e1665]:
+              - cell [ref=f2e1666]:
+                - code [ref=f2e1667]: children
+              - cell [ref=f2e1668]:
+                - code [ref=f2e1669]: ReactNode
+              - cell "-" [ref=f2e1670]
+              - cell "Custom trigger content" [ref=f2e1671]
+        - heading [level=3] [ref=f2e1672]:
+          - link "ComboBox.Popover" [ref=f2e1673] [cursor=pointer]:
+            - /url: "#comboboxpopover"
+          - button "Copy Anchor Link" [ref=f2e1674]
+        - table [ref=f2e1680]:
+          - rowgroup [ref=f2e1681]:
+            - row [ref=f2e1682]:
+              - columnheader "Prop" [ref=f2e1683]
+              - columnheader "Type" [ref=f2e1684]
+              - columnheader "Default" [ref=f2e1685]
+              - columnheader "Description" [ref=f2e1686]
+          - rowgroup [ref=f2e1687]:
+            - row [ref=f2e1688]:
+              - cell [ref=f2e1689]:
+                - code [ref=f2e1690]: placement
+              - cell [ref=f2e1691]:
+                - code [ref=f2e1692]: "\"bottom\" | \"bottom left\" | \"bottom right\" | \"bottom start\" | \"bottom end\" | \"top\" | \"top left\" | \"top right\" | \"top start\" | \"top end\" | \"left\" | \"left top\" | \"left bottom\" | \"start\" | \"start top\" | \"start bottom\" | \"right\" | \"right top\" | \"right bottom\" | \"end\" | \"end top\" | \"end bottom\""
+              - cell [ref=f2e1693]:
+                - code [ref=f2e1694]: "\"bottom\""
+              - cell "Placement of the popover relative to the trigger" [ref=f2e1695]
+            - row [ref=f2e1696]:
+              - cell [ref=f2e1697]:
+                - code [ref=f2e1698]: className
+              - cell [ref=f2e1699]:
+                - code [ref=f2e1700]: string
+              - cell "-" [ref=f2e1701]
+              - cell "Additional CSS classes" [ref=f2e1702]
+            - row [ref=f2e1703]:
+              - cell [ref=f2e1704]:
+                - code [ref=f2e1705]: children
+              - cell [ref=f2e1706]:
+                - code [ref=f2e1707]: ReactNode
+              - cell "-" [ref=f2e1708]
+              - cell "Content children" [ref=f2e1709]
+        - heading [level=3] [ref=f2e1710]:
+          - link "Render Props" [ref=f2e1711] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f2e1712]
+        - paragraph [ref=f2e1717]: "When using render functions with ComboBox, these values are provided:"
+        - table [ref=f2e1719]:
+          - rowgroup [ref=f2e1720]:
+            - row [ref=f2e1721]:
+              - columnheader "Prop" [ref=f2e1722]
+              - columnheader "Type" [ref=f2e1723]
+              - columnheader "Description" [ref=f2e1724]
+          - rowgroup [ref=f2e1725]:
+            - row [ref=f2e1726]:
+              - cell [ref=f2e1727]:
+                - code [ref=f2e1728]: state
+              - cell [ref=f2e1729]:
+                - code [ref=f2e1730]: ComboBoxState
+              - cell "The state of the ComboBox" [ref=f2e1731]
+            - row [ref=f2e1732]:
+              - cell [ref=f2e1733]:
+                - code [ref=f2e1734]: inputValue
+              - cell [ref=f2e1735]:
+                - code [ref=f2e1736]: string
+              - cell "The current input value" [ref=f2e1737]
+            - row [ref=f2e1738]:
+              - cell [ref=f2e1739]:
+                - code [ref=f2e1740]: selectedKey
+              - cell [ref=f2e1741]:
+                - code [ref=f2e1742]: Key | null
+              - cell "The currently selected key" [ref=f2e1743]
+            - row [ref=f2e1744]:
+              - cell [ref=f2e1745]:
+                - code [ref=f2e1746]: selectedItem
+              - cell [ref=f2e1747]:
+                - code [ref=f2e1748]: Node | null
+              - cell "The currently selected item" [ref=f2e1749]
+        - heading [level=2] [ref=f2e1750]:
+          - link "Accessibility" [ref=f2e1751] [cursor=pointer]:
+            - /url: "#accessibility"
+          - button "Copy Anchor Link" [ref=f2e1752]
+        - paragraph [ref=f2e1757]: "The ComboBox component implements the ARIA comboBox pattern and provides:"
+        - list [ref=f2e1758]:
+          - listitem [ref=f2e1759]: Full keyboard navigation support
+          - listitem [ref=f2e1760]: Screen reader announcements for selection changes and input changes
+          - listitem [ref=f2e1761]: Proper focus management
+          - listitem [ref=f2e1762]: Support for disabled states
+          - listitem [ref=f2e1763]: Typeahead search functionality
+          - listitem [ref=f2e1764]: HTML form integration
+          - listitem [ref=f2e1765]: Support for custom values
+        - paragraph [ref=f2e1766]:
+          - text: For more information, see the
+          - link "React Aria ComboBox documentation" [ref=f2e1767] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/ComboBox.html
+          - text: .
+        - heading [level=2] [ref=f2e1768]:
+          - link "Related Components" [ref=f2e1769] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f2e1770]
+        - generic [ref=f2e1775]:
+          - generic [ref=f2e1776]:
+            - link "Listbox" [ref=f2e1778] [cursor=pointer]:
+              - /url: /en/docs/components/list-box
+            - generic [ref=f2e1780]:
+              - link "Listbox":
+                - /url: /en/docs/components/list-box
+                - img "Listbox" [ref=f2e1781] [cursor=pointer]
+          - generic [ref=f2e1782]:
+            - link "Popover" [ref=f2e1784] [cursor=pointer]:
+              - /url: /en/docs/components/popover
+            - generic [ref=f2e1786]:
+              - link "Popover":
+                - /url: /en/docs/components/popover
+                - img "Popover" [ref=f2e1787] [cursor=pointer]
+          - generic [ref=f2e1788]:
+            - link "Input" [ref=f2e1790] [cursor=pointer]:
+              - /url: /en/docs/components/input
+            - generic [ref=f2e1792]:
+              - link "Input":
+                - /url: /en/docs/components/input
+                - img "Input" [ref=f2e1793] [cursor=pointer]
+      - generic [ref=f2e1794]:
+        - link [ref=f2e1795] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+          - paragraph [ref=f2e1799]: ColorSwatchPicker
+          - paragraph [ref=f2e1800]: A list of color swatches that allows users to select a color from a predefined palette.
+        - link [ref=f2e1801] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+          - paragraph [ref=f2e1805]: DateField
+          - paragraph [ref=f2e1806]: Date input field with labels, descriptions, and validation built on React Aria DateField
+    - generic [ref=f2e1807]:
+      - heading "On this page" [level=3] [ref=f2e1808]
+      - generic [ref=f2e1813]:
+        - link "Usage" [ref=f2e1814] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f2e1815] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f2e1816] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Full Width" [ref=f2e1817] [cursor=pointer]:
+          - /url: "#full-width"
+        - link "With Description" [ref=f2e1818] [cursor=pointer]:
+          - /url: "#with-description"
+        - link "Required" [ref=f2e1819] [cursor=pointer]:
+          - /url: "#required"
+        - link "Disabled" [ref=f2e1820] [cursor=pointer]:
+          - /url: "#disabled"
+        - link "With Disabled Options" [ref=f2e1821] [cursor=pointer]:
+          - /url: "#with-disabled-options"
+        - link "With Sections" [ref=f2e1822] [cursor=pointer]:
+          - /url: "#with-sections"
+        - link "Controlled" [ref=f2e1823] [cursor=pointer]:
+          - /url: "#controlled"
+        - link "Controlled Input Value" [ref=f2e1824] [cursor=pointer]:
+          - /url: "#controlled-input-value"
+        - link "Asynchronous Loading" [ref=f2e1825] [cursor=pointer]:
+          - /url: "#asynchronous-loading"
+        - link "Default Selected Key" [ref=f2e1826] [cursor=pointer]:
+          - /url: "#default-selected-key"
+        - link "Allows Custom Value" [ref=f2e1827] [cursor=pointer]:
+          - /url: "#allows-custom-value"
+        - link "Custom Indicator" [ref=f2e1828] [cursor=pointer]:
+          - /url: "#custom-indicator"
+        - link "Custom Value" [ref=f2e1829] [cursor=pointer]:
+          - /url: "#custom-value"
+        - link "Custom Filtering" [ref=f2e1830] [cursor=pointer]:
+          - /url: "#custom-filtering"
+        - link "Render Function" [ref=f2e1831] [cursor=pointer]:
+          - /url: "#render-function"
+        - link "Menu Trigger" [ref=f2e1832] [cursor=pointer]:
+          - /url: "#menu-trigger"
+        - link "Form Value" [ref=f2e1833] [cursor=pointer]:
+          - /url: "#form-value"
+        - link "Validation Behavior" [ref=f2e1834] [cursor=pointer]:
+          - /url: "#validation-behavior"
+        - link "Custom Validation" [ref=f2e1835] [cursor=pointer]:
+          - /url: "#custom-validation"
+        - link "Read Only" [ref=f2e1836] [cursor=pointer]:
+          - /url: "#read-only"
+        - link "Multiple Selection" [ref=f2e1837] [cursor=pointer]:
+          - /url: "#multiple-selection"
+        - link "In Surface" [ref=f2e1838] [cursor=pointer]:
+          - /url: "#in-surface"
+        - link "Customization" [ref=f2e1839] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f2e1840] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f2e1841] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f2e1842] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f2e1843] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f2e1844] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f2e1845] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "ComboBox" [ref=f2e1846] [cursor=pointer]:
+          - /url: "#combobox"
+        - link "ComboBox.InputGroup" [ref=f2e1847] [cursor=pointer]:
+          - /url: "#comboboxinputgroup"
+        - link "ComboBox.Value" [ref=f2e1848] [cursor=pointer]:
+          - /url: "#comboboxvalue"
+        - link "ComboBox.Trigger" [ref=f2e1849] [cursor=pointer]:
+          - /url: "#comboboxtrigger"
+        - link "ComboBox.Popover" [ref=f2e1850] [cursor=pointer]:
+          - /url: "#comboboxpopover"
+        - link "Render Props" [ref=f2e1851] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Accessibility" [ref=f2e1852] [cursor=pointer]:
+          - /url: "#accessibility"
+        - link "Related Components" [ref=f2e1853] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f2e1856]:
+        - generic [ref=f2e1857]:
+          - generic [ref=f2e1858]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f2e1859]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f2e1860] [cursor=pointer]
+  - generic [ref=f2e1862]:
+    - generic [ref=f2e1863]: Now available
+    - button "Close" [ref=f2e1877] [cursor=pointer]
+    - generic [ref=f2e1878]:
+      - generic [ref=f2e1879]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f2e1880]
+        - paragraph [ref=f2e1881]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f2e1882]:
+        - button "Close" [ref=f2e1883] [cursor=pointer]
+        - link "Explore Pro" [ref=f2e1884] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f2e1885]:
+    - button "Open data assistant" [ref=f3e3] [cursor=pointer]
+  - alert [ref=f2e1886]

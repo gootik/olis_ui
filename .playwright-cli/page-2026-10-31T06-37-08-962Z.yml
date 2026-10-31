@@ -1,0 +1,963 @@
+- generic [active] [ref=f40e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f40e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f40e3]: Pro
+    - generic [ref=f40e4]:
+      - generic [ref=f40e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f40e6]:
+    - complementary [ref=f40e7]:
+      - generic [ref=f40e9]:
+        - paragraph [ref=f40e10]: Overview
+        - link "All Components (React)" [ref=f40e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f40e12]: Components
+        - link "Accordion" [ref=f40e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f40e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f40e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f40e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f40e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f40e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f40e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f40e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f40e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f40e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f40e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f40e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f40e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f40e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f40e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f40e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f40e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f40e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f40e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f40e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f40e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f40e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f40e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f40e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f40e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f40e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f40e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f40e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f40e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f40e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f40e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f40e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f40e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f40e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f40e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f40e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f40e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f40e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f40e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f40e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f40e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f40e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f40e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f40e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f40e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f40e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f40e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f40e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f40e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f40e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f40e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f40e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f40e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f40e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f40e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f40e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f40e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f40e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f40e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f40e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f40e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f40e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f40e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f40e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f40e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f40e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f40e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f40e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f40e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f40e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f40e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f40e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f40e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f40e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f40e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f40e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f40e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f40e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f40e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f40e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f40e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f40e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f40e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f40e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f40e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f40e110]:
+      - generic [ref=f40e111]:
+        - generic [ref=f40e113]:
+          - link "HeroUI" [ref=f40e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f40e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f40e126]:
+          - text: Search
+          - generic [ref=f40e130]:
+            - generic [ref=f40e131]: ⌘
+            - generic [ref=f40e132]: K
+        - generic [ref=f40e133]:
+          - generic [ref=f40e134]:
+            - button "Ask AI" [ref=f40e136] [cursor=pointer]
+            - button [ref=f40e137] [cursor=pointer]:
+              - button "Design theme" [ref=f40e138]:
+                - generic [ref=f40e139]: Theme
+            - link "31.1k" [ref=f40e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f40e142]:
+            - button "Choose a language" [ref=f40e143] [cursor=pointer]
+            - generic [ref=f40e144] [cursor=pointer]:
+              - button "light" [ref=f40e145]
+              - button "dark" [ref=f40e152]
+              - button "system" [ref=f40e155]
+      - generic [ref=f40e159]:
+        - link "Getting Started" [ref=f40e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f40e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f40e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f40e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f40e188]:
+          - tab "Web" [selected] [ref=f40e189] [cursor=pointer]
+          - tab "Native" [ref=f40e193] [cursor=pointer]
+    - article [ref=f40e196]:
+      - generic [ref=f40e197]:
+        - generic [ref=f40e198]:
+          - heading "TagGroup" [level=1] [ref=f40e199]
+          - group [ref=f40e201]:
+            - button "Copy Markdown" [ref=f40e202] [cursor=pointer]
+            - button "More options" [ref=f40e203] [cursor=pointer]
+        - paragraph [ref=f40e204]: A focusable list of tags with support for keyboard navigation, selection, and removal
+        - generic [ref=f40e205]:
+          - link "Storybook" [ref=f40e206] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-collections-taggroup--docs
+          - link "React Aria" [ref=f40e207] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/TagGroup
+          - link "Source" [ref=f40e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/tag-group/tag-group.tsx
+          - link "Styles source" [ref=f40e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/tag-group.css
+      - generic [ref=f40e210]:
+        - heading [level=2] [ref=f40e211]:
+          - link "Usage" [ref=f40e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f40e213]
+        - figure [ref=f40e218]:
+          - button "Copy Text" [ref=f40e220] [cursor=pointer]
+          - region [ref=f40e221]:
+            - code [ref=f40e223]:
+              - generic [ref=f40e224]: "import { TagGroup } from '@heroui/react';"
+        - heading [level=2] [ref=f40e226]:
+          - link "Anatomy" [ref=f40e227] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f40e228]
+        - figure [ref=f40e233]:
+          - button "Copy Text" [ref=f40e235] [cursor=pointer]
+          - region [ref=f40e236]:
+            - code [ref=f40e238]:
+              - generic [ref=f40e239]: "import { TagGroup, Tag, Label, Description, ErrorMessage } from '@heroui/react';"
+              - generic [ref=f40e241]: export default () => (
+              - generic [ref=f40e242]: <TagGroup>
+              - generic [ref=f40e243]: <Label />
+              - generic [ref=f40e244]: <TagGroup.List>
+              - generic [ref=f40e245]: <Tag>
+              - generic [ref=f40e246]: <Tag.RemoveButton />
+              - generic [ref=f40e247]: </Tag>
+              - generic [ref=f40e248]: </TagGroup.List>
+              - generic [ref=f40e249]: <Description />
+              - generic [ref=f40e250]: <ErrorMessage />
+              - generic [ref=f40e251]: </TagGroup>
+              - generic [ref=f40e252]: )
+        - heading [level=2] [ref=f40e253]:
+          - link "Examples" [ref=f40e254] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f40e255]
+        - heading [level=3] [ref=f40e260]:
+          - link "Sizes" [ref=f40e261] [cursor=pointer]:
+            - /url: "#sizes"
+          - button "Copy Anchor Link" [ref=f40e262]
+        - heading [level=3] [ref=f40e268]:
+          - link "Variants" [ref=f40e269] [cursor=pointer]:
+            - /url: "#variants"
+          - button "Copy Anchor Link" [ref=f40e270]
+        - heading [level=3] [ref=f40e276]:
+          - link "Disabled" [ref=f40e277] [cursor=pointer]:
+            - /url: "#disabled"
+          - button "Copy Anchor Link" [ref=f40e278]
+        - heading [level=3] [ref=f40e284]:
+          - link "Selection Modes" [ref=f40e285] [cursor=pointer]:
+            - /url: "#selection-modes"
+          - button "Copy Anchor Link" [ref=f40e286]
+        - heading [level=3] [ref=f40e292]:
+          - link "Controlled" [ref=f40e293] [cursor=pointer]:
+            - /url: "#controlled"
+          - button "Copy Anchor Link" [ref=f40e294]
+        - heading [level=3] [ref=f40e300]:
+          - link "With Error Message" [ref=f40e301] [cursor=pointer]:
+            - /url: "#with-error-message"
+          - button "Copy Anchor Link" [ref=f40e302]
+        - heading [level=3] [ref=f40e308]:
+          - link "With List Data" [ref=f40e309] [cursor=pointer]:
+            - /url: "#with-list-data"
+          - button "Copy Anchor Link" [ref=f40e310]
+        - heading [level=3] [ref=f40e316]:
+          - link "With Prefix" [ref=f40e317] [cursor=pointer]:
+            - /url: "#with-prefix"
+          - button "Copy Anchor Link" [ref=f40e318]
+        - heading [level=3] [ref=f40e324]:
+          - link "With Remove Button" [ref=f40e325] [cursor=pointer]:
+            - /url: "#with-remove-button"
+          - button "Copy Anchor Link" [ref=f40e326]
+        - heading [level=3] [ref=f40e332]:
+          - link "Render Function" [ref=f40e333] [cursor=pointer]:
+            - /url: "#render-function"
+          - button "Copy Anchor Link" [ref=f40e334]
+        - heading [level=2] [ref=f40e340]:
+          - link "Customization" [ref=f40e341] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f40e342]
+        - heading [level=3] [ref=f40e347]:
+          - link "Tailwind CSS" [ref=f40e348] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f40e349]
+        - heading [level=3] [ref=f40e355]:
+          - link "Global CSS" [ref=f40e356] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f40e357]
+        - paragraph [ref=f40e362]:
+          - text: To customize the TagGroup component classes, you can use the
+          - code [ref=f40e363]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f40e364] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f40e365]:
+          - button "Copy Text" [ref=f40e367] [cursor=pointer]
+          - region [ref=f40e368]:
+            - code [ref=f40e370]:
+              - generic [ref=f40e371]: "@layer components {"
+              - generic [ref=f40e372]: ".tag-group {"
+              - generic [ref=f40e373]: "@apply flex flex-col gap-2;"
+              - generic [ref=f40e374]: "}"
+              - generic [ref=f40e376]: ".tag-group__list {"
+              - generic [ref=f40e377]: "@apply flex flex-wrap gap-2;"
+              - generic [ref=f40e378]: "}"
+              - generic [ref=f40e380]: ".tag {"
+              - generic [ref=f40e381]: "@apply rounded-full px-3 py-1;"
+              - generic [ref=f40e382]: "}"
+              - generic [ref=f40e384]: ".tag__remove-button {"
+              - generic [ref=f40e385]: "@apply ml-1;"
+              - generic [ref=f40e386]: "}"
+              - generic [ref=f40e387]: "}"
+        - heading [level=2] [ref=f40e388]:
+          - link "Styling Reference" [ref=f40e389] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f40e390]
+        - paragraph [ref=f40e395]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f40e396] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f40e397]:
+          - link "CSS Classes" [ref=f40e398] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f40e399]
+        - paragraph [ref=f40e404]:
+          - text: The TagGroup component uses these CSS classes (
+          - link "View source styles" [ref=f40e405] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/tag-group.css
+          - text: and
+          - link "tag.css" [ref=f40e406] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/tag.css
+          - text: "):"
+        - heading [level=4] [ref=f40e407]:
+          - link "Base Classes" [ref=f40e408] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e409]
+        - list [ref=f40e414]:
+          - listitem [ref=f40e415]:
+            - code [ref=f40e416]: .tag-group
+            - text: "- Base tag group container"
+          - listitem [ref=f40e417]:
+            - code [ref=f40e418]: .tag-group__list
+            - text: "- Container for the list of tags"
+          - listitem [ref=f40e419]:
+            - code [ref=f40e420]: .tag
+            - text: "- Base tag styles"
+          - listitem [ref=f40e421]:
+            - code [ref=f40e422]: .tag__remove-button
+            - text: "- Remove button trigger"
+        - heading [level=4] [ref=f40e423]:
+          - link "Slot Classes" [ref=f40e424] [cursor=pointer]:
+            - /url: "#slot-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e425]
+        - list [ref=f40e430]:
+          - listitem [ref=f40e431]:
+            - code [ref=f40e432]: .tag-group [slot="description"]
+            - text: "- Description slot styles"
+          - listitem [ref=f40e433]:
+            - code [ref=f40e434]: .tag-group [slot="errorMessage"]
+            - text: "- ErrorMessage slot styles"
+        - heading [level=4] [ref=f40e435]:
+          - link "Size Classes" [ref=f40e436] [cursor=pointer]:
+            - /url: "#size-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e437]
+        - list [ref=f40e442]:
+          - listitem [ref=f40e443]:
+            - code [ref=f40e444]: .tag--sm
+            - text: "- Small size tag"
+          - listitem [ref=f40e445]:
+            - code [ref=f40e446]: .tag--md
+            - text: "- Medium size tag (default)"
+          - listitem [ref=f40e447]:
+            - code [ref=f40e448]: .tag--lg
+            - text: "- Large size tag"
+        - heading [level=4] [ref=f40e449]:
+          - link "Variant Classes" [ref=f40e450] [cursor=pointer]:
+            - /url: "#variant-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e451]
+        - list [ref=f40e456]:
+          - listitem [ref=f40e457]:
+            - code [ref=f40e458]: .tag--default
+            - text: "- Default variant"
+          - listitem [ref=f40e459]:
+            - code [ref=f40e460]: .tag--surface
+            - text: "- Surface variant with surface background"
+        - heading [level=4] [ref=f40e461]:
+          - link "State Classes" [ref=f40e462] [cursor=pointer]:
+            - /url: "#state-classes-toc"
+          - button "Copy Anchor Link" [ref=f40e463]
+        - list [ref=f40e468]:
+          - listitem [ref=f40e469]:
+            - code [ref=f40e470]: .tag[data-selected="true"]
+            - text: "- Selected tag state"
+          - listitem [ref=f40e471]:
+            - code [ref=f40e472]: .tag[data-disabled="true"]
+            - text: "- Disabled tag state"
+          - listitem [ref=f40e473]:
+            - code [ref=f40e474]: .tag[data-hovered="true"]
+            - text: "- Hovered tag state"
+          - listitem [ref=f40e475]:
+            - code [ref=f40e476]: .tag[data-pressed="true"]
+            - text: "- Pressed tag state"
+          - listitem [ref=f40e477]:
+            - code [ref=f40e478]: .tag[data-focus-visible="true"]
+            - text: "- Focused tag state (keyboard focus)"
+        - heading [level=3] [ref=f40e479]:
+          - link "Interactive States" [ref=f40e480] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f40e481]
+        - paragraph [ref=f40e486]: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list [ref=f40e487]:
+          - listitem [ref=f40e488]:
+            - strong [ref=f40e489]: Hover
+            - text: ":"
+            - code [ref=f40e490]: :hover
+            - text: or
+            - code [ref=f40e491]: "[data-hovered=\"true\"]"
+            - text: on tag
+          - listitem [ref=f40e492]:
+            - strong [ref=f40e493]: Focus
+            - text: ":"
+            - code [ref=f40e494]: :focus-visible
+            - text: or
+            - code [ref=f40e495]: "[data-focus-visible=\"true\"]"
+            - text: on tag
+          - listitem [ref=f40e496]:
+            - strong [ref=f40e497]: Pressed
+            - text: ":"
+            - code [ref=f40e498]: :active
+            - text: or
+            - code [ref=f40e499]: "[data-pressed=\"true\"]"
+            - text: on tag
+          - listitem [ref=f40e500]:
+            - strong [ref=f40e501]: Selected
+            - text: ":"
+            - code [ref=f40e502]: "[data-selected=\"true\"]"
+            - text: or
+            - code [ref=f40e503]: "[aria-selected=\"true\"]"
+            - text: on tag
+          - listitem [ref=f40e504]:
+            - strong [ref=f40e505]: Disabled
+            - text: ":"
+            - code [ref=f40e506]: :disabled
+            - text: or
+            - code [ref=f40e507]: "[data-disabled=\"true\"]"
+            - text: on tag
+        - heading [level=2] [ref=f40e508]:
+          - link "API Reference" [ref=f40e509] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f40e510]
+        - heading [level=3] [ref=f40e515]:
+          - link "TagGroup" [ref=f40e516] [cursor=pointer]:
+            - /url: "#taggroup"
+          - button "Copy Anchor Link" [ref=f40e517]
+        - table [ref=f40e523]:
+          - rowgroup [ref=f40e524]:
+            - row [ref=f40e525]:
+              - columnheader "Prop" [ref=f40e526]
+              - columnheader "Type" [ref=f40e527]
+              - columnheader "Default" [ref=f40e528]
+              - columnheader "Description" [ref=f40e529]
+          - rowgroup [ref=f40e530]:
+            - row [ref=f40e531]:
+              - cell [ref=f40e532]:
+                - code [ref=f40e533]: selectionMode
+              - cell [ref=f40e534]:
+                - code [ref=f40e535]: "\"none\" | \"single\" | \"multiple\""
+              - cell [ref=f40e536]:
+                - code [ref=f40e537]: "\"none\""
+              - cell "The type of selection that is allowed" [ref=f40e538]
+            - row [ref=f40e539]:
+              - cell [ref=f40e540]:
+                - code [ref=f40e541]: selectedKeys
+              - cell [ref=f40e542]:
+                - code [ref=f40e543]: Selection
+              - cell "-" [ref=f40e544]
+              - cell "The currently selected keys (controlled)" [ref=f40e545]
+            - row [ref=f40e546]:
+              - cell [ref=f40e547]:
+                - code [ref=f40e548]: defaultSelectedKeys
+              - cell [ref=f40e549]:
+                - code [ref=f40e550]: Selection
+              - cell "-" [ref=f40e551]
+              - cell "The initial selected keys (uncontrolled)" [ref=f40e552]
+            - row [ref=f40e553]:
+              - cell [ref=f40e554]:
+                - code [ref=f40e555]: onSelectionChange
+              - cell [ref=f40e556]:
+                - code [ref=f40e557]: "(keys: Selection) => void"
+              - cell "-" [ref=f40e558]
+              - cell "Handler called when the selection changes" [ref=f40e559]
+            - row [ref=f40e560]:
+              - cell [ref=f40e561]:
+                - code [ref=f40e562]: disabledKeys
+              - cell [ref=f40e563]:
+                - code [ref=f40e564]: Iterable<Key>
+              - cell "-" [ref=f40e565]
+              - cell "Keys of disabled tags" [ref=f40e566]
+            - row [ref=f40e567]:
+              - cell [ref=f40e568]:
+                - code [ref=f40e569]: isDisabled
+              - cell [ref=f40e570]:
+                - code [ref=f40e571]: boolean
+              - cell "-" [ref=f40e572]
+              - cell "Whether the tag group is disabled" [ref=f40e573]
+            - row [ref=f40e574]:
+              - cell [ref=f40e575]:
+                - code [ref=f40e576]: onRemove
+              - cell [ref=f40e577]:
+                - code [ref=f40e578]: "(keys: Set<Key>) => void"
+              - cell "-" [ref=f40e579]
+              - cell "Handler called when tags are removed" [ref=f40e580]
+            - row [ref=f40e581]:
+              - cell [ref=f40e582]:
+                - code [ref=f40e583]: size
+              - cell [ref=f40e584]:
+                - code [ref=f40e585]: "\"sm\" | \"md\" | \"lg\""
+              - cell [ref=f40e586]:
+                - code [ref=f40e587]: "\"md\""
+              - cell "Size of the tags in the group" [ref=f40e588]
+            - row [ref=f40e589]:
+              - cell [ref=f40e590]:
+                - code [ref=f40e591]: variant
+              - cell [ref=f40e592]:
+                - code [ref=f40e593]: "\"default\" | \"surface\""
+              - cell [ref=f40e594]:
+                - code [ref=f40e595]: "\"default\""
+              - cell "Visual variant of the tags" [ref=f40e596]
+            - row [ref=f40e597]:
+              - cell [ref=f40e598]:
+                - code [ref=f40e599]: className
+              - cell [ref=f40e600]:
+                - code [ref=f40e601]: string
+              - cell "-" [ref=f40e602]
+              - cell "Additional CSS classes" [ref=f40e603]
+            - row [ref=f40e604]:
+              - cell [ref=f40e605]:
+                - code [ref=f40e606]: children
+              - cell [ref=f40e607]:
+                - code [ref=f40e608]: ReactNode | RenderFunction
+              - cell "-" [ref=f40e609]
+              - cell "TagGroup content or render function" [ref=f40e610]
+            - row [ref=f40e611]:
+              - cell [ref=f40e612]:
+                - code [ref=f40e613]: render
+              - cell [ref=f40e614]:
+                - code [ref=f40e615]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>
+              - cell "-" [ref=f40e616]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f40e617]
+        - heading [level=3] [ref=f40e618]:
+          - link "TagGroup.List" [ref=f40e619] [cursor=pointer]:
+            - /url: "#taggrouplist"
+          - button "Copy Anchor Link" [ref=f40e620]
+        - table [ref=f40e626]:
+          - rowgroup [ref=f40e627]:
+            - row [ref=f40e628]:
+              - columnheader "Prop" [ref=f40e629]
+              - columnheader "Type" [ref=f40e630]
+              - columnheader "Default" [ref=f40e631]
+              - columnheader "Description" [ref=f40e632]
+          - rowgroup [ref=f40e633]:
+            - row [ref=f40e634]:
+              - cell [ref=f40e635]:
+                - code [ref=f40e636]: items
+              - cell [ref=f40e637]:
+                - code [ref=f40e638]: Iterable<T>
+              - cell "-" [ref=f40e639]
+              - cell "The items to display in the tag list" [ref=f40e640]
+            - row [ref=f40e641]:
+              - cell [ref=f40e642]:
+                - code [ref=f40e643]: renderEmptyState
+              - cell [ref=f40e644]:
+                - code [ref=f40e645]: () => ReactNode
+              - cell "-" [ref=f40e646]
+              - cell "Function to render when the list is empty" [ref=f40e647]
+            - row [ref=f40e648]:
+              - cell [ref=f40e649]:
+                - code [ref=f40e650]: className
+              - cell [ref=f40e651]:
+                - code [ref=f40e652]: string
+              - cell "-" [ref=f40e653]
+              - cell "Additional CSS classes" [ref=f40e654]
+            - row [ref=f40e655]:
+              - cell [ref=f40e656]:
+                - code [ref=f40e657]: children
+              - cell [ref=f40e658]:
+                - code [ref=f40e659]: ReactNode | RenderFunction
+              - cell "-" [ref=f40e660]
+              - cell "TagList content or render function" [ref=f40e661]
+            - row [ref=f40e662]:
+              - cell [ref=f40e663]:
+                - code [ref=f40e664]: render
+              - cell [ref=f40e665]:
+                - code [ref=f40e666]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, TagListRenderProps>
+              - cell "-" [ref=f40e667]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f40e668]
+        - heading [level=3] [ref=f40e669]:
+          - link "Tag" [ref=f40e670] [cursor=pointer]:
+            - /url: "#tag"
+          - button "Copy Anchor Link" [ref=f40e671]
+        - table [ref=f40e677]:
+          - rowgroup [ref=f40e678]:
+            - row [ref=f40e679]:
+              - columnheader "Prop" [ref=f40e680]
+              - columnheader "Type" [ref=f40e681]
+              - columnheader "Default" [ref=f40e682]
+              - columnheader "Description" [ref=f40e683]
+          - rowgroup [ref=f40e684]:
+            - row [ref=f40e685]:
+              - cell [ref=f40e686]:
+                - code [ref=f40e687]: id
+              - cell [ref=f40e688]:
+                - code [ref=f40e689]: Key
+              - cell "-" [ref=f40e690]
+              - cell "The unique identifier for the tag" [ref=f40e691]
+            - row [ref=f40e692]:
+              - cell [ref=f40e693]:
+                - code [ref=f40e694]: textValue
+              - cell [ref=f40e695]:
+                - code [ref=f40e696]: string
+              - cell "-" [ref=f40e697]
+              - cell "A string representation of the tag's content, used for accessibility" [ref=f40e698]
+            - row [ref=f40e699]:
+              - cell [ref=f40e700]:
+                - code [ref=f40e701]: isDisabled
+              - cell [ref=f40e702]:
+                - code [ref=f40e703]: boolean
+              - cell "-" [ref=f40e704]
+              - cell "Whether the tag is disabled" [ref=f40e705]
+            - row [ref=f40e706]:
+              - cell [ref=f40e707]:
+                - code [ref=f40e708]: className
+              - cell [ref=f40e709]:
+                - code [ref=f40e710]: string
+              - cell "-" [ref=f40e711]
+              - cell "Additional CSS classes" [ref=f40e712]
+            - row [ref=f40e713]:
+              - cell [ref=f40e714]:
+                - code [ref=f40e715]: children
+              - cell [ref=f40e716]:
+                - code [ref=f40e717]: ReactNode | RenderFunction
+              - cell "-" [ref=f40e718]
+              - cell "Tag content or render function" [ref=f40e719]
+            - row [ref=f40e720]:
+              - cell [ref=f40e721]:
+                - code [ref=f40e722]: render
+              - cell [ref=f40e723]:
+                - code [ref=f40e724]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, TagRenderProps>
+              - cell "-" [ref=f40e725]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f40e726]
+        - paragraph [ref=f40e727]:
+          - strong [ref=f40e728]: Note
+          - text: ":"
+          - code [ref=f40e729]: size
+          - text: ","
+          - code [ref=f40e730]: variant
+          - text: are inherited from the parent
+          - code [ref=f40e731]: TagGroup
+          - text: component and cannot be set directly on individual
+          - code [ref=f40e732]: Tag
+          - text: components.
+        - heading [level=3] [ref=f40e733]:
+          - link "Tag.RemoveButton" [ref=f40e734] [cursor=pointer]:
+            - /url: "#tagremovebutton"
+          - button "Copy Anchor Link" [ref=f40e735]
+        - table [ref=f40e741]:
+          - rowgroup [ref=f40e742]:
+            - row [ref=f40e743]:
+              - columnheader "Prop" [ref=f40e744]
+              - columnheader "Type" [ref=f40e745]
+              - columnheader "Default" [ref=f40e746]
+              - columnheader "Description" [ref=f40e747]
+          - rowgroup [ref=f40e748]:
+            - row [ref=f40e749]:
+              - cell [ref=f40e750]:
+                - code [ref=f40e751]: className
+              - cell [ref=f40e752]:
+                - code [ref=f40e753]: string
+              - cell "-" [ref=f40e754]
+              - cell "Additional CSS classes" [ref=f40e755]
+            - row [ref=f40e756]:
+              - cell [ref=f40e757]:
+                - code [ref=f40e758]: children
+              - cell [ref=f40e759]:
+                - code [ref=f40e760]: ReactNode
+              - cell "-" [ref=f40e761]
+              - cell "Custom remove button content (defaults to close icon)" [ref=f40e762]
+        - paragraph [ref=f40e763]:
+          - strong [ref=f40e764]: Note
+          - text: ": The"
+          - code [ref=f40e765]: Tag.RemoveButton
+          - text: component supports customization similar to
+          - code [ref=f40e766]: SearchField.ClearButton
+          - text: . When
+          - code [ref=f40e767]: onRemove
+          - text: is provided to
+          - code [ref=f40e768]: TagGroup
+          - text: ":"
+        - list [ref=f40e769]:
+          - listitem [ref=f40e770]:
+            - strong [ref=f40e771]: Auto-rendering
+            - text: ": If no custom"
+            - code [ref=f40e772]: Tag.RemoveButton
+            - text: is included in the
+            - code [ref=f40e773]: Tag
+            - text: children, a default remove button is automatically rendered.
+          - listitem [ref=f40e774]:
+            - strong [ref=f40e775]: Custom button
+            - text: ": If a custom"
+            - code [ref=f40e776]: Tag.RemoveButton
+            - text: is provided as a child of
+            - code [ref=f40e777]: Tag
+            - text: ", it will be used instead of the auto-rendered button."
+          - listitem [ref=f40e778]:
+            - strong [ref=f40e779]: Custom icon
+            - text: ": You can pass custom content (like icons) to"
+            - code [ref=f40e780]: Tag.RemoveButton
+            - text: children to customize the appearance.
+        - paragraph [ref=f40e781]:
+          - strong [ref=f40e782]: Example - Auto-rendered (default)
+          - text: ":"
+        - figure [ref=f40e783]:
+          - button "Copy Text" [ref=f40e785] [cursor=pointer]
+          - region [ref=f40e786]:
+            - code [ref=f40e788]:
+              - generic [ref=f40e789]: "<TagGroup onRemove={handleRemove}>"
+              - generic [ref=f40e790]: <TagGroup.List>
+              - generic [ref=f40e791]: <Tag id="news">News</Tag>
+              - generic [ref=f40e792]: "{/* Remove button is automatically rendered */}"
+              - generic [ref=f40e793]: </TagGroup.List>
+              - generic [ref=f40e794]: </TagGroup>
+        - paragraph [ref=f40e795]:
+          - strong [ref=f40e796]: Example - Custom RemoveButton with icon
+          - text: ":"
+        - figure [ref=f40e797]:
+          - button "Copy Text" [ref=f40e799] [cursor=pointer]
+          - region [ref=f40e800]:
+            - code [ref=f40e802]:
+              - generic [ref=f40e803]: "<TagGroup onRemove={handleRemove}>"
+              - generic [ref=f40e804]: <TagGroup.List>
+              - generic [ref=f40e805]: <Tag id="news">
+              - generic [ref=f40e806]: News
+              - generic [ref=f40e807]: <Tag.RemoveButton>
+              - generic [ref=f40e808]: <CustomIcon />
+              - generic [ref=f40e809]: </Tag.RemoveButton>
+              - generic [ref=f40e810]: </Tag>
+              - generic [ref=f40e811]: </TagGroup.List>
+              - generic [ref=f40e812]: </TagGroup>
+        - paragraph [ref=f40e813]:
+          - strong [ref=f40e814]: Example - Custom RemoveButton in render props
+          - text: ":"
+        - figure [ref=f40e815]:
+          - button "Copy Text" [ref=f40e817] [cursor=pointer]
+          - region [ref=f40e818]:
+            - code [ref=f40e820]:
+              - generic [ref=f40e821]: <Tag id="news">
+              - generic [ref=f40e822]: "{(renderProps) => ("
+              - generic [ref=f40e823]: <>
+              - generic [ref=f40e824]: News
+              - generic [ref=f40e825]: "{!!renderProps.allowsRemoving && ("
+              - generic [ref=f40e826]: <Tag.RemoveButton>
+              - generic [ref=f40e827]: <CustomIcon />
+              - generic [ref=f40e828]: </Tag.RemoveButton>
+              - generic [ref=f40e829]: ")}"
+              - generic [ref=f40e830]: </>
+              - generic [ref=f40e831]: ")}"
+              - generic [ref=f40e832]: </Tag>
+        - heading [level=3] [ref=f40e833]:
+          - link "Render Props" [ref=f40e834] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f40e835]
+        - paragraph [ref=f40e840]: "When using render functions with TagGroup.List, these values are provided:"
+        - table [ref=f40e842]:
+          - rowgroup [ref=f40e843]:
+            - row [ref=f40e844]:
+              - columnheader "Prop" [ref=f40e845]
+              - columnheader "Type" [ref=f40e846]
+              - columnheader "Description" [ref=f40e847]
+          - rowgroup [ref=f40e848]:
+            - row [ref=f40e849]:
+              - cell [ref=f40e850]:
+                - code [ref=f40e851]: isSelected
+              - cell [ref=f40e852]:
+                - code [ref=f40e853]: boolean
+              - cell "Whether the tag is selected" [ref=f40e854]
+            - row [ref=f40e855]:
+              - cell [ref=f40e856]:
+                - code [ref=f40e857]: isDisabled
+              - cell [ref=f40e858]:
+                - code [ref=f40e859]: boolean
+              - cell "Whether the tag is disabled" [ref=f40e860]
+            - row [ref=f40e861]:
+              - cell [ref=f40e862]:
+                - code [ref=f40e863]: isHovered
+              - cell [ref=f40e864]:
+                - code [ref=f40e865]: boolean
+              - cell "Whether the tag is hovered" [ref=f40e866]
+            - row [ref=f40e867]:
+              - cell [ref=f40e868]:
+                - code [ref=f40e869]: isPressed
+              - cell [ref=f40e870]:
+                - code [ref=f40e871]: boolean
+              - cell "Whether the tag is pressed" [ref=f40e872]
+            - row [ref=f40e873]:
+              - cell [ref=f40e874]:
+                - code [ref=f40e875]: isFocused
+              - cell [ref=f40e876]:
+                - code [ref=f40e877]: boolean
+              - cell "Whether the tag is focused" [ref=f40e878]
+            - row [ref=f40e879]:
+              - cell [ref=f40e880]:
+                - code [ref=f40e881]: isFocusVisible
+              - cell [ref=f40e882]:
+                - code [ref=f40e883]: boolean
+              - cell "Whether the tag has keyboard focus" [ref=f40e884]
+        - heading [level=2] [ref=f40e885]:
+          - link "Related Components" [ref=f40e886] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f40e887]
+        - generic [ref=f40e892]:
+          - generic [ref=f40e893]:
+            - link "Label" [ref=f40e895] [cursor=pointer]:
+              - /url: /en/docs/components/label
+            - generic [ref=f40e897]:
+              - link "Label":
+                - /url: /en/docs/components/label
+                - img "Label" [ref=f40e898] [cursor=pointer]
+          - generic [ref=f40e899]:
+            - link "Description" [ref=f40e901] [cursor=pointer]:
+              - /url: /en/docs/components/description
+            - generic [ref=f40e903]:
+              - link "Description":
+                - /url: /en/docs/components/description
+                - img "Description" [ref=f40e904] [cursor=pointer]
+          - generic [ref=f40e905]:
+            - link "ErrorMessage" [ref=f40e907] [cursor=pointer]:
+              - /url: /en/docs/components/error-message
+            - generic [ref=f40e909]:
+              - link "ErrorMessage":
+                - /url: /en/docs/components/error-message
+                - img "ErrorMessage" [ref=f40e910] [cursor=pointer]
+      - generic [ref=f40e911]:
+        - link [ref=f40e912] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - paragraph [ref=f40e916]: Tabs
+          - paragraph [ref=f40e917]: Tabs organize content into multiple sections and allow users to navigate between them.
+        - link [ref=f40e918] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+          - paragraph [ref=f40e922]: TextArea
+          - paragraph [ref=f40e923]: Primitive multiline text input component that accepts standard HTML attributes
+    - generic [ref=f40e924]:
+      - heading "On this page" [level=3] [ref=f40e925]
+      - generic [ref=f40e930]:
+        - link "Usage" [ref=f40e931] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f40e932] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f40e933] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Sizes" [ref=f40e934] [cursor=pointer]:
+          - /url: "#sizes"
+        - link "Variants" [ref=f40e935] [cursor=pointer]:
+          - /url: "#variants"
+        - link "Disabled" [ref=f40e936] [cursor=pointer]:
+          - /url: "#disabled"
+        - link "Selection Modes" [ref=f40e937] [cursor=pointer]:
+          - /url: "#selection-modes"
+        - link "Controlled" [ref=f40e938] [cursor=pointer]:
+          - /url: "#controlled"
+        - link "With Error Message" [ref=f40e939] [cursor=pointer]:
+          - /url: "#with-error-message"
+        - link "With List Data" [ref=f40e940] [cursor=pointer]:
+          - /url: "#with-list-data"
+        - link "With Prefix" [ref=f40e941] [cursor=pointer]:
+          - /url: "#with-prefix"
+        - link "With Remove Button" [ref=f40e942] [cursor=pointer]:
+          - /url: "#with-remove-button"
+        - link "Render Function" [ref=f40e943] [cursor=pointer]:
+          - /url: "#render-function"
+        - link "Customization" [ref=f40e944] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f40e945] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f40e946] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f40e947] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f40e948] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f40e949] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f40e950] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "TagGroup" [ref=f40e951] [cursor=pointer]:
+          - /url: "#taggroup"
+        - link "TagGroup.List" [ref=f40e952] [cursor=pointer]:
+          - /url: "#taggrouplist"
+        - link "Tag" [ref=f40e953] [cursor=pointer]:
+          - /url: "#tag"
+        - link "Tag.RemoveButton" [ref=f40e954] [cursor=pointer]:
+          - /url: "#tagremovebutton"
+        - link "Render Props" [ref=f40e955] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Related Components" [ref=f40e956] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f40e959]:
+        - generic [ref=f40e960]:
+          - generic [ref=f40e961]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f40e962]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f40e963] [cursor=pointer]
+  - generic [ref=f40e965]:
+    - generic [ref=f40e966]: Now available
+    - button "Close" [ref=f40e980] [cursor=pointer]
+    - generic [ref=f40e981]:
+      - generic [ref=f40e982]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f40e983]
+        - paragraph [ref=f40e984]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f40e985]:
+        - button "Close" [ref=f40e986] [cursor=pointer]
+        - link "Explore Pro" [ref=f40e987] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f40e988]
+  - alert [ref=f40e989]

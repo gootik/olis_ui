@@ -1,0 +1,639 @@
+- generic [active] [ref=f2e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f2e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f2e3]: Pro
+    - generic [ref=f2e4]:
+      - generic [ref=f2e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f2e6]:
+    - complementary [ref=f2e7]:
+      - generic [ref=f2e9]:
+        - paragraph [ref=f2e10]: Overview
+        - link "All Components (React)" [ref=f2e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f2e12]: Components
+        - link "Accordion" [ref=f2e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f2e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f2e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f2e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f2e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f2e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f2e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f2e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f2e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f2e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f2e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f2e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f2e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f2e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f2e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f2e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f2e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f2e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f2e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f2e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f2e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f2e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f2e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f2e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f2e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f2e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f2e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f2e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f2e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f2e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f2e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f2e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f2e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f2e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f2e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f2e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f2e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f2e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f2e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f2e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f2e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f2e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f2e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f2e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f2e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f2e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f2e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f2e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f2e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f2e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f2e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f2e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f2e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f2e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f2e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f2e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f2e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f2e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f2e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f2e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f2e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f2e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f2e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f2e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f2e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f2e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f2e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f2e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f2e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f2e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f2e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f2e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f2e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f2e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f2e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f2e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f2e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f2e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f2e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f2e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f2e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f2e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f2e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f2e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f2e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f2e110]:
+      - generic [ref=f2e111]:
+        - generic [ref=f2e113]:
+          - link "HeroUI" [ref=f2e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f2e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f2e126]:
+          - text: Search
+          - generic [ref=f2e130]:
+            - generic [ref=f2e131]: ⌘
+            - generic [ref=f2e132]: K
+        - generic [ref=f2e133]:
+          - generic [ref=f2e134]:
+            - button "Ask AI" [ref=f2e136] [cursor=pointer]
+            - button [ref=f2e137] [cursor=pointer]:
+              - button "Design theme" [ref=f2e138]:
+                - generic [ref=f2e139]: Theme
+            - link "27.7k" [ref=f2e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f2e142]:
+            - button "Choose a language" [ref=f2e143] [cursor=pointer]
+            - generic [ref=f2e144] [cursor=pointer]:
+              - button "light" [ref=f2e145]
+              - button "dark" [ref=f2e152]
+              - button "system" [ref=f2e155]
+      - generic [ref=f2e159]:
+        - link "Getting Started" [ref=f2e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f2e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f2e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f2e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f2e188]:
+          - tab "Web" [selected] [ref=f2e189] [cursor=pointer]
+          - tab "Native" [ref=f2e193] [cursor=pointer]
+    - article [ref=f2e196]:
+      - generic [ref=f2e197]:
+        - generic [ref=f2e198]:
+          - heading "Input" [level=1] [ref=f2e199]
+          - group [ref=f2e201]:
+            - button "Copy Markdown" [ref=f2e202] [cursor=pointer]
+            - button "More options" [ref=f2e203] [cursor=pointer]
+        - paragraph [ref=f2e204]: Primitive single-line text input component that accepts standard HTML attributes
+        - generic [ref=f2e205]:
+          - link "Storybook" [ref=f2e206] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-forms-input--docs
+          - link "React Aria" [ref=f2e207] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Input
+          - link "Source" [ref=f2e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/input/input.tsx
+          - link "Styles source" [ref=f2e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/input.css
+      - generic [ref=f2e210]:
+        - heading [level=2] [ref=f2e211]:
+          - link "Usage" [ref=f2e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f2e213]
+        - figure [ref=f2e218]:
+          - button "Copy Text" [ref=f2e220] [cursor=pointer]
+          - region [ref=f2e221]:
+            - code [ref=f2e223]:
+              - generic [ref=f2e224]: "import { Input } from '@heroui/react';"
+        - paragraph [ref=f2e231]:
+          - text: For validation, labels, and error messages, see
+          - strong [ref=f2e232]:
+            - link "TextField" [ref=f2e233] [cursor=pointer]:
+              - /url: /en/docs/react/components/text-field
+          - text: .
+        - heading [level=2] [ref=f2e234]:
+          - link "Examples" [ref=f2e235] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f2e236]
+        - heading [level=3] [ref=f2e241]:
+          - link "Variants" [ref=f2e242] [cursor=pointer]:
+            - /url: "#variants"
+          - button "Copy Anchor Link" [ref=f2e243]
+        - paragraph [ref=f2e248]: "The Input component supports two visual variants:"
+        - list [ref=f2e249]:
+          - listitem [ref=f2e250]:
+            - strong [ref=f2e251]:
+              - code [ref=f2e252]: primary
+            - text: (default) - Standard styling with shadow, suitable for most use cases
+          - listitem [ref=f2e253]:
+            - strong [ref=f2e254]:
+              - code [ref=f2e255]: secondary
+            - text: "- Lower emphasis variant without shadow, suitable for use in Surface components"
+        - heading [level=3] [ref=f2e257]:
+          - link "In Surface" [ref=f2e258] [cursor=pointer]:
+            - /url: "#in-surface"
+          - button "Copy Anchor Link" [ref=f2e259]
+        - paragraph [ref=f2e264]:
+          - text: When used inside a
+          - link "Surface" [ref=f2e265] [cursor=pointer]:
+            - /url: /en/docs/react/components/surface
+          - text: component, use
+          - code [ref=f2e266]: variant="secondary"
+          - text: to apply the lower emphasis variant suitable for surface backgrounds.
+        - heading [level=3] [ref=f2e268]:
+          - link "Full Width" [ref=f2e269] [cursor=pointer]:
+            - /url: "#full-width"
+          - button "Copy Anchor Link" [ref=f2e270]
+        - heading [level=3] [ref=f2e276]:
+          - link "Input Types" [ref=f2e277] [cursor=pointer]:
+            - /url: "#input-types"
+          - button "Copy Anchor Link" [ref=f2e278]
+        - heading [level=3] [ref=f2e284]:
+          - link "Controlled" [ref=f2e285] [cursor=pointer]:
+            - /url: "#controlled"
+          - button "Copy Anchor Link" [ref=f2e286]
+        - heading [level=2] [ref=f2e292]:
+          - link "Customization" [ref=f2e293] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f2e294]
+        - heading [level=3] [ref=f2e299]:
+          - link "Tailwind CSS" [ref=f2e300] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f2e301]
+        - heading [level=3] [ref=f2e307]:
+          - link "Global CSS" [ref=f2e308] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f2e309]
+        - paragraph [ref=f2e314]:
+          - text: The base class
+          - code [ref=f2e315]: .input
+          - text: powers every instance. Override it once with
+          - code [ref=f2e316]: "@layer components"
+          - text: .
+        - figure [ref=f2e317]:
+          - button "Copy Text" [ref=f2e319] [cursor=pointer]
+          - region [ref=f2e320]:
+            - code [ref=f2e322]:
+              - generic [ref=f2e323]: "@layer components {"
+              - generic [ref=f2e324]: ".input {"
+              - generic [ref=f2e325]: "@apply rounded-lg border border-border bg-surface px-4 py-2 text-sm shadow-sm transition-colors;"
+              - generic [ref=f2e327]: "&:hover,"
+              - generic [ref=f2e328]: "&[data-hovered=\"true\"] {"
+              - generic [ref=f2e329]: "@apply bg-surface-secondary border-border/80;"
+              - generic [ref=f2e330]: "}"
+              - generic [ref=f2e332]: "&:focus-visible,"
+              - generic [ref=f2e333]: "&[data-focus-visible=\"true\"] {"
+              - generic [ref=f2e334]: "@apply border-accent ring-2 ring-accent/20;"
+              - generic [ref=f2e335]: "}"
+              - generic [ref=f2e337]: "&[data-invalid=\"true\"] {"
+              - generic [ref=f2e338]: "@apply border-danger bg-danger-soft text-danger;"
+              - generic [ref=f2e339]: "}"
+              - generic [ref=f2e340]: "}"
+              - generic [ref=f2e341]: "}"
+        - heading [level=2] [ref=f2e342]:
+          - link "Styling Reference" [ref=f2e343] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f2e344]
+        - paragraph [ref=f2e349]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f2e350] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f2e351]:
+          - link "CSS Classes" [ref=f2e352] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f2e353]
+        - heading [level=4] [ref=f2e358]:
+          - link "Base Classes" [ref=f2e359] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f2e360]
+        - list [ref=f2e365]:
+          - listitem [ref=f2e366]:
+            - code [ref=f2e367]: .input
+            - text: – Native input element styling
+        - heading [level=3] [ref=f2e368]:
+          - link "Interactive States" [ref=f2e369] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f2e370]
+        - list [ref=f2e375]:
+          - listitem [ref=f2e376]:
+            - strong [ref=f2e377]: Hover
+            - text: ":"
+            - code [ref=f2e378]: :hover
+            - text: or
+            - code [ref=f2e379]: "[data-hovered=\"true\"]"
+          - listitem [ref=f2e380]:
+            - strong [ref=f2e381]: Focus Visible
+            - text: ":"
+            - code [ref=f2e382]: :focus-visible
+            - text: or
+            - code [ref=f2e383]: "[data-focus-visible=\"true\"]"
+          - listitem [ref=f2e384]:
+            - strong [ref=f2e385]: Invalid
+            - text: ":"
+            - code [ref=f2e386]: "[data-invalid=\"true\"]"
+            - text: (also syncs with
+            - code [ref=f2e387]: aria-invalid
+            - text: )
+          - listitem [ref=f2e388]:
+            - strong [ref=f2e389]: Disabled
+            - text: ":"
+            - code [ref=f2e390]: :disabled
+            - text: or
+            - code [ref=f2e391]: "[aria-disabled=\"true\"]"
+          - listitem [ref=f2e392]:
+            - strong [ref=f2e393]: Read Only
+            - text: ":"
+            - code [ref=f2e394]: "[aria-readonly=\"true\"]"
+        - heading [level=2] [ref=f2e395]:
+          - link "API Reference" [ref=f2e396] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f2e397]
+        - heading [level=3] [ref=f2e402]:
+          - link "Input" [ref=f2e403] [cursor=pointer]:
+            - /url: "#input"
+          - button "Copy Anchor Link" [ref=f2e404]
+        - paragraph [ref=f2e409]:
+          - text: Input accepts all standard HTML
+          - code [ref=f2e410]: <input>
+          - text: "attributes plus the following:"
+        - table [ref=f2e412]:
+          - rowgroup [ref=f2e413]:
+            - row [ref=f2e414]:
+              - columnheader "Prop" [ref=f2e415]
+              - columnheader "Type" [ref=f2e416]
+              - columnheader "Default" [ref=f2e417]
+              - columnheader "Description" [ref=f2e418]
+          - rowgroup [ref=f2e419]:
+            - row [ref=f2e420]:
+              - cell [ref=f2e421]:
+                - code [ref=f2e422]: className
+              - cell [ref=f2e423]:
+                - code [ref=f2e424]: string
+              - cell "-" [ref=f2e425]
+              - cell "Tailwind classes merged with the component styles." [ref=f2e426]
+            - row [ref=f2e427]:
+              - cell [ref=f2e428]:
+                - code [ref=f2e429]: type
+              - cell [ref=f2e430]:
+                - code [ref=f2e431]: string
+              - cell [ref=f2e432]:
+                - code [ref=f2e433]: "\"text\""
+              - cell "Input type (text, email, password, number, etc.)." [ref=f2e434]
+            - row [ref=f2e435]:
+              - cell [ref=f2e436]:
+                - code [ref=f2e437]: value
+              - cell [ref=f2e438]:
+                - code [ref=f2e439]: string
+              - cell "-" [ref=f2e440]
+              - cell "Controlled value." [ref=f2e441]
+            - row [ref=f2e442]:
+              - cell [ref=f2e443]:
+                - code [ref=f2e444]: defaultValue
+              - cell [ref=f2e445]:
+                - code [ref=f2e446]: string
+              - cell "-" [ref=f2e447]
+              - cell "Uncontrolled initial value." [ref=f2e448]
+            - row [ref=f2e449]:
+              - cell [ref=f2e450]:
+                - code [ref=f2e451]: onChange
+              - cell [ref=f2e452]:
+                - code [ref=f2e453]: "(event: React.ChangeEvent<HTMLInputElement>) => void"
+              - cell "-" [ref=f2e454]
+              - cell "Change handler." [ref=f2e455]
+            - row [ref=f2e456]:
+              - cell [ref=f2e457]:
+                - code [ref=f2e458]: placeholder
+              - cell [ref=f2e459]:
+                - code [ref=f2e460]: string
+              - cell "-" [ref=f2e461]
+              - cell "Placeholder text." [ref=f2e462]
+            - row [ref=f2e463]:
+              - cell [ref=f2e464]:
+                - code [ref=f2e465]: disabled
+              - cell [ref=f2e466]:
+                - code [ref=f2e467]: boolean
+              - cell [ref=f2e468]:
+                - code [ref=f2e469]: "false"
+              - cell "Disables the input." [ref=f2e470]
+            - row [ref=f2e471]:
+              - cell [ref=f2e472]:
+                - code [ref=f2e473]: readOnly
+              - cell [ref=f2e474]:
+                - code [ref=f2e475]: boolean
+              - cell [ref=f2e476]:
+                - code [ref=f2e477]: "false"
+              - cell "Makes the input read-only." [ref=f2e478]
+            - row [ref=f2e479]:
+              - cell [ref=f2e480]:
+                - code [ref=f2e481]: required
+              - cell [ref=f2e482]:
+                - code [ref=f2e483]: boolean
+              - cell [ref=f2e484]:
+                - code [ref=f2e485]: "false"
+              - cell "Marks the input as required." [ref=f2e486]
+            - row [ref=f2e487]:
+              - cell [ref=f2e488]:
+                - code [ref=f2e489]: name
+              - cell [ref=f2e490]:
+                - code [ref=f2e491]: string
+              - cell "-" [ref=f2e492]
+              - cell "Name for form submission." [ref=f2e493]
+            - row [ref=f2e494]:
+              - cell [ref=f2e495]:
+                - code [ref=f2e496]: autoComplete
+              - cell [ref=f2e497]:
+                - code [ref=f2e498]: string
+              - cell "-" [ref=f2e499]
+              - cell "Autocomplete hint for the browser." [ref=f2e500]
+            - row [ref=f2e501]:
+              - cell [ref=f2e502]:
+                - code [ref=f2e503]: maxLength
+              - cell [ref=f2e504]:
+                - code [ref=f2e505]: number
+              - cell "-" [ref=f2e506]
+              - cell "Maximum number of characters." [ref=f2e507]
+            - row [ref=f2e508]:
+              - cell [ref=f2e509]:
+                - code [ref=f2e510]: minLength
+              - cell [ref=f2e511]:
+                - code [ref=f2e512]: number
+              - cell "-" [ref=f2e513]
+              - cell "Minimum number of characters." [ref=f2e514]
+            - row [ref=f2e515]:
+              - cell [ref=f2e516]:
+                - code [ref=f2e517]: pattern
+              - cell [ref=f2e518]:
+                - code [ref=f2e519]: string
+              - cell "-" [ref=f2e520]
+              - cell "Regex pattern for validation." [ref=f2e521]
+            - row [ref=f2e522]:
+              - cell [ref=f2e523]:
+                - code [ref=f2e524]: min
+              - cell [ref=f2e525]:
+                - code [ref=f2e526]: number | string
+              - cell "-" [ref=f2e527]
+              - cell "Minimum value (for number/date inputs)." [ref=f2e528]
+            - row [ref=f2e529]:
+              - cell [ref=f2e530]:
+                - code [ref=f2e531]: max
+              - cell [ref=f2e532]:
+                - code [ref=f2e533]: number | string
+              - cell "-" [ref=f2e534]
+              - cell "Maximum value (for number/date inputs)." [ref=f2e535]
+            - row [ref=f2e536]:
+              - cell [ref=f2e537]:
+                - code [ref=f2e538]: step
+              - cell [ref=f2e539]:
+                - code [ref=f2e540]: number | string
+              - cell "-" [ref=f2e541]
+              - cell "Stepping interval (for number inputs)." [ref=f2e542]
+            - row [ref=f2e543]:
+              - cell [ref=f2e544]:
+                - code [ref=f2e545]: fullWidth
+              - cell [ref=f2e546]:
+                - code [ref=f2e547]: boolean
+              - cell [ref=f2e548]:
+                - code [ref=f2e549]: "false"
+              - cell "Whether the input should take full width of its container" [ref=f2e550]
+            - row [ref=f2e551]:
+              - cell [ref=f2e552]:
+                - code [ref=f2e553]: variant
+              - cell [ref=f2e554]:
+                - code [ref=f2e555]: "\"primary\" | \"secondary\""
+              - cell [ref=f2e556]:
+                - code [ref=f2e557]: "\"primary\""
+              - cell [ref=f2e558]:
+                - text: Visual variant of the component.
+                - code [ref=f2e559]: primary
+                - text: is the default style with shadow.
+                - code [ref=f2e560]: secondary
+                - text: is a lower emphasis variant without shadow, suitable for use in surfaces.
+        - blockquote [ref=f2e561]:
+          - paragraph [ref=f2e562]:
+            - text: For validation props like
+            - code [ref=f2e563]: isInvalid
+            - text: ","
+            - code [ref=f2e564]: isRequired
+            - text: ", and error handling, use"
+            - strong [ref=f2e565]:
+              - link "TextField" [ref=f2e566] [cursor=pointer]:
+                - /url: /en/docs/react/components/text-field
+            - text: with Input as a child component.
+        - heading [level=2] [ref=f2e567]:
+          - link "Related Components" [ref=f2e568] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f2e569]
+        - generic [ref=f2e574]:
+          - generic [ref=f2e575]:
+            - link "TextField" [ref=f2e577] [cursor=pointer]:
+              - /url: /en/docs/components/text-field
+            - generic [ref=f2e579]:
+              - link "TextField":
+                - /url: /en/docs/components/text-field
+                - img "TextField" [ref=f2e580] [cursor=pointer]
+          - generic [ref=f2e581]:
+            - link "TextArea" [ref=f2e583] [cursor=pointer]:
+              - /url: /en/docs/components/text-area
+            - generic [ref=f2e585]:
+              - link "TextArea":
+                - /url: /en/docs/components/text-area
+                - img "TextArea" [ref=f2e586] [cursor=pointer]
+          - generic [ref=f2e587]:
+            - link "Label" [ref=f2e589] [cursor=pointer]:
+              - /url: /en/docs/components/label
+            - generic [ref=f2e591]:
+              - link "Label":
+                - /url: /en/docs/components/label
+                - img "Label" [ref=f2e592] [cursor=pointer]
+      - generic [ref=f2e593]:
+        - link [ref=f2e594] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+          - paragraph [ref=f2e598]: Form
+          - paragraph [ref=f2e599]: Wrapper component for form validation and submission handling
+        - link [ref=f2e600] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+          - paragraph [ref=f2e604]: InputGroup
+          - paragraph [ref=f2e605]: Group related input controls with prefix and suffix elements for enhanced form fields
+    - generic [ref=f2e606]:
+      - heading "On this page" [level=3] [ref=f2e607]
+      - generic [ref=f2e611]:
+        - link "Usage" [ref=f2e612] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Examples" [ref=f2e613] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Variants" [ref=f2e614] [cursor=pointer]:
+          - /url: "#variants"
+        - link "In Surface" [ref=f2e615] [cursor=pointer]:
+          - /url: "#in-surface"
+        - link "Full Width" [ref=f2e616] [cursor=pointer]:
+          - /url: "#full-width"
+        - link "Input Types" [ref=f2e617] [cursor=pointer]:
+          - /url: "#input-types"
+        - link "Controlled" [ref=f2e618] [cursor=pointer]:
+          - /url: "#controlled"
+        - link "Customization" [ref=f2e619] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f2e620] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f2e621] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f2e622] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f2e623] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f2e624] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f2e625] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Input" [ref=f2e626] [cursor=pointer]:
+          - /url: "#input"
+        - link "Related Components" [ref=f2e627] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f2e630]:
+        - generic [ref=f2e631]:
+          - generic [ref=f2e632]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f2e633]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f2e634] [cursor=pointer]

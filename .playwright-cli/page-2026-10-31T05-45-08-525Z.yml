@@ -1,0 +1,612 @@
+- generic [active] [ref=f6e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f6e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f6e3]: Pro
+    - generic [ref=f6e4]:
+      - generic [ref=f6e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f6e6]:
+    - complementary [ref=f6e7]:
+      - generic [ref=f6e9]:
+        - paragraph [ref=f6e10]: Overview
+        - link "All Components (React)" [ref=f6e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f6e12]: Components
+        - link "Accordion" [ref=f6e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f6e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f6e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f6e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f6e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f6e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f6e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f6e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f6e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f6e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f6e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f6e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f6e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f6e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f6e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f6e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f6e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f6e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f6e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f6e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f6e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f6e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f6e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f6e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f6e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f6e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f6e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f6e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f6e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f6e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f6e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f6e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f6e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f6e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f6e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f6e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f6e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f6e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f6e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f6e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f6e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f6e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f6e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f6e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f6e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f6e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f6e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f6e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f6e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f6e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f6e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f6e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f6e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f6e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f6e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f6e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f6e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f6e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f6e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f6e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f6e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f6e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f6e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f6e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f6e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f6e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f6e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f6e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f6e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f6e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f6e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f6e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f6e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f6e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f6e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f6e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f6e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f6e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f6e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f6e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f6e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f6e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f6e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f6e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f6e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f6e110]:
+      - generic [ref=f6e111]:
+        - generic [ref=f6e113]:
+          - link "HeroUI" [ref=f6e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f6e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f6e126]:
+          - text: Search
+          - generic [ref=f6e130]:
+            - generic [ref=f6e131]: ⌘
+            - generic [ref=f6e132]: K
+        - generic [ref=f6e133]:
+          - generic [ref=f6e134]:
+            - button "Ask AI" [ref=f6e136] [cursor=pointer]
+            - button [ref=f6e137] [cursor=pointer]:
+              - button "Design theme" [ref=f6e138]:
+                - generic [ref=f6e139]: Theme
+            - link "31.1k" [ref=f6e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f6e142]:
+            - button "Choose a language" [ref=f6e143] [cursor=pointer]
+            - generic [ref=f6e144] [cursor=pointer]:
+              - button "light" [ref=f6e145]
+              - button "dark" [ref=f6e152]
+              - button "system" [ref=f6e155]
+      - generic [ref=f6e159]:
+        - link "Getting Started" [ref=f6e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f6e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f6e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f6e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f6e188]:
+          - tab "Web" [selected] [ref=f6e189] [cursor=pointer]
+          - tab "Native" [ref=f6e193] [cursor=pointer]
+    - article [ref=f6e196]:
+      - generic [ref=f6e197]:
+        - generic [ref=f6e198]:
+          - heading "Chip" [level=1] [ref=f6e199]
+          - group [ref=f6e201]:
+            - button "Copy Markdown" [ref=f6e202] [cursor=pointer]
+            - button "More options" [ref=f6e203] [cursor=pointer]
+        - paragraph [ref=f6e204]: Small informational badges for displaying labels, statuses, and categories
+        - generic [ref=f6e205]:
+          - link "Figma" [ref=f6e206] [cursor=pointer]:
+            - /url: https://www.figma.com/community/file/1546526812159103429
+          - link "Storybook" [ref=f6e207] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-data-display-chip--docs
+          - link "Source" [ref=f6e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/chip/chip.tsx
+          - link "Styles source" [ref=f6e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/chip.css
+      - generic [ref=f6e210]:
+        - heading [level=2] [ref=f6e211]:
+          - link "Usage" [ref=f6e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f6e213]
+        - figure [ref=f6e218]:
+          - button "Copy Text" [ref=f6e220] [cursor=pointer]
+          - region [ref=f6e221]:
+            - code [ref=f6e223]:
+              - generic [ref=f6e224]: "import { Chip } from '@heroui/react';"
+        - heading [level=2] [ref=f6e226]:
+          - link "Anatomy" [ref=f6e227] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f6e228]
+        - blockquote [ref=f6e233]:
+          - paragraph [ref=f6e234]:
+            - text: Plain-text children are automatically wrapped in
+            - code [ref=f6e235]: <Chip.Label>
+            - text: .
+        - figure [ref=f6e236]:
+          - button "Copy Text" [ref=f6e238] [cursor=pointer]
+          - region [ref=f6e239]:
+            - code [ref=f6e241]:
+              - generic [ref=f6e242]: <Chip>
+              - generic [ref=f6e243]: Label text
+              - generic [ref=f6e244]: </Chip>
+        - heading [level=2] [ref=f6e245]:
+          - link "Examples" [ref=f6e246] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f6e247]
+        - heading [level=3] [ref=f6e252]:
+          - link "Variants" [ref=f6e253] [cursor=pointer]:
+            - /url: "#variants"
+          - button "Copy Anchor Link" [ref=f6e254]
+        - heading [level=3] [ref=f6e260]:
+          - link "Statuses" [ref=f6e261] [cursor=pointer]:
+            - /url: "#statuses"
+          - button "Copy Anchor Link" [ref=f6e262]
+        - heading [level=3] [ref=f6e268]:
+          - link "With Icons" [ref=f6e269] [cursor=pointer]:
+            - /url: "#with-icons"
+          - button "Copy Anchor Link" [ref=f6e270]
+        - heading [level=2] [ref=f6e276]:
+          - link "Customization" [ref=f6e277] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f6e278]
+        - heading [level=3] [ref=f6e283]:
+          - link "Tailwind CSS" [ref=f6e284] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f6e285]
+        - heading [level=3] [ref=f6e291]:
+          - link "Global CSS" [ref=f6e292] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f6e293]
+        - paragraph [ref=f6e298]:
+          - text: To customize the Chip component classes, you can use the
+          - code [ref=f6e299]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f6e300] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f6e301]:
+          - button "Copy Text" [ref=f6e303] [cursor=pointer]
+          - region [ref=f6e304]:
+            - code [ref=f6e306]:
+              - generic [ref=f6e307]: "@layer components {"
+              - generic [ref=f6e308]: ".chip {"
+              - generic [ref=f6e309]: "@apply rounded-full text-xs;"
+              - generic [ref=f6e310]: "}"
+              - generic [ref=f6e312]: ".chip__label {"
+              - generic [ref=f6e313]: "@apply font-medium;"
+              - generic [ref=f6e314]: "}"
+              - generic [ref=f6e316]: ".chip--accent {"
+              - generic [ref=f6e317]: "@apply border-accent/20;"
+              - generic [ref=f6e318]: "}"
+              - generic [ref=f6e320]: ".chip--accent .chip__label {"
+              - generic [ref=f6e321]: "@apply text-accent;"
+              - generic [ref=f6e322]: "}"
+              - generic [ref=f6e323]: "}"
+        - heading [level=2] [ref=f6e324]:
+          - link "Styling Reference" [ref=f6e325] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f6e326]
+        - paragraph [ref=f6e331]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f6e332] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f6e333]:
+          - link "CSS Classes" [ref=f6e334] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f6e335]
+        - paragraph [ref=f6e340]:
+          - text: The Chip component uses these CSS classes (
+          - link "View source styles" [ref=f6e341] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/chip.css
+          - text: "):"
+        - heading [level=4] [ref=f6e342]:
+          - link "Base Classes" [ref=f6e343] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f6e344]
+        - list [ref=f6e349]:
+          - listitem [ref=f6e350]:
+            - code [ref=f6e351]: .chip
+            - text: "- Base chip container styles"
+          - listitem [ref=f6e352]:
+            - code [ref=f6e353]: .chip__label
+            - text: "- Label text slot styles"
+        - heading [level=4] [ref=f6e354]:
+          - link "Color Classes" [ref=f6e355] [cursor=pointer]:
+            - /url: "#color-classes-toc"
+          - button "Copy Anchor Link" [ref=f6e356]
+        - list [ref=f6e361]:
+          - listitem [ref=f6e362]:
+            - code [ref=f6e363]: .chip--accent
+            - text: "- Accent color variant"
+          - listitem [ref=f6e364]:
+            - code [ref=f6e365]: .chip--danger
+            - text: "- Danger color variant"
+          - listitem [ref=f6e366]:
+            - code [ref=f6e367]: .chip--default
+            - text: "- Default color variant"
+          - listitem [ref=f6e368]:
+            - code [ref=f6e369]: .chip--success
+            - text: "- Success color variant"
+          - listitem [ref=f6e370]:
+            - code [ref=f6e371]: .chip--warning
+            - text: "- Warning color variant"
+        - heading [level=4] [ref=f6e372]:
+          - link "Variant Classes" [ref=f6e373] [cursor=pointer]:
+            - /url: "#variant-classes-toc"
+          - button "Copy Anchor Link" [ref=f6e374]
+        - list [ref=f6e379]:
+          - listitem [ref=f6e380]:
+            - code [ref=f6e381]: .chip--primary
+            - text: "- Primary variant with filled background"
+          - listitem [ref=f6e382]:
+            - code [ref=f6e383]: .chip--secondary
+            - text: "- Secondary variant with border"
+          - listitem [ref=f6e384]:
+            - code [ref=f6e385]: .chip--tertiary
+            - text: "- Tertiary variant with transparent background"
+          - listitem [ref=f6e386]:
+            - code [ref=f6e387]: .chip--soft
+            - text: "- Soft variant with lighter background"
+        - heading [level=4] [ref=f6e388]:
+          - link "Size Classes" [ref=f6e389] [cursor=pointer]:
+            - /url: "#size-classes-toc"
+          - button "Copy Anchor Link" [ref=f6e390]
+        - list [ref=f6e395]:
+          - listitem [ref=f6e396]:
+            - code [ref=f6e397]: .chip--sm
+            - text: "- Small size"
+          - listitem [ref=f6e398]:
+            - code [ref=f6e399]: .chip--md
+            - text: "- Medium size (default)"
+          - listitem [ref=f6e400]:
+            - code [ref=f6e401]: .chip--lg
+            - text: "- Large size"
+        - heading [level=4] [ref=f6e402]:
+          - link "Compound Variant Classes" [ref=f6e403] [cursor=pointer]:
+            - /url: "#compound-variant-classes-toc"
+          - button "Copy Anchor Link" [ref=f6e404]
+        - paragraph [ref=f6e409]:
+          - text: Chips support combining variant and color classes (e.g.,
+          - code [ref=f6e410]: .chip--secondary.chip--accent
+          - text: "). The following combinations have default styles defined:"
+        - paragraph [ref=f6e411]:
+          - strong [ref=f6e412]: "Primary Variants:"
+        - list [ref=f6e413]:
+          - listitem [ref=f6e414]:
+            - code [ref=f6e415]: .chip--primary.chip--accent
+            - text: "- Primary accent combination with filled background"
+          - listitem [ref=f6e416]:
+            - code [ref=f6e417]: .chip--primary.chip--success
+            - text: "- Primary success combination with filled background"
+          - listitem [ref=f6e418]:
+            - code [ref=f6e419]: .chip--primary.chip--warning
+            - text: "- Primary warning combination with filled background"
+          - listitem [ref=f6e420]:
+            - code [ref=f6e421]: .chip--primary.chip--danger
+            - text: "- Primary danger combination with filled background"
+        - paragraph [ref=f6e422]:
+          - strong [ref=f6e423]: "Soft Variants:"
+        - list [ref=f6e424]:
+          - listitem [ref=f6e425]:
+            - code [ref=f6e426]: .chip--accent.chip--soft
+            - text: "- Soft accent combination with lighter background"
+          - listitem [ref=f6e427]:
+            - code [ref=f6e428]: .chip--success.chip--soft
+            - text: "- Soft success combination with lighter background"
+          - listitem [ref=f6e429]:
+            - code [ref=f6e430]: .chip--warning.chip--soft
+            - text: "- Soft warning combination with lighter background"
+          - listitem [ref=f6e431]:
+            - code [ref=f6e432]: .chip--danger.chip--soft
+            - text: "- Soft danger combination with lighter background"
+        - paragraph [ref=f6e433]:
+          - strong [ref=f6e434]: "Note:"
+          - text: You can apply custom styles to any variant-color combination (e.g.,
+          - code [ref=f6e435]: .chip--secondary.chip--accent
+          - text: ","
+          - code [ref=f6e436]: .chip--tertiary.chip--success
+          - text: ) using the
+          - code [ref=f6e437]: "@layer components"
+          - text: directive in your CSS.
+        - heading [level=2] [ref=f6e438]:
+          - link "API Reference" [ref=f6e439] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f6e440]
+        - heading [level=3] [ref=f6e445]:
+          - link "Chip" [ref=f6e446] [cursor=pointer]:
+            - /url: "#chip"
+          - button "Copy Anchor Link" [ref=f6e447]
+        - table [ref=f6e453]:
+          - rowgroup [ref=f6e454]:
+            - row [ref=f6e455]:
+              - columnheader "Prop" [ref=f6e456]
+              - columnheader "Type" [ref=f6e457]
+              - columnheader "Default" [ref=f6e458]
+              - columnheader "Description" [ref=f6e459]
+          - rowgroup [ref=f6e460]:
+            - row [ref=f6e461]:
+              - cell [ref=f6e462]:
+                - code [ref=f6e463]: children
+              - cell [ref=f6e464]:
+                - code [ref=f6e465]: React.ReactNode
+              - cell "-" [ref=f6e466]
+              - cell "Content to display inside the chip" [ref=f6e467]
+            - row [ref=f6e468]:
+              - cell [ref=f6e469]:
+                - code [ref=f6e470]: className
+              - cell [ref=f6e471]:
+                - code [ref=f6e472]: string
+              - cell "-" [ref=f6e473]
+              - cell "Additional CSS classes for the root element" [ref=f6e474]
+            - row [ref=f6e475]:
+              - cell [ref=f6e476]:
+                - code [ref=f6e477]: color
+              - cell [ref=f6e478]:
+                - code [ref=f6e479]: "\"default\" | \"accent\" | \"success\" | \"warning\" | \"danger\""
+              - cell [ref=f6e480]:
+                - code [ref=f6e481]: "\"default\""
+              - cell "Color variant of the chip" [ref=f6e482]
+            - row [ref=f6e483]:
+              - cell [ref=f6e484]:
+                - code [ref=f6e485]: variant
+              - cell [ref=f6e486]:
+                - code [ref=f6e487]: "\"primary\" | \"secondary\" | \"tertiary\" | \"soft\""
+              - cell [ref=f6e488]:
+                - code [ref=f6e489]: "\"secondary\""
+              - cell "Visual style variant" [ref=f6e490]
+            - row [ref=f6e491]:
+              - cell [ref=f6e492]:
+                - code [ref=f6e493]: size
+              - cell [ref=f6e494]:
+                - code [ref=f6e495]: "\"sm\" | \"md\" | \"lg\""
+              - cell [ref=f6e496]:
+                - code [ref=f6e497]: "\"md\""
+              - cell "Size of the chip" [ref=f6e498]
+        - heading [level=3] [ref=f6e499]:
+          - link "Chip.Label" [ref=f6e500] [cursor=pointer]:
+            - /url: "#chiplabel"
+          - button "Copy Anchor Link" [ref=f6e501]
+        - table [ref=f6e507]:
+          - rowgroup [ref=f6e508]:
+            - row [ref=f6e509]:
+              - columnheader "Prop" [ref=f6e510]
+              - columnheader "Type" [ref=f6e511]
+              - columnheader "Default" [ref=f6e512]
+              - columnheader "Description" [ref=f6e513]
+          - rowgroup [ref=f6e514]:
+            - row [ref=f6e515]:
+              - cell [ref=f6e516]:
+                - code [ref=f6e517]: children
+              - cell [ref=f6e518]:
+                - code [ref=f6e519]: React.ReactNode
+              - cell "-" [ref=f6e520]
+              - cell "Label text content" [ref=f6e521]
+            - row [ref=f6e522]:
+              - cell [ref=f6e523]:
+                - code [ref=f6e524]: className
+              - cell [ref=f6e525]:
+                - code [ref=f6e526]: string
+              - cell "-" [ref=f6e527]
+              - cell "Additional CSS classes for the label slot" [ref=f6e528]
+        - heading [level=2] [ref=f6e529]:
+          - link "Related Components" [ref=f6e530] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f6e531]
+        - generic [ref=f6e536]:
+          - generic [ref=f6e537]:
+            - link "Avatar" [ref=f6e539] [cursor=pointer]:
+              - /url: /en/docs/components/avatar
+            - generic [ref=f6e541]:
+              - link "Avatar":
+                - /url: /en/docs/components/avatar
+                - img "Avatar" [ref=f6e542] [cursor=pointer]
+          - generic [ref=f6e543]:
+            - link "CloseButton" [ref=f6e545] [cursor=pointer]:
+              - /url: /en/docs/components/close-button
+            - generic [ref=f6e547]:
+              - link "CloseButton":
+                - /url: /en/docs/components/close-button
+                - img "CloseButton" [ref=f6e548] [cursor=pointer]
+          - generic [ref=f6e549]:
+            - link "Separator" [ref=f6e551] [cursor=pointer]:
+              - /url: /en/docs/components/separator
+            - generic [ref=f6e553]:
+              - link "Separator":
+                - /url: /en/docs/components/separator
+                - img "Separator" [ref=f6e554] [cursor=pointer]
+      - generic [ref=f6e555]:
+        - link [ref=f6e556] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - paragraph [ref=f6e560]: CheckboxGroup
+          - paragraph [ref=f6e561]: A checkbox group component for managing multiple checkbox selections
+        - link [ref=f6e562] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+          - paragraph [ref=f6e566]: CloseButton
+          - paragraph [ref=f6e567]: Button component for closing dialogs, modals, or dismissing content
+    - generic [ref=f6e568]:
+      - heading "On this page" [level=3] [ref=f6e569]
+      - generic [ref=f6e574]:
+        - link "Usage" [ref=f6e575] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f6e576] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f6e577] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Variants" [ref=f6e578] [cursor=pointer]:
+          - /url: "#variants"
+        - link "Statuses" [ref=f6e579] [cursor=pointer]:
+          - /url: "#statuses"
+        - link "With Icons" [ref=f6e580] [cursor=pointer]:
+          - /url: "#with-icons"
+        - link "Customization" [ref=f6e581] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f6e582] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f6e583] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f6e584] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f6e585] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "API Reference" [ref=f6e586] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Chip" [ref=f6e587] [cursor=pointer]:
+          - /url: "#chip"
+        - link "Chip.Label" [ref=f6e588] [cursor=pointer]:
+          - /url: "#chiplabel"
+        - link "Related Components" [ref=f6e589] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f6e592]:
+        - generic [ref=f6e593]:
+          - generic [ref=f6e594]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f6e595]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f6e596] [cursor=pointer]
+  - generic [ref=f6e598]:
+    - generic [ref=f6e599]: Now available
+    - button "Close" [ref=f6e613] [cursor=pointer]
+    - generic [ref=f6e614]:
+      - generic [ref=f6e615]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f6e616]
+        - paragraph [ref=f6e617]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f6e618]:
+        - button "Close" [ref=f6e619] [cursor=pointer]
+        - link "Explore Pro" [ref=f6e620] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f6e621]:
+    - button "Open data assistant" [ref=f7e3] [cursor=pointer]
+  - alert [ref=f6e622]

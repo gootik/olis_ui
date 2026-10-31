@@ -1,0 +1,4 @@
+- main [ref=f4e3]:
+  - heading "LiveView integration preview" [level=1] [ref=f4e4]
+  - paragraph [ref=f4e5]: Open the dialog and update its content through LiveView.
+  - button "Open modal" [ref=f4e6] [cursor=pointer]

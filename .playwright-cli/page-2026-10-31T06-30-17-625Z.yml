@@ -1,0 +1,1208 @@
+- generic [active] [ref=f36e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f36e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f36e3]: Pro
+    - generic [ref=f36e4]:
+      - generic [ref=f36e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f36e6]:
+    - complementary [ref=f36e7]:
+      - generic [ref=f36e9]:
+        - paragraph [ref=f36e10]: Overview
+        - link "All Components (React)" [ref=f36e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f36e12]: Components
+        - link "Accordion" [ref=f36e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f36e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f36e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f36e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f36e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f36e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f36e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f36e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f36e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f36e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f36e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f36e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f36e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f36e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f36e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f36e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f36e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f36e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f36e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f36e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f36e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f36e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f36e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f36e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f36e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f36e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f36e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f36e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f36e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f36e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f36e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f36e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f36e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f36e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f36e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f36e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f36e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f36e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f36e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f36e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f36e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f36e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f36e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f36e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f36e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f36e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f36e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f36e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f36e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f36e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f36e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f36e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f36e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f36e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f36e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f36e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f36e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f36e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f36e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f36e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f36e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f36e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f36e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f36e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f36e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f36e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f36e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f36e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f36e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f36e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f36e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f36e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f36e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f36e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f36e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f36e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f36e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f36e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f36e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f36e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f36e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f36e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f36e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f36e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f36e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f36e110]:
+      - generic [ref=f36e111]:
+        - generic [ref=f36e113]:
+          - link "HeroUI" [ref=f36e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f36e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f36e126]:
+          - text: Search
+          - generic [ref=f36e130]:
+            - generic [ref=f36e131]: ⌘
+            - generic [ref=f36e132]: K
+        - generic [ref=f36e133]:
+          - generic [ref=f36e134]:
+            - button "Ask AI" [ref=f36e136] [cursor=pointer]
+            - button [ref=f36e137] [cursor=pointer]:
+              - button "Design theme" [ref=f36e138]:
+                - generic [ref=f36e139]: Theme
+            - link "31.1k" [ref=f36e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f36e142]:
+            - button "Choose a language" [ref=f36e143] [cursor=pointer]
+            - generic [ref=f36e144] [cursor=pointer]:
+              - button "light" [ref=f36e145]
+              - button "dark" [ref=f36e152]
+              - button "system" [ref=f36e155]
+      - generic [ref=f36e159]:
+        - link "Getting Started" [ref=f36e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f36e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f36e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f36e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f36e188]:
+          - tab "Web" [selected] [ref=f36e189] [cursor=pointer]
+          - tab "Native" [ref=f36e193] [cursor=pointer]
+    - article [ref=f36e196]:
+      - generic [ref=f36e197]:
+        - generic [ref=f36e198]:
+          - heading "SearchField" [level=1] [ref=f36e199]
+          - group [ref=f36e201]:
+            - button "Copy Markdown" [ref=f36e202] [cursor=pointer]
+            - button "More options" [ref=f36e203] [cursor=pointer]
+        - paragraph [ref=f36e204]: Search input field with clear button and search icon
+        - generic [ref=f36e205]:
+          - link "Figma" [ref=f36e206] [cursor=pointer]:
+            - /url: https://www.figma.com/community/file/1546526812159103429
+          - link "Storybook" [ref=f36e207] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-forms-searchfield--docs
+          - link "React Aria" [ref=f36e208] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/SearchField
+          - link "Source" [ref=f36e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/search-field/search-field.tsx
+          - link "Styles source" [ref=f36e210] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/search-field.css
+      - generic [ref=f36e211]:
+        - heading [level=2] [ref=f36e212]:
+          - link "Usage" [ref=f36e213] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f36e214]
+        - figure [ref=f36e219]:
+          - button "Copy Text" [ref=f36e221] [cursor=pointer]
+          - region [ref=f36e222]:
+            - code [ref=f36e224]:
+              - generic [ref=f36e225]: "import { SearchField } from '@heroui/react';"
+        - generic [ref=f36e226]:
+          - generic [ref=f36e229]:
+            - generic [ref=f36e230]: Search
+            - group [ref=f36e231]:
+              - searchbox "Search" [ref=f36e232]
+              - button "Clear search"
+          - generic [ref=f36e236]:
+            - figure [ref=f36e238]:
+              - button "Copy Text" [ref=f36e240] [cursor=pointer]
+              - region [ref=f36e241]:
+                - code [ref=f36e243]:
+                  - generic [ref=f36e244]: "import {Label, SearchField} from \"@heroui/react\";"
+                  - generic [ref=f36e246]: "export function Basic() {"
+                  - generic [ref=f36e247]: return (
+                  - generic [ref=f36e248]: <SearchField name="search">
+            - button "Expand code" [ref=f36e249] [cursor=pointer]
+        - heading [level=2] [ref=f36e250]:
+          - link "Anatomy" [ref=f36e251] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f36e252]
+        - figure [ref=f36e257]:
+          - button "Copy Text" [ref=f36e259] [cursor=pointer]
+          - region [ref=f36e260]:
+            - code [ref=f36e262]:
+              - generic [ref=f36e263]: "import {SearchField, Label, Description, FieldError} from '@heroui/react';"
+              - generic [ref=f36e265]: export default () => (
+              - generic [ref=f36e266]: <SearchField>
+              - generic [ref=f36e267]: <Label />
+              - generic [ref=f36e268]: <SearchField.Group>
+              - generic [ref=f36e269]: <SearchField.SearchIcon />
+              - generic [ref=f36e270]: <SearchField.Input />
+              - generic [ref=f36e271]: <SearchField.ClearButton />
+              - generic [ref=f36e272]: </SearchField.Group>
+              - generic [ref=f36e273]: <Description />
+              - generic [ref=f36e274]: <FieldError />
+              - generic [ref=f36e275]: </SearchField>
+              - generic [ref=f36e276]: )
+        - blockquote [ref=f36e277]:
+          - paragraph [ref=f36e278]:
+            - strong [ref=f36e279]: SearchField
+            - text: allows users to enter and clear a search query. It includes a search icon and an optional clear button for easy reset.
+        - heading [level=2] [ref=f36e280]:
+          - link "Examples" [ref=f36e281] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f36e282]
+        - heading [level=3] [ref=f36e287]:
+          - link "Variants" [ref=f36e288] [cursor=pointer]:
+            - /url: "#variants"
+          - button "Copy Anchor Link" [ref=f36e289]
+        - paragraph [ref=f36e294]: "The SearchField component supports two visual variants:"
+        - list [ref=f36e295]:
+          - listitem [ref=f36e296]:
+            - strong [ref=f36e297]:
+              - code [ref=f36e298]: primary
+            - text: (default) - Standard styling with shadow, suitable for most use cases
+          - listitem [ref=f36e299]:
+            - strong [ref=f36e300]:
+              - code [ref=f36e301]: secondary
+            - text: "- Lower emphasis variant without shadow, suitable for use in Surface components"
+        - heading [level=3] [ref=f36e303]:
+          - link "In Surface" [ref=f36e304] [cursor=pointer]:
+            - /url: "#in-surface"
+          - button "Copy Anchor Link" [ref=f36e305]
+        - paragraph [ref=f36e310]:
+          - text: When used inside a
+          - link "Surface" [ref=f36e311] [cursor=pointer]:
+            - /url: /en/docs/react/components/surface
+          - text: component, use
+          - code [ref=f36e312]: variant="secondary"
+          - text: to apply the lower emphasis variant suitable for surface backgrounds.
+        - heading [level=3] [ref=f36e314]:
+          - link "With Description" [ref=f36e315] [cursor=pointer]:
+            - /url: "#with-description"
+          - button "Copy Anchor Link" [ref=f36e316]
+        - heading [level=3] [ref=f36e322]:
+          - link "Required Field" [ref=f36e323] [cursor=pointer]:
+            - /url: "#required-field"
+          - button "Copy Anchor Link" [ref=f36e324]
+        - heading [level=3] [ref=f36e330]:
+          - link "Disabled State" [ref=f36e331] [cursor=pointer]:
+            - /url: "#disabled-state"
+          - button "Copy Anchor Link" [ref=f36e332]
+        - heading [level=3] [ref=f36e338]:
+          - link "Full Width" [ref=f36e339] [cursor=pointer]:
+            - /url: "#full-width"
+          - button "Copy Anchor Link" [ref=f36e340]
+        - heading [level=3] [ref=f36e346]:
+          - link "Validation" [ref=f36e347] [cursor=pointer]:
+            - /url: "#validation"
+          - button "Copy Anchor Link" [ref=f36e348]
+        - paragraph [ref=f36e353]:
+          - text: Use
+          - code [ref=f36e354]: isInvalid
+          - text: together with
+          - code [ref=f36e355]: FieldError
+          - text: to surface validation messages.
+        - heading [level=3] [ref=f36e357]:
+          - link "Controlled" [ref=f36e358] [cursor=pointer]:
+            - /url: "#controlled"
+          - button "Copy Anchor Link" [ref=f36e359]
+        - paragraph [ref=f36e364]: Control the value to synchronize with other components or perform custom formatting.
+        - heading [level=3] [ref=f36e366]:
+          - link "Form Example" [ref=f36e367] [cursor=pointer]:
+            - /url: "#form-example"
+          - button "Copy Anchor Link" [ref=f36e368]
+        - paragraph [ref=f36e373]: Complete form integration with validation and submission handling.
+        - heading [level=3] [ref=f36e375]:
+          - link "With Validation" [ref=f36e376] [cursor=pointer]:
+            - /url: "#with-validation"
+          - button "Copy Anchor Link" [ref=f36e377]
+        - paragraph [ref=f36e382]: Implement custom validation logic with controlled values.
+        - heading [level=3] [ref=f36e384]:
+          - link "Custom Icons" [ref=f36e385] [cursor=pointer]:
+            - /url: "#custom-icons"
+          - button "Copy Anchor Link" [ref=f36e386]
+        - paragraph [ref=f36e391]: Customize the search icon and clear button icons.
+        - heading [level=3] [ref=f36e393]:
+          - link "With Keyboard Shortcut" [ref=f36e394] [cursor=pointer]:
+            - /url: "#with-keyboard-shortcut"
+          - button "Copy Anchor Link" [ref=f36e395]
+        - paragraph [ref=f36e400]: Add keyboard shortcuts to quickly focus the search field.
+        - heading [level=3] [ref=f36e402]:
+          - link "Render Function" [ref=f36e403] [cursor=pointer]:
+            - /url: "#render-function"
+          - button "Copy Anchor Link" [ref=f36e404]
+        - heading [level=2] [ref=f36e410]:
+          - link "Customization" [ref=f36e411] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f36e412]
+        - heading [level=3] [ref=f36e417]:
+          - link "Tailwind CSS" [ref=f36e418] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f36e419]
+        - heading [level=3] [ref=f36e425]:
+          - link "Global CSS" [ref=f36e426] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f36e427]
+        - paragraph [ref=f36e432]: SearchField uses CSS classes that can be customized. Override the component classes to match your design system.
+        - figure [ref=f36e433]:
+          - button "Copy Text" [ref=f36e435] [cursor=pointer]
+          - region [ref=f36e436]:
+            - code [ref=f36e438]:
+              - generic [ref=f36e439]: "@layer components {"
+              - generic [ref=f36e440]: ".search-field {"
+              - generic [ref=f36e441]: "@apply flex flex-col gap-1;"
+              - generic [ref=f36e442]: "}"
+              - generic [ref=f36e444]: /* When invalid, the description is hidden automatically */
+              - generic [ref=f36e445]: .search-field[data-invalid],
+              - generic [ref=f36e446]: ".search-field[aria-invalid] {"
+              - generic [ref=f36e447]: "[data-slot=\"description\"] {"
+              - generic [ref=f36e448]: "@apply hidden;"
+              - generic [ref=f36e449]: "}"
+              - generic [ref=f36e450]: "}"
+              - generic [ref=f36e452]: ".search-field__group {"
+              - generic [ref=f36e453]: "@apply bg-field text-field-foreground shadow-field rounded-field inline-flex h-9 items-center overflow-hidden border;"
+              - generic [ref=f36e454]: "}"
+              - generic [ref=f36e456]: ".search-field__input {"
+              - generic [ref=f36e457]: "@apply flex-1 rounded-none border-0 bg-transparent px-3 py-2 shadow-none outline-none;"
+              - generic [ref=f36e458]: "}"
+              - generic [ref=f36e460]: ".search-field__search-icon {"
+              - generic [ref=f36e461]: "@apply text-field-placeholder pointer-events-none shrink-0 ml-3 mr-0 size-4;"
+              - generic [ref=f36e462]: "}"
+              - generic [ref=f36e464]: ".search-field__clear-button {"
+              - generic [ref=f36e465]: "@apply mr-1 shrink-0;"
+              - generic [ref=f36e466]: "}"
+              - generic [ref=f36e467]: "}"
+        - heading [level=2] [ref=f36e468]:
+          - link "Styling Reference" [ref=f36e469] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f36e470]
+        - paragraph [ref=f36e475]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f36e476] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f36e477]:
+          - link "CSS Classes" [ref=f36e478] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f36e479]
+        - heading [level=4] [ref=f36e484]:
+          - link "Base Classes" [ref=f36e485] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f36e486]
+        - list [ref=f36e491]:
+          - listitem [ref=f36e492]:
+            - code [ref=f36e493]: .search-field
+            - text: – Root container with minimal styling (
+            - code [ref=f36e494]: flex flex-col gap-1
+            - text: )
+          - listitem [ref=f36e495]:
+            - code [ref=f36e496]: .search-field__group
+            - text: – Container for search icon, input, and clear button with border and background styling
+          - listitem [ref=f36e497]:
+            - code [ref=f36e498]: .search-field__input
+            - text: – The search input field
+          - listitem [ref=f36e499]:
+            - code [ref=f36e500]: .search-field__search-icon
+            - text: – The search icon displayed on the left
+          - listitem [ref=f36e501]:
+            - code [ref=f36e502]: .search-field__clear-button
+            - text: – Button to clear the search field
+        - heading [level=4] [ref=f36e503]:
+          - link "Variant Classes" [ref=f36e504] [cursor=pointer]:
+            - /url: "#variant-classes-toc"
+          - button "Copy Anchor Link" [ref=f36e505]
+        - list [ref=f36e510]:
+          - listitem [ref=f36e511]:
+            - code [ref=f36e512]: .search-field--primary
+            - text: – Primary variant with shadow (default)
+          - listitem [ref=f36e513]:
+            - code [ref=f36e514]: .search-field--secondary
+            - text: – Secondary variant without shadow, suitable for use in surfaces
+        - blockquote [ref=f36e515]:
+          - paragraph [ref=f36e516]:
+            - strong [ref=f36e517]: "Note:"
+            - text: Child components (
+            - link "Label" [ref=f36e518] [cursor=pointer]:
+              - /url: /en/docs/react/components/label
+            - text: ","
+            - link "Description" [ref=f36e519] [cursor=pointer]:
+              - /url: /en/docs/react/components/description
+            - text: ","
+            - link "FieldError" [ref=f36e520] [cursor=pointer]:
+              - /url: /en/docs/react/components/field-error
+            - text: ) have their own CSS classes and styling. See their respective documentation for customization options.
+        - heading [level=3] [ref=f36e521]:
+          - link "Interactive States" [ref=f36e522] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f36e523]
+        - paragraph [ref=f36e528]: "SearchField automatically manages these data attributes based on its state:"
+        - list [ref=f36e529]:
+          - listitem [ref=f36e530]:
+            - strong [ref=f36e531]: Invalid
+            - text: ":"
+            - code [ref=f36e532]: "[data-invalid=\"true\"]"
+            - text: or
+            - code [ref=f36e533]: "[aria-invalid=\"true\"]"
+            - text: "- Automatically hides the description slot when invalid"
+          - listitem [ref=f36e534]:
+            - strong [ref=f36e535]: Disabled
+            - text: ":"
+            - code [ref=f36e536]: "[data-disabled=\"true\"]"
+            - text: "- Applied when"
+            - code [ref=f36e537]: isDisabled
+            - text: is true
+          - listitem [ref=f36e538]:
+            - strong [ref=f36e539]: Focus Within
+            - text: ":"
+            - code [ref=f36e540]: "[data-focus-within=\"true\"]"
+            - text: "- Applied when the input is focused"
+          - listitem [ref=f36e541]:
+            - strong [ref=f36e542]: Focus Visible
+            - text: ":"
+            - code [ref=f36e543]: "[data-focus-visible=\"true\"]"
+            - text: "- Applied when focus is visible (keyboard navigation)"
+          - listitem [ref=f36e544]:
+            - strong [ref=f36e545]: Hovered
+            - text: ":"
+            - code [ref=f36e546]: "[data-hovered=\"true\"]"
+            - text: "- Applied when hovering over the group"
+          - listitem [ref=f36e547]:
+            - strong [ref=f36e548]: Empty
+            - text: ":"
+            - code [ref=f36e549]: "[data-empty=\"true\"]"
+            - text: "- Applied when the field is empty (hides clear button)"
+        - paragraph [ref=f36e550]: Additional attributes are available through render props (see SearchFieldRenderProps below).
+        - heading [level=2] [ref=f36e551]:
+          - link "API Reference" [ref=f36e552] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f36e553]
+        - heading [level=3] [ref=f36e558]:
+          - link "SearchField" [ref=f36e559] [cursor=pointer]:
+            - /url: "#searchfield"
+          - button "Copy Anchor Link" [ref=f36e560]
+        - paragraph [ref=f36e565]:
+          - text: SearchField inherits all props from React Aria's
+          - link "SearchField" [ref=f36e566] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/SearchField.html
+          - text: component.
+        - heading [level=4] [ref=f36e567]:
+          - link "Base Props" [ref=f36e568] [cursor=pointer]:
+            - /url: "#base-props"
+          - button "Copy Anchor Link" [ref=f36e569]
+        - table [ref=f36e575]:
+          - rowgroup [ref=f36e576]:
+            - row [ref=f36e577]:
+              - columnheader "Prop" [ref=f36e578]
+              - columnheader "Type" [ref=f36e579]
+              - columnheader "Default" [ref=f36e580]
+              - columnheader "Description" [ref=f36e581]
+          - rowgroup [ref=f36e582]:
+            - row [ref=f36e583]:
+              - cell [ref=f36e584]:
+                - code [ref=f36e585]: children
+              - cell [ref=f36e586]:
+                - code [ref=f36e587]: "React.ReactNode | (values: SearchFieldRenderProps) => React.ReactNode"
+              - cell "-" [ref=f36e588]
+              - cell "Child components (Label, Group, Input, etc.) or render function." [ref=f36e589]
+            - row [ref=f36e590]:
+              - cell [ref=f36e591]:
+                - code [ref=f36e592]: className
+              - cell [ref=f36e593]:
+                - code [ref=f36e594]: "string | (values: SearchFieldRenderProps) => string"
+              - cell "-" [ref=f36e595]
+              - cell "CSS classes for styling, supports render props." [ref=f36e596]
+            - row [ref=f36e597]:
+              - cell [ref=f36e598]:
+                - code [ref=f36e599]: style
+              - cell [ref=f36e600]:
+                - code [ref=f36e601]: "React.CSSProperties | (values: SearchFieldRenderProps) => React.CSSProperties"
+              - cell "-" [ref=f36e602]
+              - cell "Inline styles, supports render props." [ref=f36e603]
+            - row [ref=f36e604]:
+              - cell [ref=f36e605]:
+                - code [ref=f36e606]: fullWidth
+              - cell [ref=f36e607]:
+                - code [ref=f36e608]: boolean
+              - cell [ref=f36e609]:
+                - code [ref=f36e610]: "false"
+              - cell "Whether the search field should take full width of its container" [ref=f36e611]
+            - row [ref=f36e612]:
+              - cell [ref=f36e613]:
+                - code [ref=f36e614]: id
+              - cell [ref=f36e615]:
+                - code [ref=f36e616]: string
+              - cell "-" [ref=f36e617]
+              - cell "The element's unique identifier." [ref=f36e618]
+            - row [ref=f36e619]:
+              - cell [ref=f36e620]:
+                - code [ref=f36e621]: variant
+              - cell [ref=f36e622]:
+                - code [ref=f36e623]: "\"primary\" | \"secondary\""
+              - cell [ref=f36e624]:
+                - code [ref=f36e625]: "\"primary\""
+              - cell [ref=f36e626]:
+                - text: Visual variant of the component.
+                - code [ref=f36e627]: primary
+                - text: is the default style with shadow.
+                - code [ref=f36e628]: secondary
+                - text: is a lower emphasis variant without shadow, suitable for use in surfaces.
+            - row [ref=f36e629]:
+              - cell [ref=f36e630]:
+                - code [ref=f36e631]: render
+              - cell [ref=f36e632]:
+                - code [ref=f36e633]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, SearchFieldRenderProps>
+              - cell "-" [ref=f36e634]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f36e635]
+        - heading [level=4] [ref=f36e636]:
+          - link "Value Props" [ref=f36e637] [cursor=pointer]:
+            - /url: "#value-props"
+          - button "Copy Anchor Link" [ref=f36e638]
+        - table [ref=f36e644]:
+          - rowgroup [ref=f36e645]:
+            - row [ref=f36e646]:
+              - columnheader "Prop" [ref=f36e647]
+              - columnheader "Type" [ref=f36e648]
+              - columnheader "Default" [ref=f36e649]
+              - columnheader "Description" [ref=f36e650]
+          - rowgroup [ref=f36e651]:
+            - row [ref=f36e652]:
+              - cell [ref=f36e653]:
+                - code [ref=f36e654]: value
+              - cell [ref=f36e655]:
+                - code [ref=f36e656]: string
+              - cell "-" [ref=f36e657]
+              - cell "Current value (controlled)." [ref=f36e658]
+            - row [ref=f36e659]:
+              - cell [ref=f36e660]:
+                - code [ref=f36e661]: defaultValue
+              - cell [ref=f36e662]:
+                - code [ref=f36e663]: string
+              - cell "-" [ref=f36e664]
+              - cell "Default value (uncontrolled)." [ref=f36e665]
+            - row [ref=f36e666]:
+              - cell [ref=f36e667]:
+                - code [ref=f36e668]: onChange
+              - cell [ref=f36e669]:
+                - code [ref=f36e670]: "(value: string) => void"
+              - cell "-" [ref=f36e671]
+              - cell "Handler called when the value changes." [ref=f36e672]
+        - heading [level=4] [ref=f36e673]:
+          - link "Validation Props" [ref=f36e674] [cursor=pointer]:
+            - /url: "#validation-props"
+          - button "Copy Anchor Link" [ref=f36e675]
+        - table [ref=f36e681]:
+          - rowgroup [ref=f36e682]:
+            - row [ref=f36e683]:
+              - columnheader "Prop" [ref=f36e684]
+              - columnheader "Type" [ref=f36e685]
+              - columnheader "Default" [ref=f36e686]
+              - columnheader "Description" [ref=f36e687]
+          - rowgroup [ref=f36e688]:
+            - row [ref=f36e689]:
+              - cell [ref=f36e690]:
+                - code [ref=f36e691]: isRequired
+              - cell [ref=f36e692]:
+                - code [ref=f36e693]: boolean
+              - cell [ref=f36e694]:
+                - code [ref=f36e695]: "false"
+              - cell "Whether user input is required before form submission." [ref=f36e696]
+            - row [ref=f36e697]:
+              - cell [ref=f36e698]:
+                - code [ref=f36e699]: isInvalid
+              - cell [ref=f36e700]:
+                - code [ref=f36e701]: boolean
+              - cell "-" [ref=f36e702]
+              - cell "Whether the value is invalid." [ref=f36e703]
+            - row [ref=f36e704]:
+              - cell [ref=f36e705]:
+                - code [ref=f36e706]: validate
+              - cell [ref=f36e707]:
+                - code [ref=f36e708]: "(value: string) => ValidationError | true | null | undefined"
+              - cell "-" [ref=f36e709]
+              - cell "Custom validation function." [ref=f36e710]
+            - row [ref=f36e711]:
+              - cell [ref=f36e712]:
+                - code [ref=f36e713]: validationBehavior
+              - cell [ref=f36e714]:
+                - code [ref=f36e715]: "'native' | 'aria'"
+              - cell [ref=f36e716]:
+                - code [ref=f36e717]: "'native'"
+              - cell "Whether to use native HTML form validation or ARIA attributes." [ref=f36e718]
+            - row [ref=f36e719]:
+              - cell [ref=f36e720]:
+                - code [ref=f36e721]: validationErrors
+              - cell [ref=f36e722]:
+                - code [ref=f36e723]: string[]
+              - cell "-" [ref=f36e724]
+              - cell "Server-side validation errors." [ref=f36e725]
+        - heading [level=4] [ref=f36e726]:
+          - link "State Props" [ref=f36e727] [cursor=pointer]:
+            - /url: "#state-props"
+          - button "Copy Anchor Link" [ref=f36e728]
+        - table [ref=f36e734]:
+          - rowgroup [ref=f36e735]:
+            - row [ref=f36e736]:
+              - columnheader "Prop" [ref=f36e737]
+              - columnheader "Type" [ref=f36e738]
+              - columnheader "Default" [ref=f36e739]
+              - columnheader "Description" [ref=f36e740]
+          - rowgroup [ref=f36e741]:
+            - row [ref=f36e742]:
+              - cell [ref=f36e743]:
+                - code [ref=f36e744]: isDisabled
+              - cell [ref=f36e745]:
+                - code [ref=f36e746]: boolean
+              - cell "-" [ref=f36e747]
+              - cell "Whether the input is disabled." [ref=f36e748]
+            - row [ref=f36e749]:
+              - cell [ref=f36e750]:
+                - code [ref=f36e751]: isReadOnly
+              - cell [ref=f36e752]:
+                - code [ref=f36e753]: boolean
+              - cell "-" [ref=f36e754]
+              - cell "Whether the input can be selected but not changed." [ref=f36e755]
+        - heading [level=4] [ref=f36e756]:
+          - link "Form Props" [ref=f36e757] [cursor=pointer]:
+            - /url: "#form-props"
+          - button "Copy Anchor Link" [ref=f36e758]
+        - table [ref=f36e764]:
+          - rowgroup [ref=f36e765]:
+            - row [ref=f36e766]:
+              - columnheader "Prop" [ref=f36e767]
+              - columnheader "Type" [ref=f36e768]
+              - columnheader "Default" [ref=f36e769]
+              - columnheader "Description" [ref=f36e770]
+          - rowgroup [ref=f36e771]:
+            - row [ref=f36e772]:
+              - cell [ref=f36e773]:
+                - code [ref=f36e774]: name
+              - cell [ref=f36e775]:
+                - code [ref=f36e776]: string
+              - cell "-" [ref=f36e777]
+              - cell "Name of the input element, for HTML form submission." [ref=f36e778]
+            - row [ref=f36e779]:
+              - cell [ref=f36e780]:
+                - code [ref=f36e781]: autoFocus
+              - cell [ref=f36e782]:
+                - code [ref=f36e783]: boolean
+              - cell "-" [ref=f36e784]
+              - cell "Whether the element should receive focus on render." [ref=f36e785]
+        - heading [level=4] [ref=f36e786]:
+          - link "Event Props" [ref=f36e787] [cursor=pointer]:
+            - /url: "#event-props"
+          - button "Copy Anchor Link" [ref=f36e788]
+        - table [ref=f36e794]:
+          - rowgroup [ref=f36e795]:
+            - row [ref=f36e796]:
+              - columnheader "Prop" [ref=f36e797]
+              - columnheader "Type" [ref=f36e798]
+              - columnheader "Default" [ref=f36e799]
+              - columnheader "Description" [ref=f36e800]
+          - rowgroup [ref=f36e801]:
+            - row [ref=f36e802]:
+              - cell [ref=f36e803]:
+                - code [ref=f36e804]: onSubmit
+              - cell [ref=f36e805]:
+                - code [ref=f36e806]: "(value: string) => void"
+              - cell "-" [ref=f36e807]
+              - cell "Handler called when the user submits the search (Enter key)." [ref=f36e808]
+            - row [ref=f36e809]:
+              - cell [ref=f36e810]:
+                - code [ref=f36e811]: onClear
+              - cell [ref=f36e812]:
+                - code [ref=f36e813]: () => void
+              - cell "-" [ref=f36e814]
+              - cell "Handler called when the clear button is pressed." [ref=f36e815]
+        - heading [level=4] [ref=f36e816]:
+          - link "Accessibility Props" [ref=f36e817] [cursor=pointer]:
+            - /url: "#accessibility-props"
+          - button "Copy Anchor Link" [ref=f36e818]
+        - table [ref=f36e824]:
+          - rowgroup [ref=f36e825]:
+            - row [ref=f36e826]:
+              - columnheader "Prop" [ref=f36e827]
+              - columnheader "Type" [ref=f36e828]
+              - columnheader "Default" [ref=f36e829]
+              - columnheader "Description" [ref=f36e830]
+          - rowgroup [ref=f36e831]:
+            - row [ref=f36e832]:
+              - cell [ref=f36e833]:
+                - code [ref=f36e834]: aria-label
+              - cell [ref=f36e835]:
+                - code [ref=f36e836]: string
+              - cell "-" [ref=f36e837]
+              - cell "Accessibility label when no visible label is present." [ref=f36e838]
+            - row [ref=f36e839]:
+              - cell [ref=f36e840]:
+                - code [ref=f36e841]: aria-labelledby
+              - cell [ref=f36e842]:
+                - code [ref=f36e843]: string
+              - cell "-" [ref=f36e844]
+              - cell "ID of elements that label this field." [ref=f36e845]
+            - row [ref=f36e846]:
+              - cell [ref=f36e847]:
+                - code [ref=f36e848]: aria-describedby
+              - cell [ref=f36e849]:
+                - code [ref=f36e850]: string
+              - cell "-" [ref=f36e851]
+              - cell "ID of elements that describe this field." [ref=f36e852]
+            - row [ref=f36e853]:
+              - cell [ref=f36e854]:
+                - code [ref=f36e855]: aria-details
+              - cell [ref=f36e856]:
+                - code [ref=f36e857]: string
+              - cell "-" [ref=f36e858]
+              - cell "ID of elements with additional details." [ref=f36e859]
+        - heading [level=3] [ref=f36e860]:
+          - link "Composition Components" [ref=f36e861] [cursor=pointer]:
+            - /url: "#composition-components"
+          - button "Copy Anchor Link" [ref=f36e862]
+        - paragraph [ref=f36e867]: "SearchField works with these separate components that should be imported and used directly:"
+        - list [ref=f36e868]:
+          - listitem [ref=f36e869]:
+            - strong [ref=f36e870]: SearchField.Group
+            - text: "- Container for search icon, input, and clear button"
+          - listitem [ref=f36e871]:
+            - strong [ref=f36e872]: SearchField.Input
+            - text: "- The search input field"
+          - listitem [ref=f36e873]:
+            - strong [ref=f36e874]: SearchField.SearchIcon
+            - text: "- The search icon displayed on the left"
+          - listitem [ref=f36e875]:
+            - strong [ref=f36e876]: SearchField.ClearButton
+            - text: "- Button to clear the search field"
+          - listitem [ref=f36e877]:
+            - strong [ref=f36e878]: Label
+            - text: "- Field label component from"
+            - code [ref=f36e879]: "@heroui/react"
+          - listitem [ref=f36e880]:
+            - strong [ref=f36e881]: Description
+            - text: "- Helper text component from"
+            - code [ref=f36e882]: "@heroui/react"
+          - listitem [ref=f36e883]:
+            - strong [ref=f36e884]: FieldError
+            - text: "- Validation error message from"
+            - code [ref=f36e885]: "@heroui/react"
+        - paragraph [ref=f36e886]: "Each of these components has its own props API. Use them directly within SearchField for composition:"
+        - figure [ref=f36e887]:
+          - button "Copy Text" [ref=f36e889] [cursor=pointer]
+          - region [ref=f36e890]:
+            - code [ref=f36e892]:
+              - generic [ref=f36e893]: "<SearchField isRequired isInvalid={hasError} value={value} onChange={setValue}>"
+              - generic [ref=f36e894]: <Label>Search</Label>
+              - generic [ref=f36e895]: <SearchField.Group>
+              - generic [ref=f36e896]: <SearchField.SearchIcon />
+              - generic [ref=f36e897]: <SearchField.Input placeholder="Search..." />
+              - generic [ref=f36e898]: <SearchField.ClearButton />
+              - generic [ref=f36e899]: </SearchField.Group>
+              - generic [ref=f36e900]: <Description>Enter keywords to search</Description>
+              - generic [ref=f36e901]: <FieldError>Search query is required</FieldError>
+              - generic [ref=f36e902]: </SearchField>
+        - heading [level=4] [ref=f36e903]:
+          - link "SearchField.Group Props" [ref=f36e904] [cursor=pointer]:
+            - /url: "#searchfieldgroup-props"
+          - button "Copy Anchor Link" [ref=f36e905]
+        - paragraph [ref=f36e910]:
+          - text: SearchField.Group inherits props from React Aria's
+          - link "Group" [ref=f36e911] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Group.html
+          - text: component.
+        - table [ref=f36e913]:
+          - rowgroup [ref=f36e914]:
+            - row [ref=f36e915]:
+              - columnheader "Prop" [ref=f36e916]
+              - columnheader "Type" [ref=f36e917]
+              - columnheader "Default" [ref=f36e918]
+              - columnheader "Description" [ref=f36e919]
+          - rowgroup [ref=f36e920]:
+            - row [ref=f36e921]:
+              - cell [ref=f36e922]:
+                - code [ref=f36e923]: children
+              - cell [ref=f36e924]:
+                - code [ref=f36e925]: "React.ReactNode | (values: GroupRenderProps) => React.ReactNode"
+              - cell "-" [ref=f36e926]
+              - cell "Child components (SearchIcon, Input, ClearButton) or render function." [ref=f36e927]
+            - row [ref=f36e928]:
+              - cell [ref=f36e929]:
+                - code [ref=f36e930]: className
+              - cell [ref=f36e931]:
+                - code [ref=f36e932]: "string | (values: GroupRenderProps) => string"
+              - cell "-" [ref=f36e933]
+              - cell "CSS classes for styling." [ref=f36e934]
+        - heading [level=4] [ref=f36e935]:
+          - link "SearchField.Input Props" [ref=f36e936] [cursor=pointer]:
+            - /url: "#searchfieldinput-props"
+          - button "Copy Anchor Link" [ref=f36e937]
+        - paragraph [ref=f36e942]:
+          - text: SearchField.Input inherits props from React Aria's
+          - link "Input" [ref=f36e943] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Input.html
+          - text: component.
+        - table [ref=f36e945]:
+          - rowgroup [ref=f36e946]:
+            - row [ref=f36e947]:
+              - columnheader "Prop" [ref=f36e948]
+              - columnheader "Type" [ref=f36e949]
+              - columnheader "Default" [ref=f36e950]
+              - columnheader "Description" [ref=f36e951]
+          - rowgroup [ref=f36e952]:
+            - row [ref=f36e953]:
+              - cell [ref=f36e954]:
+                - code [ref=f36e955]: className
+              - cell [ref=f36e956]:
+                - code [ref=f36e957]: string
+              - cell "-" [ref=f36e958]
+              - cell "CSS classes for styling." [ref=f36e959]
+            - row [ref=f36e960]:
+              - cell [ref=f36e961]:
+                - code [ref=f36e962]: variant
+              - cell [ref=f36e963]:
+                - code [ref=f36e964]: "\"primary\" | \"secondary\""
+              - cell [ref=f36e965]:
+                - code [ref=f36e966]: "\"primary\""
+              - cell [ref=f36e967]:
+                - text: Visual variant of the input.
+                - code [ref=f36e968]: primary
+                - text: is the default style with shadow.
+                - code [ref=f36e969]: secondary
+                - text: is a lower emphasis variant without shadow, suitable for use in surfaces.
+            - row [ref=f36e970]:
+              - cell [ref=f36e971]:
+                - code [ref=f36e972]: placeholder
+              - cell [ref=f36e973]:
+                - code [ref=f36e974]: string
+              - cell "-" [ref=f36e975]
+              - cell "Placeholder text displayed when the input is empty." [ref=f36e976]
+            - row [ref=f36e977]:
+              - cell [ref=f36e978]:
+                - code [ref=f36e979]: type
+              - cell [ref=f36e980]:
+                - code [ref=f36e981]: string
+              - cell [ref=f36e982]:
+                - code [ref=f36e983]: "\"search\""
+              - cell "Input type (automatically set to \"search\")." [ref=f36e984]
+        - heading [level=4] [ref=f36e985]:
+          - link "SearchField.SearchIcon Props" [ref=f36e986] [cursor=pointer]:
+            - /url: "#searchfieldsearchicon-props"
+          - button "Copy Anchor Link" [ref=f36e987]
+        - paragraph [ref=f36e992]: SearchField.SearchIcon is a custom component that renders the search icon.
+        - table [ref=f36e994]:
+          - rowgroup [ref=f36e995]:
+            - row [ref=f36e996]:
+              - columnheader "Prop" [ref=f36e997]
+              - columnheader "Type" [ref=f36e998]
+              - columnheader "Default" [ref=f36e999]
+              - columnheader "Description" [ref=f36e1000]
+          - rowgroup [ref=f36e1001]:
+            - row [ref=f36e1002]:
+              - cell [ref=f36e1003]:
+                - code [ref=f36e1004]: children
+              - cell [ref=f36e1005]:
+                - code [ref=f36e1006]: React.ReactNode
+              - cell [ref=f36e1007]:
+                - code [ref=f36e1008]: <IconSearch />
+              - cell "Custom icon element. Defaults to search icon." [ref=f36e1009]
+            - row [ref=f36e1010]:
+              - cell [ref=f36e1011]:
+                - code [ref=f36e1012]: className
+              - cell [ref=f36e1013]:
+                - code [ref=f36e1014]: string
+              - cell "-" [ref=f36e1015]
+              - cell "CSS classes for styling." [ref=f36e1016]
+        - heading [level=4] [ref=f36e1017]:
+          - link "SearchField.ClearButton Props" [ref=f36e1018] [cursor=pointer]:
+            - /url: "#searchfieldclearbutton-props"
+          - button "Copy Anchor Link" [ref=f36e1019]
+        - paragraph [ref=f36e1024]:
+          - text: SearchField.ClearButton inherits props from React Aria's
+          - link "Button" [ref=f36e1025] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Button.html
+          - text: component.
+        - table [ref=f36e1027]:
+          - rowgroup [ref=f36e1028]:
+            - row [ref=f36e1029]:
+              - columnheader "Prop" [ref=f36e1030]
+              - columnheader "Type" [ref=f36e1031]
+              - columnheader "Default" [ref=f36e1032]
+              - columnheader "Description" [ref=f36e1033]
+          - rowgroup [ref=f36e1034]:
+            - row [ref=f36e1035]:
+              - cell [ref=f36e1036]:
+                - code [ref=f36e1037]: children
+              - cell [ref=f36e1038]:
+                - code [ref=f36e1039]: React.ReactNode
+              - cell [ref=f36e1040]:
+                - code [ref=f36e1041]: <CloseButton icon />
+              - cell "Icon or content for the button. Defaults to close icon." [ref=f36e1042]
+            - row [ref=f36e1043]:
+              - cell [ref=f36e1044]:
+                - code [ref=f36e1045]: className
+              - cell [ref=f36e1046]:
+                - code [ref=f36e1047]: string
+              - cell "-" [ref=f36e1048]
+              - cell "CSS classes for styling." [ref=f36e1049]
+            - row [ref=f36e1050]:
+              - cell [ref=f36e1051]:
+                - code [ref=f36e1052]: slot
+              - cell [ref=f36e1053]:
+                - code [ref=f36e1054]: "\"clear\""
+              - cell [ref=f36e1055]:
+                - code [ref=f36e1056]: "\"clear\""
+              - cell "Must be set to \"clear\" (automatically set)." [ref=f36e1057]
+        - heading [level=3] [ref=f36e1058]:
+          - link "Render Props" [ref=f36e1059] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f36e1060]
+        - paragraph [ref=f36e1065]:
+          - text: When using render props with
+          - code [ref=f36e1066]: className
+          - text: ","
+          - code [ref=f36e1067]: style
+          - text: ", or"
+          - code [ref=f36e1068]: children
+          - text: ", these values are available:"
+        - table [ref=f36e1070]:
+          - rowgroup [ref=f36e1071]:
+            - row [ref=f36e1072]:
+              - columnheader "Prop" [ref=f36e1073]
+              - columnheader "Type" [ref=f36e1074]
+              - columnheader "Description" [ref=f36e1075]
+          - rowgroup [ref=f36e1076]:
+            - row [ref=f36e1077]:
+              - cell [ref=f36e1078]:
+                - code [ref=f36e1079]: isDisabled
+              - cell [ref=f36e1080]:
+                - code [ref=f36e1081]: boolean
+              - cell "Whether the field is disabled." [ref=f36e1082]
+            - row [ref=f36e1083]:
+              - cell [ref=f36e1084]:
+                - code [ref=f36e1085]: isInvalid
+              - cell [ref=f36e1086]:
+                - code [ref=f36e1087]: boolean
+              - cell "Whether the field is currently invalid." [ref=f36e1088]
+            - row [ref=f36e1089]:
+              - cell [ref=f36e1090]:
+                - code [ref=f36e1091]: isReadOnly
+              - cell [ref=f36e1092]:
+                - code [ref=f36e1093]: boolean
+              - cell "Whether the field is read-only." [ref=f36e1094]
+            - row [ref=f36e1095]:
+              - cell [ref=f36e1096]:
+                - code [ref=f36e1097]: isRequired
+              - cell [ref=f36e1098]:
+                - code [ref=f36e1099]: boolean
+              - cell "Whether the field is required." [ref=f36e1100]
+            - row [ref=f36e1101]:
+              - cell [ref=f36e1102]:
+                - code [ref=f36e1103]: isFocused
+              - cell [ref=f36e1104]:
+                - code [ref=f36e1105]: boolean
+              - cell [ref=f36e1106]:
+                - text: Whether the field is currently focused (DEPRECATED - use
+                - code [ref=f36e1107]: isFocusWithin
+                - text: ).
+            - row [ref=f36e1108]:
+              - cell [ref=f36e1109]:
+                - code [ref=f36e1110]: isFocusWithin
+              - cell [ref=f36e1111]:
+                - code [ref=f36e1112]: boolean
+              - cell "Whether any child element is focused." [ref=f36e1113]
+            - row [ref=f36e1114]:
+              - cell [ref=f36e1115]:
+                - code [ref=f36e1116]: isFocusVisible
+              - cell [ref=f36e1117]:
+                - code [ref=f36e1118]: boolean
+              - cell "Whether focus is visible (keyboard navigation)." [ref=f36e1119]
+            - row [ref=f36e1120]:
+              - cell [ref=f36e1121]:
+                - code [ref=f36e1122]: value
+              - cell [ref=f36e1123]:
+                - code [ref=f36e1124]: string
+              - cell "Current value." [ref=f36e1125]
+            - row [ref=f36e1126]:
+              - cell [ref=f36e1127]:
+                - code [ref=f36e1128]: isEmpty
+              - cell [ref=f36e1129]:
+                - code [ref=f36e1130]: boolean
+              - cell "Whether the field is empty." [ref=f36e1131]
+        - heading [level=2] [ref=f36e1132]:
+          - link "Related Showcases" [ref=f36e1133] [cursor=pointer]:
+            - /url: "#related-showcases"
+          - button "Copy Anchor Link" [ref=f36e1134]
+        - heading [level=2] [ref=f36e1139]:
+          - link "Related Components" [ref=f36e1140] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f36e1141]
+        - generic [ref=f36e1146]:
+          - generic [ref=f36e1147]:
+            - link "Label" [ref=f36e1149] [cursor=pointer]:
+              - /url: /en/docs/components/label
+            - generic [ref=f36e1151]:
+              - link "Label":
+                - /url: /en/docs/components/label
+                - img "Label" [ref=f36e1152] [cursor=pointer]
+          - generic [ref=f36e1153]:
+            - link "Description" [ref=f36e1155] [cursor=pointer]:
+              - /url: /en/docs/components/description
+            - generic [ref=f36e1157]:
+              - link "Description":
+                - /url: /en/docs/components/description
+                - img "Description" [ref=f36e1158] [cursor=pointer]
+          - generic [ref=f36e1159]:
+            - link "FieldError" [ref=f36e1161] [cursor=pointer]:
+              - /url: /en/docs/components/field-error
+            - generic [ref=f36e1163]:
+              - link "FieldError":
+                - /url: /en/docs/components/field-error
+                - img "FieldError" [ref=f36e1164] [cursor=pointer]
+      - generic [ref=f36e1165]:
+        - link [ref=f36e1166] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+          - paragraph [ref=f36e1170]: ScrollShadow
+          - paragraph [ref=f36e1171]: Apply visual shadows to indicate scrollable content overflow with automatic detection of scroll position.
+        - link [ref=f36e1172] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+          - paragraph [ref=f36e1176]: Select
+          - paragraph [ref=f36e1177]: A select displays a collapsible list of options and allows a user to select one of them
+    - generic [ref=f36e1178]:
+      - heading "On this page" [level=3] [ref=f36e1179]
+      - generic [ref=f36e1184]:
+        - link "Usage" [ref=f36e1185] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f36e1186] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f36e1187] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Variants" [ref=f36e1188] [cursor=pointer]:
+          - /url: "#variants"
+        - link "In Surface" [ref=f36e1189] [cursor=pointer]:
+          - /url: "#in-surface"
+        - link "With Description" [ref=f36e1190] [cursor=pointer]:
+          - /url: "#with-description"
+        - link "Required Field" [ref=f36e1191] [cursor=pointer]:
+          - /url: "#required-field"
+        - link "Disabled State" [ref=f36e1192] [cursor=pointer]:
+          - /url: "#disabled-state"
+        - link "Full Width" [ref=f36e1193] [cursor=pointer]:
+          - /url: "#full-width"
+        - link "Validation" [ref=f36e1194] [cursor=pointer]:
+          - /url: "#validation"
+        - link "Controlled" [ref=f36e1195] [cursor=pointer]:
+          - /url: "#controlled"
+        - link "Form Example" [ref=f36e1196] [cursor=pointer]:
+          - /url: "#form-example"
+        - link "With Validation" [ref=f36e1197] [cursor=pointer]:
+          - /url: "#with-validation"
+        - link "Custom Icons" [ref=f36e1198] [cursor=pointer]:
+          - /url: "#custom-icons"
+        - link "With Keyboard Shortcut" [ref=f36e1199] [cursor=pointer]:
+          - /url: "#with-keyboard-shortcut"
+        - link "Render Function" [ref=f36e1200] [cursor=pointer]:
+          - /url: "#render-function"
+        - link "Customization" [ref=f36e1201] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f36e1202] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f36e1203] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f36e1204] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f36e1205] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Interactive States" [ref=f36e1206] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f36e1207] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "SearchField" [ref=f36e1208] [cursor=pointer]:
+          - /url: "#searchfield"
+        - link "Base Props" [ref=f36e1209] [cursor=pointer]:
+          - /url: "#base-props"
+        - link "Value Props" [ref=f36e1210] [cursor=pointer]:
+          - /url: "#value-props"
+        - link "Validation Props" [ref=f36e1211] [cursor=pointer]:
+          - /url: "#validation-props"
+        - link "State Props" [ref=f36e1212] [cursor=pointer]:
+          - /url: "#state-props"
+        - link "Form Props" [ref=f36e1213] [cursor=pointer]:
+          - /url: "#form-props"
+        - link "Event Props" [ref=f36e1214] [cursor=pointer]:
+          - /url: "#event-props"
+        - link "Accessibility Props" [ref=f36e1215] [cursor=pointer]:
+          - /url: "#accessibility-props"
+        - link "Composition Components" [ref=f36e1216] [cursor=pointer]:
+          - /url: "#composition-components"
+        - link "SearchField.Group Props" [ref=f36e1217] [cursor=pointer]:
+          - /url: "#searchfieldgroup-props"
+        - link "SearchField.Input Props" [ref=f36e1218] [cursor=pointer]:
+          - /url: "#searchfieldinput-props"
+        - link "SearchField.SearchIcon Props" [ref=f36e1219] [cursor=pointer]:
+          - /url: "#searchfieldsearchicon-props"
+        - link "SearchField.ClearButton Props" [ref=f36e1220] [cursor=pointer]:
+          - /url: "#searchfieldclearbutton-props"
+        - link "Render Props" [ref=f36e1221] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Related Showcases" [ref=f36e1222] [cursor=pointer]:
+          - /url: "#related-showcases"
+        - link "Related Components" [ref=f36e1223] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f36e1226]:
+        - generic [ref=f36e1227]:
+          - generic [ref=f36e1228]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f36e1229]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f36e1230] [cursor=pointer]
+  - generic [ref=f36e1232]:
+    - generic [ref=f36e1233]: Now available
+    - button "Close" [ref=f36e1247] [cursor=pointer]
+    - generic [ref=f36e1248]:
+      - generic [ref=f36e1249]:
+        - heading "Build faster with HeroUI Pro" [level=3] [ref=f36e1250]
+        - paragraph [ref=f36e1251]: Components, templates, and AI tooling for React and React Native. Made for teams that care about the details.
+      - generic [ref=f36e1252]:
+        - button "Close" [ref=f36e1253] [cursor=pointer]
+        - link "Explore Pro" [ref=f36e1254] [cursor=pointer]:
+          - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=pro_banner&utm_campaign=pro_default
+  - iframe [ref=f36e1255]
+  - alert [ref=f36e1256]

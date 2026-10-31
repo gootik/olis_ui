@@ -1,0 +1,367 @@
+import { installSelect } from "./select.js";
+import { installInputOTP } from "./input_otp.js";
+import { installTagGroup } from "./tag_group.js";
+import { installComboBox } from "./combo_box.js";
+import { installCalendar } from "./calendar.js";
+import { installDateField } from "./date_field.js";
+
+/** Install delegated behavior for HeroUI components. Returns a cleanup function. */
+export function installHeroUI(root = document) {
+  const removeSelect = installSelect(root);
+  const removeInputOTP = installInputOTP(root);
+  const removeTagGroup = installTagGroup(root);
+  const removeComboBox = installComboBox(root);
+  const removeCalendar = installCalendar(root);
+  const removeDateField = installDateField(root);
+  function tabsIn(tabs) {
+    return Array.from(tabs.querySelectorAll('[role="tab"]')).filter(tab => tab.closest('[data-hero-tabs]') === tabs && !tab.disabled);
+  }
+  function selectTab(tab, focus = false) {
+    const tabs = tab.closest('[data-hero-tabs]');
+    if (!tabs || tab.disabled) return;
+    for (const item of tabsIn(tabs)) {
+      const selected = item === tab;
+      item.setAttribute('aria-selected', String(selected));
+      item.setAttribute('data-selected', String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(item.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !selected;
+    }
+    if (focus) tab.focus();
+  }
+  const menuSearch = new WeakMap();
+  function menuItems(menu) {
+    return Array.from(menu.querySelectorAll('[role="menuitem"]')).filter(item => !item.disabled && item.getAttribute('aria-disabled') !== 'true');
+  }
+  function menuTrigger(menu) {
+    return menu.parentElement?.querySelector('[popovertarget]');
+  }
+  function positionMenu(menu) {
+    const trigger = menuTrigger(menu);
+    if (!trigger || !menu.matches(':popover-open')) return;
+    const rect = trigger.getBoundingClientRect();
+    const box = menu.getBoundingClientRect();
+    const left = Math.max(8, Math.min(rect.left, window.innerWidth - box.width - 8));
+    const below = rect.bottom + 4;
+    const top = below + box.height <= window.innerHeight - 8 ? below : Math.max(8, rect.top - box.height - 4);
+    menu.style.left = `${left}px`;
+    menu.style.top = `${top}px`;
+  }
+  function positionTooltip(tip) {
+    const trigger = tip.parentElement?.querySelector('[data-hero-tooltip-trigger]');
+    if (!trigger || !tip.matches(':popover-open')) return;
+    const anchor = trigger.getBoundingClientRect(), box = tip.getBoundingClientRect();
+    const left = Math.max(8, Math.min(anchor.left + (anchor.width - box.width) / 2, innerWidth - box.width - 8));
+    const topPreferred = tip.dataset.placement !== 'bottom';
+    const above = anchor.top - box.height - 6;
+    const below = anchor.bottom + 6;
+    const top = topPreferred ? (above >= 8 ? above : below) : (below + box.height <= innerHeight - 8 ? below : Math.max(8, above));
+    tip.style.left = `${left}px`; tip.style.top = `${top}px`;
+  }
+  function repositionOpenMenus() {
+    root.querySelectorAll('[data-hero-menu]:popover-open, [data-hero-popover]:popover-open').forEach(positionMenu);
+    root.querySelectorAll('[data-hero-tooltip]:popover-open').forEach(positionTooltip);
+  }
+  const tooltipTimers = new WeakMap();
+  function hideTooltip(container) {
+    clearTimeout(tooltipTimers.get(container));
+    const tip = container.querySelector('[data-hero-tooltip]');
+    if (tip?.matches(':popover-open')) tip.hidePopover();
+  }
+  function showTooltip(container, delay) {
+    clearTimeout(tooltipTimers.get(container));
+    tooltipTimers.set(container, setTimeout(() => {
+      const tip = container.querySelector('[data-hero-tooltip]');
+      if (!tip || !container.isConnected) return;
+      if (!tip.matches(':popover-open')) tip.showPopover();
+      positionTooltip(tip);
+    }, delay));
+  }
+  function onPointerOver(event) {
+    const container = event.target.closest?.('[data-hero-tooltip-root]');
+    if (!container || !root.contains(container) || container.contains(event.relatedTarget) || event.pointerType === 'touch') return;
+    showTooltip(container, Number(container.dataset.delay) || 0);
+  }
+  function onPointerOut(event) {
+    const container = event.target.closest?.('[data-hero-tooltip-root]');
+    if (!container || container.contains(event.relatedTarget) || container.matches(':focus-within')) return;
+    hideTooltip(container);
+  }
+  function onFocusIn(event) {
+    const trigger = event.target.closest?.('[data-hero-tooltip-trigger]');
+    if (trigger && root.contains(trigger)) showTooltip(trigger.closest('[data-hero-tooltip-root]'), 0);
+  }
+  function onTooltipFocusOut(event) {
+    const container = event.target.closest?.('[data-hero-tooltip-root]');
+    if (container && !container.contains(event.relatedTarget) && !container.matches(':hover')) hideTooltip(container);
+  }
+  function onToggle(event) {
+    const menu = event.target;
+    if (!menu.matches?.('[data-hero-menu], [data-hero-popover]')) return;
+    const trigger = menuTrigger(menu);
+    const open = menu.matches(':popover-open');
+    trigger?.setAttribute('aria-expanded', String(open));
+    if (open) {
+      positionMenu(menu);
+      if (menu.matches('[data-hero-popover]')) menu.focus();
+      else {
+        const items = menuItems(menu);
+        (menu.dataset.heroFocusLast === 'true' ? items.at(-1) : items[0])?.focus();
+        delete menu.dataset.heroFocusLast;
+      }
+    }
+  }
+  function onFocusOut(event) {
+    const menu = event.target.closest?.('[data-hero-menu]');
+    if (menu && event.relatedTarget && !menu.contains(event.relatedTarget) && menu.matches(':popover-open')) menu.hidePopover();
+  }
+  const listboxSearch = new WeakMap();
+  function listboxItems(listbox) {
+    return Array.from(listbox.querySelectorAll('[role="option"]')).filter(item => item.closest('[data-hero-listbox]') === listbox && item.getAttribute('aria-disabled') !== 'true');
+  }
+  function setListboxActive(listbox, item, scroll = false) {
+    if (!item) { listbox.removeAttribute('aria-activedescendant'); return; }
+    listbox.setAttribute('aria-activedescendant', item.id);
+    listbox.querySelectorAll('[role="option"]').forEach(option => {
+      if (option.closest('[data-hero-listbox]') === listbox) option.dataset.active = String(option === item);
+    });
+    if (scroll) item.scrollIntoView({block:'nearest'});
+  }
+  function reconcileListboxes() {
+    root.querySelectorAll('[data-hero-listbox]').forEach(listbox => {
+      const items = listboxItems(listbox), active = items.find(item => item.id === listbox.getAttribute('aria-activedescendant'));
+      setListboxActive(listbox, active || items.find(item => item.getAttribute('aria-selected') === 'true') || items[0]);
+    });
+  }
+  function onKeyDown(event) {
+    const listbox = event.target.closest?.('[data-hero-listbox]');
+    if (listbox && root.contains(listbox) && listbox.getAttribute('aria-disabled') !== 'true') {
+      const items = listboxItems(listbox), current = items.findIndex(item => item.id === listbox.getAttribute('aria-activedescendant'));
+      if (!items.length) return;
+      let index;
+      if (event.key === 'ArrowDown') index = (current + 1) % items.length;
+      else if (event.key === 'ArrowUp') index = (current - 1 + items.length) % items.length;
+      else if (event.key === 'Home') index = 0;
+      else if (event.key === 'End') index = items.length - 1;
+      else if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); (items[current] || items[0]).click(); return; }
+      else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        const previous = listboxSearch.get(listbox);
+        const query = ((previous && Date.now() - previous.time < 700 ? previous.text : '') + event.key).toLocaleLowerCase();
+        listboxSearch.set(listbox, {text:query, time:Date.now()});
+        const ordered = [...items.slice(current + 1), ...items.slice(0, current + 1)];
+        const match = ordered.find(item => item.querySelector('[data-slot="label"]')?.textContent.trim().toLocaleLowerCase().startsWith(query));
+        if (match) { event.preventDefault(); setListboxActive(listbox, match, true); }
+        return;
+      } else return;
+      event.preventDefault(); setListboxActive(listbox, items[index], true); return;
+    }
+    if (event.key === 'Escape') {
+      root.querySelectorAll('[data-hero-tooltip-root]').forEach(hideTooltip);
+    }
+    const menu = event.target.closest?.('[data-hero-menu]');
+    if (menu && root.contains(menu)) {
+      const items = menuItems(menu), current = items.indexOf(event.target.closest('[role="menuitem"]'));
+      let index;
+      if (event.key === 'ArrowDown') index = (current + 1) % items.length;
+      else if (event.key === 'ArrowUp') index = (current - 1 + items.length) % items.length;
+      else if (event.key === 'Home') index = 0;
+      else if (event.key === 'End') index = items.length - 1;
+      else if (event.key === 'Escape') { event.preventDefault(); menu.hidePopover(); menuTrigger(menu)?.focus(); return; }
+      else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey && event.key !== ' ') {
+        const previous = menuSearch.get(menu);
+        const query = ((previous && Date.now() - previous.time < 700 ? previous.text : '') + event.key).toLocaleLowerCase();
+        menuSearch.set(menu, {text: query, time: Date.now()});
+        const ordered = [...items.slice(current + 1), ...items.slice(0, current + 1)];
+        const match = ordered.find(item => item.textContent.trim().toLocaleLowerCase().startsWith(query));
+        if (match) { event.preventDefault(); match.focus(); }
+        return;
+      }
+      else return;
+      if (items.length) { event.preventDefault(); items[index].focus(); }
+      return;
+    }
+    const menuButton = event.target.closest?.('[popovertarget][aria-haspopup="menu"]');
+    if (menuButton && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+      const target = document.getElementById(menuButton.getAttribute('popovertarget'));
+      if (target && !target.matches(':popover-open')) { event.preventDefault(); target.dataset.heroFocusLast = String(event.key === 'ArrowUp'); target.showPopover(); }
+      return;
+    }
+    const tab = event.target.closest?.('[role="tab"]');
+    const tabs = tab?.closest('[data-hero-tabs]');
+    if (!tabs || !root.contains(tabs)) return;
+    const items = tabsIn(tabs);
+    const current = items.indexOf(tab);
+    const vertical = tabs.dataset.orientation === 'vertical';
+    const rtl = getComputedStyle(tabs).direction === 'rtl';
+    let index;
+    if (event.key === 'Home') index = 0;
+    else if (event.key === 'End') index = items.length - 1;
+    else if (event.key === (vertical ? 'ArrowDown' : rtl ? 'ArrowLeft' : 'ArrowRight')) index = (current + 1) % items.length;
+    else if (event.key === (vertical ? 'ArrowUp' : rtl ? 'ArrowRight' : 'ArrowLeft')) index = (current - 1 + items.length) % items.length;
+    else return;
+    event.preventDefault();
+    selectTab(items[index], true);
+  }
+  function onAvatarError(event) {
+    const image = event.target;
+    if (image.matches?.('[data-hero-avatar-image]') && root.contains(image)) image.dataset.failed = 'true';
+  }
+  function onAvatarLoad(event) {
+    const image = event.target;
+    if (image.matches?.('[data-hero-avatar-image]') && root.contains(image)) delete image.dataset.failed;
+  }
+  function checkAvatar(image) {
+    if (image.complete && image.naturalWidth === 0 && image.dataset.failed !== 'true') image.dataset.failed = 'true';
+  }
+  function scanAvatars(node) {
+    if (node.matches?.('[data-hero-avatar-image]')) checkAvatar(node);
+    node.querySelectorAll?.('[data-hero-avatar-image]').forEach(checkAvatar);
+  }
+  scanAvatars(root);
+  const avatarObserver = new MutationObserver(records => {
+    for (const record of records) {
+      if (record.type === 'attributes') scanAvatars(record.target);
+      else record.addedNodes.forEach(scanAvatars);
+    }
+  });
+  avatarObserver.observe(root, {subtree: true, childList: true, attributes: true, attributeFilter: ['src', 'data-failed']});
+  function onSliderInput(event) {
+    const input = event.target;
+    if (!input.matches?.('[data-hero-slider-input]') || !root.contains(input)) return;
+    const min = Number(input.min), max = Number(input.max), value = Number(input.value);
+    input.style.setProperty('--hui-slider-percent', `${(value - min) / (max - min) * 100}%`);
+    const output = input.closest('[data-hero-slider]')?.querySelector('[data-hero-slider-output]');
+    if (output) output.textContent = input.value;
+  }
+  function syncSearchField(field) {
+    const input = field.querySelector('[data-slot="search-field-input"]');
+    const clear = field.querySelector('[data-hero-search-clear]');
+    if (!input || !clear) return;
+    const empty = input.value === '';
+    field.dataset.heroSearchReady = 'true';
+    field.dataset.empty = String(empty);
+    clear.hidden = false;
+    clear.disabled = empty || input.matches(':disabled') || input.readOnly;
+    clear.setAttribute('aria-hidden', String(empty));
+  }
+  function syncSearchFields() { root.querySelectorAll('[data-hero-search-field]').forEach(syncSearchField); }
+  function onSearchInput(event) {
+    const field = event.target.closest?.('[data-hero-search-field]');
+    if (field && root.contains(field) && event.target.matches('[data-slot="search-field-input"]')) syncSearchField(field);
+  }
+  function onFormReset() { setTimeout(syncSearchFields, 0); }
+  function onClick(event) {
+    const inputGroup = event.target.closest?.('[data-hero-input-group]');
+    if (inputGroup && root.contains(inputGroup) && !event.target.closest('input, textarea, select, button, a, [contenteditable="true"], [role="button"]')) {
+      const input = inputGroup.querySelector('[data-slot="input-group-input"], [data-slot="input-group-textarea"]');
+      if (input && !input.matches(':disabled')) input.focus();
+    }
+    const clear = event.target.closest?.('[data-hero-search-clear]');
+    if (clear && root.contains(clear) && !clear.disabled) {
+      const input = clear.closest('[data-hero-search-field]')?.querySelector('[data-slot="search-field-input"]');
+      if (input && !input.matches(':disabled') && !input.readOnly && input.value !== '') {
+        input.value = '';
+        input.dispatchEvent(new Event('input', {bubbles:true}));
+        input.focus();
+      }
+      return;
+    }
+    const option = event.target.closest?.('[role="option"]');
+    const listbox = option?.closest('[data-hero-listbox]');
+    if (listbox && root.contains(listbox) && listbox.getAttribute('aria-disabled') !== 'true' && option.getAttribute('aria-disabled') !== 'true') {
+      setListboxActive(listbox, option); listbox.focus({preventScroll:true});
+    }
+    const step = event.target.closest?.('[data-hero-number-step]');
+    if (step && root.contains(step) && !step.disabled) {
+      const input = step.closest('[data-hero-number]')?.querySelector('input[type=number]');
+      if (input && !input.disabled && !input.readOnly) {
+        const previous = input.value;
+        if (step.dataset.heroNumberStep === 'up') input.stepUp(); else input.stepDown();
+        if (input.value !== previous) input.dispatchEvent(new Event('input', {bubbles:true}));
+      }
+      return;
+    }
+    const closePopover = event.target.closest?.('[data-hero-popover-close]');
+    if (closePopover && root.contains(closePopover)) {
+      const popover = closePopover.closest('[data-hero-popover]');
+      if (popover?.matches(':popover-open')) { popover.hidePopover(); menuTrigger(popover)?.focus(); }
+    }
+    const close = event.target.closest?.('[data-hero-dialog-close]');
+    if (close && root.contains(close)) {
+      const dialog = close.closest('dialog[data-hero-dialog]');
+      if (dialog?.open) dialog.close();
+    }
+    const item = event.target.closest?.('[role="menuitem"]');
+    const menu = item?.closest('[data-hero-menu]');
+    if (menu && !item.disabled && item.getAttribute('aria-disabled') !== 'true') { menu.hidePopover(); if (item.tagName !== 'A') menuTrigger(menu)?.focus(); }
+
+    const tab = event.target.closest?.('[role="tab"]');
+    if (tab?.closest('[data-hero-tabs]') && root.contains(tab)) { selectTab(tab); return; }
+    const trigger = event.target.closest?.('[data-hero-dialog-open]');
+    if (trigger && root.contains(trigger)) {
+      const id = trigger.getAttribute('data-hero-dialog-open');
+      const dialog = root.getElementById ? root.getElementById(id) : document.getElementById(id);
+      if (dialog instanceof HTMLDialogElement && !dialog.open) dialog.showModal();
+      return;
+    }
+    const dialog = event.target;
+    if (!(dialog instanceof HTMLDialogElement) || !dialog.matches('[data-hero-dialog][data-dismissible="true"]')) return;
+    const rect = dialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+  }
+  function onCancel(event) {
+    if (event.target.matches?.('[data-hero-dialog][data-dismissible="false"]')) event.preventDefault();
+  }
+  window.addEventListener('resize', repositionOpenMenus);
+  window.addEventListener('scroll', repositionOpenMenus, true);
+  document.addEventListener('phx:update', reconcileListboxes);
+  document.addEventListener('phx:update', syncSearchFields);
+  syncSearchFields();
+  root.addEventListener('error', onAvatarError, true);
+  root.addEventListener('load', onAvatarLoad, true);
+  root.addEventListener('input', onSliderInput);
+  root.addEventListener('input', onSearchInput);
+  root.addEventListener('reset', onFormReset);
+  root.addEventListener('pointerover', onPointerOver);
+  root.addEventListener('pointerout', onPointerOut);
+  root.addEventListener('focusin', onFocusIn);
+  root.addEventListener('focusout', onTooltipFocusOut);
+  root.addEventListener('toggle', onToggle, true);
+  root.addEventListener('focusout', onFocusOut);
+  root.addEventListener('click', onClick);
+  root.addEventListener('keydown', onKeyDown);
+  root.addEventListener('cancel', onCancel, true);
+  return () => {
+    removeSelect();
+    removeInputOTP();
+    removeTagGroup();
+    removeComboBox();
+    removeCalendar();
+    removeDateField();
+    window.removeEventListener('resize', repositionOpenMenus);
+    window.removeEventListener('scroll', repositionOpenMenus, true);
+    avatarObserver.disconnect();
+    document.removeEventListener('phx:update', reconcileListboxes);
+    document.removeEventListener('phx:update', syncSearchFields);
+    root.removeEventListener('error', onAvatarError, true);
+    root.removeEventListener('load', onAvatarLoad, true);
+    root.removeEventListener('input', onSliderInput);
+    root.removeEventListener('input', onSearchInput);
+    root.removeEventListener('reset', onFormReset);
+    root.querySelectorAll('[data-hero-search-field]').forEach(field => {
+      delete field.dataset.heroSearchReady;
+      const clear = field.querySelector('[data-hero-search-clear]');
+      if (clear) clear.hidden = true;
+    });
+    root.removeEventListener('pointerover', onPointerOver);
+    root.removeEventListener('pointerout', onPointerOut);
+    root.removeEventListener('focusin', onFocusIn);
+    root.removeEventListener('focusout', onTooltipFocusOut);
+    root.querySelectorAll('[data-hero-tooltip-root]').forEach(hideTooltip);
+    root.removeEventListener('toggle', onToggle, true);
+    root.removeEventListener('focusout', onFocusOut);
+    root.removeEventListener('click', onClick);
+    root.removeEventListener('keydown', onKeyDown);
+    root.removeEventListener('cancel', onCancel, true);
+  };
+}

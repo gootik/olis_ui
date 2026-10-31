@@ -1,0 +1,8 @@
+/_build/
+/deps/
+/cover/
+*.ez
+
+/priv/static/hero_ui.css
+
+/node_modules/

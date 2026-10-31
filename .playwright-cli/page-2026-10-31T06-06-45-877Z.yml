@@ -1,0 +1,1220 @@
+- generic [active] [ref=f18e1]:
+  - link "Pro HeroUI Pro is live - Components, templates & AI tooling" [ref=f18e2] [cursor=pointer]:
+    - /url: https://heroui.pro?utm_source=heroui.com&utm_medium=banner&utm_campaign=pro_default
+    - generic [ref=f18e3]: Pro
+    - generic [ref=f18e4]:
+      - generic [ref=f18e5]: HeroUI Pro is live -
+      - text: Components, templates & AI tooling
+  - generic [ref=f18e6]:
+    - complementary [ref=f18e7]:
+      - generic [ref=f18e9]:
+        - paragraph [ref=f18e10]: Overview
+        - link "All Components (React)" [ref=f18e11] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - paragraph [ref=f18e12]: Components
+        - link "Accordion" [ref=f18e13] [cursor=pointer]:
+          - /url: /en/docs/react/components/accordion
+        - link "Alert" [ref=f18e14] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert
+        - link "AlertDialog" [ref=f18e15] [cursor=pointer]:
+          - /url: /en/docs/react/components/alert-dialog
+        - link "Autocomplete" [ref=f18e16] [cursor=pointer]:
+          - /url: /en/docs/react/components/autocomplete
+        - link "Avatar" [ref=f18e17] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar
+        - link "New AvatarGroup" [ref=f18e18] [cursor=pointer]:
+          - /url: /en/docs/react/components/avatar-group
+          - generic [ref=f18e19]: New
+          - text: AvatarGroup
+        - link "Badge" [ref=f18e21] [cursor=pointer]:
+          - /url: /en/docs/react/components/badge
+        - link "Breadcrumbs" [ref=f18e22] [cursor=pointer]:
+          - /url: /en/docs/react/components/breadcrumbs
+        - link "Button" [ref=f18e23] [cursor=pointer]:
+          - /url: /en/docs/react/components/button
+        - link "ButtonGroup" [ref=f18e24] [cursor=pointer]:
+          - /url: /en/docs/react/components/button-group
+        - link "Updated Calendar" [ref=f18e25] [cursor=pointer]:
+          - /url: /en/docs/react/components/calendar
+          - generic [ref=f18e26]: Updated
+          - text: Calendar
+        - link "Card" [ref=f18e28] [cursor=pointer]:
+          - /url: /en/docs/react/components/card
+        - link "Updated Checkbox" [ref=f18e29] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox
+          - generic [ref=f18e30]: Updated
+          - text: Checkbox
+        - link "Updated CheckboxGroup" [ref=f18e32] [cursor=pointer]:
+          - /url: /en/docs/react/components/checkbox-group
+          - generic [ref=f18e33]: Updated
+          - text: CheckboxGroup
+        - link "Chip" [ref=f18e35] [cursor=pointer]:
+          - /url: /en/docs/react/components/chip
+        - link "CloseButton" [ref=f18e36] [cursor=pointer]:
+          - /url: /en/docs/react/components/close-button
+        - link "ColorArea" [ref=f18e37] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-area
+        - link "ColorField" [ref=f18e38] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-field
+        - link "ColorPicker" [ref=f18e39] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-picker
+        - link "ColorSlider" [ref=f18e40] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-slider
+        - link "ColorSwatch" [ref=f18e41] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch
+        - link "ColorSwatchPicker" [ref=f18e42] [cursor=pointer]:
+          - /url: /en/docs/react/components/color-swatch-picker
+        - link "New ComboBox" [ref=f18e43] [cursor=pointer]:
+          - /url: /en/docs/react/components/combo-box
+          - generic [ref=f18e44]: New
+          - text: ComboBox
+        - link "DateField" [ref=f18e46] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-field
+        - link "DatePicker" [ref=f18e47] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-picker
+        - link "DateRangePicker" [ref=f18e48] [cursor=pointer]:
+          - /url: /en/docs/react/components/date-range-picker
+        - link "Description" [ref=f18e49] [cursor=pointer]:
+          - /url: /en/docs/react/components/description
+        - link "Disclosure" [ref=f18e50] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure
+        - link "DisclosureGroup" [ref=f18e51] [cursor=pointer]:
+          - /url: /en/docs/react/components/disclosure-group
+        - link "Drawer" [ref=f18e52] [cursor=pointer]:
+          - /url: /en/docs/react/components/drawer
+        - link "Dropdown" [ref=f18e53] [cursor=pointer]:
+          - /url: /en/docs/react/components/dropdown
+        - link "ErrorMessage" [ref=f18e54] [cursor=pointer]:
+          - /url: /en/docs/react/components/error-message
+        - link "FieldError" [ref=f18e55] [cursor=pointer]:
+          - /url: /en/docs/react/components/field-error
+        - link "Fieldset" [ref=f18e56] [cursor=pointer]:
+          - /url: /en/docs/react/components/fieldset
+        - link "Form" [ref=f18e57] [cursor=pointer]:
+          - /url: /en/docs/react/components/form
+        - link "Input" [ref=f18e58] [cursor=pointer]:
+          - /url: /en/docs/react/components/input
+        - link "InputGroup" [ref=f18e59] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-group
+        - link "InputOTP" [ref=f18e60] [cursor=pointer]:
+          - /url: /en/docs/react/components/input-otp
+        - link "Kbd" [ref=f18e61] [cursor=pointer]:
+          - /url: /en/docs/react/components/kbd
+        - link "Label" [ref=f18e62] [cursor=pointer]:
+          - /url: /en/docs/react/components/label
+        - link "Link" [ref=f18e63] [cursor=pointer]:
+          - /url: /en/docs/react/components/link
+        - link "ListBox" [ref=f18e64] [cursor=pointer]:
+          - /url: /en/docs/react/components/list-box
+        - link "Meter" [ref=f18e65] [cursor=pointer]:
+          - /url: /en/docs/react/components/meter
+        - link "Modal" [ref=f18e66] [cursor=pointer]:
+          - /url: /en/docs/react/components/modal
+        - link "NumberField" [ref=f18e67] [cursor=pointer]:
+          - /url: /en/docs/react/components/number-field
+        - link "Pagination" [ref=f18e68] [cursor=pointer]:
+          - /url: /en/docs/react/components/pagination
+        - link "Popover" [ref=f18e69] [cursor=pointer]:
+          - /url: /en/docs/react/components/popover
+        - link "ProgressBar" [ref=f18e70] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-bar
+        - link "ProgressCircle" [ref=f18e71] [cursor=pointer]:
+          - /url: /en/docs/react/components/progress-circle
+        - link "Updated RadioGroup" [ref=f18e72] [cursor=pointer]:
+          - /url: /en/docs/react/components/radio-group
+          - generic [ref=f18e73]: Updated
+          - text: RadioGroup
+        - link "RangeCalendar" [ref=f18e75] [cursor=pointer]:
+          - /url: /en/docs/react/components/range-calendar
+        - link "ScrollShadow" [ref=f18e76] [cursor=pointer]:
+          - /url: /en/docs/react/components/scroll-shadow
+        - link "SearchField" [ref=f18e77] [cursor=pointer]:
+          - /url: /en/docs/react/components/search-field
+        - link "Select" [ref=f18e78] [cursor=pointer]:
+          - /url: /en/docs/react/components/select
+        - link "Separator" [ref=f18e79] [cursor=pointer]:
+          - /url: /en/docs/react/components/separator
+        - link "New Sheet" [ref=f18e80] [cursor=pointer]:
+          - /url: /en/docs/react/components/sheet
+          - generic [ref=f18e81]: New
+          - text: Sheet
+        - link "Skeleton" [ref=f18e83] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+        - link "Slider" [ref=f18e84] [cursor=pointer]:
+          - /url: /en/docs/react/components/slider
+        - link "Spinner" [ref=f18e85] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+        - link "Surface" [ref=f18e86] [cursor=pointer]:
+          - /url: /en/docs/react/components/surface
+        - link "Updated Switch" [ref=f18e87] [cursor=pointer]:
+          - /url: /en/docs/react/components/switch
+          - generic [ref=f18e88]: Updated
+          - text: Switch
+        - link "Updated Table" [ref=f18e90] [cursor=pointer]:
+          - /url: /en/docs/react/components/table
+          - generic [ref=f18e91]: Updated
+          - text: Table
+        - link "New Tabs" [ref=f18e93] [cursor=pointer]:
+          - /url: /en/docs/react/components/tabs
+          - generic [ref=f18e94]: New
+          - text: Tabs
+        - link "TagGroup" [ref=f18e96] [cursor=pointer]:
+          - /url: /en/docs/react/components/tag-group
+        - link "TextArea" [ref=f18e97] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-area
+        - link "TextField" [ref=f18e98] [cursor=pointer]:
+          - /url: /en/docs/react/components/text-field
+        - link "TimeField" [ref=f18e99] [cursor=pointer]:
+          - /url: /en/docs/react/components/time-field
+        - link "Updated Toast" [ref=f18e100] [cursor=pointer]:
+          - /url: /en/docs/react/components/toast
+          - generic [ref=f18e101]: Updated
+          - text: Toast
+        - link "ToggleButton" [ref=f18e103] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button
+        - link "ToggleButtonGroup" [ref=f18e104] [cursor=pointer]:
+          - /url: /en/docs/react/components/toggle-button-group
+        - link "Toolbar" [ref=f18e105] [cursor=pointer]:
+          - /url: /en/docs/react/components/toolbar
+        - link "Updated Tooltip" [ref=f18e106] [cursor=pointer]:
+          - /url: /en/docs/react/components/tooltip
+          - generic [ref=f18e107]: Updated
+          - text: Tooltip
+        - link "Typography" [ref=f18e109] [cursor=pointer]:
+          - /url: /en/docs/react/components/typography
+    - banner [ref=f18e110]:
+      - generic [ref=f18e111]:
+        - generic [ref=f18e113]:
+          - link "HeroUI" [ref=f18e114] [cursor=pointer]:
+            - /url: /
+          - button "v3.2.7" [ref=f18e122] [cursor=pointer]
+        - button "Search ⌘ K" [ref=f18e126]:
+          - text: Search
+          - generic [ref=f18e130]:
+            - generic [ref=f18e131]: ⌘
+            - generic [ref=f18e132]: K
+        - generic [ref=f18e133]:
+          - generic [ref=f18e134]:
+            - button "Ask AI" [ref=f18e136] [cursor=pointer]
+            - button [ref=f18e137] [cursor=pointer]:
+              - button "Design theme" [ref=f18e138]:
+                - generic [ref=f18e139]: Theme
+            - link "27.7k" [ref=f18e140] [cursor=pointer]:
+              - /url: https://github.com/heroui-inc/heroui
+          - generic [ref=f18e142]:
+            - button "Choose a language" [ref=f18e143] [cursor=pointer]
+            - generic [ref=f18e144] [cursor=pointer]:
+              - button "light" [ref=f18e145]
+              - button "dark" [ref=f18e152]
+              - button "system" [ref=f18e155]
+      - generic [ref=f18e159]:
+        - link "Getting Started" [ref=f18e160] [cursor=pointer]:
+          - /url: /en/docs/react/getting-started
+        - link "Components" [ref=f18e165] [cursor=pointer]:
+          - /url: /en/docs/react/components
+        - link "Releases" [ref=f18e172] [cursor=pointer]:
+          - /url: /en/docs/react/releases
+        - link "Migration" [ref=f18e179] [cursor=pointer]:
+          - /url: /en/docs/react/migration
+        - tablist "Documentation framework" [ref=f18e188]:
+          - tab "Web" [selected] [ref=f18e189] [cursor=pointer]
+          - tab "Native" [ref=f18e193] [cursor=pointer]
+    - article [ref=f18e196]:
+      - generic [ref=f18e197]:
+        - generic [ref=f18e198]:
+          - heading "Slider" [level=1] [ref=f18e199]
+          - group [ref=f18e201]:
+            - button "Copy Markdown" [ref=f18e202] [cursor=pointer]
+            - button "More options" [ref=f18e203] [cursor=pointer]
+        - paragraph [ref=f18e204]: A slider allows a user to select one or more values within a range
+        - generic [ref=f18e205]:
+          - link "Storybook" [ref=f18e206] [cursor=pointer]:
+            - /url: https://storybook-v3.heroui.com/?path=/docs/components-controls-slider--docs
+          - link "React Aria" [ref=f18e207] [cursor=pointer]:
+            - /url: https://react-aria.adobe.com/Slider
+          - link "Source" [ref=f18e208] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/slider/slider.tsx
+          - link "Styles source" [ref=f18e209] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/tree/v3/packages/styles/components/slider.css
+      - generic [ref=f18e210]:
+        - heading [level=2] [ref=f18e211]:
+          - link "Usage" [ref=f18e212] [cursor=pointer]:
+            - /url: "#usage"
+          - button "Copy Anchor Link" [ref=f18e213]
+        - figure [ref=f18e218]:
+          - button "Copy Text" [ref=f18e220] [cursor=pointer]
+          - region [ref=f18e221]:
+            - code [ref=f18e223]:
+              - generic [ref=f18e224]: "import { Slider } from '@heroui/react';"
+        - heading [level=2] [ref=f18e226]:
+          - link "Anatomy" [ref=f18e227] [cursor=pointer]:
+            - /url: "#anatomy"
+          - button "Copy Anchor Link" [ref=f18e228]
+        - figure [ref=f18e233]:
+          - button "Copy Text" [ref=f18e235] [cursor=pointer]
+          - region [ref=f18e236]:
+            - code [ref=f18e238]:
+              - generic [ref=f18e239]: "import { Slider, Label } from '@heroui/react';"
+              - generic [ref=f18e241]: export default () => (
+              - generic [ref=f18e242]: "<Slider step={10}>"
+              - generic [ref=f18e243]: <Label />
+              - generic [ref=f18e244]: <Slider.Output />
+              - generic [ref=f18e245]: <Slider.Track>
+              - generic [ref=f18e246]: <Slider.Fill />
+              - generic [ref=f18e247]: <Slider.Steps />
+              - generic [ref=f18e248]: <Slider.Thumb />
+              - generic [ref=f18e249]: </Slider.Track>
+              - generic [ref=f18e250]: <Slider.Marks>
+              - generic [ref=f18e251]: "<Slider.Mark value={0} />"
+              - generic [ref=f18e252]: "<Slider.Mark value={50} />"
+              - generic [ref=f18e253]: "<Slider.Mark value={100} />"
+              - generic [ref=f18e254]: </Slider.Marks>
+              - generic [ref=f18e255]: </Slider>
+              - generic [ref=f18e256]: )
+        - paragraph [ref=f18e257]:
+          - code [ref=f18e258]: Slider.Steps
+          - text: and
+          - code [ref=f18e259]: Slider.Marks
+          - text: are optional. Compose them independently as needed.
+        - heading [level=2] [ref=f18e260]:
+          - link "Examples" [ref=f18e261] [cursor=pointer]:
+            - /url: "#examples"
+          - button "Copy Anchor Link" [ref=f18e262]
+        - heading [level=3] [ref=f18e267]:
+          - link "Steps" [ref=f18e268] [cursor=pointer]:
+            - /url: "#steps"
+          - button "Copy Anchor Link" [ref=f18e269]
+        - paragraph [ref=f18e274]:
+          - text: Place
+          - code [ref=f18e275]: Slider.Steps
+          - text: inside
+          - code [ref=f18e276]: Slider.Track
+          - text: to display a dot at each increment defined by
+          - code [ref=f18e277]: minValue
+          - text: ","
+          - code [ref=f18e278]: maxValue
+          - text: ", and"
+          - code [ref=f18e279]: step
+          - text: . The
+          - code [ref=f18e280]: step
+          - text: prop controls value increments even without visible dots.
+        - paragraph [ref=f18e281]:
+          - text: Dots start at
+          - code [ref=f18e282]: minValue
+          - text: . If
+          - code [ref=f18e283]: maxValue
+          - text: is not on a step, no extra dot is added at that endpoint. Invalid ranges and ranges requiring more than 1,000 dots omit the indicators.
+        - heading [level=3] [ref=f18e285]:
+          - link "Marks" [ref=f18e286] [cursor=pointer]:
+            - /url: "#marks"
+          - button "Copy Anchor Link" [ref=f18e287]
+        - paragraph [ref=f18e292]:
+          - text: Place
+          - code [ref=f18e293]: Slider.Marks
+          - text: directly after
+          - code [ref=f18e294]: Slider.Track
+          - text: as a sibling, and add
+          - code [ref=f18e295]: Slider.Mark
+          - text: children with a required
+          - code [ref=f18e296]: value
+          - text: . Each label is positioned at its value, so marks can be unevenly spaced and do not need to match the step increments.
+        - paragraph [ref=f18e297]:
+          - text: Use children for custom labels. Without children, a mark displays its value using the slider's locale and
+          - code [ref=f18e298]: formatOptions
+          - text: . Marks outside the slider's bounds, or with non-finite values, are not rendered. Marks are labels; they do not change the value or snapping behavior.
+        - heading [level=3] [ref=f18e300]:
+          - link "Steps and Marks" [ref=f18e301] [cursor=pointer]:
+            - /url: "#steps-and-marks"
+          - button "Copy Anchor Link" [ref=f18e302]
+        - paragraph [ref=f18e307]:
+          - text: Combine dots and labels independently. Fractional steps are supported; this example uses
+          - code [ref=f18e308]: "step={0.1}"
+          - text: with labels at
+          - code [ref=f18e309]: "0"
+          - text: ","
+          - code [ref=f18e310]: "0.5"
+          - text: ", and"
+          - code [ref=f18e311]: "1"
+          - text: .
+        - heading [level=3] [ref=f18e313]:
+          - link "Range with Steps and Marks" [ref=f18e314] [cursor=pointer]:
+            - /url: "#range-with-steps-and-marks"
+          - button "Copy Anchor Link" [ref=f18e315]
+        - paragraph [ref=f18e320]:
+          - text: For a single thumb, dots and marks from the minimum through the selected value receive
+          - code [ref=f18e321]: data-filled="true"
+          - text: . For a range, only those between the first and last thumbs receive it, including the endpoints.
+        - heading [level=3] [ref=f18e323]:
+          - link "Vertical Steps and Marks" [ref=f18e324] [cursor=pointer]:
+            - /url: "#vertical-steps-and-marks"
+          - button "Copy Anchor Link" [ref=f18e325]
+        - paragraph [ref=f18e330]:
+          - text: Dots and labels follow
+          - code [ref=f18e331]: orientation="vertical"
+          - text: automatically. Give vertical sliders a container with a defined height. Horizontal indicators also follow the locale's right-to-left direction.
+        - heading [level=3] [ref=f18e333]:
+          - link "Disabled" [ref=f18e334] [cursor=pointer]:
+            - /url: "#disabled"
+          - button "Copy Anchor Link" [ref=f18e335]
+        - heading [level=3] [ref=f18e341]:
+          - link "Range Slider Anatomy" [ref=f18e342] [cursor=pointer]:
+            - /url: "#range-slider-anatomy"
+          - button "Copy Anchor Link" [ref=f18e343]
+        - figure [ref=f18e348]:
+          - button "Copy Text" [ref=f18e350] [cursor=pointer]
+          - region [ref=f18e351]:
+            - code [ref=f18e353]:
+              - generic [ref=f18e354]: "import { Slider, Label } from '@heroui/react';"
+              - generic [ref=f18e356]: export default () => (
+              - generic [ref=f18e357]: "<Slider defaultValue={[25, 75]}>"
+              - generic [ref=f18e358]: <Label />
+              - generic [ref=f18e359]: <Slider.Output />
+              - generic [ref=f18e360]: <Slider.Track>
+              - generic [ref=f18e361]: "{({state}) => ("
+              - generic [ref=f18e362]: <>
+              - generic [ref=f18e363]: <Slider.Fill />
+              - generic [ref=f18e364]: "{state.values.map((_, i) => ("
+              - generic [ref=f18e365]: "<Slider.Thumb key={i} index={i} />"
+              - generic [ref=f18e366]: "))}"
+              - generic [ref=f18e367]: </>
+              - generic [ref=f18e368]: ")}"
+              - generic [ref=f18e369]: </Slider.Track>
+              - generic [ref=f18e370]: </Slider>
+              - generic [ref=f18e371]: )
+        - heading [level=3] [ref=f18e372]:
+          - link "Vertical" [ref=f18e373] [cursor=pointer]:
+            - /url: "#vertical"
+          - button "Copy Anchor Link" [ref=f18e374]
+        - heading [level=3] [ref=f18e380]:
+          - link "Range" [ref=f18e381] [cursor=pointer]:
+            - /url: "#range"
+          - button "Copy Anchor Link" [ref=f18e382]
+        - heading [level=3] [ref=f18e388]:
+          - link "Controlled Value" [ref=f18e389] [cursor=pointer]:
+            - /url: "#controlled-value"
+          - button "Copy Anchor Link" [ref=f18e390]
+        - paragraph [ref=f18e395]:
+          - text: Control the value with
+          - code [ref=f18e396]: value
+          - text: and
+          - code [ref=f18e397]: onChange
+          - text: .
+        - heading [level=3] [ref=f18e399]:
+          - link "Custom Value Formatting" [ref=f18e400] [cursor=pointer]:
+            - /url: "#custom-value-formatting"
+          - button "Copy Anchor Link" [ref=f18e401]
+        - paragraph [ref=f18e406]:
+          - text: Use
+          - code [ref=f18e407]: formatOptions
+          - text: to format the displayed value. This example formats it as USD.
+        - heading [level=3] [ref=f18e409]:
+          - link "Custom Output" [ref=f18e410] [cursor=pointer]:
+            - /url: "#custom-output"
+          - button "Copy Anchor Link" [ref=f18e411]
+        - paragraph [ref=f18e416]:
+          - text: Customize
+          - code [ref=f18e417]: Slider.Output
+          - text: to control how the selected values are shown.
+        - heading [level=3] [ref=f18e419]:
+          - link "Render Function" [ref=f18e420] [cursor=pointer]:
+            - /url: "#render-function"
+          - button "Copy Anchor Link" [ref=f18e421]
+        - heading [level=2] [ref=f18e427]:
+          - link "Customization" [ref=f18e428] [cursor=pointer]:
+            - /url: "#customization"
+          - button "Copy Anchor Link" [ref=f18e429]
+        - heading [level=3] [ref=f18e434]:
+          - link "Tailwind CSS" [ref=f18e435] [cursor=pointer]:
+            - /url: "#tailwind-css"
+          - button "Copy Anchor Link" [ref=f18e436]
+        - heading [level=3] [ref=f18e442]:
+          - link "Global CSS" [ref=f18e443] [cursor=pointer]:
+            - /url: "#global-css"
+          - button "Copy Anchor Link" [ref=f18e444]
+        - paragraph [ref=f18e449]:
+          - text: To customize the Slider component classes, you can use the
+          - code [ref=f18e450]: "@layer components"
+          - text: directive.
+          - link "Learn more" [ref=f18e451] [cursor=pointer]:
+            - /url: https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+          - text: .
+        - figure [ref=f18e452]:
+          - button "Copy Text" [ref=f18e454] [cursor=pointer]
+          - region [ref=f18e455]:
+            - code [ref=f18e457]:
+              - generic [ref=f18e458]: "@layer components {"
+              - generic [ref=f18e459]: ".slider {"
+              - generic [ref=f18e460]: "@apply gap-2;"
+              - generic [ref=f18e461]: "}"
+              - generic [ref=f18e463]: ".slider__output {"
+              - generic [ref=f18e464]: "@apply text-sm text-muted;"
+              - generic [ref=f18e465]: "}"
+              - generic [ref=f18e467]: ".slider__track {"
+              - generic [ref=f18e468]: "@apply relative h-2 w-full rounded-full bg-surface-secondary;"
+              - generic [ref=f18e469]: "}"
+              - generic [ref=f18e471]: ".slider__fill {"
+              - generic [ref=f18e472]: "@apply absolute h-full rounded-full bg-accent;"
+              - generic [ref=f18e473]: "}"
+              - generic [ref=f18e475]: ".slider__thumb {"
+              - generic [ref=f18e476]: "@apply size-4 rounded-full bg-accent border-2 border-background;"
+              - generic [ref=f18e477]: "}"
+              - generic [ref=f18e478]: "}"
+        - heading [level=2] [ref=f18e479]:
+          - link "Styling Reference" [ref=f18e480] [cursor=pointer]:
+            - /url: "#styling-reference"
+          - button "Copy Anchor Link" [ref=f18e481]
+        - paragraph [ref=f18e486]:
+          - text: HeroUI follows the
+          - link "BEM" [ref=f18e487] [cursor=pointer]:
+            - /url: https://getbem.com/
+          - text: methodology to ensure component variants and states are reusable and easy to customize.
+        - heading [level=3] [ref=f18e488]:
+          - link "CSS Classes" [ref=f18e489] [cursor=pointer]:
+            - /url: "#css-classes"
+          - button "Copy Anchor Link" [ref=f18e490]
+        - paragraph [ref=f18e495]:
+          - text: The Slider component uses these CSS classes (
+          - link "View source styles" [ref=f18e496] [cursor=pointer]:
+            - /url: https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/slider.css
+          - text: "):"
+        - heading [level=4] [ref=f18e497]:
+          - link "Base Classes" [ref=f18e498] [cursor=pointer]:
+            - /url: "#base-classes-toc"
+          - button "Copy Anchor Link" [ref=f18e499]
+        - list [ref=f18e504]:
+          - listitem [ref=f18e505]:
+            - code [ref=f18e506]: .slider
+            - text: "- Base slider container"
+          - listitem [ref=f18e507]:
+            - code [ref=f18e508]: .slider__output
+            - text: "- Output element displaying current value(s)"
+          - listitem [ref=f18e509]:
+            - code [ref=f18e510]: .slider__track
+            - text: "- Track element containing fill, optional step dots, and thumbs"
+          - listitem [ref=f18e511]:
+            - code [ref=f18e512]: .slider__fill
+            - text: "- Fill element showing selected range"
+          - listitem [ref=f18e513]:
+            - code [ref=f18e514]: .slider__thumb
+            - text: "- Individual thumb element"
+          - listitem [ref=f18e515]:
+            - code [ref=f18e516]: .slider__steps
+            - text: "- Decorative step indicator container inside the track"
+          - listitem [ref=f18e517]:
+            - code [ref=f18e518]: .slider__step
+            - text: "- Individual step dot"
+          - listitem [ref=f18e519]:
+            - code [ref=f18e520]: .slider__marks
+            - text: "- Mark label container after the track"
+          - listitem [ref=f18e521]:
+            - code [ref=f18e522]: .slider__mark
+            - text: "- Individual value-positioned label"
+        - heading [level=4] [ref=f18e523]:
+          - link "State Classes" [ref=f18e524] [cursor=pointer]:
+            - /url: "#state-classes-toc"
+          - button "Copy Anchor Link" [ref=f18e525]
+        - list [ref=f18e530]:
+          - listitem [ref=f18e531]:
+            - code [ref=f18e532]: .slider[data-disabled="true"]
+            - text: "- Disabled slider state"
+          - listitem [ref=f18e533]:
+            - code [ref=f18e534]: .slider[data-orientation="vertical"]
+            - text: "- Vertical orientation"
+          - listitem [ref=f18e535]:
+            - code [ref=f18e536]: .slider__thumb[data-dragging="true"]
+            - text: "- Thumb being dragged"
+          - listitem [ref=f18e537]:
+            - code [ref=f18e538]: .slider__thumb[data-focus-visible="true"]
+            - text: "- Thumb keyboard focused"
+          - listitem [ref=f18e539]:
+            - code [ref=f18e540]: .slider__thumb[data-disabled="true"]
+            - text: "- Disabled thumb state"
+          - listitem [ref=f18e541]:
+            - code [ref=f18e542]: .slider__track[data-fill-start="true"]
+            - text: "- Fill starts at beginning"
+          - listitem [ref=f18e543]:
+            - code [ref=f18e544]: .slider__track[data-fill-end="true"]
+            - text: "- Fill ends at end"
+          - listitem [ref=f18e545]:
+            - code [ref=f18e546]: .slider__step[data-filled="true"]
+            - text: "- Step dot within the selected interval"
+          - listitem [ref=f18e547]:
+            - code [ref=f18e548]: .slider__mark[data-filled="true"]
+            - text: "- Mark label within the selected interval"
+        - heading [level=3] [ref=f18e549]:
+          - link "Indicator Data Attributes" [ref=f18e550] [cursor=pointer]:
+            - /url: "#indicator-data-attributes"
+          - button "Copy Anchor Link" [ref=f18e551]
+        - table [ref=f18e557]:
+          - rowgroup [ref=f18e558]:
+            - row [ref=f18e559]:
+              - columnheader "Attribute" [ref=f18e560]
+              - columnheader "Applies to" [ref=f18e561]
+              - columnheader "Description" [ref=f18e562]
+          - rowgroup [ref=f18e563]:
+            - row [ref=f18e564]:
+              - cell [ref=f18e565]:
+                - code [ref=f18e566]: data-slot
+              - cell "Steps, step dots, marks, mark labels" [ref=f18e567]
+              - cell [ref=f18e568]:
+                - code [ref=f18e569]: slider-steps
+                - text: ","
+                - code [ref=f18e570]: slider-step
+                - text: ","
+                - code [ref=f18e571]: slider-marks
+                - text: ", and"
+                - code [ref=f18e572]: slider-mark
+                - text: ", respectively"
+            - row [ref=f18e573]:
+              - cell [ref=f18e574]:
+                - code [ref=f18e575]: data-value
+              - cell "Step dots and mark labels" [ref=f18e576]
+              - cell "The numeric value represented by the indicator" [ref=f18e577]
+            - row [ref=f18e578]:
+              - cell [ref=f18e579]:
+                - code [ref=f18e580]: data-filled="true"
+              - cell "Step dots and mark labels" [ref=f18e581]
+              - cell "The value is within the selected interval, including endpoints" [ref=f18e582]
+            - row [ref=f18e583]:
+              - cell [ref=f18e584]:
+                - code [ref=f18e585]: data-disabled="true"
+              - cell "Steps, step dots, marks, mark labels" [ref=f18e586]
+              - cell "Inherits the slider's disabled state" [ref=f18e587]
+            - row [ref=f18e588]:
+              - cell [ref=f18e589]:
+                - code [ref=f18e590]: data-orientation
+              - cell "Steps and marks containers" [ref=f18e591]
+              - cell [ref=f18e592]:
+                - code [ref=f18e593]: horizontal
+                - text: or
+                - code [ref=f18e594]: vertical
+            - row [ref=f18e595]:
+              - cell [ref=f18e596]:
+                - code [ref=f18e597]: data-direction
+              - cell "Steps and marks containers" [ref=f18e598]
+              - cell [ref=f18e599]:
+                - code [ref=f18e600]: ltr
+                - text: or
+                - code [ref=f18e601]: rtl
+                - text: ", derived from the locale"
+        - heading [level=3] [ref=f18e602]:
+          - link "Interactive States" [ref=f18e603] [cursor=pointer]:
+            - /url: "#interactive-states"
+          - button "Copy Anchor Link" [ref=f18e604]
+        - paragraph [ref=f18e609]: "The component supports both CSS pseudo-classes and data attributes for flexibility:"
+        - list [ref=f18e610]:
+          - listitem [ref=f18e611]:
+            - strong [ref=f18e612]: Hover
+            - text: ":"
+            - code [ref=f18e613]: :hover
+            - text: or
+            - code [ref=f18e614]: "[data-hovered=\"true\"]"
+            - text: on thumb
+          - listitem [ref=f18e615]:
+            - strong [ref=f18e616]: Focus
+            - text: ":"
+            - code [ref=f18e617]: :focus-visible
+            - text: or
+            - code [ref=f18e618]: "[data-focus-visible=\"true\"]"
+            - text: on thumb
+          - listitem [ref=f18e619]:
+            - strong [ref=f18e620]: Dragging
+            - text: ":"
+            - code [ref=f18e621]: "[data-dragging=\"true\"]"
+            - text: on thumb
+          - listitem [ref=f18e622]:
+            - strong [ref=f18e623]: Disabled
+            - text: ":"
+            - code [ref=f18e624]: :disabled
+            - text: or
+            - code [ref=f18e625]: "[data-disabled=\"true\"]"
+            - text: on slider or thumb
+        - heading [level=2] [ref=f18e626]:
+          - link "API Reference" [ref=f18e627] [cursor=pointer]:
+            - /url: "#api-reference"
+          - button "Copy Anchor Link" [ref=f18e628]
+        - heading [level=3] [ref=f18e633]:
+          - link "Slider" [ref=f18e634] [cursor=pointer]:
+            - /url: "#slider"
+          - button "Copy Anchor Link" [ref=f18e635]
+        - table [ref=f18e641]:
+          - rowgroup [ref=f18e642]:
+            - row [ref=f18e643]:
+              - columnheader "Prop" [ref=f18e644]
+              - columnheader "Type" [ref=f18e645]
+              - columnheader "Default" [ref=f18e646]
+              - columnheader "Description" [ref=f18e647]
+          - rowgroup [ref=f18e648]:
+            - row [ref=f18e649]:
+              - cell [ref=f18e650]:
+                - code [ref=f18e651]: value
+              - cell [ref=f18e652]:
+                - code [ref=f18e653]: number | number[]
+              - cell "-" [ref=f18e654]
+              - cell "The current value (controlled)" [ref=f18e655]
+            - row [ref=f18e656]:
+              - cell [ref=f18e657]:
+                - code [ref=f18e658]: defaultValue
+              - cell [ref=f18e659]:
+                - code [ref=f18e660]: number | number[]
+              - cell "-" [ref=f18e661]
+              - cell "The default value (uncontrolled)" [ref=f18e662]
+            - row [ref=f18e663]:
+              - cell [ref=f18e664]:
+                - code [ref=f18e665]: onChange
+              - cell [ref=f18e666]:
+                - code [ref=f18e667]: "(value: number | number[]) => void"
+              - cell "-" [ref=f18e668]
+              - cell "Handler called when the value changes" [ref=f18e669]
+            - row [ref=f18e670]:
+              - cell [ref=f18e671]:
+                - code [ref=f18e672]: onChangeEnd
+              - cell [ref=f18e673]:
+                - code [ref=f18e674]: "(value: number | number[]) => void"
+              - cell "-" [ref=f18e675]
+              - cell "Handler called when dragging ends" [ref=f18e676]
+            - row [ref=f18e677]:
+              - cell [ref=f18e678]:
+                - code [ref=f18e679]: minValue
+              - cell [ref=f18e680]:
+                - code [ref=f18e681]: number
+              - cell [ref=f18e682]:
+                - code [ref=f18e683]: "0"
+              - cell "The slider's minimum value" [ref=f18e684]
+            - row [ref=f18e685]:
+              - cell [ref=f18e686]:
+                - code [ref=f18e687]: maxValue
+              - cell [ref=f18e688]:
+                - code [ref=f18e689]: number
+              - cell [ref=f18e690]:
+                - code [ref=f18e691]: "100"
+              - cell "The slider's maximum value" [ref=f18e692]
+            - row [ref=f18e693]:
+              - cell [ref=f18e694]:
+                - code [ref=f18e695]: step
+              - cell [ref=f18e696]:
+                - code [ref=f18e697]: number
+              - cell [ref=f18e698]:
+                - code [ref=f18e699]: "1"
+              - cell [ref=f18e700]:
+                - text: Value increment and spacing between dots when
+                - code [ref=f18e701]: Slider.Steps
+                - text: is present
+            - row [ref=f18e702]:
+              - cell [ref=f18e703]:
+                - code [ref=f18e704]: formatOptions
+              - cell [ref=f18e705]:
+                - code [ref=f18e706]: Intl.NumberFormatOptions
+              - cell "-" [ref=f18e707]
+              - cell "The display format of the value label" [ref=f18e708]
+            - row [ref=f18e709]:
+              - cell [ref=f18e710]:
+                - code [ref=f18e711]: orientation
+              - cell [ref=f18e712]:
+                - code [ref=f18e713]: "\"horizontal\" | \"vertical\""
+              - cell [ref=f18e714]:
+                - code [ref=f18e715]: "\"horizontal\""
+              - cell "The orientation of the slider" [ref=f18e716]
+            - row [ref=f18e717]:
+              - cell [ref=f18e718]:
+                - code [ref=f18e719]: isDisabled
+              - cell [ref=f18e720]:
+                - code [ref=f18e721]: boolean
+              - cell "-" [ref=f18e722]
+              - cell "Whether the slider is disabled" [ref=f18e723]
+            - row [ref=f18e724]:
+              - cell [ref=f18e725]:
+                - code [ref=f18e726]: aria-label
+              - cell [ref=f18e727]:
+                - code [ref=f18e728]: string
+              - cell "-" [ref=f18e729]
+              - cell "Accessibility label for the slider" [ref=f18e730]
+            - row [ref=f18e731]:
+              - cell [ref=f18e732]:
+                - code [ref=f18e733]: aria-labelledby
+              - cell [ref=f18e734]:
+                - code [ref=f18e735]: string
+              - cell "-" [ref=f18e736]
+              - cell "ID of element that labels the slider" [ref=f18e737]
+            - row [ref=f18e738]:
+              - cell [ref=f18e739]:
+                - code [ref=f18e740]: className
+              - cell [ref=f18e741]:
+                - code [ref=f18e742]: string
+              - cell "-" [ref=f18e743]
+              - cell "Additional CSS classes" [ref=f18e744]
+            - row [ref=f18e745]:
+              - cell [ref=f18e746]:
+                - code [ref=f18e747]: children
+              - cell [ref=f18e748]:
+                - code [ref=f18e749]: ReactNode | RenderFunction
+              - cell "-" [ref=f18e750]
+              - cell "Slider content or render function" [ref=f18e751]
+            - row [ref=f18e752]:
+              - cell [ref=f18e753]:
+                - code [ref=f18e754]: render
+              - cell [ref=f18e755]:
+                - code [ref=f18e756]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderRenderProps>
+              - cell "-" [ref=f18e757]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f18e758]
+        - heading [level=3] [ref=f18e759]:
+          - link "Slider.Output" [ref=f18e760] [cursor=pointer]:
+            - /url: "#slideroutput"
+          - button "Copy Anchor Link" [ref=f18e761]
+        - table [ref=f18e767]:
+          - rowgroup [ref=f18e768]:
+            - row [ref=f18e769]:
+              - columnheader "Prop" [ref=f18e770]
+              - columnheader "Type" [ref=f18e771]
+              - columnheader "Default" [ref=f18e772]
+              - columnheader "Description" [ref=f18e773]
+          - rowgroup [ref=f18e774]:
+            - row [ref=f18e775]:
+              - cell [ref=f18e776]:
+                - code [ref=f18e777]: className
+              - cell [ref=f18e778]:
+                - code [ref=f18e779]: string
+              - cell "-" [ref=f18e780]
+              - cell "Additional CSS classes" [ref=f18e781]
+            - row [ref=f18e782]:
+              - cell [ref=f18e783]:
+                - code [ref=f18e784]: children
+              - cell [ref=f18e785]:
+                - code [ref=f18e786]: ReactNode | RenderFunction
+              - cell "-" [ref=f18e787]
+              - cell "Output content or render function" [ref=f18e788]
+            - row [ref=f18e789]:
+              - cell [ref=f18e790]:
+                - code [ref=f18e791]: render
+              - cell [ref=f18e792]:
+                - code [ref=f18e793]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderOutputRenderProps>
+              - cell "-" [ref=f18e794]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f18e795]
+        - heading [level=3] [ref=f18e796]:
+          - link "Slider.Track" [ref=f18e797] [cursor=pointer]:
+            - /url: "#slidertrack"
+          - button "Copy Anchor Link" [ref=f18e798]
+        - table [ref=f18e804]:
+          - rowgroup [ref=f18e805]:
+            - row [ref=f18e806]:
+              - columnheader "Prop" [ref=f18e807]
+              - columnheader "Type" [ref=f18e808]
+              - columnheader "Default" [ref=f18e809]
+              - columnheader "Description" [ref=f18e810]
+          - rowgroup [ref=f18e811]:
+            - row [ref=f18e812]:
+              - cell [ref=f18e813]:
+                - code [ref=f18e814]: className
+              - cell [ref=f18e815]:
+                - code [ref=f18e816]: string
+              - cell "-" [ref=f18e817]
+              - cell "Additional CSS classes" [ref=f18e818]
+            - row [ref=f18e819]:
+              - cell [ref=f18e820]:
+                - code [ref=f18e821]: children
+              - cell [ref=f18e822]:
+                - code [ref=f18e823]: ReactNode | RenderFunction
+              - cell "-" [ref=f18e824]
+              - cell "Track content or render function" [ref=f18e825]
+            - row [ref=f18e826]:
+              - cell [ref=f18e827]:
+                - code [ref=f18e828]: render
+              - cell [ref=f18e829]:
+                - code [ref=f18e830]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderTrackRenderProps>
+              - cell "-" [ref=f18e831]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f18e832]
+        - heading [level=3] [ref=f18e833]:
+          - link "Slider.Fill" [ref=f18e834] [cursor=pointer]:
+            - /url: "#sliderfill"
+          - button "Copy Anchor Link" [ref=f18e835]
+        - table [ref=f18e841]:
+          - rowgroup [ref=f18e842]:
+            - row [ref=f18e843]:
+              - columnheader "Prop" [ref=f18e844]
+              - columnheader "Type" [ref=f18e845]
+              - columnheader "Default" [ref=f18e846]
+              - columnheader "Description" [ref=f18e847]
+          - rowgroup [ref=f18e848]:
+            - row [ref=f18e849]:
+              - cell [ref=f18e850]:
+                - code [ref=f18e851]: className
+              - cell [ref=f18e852]:
+                - code [ref=f18e853]: string
+              - cell "-" [ref=f18e854]
+              - cell "Additional CSS classes" [ref=f18e855]
+            - row [ref=f18e856]:
+              - cell [ref=f18e857]:
+                - code [ref=f18e858]: style
+              - cell [ref=f18e859]:
+                - code [ref=f18e860]: CSSProperties
+              - cell "-" [ref=f18e861]
+              - cell "Inline styles" [ref=f18e862]
+        - heading [level=3] [ref=f18e863]:
+          - link "Slider.Thumb" [ref=f18e864] [cursor=pointer]:
+            - /url: "#sliderthumb"
+          - button "Copy Anchor Link" [ref=f18e865]
+        - table [ref=f18e871]:
+          - rowgroup [ref=f18e872]:
+            - row [ref=f18e873]:
+              - columnheader "Prop" [ref=f18e874]
+              - columnheader "Type" [ref=f18e875]
+              - columnheader "Default" [ref=f18e876]
+              - columnheader "Description" [ref=f18e877]
+          - rowgroup [ref=f18e878]:
+            - row [ref=f18e879]:
+              - cell [ref=f18e880]:
+                - code [ref=f18e881]: index
+              - cell [ref=f18e882]:
+                - code [ref=f18e883]: number
+              - cell [ref=f18e884]:
+                - code [ref=f18e885]: "0"
+              - cell "Index of the thumb within the slider" [ref=f18e886]
+            - row [ref=f18e887]:
+              - cell [ref=f18e888]:
+                - code [ref=f18e889]: isDisabled
+              - cell [ref=f18e890]:
+                - code [ref=f18e891]: boolean
+              - cell "-" [ref=f18e892]
+              - cell "Whether this thumb is disabled" [ref=f18e893]
+            - row [ref=f18e894]:
+              - cell [ref=f18e895]:
+                - code [ref=f18e896]: name
+              - cell [ref=f18e897]:
+                - code [ref=f18e898]: string
+              - cell "-" [ref=f18e899]
+              - cell "The name of the input element, used when submitting an HTML form" [ref=f18e900]
+            - row [ref=f18e901]:
+              - cell [ref=f18e902]:
+                - code [ref=f18e903]: className
+              - cell [ref=f18e904]:
+                - code [ref=f18e905]: string
+              - cell "-" [ref=f18e906]
+              - cell "Additional CSS classes" [ref=f18e907]
+            - row [ref=f18e908]:
+              - cell [ref=f18e909]:
+                - code [ref=f18e910]: children
+              - cell [ref=f18e911]:
+                - code [ref=f18e912]: ReactNode | RenderFunction
+              - cell "-" [ref=f18e913]
+              - cell "Thumb content or render function" [ref=f18e914]
+            - row [ref=f18e915]:
+              - cell [ref=f18e916]:
+                - code [ref=f18e917]: render
+              - cell [ref=f18e918]:
+                - code [ref=f18e919]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderThumbRenderProps>
+              - cell "-" [ref=f18e920]
+              - cell "Overrides the default DOM element with a custom render function." [ref=f18e921]
+        - heading [level=3] [ref=f18e922]:
+          - link "Slider.Steps" [ref=f18e923] [cursor=pointer]:
+            - /url: "#slidersteps"
+          - button "Copy Anchor Link" [ref=f18e924]
+        - paragraph [ref=f18e929]:
+          - text: Renders decorative dots inside
+          - code [ref=f18e930]: Slider.Track
+          - text: using the root slider's bounds and step. It generates its own children and accepts standard DOM props and a ref.
+        - table [ref=f18e932]:
+          - rowgroup [ref=f18e933]:
+            - row [ref=f18e934]:
+              - columnheader "Prop" [ref=f18e935]
+              - columnheader "Type" [ref=f18e936]
+              - columnheader "Default" [ref=f18e937]
+              - columnheader "Description" [ref=f18e938]
+          - rowgroup [ref=f18e939]:
+            - row [ref=f18e940]:
+              - cell [ref=f18e941]:
+                - code [ref=f18e942]: className
+              - cell [ref=f18e943]:
+                - code [ref=f18e944]: string
+              - cell "-" [ref=f18e945]
+              - cell "Additional CSS classes for the container" [ref=f18e946]
+            - row [ref=f18e947]:
+              - cell [ref=f18e948]:
+                - code [ref=f18e949]: style
+              - cell [ref=f18e950]:
+                - code [ref=f18e951]: CSSProperties
+              - cell "-" [ref=f18e952]
+              - cell "Inline styles for the container" [ref=f18e953]
+            - row [ref=f18e954]:
+              - cell [ref=f18e955]:
+                - code [ref=f18e956]: render
+              - cell [ref=f18e957]:
+                - code [ref=f18e958]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>
+              - cell "-" [ref=f18e959]
+              - cell "Overrides the default DOM element with a custom render function" [ref=f18e960]
+        - heading [level=3] [ref=f18e961]:
+          - link "Slider.Marks" [ref=f18e962] [cursor=pointer]:
+            - /url: "#slidermarks"
+          - button "Copy Anchor Link" [ref=f18e963]
+        - paragraph [ref=f18e968]:
+          - text: Contains
+          - code [ref=f18e969]: Slider.Mark
+          - text: children. Place it directly inside
+          - code [ref=f18e970]: Slider
+          - text: ", after"
+          - code [ref=f18e971]: Slider.Track
+          - text: . Accepts standard DOM props and a ref.
+        - table [ref=f18e973]:
+          - rowgroup [ref=f18e974]:
+            - row [ref=f18e975]:
+              - columnheader "Prop" [ref=f18e976]
+              - columnheader "Type" [ref=f18e977]
+              - columnheader "Default" [ref=f18e978]
+              - columnheader "Description" [ref=f18e979]
+          - rowgroup [ref=f18e980]:
+            - row [ref=f18e981]:
+              - cell [ref=f18e982]:
+                - code [ref=f18e983]: children
+              - cell [ref=f18e984]:
+                - code [ref=f18e985]: ReactNode
+              - cell "-" [ref=f18e986]
+              - cell "Mark labels" [ref=f18e987]
+            - row [ref=f18e988]:
+              - cell [ref=f18e989]:
+                - code [ref=f18e990]: className
+              - cell [ref=f18e991]:
+                - code [ref=f18e992]: string
+              - cell "-" [ref=f18e993]
+              - cell "Additional CSS classes for the container" [ref=f18e994]
+            - row [ref=f18e995]:
+              - cell [ref=f18e996]:
+                - code [ref=f18e997]: style
+              - cell [ref=f18e998]:
+                - code [ref=f18e999]: CSSProperties
+              - cell "-" [ref=f18e1000]
+              - cell "Inline styles for the container" [ref=f18e1001]
+            - row [ref=f18e1002]:
+              - cell [ref=f18e1003]:
+                - code [ref=f18e1004]: render
+              - cell [ref=f18e1005]:
+                - code [ref=f18e1006]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>
+              - cell "-" [ref=f18e1007]
+              - cell "Overrides the default DOM element with a custom render function" [ref=f18e1008]
+        - heading [level=3] [ref=f18e1009]:
+          - link "Slider.Mark" [ref=f18e1010] [cursor=pointer]:
+            - /url: "#slidermark"
+          - button "Copy Anchor Link" [ref=f18e1011]
+        - paragraph [ref=f18e1016]:
+          - text: A label positioned at a value within
+          - code [ref=f18e1017]: Slider.Marks
+          - text: . Accepts standard DOM props and a ref.
+        - table [ref=f18e1019]:
+          - rowgroup [ref=f18e1020]:
+            - row [ref=f18e1021]:
+              - columnheader "Prop" [ref=f18e1022]
+              - columnheader "Type" [ref=f18e1023]
+              - columnheader "Default" [ref=f18e1024]
+              - columnheader "Description" [ref=f18e1025]
+          - rowgroup [ref=f18e1026]:
+            - row [ref=f18e1027]:
+              - cell [ref=f18e1028]:
+                - code [ref=f18e1029]: value
+              - cell [ref=f18e1030]:
+                - code [ref=f18e1031]: number
+              - cell "Required" [ref=f18e1032]
+              - cell "Value at which to position the label; non-finite or out-of-bounds values are not rendered" [ref=f18e1033]
+            - row [ref=f18e1034]:
+              - cell [ref=f18e1035]:
+                - code [ref=f18e1036]: children
+              - cell [ref=f18e1037]:
+                - code [ref=f18e1038]: ReactNode
+              - cell "Formatted value" [ref=f18e1039]
+              - cell [ref=f18e1040]:
+                - text: Custom label content; otherwise uses the slider's locale and
+                - code [ref=f18e1041]: formatOptions
+            - row [ref=f18e1042]:
+              - cell [ref=f18e1043]:
+                - code [ref=f18e1044]: className
+              - cell [ref=f18e1045]:
+                - code [ref=f18e1046]: string
+              - cell "-" [ref=f18e1047]
+              - cell "Additional CSS classes" [ref=f18e1048]
+            - row [ref=f18e1049]:
+              - cell [ref=f18e1050]:
+                - code [ref=f18e1051]: style
+              - cell [ref=f18e1052]:
+                - code [ref=f18e1053]: CSSProperties
+              - cell "-" [ref=f18e1054]
+              - cell "Additional inline styles; value positioning is managed automatically" [ref=f18e1055]
+            - row [ref=f18e1056]:
+              - cell [ref=f18e1057]:
+                - code [ref=f18e1058]: render
+              - cell [ref=f18e1059]:
+                - code [ref=f18e1060]: DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>
+              - cell "-" [ref=f18e1061]
+              - cell "Overrides the default DOM element with a custom render function" [ref=f18e1062]
+        - heading [level=3] [ref=f18e1063]:
+          - link "Render Props" [ref=f18e1064] [cursor=pointer]:
+            - /url: "#render-props"
+          - button "Copy Anchor Link" [ref=f18e1065]
+        - paragraph [ref=f18e1070]: "When using render functions with Slider.Output or Slider.Track, these values are provided:"
+        - table [ref=f18e1072]:
+          - rowgroup [ref=f18e1073]:
+            - row [ref=f18e1074]:
+              - columnheader "Prop" [ref=f18e1075]
+              - columnheader "Type" [ref=f18e1076]
+              - columnheader "Description" [ref=f18e1077]
+          - rowgroup [ref=f18e1078]:
+            - row [ref=f18e1079]:
+              - cell [ref=f18e1080]:
+                - code [ref=f18e1081]: state
+              - cell [ref=f18e1082]:
+                - code [ref=f18e1083]: SliderState
+              - cell "The state of the slider" [ref=f18e1084]
+            - row [ref=f18e1085]:
+              - cell [ref=f18e1086]:
+                - code [ref=f18e1087]: values
+              - cell [ref=f18e1088]:
+                - code [ref=f18e1089]: number[]
+              - cell "Values managed by the slider by thumb index" [ref=f18e1090]
+            - row [ref=f18e1091]:
+              - cell [ref=f18e1092]:
+                - code [ref=f18e1093]: getThumbValueLabel
+              - cell [ref=f18e1094]:
+                - code [ref=f18e1095]: "(index: number) => string"
+              - cell "Returns the string label for the specified thumb's value" [ref=f18e1096]
+            - row [ref=f18e1097]:
+              - cell [ref=f18e1098]:
+                - code [ref=f18e1099]: orientation
+              - cell [ref=f18e1100]:
+                - code [ref=f18e1101]: "\"horizontal\" | \"vertical\""
+              - cell "The orientation of the slider" [ref=f18e1102]
+            - row [ref=f18e1103]:
+              - cell [ref=f18e1104]:
+                - code [ref=f18e1105]: isDisabled
+              - cell [ref=f18e1106]:
+                - code [ref=f18e1107]: boolean
+              - cell "Whether the slider is disabled" [ref=f18e1108]
+        - heading [level=2] [ref=f18e1109]:
+          - link "Accessibility" [ref=f18e1110] [cursor=pointer]:
+            - /url: "#accessibility"
+          - button "Copy Anchor Link" [ref=f18e1111]
+        - paragraph [ref=f18e1116]: "The Slider component implements the ARIA slider pattern and provides:"
+        - list [ref=f18e1117]:
+          - listitem [ref=f18e1118]: Full keyboard navigation support (Arrow keys, Home, End, Page Up/Down)
+          - listitem [ref=f18e1119]: Screen reader announcements for value changes
+          - listitem [ref=f18e1120]: Proper focus management
+          - listitem [ref=f18e1121]: Support for disabled states
+          - listitem [ref=f18e1122]: HTML form integration via hidden input elements
+          - listitem [ref=f18e1123]: Internationalization support with locale-aware value formatting
+          - listitem [ref=f18e1124]: Right-to-left (RTL) language support
+          - listitem [ref=f18e1125]: Step dots are decorative, hidden from assistive technology, and add no tab stops
+          - listitem [ref=f18e1126]: Mark labels remain readable text and do not replace the slider's accessible label or value announcements
+        - paragraph [ref=f18e1127]:
+          - text: For more information, see the
+          - link "React Aria Slider documentation" [ref=f18e1128] [cursor=pointer]:
+            - /url: https://react-spectrum.adobe.com/react-aria/Slider.html
+          - text: .
+        - heading [level=2] [ref=f18e1129]:
+          - link "Related Components" [ref=f18e1130] [cursor=pointer]:
+            - /url: "#related-components"
+          - button "Copy Anchor Link" [ref=f18e1131]
+        - generic [ref=f18e1136]:
+          - generic [ref=f18e1137]:
+            - link "Label" [ref=f18e1139] [cursor=pointer]:
+              - /url: /en/docs/components/label
+            - generic [ref=f18e1141]:
+              - link "Label":
+                - /url: /en/docs/components/label
+                - img "Label" [ref=f18e1142] [cursor=pointer]
+          - generic [ref=f18e1143]:
+            - link "Form" [ref=f18e1145] [cursor=pointer]:
+              - /url: /en/docs/components/form
+            - generic [ref=f18e1147]:
+              - link "Form":
+                - /url: /en/docs/components/form
+                - img "Form" [ref=f18e1148] [cursor=pointer]
+          - generic [ref=f18e1149]:
+            - link "Description" [ref=f18e1151] [cursor=pointer]:
+              - /url: /en/docs/components/description
+            - generic [ref=f18e1153]:
+              - link "Description":
+                - /url: /en/docs/components/description
+                - img "Description" [ref=f18e1154] [cursor=pointer]
+      - generic [ref=f18e1155]:
+        - link [ref=f18e1156] [cursor=pointer]:
+          - /url: /en/docs/react/components/skeleton
+          - paragraph [ref=f18e1160]: Skeleton
+          - paragraph [ref=f18e1161]: Skeleton is a placeholder to show a loading state and the expected shape of a component.
+        - link [ref=f18e1162] [cursor=pointer]:
+          - /url: /en/docs/react/components/spinner
+          - paragraph [ref=f18e1166]: Spinner
+          - paragraph [ref=f18e1167]: A loading indicator component to show pending states
+    - generic [ref=f18e1168]:
+      - heading "On this page" [level=3] [ref=f18e1169]
+      - generic [ref=f18e1173]:
+        - link "Usage" [ref=f18e1174] [cursor=pointer]:
+          - /url: "#usage"
+        - link "Anatomy" [ref=f18e1175] [cursor=pointer]:
+          - /url: "#anatomy"
+        - link "Examples" [ref=f18e1176] [cursor=pointer]:
+          - /url: "#examples"
+        - link "Steps" [ref=f18e1177] [cursor=pointer]:
+          - /url: "#steps"
+        - link "Marks" [ref=f18e1178] [cursor=pointer]:
+          - /url: "#marks"
+        - link "Steps and Marks" [ref=f18e1179] [cursor=pointer]:
+          - /url: "#steps-and-marks"
+        - link "Range with Steps and Marks" [ref=f18e1180] [cursor=pointer]:
+          - /url: "#range-with-steps-and-marks"
+        - link "Vertical Steps and Marks" [ref=f18e1181] [cursor=pointer]:
+          - /url: "#vertical-steps-and-marks"
+        - link "Disabled" [ref=f18e1182] [cursor=pointer]:
+          - /url: "#disabled"
+        - link "Range Slider Anatomy" [ref=f18e1183] [cursor=pointer]:
+          - /url: "#range-slider-anatomy"
+        - link "Vertical" [ref=f18e1184] [cursor=pointer]:
+          - /url: "#vertical"
+        - link "Range" [ref=f18e1185] [cursor=pointer]:
+          - /url: "#range"
+        - link "Controlled Value" [ref=f18e1186] [cursor=pointer]:
+          - /url: "#controlled-value"
+        - link "Custom Value Formatting" [ref=f18e1187] [cursor=pointer]:
+          - /url: "#custom-value-formatting"
+        - link "Custom Output" [ref=f18e1188] [cursor=pointer]:
+          - /url: "#custom-output"
+        - link "Render Function" [ref=f18e1189] [cursor=pointer]:
+          - /url: "#render-function"
+        - link "Customization" [ref=f18e1190] [cursor=pointer]:
+          - /url: "#customization"
+        - link "Tailwind CSS" [ref=f18e1191] [cursor=pointer]:
+          - /url: "#tailwind-css"
+        - link "Global CSS" [ref=f18e1192] [cursor=pointer]:
+          - /url: "#global-css"
+        - link "Styling Reference" [ref=f18e1193] [cursor=pointer]:
+          - /url: "#styling-reference"
+        - link "CSS Classes" [ref=f18e1194] [cursor=pointer]:
+          - /url: "#css-classes"
+        - link "Indicator Data Attributes" [ref=f18e1195] [cursor=pointer]:
+          - /url: "#indicator-data-attributes"
+        - link "Interactive States" [ref=f18e1196] [cursor=pointer]:
+          - /url: "#interactive-states"
+        - link "API Reference" [ref=f18e1197] [cursor=pointer]:
+          - /url: "#api-reference"
+        - link "Slider" [ref=f18e1198] [cursor=pointer]:
+          - /url: "#slider"
+        - link "Slider.Output" [ref=f18e1199] [cursor=pointer]:
+          - /url: "#slideroutput"
+        - link "Slider.Track" [ref=f18e1200] [cursor=pointer]:
+          - /url: "#slidertrack"
+        - link "Slider.Fill" [ref=f18e1201] [cursor=pointer]:
+          - /url: "#sliderfill"
+        - link "Slider.Thumb" [ref=f18e1202] [cursor=pointer]:
+          - /url: "#sliderthumb"
+        - link "Slider.Steps" [ref=f18e1203] [cursor=pointer]:
+          - /url: "#slidersteps"
+        - link "Slider.Marks" [ref=f18e1204] [cursor=pointer]:
+          - /url: "#slidermarks"
+        - link "Slider.Mark" [ref=f18e1205] [cursor=pointer]:
+          - /url: "#slidermark"
+        - link "Render Props" [ref=f18e1206] [cursor=pointer]:
+          - /url: "#render-props"
+        - link "Accessibility" [ref=f18e1207] [cursor=pointer]:
+          - /url: "#accessibility"
+        - link "Related Components" [ref=f18e1208] [cursor=pointer]:
+          - /url: "#related-components"
+      - generic [ref=f18e1211]:
+        - generic [ref=f18e1212]:
+          - generic [ref=f18e1213]: Hero Newsletter
+          - textbox "Hero Newsletter" [ref=f18e1214]:
+            - /placeholder: name@email.com
+        - button "Subscribe" [ref=f18e1215] [cursor=pointer]

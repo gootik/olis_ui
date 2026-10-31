@@ -1,0 +1,11 @@
+- main [ref=f6e3]:
+  - heading "LiveView integration preview" [level=1] [ref=f6e4]
+  - paragraph [ref=f6e5]: Open the dialog and update its content through LiveView.
+  - button "Open modal" [ref=f6e6] [cursor=pointer]
+  - generic [ref=f6e7]:
+    - tablist "Account sections" [ref=f6e9]:
+      - tab "Profile" [selected] [ref=f6e10] [cursor=pointer]
+      - tab "Security" [ref=f6e12] [cursor=pointer]
+      - tab "Disabled" [disabled]
+    - tabpanel "Profile" [ref=f6e13]:
+      - paragraph [ref=f6e14]: Profile settings

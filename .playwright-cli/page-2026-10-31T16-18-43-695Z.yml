@@ -1,0 +1,272 @@
+- main [ref=f3e3]:
+  - navigation "Breadcrumb" [ref=f3e4]:
+    - list [ref=f3e5]:
+      - listitem [ref=f3e6]:
+        - link "Home" [ref=f3e7] [cursor=pointer]:
+          - /url: /
+      - listitem [ref=f3e10]:
+        - link "Components" [ref=f3e11] [cursor=pointer]:
+          - /url: /#buttons
+      - listitem [ref=f3e14]:
+        - generic [ref=f3e15]: Preview
+  - heading "LiveView integration preview" [level=1] [ref=f3e16]
+  - paragraph [ref=f3e17]: Open the dialog and update its content through LiveView.
+  - generic [ref=f3e18]:
+    - generic [ref=f3e19]:
+      - generic [ref=f3e20]: Search
+      - generic [ref=f3e21]:
+        - searchbox "Search" [ref=f3e22]
+        - button [disabled] [aria-hidden]
+    - paragraph [ref=f3e23]: "Query:"
+  - generic [ref=f3e24]:
+    - generic [ref=f3e25]:
+      - generic [ref=f3e26]: Set a price
+      - generic [ref=f3e27]:
+        - generic [ref=f3e28]: $
+        - spinbutton "Set a price" [ref=f3e29]: "10"
+        - generic [ref=f3e30]: USD
+      - paragraph [ref=f3e31]: What customers would pay
+    - paragraph [ref=f3e32]: "Price: 10"
+  - generic [ref=f3e33]:
+    - generic [ref=f3e34]:
+      - generic [ref=f3e35]: Feedback
+      - generic [ref=f3e36]:
+        - generic [ref=f3e37]: ✎
+        - textbox "Feedback" [ref=f3e38]
+        - button "Update" [ref=f3e40] [cursor=pointer]
+    - paragraph [ref=f3e41]: "Feedback:"
+  - generic [ref=f3e43]:
+    - generic [ref=f3e44]: Amount
+    - generic [ref=f3e45]:
+      - generic [ref=f3e46]: $
+      - spinbutton "Amount" [invalid] [ref=f3e47]: "-1"
+    - paragraph [ref=f3e49]: Amount must be positive
+  - group [ref=f3e50]:
+    - generic [ref=f3e51]:
+      - generic [ref=f3e52]: Unavailable price
+      - generic:
+        - generic: $
+        - spinbutton "Unavailable price" [disabled]: "10"
+        - generic: USD
+  - generic [ref=f3e53]:
+    - generic [ref=f3e54]:
+      - generic [ref=f3e55]: Search error
+      - generic [ref=f3e56]:
+        - searchbox "Search error" [invalid] [ref=f3e57]: x
+        - button "Clear search" [ref=f3e58] [cursor=pointer]
+      - paragraph [ref=f3e60]: Enter at least two characters
+    - generic [ref=f3e61]:
+      - text: Code error
+      - generic [ref=f3e62]:
+        - generic [ref=f3e64]:
+          - generic [ref=f3e65]: "1"
+          - generic [ref=f3e67]: "2"
+        - textbox "Code error" [invalid] [ref=f3e75]: "12"
+      - paragraph [ref=f3e77]: Enter the full code
+  - generic [ref=f3e78]:
+    - generic [ref=f3e79]: Topics
+    - grid "Topics" [ref=f3e80]:
+      - row "News" [selected] [ref=f3e81] [cursor=pointer]:
+        - gridcell [ref=f3e82]:
+          - text: News
+          - button "Remove News" [ref=f3e83]
+      - row "Travel" [ref=f3e84] [cursor=pointer]:
+        - gridcell [ref=f3e85]:
+          - text: Travel
+          - button "Remove Travel" [ref=f3e86]
+      - row "Gaming" [ref=f3e87] [cursor=pointer]:
+        - gridcell [ref=f3e88]:
+          - text: Gaming
+          - button "Remove Gaming" [ref=f3e89]
+      - row "Shopping" [ref=f3e90] [cursor=pointer]:
+        - gridcell [ref=f3e91]:
+          - text: Shopping
+          - button "Remove Shopping" [ref=f3e92]
+      - row "Disabled" [disabled]:
+        - gridcell "Disabled Remove Disabled" [disabled]:
+          - text: Disabled
+          - button "Remove Disabled" [disabled]
+    - paragraph [ref=f3e93]: Select or remove topics
+  - paragraph [ref=f3e94]: "Selected topics: news"
+  - generic [ref=f3e95]:
+    - generic [ref=f3e96]:
+      - text: Verify account
+      - paragraph [ref=f3e97]: Enter your six-digit code
+      - textbox "Verify account" [ref=f3e109]
+    - paragraph [ref=f3e110]: "Digits entered: 0"
+  - button "Open modal" [ref=f3e111] [cursor=pointer]
+  - button "Open alert dialog" [ref=f3e112] [cursor=pointer]
+  - button "Open drawer" [ref=f3e113] [cursor=pointer]
+  - button "Hover or focus" [ref=f3e115] [cursor=pointer]
+  - button "Open popover" [ref=f3e117] [cursor=pointer]
+  - button "Actions" [ref=f3e119] [cursor=pointer]
+  - generic [ref=f3e120]:
+    - img "Casey Jones" [ref=f3e121]:
+      - generic [aria-hidden] [ref=f3e122]: CJ
+    - img "Alex Kim" [ref=f3e123]:
+      - generic [aria-hidden] [ref=f3e124]: AK
+    - generic [ref=f3e125]:
+      - img "Jane Doe" [ref=f3e126]:
+        - generic [aria-hidden] [ref=f3e127]: JD
+      - generic [ref=f3e128]: "3"
+  - status [ref=f3e130]:
+    - generic [ref=f3e134]:
+      - generic [ref=f3e135]: Profile updated
+      - generic [ref=f3e136]: Your settings are saved.
+  - generic [ref=f3e137]:
+    - group "Editing actions" [ref=f3e138]:
+      - button "Copy" [ref=f3e139] [cursor=pointer]
+      - button "Paste" [ref=f3e140] [cursor=pointer]
+    - group "Text formatting" [ref=f3e141]:
+      - button "Bold" [ref=f3e142] [cursor=pointer]
+      - button "Italic" [ref=f3e143] [cursor=pointer]
+  - listbox "Workspace" [ref=f3e145]:
+    - option "Alpha" [selected] [ref=f3e146] [cursor=pointer]:
+      - generic [ref=f3e147]:
+        - generic: Alpha
+        - generic: Main workspace
+    - option "Beta" [ref=f3e151] [cursor=pointer]
+    - option "Unavailable" [disabled]
+  - paragraph [ref=f3e153]: "Workspace: alpha"
+  - paragraph [ref=f3e154]: "Bold: false; Italic: false"
+  - paragraph [ref=f3e155]: "Updates: 0"
+  - progressbar "Updates" [ref=f3e156]
+  - meter "Capacity" [ref=f3e160]:
+    - generic [ref=f3e162]: 0 of 10
+  - generic [ref=f3e164]:
+    - tablist "Account sections" [ref=f3e166]:
+      - tab "Profile" [selected] [ref=f3e167] [cursor=pointer]
+      - tab "Security" [ref=f3e169] [cursor=pointer]
+      - tab "Disabled" [disabled]
+    - tabpanel "Profile" [ref=f3e170]:
+      - paragraph [ref=f3e171]: Profile settings
+  - generic [ref=f3e172]:
+    - heading "Sortable table" [level=2] [ref=f3e173]
+    - table "People" [ref=f3e176]:
+      - rowgroup [ref=f3e177]:
+        - row [ref=f3e178]:
+          - columnheader [ref=f3e179] [cursor=pointer]:
+            - button "Name" [ref=f3e180]
+          - columnheader "Role" [ref=f3e183]
+      - rowgroup [ref=f3e184]:
+        - row [ref=f3e185]:
+          - rowheader "Alex Kim" [ref=f3e186]
+          - cell "Designer" [ref=f3e187]
+        - row [ref=f3e188]:
+          - rowheader "Jane Smith" [ref=f3e189]
+          - cell "Developer" [ref=f3e190]
+        - row [ref=f3e191]:
+          - rowheader "Morgan Lee" [ref=f3e192]
+          - cell "Engineer" [ref=f3e193]
+        - row [ref=f3e194]:
+          - rowheader "Taylor Brown" [ref=f3e195]
+          - cell "Product Manager" [ref=f3e196]
+    - navigation "Pagination" [ref=f3e197]:
+      - generic [ref=f3e198]: Page 1 of 10
+      - list [ref=f3e199]:
+        - listitem [ref=f3e200]:
+          - button "Previous" [disabled]
+        - listitem [ref=f3e201]:
+          - button "Page 1" [ref=f3e202] [cursor=pointer]: "1"
+        - listitem [ref=f3e203]:
+          - button "Page 2" [ref=f3e204] [cursor=pointer]: "2"
+        - listitem [ref=f3e205]:
+          - generic [aria-hidden] [ref=f3e206]: …
+        - listitem [ref=f3e207]:
+          - button "Page 10" [ref=f3e208] [cursor=pointer]: "10"
+        - listitem [ref=f3e209]:
+          - button "Next" [ref=f3e210] [cursor=pointer]
+    - heading "Streamed table" [level=2] [ref=f3e215]
+    - table "Streamed people" [ref=f3e218]:
+      - rowgroup [ref=f3e219]:
+        - row [ref=f3e220]:
+          - columnheader "Name" [ref=f3e221]
+          - columnheader "Role" [ref=f3e222]
+      - rowgroup [ref=f3e223]:
+        - row [ref=f3e224]:
+          - cell "Alex Kim" [ref=f3e225]
+          - cell "Designer" [ref=f3e226]
+        - row [ref=f3e227]:
+          - cell "Jane Smith" [ref=f3e228]
+          - cell "Developer" [ref=f3e229]
+        - row [ref=f3e230]:
+          - cell "Morgan Lee" [ref=f3e231]
+          - cell "Engineer" [ref=f3e232]
+        - row [ref=f3e233]:
+          - cell "Taylor Brown" [ref=f3e234]
+          - cell "Product Manager" [ref=f3e235]
+    - button "Add person" [ref=f3e236] [cursor=pointer]
+  - generic [ref=f3e237]:
+    - generic [ref=f3e239] [cursor=pointer]:
+      - checkbox "Accept terms" [ref=f3e240]
+      - generic [ref=f3e241]: Accept terms
+    - generic [ref=f3e243] [cursor=pointer]:
+      - switch "Enable alerts" [ref=f3e244]
+      - generic [ref=f3e245]: Enable alerts
+    - generic [ref=f3e246]: Plan
+    - generic [ref=f3e248]:
+      - combobox [aria-hidden]
+      - combobox "Plan" [ref=f3e250] [cursor=pointer]:
+        - generic [ref=f3e251]: Starter
+    - generic [ref=f3e254]:
+      - generic [ref=f3e255]: Volume
+      - status [ref=f3e256]: "40"
+      - slider "Volume" [ref=f3e257]: "40"
+    - generic [ref=f3e258]:
+      - generic [ref=f3e259]: Quantity
+      - generic [ref=f3e260]:
+        - button "Decrease Quantity" [ref=f3e261] [cursor=pointer]: −
+        - spinbutton "Quantity" [ref=f3e262]: "1"
+        - button "Increase Quantity" [ref=f3e263] [cursor=pointer]: +
+    - group "Delivery" [ref=f3e264]:
+      - generic [ref=f3e266]:
+        - generic [ref=f3e267] [cursor=pointer]:
+          - generic [ref=f3e268]:
+            - radio "Standard" [checked] [ref=f3e269]
+            - generic [ref=f3e270]: Standard
+          - generic [ref=f3e271]: Three to five days
+        - generic [ref=f3e273] [cursor=pointer]:
+          - radio "Express" [ref=f3e274]
+          - generic [ref=f3e275]: Express
+        - generic:
+          - generic:
+            - radio "Overnight" [disabled]
+            - generic: Overnight
+      - paragraph [ref=f3e276]: Choose a delivery speed.
+    - group "Interests" [ref=f3e277]:
+      - generic [ref=f3e279]:
+        - generic [ref=f3e280] [cursor=pointer]:
+          - generic [ref=f3e281]:
+            - checkbox "News" [checked] [ref=f3e282]
+            - generic [ref=f3e283]: News
+          - generic [ref=f3e284]: Product announcements
+        - generic [ref=f3e286] [cursor=pointer]:
+          - checkbox "Events" [ref=f3e287]
+          - generic [ref=f3e288]: Events
+        - generic:
+          - generic:
+            - checkbox "Research" [disabled]
+            - generic: Research
+      - paragraph [ref=f3e289]: Choose any topics you like.
+    - paragraph [ref=f3e290]: "Interests: news"
+    - paragraph [ref=f3e291]: "Delivery: standard"
+    - paragraph [ref=f3e292]: "Volume: 40; Quantity: 1"
+    - paragraph [ref=f3e293]: "Terms: false; Alerts: false; Plan: starter"
+  - generic [ref=f3e294]:
+    - text: Grouped plans
+    - generic [ref=f3e296]:
+      - combobox [aria-hidden]
+      - combobox "Grouped plans" [ref=f3e298] [cursor=pointer]:
+        - generic [ref=f3e299]: Starter
+    - text: Multiple choices
+    - listbox "Multiple choices" [ref=f3e304] [cursor=pointer]:
+      - option "One" [ref=f3e305]
+      - option "Two" [ref=f3e306]
+  - generic [ref=f3e307]:
+    - generic [ref=f3e308]: Required choice
+    - generic [ref=f3e310]:
+      - combobox [aria-hidden]
+      - combobox "Required choice" [ref=f3e312] [cursor=pointer]:
+        - generic [ref=f3e313]: Choose an option
+    - button "Submit choice" [ref=f3e316] [cursor=pointer]
+    - paragraph [ref=f3e317]: "Submitted: none"

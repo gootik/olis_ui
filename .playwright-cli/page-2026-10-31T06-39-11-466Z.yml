@@ -1,0 +1,227 @@
+- main [ref=f40e3]:
+  - navigation "Breadcrumb" [ref=f40e4]:
+    - list [ref=f40e5]:
+      - listitem [ref=f40e6]:
+        - link "Home" [ref=f40e7] [cursor=pointer]:
+          - /url: /
+      - listitem [ref=f40e10]:
+        - link "Components" [ref=f40e11] [cursor=pointer]:
+          - /url: /#buttons
+      - listitem [ref=f40e14]:
+        - generic [ref=f40e15]: Preview
+  - heading "LiveView integration preview" [level=1] [ref=f40e16]
+  - paragraph [ref=f40e17]: Open the dialog and update its content through LiveView.
+  - generic [ref=f40e18]:
+    - generic [ref=f40e19]:
+      - generic [ref=f40e20]: Search
+      - generic [ref=f40e21]:
+        - searchbox "Search" [ref=f40e22]
+        - button [disabled] [aria-hidden]
+    - paragraph [ref=f40e23]: "Query:"
+  - generic [ref=f40e24]:
+    - generic [ref=f40e25]: Topics
+    - grid "Topics" [ref=f40e26]:
+      - row "News" [selected] [ref=f40e27] [cursor=pointer]:
+        - gridcell [ref=f40e28]:
+          - text: News
+          - button "Remove News" [ref=f40e29]
+      - row "Travel" [ref=f40e30] [cursor=pointer]:
+        - gridcell [ref=f40e31]:
+          - text: Travel
+          - button "Remove Travel" [ref=f40e32]
+      - row "Gaming" [ref=f40e33] [cursor=pointer]:
+        - gridcell [ref=f40e34]:
+          - text: Gaming
+          - button "Remove Gaming" [ref=f40e35]
+      - row "Shopping" [ref=f40e36] [cursor=pointer]:
+        - gridcell [ref=f40e37]:
+          - text: Shopping
+          - button "Remove Shopping" [ref=f40e38]
+      - row "Disabled" [disabled]:
+        - gridcell "Disabled Remove Disabled" [disabled]:
+          - text: Disabled
+          - button "Remove Disabled" [disabled]
+    - paragraph [ref=f40e39]: Select or remove topics
+  - paragraph [ref=f40e40]: "Selected topics: news"
+  - generic [ref=f40e41]:
+    - generic [ref=f40e42]:
+      - text: Verify account
+      - paragraph [ref=f40e43]: Enter your six-digit code
+      - textbox "Verify account" [ref=f40e55]
+    - paragraph [ref=f40e56]: "Digits entered: 0"
+  - button "Open modal" [ref=f40e57] [cursor=pointer]
+  - button "Open alert dialog" [ref=f40e58] [cursor=pointer]
+  - button "Open drawer" [ref=f40e59] [cursor=pointer]
+  - button "Hover or focus" [ref=f40e61] [cursor=pointer]
+  - button "Open popover" [ref=f40e63] [cursor=pointer]
+  - button "Actions" [ref=f40e65] [cursor=pointer]
+  - generic [ref=f40e66]:
+    - img "Casey Jones" [ref=f40e67]:
+      - generic [aria-hidden] [ref=f40e68]: CJ
+    - img "Alex Kim" [ref=f40e69]:
+      - generic [aria-hidden] [ref=f40e70]: AK
+    - generic [ref=f40e71]:
+      - img "Jane Doe" [ref=f40e72]:
+        - generic [aria-hidden] [ref=f40e73]: JD
+      - generic [ref=f40e74]: "3"
+  - status [ref=f40e76]:
+    - generic [ref=f40e80]:
+      - generic [ref=f40e81]: Profile updated
+      - generic [ref=f40e82]: Your settings are saved.
+  - generic [ref=f40e83]:
+    - group "Editing actions" [ref=f40e84]:
+      - button "Copy" [ref=f40e85] [cursor=pointer]
+      - button "Paste" [ref=f40e86] [cursor=pointer]
+    - group "Text formatting" [ref=f40e87]:
+      - button "Bold" [ref=f40e88] [cursor=pointer]
+      - button "Italic" [ref=f40e89] [cursor=pointer]
+  - listbox "Workspace" [ref=f40e91]:
+    - option "Alpha" [selected] [ref=f40e92] [cursor=pointer]:
+      - generic [ref=f40e93]:
+        - generic: Alpha
+        - generic: Main workspace
+    - option "Beta" [ref=f40e97] [cursor=pointer]
+    - option "Unavailable" [disabled]
+  - paragraph [ref=f40e99]: "Workspace: alpha"
+  - paragraph [ref=f40e100]: "Bold: false; Italic: false"
+  - paragraph [ref=f40e101]: "Updates: 0"
+  - progressbar "Updates" [ref=f40e102]
+  - meter "Capacity" [ref=f40e106]:
+    - generic [ref=f40e108]: 0 of 10
+  - generic [ref=f40e110]:
+    - tablist "Account sections" [ref=f40e112]:
+      - tab "Profile" [selected] [ref=f40e113] [cursor=pointer]
+      - tab "Security" [ref=f40e115] [cursor=pointer]
+      - tab "Disabled" [disabled]
+    - tabpanel "Profile" [ref=f40e116]:
+      - paragraph [ref=f40e117]: Profile settings
+  - generic [ref=f40e118]:
+    - heading "Sortable table" [level=2] [ref=f40e119]
+    - table "People" [ref=f40e122]:
+      - rowgroup [ref=f40e123]:
+        - row [ref=f40e124]:
+          - columnheader [ref=f40e125] [cursor=pointer]:
+            - button "Name" [ref=f40e126]
+          - columnheader "Role" [ref=f40e129]
+      - rowgroup [ref=f40e130]:
+        - row [ref=f40e131]:
+          - rowheader "Alex Kim" [ref=f40e132]
+          - cell "Designer" [ref=f40e133]
+        - row [ref=f40e134]:
+          - rowheader "Jane Smith" [ref=f40e135]
+          - cell "Developer" [ref=f40e136]
+        - row [ref=f40e137]:
+          - rowheader "Morgan Lee" [ref=f40e138]
+          - cell "Engineer" [ref=f40e139]
+        - row [ref=f40e140]:
+          - rowheader "Taylor Brown" [ref=f40e141]
+          - cell "Product Manager" [ref=f40e142]
+    - navigation "Pagination" [ref=f40e143]:
+      - generic [ref=f40e144]: Page 1 of 10
+      - list [ref=f40e145]:
+        - listitem [ref=f40e146]:
+          - button "Previous" [disabled]
+        - listitem [ref=f40e147]:
+          - button "Page 1" [ref=f40e148] [cursor=pointer]: "1"
+        - listitem [ref=f40e149]:
+          - button "Page 2" [ref=f40e150] [cursor=pointer]: "2"
+        - listitem [ref=f40e151]:
+          - generic [aria-hidden] [ref=f40e152]: …
+        - listitem [ref=f40e153]:
+          - button "Page 10" [ref=f40e154] [cursor=pointer]: "10"
+        - listitem [ref=f40e155]:
+          - button "Next" [ref=f40e156] [cursor=pointer]
+    - heading "Streamed table" [level=2] [ref=f40e161]
+    - table "Streamed people" [ref=f40e164]:
+      - rowgroup [ref=f40e165]:
+        - row [ref=f40e166]:
+          - columnheader "Name" [ref=f40e167]
+          - columnheader "Role" [ref=f40e168]
+      - rowgroup [ref=f40e169]:
+        - row [ref=f40e170]:
+          - cell "Alex Kim" [ref=f40e171]
+          - cell "Designer" [ref=f40e172]
+        - row [ref=f40e173]:
+          - cell "Jane Smith" [ref=f40e174]
+          - cell "Developer" [ref=f40e175]
+        - row [ref=f40e176]:
+          - cell "Morgan Lee" [ref=f40e177]
+          - cell "Engineer" [ref=f40e178]
+        - row [ref=f40e179]:
+          - cell "Taylor Brown" [ref=f40e180]
+          - cell "Product Manager" [ref=f40e181]
+    - button "Add person" [ref=f40e182] [cursor=pointer]
+  - generic [ref=f40e183]:
+    - generic [ref=f40e185] [cursor=pointer]:
+      - checkbox "Accept terms" [ref=f40e186]
+      - generic [ref=f40e187]: Accept terms
+    - generic [ref=f40e189] [cursor=pointer]:
+      - switch "Enable alerts" [ref=f40e190]
+      - generic [ref=f40e191]: Enable alerts
+    - generic [ref=f40e192]: Plan
+    - generic [ref=f40e194]:
+      - combobox [aria-hidden]
+      - combobox "Plan" [ref=f40e196] [cursor=pointer]:
+        - generic [ref=f40e197]: Starter
+    - generic [ref=f40e200]:
+      - generic [ref=f40e201]: Volume
+      - status [ref=f40e202]: "40"
+      - slider "Volume" [ref=f40e203]: "40"
+    - generic [ref=f40e204]:
+      - generic [ref=f40e205]: Quantity
+      - generic [ref=f40e206]:
+        - button "Decrease Quantity" [ref=f40e207] [cursor=pointer]: −
+        - spinbutton "Quantity" [ref=f40e208]: "1"
+        - button "Increase Quantity" [ref=f40e209] [cursor=pointer]: +
+    - group "Delivery" [ref=f40e210]:
+      - generic [ref=f40e212]:
+        - generic [ref=f40e213] [cursor=pointer]:
+          - generic [ref=f40e214]:
+            - radio "Standard" [checked] [ref=f40e215]
+            - generic [ref=f40e216]: Standard
+          - generic [ref=f40e217]: Three to five days
+        - generic [ref=f40e219] [cursor=pointer]:
+          - radio "Express" [ref=f40e220]
+          - generic [ref=f40e221]: Express
+        - generic:
+          - generic:
+            - radio "Overnight" [disabled]
+            - generic: Overnight
+      - paragraph [ref=f40e222]: Choose a delivery speed.
+    - group "Interests" [ref=f40e223]:
+      - generic [ref=f40e225]:
+        - generic [ref=f40e226] [cursor=pointer]:
+          - generic [ref=f40e227]:
+            - checkbox "News" [checked] [ref=f40e228]
+            - generic [ref=f40e229]: News
+          - generic [ref=f40e230]: Product announcements
+        - generic [ref=f40e232] [cursor=pointer]:
+          - checkbox "Events" [ref=f40e233]
+          - generic [ref=f40e234]: Events
+        - generic:
+          - generic:
+            - checkbox "Research" [disabled]
+            - generic: Research
+      - paragraph [ref=f40e235]: Choose any topics you like.
+    - paragraph [ref=f40e236]: "Interests: news"
+    - paragraph [ref=f40e237]: "Delivery: standard"
+    - paragraph [ref=f40e238]: "Volume: 40; Quantity: 1"
+    - paragraph [ref=f40e239]: "Terms: false; Alerts: false; Plan: starter"
+  - generic [ref=f40e240]:
+    - text: Grouped plans
+    - generic [ref=f40e242]:
+      - combobox [aria-hidden]
+      - combobox "Grouped plans" [ref=f40e244] [cursor=pointer]:
+        - generic [ref=f40e245]: Starter
+    - text: Multiple choices
+    - listbox "Multiple choices" [ref=f40e250] [cursor=pointer]:
+      - option "One" [ref=f40e251]
+      - option "Two" [ref=f40e252]
+  - generic [ref=f40e253]:
+    - generic [ref=f40e254]: Required choice
+    - generic [ref=f40e256]:
+      - combobox [aria-hidden]
+      - combobox "Required choice" [ref=f40e258] [cursor=pointer]:
+        - generic [ref=f40e259]: Choose an option
+    - button "Submit choice" [ref=f40e262] [cursor=pointer]
+    - paragraph [ref=f40e263]: "Submitted: none"

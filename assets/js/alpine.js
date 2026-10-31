@@ -1,0 +1,52 @@
+import { registerOlisAutocomplete } from "./alpine/autocomplete.js";
+import { registerOlisAvatarImage } from "./alpine/avatar_image.js";
+import { registerOlisColorField } from "./alpine/color_field.js";
+import { registerOlisComboBox } from "./alpine/combo_box.js";
+import { registerOlisDialog } from "./alpine/dialog.js";
+import { registerOlisDrawer } from "./alpine/drawer.js";
+import { registerOlisDropdown } from "./alpine/dropdown.js";
+import { registerOlisInputGroup } from "./alpine/input_group.js";
+import { registerOlisInputOTP } from "./alpine/input_otp.js";
+import { registerOlisListbox } from "./alpine/listbox.js";
+import { registerOlisNumberField } from "./alpine/number_field.js";
+import { registerOlisPopover } from "./alpine/popover.js";
+import { registerOlisScrollShadow } from "./alpine/scroll_shadow.js";
+import { registerOlisSearchField } from "./alpine/search_field.js";
+import { registerOlisSelect } from "./alpine/select.js";
+import { registerOlisSheet } from "./alpine/sheet.js";
+import { registerOlisSlider } from "./alpine/slider.js";
+import { registerOlisTable } from "./alpine/table.js";
+import { registerOlisTabs } from "./alpine/tabs.js";
+import { registerOlisTagGroup } from "./alpine/tag_group.js";
+import { registerOlisToastRegion } from "./alpine/toast_region.js";
+import { registerOlisToggleButtonGroup } from "./alpine/toggle_button_group.js";
+import { registerOlisToolbar } from "./alpine/toolbar.js";
+import { registerOlisTooltip } from "./alpine/tooltip.js";
+
+/** Register Alpine state used by OlisUI components before calling Alpine.start(). */
+export function registerOlisUIAlpine(Alpine) {
+  registerOlisAutocomplete(Alpine);
+  registerOlisAvatarImage(Alpine);
+  registerOlisColorField(Alpine);
+  registerOlisComboBox(Alpine);
+  registerOlisDialog(Alpine);
+  registerOlisDrawer(Alpine);
+  registerOlisDropdown(Alpine);
+  registerOlisInputGroup(Alpine);
+  registerOlisInputOTP(Alpine);
+  registerOlisListbox(Alpine);
+  registerOlisNumberField(Alpine);
+  registerOlisPopover(Alpine);
+  registerOlisScrollShadow(Alpine);
+  registerOlisSearchField(Alpine);
+  registerOlisSelect(Alpine);
+  registerOlisSheet(Alpine);
+  registerOlisSlider(Alpine);
+  registerOlisTable(Alpine);
+  registerOlisTabs(Alpine);
+  registerOlisTagGroup(Alpine);
+  registerOlisToastRegion(Alpine);
+  registerOlisToggleButtonGroup(Alpine);
+  registerOlisToolbar(Alpine);
+  registerOlisTooltip(Alpine);
+}

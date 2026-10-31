@@ -1,0 +1,139 @@
+:where(:root, :host) {
+  color-scheme: light;
+  --radius: 0.5rem;
+  --field-radius: 0.375rem;
+  --border-width: 0.5px;
+  --field-border-width: 1px;
+  --ring-offset-width: 2px;
+  --disabled-opacity: 0.5;
+  --cursor-interactive: pointer;
+  --cursor-disabled: not-allowed;
+  --skeleton-animation: shimmer;
+  --tooltip-delay: 1500ms;
+  --tooltip-close-delay: 500ms;
+  --z-index-overlay: 100000;
+  --z-index-toast: calc(var(--z-index-overlay) + 1);
+}
+
+:where(
+  .light,
+  .default,
+  [data-theme="light"],
+  [data-theme="default"],
+  :host(.light),
+  :host(.default),
+  :host([data-theme="light"]),
+  :host([data-theme="default"])
+) {
+  color-scheme: light;
+}
+
+:where(.dark, [data-theme="dark"], :host(.dark), :host([data-theme="dark"])) {
+  color-scheme: dark;
+}
+
+/* Re-declare aliases at theme boundaries so nested themes can override the palette. */
+:where(
+  :root,
+  :host,
+  .light,
+  .default,
+  .dark,
+  [data-theme],
+  :host(.light),
+  :host(.default),
+  :host(.dark),
+  :host([data-theme])
+) {
+  --white: #fff;
+  --black: #08090a;
+  --snow: var(--white);
+  --eclipse: var(--black);
+  --background: light-dark(#f7f7f9, #08090a);
+  --background-secondary: light-dark(#eeeef2, #111214);
+  --background-tertiary: light-dark(#e7e8ee, #1a1c20);
+  --background-inverse: var(--foreground);
+  --foreground: light-dark(#242529, #f6f7fb);
+  --muted: light-dark(#646771, #9ba1ad);
+  --surface: light-dark(#fff, #0f1011);
+  --surface-foreground: var(--foreground);
+  --surface-hover: light-dark(#f1f2f6, #1b1d21);
+  --surface-secondary: light-dark(#f1f1f3, #161718);
+  --surface-secondary-foreground: var(--foreground);
+  --surface-tertiary: light-dark(#e9e9ec, #23252a);
+  --surface-tertiary-foreground: var(--foreground);
+  --overlay: light-dark(#fff, #1a1c20);
+  --overlay-foreground: var(--foreground);
+  --backdrop: light-dark(rgb(20 22 30 / 48%), rgb(0 0 0 / 64%));
+
+  --border: light-dark(#dbdde5, #30333a);
+  --border-secondary: light-dark(#c9ccd7, #41454f);
+  --border-tertiary: light-dark(#b7bccb, #555966);
+  --separator: light-dark(#e8e9ef, #282b31);
+  --separator-secondary: light-dark(#dadde6, #363942);
+  --separator-tertiary: light-dark(#c8cdda, #474d58);
+  --focus: var(--accent);
+  --link: var(--foreground);
+  --segment: light-dark(#fff, #383c46);
+  --segment-foreground: var(--foreground);
+
+  --field-background: var(--surface);
+  --field-foreground: var(--foreground);
+  --field-placeholder: var(--muted);
+  --field-border: var(--border);
+  --field-hover: var(--surface-hover);
+  --field-focus: var(--field-background);
+  --field-border-hover: var(--border-secondary);
+  --field-border-focus: var(--focus);
+  --field-border-invalid: var(--danger);
+
+  --default: light-dark(#edeef3, #252832);
+  --default-foreground: var(--foreground);
+  --default-hover: light-dark(#e1e3eb, #353946);
+  --default-soft: var(--surface-secondary);
+  --default-soft-foreground: var(--default-foreground);
+  --default-soft-hover: var(--default-hover);
+
+  --accent: light-dark(#515dc0, #a3abff);
+  --accent-foreground: light-dark(#fff, #171a39);
+  --accent-hover: light-dark(#414da9, #bcc1ff);
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-soft-foreground: var(--accent);
+  --accent-soft-hover: color-mix(in srgb, var(--accent) 22%, transparent);
+
+  --success: light-dark(#117543, #68d297);
+  --success-foreground: light-dark(#fff, #11271b);
+  --success-hover: light-dark(#095b32, #8cddae);
+  --success-soft: color-mix(in srgb, var(--success) 12%, transparent);
+  --success-soft-foreground: var(--success);
+  --success-soft-hover: color-mix(in srgb, var(--success) 22%, transparent);
+
+  --warning: light-dark(#f2c151, #f6d47f);
+  --warning-foreground: #332400;
+  --warning-hover: light-dark(#e7b442, #ffe198);
+  --warning-soft: color-mix(in srgb, var(--warning) 19%, transparent);
+  --warning-soft-foreground: light-dark(#765309, #f6d47f);
+  --warning-soft-hover: color-mix(in srgb, var(--warning) 29%, transparent);
+
+  --danger: light-dark(#c02e40, #f7838e);
+  --danger-foreground: light-dark(#fff, #3e1119);
+  --danger-hover: light-dark(#a92032, #ff9fa8);
+  --danger-soft: color-mix(in srgb, var(--danger) 12%, transparent);
+  --danger-soft-foreground: var(--danger);
+  --danger-soft-hover: color-mix(in srgb, var(--danger) 22%, transparent);
+
+  --scrollbar-thumb: color-mix(in srgb, var(--foreground) 27%, transparent);
+  --scrollbar-track: transparent;
+  --scrollbar: var(--scrollbar-thumb);
+  --surface-shadow: 0 0 0 1px var(--border);
+  --overlay-shadow:
+    0 0 0 1px var(--border), 0 10px 24px light-dark(rgb(22 24 36 / 14%), rgb(0 0 0 / 46%));
+  --field-shadow: 0 1px 2px light-dark(rgb(22 24 36 / 8%), transparent);
+}
+
+[data-vibrant-palette="true"] {
+  --accent-soft-foreground: var(--accent-hover);
+  --success-soft-foreground: var(--success-hover);
+  --warning-soft-foreground: light-dark(#895b00, var(--warning-hover));
+  --danger-soft-foreground: var(--danger-hover);
+}

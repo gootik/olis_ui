@@ -1,0 +1,180 @@
+.olis-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.5);
+}
+
+:is(.olis-chip, .olis-badge) {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  inline-size: fit-content;
+  white-space: nowrap;
+}
+
+.olis-chip {
+  border-radius: 999px;
+}
+
+.olis-badge {
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.olis-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  inline-size: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+
+  &.alert--danger {
+    border-inline-start-color: var(--danger);
+  }
+}
+
+.olis-alert-icon {
+  flex: none;
+  margin-block-start: 0.25rem;
+}
+
+.olis-disclosure-chevron {
+  flex: none;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin-inline-start: auto;
+  transition: rotate 150ms ease-out;
+
+  &[data-expanded="true"] {
+    rotate: 180deg;
+  }
+}
+
+.olis-keycap {
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: 1.25rem;
+  min-block-size: 1.25rem;
+  padding-inline: 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface-secondary);
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+
+  &.kbd--light {
+    border-color: transparent;
+    background: transparent;
+  }
+}
+
+:is(.olis-link, .olis-crumb) {
+  border-radius: 2px;
+  color: var(--link);
+  text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+
+  &:is(:hover, :focus-visible) {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  &[aria-disabled="true"] {
+    opacity: var(--disabled-opacity);
+    pointer-events: none;
+  }
+}
+
+.olis-crumb {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.olis-link-icon {
+  display: inline-flex;
+  inline-size: 0.825em;
+  block-size: 0.825em;
+  margin-inline-start: 0.25em;
+  vertical-align: baseline;
+  pointer-events: none;
+}
+
+.olis-skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--field-radius);
+  background: color-mix(in srgb, var(--foreground) 10%, var(--surface));
+  pointer-events: none;
+
+  &.skeleton--shimmer:not(.skeleton--shimmer .skeleton--shimmer)::after {
+    position: absolute;
+    inset: 0;
+    translate: -110% 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--foreground) 9%, transparent),
+      transparent
+    );
+    animation: var(--animate-skeleton);
+    content: "";
+  }
+
+  &.skeleton--pulse {
+    animation: olis-pulse 1.5s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes olis-pulse {
+  to {
+    opacity: 0.55;
+  }
+}
+
+.olis-progress-fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  transition: width 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.olis-progress-fill, .olis-disclosure-chevron) {
+    transition: none;
+  }
+
+  .olis-skeleton,
+  .olis-skeleton.skeleton--shimmer::after,
+  .olis-code-caret {
+    animation: none;
+  }
+}
+
+.olis-spinner {
+  display: inline-flex;
+  flex: none;
+  animation: var(--animate-spin-fast);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .olis-spinner {
+    animation: none;
+  }
+}

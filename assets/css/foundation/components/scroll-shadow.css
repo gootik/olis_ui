@@ -1,0 +1,127 @@
+@property --olis-scroll-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --olis-scroll-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.scroll-shadow--fade {
+  --olis-scroll-direction: to bottom;
+  --olis-scrollbar-lane: 10px;
+  --olis-lane-width: var(--olis-scrollbar-lane);
+  --olis-lane-height: 100%;
+  --olis-lane-position: right bottom;
+  --olis-fade-length: max(0px, var(--scroll-shadow-size, 40px));
+  --olis-fade-delay: max(0px, var(--scroll-shadow-offset, 0px));
+
+  &:is(
+    [data-top-scroll="true"],
+    [data-left-scroll="true"],
+    [data-top-bottom-scroll="true"],
+    [data-left-right-scroll="true"]
+  ) {
+    --olis-scroll-start: var(--olis-fade-length);
+  }
+
+  &:is(
+    [data-bottom-scroll="true"],
+    [data-right-scroll="true"],
+    [data-top-bottom-scroll="true"],
+    [data-left-right-scroll="true"]
+  ) {
+    --olis-scroll-end: var(--olis-fade-length);
+  }
+
+  &:where(
+    [data-top-scroll],
+    [data-left-scroll],
+    [data-bottom-scroll],
+    [data-right-scroll],
+    [data-top-bottom-scroll],
+    [data-left-right-scroll]
+  ) {
+    mask:
+      linear-gradient(
+        var(--olis-scroll-direction),
+        transparent,
+        #000 min(50%, var(--olis-scroll-start)),
+        #000 max(50%, 100% - var(--olis-scroll-end)),
+        transparent
+      ),
+      linear-gradient(#000, #000) var(--olis-lane-position) / var(--olis-lane-width)
+        var(--olis-lane-height) no-repeat;
+  }
+
+  &:dir(rtl) {
+    --olis-lane-position: left bottom;
+  }
+}
+
+.scroll-shadow--horizontal {
+  --olis-scroll-direction: to right;
+  --olis-lane-width: 100%;
+  --olis-lane-height: var(--olis-scrollbar-lane);
+
+  &:dir(rtl) {
+    --olis-scroll-direction: to left;
+  }
+}
+
+.scroll-shadow--hide-scrollbar {
+  --olis-scrollbar-lane: 0px;
+}
+
+@keyframes olis-scroll-reveal-start {
+  from {
+    --olis-scroll-start: 0px;
+  }
+
+  to {
+    --olis-scroll-start: var(--olis-fade-length);
+  }
+}
+
+@keyframes olis-scroll-reveal-end {
+  from {
+    --olis-scroll-end: var(--olis-fade-length);
+  }
+
+  to {
+    --olis-scroll-end: 0px;
+  }
+}
+
+@supports (animation-timeline: scroll(self)) {
+  .scroll-shadow--fade[data-scroll-shadow-mode="auto"] {
+    --olis-scroll-start: 0px;
+    --olis-scroll-end: 0px;
+
+    mask:
+      linear-gradient(
+        var(--olis-scroll-direction),
+        transparent,
+        #000 min(50%, var(--olis-scroll-start)),
+        #000 max(50%, 100% - var(--olis-scroll-end)),
+        transparent
+      ),
+      linear-gradient(#000, #000) var(--olis-lane-position) / var(--olis-lane-width)
+        var(--olis-lane-height) no-repeat;
+    animation:
+      olis-scroll-reveal-start linear both,
+      olis-scroll-reveal-end linear both;
+    animation-timeline: scroll(self block), scroll(self block);
+    animation-range:
+      var(--olis-fade-delay) calc(var(--olis-fade-delay) + var(--olis-fade-length)),
+      calc(100% - var(--olis-fade-delay) - var(--olis-fade-length))
+        calc(100% - var(--olis-fade-delay));
+
+    &.scroll-shadow--horizontal {
+      animation-timeline: scroll(self inline), scroll(self inline);
+    }
+  }
+}

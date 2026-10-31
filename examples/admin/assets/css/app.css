@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../../../../assets/css/foundation/index.css";
+@import "../../../../assets/css/olis_ui.css";
+
+@source "../../lib";
+@source "../../../../lib";
+@source "../../../../assets/js";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,0 +1,80 @@
+@utility focus-ring {
+  outline: 2px solid var(--focus);
+  outline-offset: var(--ring-offset-width, 2px);
+}
+
+@utility focus-field-ring {
+  outline: 2px solid var(--focus);
+  outline-offset: -1px;
+}
+
+@utility status-focused {
+  @apply focus-ring;
+}
+
+@utility status-focused-field {
+  @apply focus-field-ring;
+}
+
+@utility invalid-field-ring {
+  outline: 1px solid var(--danger);
+
+  &:is(
+    :focus-within,
+    [data-focused="true"],
+    [data-focus-visible="true"],
+    [data-focus-within="true"]
+  ) {
+    outline-width: 2px;
+    outline-offset: -1px;
+  }
+}
+
+@utility status-invalid-field {
+  @apply invalid-field-ring;
+}
+
+@utility status-disabled {
+  cursor: var(--cursor-disabled, not-allowed);
+  opacity: var(--disabled-opacity, 0.5);
+  pointer-events: none;
+}
+
+@utility status-pending {
+  pointer-events: none;
+}
+
+@utility no-highlight {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@utility touch-target {
+  &::after {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    inline-size: 24px;
+    block-size: 24px;
+    translate: -50% -50%;
+    content: "";
+  }
+}
+
+@utility scrollbar {
+  scrollbar-width: var(--scrollbar-width, thin);
+  scrollbar-color: var(--scrollbar-color, var(--scrollbar-thumb) var(--scrollbar-track));
+  scrollbar-gutter: var(--scrollbar-gutter, auto);
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+@utility scrollbar-default {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+}

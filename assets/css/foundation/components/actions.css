@@ -1,0 +1,210 @@
+.olis-action {
+  --olis-action-bg: transparent;
+  --olis-action-highlight: var(--default-hover);
+  --olis-action-ink: var(--foreground);
+  --olis-action-size: 2.25rem;
+
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  place-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  inline-size: fit-content;
+  min-block-size: var(--olis-action-size);
+  padding-inline: 0.85rem;
+  border: 1px solid transparent;
+  border-radius: var(--field-radius);
+  background: var(--olis-action-bg);
+  color: var(--olis-action-ink);
+  font-size: 0.875rem;
+  font-weight: 550;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease-out,
+    border-color 120ms ease-out;
+
+  &:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    translate: 0 1px;
+  }
+
+  &:is(:disabled, [aria-disabled="true"]) {
+    opacity: var(--disabled-opacity);
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &[data-pending="true"] {
+    pointer-events: none;
+  }
+
+  & svg:not([data-slot="spinner"] svg) {
+    inline-size: 1em;
+    block-size: 1em;
+    pointer-events: none;
+  }
+}
+
+@media (hover: hover) {
+  .olis-action:hover {
+    background-color: var(--olis-action-highlight);
+  }
+}
+
+:is(.button--sm, .toggle-button--sm) {
+  --olis-action-size: 2rem;
+  padding-inline: 0.65rem;
+}
+
+:is(.button--lg, .toggle-button--lg) {
+  --olis-action-size: 2.625rem;
+  font-size: 1rem;
+}
+
+.button--primary {
+  --olis-action-bg: var(--accent);
+  --olis-action-highlight: var(--accent-hover);
+  --olis-action-ink: var(--accent-foreground);
+}
+
+:is(.button--secondary, .button--tertiary, .toggle-button--default) {
+  --olis-action-bg: var(--default);
+  --olis-action-ink: var(--default-foreground);
+}
+
+.button--outline {
+  border-color: var(--border);
+}
+
+.button--danger {
+  --olis-action-bg: var(--danger);
+  --olis-action-highlight: var(--danger-hover);
+  --olis-action-ink: var(--danger-foreground);
+}
+
+.button--danger-soft {
+  --olis-action-bg: var(--danger-soft);
+  --olis-action-highlight: var(--danger-soft-hover);
+  --olis-action-ink: var(--danger-soft-foreground);
+}
+
+.toggle-button[aria-pressed="true"] {
+  --olis-action-bg: var(--accent-soft);
+  --olis-action-highlight: var(--accent-soft-hover);
+  --olis-action-ink: var(--accent-soft-foreground);
+  border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.button--full-width {
+  inline-size: 100%;
+}
+
+:is(.button--icon-only, .toggle-button--icon-only, .pagination__link:not(.pagination__link--nav)) {
+  inline-size: var(--olis-action-size);
+  padding-inline: 0;
+}
+
+.pagination__link--sm {
+  --olis-action-size: 1.75rem;
+  font-size: 0.75rem;
+}
+
+.pagination__link--md {
+  --olis-action-size: 2rem;
+}
+
+.pagination__link[data-active="true"] {
+  --olis-action-bg: var(--accent-soft);
+  --olis-action-ink: var(--accent-soft-foreground);
+}
+
+.olis-dismiss {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  padding: 0;
+  border-radius: var(--field-radius);
+  background: var(--default);
+  color: var(--muted);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--default-hover);
+    color: var(--foreground);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  &:is(:disabled, [aria-disabled="true"]) {
+    opacity: var(--disabled-opacity);
+    pointer-events: none;
+  }
+
+  & svg {
+    inline-size: 0.875rem;
+    block-size: 0.875rem;
+  }
+}
+
+.olis-dismiss--compact {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  background: transparent;
+}
+
+.olis-action-rule {
+  position: absolute;
+  border-radius: 1px;
+  background: currentcolor;
+  opacity: 0.16;
+  pointer-events: none;
+
+  .button-group--horizontal & {
+    inset-block: 25%;
+    inset-inline-start: 0;
+    inline-size: 1px;
+  }
+
+  .button-group--vertical & {
+    inset-block-start: 0;
+    inset-inline: 10%;
+    block-size: 1px;
+  }
+}
+
+.olis-toggle-group {
+  display: inline-flex;
+  align-items: stretch;
+
+  & .toggle-button {
+    flex: none;
+  }
+
+  & .toggle-button-group__separator {
+    position: absolute;
+    background: var(--border-secondary);
+    pointer-events: none;
+  }
+
+  &.toggle-button-group--horizontal .toggle-button-group__separator {
+    inline-size: 1px;
+    block-size: 50%;
+  }
+
+  &.toggle-button-group--vertical .toggle-button-group__separator {
+    inline-size: 50%;
+    block-size: 1px;
+  }
+}

@@ -1,0 +1,26 @@
+.avatar-group:not(.avatar-group--grid) > .avatar + .avatar {
+  margin-inline-start: calc(0px - var(--avatar-group-overlap, 0.5rem));
+}
+
+.avatar-group--ring > .avatar {
+  outline: var(--avatar-group-seam, 2px) solid var(--background);
+}
+
+.avatar-group--clip > .avatar:not(:last-child) {
+  --olis-avatar-cut-radius: calc(var(--avatar-size, 2.5rem) / 2 + var(--avatar-group-seam, 2px));
+  --olis-avatar-cut-center: calc(150% - var(--avatar-group-overlap, 0.5rem));
+
+  mask-image: radial-gradient(
+    circle var(--olis-avatar-cut-radius) at var(--olis-avatar-cut-center) 50%,
+    transparent 98%,
+    #000
+  );
+
+  &:dir(rtl) {
+    --olis-avatar-cut-center: calc(var(--avatar-group-overlap, 0.5rem) - 50%);
+  }
+
+  & .avatar__fallback {
+    padding-inline-end: calc(var(--avatar-group-overlap, 0.5rem) / 3);
+  }
+}

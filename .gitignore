@@ -1,0 +1,15 @@
+/_build/
+/deps/
+/cover/
+*.ez
+
+/priv/static/olis_ui.css
+
+/node_modules/
+
+/.playwright-cli/
+/test-results/
+/playwright-report/
+/.playwright-mcp/
+/output/playwright/
+/blob-report/

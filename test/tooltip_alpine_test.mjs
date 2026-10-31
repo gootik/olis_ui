@@ -1,0 +1,140 @@
+import assert from "node:assert/strict";
+const { registerOlisUIAlpine } = await import("../assets/js/alpine.js");
+const providers = {};
+registerOlisUIAlpine({
+  data(name, factory) {
+    providers[name] = factory;
+  },
+});
+let now = 0,
+  next = 1;
+const timers = new Map();
+globalThis.setTimeout = (fn, delay) => {
+  const id = next++;
+  timers.set(id, { fn, at: now + delay });
+  return id;
+};
+globalThis.clearTimeout = (id) => timers.delete(id);
+function advance(ms) {
+  const limit = now + ms;
+  for (;;) {
+    const entries = [...timers].filter(([, v]) => v.at <= limit).sort((a, b) => a[1].at - b[1].at);
+    if (!entries.length) {
+      break;
+    }
+    const [id, v] = entries[0];
+    timers.delete(id);
+    now = v.at;
+    v.fn();
+  }
+  now = limit;
+}
+globalThis.window = { innerWidth: 300, innerHeight: 200 };
+globalThis.getComputedStyle = () => ({
+  getPropertyValue(name) {
+    return name === "--tooltip-delay" ? "0.1s" : "200ms";
+  },
+});
+let opened = false,
+  anchor = { left: 100, right: 140, top: 10, bottom: 30, width: 40, height: 20 };
+const tip = {
+  dataset: {},
+  style: {},
+  querySelector() {
+    return null;
+  },
+  matches() {
+    return opened;
+  },
+  showPopover() {
+    opened = true;
+  },
+  hidePopover() {
+    opened = false;
+  },
+  getBoundingClientRect() {
+    return { width: 80, height: 30 };
+  },
+};
+const trigger = {
+  getBoundingClientRect() {
+    return anchor;
+  },
+};
+const tooltip = providers.olisTooltip();
+tooltip.$root = {
+  dataset: { requestedPlacement: "top", offset: "3", open: "false" },
+  querySelector() {
+    return change;
+  },
+  isConnected: true,
+  contains() {
+    return false;
+  },
+};
+const change = {
+  attrs: {},
+  accept: true,
+  setAttribute(name, value) {
+    this.attrs[name] = value;
+  },
+  click() {
+    if (this.accept) {
+      tooltip.$root.dataset.open = this.attrs["phx-value-open"];
+      tooltip.sync();
+    }
+  },
+};
+tooltip.$refs = { trigger, content: tip };
+tooltip.$nextTick = (fn) => fn();
+change.accept = false;
+tooltip.focus();
+advance(0);
+assert.equal(opened, false, "opening waits for LiveView");
+assert.equal(change.attrs["phx-value-open"], "true");
+change.accept = true;
+tooltip.blur({ relatedTarget: null });
+advance(200);
+tooltip.enter({ pointerType: "mouse" });
+advance(99);
+assert.equal(opened, false);
+advance(1);
+assert.equal(opened, true);
+assert.equal(tip.dataset.placement, "bottom");
+assert.equal(tip.style.top, "33px");
+assert.equal(tip.style.left, "80px");
+tooltip.leave({ pointerType: "mouse" });
+advance(199);
+assert.equal(opened, true);
+tooltip.enter({ pointerType: "mouse" });
+advance(200);
+assert.equal(opened, true);
+tooltip.escape();
+assert.equal(opened, false);
+tooltip.enter({ pointerType: "mouse" });
+advance(200);
+assert.equal(opened, false);
+tooltip.leave({ pointerType: "mouse" });
+tooltip.enter({ pointerType: "mouse" });
+advance(100);
+assert.equal(opened, true);
+tooltip.leave({ pointerType: "mouse" });
+advance(200);
+assert.equal(opened, false);
+tooltip.focus();
+advance(0);
+assert.equal(opened, true);
+tooltip.blur({ relatedTarget: null });
+advance(200);
+assert.equal(opened, false);
+tooltip.enter({ pointerType: "touch" });
+advance(300);
+assert.equal(opened, false);
+tooltip.$root.dataset.requestedPlacement = "left";
+anchor = { left: 1, right: 41, top: 80, bottom: 100, width: 40, height: 20 };
+tooltip.focus();
+advance(0);
+assert.equal(tip.dataset.placement, "right");
+assert.equal(tip.style.left, "44px");
+tooltip.destroy();
+assert.equal(opened, false);

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.4/schema.json",
+  "files": {
+    "includes": [
+      "assets/js/**/*.js",
+      "test/**/*.mjs",
+      "examples/admin/assets/js/**/*.js"
+    ]
+  },
+  "formatter": {
+    "enabled": false
+  },
+  "assist": {
+    "enabled": false
+  },
+  "linter": {
+    "rules": {
+      "preset": "recommended",
+      "style": {
+        "useBlockStatements": "error"
+      },
+      "complexity": {
+        "useMathMinMax": "off"
+      },
+      "suspicious": {
+        "noPrototypeBuiltins": "off"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+export function registerOlisSearchField(Alpine) {
+  Alpine.data("olisSearchField", () => ({
+    empty: true,
+    locked: false,
+
+    sync() {
+      const input = this.$refs.input;
+
+      this.empty = input.value === "";
+      this.locked = input.matches(":disabled") || input.readOnly;
+    },
+
+    clear() {
+      const input = this.$refs.input;
+
+      if (this.locked || this.empty) {
+        return;
+      }
+
+      input.value = "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+    },
+  }));
+}

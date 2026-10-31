@@ -1,0 +1,7 @@
+:where(*, ::before, ::after, ::backdrop, ::file-selector-button) {
+  border-color: var(--border, currentcolor);
+}
+
+::view-transition {
+  pointer-events: none;
+}

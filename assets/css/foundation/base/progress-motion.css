@@ -1,0 +1,13 @@
+@theme {
+  --animate-progress-bar-indeterminate: olis-progress-sweep 1.35s ease-in-out infinite;
+}
+
+@keyframes olis-progress-sweep {
+  from {
+    translate: -110% 0;
+  }
+
+  to {
+    translate: 375% 0;
+  }
+}

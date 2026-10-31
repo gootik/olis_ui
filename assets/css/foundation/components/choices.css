@@ -1,0 +1,229 @@
+.olis-choice {
+  --olis-choice-width: 1rem;
+  --olis-choice-height: 1rem;
+
+  display: inline-grid;
+  justify-items: start;
+  gap: 0.25rem;
+  max-inline-size: 100%;
+  color: var(--foreground);
+  cursor: pointer;
+
+  & > [data-slot="description"],
+  & > [data-slot="field-error"] {
+    padding-inline-start: calc(var(--olis-choice-width) + 0.625rem);
+  }
+
+  &:is([data-disabled="true"], :has(input:disabled)) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+}
+
+.olis-choice-body {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 550;
+}
+
+.olis-choice-box {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--olis-choice-width);
+  block-size: var(--olis-choice-height);
+  border: 1px solid var(--field-border);
+  border-radius: 0.25rem;
+  background: var(--field-background);
+  color: var(--accent-foreground);
+  pointer-events: none;
+
+  .radio & {
+    border-radius: 50%;
+  }
+
+  .olis-choice:has(input:focus-visible) & {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .olis-choice:hover & {
+    border-color: var(--focus);
+  }
+
+  :is(.checkbox--secondary, .radio-group--secondary) & {
+    background: var(--default);
+  }
+
+  .olis-choice:is([data-indeterminate="true"], :has(input:checked)) & {
+    border-color: transparent;
+    background: var(--accent);
+  }
+
+  .olis-choice[data-invalid="true"] & {
+    border-color: var(--danger);
+  }
+
+  .olis-choice[data-invalid="true"]:is([data-indeterminate="true"], :has(input:checked)) & {
+    background: var(--danger);
+    color: var(--danger-foreground);
+  }
+}
+
+.olis-choice-mark {
+  display: none;
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+
+  .olis-choice:is([data-indeterminate="true"], :has(input:checked)) & {
+    display: grid;
+    place-items: center;
+  }
+
+  .radio & {
+    inline-size: 0.375rem;
+    block-size: 0.375rem;
+    border-radius: 50%;
+    background: currentcolor;
+  }
+}
+
+.switch {
+  --olis-choice-width: 2.5rem;
+  --olis-choice-height: 1.25rem;
+}
+
+.switch--sm {
+  --olis-choice-width: 2rem;
+  --olis-choice-height: 1rem;
+}
+
+.switch--lg {
+  --olis-choice-width: 3rem;
+  --olis-choice-height: 1.5rem;
+}
+
+.olis-switch-track {
+  display: grid;
+  flex: none;
+  align-items: center;
+  inline-size: var(--olis-choice-width);
+  block-size: var(--olis-choice-height);
+  padding-inline: 2px;
+  border-radius: 999px;
+  background: var(--border-tertiary);
+  cursor: inherit;
+  pointer-events: none;
+
+  .switch:has(input:focus-visible) & {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .switch:has(input:checked) & {
+    background: var(--accent);
+  }
+
+  .switch[data-invalid="true"] & {
+    outline: 1px solid var(--danger);
+  }
+}
+
+.olis-switch-thumb {
+  position: relative;
+  inset-inline-start: 0;
+  display: grid;
+  place-items: center;
+  inline-size: calc(var(--olis-choice-height) - 4px);
+  block-size: calc(var(--olis-choice-height) - 4px);
+  border-radius: 50%;
+  background: white;
+  color: var(--black);
+  transition: inset-inline-start 180ms ease-out;
+
+  .switch:has(input:checked) & {
+    inset-inline-start: calc(var(--olis-choice-width) - var(--olis-choice-height));
+  }
+
+  & svg {
+    inline-size: 0.7em;
+    block-size: 0.7em;
+  }
+}
+
+.olis-swatch-choice {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-color: transparent;
+  cursor: pointer;
+
+  &:has(input:checked) {
+    border-color: var(--surface);
+    outline: 2px solid var(--color-swatch-current);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  &:has(input:disabled) {
+    opacity: var(--disabled-opacity);
+    cursor: default;
+  }
+}
+
+.olis-swatch-fill {
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: inherit;
+}
+
+.olis-swatch-mark {
+  position: absolute;
+  inset: 0;
+  display: none;
+  place-items: center;
+  pointer-events: none;
+
+  .olis-swatch-choice:has(input:checked) & {
+    display: grid;
+  }
+
+  & svg {
+    filter: drop-shadow(0 1px 1px rgb(0 0 0 / 60%));
+  }
+}
+
+.olis-avatar {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--avatar-radius, 50%);
+
+  & .avatar__fallback {
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    block-size: 100%;
+    font-weight: 550;
+  }
+
+  & .avatar__image {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+}
+
+.olis-avatar-image[data-failed="true"] {
+  visibility: hidden;
+}

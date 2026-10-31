@@ -1,0 +1,65 @@
+.olis-overlay-motion {
+  --olis-enter-x: 0px;
+  --olis-enter-y: 0px;
+  --olis-enter-scale: 0.985;
+
+  box-shadow: var(--overlay-shadow);
+  transform-origin: var(--trigger-anchor-point, center);
+}
+
+.olis-overlay-motion[data-placement="top"] {
+  --olis-enter-y: 4px;
+}
+
+.olis-overlay-motion[data-placement="bottom"] {
+  --olis-enter-y: -4px;
+}
+
+.olis-overlay-motion[data-placement="left"] {
+  --olis-enter-x: 4px;
+}
+
+.olis-overlay-motion[data-placement="right"] {
+  --olis-enter-x: -4px;
+}
+
+.olis-overlay-motion[data-entering="true"] {
+  animation: olis-overlay-enter 140ms ease-out;
+}
+
+.olis-overlay-motion[data-exiting="true"] {
+  animation: olis-overlay-exit 100ms ease-in both;
+  pointer-events: none;
+}
+
+@keyframes olis-overlay-enter {
+  from {
+    opacity: 0;
+    scale: var(--olis-enter-scale);
+    translate: var(--olis-enter-x) var(--olis-enter-y);
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes olis-overlay-exit {
+  from {
+    opacity: 1;
+    scale: 1;
+  }
+
+  to {
+    opacity: 0;
+    scale: 0.99;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .olis-overlay-motion:is([data-entering="true"], [data-exiting="true"]) {
+    animation-duration: 1ms;
+  }
+}

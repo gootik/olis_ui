@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./foundation/index.css";
+@import "./olis_ui.css";
+
+@theme {
+  --font-preview: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@source "../../lib";
+@source "../../preview";
+@source "../js";
+
+/* Preview typography follows the same Inter features as the design reference. */
+.preview-body {
+  font-feature-settings: "cv01", "ss03", "zero";
+}

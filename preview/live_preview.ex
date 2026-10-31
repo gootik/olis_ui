@@ -18,6 +18,11 @@ defmodule HeroUI.Preview.Layout do
           import {Socket} from "/phoenix.mjs";
           import {LiveSocket} from "/phoenix_live_view.esm.js";
           import {installHeroUI} from "/hero_ui.js?v=dropdown";
+          import {registerHeroUIAlpine} from "/hero_ui_alpine.js";
+          import Alpine from "/alpine.esm.js";
+          window.Alpine = Alpine;
+          registerHeroUIAlpine(Alpine);
+          Alpine.start();
           installHeroUI();
           const updateNavigation = () => {
             const sections = [...document.querySelectorAll('.lp-intro, .lp-section')];
@@ -41,7 +46,10 @@ defmodule HeroUI.Preview.Layout do
             try { localStorage.setItem('preview-theme', theme); } catch (_) {}
           });
           const csrf = document.querySelector('meta[name="csrf-token"]').content;
-          const socket = new LiveSocket('/live', Socket, {params: {_csrf_token: csrf}});
+          const socket = new LiveSocket('/live', Socket, {
+            params: {_csrf_token: csrf},
+            dom: {onBeforeElUpdated(from, to) { if (from._x_dataStack) Alpine.clone(from, to); }}
+          });
           socket.connect();
           window.liveSocket = socket;
         </script>

@@ -118,12 +118,33 @@ Input groups combine a native input with optional `:prefix` and `:suffix` slots.
 </.input_group>
 ```
 
-For interactive components, install the event delegation once in your application JavaScript (adjust the path to suit your asset setup):
+Install Alpine.js in the host application's asset directory with `npm install alpinejs`. Register the HeroUI Alpine components before starting Alpine, and preserve Alpine state when LiveView patches the DOM. Merge the `dom` callback below into your existing `LiveSocket` setup if you already have one:
 
 ```js
+import Alpine from "alpinejs";
+import { Socket } from "phoenix";
+import { LiveSocket } from "phoenix_live_view";
+import { registerHeroUIAlpine } from "../../deps/hero_ui/assets/js/alpine.js";
 import { installHeroUI } from "../../deps/hero_ui/assets/js/hero_ui.js";
+
+window.Alpine = Alpine;
+registerHeroUIAlpine(Alpine);
+Alpine.start();
 installHeroUI();
+
+const csrf = document.querySelector("meta[name='csrf-token']").content;
+const liveSocket = new LiveSocket("/live", Socket, {
+  params: { _csrf_token: csrf },
+  dom: {
+    onBeforeElUpdated(from, to) {
+      if (from._x_dataStack) Alpine.clone(from, to);
+    }
+  }
+});
+liveSocket.connect();
 ```
+
+Start Alpine and connect the LiveSocket only once. Search Field uses Alpine for its clear action and state; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
 
 Disclosures use native `<details>` and work without JavaScript. A group permits one open item by default; add `allows_multiple_expanded` to allow several. Use `default_expanded_keys` for browser-managed state or pass `expanded_keys` and `on_toggle` to manage state in LiveView. The toggle event sends the item `"key"` and the desired `"expanded"` state as `"true"` or `"false"`; update `expanded_keys` in the event handler. Install the JavaScript module for animated transitions and event synchronization.
 

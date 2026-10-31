@@ -371,6 +371,11 @@ defmodule HeroUI.Preview do
         </div>
         <script type="module">
           import { installHeroUI } from "/hero_ui.js?v=dropdown";
+          import { registerHeroUIAlpine } from "/hero_ui_alpine.js";
+          import Alpine from "/alpine.esm.js";
+          window.Alpine = Alpine;
+          registerHeroUIAlpine(Alpine);
+          Alpine.start();
           installHeroUI();
         </script>
         <script>
@@ -506,6 +511,22 @@ defmodule HeroUI.Preview.Router do
     conn
     |> put_resp_content_type("text/javascript")
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "calendar.js"])))
+  end
+
+  get "/hero_ui_alpine.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> put_resp_header("cache-control", "no-store")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "alpine.js"])))
+  end
+
+  get "/alpine.esm.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(
+      200,
+      File.read!(Path.join([File.cwd!(), "node_modules", "alpinejs", "dist", "module.esm.js"]))
+    )
   end
 
   get "/hero_ui.js" do

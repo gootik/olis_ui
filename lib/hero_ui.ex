@@ -476,7 +476,7 @@ defmodule HeroUI do
       data-slot="search-field"
       data-empty={to_string(is_nil(@value) || @value == "")}
       data-invalid={if @errors != [], do: "true"}
-      x-data="{ empty: true, locked: false, sync() { let input = this.$refs.input; if (!input) return; this.empty = input.value === ''; this.locked = input.matches(':disabled') || input.readOnly }, clear() { let input = this.$refs.input; if (!input || this.locked || this.empty) return; input.value = ''; input.dispatchEvent(new Event('input', { bubbles: true })); input.focus() } }"
+      x-data="heroSearchField"
       x-init="$nextTick(() => sync())"
       x-on:input="sync()"
       x-on:phx:update.window="sync()"

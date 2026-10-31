@@ -538,6 +538,9 @@ defmodule HeroUITest do
     assert html =~ ~s(for="search_query")
     assert html =~ ~s(aria-describedby="search_query-errors")
     assert html =~ ~s(data-hero-search-clear)
+    assert html =~ ~s(x-data="heroSearchField")
+    assert html =~ ~s|x-on:click="clear()"|
+    assert html =~ ~s(x-bind:disabled="empty || locked")
     assert html =~ ~s(data-invalid="true")
     assert html =~ ~s(data-visible="true")
   end

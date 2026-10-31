@@ -3318,21 +3318,90 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A native disclosure. Supply a shared name to make a group exclusive."
-  attr(:title, :string, required: true)
+  @doc "An accordion group, or a single native disclosure when given a title and body."
+  attr(:id, :string, default: nil)
+  attr(:title, :string, default: nil)
   attr(:open, :boolean, default: false)
   attr(:name, :string, default: nil)
+  attr(:expanded_keys, :list, default: nil)
+  attr(:default_expanded_keys, :list, default: [])
+  attr(:allows_multiple_expanded, :boolean, default: false)
+  attr(:disabled, :boolean, default: false)
+  attr(:variant, :string, default: "default", values: ~w(default surface))
+  attr(:hide_separator, :boolean, default: false)
+  attr(:heading_level, :integer, default: 3, values: 2..6)
+  attr(:on_expanded_change, :string, default: nil)
+  attr(:target, :any, default: nil)
   attr(:class, :any, default: nil)
-  slot(:inner_block, required: true)
+  slot(:inner_block)
+  slot(:indicator)
+
+  slot :item do
+    attr(:key, :string, required: true)
+    attr(:title, :string, required: true)
+    attr(:disabled, :boolean)
+    attr(:class, :any)
+  end
 
   def accordion(assigns) do
+    grouped = assigns.item != []
+
+    if grouped && (is_nil(assigns.id) || assigns.id == ""),
+      do: raise(ArgumentError, "accordion groups require an id")
+
+    if grouped && assigns.title,
+      do: raise(ArgumentError, "accordion accepts either item slots or a single title and body")
+
+    if !grouped && (is_nil(assigns.title) || assigns.title == ""),
+      do: raise(ArgumentError, "accordion requires item slots or a title")
+
+    keys = Enum.map(assigns.item, & &1.key)
+
+    if Enum.any?(keys, &(not is_binary(&1) or &1 == "")) or
+         length(keys) != length(Enum.uniq(keys)),
+       do: raise(ArgumentError, "accordion item keys must be unique nonempty strings")
+
+    expanded = assigns.expanded_keys || assigns.default_expanded_keys
+
+    if !is_list(expanded) or Enum.any?(expanded, &(&1 not in keys)) or
+         length(expanded) != length(Enum.uniq(expanded)),
+       do: raise(ArgumentError, "accordion expanded keys must be distinct item keys")
+
+    if !assigns.allows_multiple_expanded && length(expanded) > 1,
+      do: raise(ArgumentError, "single accordion groups allow at most one expanded key")
+
+    assigns =
+      assign(assigns,
+        grouped: grouped,
+        expanded: expanded,
+        expanded_set: MapSet.new(expanded),
+        controlled: !is_nil(assigns.expanded_keys)
+      )
+
     ~H"""
     <details
-      class={["accordion", "accordion__item", "hui-native-accordion", @class]}
+      :if={!@grouped}
+      id={@id}
+      class={[
+        "accordion",
+        "accordion__item",
+        "hui-native-accordion",
+        @variant == "surface" && "accordion--surface",
+        @class
+      ]}
       open={@open}
       name={@name}
+      x-data={if @disabled, do: "{}"}
     >
-      <summary class="accordion__trigger">
+      <summary
+        class={[
+          "accordion__trigger",
+          @disabled && "pointer-events-none cursor-not-allowed opacity-50"
+        ]}
+        aria-disabled={if @disabled, do: "true"}
+        tabindex={if @disabled, do: "-1"}
+        x-on:click.prevent={if @disabled, do: ""}
+      >
         {@title}<svg class="accordion__indicator" aria-hidden="true" viewBox="0 0 16 16" fill="none"><path
           d="m4 6 4 4 4-4"
           stroke="currentColor"
@@ -3345,6 +3414,116 @@ defmodule HeroUI do
         <div class="accordion__body-inner">{render_slot(@inner_block)}</div>
       </div>
     </details>
+    <div
+      :if={@grouped}
+      id={@id}
+      class={["accordion", @variant == "surface" && "accordion--surface", @class]}
+      data-slot="accordion"
+      data-hero-accordion
+      data-controlled={to_string(@controlled)}
+      data-multiple={to_string(@allows_multiple_expanded)}
+      data-initial-expanded={Jason.encode!(@expanded)}
+      data-expanded-keys={Jason.encode!(@expanded)}
+      data-disabled={if @disabled, do: "true"}
+      x-data="heroAccordion"
+      x-on:phx:update.window="sync()"
+      x-on:keydown="keydown($event)"
+    >
+      <div
+        :for={item <- @item}
+        class={["accordion__item", Map.get(item, :class)]}
+        data-slot="accordion-item"
+        data-hide-separator={if @hide_separator, do: "true"}
+      >
+        <.dynamic_tag
+          tag_name={"h#{@heading_level}"}
+          class="accordion__heading"
+          data-slot="accordion-heading"
+        >
+          <button
+            id={"#{@id}-trigger-#{Base.url_encode64(item.key, padding: false)}"}
+            type="button"
+            class="accordion__trigger"
+            data-slot="accordion-trigger"
+            data-accordion-trigger
+            data-key={item.key}
+            disabled={@disabled || Map.get(item, :disabled, false)}
+            aria-expanded={to_string(MapSet.member?(@expanded_set, item.key))}
+            aria-controls={"#{@id}-panel-#{Base.url_encode64(item.key, padding: false)}"}
+            x-bind:aria-expanded="expanded.includes($el.dataset.key).toString()"
+            x-on:click="toggle($el.dataset.key)"
+            phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-expanded"])}
+          >
+            {item.title}
+            <span
+              :if={@indicator != []}
+              class="accordion__indicator"
+              data-slot="accordion-indicator"
+              data-key={item.key}
+              data-expanded={if MapSet.member?(@expanded_set, item.key), do: "true"}
+              x-bind:data-expanded="expanded.includes($el.dataset.key) ? 'true' : null"
+              aria-hidden="true"
+              phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-expanded"])}
+            >{render_slot(@indicator, item)}</span>
+            <svg
+              :if={@indicator == []}
+              class="accordion__indicator"
+              data-slot="accordion-indicator"
+              data-key={item.key}
+              data-expanded={if MapSet.member?(@expanded_set, item.key), do: "true"}
+              x-bind:data-expanded="expanded.includes($el.dataset.key) ? 'true' : null"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+              fill="none"
+              phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-expanded"])}
+            ><path
+              d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06"
+              fill="currentColor"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            /></svg>
+          </button>
+        </.dynamic_tag>
+        <div
+          id={"#{@id}-panel-#{Base.url_encode64(item.key, padding: false)}"}
+          class="accordion__panel motion-reduce:!transition-none"
+          data-slot="accordion-panel"
+          data-key={item.key}
+          data-expanded={if MapSet.member?(@expanded_set, item.key), do: "true"}
+          role="group"
+          aria-labelledby={"#{@id}-trigger-#{Base.url_encode64(item.key, padding: false)}"}
+          aria-hidden={to_string(!MapSet.member?(@expanded_set, item.key))}
+          hidden={!MapSet.member?(@expanded_set, item.key)}
+          inert={!MapSet.member?(@expanded_set, item.key)}
+          x-show="expanded.includes($el.dataset.key)"
+          x-collapse.duration.200ms
+          x-bind:data-expanded="expanded.includes($el.dataset.key) ? 'true' : null"
+          x-bind:aria-hidden="(!expanded.includes($el.dataset.key)).toString()"
+          x-bind:inert="!expanded.includes($el.dataset.key)"
+          phx-mounted={
+            Phoenix.LiveView.JS.ignore_attributes([
+              "hidden",
+              "inert",
+              "style",
+              "aria-hidden",
+              "data-expanded"
+            ])
+          }
+        >
+          <div class="accordion__body" data-slot="accordion-body">
+            <div class="accordion__body-inner">{render_slot(item)}</div>
+          </div>
+        </div>
+      </div>
+      <button
+        :if={@on_expanded_change}
+        type="button"
+        hidden
+        x-ref="changeEvent"
+        phx-click={@on_expanded_change}
+        phx-target={@target}
+      ></button>
+    </div>
     """
   end
 
@@ -3381,7 +3560,11 @@ defmodule HeroUI do
       class={[
         "disclosure",
         "hui-disclosure",
-        "[&[open]:not([data-hero-closing=true])_[data-slot=disclosure-indicator]]:-rotate-180",
+        "[&[open]_[data-slot=disclosure-indicator]]:-rotate-180",
+        "[interpolate-size:allow-keywords]",
+        "[&::details-content]:h-0 [&::details-content]:overflow-clip [&::details-content]:opacity-0",
+        "[&::details-content]:transition-[height,opacity,content-visibility] [&::details-content]:duration-200 [&::details-content]:[transition-behavior:allow-discrete]",
+        "[&[open]::details-content]:h-auto [&[open]::details-content]:opacity-100 motion-reduce:[&::details-content]:transition-none",
         @class
       ]}
       data-slot="disclosure"
@@ -3390,7 +3573,15 @@ defmodule HeroUI do
       data-expanded={if @open, do: "true"}
       open={@open}
       name={@name}
-      phx-mounted={if !@controlled, do: Phoenix.LiveView.JS.ignore_attributes(["open"])}
+      x-data="heroDisclosure"
+      x-on:toggle.self="sync()"
+      x-on:phx:update.window="sync()"
+      x-bind:data-expanded="expanded ? 'true' : null"
+      phx-mounted={
+        Phoenix.LiveView.JS.ignore_attributes(
+          if @controlled, do: ["data-expanded"], else: ["open", "data-expanded"]
+        )
+      }
       {@rest}
     >
       <summary
@@ -3407,12 +3598,18 @@ defmodule HeroUI do
         ]}
         data-slot="disclosure-trigger"
         data-hero-disclosure-trigger
+        role="button"
         aria-controls={"#{@id}-content"}
+        aria-expanded={to_string(@open)}
         aria-disabled={if @disabled, do: "true"}
         tabindex={if @disabled, do: "-1"}
         phx-click={if !@disabled, do: @on_toggle}
         phx-value-key={@value || @id}
         phx-value-expanded={to_string(!@open)}
+        x-on:click="beforeToggle($event)"
+        x-bind:aria-expanded="expanded.toString()"
+        x-bind:phx-value-expanded="(!expanded).toString()"
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-expanded", "phx-value-expanded"])}
       >
         <span class="hui-disclosure-label flex-1 text-start"><%= if @trigger != [] do %>
           {render_slot(@trigger)}
@@ -3422,6 +3619,9 @@ defmodule HeroUI do
         <svg
           class="disclosure__indicator"
           data-slot="disclosure-indicator"
+          data-expanded={if @open, do: "true"}
+          x-bind:data-expanded="expanded ? 'true' : null"
+          phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-expanded"])}
           aria-hidden="true"
           viewBox="0 0 16 16"
           fill="none"
@@ -3439,6 +3639,9 @@ defmodule HeroUI do
         class={["disclosure__content", "h-auto opacity-100", @content_class]}
         data-slot="disclosure-content"
         data-hero-disclosure-content
+        data-expanded={if @open, do: "true"}
+        x-bind:data-expanded="expanded ? 'true' : null"
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-expanded"])}
         role="group"
         aria-labelledby={"#{@id}-trigger"}
       >

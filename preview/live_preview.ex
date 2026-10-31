@@ -20,7 +20,9 @@ defmodule HeroUI.Preview.Layout do
           import {installHeroUI} from "/hero_ui.js?v=dropdown";
           import {registerHeroUIAlpine} from "/hero_ui_alpine.js";
           import Alpine from "/alpine.esm.js";
+          import collapse from "/alpine-collapse.esm.js";
           window.Alpine = Alpine;
+          Alpine.plugin(collapse);
           registerHeroUIAlpine(Alpine);
           Alpine.start();
           installHeroUI();
@@ -97,6 +99,8 @@ defmodule HeroUI.Preview.Live do
         underline: false,
         disclosure_expanded: ["account"],
         disclosure_last: "none",
+        accordion_expanded: ["orders"],
+        accordion_last: "none",
         controlled_sheet_open: false,
         sheet_last: "none",
         toolbar_action: "none",
@@ -206,6 +210,17 @@ defmodule HeroUI.Preview.Live do
     keys = if expanded == "true", do: [key], else: []
     {:noreply, assign(socket, disclosure_expanded: keys, disclosure_last: "#{key}: #{expanded}")}
   end
+
+  def handle_event("accordion_change", %{"key" => key, "expanded" => expanded}, socket)
+      when key in ~w(orders returns shipping) and expanded in ~w(true false) do
+    keys = if expanded == "true", do: [key], else: []
+    {:noreply, assign(socket, accordion_expanded: keys, accordion_last: "#{key}: #{expanded}")}
+  end
+
+  def handle_event("accordion_open_returns", _, socket),
+    do:
+      {:noreply,
+       assign(socket, accordion_expanded: ["returns"], accordion_last: "server: returns")}
 
   def handle_event("open_billing", _, socket),
     do:
@@ -1887,6 +1902,51 @@ defmodule HeroUI.Preview.Live do
                     <p>This section is disabled.</p>
                   </:item>
                 </.disclosure_group>
+              </.preview_card>
+              <.preview_card
+                title="Accordion"
+                description="Controlled expansion, disabled items, and server updates."
+              >
+                <.accordion
+                  id="preview-accordion"
+                  expanded_keys={@accordion_expanded}
+                  on_expanded_change="accordion_change"
+                >
+                  <:item key="orders" title="How do I place an order?">
+                    Add items to your cart and proceed to checkout.
+                    <.input
+                      id="accordion-order-reference"
+                      aria-label="Order reference"
+                      placeholder="Order reference"
+                      class="mt-3"
+                    />
+                  </:item>
+                  <:item key="returns" title="Can I return an item?">
+                    Contact us within 30 days to arrange a return.
+                  </:item>
+                  <:item key="shipping" title="Shipping information" disabled>
+                    Shipping details are unavailable.
+                  </:item>
+                </.accordion>
+                <p id="accordion-state" class="mt-3 mb-0 text-xs text-zinc-500 dark:text-zinc-400">
+                  Expanded: {Enum.join(@accordion_expanded, ", ")}; Last: {@accordion_last}
+                </p>
+                <.button size="sm" variant="secondary" class="mt-3" phx-click="accordion_open_returns">Open returns</.button>
+              </.preview_card>
+              <.preview_card
+                title="Multiple accordion items"
+                description="Independent panels in a surface."
+              >
+                <.accordion
+                  id="multiple-accordion"
+                  variant="surface"
+                  allows_multiple_expanded
+                  default_expanded_keys={["overview"]}
+                >
+                  <:item key="overview" title="Overview">Review your workspace.</:item>
+                  <:item key="billing" title="Billing">Manage billing details.</:item>
+                  <:item key="team" title="Team">Invite your teammates.</:item>
+                </.accordion>
               </.preview_card>
               <.preview_card title="Tabs" description="Switch between account sections.">
                 <.tabs id="preview-tabs" label="Account sections">

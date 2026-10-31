@@ -1,6 +1,7 @@
 defmodule HeroUITest do
   use ExUnit.Case, async: true
   import Phoenix.LiveViewTest
+  import Phoenix.Component, only: [sigil_H: 2]
 
   test "close button provides an accessible default and accepts custom icons" do
     default = render_component(&HeroUI.close_button/1, %{})
@@ -371,6 +372,9 @@ defmodule HeroUITest do
     assert html =~ ~s(id="details")
     assert html =~ ~s(aria-controls="details-content")
     assert html =~ ~s(aria-labelledby="details-trigger")
+    assert html =~ ~s(aria-expanded="true")
+    assert html =~ ~s(x-data="heroDisclosure")
+    assert html =~ ~s|x-bind:phx-value-expanded="(!expanded).toString()"|
     assert html =~ ~s(aria-disabled="true")
     assert html =~ ~s(tabindex="-1")
     assert html =~ "More information"
@@ -672,6 +676,68 @@ defmodule HeroUITest do
     assert accordion =~ "<details"
     assert accordion =~ "<summary"
     assert accordion =~ "Details"
+  end
+
+  test "accordion groups render keyed panels and controlled expansion" do
+    assigns = %{}
+
+    heex =
+      rendered_to_string(~H"""
+      <HeroUI.accordion id="heex-example">
+        <:item key="first" title="First">First panel</:item>
+        <:item key="second" title="Second">Second panel</:item>
+      </HeroUI.accordion>
+      """)
+
+    assert heex =~ "First panel"
+
+    items = [
+      %{key: "orders", title: "Orders", inner_block: fn _, _ -> "Order details" end},
+      %{
+        key: "returns",
+        title: "Returns",
+        disabled: true,
+        inner_block: fn _, _ -> "Return details" end
+      }
+    ]
+
+    html =
+      render_component(&HeroUI.accordion/1, %{
+        id: "faq",
+        item: items,
+        expanded_keys: ["orders"],
+        on_expanded_change: "faq_change",
+        variant: "surface",
+        hide_separator: true,
+        heading_level: 2
+      })
+
+    assert html =~ ~s(data-controlled="true")
+    assert html =~ ~s(data-expanded-keys="[&quot;orders&quot;]")
+    assert html =~ ~s(aria-expanded="true")
+    assert html =~ ~s(aria-controls="faq-panel-b3JkZXJz")
+    assert html =~ ~r/<div[^>]*data-key="returns"[^>]*\sinert/s
+    assert html =~ ~s(data-hide-separator="true")
+    assert html =~ ~s(phx-click="faq_change")
+    assert html =~ "accordion--surface"
+    assert html =~ "<h2"
+    assert html =~ ~s(x-data="heroAccordion")
+
+    assert_raise ArgumentError, ~r/at most one/, fn ->
+      render_component(&HeroUI.accordion/1, %{
+        id: "faq",
+        item: items,
+        default_expanded_keys: ["orders", "returns"]
+      })
+    end
+
+    assert_raise ArgumentError, ~r/distinct item keys/, fn ->
+      render_component(&HeroUI.accordion/1, %{
+        id: "faq",
+        item: items,
+        expanded_keys: ["missing"]
+      })
+    end
   end
 
   test "combo box retains a named native select and connected label" do

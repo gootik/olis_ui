@@ -118,16 +118,18 @@ Input groups combine a native input with optional `:prefix` and `:suffix` slots.
 </.input_group>
 ```
 
-Install Alpine.js in the host application's asset directory with `npm install alpinejs`. Register the HeroUI Alpine components before starting Alpine, and preserve Alpine state when LiveView patches the DOM. Merge the `dom` callback below into your existing `LiveSocket` setup if you already have one:
+Install Alpine.js and its Collapse plugin in the host application's asset directory with `npm install alpinejs @alpinejs/collapse`. Register the plugin and the HeroUI Alpine components before starting Alpine, and preserve Alpine state when LiveView patches the DOM. Merge the `dom` callback below into your existing `LiveSocket` setup if you already have one:
 
 ```js
 import Alpine from "alpinejs";
+import collapse from "@alpinejs/collapse";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import { registerHeroUIAlpine } from "../../deps/hero_ui/assets/js/alpine.js";
 import { installHeroUI } from "../../deps/hero_ui/assets/js/hero_ui.js";
 
 window.Alpine = Alpine;
+Alpine.plugin(collapse);
 registerHeroUIAlpine(Alpine);
 Alpine.start();
 installHeroUI();
@@ -144,9 +146,18 @@ const liveSocket = new LiveSocket("/live", Socket, {
 liveSocket.connect();
 ```
 
-Start Alpine and connect the LiveSocket only once. Search Field, Number Field, and Tabs use Alpine for their client-side behavior; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
+Start Alpine and connect the LiveSocket only once. Search Field, Number Field, Tabs, grouped Accordion, and Disclosure use Alpine for their client-side behavior; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
 
-Disclosures use native `<details>` and work without JavaScript. A group permits one open item by default; add `allows_multiple_expanded` to allow several. Use `default_expanded_keys` for browser-managed state or pass `expanded_keys` and `on_toggle` to manage state in LiveView. The toggle event sends the item `"key"` and the desired `"expanded"` state as `"true"` or `"false"`; update `expanded_keys` in the event handler. Install the JavaScript module for animated transitions and event synchronization.
+Accordion groups use keyed item slots. By default only one item can be open; use `allows_multiple_expanded` for independent panels. `default_expanded_keys` initializes browser-managed state, while `expanded_keys` and `on_expanded_change` let LiveView control it. The event receives `"key"`, `"expanded"` (`"true"` or `"false"`), and `"keys"` (a JSON-encoded list). Update the assign in the event handler. Set `variant="surface"`, `hide_separator`, `disabled`, or `heading_level` as needed; individual items also accept `disabled`. An optional `:indicator` slot replaces the chevron. The earlier `<.accordion title="...">...</.accordion>` form remains available as a native disclosure.
+
+```heex
+<.accordion id="faq" default_expanded_keys={["orders"]}>
+  <:item key="orders" title="How do I order?">Add items to your cart and check out.</:item>
+  <:item key="returns" title="Can I return an item?">Contact us within 30 days.</:item>
+</.accordion>
+```
+
+Disclosures use native `<details>` and open and close without JavaScript. A group permits one open item by default; add `allows_multiple_expanded` to allow several. Use `default_expanded_keys` for browser-managed state or pass `expanded_keys` and `on_toggle` to manage state in LiveView. The toggle event sends the item `"key"` and the desired `"expanded"` state as `"true"` or `"false"`; update `expanded_keys` in the event handler. Alpine synchronizes state and LiveView event values. Native CSS animates the disclosure in browsers that support `::details-content` and `interpolate-size`; other browsers open and close it immediately.
 
 ```heex
 <.disclosure_group id="settings" default_expanded_keys={["account"]}>

@@ -373,7 +373,9 @@ defmodule HeroUI.Preview do
           import { installHeroUI } from "/hero_ui.js?v=dropdown";
           import { registerHeroUIAlpine } from "/hero_ui_alpine.js";
           import Alpine from "/alpine.esm.js";
+          import collapse from "/alpine-collapse.esm.js";
           window.Alpine = Alpine;
+          Alpine.plugin(collapse);
           registerHeroUIAlpine(Alpine);
           Alpine.start();
           installHeroUI();
@@ -439,12 +441,6 @@ defmodule HeroUI.Preview.Router do
     conn
     |> put_resp_content_type("text/javascript")
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "combo_box.js"])))
-  end
-
-  get "/disclosure.js" do
-    conn
-    |> put_resp_content_type("text/javascript")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "disclosure.js"])))
   end
 
   get "/toolbar.js" do
@@ -526,6 +522,17 @@ defmodule HeroUI.Preview.Router do
     |> send_resp(
       200,
       File.read!(Path.join([File.cwd!(), "node_modules", "alpinejs", "dist", "module.esm.js"]))
+    )
+  end
+
+  get "/alpine-collapse.esm.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> send_resp(
+      200,
+      File.read!(
+        Path.join([File.cwd!(), "node_modules", "@alpinejs", "collapse", "dist", "module.esm.js"])
+      )
     )
   end
 

@@ -3,7 +3,7 @@
 /cover/
 *.ez
 
-/priv/static/hero_ui.css
+/priv/static/olis_ui.css
 
 /node_modules/
 

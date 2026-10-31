@@ -1,15 +1,16 @@
-defmodule HeroUI.MixProject do
+defmodule OlisUI.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :hero_ui,
+      app: :olis_ui,
       version: "0.1.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       elixirc_paths: elixirc_paths(Mix.env()),
-      description: "HeroUI-inspired components for Phoenix LiveView"
+      description: "OlisUI components for Phoenix LiveView",
+      package: [files: ~w(lib assets LICENSES README.md THIRD_PARTY_NOTICES.md mix.exs)]
     ]
   end
 
@@ -21,6 +22,7 @@ defmodule HeroUI.MixProject do
     [
       {:phoenix_live_view, "~> 1.0"},
       {:jason, "~> 1.4"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:bandit, "~> 1.0", only: :dev},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev}
     ]

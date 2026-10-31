@@ -1,10 +1,10 @@
-unless Code.ensure_loaded?(HeroUI.Preview.Endpoint),
+unless Code.ensure_loaded?(OlisUI.Preview.Endpoint),
   do: Code.require_file("../preview/live_preview.ex", __DIR__)
 
-unless Code.ensure_loaded?(HeroUI.Preview.Router),
+unless Code.ensure_loaded?(OlisUI.Preview.Router),
   do: Code.require_file("../preview/preview.ex", __DIR__)
 
-defmodule HeroUI.PreviewAlpineModulesTest do
+defmodule OlisUI.PreviewAlpineModulesTest do
   use ExUnit.Case, async: true
   import Plug.Test
   import Plug.Conn, only: [get_resp_header: 2]
@@ -13,7 +13,7 @@ defmodule HeroUI.PreviewAlpineModulesTest do
     directory = Path.join([File.cwd!(), "assets", "js", "alpine"])
     modules = Path.wildcard(Path.join(directory, "*.js"))
     assert modules != []
-    index = conn(:get, "/hero_ui_alpine.js") |> HeroUI.Preview.Router.call([])
+    index = conn(:get, "/olis_ui_alpine.js") |> OlisUI.Preview.Router.call([])
     assert index.status == 200
 
     imported =
@@ -31,11 +31,11 @@ defmodule HeroUI.PreviewAlpineModulesTest do
       |> List.flatten()
 
     for dependency <- root_imports do
-      assert (conn(:get, "/" <> dependency) |> HeroUI.Preview.Router.call([])).status == 200
+      assert (conn(:get, "/" <> dependency) |> OlisUI.Preview.Router.call([])).status == 200
     end
 
     for path <- modules do
-      response = conn(:get, "/alpine/" <> Path.basename(path)) |> HeroUI.Preview.Router.call([])
+      response = conn(:get, "/alpine/" <> Path.basename(path)) |> OlisUI.Preview.Router.call([])
       assert response.status == 200
       assert response.resp_body == File.read!(path)
       assert get_resp_header(response, "content-type") |> hd() =~ "text/javascript"
@@ -45,17 +45,17 @@ defmodule HeroUI.PreviewAlpineModulesTest do
         |> List.flatten()
 
       for dependency <- dependencies do
-        assert (conn(:get, "/" <> dependency) |> HeroUI.Preview.Router.call([])).status == 200
+        assert (conn(:get, "/" <> dependency) |> OlisUI.Preview.Router.call([])).status == 200
       end
     end
 
     for path <- ["/alpine/__missing__.js", "/alpine/invalid.name.js"] do
-      assert (conn(:get, path) |> HeroUI.Preview.Router.call([])).status == 404
+      assert (conn(:get, path) |> OlisUI.Preview.Router.call([])).status == 404
     end
   end
 
   test "the preview serves its local font files and rejects unknown paths" do
-    stylesheet = conn(:get, "/preview-fonts/index.css") |> HeroUI.Preview.Router.call([])
+    stylesheet = conn(:get, "/preview-fonts/index.css") |> OlisUI.Preview.Router.call([])
     assert stylesheet.status == 200
 
     files =
@@ -65,12 +65,12 @@ defmodule HeroUI.PreviewAlpineModulesTest do
     assert files != []
 
     for file <- files do
-      response = conn(:get, "/preview-fonts/files/" <> file) |> HeroUI.Preview.Router.call([])
+      response = conn(:get, "/preview-fonts/files/" <> file) |> OlisUI.Preview.Router.call([])
       assert response.status == 200
       assert get_resp_header(response, "content-type") |> hd() =~ "font/woff2"
     end
 
     assert (conn(:get, "/preview-fonts/files/unknown.woff2")
-            |> HeroUI.Preview.Router.call([])).status == 404
+            |> OlisUI.Preview.Router.call([])).status == 404
   end
 end

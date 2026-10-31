@@ -1,20 +1,20 @@
-defmodule HeroUITest do
+defmodule OlisUITest do
   use ExUnit.Case, async: true
   import Phoenix.LiveViewTest
   import Phoenix.Component, only: [sigil_H: 2]
 
-  test "surface exposes HeroUI background variants without imposing layout" do
+  test "surface exposes OlisUI background variants without imposing layout" do
     slot = [%{inner_block: fn _, _ -> "Content" end}]
 
     for variant <- ~w(default secondary tertiary transparent) do
-      html = render_component(&HeroUI.surface/1, %{variant: variant, inner_block: slot})
+      html = render_component(&OlisUI.surface/1, %{variant: variant, inner_block: slot})
       assert html =~ "surface--#{variant}"
       assert html =~ ~s(data-slot="surface")
-      refute html =~ "hui-surface"
+      refute html =~ "olis-surface"
     end
 
     custom =
-      render_component(&HeroUI.surface/1, %{
+      render_component(&OlisUI.surface/1, %{
         class: "rounded-3xl p-6",
         rest: %{"data-slot" => "custom-surface", "aria-label" => "Overview"},
         inner_block: slot
@@ -27,7 +27,7 @@ defmodule HeroUITest do
 
   test "ui_form delegates to Phoenix forms, including captured form data and HTTP options" do
     html =
-      render_component(&HeroUI.ui_form/1, %{
+      render_component(&OlisUI.ui_form/1, %{
         for: %{"email" => "person@example.com"},
         as: :account,
         action: "/accounts",
@@ -48,11 +48,11 @@ defmodule HeroUITest do
     assert html =~ "account:person@example.com"
   end
 
-  test "standalone descriptions and errors use HeroUI styles and explicit visibility" do
+  test "standalone descriptions and errors use OlisUI styles and explicit visibility" do
     content = [%{inner_block: fn _, _ -> "Helpful message" end}]
 
     description =
-      render_component(&HeroUI.description/1, %{
+      render_component(&OlisUI.description/1, %{
         class: "custom",
         rest: %{id: "help"},
         inner_block: content
@@ -62,24 +62,24 @@ defmodule HeroUITest do
     assert description =~ ~s(id="help")
     assert description =~ ~s(data-slot="description")
 
-    error = render_component(&HeroUI.field_error/1, %{inner_block: content})
+    error = render_component(&OlisUI.field_error/1, %{inner_block: content})
     assert error =~ ~s(class="field-error )
     assert error =~ ~s(data-slot="field-error")
     assert error =~ ~s(data-visible="true")
     refute error =~ " hidden"
 
-    hidden = render_component(&HeroUI.field_error/1, %{visible: false, inner_block: content})
+    hidden = render_component(&OlisUI.field_error/1, %{visible: false, inner_block: content})
     assert hidden =~ "hidden"
     refute hidden =~ "data-visible"
 
-    message = render_component(&HeroUI.error_message/1, %{inner_block: content})
+    message = render_component(&OlisUI.error_message/1, %{inner_block: content})
     assert message =~ ~s(class="error-message )
     assert message =~ ~s(data-slot="error-message")
   end
 
-  test "label applies HeroUI form states and associates with the control" do
+  test "label applies OlisUI form states and associates with the control" do
     html =
-      render_component(&HeroUI.label/1, %{
+      render_component(&OlisUI.label/1, %{
         for: "email",
         required: true,
         disabled: true,
@@ -96,13 +96,13 @@ defmodule HeroUITest do
 
   test "link supports LiveView navigation, disabled state, and optional icon" do
     slot = [%{inner_block: fn _, _ -> "Settings" end}]
-    html = render_component(&HeroUI.ui_link/1, %{patch: "/settings", inner_block: slot})
+    html = render_component(&OlisUI.ui_link/1, %{patch: "/settings", inner_block: slot})
     assert html =~ ~s(href="/settings")
     assert html =~ ~s(data-phx-link="patch")
     assert html =~ ~s(data-slot="link")
 
     disabled =
-      render_component(&HeroUI.ui_link/1, %{
+      render_component(&OlisUI.ui_link/1, %{
         href: "/settings",
         disabled: true,
         rest: %{"phx-click" => "navigate", "tabindex" => "0"},
@@ -114,34 +114,34 @@ defmodule HeroUITest do
     refute disabled =~ ~s(href=)
     refute disabled =~ ~s(phx-click=)
 
-    icon = render_component(&HeroUI.link_icon/1, %{})
+    icon = render_component(&OlisUI.link_icon/1, %{})
     assert icon =~ ~s(data-slot="link-icon")
     assert icon =~ ~s(data-default-icon="true")
     assert icon =~ ~s(data-slot="link-default-icon")
 
     assert_raise ArgumentError, ~r/exactly one/, fn ->
-      render_component(&HeroUI.ui_link/1, %{href: "/one", patch: "/two", inner_block: slot})
+      render_component(&OlisUI.ui_link/1, %{href: "/one", patch: "/two", inner_block: slot})
     end
   end
 
-  test "skeleton supports the HeroUI animation variants and theme default" do
+  test "skeleton supports the OlisUI animation variants and theme default" do
     for animation <- ~w(shimmer pulse none) do
-      html = render_component(&HeroUI.skeleton/1, %{animation_type: animation, class: "h-4"})
+      html = render_component(&OlisUI.skeleton/1, %{animation_type: animation, class: "h-4"})
       assert html =~ "skeleton--#{animation}"
       assert html =~ "h-4"
       assert html =~ ~s(aria-hidden="true")
       refute html =~ "x-data"
     end
 
-    default = render_component(&HeroUI.skeleton/1, %{})
+    default = render_component(&OlisUI.skeleton/1, %{})
     assert default =~ "skeleton--shimmer"
     assert default =~ "--skeleton-animation"
     assert default =~ "x-bind:class"
   end
 
-  test "spinners use HeroUI gradients with unique IDs and accessible states" do
-    first = render_component(&HeroUI.spinner/1, %{color: "success", size: "lg"})
-    second = render_component(&HeroUI.spinner/1, %{})
+  test "spinners use OlisUI gradients with unique IDs and accessible states" do
+    first = render_component(&OlisUI.spinner/1, %{color: "success", size: "lg"})
+    second = render_component(&OlisUI.spinner/1, %{})
     assert first =~ ~s(role="status")
     assert first =~ ~s(aria-label="Loading")
     assert first =~ "spinner--success"
@@ -152,19 +152,19 @@ defmodule HeroUITest do
     refute first_id == second_id
     assert first =~ "url(##{first_id}-1)"
 
-    decorative = render_component(&HeroUI.spinner/1, %{decorative: true})
+    decorative = render_component(&OlisUI.spinner/1, %{decorative: true})
     assert decorative =~ ~s(aria-hidden="true")
     refute decorative =~ ~s(role="status")
   end
 
   test "typography uses semantic tags while supporting visual overrides" do
     slot = [%{inner_block: fn _, _ -> "Hello" end}]
-    heading = render_component(&HeroUI.typography/1, %{type: "h2", inner_block: slot})
+    heading = render_component(&OlisUI.typography/1, %{type: "h2", inner_block: slot})
     assert heading =~ "<h2 "
     assert heading =~ "typography--h2"
 
     body =
-      render_component(&HeroUI.typography/1, %{
+      render_component(&OlisUI.typography/1, %{
         type: "body-sm",
         as: "span",
         color: "muted",
@@ -181,11 +181,11 @@ defmodule HeroUITest do
     assert body =~ "typography--weight-medium"
     assert body =~ "typography--truncate"
 
-    assert render_component(&HeroUI.typography_prose/1, %{inner_block: slot}) =~
+    assert render_component(&OlisUI.typography_prose/1, %{inner_block: slot}) =~
              ~s(data-slot="prose")
 
     assert_raise ArgumentError, ~r/invalid typography/, fn ->
-      render_component(&HeroUI.typography/1, %{type: "body", as: "script", inner_block: slot})
+      render_component(&OlisUI.typography/1, %{type: "body", as: "script", inner_block: slot})
     end
   end
 
@@ -193,7 +193,7 @@ defmodule HeroUITest do
     content = [%{inner_block: fn _, _ -> "Save" end}]
 
     html =
-      render_component(&HeroUI.button/1, %{pending: true, type: "submit", inner_block: content})
+      render_component(&OlisUI.button/1, %{pending: true, type: "submit", inner_block: content})
 
     assert html =~ ~s(type="button")
     assert html =~ ~s(aria-disabled="true")
@@ -204,7 +204,7 @@ defmodule HeroUITest do
     refute html =~ ~r/<button[^>]*\sdisabled(?:=|\s|>)/
 
     normal =
-      render_component(&HeroUI.button/1, %{
+      render_component(&OlisUI.button/1, %{
         type: "submit",
         inner_block: content,
         rest: %{"data-slot" => "custom-button"}
@@ -220,10 +220,10 @@ defmodule HeroUITest do
 
     html =
       rendered_to_string(~H"""
-      <HeroUI.button_group label="Actions" variant="secondary" size="sm" disabled show_separators>
+      <OlisUI.button_group label="Actions" variant="secondary" size="sm" disabled show_separators>
         <:button on_click="action" value="copy">Copy</:button>
         <:button disabled={false} variant="outline" on_click="action" value="paste">Paste</:button>
-      </HeroUI.button_group>
+      </OlisUI.button_group>
       """)
 
     assert html =~ ~s(data-slot="button-group")
@@ -237,12 +237,12 @@ defmodule HeroUITest do
     assert html =~ ~s(value="paste")
   end
 
-  test "card supports HeroUI variants and composable sections" do
+  test "card supports OlisUI variants and composable sections" do
     assigns = %{}
 
     html =
       rendered_to_string(~H"""
-      <HeroUI.card
+      <OlisUI.card
         variant="secondary"
         heading_level={2}
         header_class="gap-1"
@@ -256,7 +256,7 @@ defmodule HeroUITest do
           <p>Body content</p>
         </:content>
         <:footer><button type="button">Save</button></:footer>
-      </HeroUI.card>
+      </OlisUI.card>
       """)
 
     assert html =~ ~s(id="profile-card")
@@ -271,7 +271,7 @@ defmodule HeroUITest do
     assert html =~ "Body content"
 
     legacy =
-      render_component(&HeroUI.card/1, %{
+      render_component(&OlisUI.card/1, %{
         inner_block: [%{inner_block: fn _, _ -> Phoenix.HTML.raw("<p>Legacy content</p>") end}]
       })
 
@@ -281,14 +281,14 @@ defmodule HeroUITest do
   end
 
   test "close button provides an accessible default and accepts custom icons" do
-    default = render_component(&HeroUI.close_button/1, %{})
+    default = render_component(&OlisUI.close_button/1, %{})
     assert default =~ ~s(type="button")
     assert default =~ ~s(aria-label="Close")
     assert default =~ ~s(data-slot="close-button-icon")
     assert default =~ "close-button--default"
 
     custom =
-      render_component(&HeroUI.close_button/1, %{
+      render_component(&OlisUI.close_button/1, %{
         disabled: true,
         rest: %{"aria-label" => "Dismiss notification", "data-slot" => "custom-close"},
         inner_block: [
@@ -305,7 +305,7 @@ defmodule HeroUITest do
 
   test "fieldset labels its group, combines descriptions, and disables native controls" do
     html =
-      render_component(&HeroUI.fieldset/1, %{
+      render_component(&OlisUI.fieldset/1, %{
         id: "profile",
         legend: "Profile",
         description: "Public details",
@@ -326,7 +326,7 @@ defmodule HeroUITest do
     assert html =~ ~s(data-slot="fieldset-actions")
 
     custom =
-      render_component(&HeroUI.fieldset/1, %{
+      render_component(&OlisUI.fieldset/1, %{
         id: "custom",
         legend_content: [%{inner_block: fn _, _ -> "Custom legend" end}],
         inner_block: [%{inner_block: fn _, _ -> "Fields" end}]
@@ -335,7 +335,7 @@ defmodule HeroUITest do
     assert custom =~ "Custom legend"
 
     assert_raise ArgumentError, ~r/requires a legend/, fn ->
-      render_component(&HeroUI.fieldset/1, %{
+      render_component(&OlisUI.fieldset/1, %{
         id: "missing",
         inner_block: [%{inner_block: fn _, _ -> "" end}]
       })
@@ -344,7 +344,7 @@ defmodule HeroUITest do
 
   test "sheet renders labelled modal content, placement, and snap configuration" do
     html =
-      render_component(&HeroUI.sheet/1, %{
+      render_component(&OlisUI.sheet/1, %{
         id: "details",
         title: "Details",
         description: "More information",
@@ -366,13 +366,13 @@ defmodule HeroUITest do
     assert html =~ ~s(data-controlled-open="false")
     assert html =~ ~s(data-snap-points-json="[200,&quot;50%&quot;]")
     assert html =~ ~s(phx-click="sheet_change")
-    assert html =~ ~s(x-data="heroSheet")
+    assert html =~ ~s(x-data="olisSheet")
     assert html =~ ~s|x-on:touchmove="touchmove($event)"|
     assert html =~ "Sheet body"
     assert html =~ "Footer"
 
     assert_raise ArgumentError, ~r/snap points/, fn ->
-      render_component(&HeroUI.sheet/1, %{
+      render_component(&OlisUI.sheet/1, %{
         id: "bad",
         title: "Bad",
         snap_points: ["bad"],
@@ -381,7 +381,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/snap points/, fn ->
-      render_component(&HeroUI.sheet/1, %{
+      render_component(&OlisUI.sheet/1, %{
         id: "bad",
         title: "Bad",
         snap_points: ["0px"],
@@ -390,7 +390,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
-      render_component(&HeroUI.sheet/1, %{
+      render_component(&OlisUI.sheet/1, %{
         id: "bad",
         title: "Bad",
         open: false,
@@ -402,7 +402,7 @@ defmodule HeroUITest do
 
   test "switches connect descriptions and errors and switch groups preserve independent controls" do
     switch =
-      render_component(&HeroUI.switch/1, %{
+      render_component(&OlisUI.switch/1, %{
         id: "news",
         name: "news",
         checked: true,
@@ -420,7 +420,7 @@ defmodule HeroUITest do
     assert switch =~ "Account activity"
 
     group =
-      render_component(&HeroUI.switch_group/1, %{
+      render_component(&OlisUI.switch_group/1, %{
         id: "preferences",
         label: "Preferences",
         description: "Control updates",
@@ -437,7 +437,7 @@ defmodule HeroUITest do
     assert group =~ ~s(name="news")
 
     assert_raise ArgumentError, ~r/requires an id/, fn ->
-      render_component(&HeroUI.switch_group/1, %{
+      render_component(&OlisUI.switch_group/1, %{
         description: "Missing id",
         inner_block: [%{inner_block: fn _, _ -> "" end}]
       })
@@ -448,7 +448,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"updates" => "true"}, as: :account)
 
     html =
-      render_component(&HeroUI.switch/1, %{
+      render_component(&OlisUI.switch/1, %{
         field: form[:updates],
         rest: %{"aria-label" => "Email updates", "aria-describedby" => "external-help"},
         description: "News and updates"
@@ -463,7 +463,7 @@ defmodule HeroUITest do
     assert html =~ ~s(data-slot="switch-control")
 
     unchecked =
-      render_component(&HeroUI.switch/1, %{
+      render_component(&OlisUI.switch/1, %{
         field: form[:updates],
         checked: false,
         rest: %{"aria-label" => "Email updates"}
@@ -472,11 +472,11 @@ defmodule HeroUITest do
     refute unchecked =~ ~r/<input[^>]*\schecked(?:\s|>|=)/
 
     assert_raise ArgumentError, ~r/requires a label/, fn ->
-      render_component(&HeroUI.switch/1, %{id: "unlabelled"})
+      render_component(&OlisUI.switch/1, %{id: "unlabelled"})
     end
 
     assert_raise ArgumentError, ~r/requires an id or field/, fn ->
-      render_component(&HeroUI.switch/1, %{rest: %{"aria-label" => "Missing id"}})
+      render_component(&OlisUI.switch/1, %{rest: %{"aria-label" => "Missing id"}})
     end
   end
 
@@ -484,7 +484,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Locked" end}]
 
     readonly =
-      render_component(&HeroUI.switch/1, %{
+      render_component(&OlisUI.switch/1, %{
         id: "locked",
         name: "locked",
         checked: true,
@@ -500,7 +500,7 @@ defmodule HeroUITest do
     assert readonly =~ "x-on:click.capture"
 
     external =
-      render_component(&HeroUI.switch/1, %{
+      render_component(&OlisUI.switch/1, %{
         id: "external",
         rest: %{"aria-label" => "Locked", "aria-readonly" => "true"}
       })
@@ -512,7 +512,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"country" => "jp"}, as: :trip)
 
     html =
-      render_component(&HeroUI.autocomplete/1, %{
+      render_component(&OlisUI.autocomplete/1, %{
         field: form[:country],
         label: "Destination",
         options: [{"Japan", "jp"}, [key: "France", value: "fr", disabled: true]],
@@ -525,15 +525,15 @@ defmodule HeroUITest do
     assert html =~ ~s(selected value="jp")
     assert html =~ ~s(disabled value="fr")
     assert html =~ ~s(aria-describedby="trip_country-description")
-    assert html =~ ~s(data-hero-autocomplete-native)
-    assert html =~ ~s(data-hero-autocomplete-search)
-    assert html =~ ~s(data-hero-autocomplete-clear)
-    assert html =~ ~s(x-data="heroAutocomplete")
+    assert html =~ ~s(data-olis-autocomplete-native)
+    assert html =~ ~s(data-olis-autocomplete-search)
+    assert html =~ ~s(data-olis-autocomplete-clear)
+    assert html =~ ~s(x-data="olisAutocomplete")
     assert html =~ ~s|x-on:reset.document="reset($event)"|
     assert html =~ ~s(popover="auto")
 
     multiple =
-      render_component(&HeroUI.autocomplete/1, %{
+      render_component(&OlisUI.autocomplete/1, %{
         id: "places",
         name: "places",
         label: "Places",
@@ -548,7 +548,7 @@ defmodule HeroUITest do
     assert multiple =~ ~s(selected value="es")
 
     assert_raise ArgumentError, ~r/requires a list value/, fn ->
-      render_component(&HeroUI.autocomplete/1, %{
+      render_component(&OlisUI.autocomplete/1, %{
         id: "bad",
         label: "Bad",
         options: [],
@@ -562,7 +562,7 @@ defmodule HeroUITest do
     content = [%{inner_block: fn _, _ -> "Scrollable content" end}]
 
     auto =
-      render_component(&HeroUI.scroll_shadow/1, %{
+      render_component(&OlisUI.scroll_shadow/1, %{
         id: "feed",
         inner_block: content,
         class: "max-h-48",
@@ -570,7 +570,7 @@ defmodule HeroUITest do
       })
 
     assert auto =~ ~s(data-scroll-shadow-mode="auto")
-    assert auto =~ ~s(x-data="heroScrollShadow")
+    assert auto =~ ~s(x-data="olisScrollShadow")
     assert auto =~ ~s|x-on:phx:update.window="schedule()"|
     assert auto =~ ~s|x-on:scroll="schedule()"|
     assert auto =~ "scroll-shadow--vertical"
@@ -581,7 +581,7 @@ defmodule HeroUITest do
     refute auto =~ ~s(style=)
 
     manual =
-      render_component(&HeroUI.scroll_shadow/1, %{
+      render_component(&OlisUI.scroll_shadow/1, %{
         inner_block: content,
         orientation: "horizontal",
         visibility: "both",
@@ -598,7 +598,7 @@ defmodule HeroUITest do
     assert manual =~ "--scroll-shadow-offset: 8px"
 
     disabled =
-      render_component(&HeroUI.scroll_shadow/1, %{
+      render_component(&OlisUI.scroll_shadow/1, %{
         inner_block: content,
         visibility: "both",
         enabled: false
@@ -608,7 +608,7 @@ defmodule HeroUITest do
     refute disabled =~ ~s(data-top-bottom-scroll="true")
 
     assert_raise ArgumentError, ~r/non-negative integers/, fn ->
-      render_component(&HeroUI.scroll_shadow/1, %{inner_block: content, size: -1})
+      render_component(&OlisUI.scroll_shadow/1, %{inner_block: content, size: -1})
     end
   end
 
@@ -616,7 +616,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"starts_at" => "09:30"}, as: :meeting)
 
     html =
-      render_component(&HeroUI.time_field/1, %{
+      render_component(&OlisUI.time_field/1, %{
         field: form[:starts_at],
         label: "Starts at",
         min: "09:00",
@@ -635,14 +635,14 @@ defmodule HeroUITest do
     assert html =~ ~s(max="17:00:00")
     assert html =~ ~s(step="1")
     assert html =~ ~s(data-hour-cycle="24")
-    assert html =~ ~s(x-data="heroTimeField")
+    assert html =~ ~s(x-data="olisTimeField")
     assert html =~ ~s|x-on:reset.document="reset($event)"|
     assert html =~ ~s(aria-invalid="true")
     assert html =~ ~s(aria-describedby="meeting_starts_at-description meeting_starts_at-errors")
     assert html =~ "is too early"
 
     assert_raise ArgumentError, ~r/min must not exceed max/, fn ->
-      render_component(&HeroUI.time_field/1, %{
+      render_component(&OlisUI.time_field/1, %{
         id: "invalid",
         label: "Time",
         min: "18:00",
@@ -651,7 +651,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/bounds must be ISO 8601 times/, fn ->
-      render_component(&HeroUI.time_field/1, %{id: "invalid", label: "Time", min: "25:00"})
+      render_component(&OlisUI.time_field/1, %{id: "invalid", label: "Time", min: "25:00"})
     end
   end
 
@@ -663,7 +663,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.avatar_group/1, %{
+      render_component(&OlisUI.avatar_group/1, %{
         avatar: people,
         size: "lg",
         color: "accent",
@@ -686,7 +686,7 @@ defmodule HeroUITest do
     assert html =~ "+1"
 
     custom =
-      render_component(&HeroUI.avatar_group/1, %{
+      render_component(&OlisUI.avatar_group/1, %{
         avatar: people,
         max: 1,
         grid: true,
@@ -699,19 +699,19 @@ defmodule HeroUITest do
     assert custom =~ "+9"
     refute custom =~ "+2"
 
-    none = render_component(&HeroUI.avatar_group/1, %{avatar: people, max: 0, overlap: "ring"})
+    none = render_component(&OlisUI.avatar_group/1, %{avatar: people, max: 0, overlap: "ring"})
     assert none =~ "avatar-group--ring"
     assert none =~ ~s(aria-label="3 more")
     refute none =~ ~s(aria-label="Jane Doe")
 
     assert_raise ArgumentError, ~r/non-negative integer/, fn ->
-      render_component(&HeroUI.avatar_group/1, %{avatar: people, max: -1})
+      render_component(&OlisUI.avatar_group/1, %{avatar: people, max: -1})
     end
   end
 
   test "disclosures render native state, accessible content, and disabled triggers" do
     html =
-      render_component(&HeroUI.disclosure/1, %{
+      render_component(&OlisUI.disclosure/1, %{
         id: "details",
         title: "Details",
         open: true,
@@ -723,7 +723,7 @@ defmodule HeroUITest do
     assert html =~ ~s(aria-controls="details-content")
     assert html =~ ~s(aria-labelledby="details-trigger")
     assert html =~ ~s(aria-expanded="true")
-    assert html =~ ~s(x-data="heroDisclosure")
+    assert html =~ ~s(x-data="olisDisclosure")
     assert html =~ ~s|x-bind:phx-value-expanded="(!expanded).toString()"|
     assert html =~ ~s(aria-disabled="true")
     assert html =~ ~s(tabindex="-1")
@@ -738,7 +738,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.disclosure_group/1, %{
+      render_component(&OlisUI.disclosure_group/1, %{
         id: "group",
         item: items,
         expanded_keys: ["one"],
@@ -751,7 +751,7 @@ defmodule HeroUITest do
     assert html =~ ~s(phx-click="toggle")
 
     multiple =
-      render_component(&HeroUI.disclosure_group/1, %{
+      render_component(&OlisUI.disclosure_group/1, %{
         id: "multiple",
         item: items,
         allows_multiple_expanded: true,
@@ -762,14 +762,14 @@ defmodule HeroUITest do
     refute multiple =~ ~s(name="multiple-disclosure-group")
 
     assert_raise ArgumentError, ~r/keys must be unique/, fn ->
-      render_component(&HeroUI.disclosure_group/1, %{
+      render_component(&OlisUI.disclosure_group/1, %{
         id: "duplicate",
         item: [hd(items), hd(items)]
       })
     end
 
     assert_raise ArgumentError, ~r/at most one expanded key/, fn ->
-      render_component(&HeroUI.disclosure_group/1, %{
+      render_component(&OlisUI.disclosure_group/1, %{
         id: "exclusive",
         item: items,
         expanded_keys: ["one", "two"]
@@ -779,7 +779,7 @@ defmodule HeroUITest do
 
   test "button renders a safe default and forwards LiveView attributes" do
     html =
-      render_component(&HeroUI.button/1, %{
+      render_component(&OlisUI.button/1, %{
         inner_block: [%{inner_block: fn _, _ -> "Save" end}],
         "phx-click": "save"
       })
@@ -791,7 +791,7 @@ defmodule HeroUITest do
 
   test "field connects its label, description and errors" do
     html =
-      render_component(&HeroUI.text_field/1, %{
+      render_component(&OlisUI.text_field/1, %{
         id: "email",
         name: "user[email]",
         label: "Email",
@@ -808,7 +808,7 @@ defmodule HeroUITest do
     assert html =~ "is invalid"
 
     multiline =
-      render_component(&HeroUI.text_field/1, %{
+      render_component(&OlisUI.text_field/1, %{
         id: "bio",
         name: "bio",
         label: "Biography",
@@ -825,12 +825,12 @@ defmodule HeroUITest do
     assert multiline =~ "Hello</textarea>"
 
     accessible =
-      render_component(&HeroUI.text_field/1, %{id: "search", rest: %{"aria-label" => "Search"}})
+      render_component(&OlisUI.text_field/1, %{id: "search", rest: %{"aria-label" => "Search"}})
 
     assert accessible =~ ~s(aria-label="Search")
 
     assert_raise ArgumentError, ~r/requires a label/, fn ->
-      render_component(&HeroUI.text_field/1, %{id: "unlabelled"})
+      render_component(&OlisUI.text_field/1, %{id: "unlabelled"})
     end
   end
 
@@ -838,7 +838,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"price" => "10"}, as: :order)
 
     html =
-      render_component(&HeroUI.input_group/1, %{
+      render_component(&OlisUI.input_group/1, %{
         field: form[:price],
         label: "Price",
         description: "Before tax",
@@ -854,11 +854,11 @@ defmodule HeroUITest do
     assert html =~ "input-group__prefix"
     assert html =~ "input-group__suffix"
     assert html =~ ~s(data-visible="true")
-    assert html =~ ~s(x-data="heroInputGroup")
+    assert html =~ ~s(x-data="olisInputGroup")
     assert html =~ ~s|x-on:click="focusInput($event)"|
 
     multiline =
-      render_component(&HeroUI.input_group/1, %{
+      render_component(&OlisUI.input_group/1, %{
         id: "note",
         label: "Note",
         multiline: true,
@@ -871,7 +871,7 @@ defmodule HeroUITest do
 
   test "form field supplies its id, name and value" do
     form = Phoenix.Component.to_form(%{"email" => "hello@example.com"}, as: :user)
-    html = render_component(&HeroUI.text_field/1, %{field: form[:email], label: "Email"})
+    html = render_component(&OlisUI.text_field/1, %{field: form[:email], label: "Email"})
     assert html =~ ~s(id="user_email")
     assert html =~ ~s(name="user[email]")
     assert html =~ ~s(value="hello@example.com")
@@ -881,7 +881,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"query" => "phoenix"}, as: :search)
 
     html =
-      render_component(&HeroUI.search_field/1, %{
+      render_component(&OlisUI.search_field/1, %{
         field: form[:query],
         label: "Search",
         description: "Enter a query",
@@ -893,8 +893,8 @@ defmodule HeroUITest do
     assert html =~ ~s(value="phoenix")
     assert html =~ ~s(for="search_query")
     assert html =~ ~s(aria-describedby="search_query-errors")
-    assert html =~ ~s(data-hero-search-clear)
-    assert html =~ ~s(x-data="heroSearchField")
+    assert html =~ ~s(data-olis-search-clear)
+    assert html =~ ~s(x-data="olisSearchField")
     assert html =~ ~s|x-on:click="clear()"|
     assert html =~ ~s(x-bind:disabled="empty || locked")
     assert html =~ ~s(data-invalid="true")
@@ -905,7 +905,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"code" => "12"}, as: :verification)
 
     html =
-      render_component(&HeroUI.input_otp/1, %{
+      render_component(&OlisUI.input_otp/1, %{
         field: form[:code],
         label: "Verification code",
         length: 4,
@@ -920,13 +920,13 @@ defmodule HeroUITest do
     assert html =~ ~s(autocomplete="one-time-code")
     assert html =~ ~s(aria-describedby="verification_code-errors")
     assert html =~ ~s(data-visible="true")
-    assert length(Regex.scan(~r/data-hero-otp-index=/, html)) == 4
+    assert length(Regex.scan(~r/data-olis-otp-index=/, html)) == 4
     assert length(Regex.scan(~r/input-otp__separator/, html)) == 1
-    assert html =~ ~s(x-data="heroInputOTP")
+    assert html =~ ~s(x-data="olisInputOTP")
     assert html =~ ~s|x-on:compositionend="onInput($event)"|
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.input_otp/1, %{id: "invalid", length: 4, groups: [3, 3]})
+      render_component(&OlisUI.input_otp/1, %{id: "invalid", length: 4, groups: [3, 3]})
     end
   end
 
@@ -937,7 +937,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "topics",
         label: "Topics",
         tag: tags,
@@ -956,7 +956,7 @@ defmodule HeroUITest do
     assert html =~ ~s(phx-click="remove")
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "bad",
         label: "Bad",
         tag: tags,
@@ -970,7 +970,7 @@ defmodule HeroUITest do
     tags = [%{value: "news", label: "News"}, %{value: "travel", label: "Travel", disabled: true}]
 
     html =
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "topics-custom",
         label: "Topics",
         tag: tags,
@@ -997,10 +997,10 @@ defmodule HeroUITest do
       render_component(
         fn assigns ->
           ~H"""
-          <HeroUI.tag_group id="label-only" label="Topics" on_remove="remove">
+          <OlisUI.tag_group id="label-only" label="Topics" on_remove="remove">
             <:tag value="news" label="News" />
             <:remove_button value="news" label="Delete news" />
-          </HeroUI.tag_group>
+          </OlisUI.tag_group>
           """
         end,
         %{}
@@ -1010,17 +1010,17 @@ defmodule HeroUITest do
     assert label_only =~ ~s(<svg aria-hidden="true")
 
     no_remove =
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "no-remove",
         label: "Topics",
         tag: tags,
         remove_button: [%{value: "news", label: "Delete news"}]
       })
 
-    refute no_remove =~ "data-hero-tag-remove"
+    refute no_remove =~ "data-olis-tag-remove"
 
     assert_raise ArgumentError, ~r/remove button values must be unique/, fn ->
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "duplicate",
         label: "Topics",
         tag: tags,
@@ -1029,7 +1029,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/remove button labels must not be empty/, fn ->
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "blank",
         label: "Topics",
         tag: tags,
@@ -1040,7 +1040,7 @@ defmodule HeroUITest do
 
   test "tag group accepts LiveView JS commands for selection and removal" do
     html =
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "languages",
         label: "Languages",
         tag: [%{value: "elixir", label: "Elixir"}],
@@ -1059,7 +1059,7 @@ defmodule HeroUITest do
     tags = [%{value: "news", label: "News"}, %{value: "travel", label: "Travel"}]
 
     uncontrolled =
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "topics-local",
         label: "Topics",
         tag: tags,
@@ -1074,7 +1074,7 @@ defmodule HeroUITest do
     assert uncontrolled =~ ~r/aria-label="News"[^>]*aria-selected="true"/s
 
     controlled =
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "topics-control",
         label: "Topics",
         tag: tags,
@@ -1087,7 +1087,7 @@ defmodule HeroUITest do
     assert controlled =~ ~r/aria-label="Travel"[^>]*aria-selected="true"/s
 
     legacy =
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "topics-legacy",
         label: "Topics",
         tag: tags,
@@ -1099,7 +1099,7 @@ defmodule HeroUITest do
     assert legacy =~ ~s(phx-click="select")
 
     assert_raise ArgumentError, ~r/selected or selected_keys/, fn ->
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "bad",
         label: "Bad",
         tag: tags,
@@ -1109,7 +1109,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/unique strings/, fn ->
-      render_component(&HeroUI.tag_group/1, %{
+      render_component(&OlisUI.tag_group/1, %{
         id: "bad",
         label: "Bad",
         tag: tags,
@@ -1122,7 +1122,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Notifications" end}]
 
     checkbox =
-      render_component(&HeroUI.checkbox/1, %{
+      render_component(&OlisUI.checkbox/1, %{
         id: "check",
         name: "enabled",
         checked: true,
@@ -1132,36 +1132,36 @@ defmodule HeroUITest do
     assert checkbox =~ ~s(type="checkbox")
     assert checkbox =~ ~s(checked)
     assert checkbox =~ ~s(for="check")
-    switch = render_component(&HeroUI.switch/1, %{id: "switch", inner_block: slot})
+    switch = render_component(&OlisUI.switch/1, %{id: "switch", inner_block: slot})
     assert switch =~ ~s(role="switch")
     assert switch =~ "Notifications"
   end
 
   test "progress reports determinate and indeterminate values" do
-    html = render_component(&HeroUI.progress_bar/1, %{label: "Upload", value: 25, max: 50})
+    html = render_component(&OlisUI.progress_bar/1, %{label: "Upload", value: 25, max: 50})
     assert html =~ ~s(aria-valuenow="25")
     assert html =~ "50%"
-    default = render_component(&HeroUI.progress_bar/1, %{label: "Loading"})
+    default = render_component(&OlisUI.progress_bar/1, %{label: "Loading"})
     assert default =~ ~s(aria-valuenow="0")
 
     indeterminate =
-      render_component(&HeroUI.progress_bar/1, %{label: "Loading", indeterminate: true})
+      render_component(&OlisUI.progress_bar/1, %{label: "Loading", indeterminate: true})
 
     refute indeterminate =~ "aria-valuenow"
     assert indeterminate =~ "progress-bar__fill"
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.progress_bar/1, %{label: "Upload", value: 101})
+      render_component(&OlisUI.progress_bar/1, %{label: "Upload", value: 101})
     end
   end
 
   test "textarea escapes its value and radio keeps native form semantics" do
-    html = render_component(&HeroUI.textarea/1, %{id: "notes", value: "<hello>"})
+    html = render_component(&OlisUI.textarea/1, %{id: "notes", value: "<hello>"})
     assert html =~ "&lt;hello&gt;"
     slot = [%{inner_block: fn _, _ -> "Pro" end}]
 
     radio =
-      render_component(&HeroUI.radio/1, %{
+      render_component(&OlisUI.radio/1, %{
         id: "pro",
         name: "plan",
         value: "pro",
@@ -1175,7 +1175,7 @@ defmodule HeroUITest do
 
   test "select marks the selected option and accordion uses native disclosure" do
     select =
-      render_component(&HeroUI.select/1, %{
+      render_component(&OlisUI.select/1, %{
         id: "plan",
         name: "plan",
         options: [{"Starter", "starter"}, {"Pro", "pro"}],
@@ -1184,7 +1184,7 @@ defmodule HeroUITest do
 
     assert select =~ ~s(selected value="pro")
     slot = [%{inner_block: fn _, _ -> "Details" end}]
-    accordion = render_component(&HeroUI.accordion/1, %{title: "More", inner_block: slot})
+    accordion = render_component(&OlisUI.accordion/1, %{title: "More", inner_block: slot})
     assert accordion =~ "<details"
     assert accordion =~ "<summary"
     assert accordion =~ "Details"
@@ -1195,10 +1195,10 @@ defmodule HeroUITest do
 
     heex =
       rendered_to_string(~H"""
-      <HeroUI.accordion id="heex-example">
+      <OlisUI.accordion id="heex-example">
         <:item key="first" title="First">First panel</:item>
         <:item key="second" title="Second">Second panel</:item>
-      </HeroUI.accordion>
+      </OlisUI.accordion>
       """)
 
     assert heex =~ "First panel"
@@ -1214,7 +1214,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.accordion/1, %{
+      render_component(&OlisUI.accordion/1, %{
         id: "faq",
         item: items,
         expanded_keys: ["orders"],
@@ -1233,10 +1233,10 @@ defmodule HeroUITest do
     assert html =~ ~s(phx-click="faq_change")
     assert html =~ "accordion--surface"
     assert html =~ "<h2"
-    assert html =~ ~s(x-data="heroAccordion")
+    assert html =~ ~s(x-data="olisAccordion")
 
     assert_raise ArgumentError, ~r/at most one/, fn ->
-      render_component(&HeroUI.accordion/1, %{
+      render_component(&OlisUI.accordion/1, %{
         id: "faq",
         item: items,
         default_expanded_keys: ["orders", "returns"]
@@ -1244,7 +1244,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/distinct item keys/, fn ->
-      render_component(&HeroUI.accordion/1, %{
+      render_component(&OlisUI.accordion/1, %{
         id: "faq",
         item: items,
         expanded_keys: ["missing"]
@@ -1256,7 +1256,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"animal" => "dog"}, as: :pet)
 
     html =
-      render_component(&HeroUI.combo_box/1, %{
+      render_component(&OlisUI.combo_box/1, %{
         field: form[:animal],
         label: "Animal",
         options: [{"Cat", "cat"}, {"Dog", "dog"}],
@@ -1270,15 +1270,15 @@ defmodule HeroUITest do
     assert html =~ ~s(aria-describedby="pet_animal-errors")
     assert html =~ ~s(role="combobox")
     assert html =~ ~s(aria-controls="pet_animal-listbox")
-    assert html =~ ~s(data-hero-combo-native)
-    assert html =~ ~s(x-data="heroComboBox")
+    assert html =~ ~s(data-olis-combo-native)
+    assert html =~ ~s(x-data="olisComboBox")
     assert html =~ ~s|x-on:input="input($event)"|
     assert html =~ ~s|x-on:reset.window="reset($event)"|
   end
 
   test "custom combo box has a text input and datalist without JavaScript" do
     html =
-      render_component(&HeroUI.combo_box/1, %{
+      render_component(&OlisUI.combo_box/1, %{
         id: "pet",
         name: "animal",
         label: "Animal",
@@ -1298,7 +1298,7 @@ defmodule HeroUITest do
 
   test "multiple combo box submits a list with selected options and required validation" do
     html =
-      render_component(&HeroUI.combo_box/1, %{
+      render_component(&OlisUI.combo_box/1, %{
         id: "pets",
         name: "pets",
         label: "Pets",
@@ -1314,10 +1314,10 @@ defmodule HeroUITest do
     assert html =~ ~s(selected value="cat")
     assert html =~ ~s(selected value="dog")
     assert html =~ ~s(aria-multiselectable="true")
-    assert html =~ ~s(data-hero-combo-value)
+    assert html =~ ~s(data-olis-combo-value)
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.combo_box/1, %{
+      render_component(&OlisUI.combo_box/1, %{
         id: "bad",
         label: "Bad",
         selection_mode: "multiple",
@@ -1331,7 +1331,7 @@ defmodule HeroUITest do
     inner = [%{inner_block: fn _, _ -> "Actions" end}]
 
     html =
-      render_component(&HeroUI.toolbar/1, %{
+      render_component(&OlisUI.toolbar/1, %{
         id: "tools",
         label: "Editing",
         orientation: "vertical",
@@ -1344,13 +1344,13 @@ defmodule HeroUITest do
     assert html =~ ~s(aria-orientation="vertical")
     assert html =~ "toolbar--vertical"
     assert html =~ "toolbar--attached"
-    assert html =~ "data-hero-toolbar"
-    assert html =~ ~s(x-data="heroToolbar")
+    assert html =~ "data-olis-toolbar"
+    assert html =~ ~s(x-data="olisToolbar")
     assert html =~ ~s|x-on:keydown="onKeyDown($event)"|
     assert html =~ "Actions"
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.toolbar/1, %{inner_block: inner})
+      render_component(&OlisUI.toolbar/1, %{inner_block: inner})
     end
   end
 
@@ -1358,7 +1358,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"color" => "#abc"}, as: :theme)
 
     html =
-      render_component(&HeroUI.color_field/1, %{
+      render_component(&OlisUI.color_field/1, %{
         field: form[:color],
         label: "Brand color",
         description: "Enter a color",
@@ -1368,14 +1368,14 @@ defmodule HeroUITest do
     assert html =~ ~s(name="theme[color]")
     assert html =~ ~s(value="#AABBCC")
     assert html =~ ~s(aria-describedby="theme_color-description")
-    assert html =~ ~s(data-hero-color-preview)
+    assert html =~ ~s(data-olis-color-preview)
     assert html =~ ~s(data-channel="hex")
-    assert html =~ ~s(x-data="heroColorField")
+    assert html =~ ~s(x-data="olisColorField")
     assert html =~ ~s|x-on:submit.window.capture="submit($event)"|
     assert html =~ "pattern=\"#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})\""
 
     alpha =
-      render_component(&HeroUI.color_field/1, %{
+      render_component(&OlisUI.color_field/1, %{
         id: "alpha",
         label: "Alpha color",
         value: "#abcd",
@@ -1385,7 +1385,7 @@ defmodule HeroUITest do
     assert alpha =~ ~s(value="#AABBCCDD")
 
     channel =
-      render_component(&HeroUI.color_field/1, %{
+      render_component(&OlisUI.color_field/1, %{
         id: "hue",
         label: "Hue",
         channel: "hue",
@@ -1395,10 +1395,10 @@ defmodule HeroUITest do
     assert channel =~ ~s(type="number")
     assert channel =~ ~s(min="0")
     assert channel =~ ~s(max="360")
-    refute channel =~ ~s(data-hero-color-preview)
+    refute channel =~ ~s(data-olis-color-preview)
 
     invalid =
-      render_component(&HeroUI.color_field/1, %{
+      render_component(&OlisUI.color_field/1, %{
         id: "bad-color",
         label: "Color",
         value: "invalid",
@@ -1412,7 +1412,7 @@ defmodule HeroUITest do
 
   test "color swatches and palettes expose native, labelled form controls" do
     swatch =
-      render_component(&HeroUI.color_swatch/1, %{
+      render_component(&OlisUI.color_swatch/1, %{
         color: "#ff000080",
         label: "Translucent red",
         size: "lg",
@@ -1432,7 +1432,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.color_swatch_picker/1, %{
+      render_component(&OlisUI.color_swatch_picker/1, %{
         field: form[:accent],
         label: "Accent",
         description: "Pick one",
@@ -1449,7 +1449,7 @@ defmodule HeroUITest do
     assert html =~ ~r/value="#FACC15"[^>]*disabled/
 
     equivalent =
-      render_component(&HeroUI.color_swatch_picker/1, %{
+      render_component(&OlisUI.color_swatch_picker/1, %{
         id: "equivalent",
         label: "Accent",
         value: "#8b5cf6ff",
@@ -1459,7 +1459,7 @@ defmodule HeroUITest do
     assert equivalent =~ ~r/value="#8B5CF6"[^>]*checked/
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.color_swatch_picker/1, %{
+      render_component(&OlisUI.color_swatch_picker/1, %{
         id: "dup",
         label: "Colors",
         option: [hd(options), hd(options)]
@@ -1467,13 +1467,13 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.color_swatch/1, %{color: "red; background: url(evil)"})
+      render_component(&OlisUI.color_swatch/1, %{color: "red; background: url(evil)"})
     end
   end
 
   test "toast region exposes placement and queue settings" do
     html =
-      render_component(&HeroUI.toast_region/1, %{
+      render_component(&OlisUI.toast_region/1, %{
         id: "alerts",
         placement: "top-end",
         max_visible: 2,
@@ -1495,23 +1495,23 @@ defmodule HeroUITest do
 
     custom =
       rendered_to_string(~H"""
-      <HeroUI.toast_region id="custom-toasts">
+      <OlisUI.toast_region id="custom-toasts">
         <:indicator name="star"><span>★</span></:indicator>
-      </HeroUI.toast_region>
+      </OlisUI.toast_region>
       """)
 
     assert custom =~ "data-indicators=\"[&quot;star&quot;]\""
     assert custom =~ "<span>★</span>"
 
     assert_raise ArgumentError, ~r/indicator names/, fn ->
-      render_component(&HeroUI.toast_region/1, %{
+      render_component(&OlisUI.toast_region/1, %{
         id: "invalid-indicators",
         indicator: [%{name: "bad name", inner_block: fn _, _ -> "!" end}]
       })
     end
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.toast_region/1, %{id: "bad", max_visible: 0})
+      render_component(&OlisUI.toast_region/1, %{id: "bad", max_visible: 0})
     end
   end
 
@@ -1519,7 +1519,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"day" => "2026-10-15"}, as: :event)
 
     html =
-      render_component(&HeroUI.date_field/1, %{
+      render_component(&OlisUI.date_field/1, %{
         field: form[:day],
         label: "Event date",
         description: "Pick a date",
@@ -1534,11 +1534,11 @@ defmodule HeroUITest do
     assert html =~ ~s(min="2026-01-01")
     assert html =~ ~s(max="2026-12-31")
     assert html =~ ~s(aria-describedby="event_day-description event_day-errors")
-    assert html =~ ~s(data-hero-date-segments)
+    assert html =~ ~s(data-olis-date-segments)
     assert html =~ "is invalid"
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.date_field/1, %{
+      render_component(&OlisUI.date_field/1, %{
         id: "bad",
         label: "Bad",
         min: ~D[2026-12-01],
@@ -1551,7 +1551,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"day" => "2026-10-15"}, as: :event)
 
     html =
-      render_component(&HeroUI.date_picker/1, %{
+      render_component(&OlisUI.date_picker/1, %{
         field: form[:day],
         label: "Event date",
         min: ~D[2026-09-01],
@@ -1561,10 +1561,10 @@ defmodule HeroUITest do
       })
 
     assert length(Regex.scan(~r/name="event\[day\]"/, html)) == 1
-    assert html =~ ~s(data-hero-date-picker-trigger)
+    assert html =~ ~s(data-olis-date-picker-trigger)
     assert html =~ ~s(aria-controls="event_day-picker-popover")
     assert html =~ ~s(form="event_day-picker-detached")
-    assert html =~ ~s(data-hero-calendar)
+    assert html =~ ~s(data-olis-calendar)
     assert html =~ "2026-10-18"
     assert html =~ ~s(value="2026-10-15")
   end
@@ -1573,7 +1573,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"day" => "2026-10-15"}, as: :event)
 
     html =
-      render_component(&HeroUI.calendar/1, %{
+      render_component(&OlisUI.calendar/1, %{
         field: form[:day],
         label: "Event date",
         min: ~D[2026-09-01],
@@ -1592,11 +1592,11 @@ defmodule HeroUITest do
     assert html =~ ~s(max="2026-12-31")
     assert html =~ "2026-10-18"
     assert html =~ ~s(aria-describedby="event_day-errors")
-    assert html =~ ~s(data-hero-calendar-view)
+    assert html =~ ~s(data-olis-calendar-view)
     assert html =~ ~s(data-year-picker="true")
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.calendar/1, %{
+      render_component(&OlisUI.calendar/1, %{
         id: "bad",
         label: "Bad",
         min: ~D[2026-12-01],
@@ -1605,7 +1605,7 @@ defmodule HeroUITest do
     end
 
     invalid =
-      render_component(&HeroUI.calendar/1, %{
+      render_component(&OlisUI.calendar/1, %{
         id: "invalid-day",
         label: "Date",
         value: "not-a-date",
@@ -1620,7 +1620,7 @@ defmodule HeroUITest do
     form = Phoenix.Component.to_form(%{"start" => "2026-10-12", "end" => "2026-10-16"}, as: :stay)
 
     html =
-      render_component(&HeroUI.range_calendar/1, %{
+      render_component(&OlisUI.range_calendar/1, %{
         id: "stay",
         label: "Trip dates",
         start_field: form[:start],
@@ -1645,7 +1645,7 @@ defmodule HeroUITest do
     assert html =~ "2026-10-18"
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.range_calendar/1, %{
+      render_component(&OlisUI.range_calendar/1, %{
         id: "bad",
         label: "Bad",
         min: ~D[2026-12-01],
@@ -1654,16 +1654,16 @@ defmodule HeroUITest do
     end
   end
 
-  test "components use official HeroUI classes and expose invalid input state" do
+  test "components use official OlisUI classes and expose invalid input state" do
     slot = [%{inner_block: fn _, _ -> "Ready" end}]
 
     chip =
-      render_component(&HeroUI.chip/1, %{color: "success", variant: "soft", inner_block: slot})
+      render_component(&OlisUI.chip/1, %{color: "success", variant: "soft", inner_block: slot})
 
     assert chip =~ "chip--success"
     assert chip =~ "chip--soft"
     assert chip =~ "chip__label"
-    input = render_component(&HeroUI.input/1, %{id: "email", invalid: true, full_width: true})
+    input = render_component(&OlisUI.input/1, %{id: "email", invalid: true, full_width: true})
     assert input =~ ~s(data-invalid="true")
     assert input =~ "input--full-width"
   end
@@ -1673,11 +1673,11 @@ defmodule HeroUITest do
 
     html =
       rendered_to_string(~H"""
-      <HeroUI.chip color="success" title="Published status">
+      <OlisUI.chip color="success" title="Published status">
         <:prefix><svg data-test-icon="leading" aria-hidden="true"></svg></:prefix>
         Published
         <:suffix><svg data-test-icon="trailing" aria-hidden="true"></svg></:suffix>
-      </HeroUI.chip>
+      </OlisUI.chip>
       """)
 
     assert html =~ ~s(data-slot="chip")
@@ -1691,11 +1691,11 @@ defmodule HeroUITest do
 
     composed =
       rendered_to_string(~H"""
-      <HeroUI.chip wrap_label={false}>
-        <span data-test-custom>Custom</span><HeroUI.chip_label class="font-bold">
+      <OlisUI.chip wrap_label={false}>
+        <span data-test-custom>Custom</span><OlisUI.chip_label class="font-bold">
           Text
-        </HeroUI.chip_label>
-      </HeroUI.chip>
+        </OlisUI.chip_label>
+      </OlisUI.chip>
       """)
 
     assert length(Regex.scan(~r/data-slot="chip-label"/, composed)) == 1
@@ -1707,7 +1707,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Details" end}]
 
     html =
-      render_component(&HeroUI.modal/1, %{
+      render_component(&OlisUI.modal/1, %{
         id: "edit",
         title: "Edit profile",
         dismissible: false,
@@ -1717,8 +1717,8 @@ defmodule HeroUITest do
     assert html =~ ~s(<dialog)
     assert html =~ ~s(aria-labelledby="edit-title")
     assert html =~ ~s(data-dismissible="false")
-    assert html =~ "data-hero-dialog-close"
-    assert html =~ ~s(x-data="heroDialog")
+    assert html =~ "data-olis-dialog-close"
+    assert html =~ ~s(x-data="olisDialog")
     assert html =~ ~s|x-on:cancel="onCancel($event)"|
     assert html =~ "Details"
     assert html =~ "phx-mounted"
@@ -1728,7 +1728,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Details" end}]
 
     html =
-      render_component(&HeroUI.modal/1, %{
+      render_component(&OlisUI.modal/1, %{
         id: "settings",
         title: "Settings",
         description: "Change settings.",
@@ -1752,10 +1752,10 @@ defmodule HeroUITest do
     assert html =~ "backdrop:backdrop-blur-md"
     assert html =~ ~s(aria-describedby="settings-description")
     assert html =~ ~s(phx-click="toggle")
-    refute html =~ "data-hero-dialog-close"
+    refute html =~ "data-olis-dialog-close"
 
     assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
-      render_component(&HeroUI.modal/1, %{
+      render_component(&OlisUI.modal/1, %{
         id: "bad",
         title: "Bad",
         open: false,
@@ -1768,16 +1768,16 @@ defmodule HeroUITest do
 
     composed =
       rendered_to_string(~H"""
-      <HeroUI.modal id="compose" title="Composed" keyboard_dismiss_disabled>
-        <:trigger :let={attrs}><HeroUI.button {attrs}>Launch</HeroUI.button></:trigger>
+      <OlisUI.modal id="compose" title="Composed" keyboard_dismiss_disabled>
+        <:trigger :let={attrs}><OlisUI.button {attrs}>Launch</OlisUI.button></:trigger>
         Content
-        <:close :let={attrs}><HeroUI.button {attrs}>Done</HeroUI.button></:close>
-      </HeroUI.modal>
+        <:close :let={attrs}><OlisUI.button {attrs}>Done</OlisUI.button></:close>
+      </OlisUI.modal>
       """)
 
     assert composed =~ ~s(data-keyboard-dismiss-disabled="true")
-    assert composed =~ ~s(data-hero-dialog-open="compose")
-    assert composed =~ "data-hero-dialog-close"
+    assert composed =~ ~s(data-olis-dialog-open="compose")
+    assert composed =~ "data-olis-dialog-close"
     assert composed =~ ">Done</button>"
   end
 
@@ -1787,17 +1787,17 @@ defmodule HeroUITest do
       %{id: "two", label: "Two", inner_block: fn _, _ -> "Second" end}
     ]
 
-    html = render_component(&HeroUI.tabs/1, %{id: "settings", label: "Settings", tab: tabs})
+    html = render_component(&OlisUI.tabs/1, %{id: "settings", label: "Settings", tab: tabs})
     assert html =~ ~s(aria-label="Settings")
     assert html =~ ~s(id="settings-tab-two")
     assert html =~ ~s(aria-controls="settings-panel-two")
     assert html =~ ~s(aria-labelledby="settings-tab-two")
     assert html =~ ~s(aria-selected="true")
-    assert html =~ ~s(x-data="heroTabs")
+    assert html =~ ~s(x-data="olisTabs")
     assert html =~ ~s(data-controlled="false")
 
     controlled =
-      render_component(&HeroUI.tabs/1, %{
+      render_component(&OlisUI.tabs/1, %{
         id: "controlled",
         label: "Settings",
         tab: tabs,
@@ -1817,7 +1817,7 @@ defmodule HeroUITest do
     assert controlled =~ ~s(data-slot="tabs-separator")
 
     assert_raise ArgumentError, ~r/cannot be combined/, fn ->
-      render_component(&HeroUI.tabs/1, %{
+      render_component(&OlisUI.tabs/1, %{
         id: "ambiguous",
         label: "Settings",
         tab: tabs,
@@ -1827,15 +1827,15 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.tabs/1, %{id: "invalid", label: "Invalid", tab: [hd(tabs)]})
+      render_component(&OlisUI.tabs/1, %{id: "invalid", label: "Invalid", tab: [hd(tabs)]})
     end
   end
 
-  test "checkbox variants and switch sizes use HeroUI control markup" do
+  test "checkbox variants and switch sizes use OlisUI control markup" do
     slot = [%{inner_block: fn _, _ -> "Option" end}]
 
     checkbox =
-      render_component(&HeroUI.checkbox/1, %{
+      render_component(&OlisUI.checkbox/1, %{
         id: "option",
         variant: "secondary",
         invalid: true,
@@ -1847,7 +1847,7 @@ defmodule HeroUITest do
     assert checkbox =~ ~s(aria-invalid="true")
 
     switch =
-      render_component(&HeroUI.switch/1, %{
+      render_component(&OlisUI.switch/1, %{
         id: "setting",
         size: "lg",
         disabled: true,
@@ -1863,7 +1863,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Select all" end}]
 
     mixed =
-      render_component(&HeroUI.checkbox/1, %{
+      render_component(&OlisUI.checkbox/1, %{
         id: "all",
         name: "all",
         checked: true,
@@ -1880,7 +1880,7 @@ defmodule HeroUITest do
     assert mixed =~ ~s(data-slot="checkbox-default-indicator--indeterminate")
     refute mixed =~ ~s(data-slot="checkbox-default-indicator--checkmark")
 
-    ordinary = render_component(&HeroUI.checkbox/1, %{id: "one", inner_block: slot})
+    ordinary = render_component(&OlisUI.checkbox/1, %{id: "one", inner_block: slot})
     refute ordinary =~ ~s(aria-checked="mixed")
     refute ordinary =~ ~s(data-indeterminate="true")
     assert ordinary =~ ~s(data-slot="checkbox-default-indicator--checkmark")
@@ -1888,7 +1888,7 @@ defmodule HeroUITest do
 
   test "dropdown renders native popover semantics and disabled items" do
     html =
-      render_component(&HeroUI.dropdown/1, %{
+      render_component(&OlisUI.dropdown/1, %{
         id: "actions",
         label: "Actions",
         item: [
@@ -1908,7 +1908,7 @@ defmodule HeroUITest do
 
   test "dropdown supports selection groups and nested submenus" do
     html =
-      render_component(&HeroUI.dropdown/1, %{
+      render_component(&OlisUI.dropdown/1, %{
         id: "view",
         label: "View",
         on_action: "action",
@@ -1930,23 +1930,23 @@ defmodule HeroUITest do
       })
 
     assert html =~ ~s(role="menuitemradio")
-    assert html =~ ~s(x-data="heroDropdown")
+    assert html =~ ~s(x-data="olisDropdown")
     assert html =~ ~s|x-on:click.capture="click($event)"|
     assert html =~ ~s|x-on:keydown="keydown($event)"|
     assert html =~ ~s|x-on:toggle.capture="toggle($event)"|
     assert html =~ ~s|x-on:scroll.window.capture="reposition()"|
     assert html =~ ~s|x-on:phx:update.document="reposition()"|
-    assert html =~ ~r/data-hero-dropdown-submenu-trigger[\s\S]*?phx-mounted=/
+    assert html =~ ~r/data-olis-dropdown-submenu-trigger[\s\S]*?phx-mounted=/
     assert html =~ ~s(aria-checked="true")
     assert html =~ ~s(phx-click="sort")
     assert html =~ ~s(phx-click="action")
     assert html =~ ~s(aria-label="Sort")
-    assert html =~ ~s(data-hero-dropdown-submenu-trigger)
+    assert html =~ ~s(data-olis-dropdown-submenu-trigger)
     assert html =~ ~s(aria-label="Share via")
     assert html =~ "⌘ C"
 
     assert_raise ArgumentError, ~r/unique nonempty string keys/, fn ->
-      render_component(&HeroUI.dropdown/1, %{
+      render_component(&OlisUI.dropdown/1, %{
         id: "bad",
         label: "Bad",
         selection_mode: "multiple",
@@ -1955,7 +1955,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/at most one selected key/, fn ->
-      render_component(&HeroUI.dropdown/1, %{
+      render_component(&OlisUI.dropdown/1, %{
         id: "bad",
         label: "Bad",
         selection_mode: "single",
@@ -1965,9 +1965,9 @@ defmodule HeroUITest do
     end
   end
 
-  test "select forwards native attributes and uses HeroUI variant and invalid state" do
+  test "select forwards native attributes and uses OlisUI variant and invalid state" do
     html =
-      render_component(&HeroUI.select/1, %{
+      render_component(&OlisUI.select/1, %{
         id: "plan",
         variant: "secondary",
         invalid: true,
@@ -1977,7 +1977,7 @@ defmodule HeroUITest do
 
     assert html =~ "select--secondary"
     assert html =~ "select__trigger"
-    assert html =~ ~s(x-data="heroSelect")
+    assert html =~ ~s(x-data="olisSelect")
     assert html =~ ~s|x-on:invalid.capture="invalid($event)"|
     assert html =~ ~s|x-on:phx:update.window="sync()"|
     assert html =~ ~s(aria-invalid="true")
@@ -1988,7 +1988,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Details" end}]
 
     alert =
-      render_component(&HeroUI.alert_dialog/1, %{
+      render_component(&OlisUI.alert_dialog/1, %{
         id: "confirm",
         title: "Confirm?",
         on_confirm: "confirm",
@@ -1999,10 +1999,10 @@ defmodule HeroUITest do
     assert alert =~ ~s(aria-describedby="confirm-description")
     assert alert =~ ~s(phx-click="confirm")
     assert alert =~ ~s(data-dismissible="false")
-    assert alert =~ ~s(x-data="heroDialog")
+    assert alert =~ ~s(x-data="olisDialog")
 
     drawer =
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "settings",
         title: "Settings",
         placement: "left",
@@ -2012,8 +2012,8 @@ defmodule HeroUITest do
     assert drawer =~ "drawer__dialog"
     assert drawer =~ ~s(data-placement="left")
     assert drawer =~ ~s(aria-labelledby="settings-title")
-    assert drawer =~ ~s(data-hero-drawer)
-    assert drawer =~ ~s(x-data="heroDrawer")
+    assert drawer =~ ~s(data-olis-drawer)
+    assert drawer =~ ~s(x-data="olisDrawer")
     assert drawer =~ ~s|x-on:cancel.prevent="onCancel()"|
     assert drawer =~ ~s(data-slot="drawer-dialog")
     assert drawer =~ ~s(data-slot="drawer-body")
@@ -2024,7 +2024,7 @@ defmodule HeroUITest do
     assert drawer =~ "touch-pan-y"
 
     default_drawer =
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "default-drawer",
         title: "Default",
         inner_block: slot
@@ -2033,7 +2033,7 @@ defmodule HeroUITest do
     assert default_drawer =~ ~s(data-placement="bottom")
 
     with_handle =
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "handle",
         title: "Handle",
         placement: "bottom",
@@ -2046,7 +2046,7 @@ defmodule HeroUITest do
     refute drawer =~ ~s(data-slot="drawer-handle")
 
     controlled =
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "controlled",
         title: "Controlled",
         open: true,
@@ -2063,17 +2063,17 @@ defmodule HeroUITest do
     assert controlled =~ ">Dismiss</button>"
 
     no_close =
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "no-close",
         title: "No close",
         show_close: false,
         inner_block: slot
       })
 
-    refute no_close =~ "data-hero-dialog-close"
+    refute no_close =~ "data-olis-dialog-close"
 
     assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "bad-drawer",
         title: "Bad",
         open: false,
@@ -2086,17 +2086,17 @@ defmodule HeroUITest do
 
     composed =
       rendered_to_string(~H"""
-      <HeroUI.drawer id="custom-close" title="Custom">
+      <OlisUI.drawer id="custom-close" title="Custom">
         Details
-        <:close :let={attrs}><HeroUI.button {attrs}>Done</HeroUI.button></:close>
-      </HeroUI.drawer>
+        <:close :let={attrs}><OlisUI.button {attrs}>Done</OlisUI.button></:close>
+      </OlisUI.drawer>
       """)
 
-    assert composed =~ "data-hero-dialog-close"
+    assert composed =~ "data-olis-dialog-close"
     assert composed =~ ">Done</button>"
 
     blurred =
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "blur",
         title: "Blur",
         backdrop: "blur",
@@ -2107,7 +2107,7 @@ defmodule HeroUITest do
     assert blurred =~ "backdrop:backdrop-blur-md"
 
     transparent =
-      render_component(&HeroUI.drawer/1, %{
+      render_component(&OlisUI.drawer/1, %{
         id: "clear",
         title: "Clear",
         backdrop: "transparent",
@@ -2116,12 +2116,12 @@ defmodule HeroUITest do
 
     assert transparent =~ ~s(data-backdrop="transparent")
     assert transparent =~ "backdrop:bg-transparent"
-    refute drawer =~ ~s(data-hero-dialog="")
+    refute drawer =~ ~s(data-olis-dialog="")
   end
 
-  test "progress circle and meter describe their ranges and use HeroUI styles" do
+  test "progress circle and meter describe their ranges and use OlisUI styles" do
     circle =
-      render_component(&HeroUI.progress_circle/1, %{
+      render_component(&OlisUI.progress_circle/1, %{
         label: "Upload",
         value: 5,
         min: 0,
@@ -2137,12 +2137,12 @@ defmodule HeroUITest do
     assert circle =~ "progress-circle__fill-circle"
 
     waiting =
-      render_component(&HeroUI.progress_circle/1, %{label: "Waiting", indeterminate: true})
+      render_component(&OlisUI.progress_circle/1, %{label: "Waiting", indeterminate: true})
 
     refute waiting =~ "aria-valuenow"
 
     meter =
-      render_component(&HeroUI.meter/1, %{
+      render_component(&OlisUI.meter/1, %{
         label: "Storage",
         value: 25,
         min: 10,
@@ -2155,17 +2155,17 @@ defmodule HeroUITest do
     assert meter =~ "width: 50.0%"
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.meter/1, %{label: "Bad", value: 0, min: 10, max: 20})
+      render_component(&OlisUI.meter/1, %{label: "Bad", value: 0, min: 10, max: 20})
     end
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.progress_circle/1, %{label: "Bad", value: 0, min: 10, max: 10})
+      render_component(&OlisUI.progress_circle/1, %{label: "Bad", value: 0, min: 10, max: 10})
     end
   end
 
   test "progress indicators support accessible track-only and custom output states" do
     track =
-      render_component(&HeroUI.progress_bar/1, %{
+      render_component(&OlisUI.progress_bar/1, %{
         value: 45,
         show_value: false,
         rest: %{"aria-label" => "Upload progress", id: "upload-progress"}
@@ -2179,7 +2179,7 @@ defmodule HeroUITest do
     refute track =~ ~s(data-slot="label")
 
     custom =
-      render_component(&HeroUI.progress_bar/1, %{
+      render_component(&OlisUI.progress_bar/1, %{
         label: "Upload",
         value: 5,
         max: 10,
@@ -2190,7 +2190,7 @@ defmodule HeroUITest do
     assert custom =~ "5 of 10 files</span>"
 
     meter =
-      render_component(&HeroUI.meter/1, %{
+      render_component(&OlisUI.meter/1, %{
         value: 25,
         show_value: false,
         rest: %{"aria-labelledby" => "capacity-title", "data-slot" => "custom-meter"}
@@ -2203,7 +2203,7 @@ defmodule HeroUITest do
     refute meter =~ "meter__output"
 
     circle =
-      render_component(&HeroUI.progress_circle/1, %{
+      render_component(&OlisUI.progress_circle/1, %{
         label: "Uploading",
         show_label: true,
         value: 75,
@@ -2215,7 +2215,7 @@ defmodule HeroUITest do
     assert circle =~ "Uploading</span>"
 
     assert_raise ArgumentError, ~r/provide label/, fn ->
-      render_component(&HeroUI.progress_bar/1, %{})
+      render_component(&OlisUI.progress_bar/1, %{})
     end
   end
 
@@ -2223,17 +2223,17 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "More" end}]
 
     tooltip =
-      render_component(&HeroUI.tooltip/1, %{id: "tip", text: "Helpful text", inner_block: slot})
+      render_component(&OlisUI.tooltip/1, %{id: "tip", text: "Helpful text", inner_block: slot})
 
     assert tooltip =~ ~s(aria-describedby="tip-content")
     assert tooltip =~ ~s(role="tooltip")
     assert tooltip =~ "Helpful text"
-    assert tooltip =~ ~s(x-data="heroTooltip")
+    assert tooltip =~ ~s(x-data="olisTooltip")
     assert tooltip =~ ~s(data-requested-placement="top")
     assert tooltip =~ ~s(data-slot="tooltip-content")
 
     composed =
-      render_component(&HeroUI.tooltip/1, %{
+      render_component(&OlisUI.tooltip/1, %{
         id: "composed-tip",
         show_arrow: true,
         trigger: [
@@ -2258,21 +2258,21 @@ defmodule HeroUITest do
 
     heex =
       rendered_to_string(~H"""
-      <HeroUI.tooltip id="heex-tip" show_arrow>
-        <:trigger :let={attrs}><HeroUI.button {attrs}>Save</HeroUI.button></:trigger>
+      <OlisUI.tooltip id="heex-tip" show_arrow>
+        <:trigger :let={attrs}><OlisUI.button {attrs}>Save</OlisUI.button></:trigger>
         <:content><strong>Save</strong> the changes.</:content>
-      </HeroUI.tooltip>
+      </OlisUI.tooltip>
       """)
 
     assert heex =~ ~s(aria-describedby="heex-tip-content")
     assert heex =~ "<strong>Save</strong>"
 
     assert_raise ArgumentError, ~r/either text or a content slot/, fn ->
-      render_component(&HeroUI.tooltip/1, %{id: "missing-content", inner_block: slot})
+      render_component(&OlisUI.tooltip/1, %{id: "missing-content", inner_block: slot})
     end
 
     left =
-      render_component(&HeroUI.tooltip/1, %{
+      render_component(&OlisUI.tooltip/1, %{
         id: "left-tip",
         text: "Left",
         placement: "left",
@@ -2286,7 +2286,7 @@ defmodule HeroUITest do
     assert left =~ ~s(data-close-delay="250")
 
     assert_raise ArgumentError, ~r/close delay must be nonnegative/, fn ->
-      render_component(&HeroUI.tooltip/1, %{
+      render_component(&OlisUI.tooltip/1, %{
         id: "bad-tip",
         text: "Bad",
         close_delay: -1,
@@ -2295,7 +2295,7 @@ defmodule HeroUITest do
     end
 
     popover =
-      render_component(&HeroUI.popover/1, %{
+      render_component(&OlisUI.popover/1, %{
         id: "details",
         trigger: "Open",
         title: "Details",
@@ -2303,7 +2303,7 @@ defmodule HeroUITest do
       })
 
     assert popover =~ ~s(popovertarget="details-content")
-    assert popover =~ ~s(x-data="heroPopover")
+    assert popover =~ ~s(x-data="olisPopover")
     assert popover =~ ~s|x-on:toggle="toggle($event)"|
     assert popover =~ ~s(aria-labelledby="details-title")
     assert popover =~ ~s(role="dialog")
@@ -2314,7 +2314,7 @@ defmodule HeroUITest do
 
     html =
       rendered_to_string(~H"""
-      <HeroUI.popover
+      <OlisUI.popover
         id="custom-popover"
         title="Details"
         placement="right start"
@@ -2323,9 +2323,9 @@ defmodule HeroUITest do
         open={false}
         on_open_change="popover_change"
       >
-        <:trigger_content :let={attrs}><HeroUI.button {attrs}>Custom</HeroUI.button></:trigger_content>
+        <:trigger_content :let={attrs}><OlisUI.button {attrs}>Custom</OlisUI.button></:trigger_content>
         <p>More information</p>
-      </HeroUI.popover>
+      </OlisUI.popover>
       """)
 
     assert html =~ ~s(popovertarget="custom-popover-content")
@@ -2337,16 +2337,16 @@ defmodule HeroUITest do
     assert html =~ ~s(data-controlled-open="false")
     assert html =~ ~s(data-slot="popover-overlay-arrow")
     assert html =~ ~s(phx-click="popover_change")
-    refute html =~ "data-hero-popover-close"
+    refute html =~ "data-olis-popover-close"
 
     content = [%{inner_block: fn _, _ -> "Content" end}]
 
     assert_raise ArgumentError, ~r/either trigger/, fn ->
-      render_component(&HeroUI.popover/1, %{id: "missing", title: "Missing", inner_block: content})
+      render_component(&OlisUI.popover/1, %{id: "missing", title: "Missing", inner_block: content})
     end
 
     assert_raise ArgumentError, ~r/cannot use open and default_open/, fn ->
-      render_component(&HeroUI.popover/1, %{
+      render_component(&OlisUI.popover/1, %{
         id: "bad",
         title: "Bad",
         trigger: "Open",
@@ -2357,7 +2357,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/offset must be nonnegative/, fn ->
-      render_component(&HeroUI.popover/1, %{
+      render_component(&OlisUI.popover/1, %{
         id: "bad",
         title: "Bad",
         trigger: "Open",
@@ -2369,7 +2369,7 @@ defmodule HeroUITest do
 
   test "slider and number field expose native form controls" do
     slider =
-      render_component(&HeroUI.slider/1, %{
+      render_component(&OlisUI.slider/1, %{
         id: "volume",
         name: "volume",
         label: "Volume",
@@ -2377,13 +2377,13 @@ defmodule HeroUITest do
       })
 
     assert slider =~ ~s(type="range")
-    assert slider =~ ~s(x-data="heroSlider")
+    assert slider =~ ~s(x-data="olisSlider")
     assert slider =~ ~s|x-on:input.capture="input($event)"|
     assert slider =~ ~s(for="volume")
     assert slider =~ "width: 25.0%"
 
     range =
-      render_component(&HeroUI.slider/1, %{
+      render_component(&OlisUI.slider/1, %{
         id: "price",
         name: "price",
         label: "Price",
@@ -2403,7 +2403,7 @@ defmodule HeroUITest do
     assert range =~ "Mid"
 
     fractional =
-      render_component(&HeroUI.slider/1, %{
+      render_component(&OlisUI.slider/1, %{
         id: "fractional",
         label: "Fractional",
         value: 0.2,
@@ -2416,15 +2416,15 @@ defmodule HeroUITest do
     assert length(Regex.scan(~r/data-slot="slider-step"/, fractional)) == 4
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.slider/1, %{id: "s", label: "Slider", value: [80, 20]})
+      render_component(&OlisUI.slider/1, %{id: "s", label: "Slider", value: [80, 20]})
     end
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.slider/1, %{id: "s", label: "Slider", value: 5, step: 0})
+      render_component(&OlisUI.slider/1, %{id: "s", label: "Slider", value: 5, step: 0})
     end
 
     field =
-      render_component(&HeroUI.number_field/1, %{
+      render_component(&OlisUI.number_field/1, %{
         id: "quantity",
         name: "quantity",
         label: "Quantity",
@@ -2435,14 +2435,14 @@ defmodule HeroUITest do
 
     assert field =~ ~s(type="number")
     assert field =~ ~s(aria-label="Increase Quantity")
-    assert field =~ ~s(data-hero-number-step="down")
-    assert field =~ ~s(x-data="heroNumberField")
+    assert field =~ ~s(data-olis-number-step="down")
+    assert field =~ ~s(x-data="olisNumberField")
     assert field =~ ~s(data-slot="number-field-increment-button-icon")
 
     form = Phoenix.Component.to_form(%{"quantity" => "3"}, as: :order)
 
     validation =
-      render_component(&HeroUI.number_field/1, %{
+      render_component(&OlisUI.number_field/1, %{
         field: form[:quantity],
         label: "Quantity",
         description: "Choose a quantity",
@@ -2457,7 +2457,7 @@ defmodule HeroUITest do
     assert validation =~ ~s(data-slot="field-error")
 
     assert_raise ArgumentError, ~r/bounds/, fn ->
-      render_component(&HeroUI.number_field/1, %{id: "bad", label: "Bad", min: 10, max: 5})
+      render_component(&OlisUI.number_field/1, %{id: "bad", label: "Bad", min: 10, max: 5})
     end
   end
 
@@ -2466,7 +2466,7 @@ defmodule HeroUITest do
 
     html =
       rendered_to_string(~H"""
-      <HeroUI.alert
+      <OlisUI.alert
         status="warning"
         color="success"
         role="alert"
@@ -2477,7 +2477,7 @@ defmodule HeroUITest do
         <:indicator><span role="img" aria-label="Warning">!</span></:indicator>
         <:description>Update your billing details.</:description>
         <:actions><button type="button">Update</button></:actions>
-      </HeroUI.alert>
+      </OlisUI.alert>
       """)
 
     assert html =~ "alert--warning"
@@ -2494,7 +2494,7 @@ defmodule HeroUITest do
     refute html =~ ~s(data-slot="alert-default-icon")
 
     legacy =
-      render_component(&HeroUI.alert/1, %{
+      render_component(&OlisUI.alert/1, %{
         title: "Saved",
         color: "success",
         inner_block: [%{inner_block: fn _, _ -> "Your changes are saved." end}]
@@ -2506,9 +2506,9 @@ defmodule HeroUITest do
     assert legacy =~ "Your changes are saved."
   end
 
-  test "avatar, alert and badge use HeroUI structures" do
+  test "avatar, alert and badge use OlisUI structures" do
     avatar =
-      render_component(&HeroUI.avatar/1, %{
+      render_component(&OlisUI.avatar/1, %{
         name: "Casey Jones",
         src: "/photo.png",
         color: "accent",
@@ -2518,20 +2518,20 @@ defmodule HeroUITest do
     assert avatar =~ ~s(aria-label="Casey Jones")
     assert avatar =~ "avatar__fallback--accent"
     assert avatar =~ ">CJ</span>"
-    assert avatar =~ "data-hero-avatar-image"
-    assert avatar =~ ~s(x-data="heroAvatarImage")
+    assert avatar =~ "data-olis-avatar-image"
+    assert avatar =~ ~s(x-data="olisAvatarImage")
     assert avatar =~ "x-on:error"
     assert avatar =~ "x-on:load"
     slot = [%{inner_block: fn _, _ -> "Saved" end}]
 
     alert =
-      render_component(&HeroUI.alert/1, %{title: "Success", color: "success", inner_block: slot})
+      render_component(&OlisUI.alert/1, %{title: "Success", color: "success", inner_block: slot})
 
     assert alert =~ "alert--success"
     assert alert =~ "alert-default-icon"
 
     badge =
-      render_component(&HeroUI.badge/1, %{
+      render_component(&OlisUI.badge/1, %{
         color: "danger",
         variant: "soft",
         placement: "top-right",
@@ -2549,7 +2549,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.data_table/1, %{
+      render_component(&OlisUI.data_table/1, %{
         id: "people",
         label: "People",
         rows: [%{name: "Jane"}],
@@ -2566,7 +2566,7 @@ defmodule HeroUITest do
     assert html =~ "Jane"
 
     empty =
-      render_component(&HeroUI.data_table/1, %{
+      render_component(&OlisUI.data_table/1, %{
         label: "People",
         rows: [],
         col: cols,
@@ -2592,8 +2592,8 @@ defmodule HeroUITest do
       on_selection_change: "select"
     }
 
-    html = render_component(&HeroUI.data_table/1, attrs)
-    assert html =~ ~s(x-data="heroTable")
+    html = render_component(&OlisUI.data_table/1, attrs)
+    assert html =~ ~s(x-data="olisTable")
     assert html =~ ~s(data-controlled="true")
     assert html =~ ~s(aria-label="Select all rows")
     assert html =~ ~s(aria-label="Select Alice")
@@ -2603,9 +2603,9 @@ defmodule HeroUITest do
     assert html =~ ~s(phx-click="select")
     assert html =~ ~r/aria-label="Select Bob"[^>]*disabled/s
     assert html =~ ~r/aria-label="Select Alice"[^>]*checked/s
-    assert html =~ ~s(data-hero-table-select-all)
-    single = render_component(&HeroUI.data_table/1, %{attrs | selection_mode: "single"})
-    refute single =~ ~s(data-hero-table-select-all)
+    assert html =~ ~s(data-olis-table-select-all)
+    single = render_component(&OlisUI.data_table/1, %{attrs | selection_mode: "single"})
+    refute single =~ ~s(data-olis-table-select-all)
   end
 
   test "table empty content and footer support composable content" do
@@ -2614,12 +2614,12 @@ defmodule HeroUITest do
     footer = [%{inner_block: fn _, _ -> "Page 1 of 3" end}]
     attrs = %{label: "People", rows: [], col: cols, empty: empty, footer: footer}
 
-    html = render_component(&HeroUI.data_table/1, attrs)
+    html = render_component(&OlisUI.data_table/1, attrs)
     assert html =~ "No matching people"
     refute html =~ "No results found."
     assert html =~ ~r/<\/table>[\s\S]*class="table__footer"[^>]*>[\s\S]*Page 1 of 3/
 
-    populated = render_component(&HeroUI.data_table/1, %{attrs | rows: [%{name: "Jane"}]})
+    populated = render_component(&OlisUI.data_table/1, %{attrs | rows: [%{name: "Jane"}]})
     refute populated =~ "No matching people"
     assert populated =~ "Page 1 of 3"
   end
@@ -2648,7 +2648,7 @@ defmodule HeroUITest do
       on_column_resize: "resize"
     }
 
-    html = render_component(&HeroUI.data_table/1, attrs)
+    html = render_component(&OlisUI.data_table/1, attrs)
     assert html =~ ~s(data-table-column-key="name")
     assert html =~ ~s(data-table-resizer="name")
     assert html =~ ~s(aria-label="Resize Name column")
@@ -2672,7 +2672,7 @@ defmodule HeroUITest do
     ]
 
     assert_raise ArgumentError, ~r/table column widths/, fn ->
-      render_component(&HeroUI.data_table/1, %{attrs | col: invalid})
+      render_component(&OlisUI.data_table/1, %{attrs | col: invalid})
     end
 
     duplicate = [
@@ -2681,7 +2681,7 @@ defmodule HeroUITest do
     ]
 
     assert_raise ArgumentError, ~r/column keys must be unique/, fn ->
-      render_component(&HeroUI.data_table/1, %{attrs | col: duplicate})
+      render_component(&OlisUI.data_table/1, %{attrs | col: duplicate})
     end
   end
 
@@ -2689,17 +2689,17 @@ defmodule HeroUITest do
     cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
 
     html =
-      render_component(&HeroUI.data_table/1, %{
+      render_component(&OlisUI.data_table/1, %{
         id: "people",
         label: "People",
         rows: [%{name: "Alice"}],
         col: cols
       })
 
-    assert html =~ ~s(x-data="heroTable")
+    assert html =~ ~s(x-data="olisTable")
     assert html =~ ~s|x-on:keydown="keyDown($event)"|
     assert html =~ ~s|x-on:focusin="focusIn($event)"|
-    assert html =~ ~s(data-hero-table-row="true")
+    assert html =~ ~s(data-olis-table-row="true")
     assert html =~ ~s|x-bind:role="'grid'"|
     refute html =~ ~s(aria-selected=)
   end
@@ -2716,22 +2716,22 @@ defmodule HeroUITest do
       has_more: true
     }
 
-    html = render_component(&HeroUI.data_table/1, attrs)
+    html = render_component(&OlisUI.data_table/1, attrs)
     assert html =~ ~s(id="people-scroll")
     assert html =~ ~s(phx-viewport-bottom="load_more")
     assert html =~ ~s(id="people-load-more")
     assert html =~ "Scroll for more"
 
-    loading = render_component(&HeroUI.data_table/1, Map.put(attrs, :loading, true))
+    loading = render_component(&OlisUI.data_table/1, Map.put(attrs, :loading, true))
     refute loading =~ "phx-viewport-bottom"
     assert loading =~ "Loading more"
 
-    done = render_component(&HeroUI.data_table/1, %{attrs | has_more: false})
+    done = render_component(&OlisUI.data_table/1, %{attrs | has_more: false})
     refute done =~ "phx-viewport-bottom"
     refute done =~ "people-load-more"
 
     assert_raise ArgumentError, ~r/table id is required for load-more/, fn ->
-      render_component(&HeroUI.data_table/1, Map.delete(attrs, :id))
+      render_component(&OlisUI.data_table/1, Map.delete(attrs, :id))
     end
   end
 
@@ -2748,24 +2748,24 @@ defmodule HeroUITest do
     }
 
     assert_raise ArgumentError, ~r/at most one/, fn ->
-      render_component(&HeroUI.data_table/1, Map.put(attrs, :selected_keys, ["a", "b"]))
+      render_component(&OlisUI.data_table/1, Map.put(attrs, :selected_keys, ["a", "b"]))
     end
 
     assert_raise ArgumentError, ~r/row ids/, fn ->
-      render_component(&HeroUI.data_table/1, %{
+      render_component(&OlisUI.data_table/1, %{
         attrs
         | rows: [%{id: "a", name: "One"}, %{id: "a", name: "Two"}]
       })
     end
 
     assert_raise ArgumentError, ~r/row_id/, fn ->
-      render_component(&HeroUI.data_table/1, Map.delete(attrs, :row_id))
+      render_component(&OlisUI.data_table/1, Map.delete(attrs, :row_id))
     end
   end
 
   test "pagination renders bounded pages and accessible current state" do
     html =
-      render_component(&HeroUI.pagination/1, %{page: 5, total_pages: 10, on_change: "change_page"})
+      render_component(&OlisUI.pagination/1, %{page: 5, total_pages: 10, on_change: "change_page"})
 
     assert html =~ ~s(aria-label="Pagination")
     assert html =~ ~s(aria-current="page")
@@ -2774,7 +2774,7 @@ defmodule HeroUITest do
     assert html =~ "pagination__ellipsis"
 
     links =
-      render_component(&HeroUI.pagination/1, %{
+      render_component(&OlisUI.pagination/1, %{
         page: 1,
         total_pages: 3,
         href: fn n -> "/people?page=#{n}" end
@@ -2782,17 +2782,17 @@ defmodule HeroUITest do
 
     assert links =~ ~s(href="/people?page=2")
     assert links =~ ~s(aria-disabled="true")
-    empty = render_component(&HeroUI.pagination/1, %{page: 1, total_pages: 0, on_change: "page"})
+    empty = render_component(&OlisUI.pagination/1, %{page: 1, total_pages: 0, on_change: "page"})
     refute empty =~ ~s(aria-current="page")
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.pagination/1, %{page: 11, total_pages: 10, on_change: "page"})
+      render_component(&OlisUI.pagination/1, %{page: 11, total_pages: 10, on_change: "page"})
     end
   end
 
   test "pagination supports simple layouts, custom icons and JS commands" do
     html =
-      render_component(&HeroUI.pagination/1, %{
+      render_component(&OlisUI.pagination/1, %{
         page: 2,
         total_pages: 5,
         on_change: Phoenix.LiveView.JS.push("change_page"),
@@ -2819,21 +2819,21 @@ defmodule HeroUITest do
       show_controls: false
     }
 
-    html = render_component(&HeroUI.pagination/1, attrs)
+    html = render_component(&OlisUI.pagination/1, attrs)
     assert html =~ ~s(data-phx-link="patch")
     assert html =~ ~s(href="/people?page=3")
     assert html =~ ~s(aria-label="Seite 2")
     assert html =~ ~s(aria-current="page")
     refute html =~ ~s(aria-label="Previous")
 
-    disabled = render_component(&HeroUI.pagination/1, Map.put(attrs, :disabled, true))
+    disabled = render_component(&OlisUI.pagination/1, Map.put(attrs, :disabled, true))
     assert disabled =~ ~s(aria-disabled="true")
     assert disabled =~ ~s(aria-current="page")
     assert disabled =~ ~s(data-active="true")
     refute disabled =~ "<a "
 
     assert_raise ArgumentError, ~r/exactly one/, fn ->
-      render_component(&HeroUI.pagination/1, Map.put(attrs, :on_change, "page"))
+      render_component(&OlisUI.pagination/1, Map.put(attrs, :on_change, "page"))
     end
   end
 
@@ -2844,7 +2844,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.radio_group/1, %{
+      render_component(&OlisUI.radio_group/1, %{
         id: "delivery",
         name: "delivery",
         label: "Delivery",
@@ -2864,7 +2864,7 @@ defmodule HeroUITest do
     assert html =~ "disabled"
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.radio_group/1, %{
+      render_component(&OlisUI.radio_group/1, %{
         id: "duplicate",
         name: "x",
         label: "X",
@@ -2880,7 +2880,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.checkbox_group/1, %{
+      render_component(&OlisUI.checkbox_group/1, %{
         id: "topics",
         name: "user[topics]",
         label: "Topics",
@@ -2902,7 +2902,7 @@ defmodule HeroUITest do
     assert description_pos < option_pos
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.checkbox_group/1, %{
+      render_component(&OlisUI.checkbox_group/1, %{
         id: "duplicate",
         name: "x",
         label: "X",
@@ -2915,7 +2915,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Bold" end}]
 
     toggle =
-      render_component(&HeroUI.toggle_button/1, %{
+      render_component(&OlisUI.toggle_button/1, %{
         pressed: true,
         inner_block: slot,
         "phx-click": "toggle"
@@ -2926,19 +2926,19 @@ defmodule HeroUITest do
     assert toggle =~ ~s(phx-click="toggle")
     refute toggle =~ ~s(x-data=)
 
-    local = render_component(&HeroUI.toggle_button/1, %{default_pressed: true, inner_block: slot})
+    local = render_component(&OlisUI.toggle_button/1, %{default_pressed: true, inner_block: slot})
     assert local =~ ~s(aria-pressed="true")
     assert local =~ "selected.toString()"
     assert local =~ "selected = !selected"
 
     group =
-      render_component(&HeroUI.toggle_button_group/1, %{label: "Formatting", inner_block: slot})
+      render_component(&OlisUI.toggle_button_group/1, %{label: "Formatting", inner_block: slot})
 
     assert group =~ ~s(role="group")
     assert group =~ ~s(aria-label="Formatting")
 
     crumbs =
-      render_component(&HeroUI.breadcrumbs/1, %{
+      render_component(&OlisUI.breadcrumbs/1, %{
         item: [%{label: "Home", href: "/"}, %{label: "Settings"}]
       })
 
@@ -2951,7 +2951,7 @@ defmodule HeroUITest do
     slot = [%{inner_block: fn _, _ -> "Buttons" end}]
 
     group =
-      render_component(&HeroUI.toggle_button_group/1, %{
+      render_component(&OlisUI.toggle_button_group/1, %{
         label: "Formatting",
         size: "sm",
         disabled: true,
@@ -2960,21 +2960,21 @@ defmodule HeroUITest do
 
     assert group =~ ~r/<fieldset[^>]*\sdisabled(?:\s|>|=)/
     assert group =~ ~s(aria-disabled="true")
-    assert group =~ ~s(data-hero-toggle-size="sm")
-    assert group =~ ~s(x-data="heroToggleButtonGroup")
-    default = render_component(&HeroUI.toggle_button/1, %{inner_block: slot})
+    assert group =~ ~s(data-olis-toggle-size="sm")
+    assert group =~ ~s(x-data="olisToggleButtonGroup")
+    default = render_component(&OlisUI.toggle_button/1, %{inner_block: slot})
     assert default =~ "toggle-button--md"
-    refute default =~ ~s(data-hero-toggle-size=)
-    explicit = render_component(&HeroUI.toggle_button/1, %{size: "lg", inner_block: slot})
+    refute default =~ ~s(data-olis-toggle-size=)
+    explicit = render_component(&OlisUI.toggle_button/1, %{size: "lg", inner_block: slot})
     assert explicit =~ "toggle-button--lg"
-    assert explicit =~ ~s(data-hero-toggle-size="lg")
+    assert explicit =~ ~s(data-olis-toggle-size="lg")
   end
 
   test "toggle button groups opt into controlled and uncontrolled selection" do
     slot = [%{inner_block: fn _, _ -> "Buttons" end}]
 
     single =
-      render_component(&HeroUI.toggle_button_group/1, %{
+      render_component(&OlisUI.toggle_button_group/1, %{
         label: "Alignment",
         selection_mode: "single",
         selected_keys: ["left"],
@@ -2984,10 +2984,10 @@ defmodule HeroUITest do
     assert single =~ ~s(role="group")
     assert single =~ ~s(data-selection-mode="single")
     assert single =~ ~s(data-controlled="true")
-    assert single =~ ~s(x-data="heroToggleButtonGroup")
+    assert single =~ ~s(x-data="olisToggleButtonGroup")
 
     multiple =
-      render_component(&HeroUI.toggle_button_group/1, %{
+      render_component(&OlisUI.toggle_button_group/1, %{
         label: "Style",
         selection_mode: "multiple",
         default_selected_keys: ["bold"],
@@ -3001,7 +3001,7 @@ defmodule HeroUITest do
     assert multiple =~ ~s(phx-click="style")
 
     assert_raise ArgumentError, ~r/at most one key/, fn ->
-      render_component(&HeroUI.toggle_button_group/1, %{
+      render_component(&OlisUI.toggle_button_group/1, %{
         label: "Bad",
         selection_mode: "single",
         selected_keys: ["a", "b"],
@@ -3017,7 +3017,7 @@ defmodule HeroUITest do
     ]
 
     html =
-      render_component(&HeroUI.listbox/1, %{
+      render_component(&OlisUI.listbox/1, %{
         id: "spaces",
         label: "Spaces",
         on_select: "choose",
@@ -3026,7 +3026,7 @@ defmodule HeroUITest do
       })
 
     assert html =~ ~s(role="listbox")
-    assert html =~ ~s(x-data="heroListbox")
+    assert html =~ ~s(x-data="olisListbox")
     assert html =~ ~s|x-on:keydown="keydown($event)"|
     assert html =~ ~s|x-on:phx:update.window="sync()"|
     assert html =~ ~s(aria-label="Spaces")
@@ -3036,7 +3036,7 @@ defmodule HeroUITest do
     assert html =~ "Primary"
 
     assert_raise ArgumentError, fn ->
-      render_component(&HeroUI.listbox/1, %{
+      render_component(&OlisUI.listbox/1, %{
         id: "x",
         label: "X",
         on_select: "choose",
@@ -3050,7 +3050,7 @@ defmodule HeroUITest do
 
     html =
       rendered_to_string(~H"""
-      <HeroUI.listbox
+      <OlisUI.listbox
         id="choices"
         label="Choices"
         selection_mode="multiple"
@@ -3066,7 +3066,7 @@ defmodule HeroUITest do
             %{value: "three", label: "Delete", variant: "danger", disabled: true}
           ]}
         />
-      </HeroUI.listbox>
+      </OlisUI.listbox>
       """)
 
     assert html =~ ~s(role="group")
@@ -3080,7 +3080,7 @@ defmodule HeroUITest do
     assert html =~ ~s(phx-click="action")
 
     none =
-      render_component(&HeroUI.listbox/1, %{
+      render_component(&OlisUI.listbox/1, %{
         id: "actions",
         label: "Actions",
         selection_mode: "none",
@@ -3093,7 +3093,7 @@ defmodule HeroUITest do
     refute none =~ "list-box-item__indicator"
 
     assert_raise ArgumentError, ~r/unique string values/, fn ->
-      render_component(&HeroUI.listbox/1, %{
+      render_component(&OlisUI.listbox/1, %{
         id: "dup",
         label: "Dup",
         option: [%{value: "a", label: "A"}],
@@ -3102,7 +3102,7 @@ defmodule HeroUITest do
     end
 
     assert_raise ArgumentError, ~r/cannot combine/, fn ->
-      render_component(&HeroUI.listbox/1, %{
+      render_component(&OlisUI.listbox/1, %{
         id: "dup",
         label: "Dup",
         selected_keys: [],
@@ -3114,7 +3114,7 @@ defmodule HeroUITest do
 
   test "select retains native control and provides enhancement hooks" do
     html =
-      render_component(&HeroUI.select/1, %{
+      render_component(&OlisUI.select/1, %{
         id: "plan",
         name: "plan",
         options: [{"Starter", "starter"}]
@@ -3122,15 +3122,15 @@ defmodule HeroUITest do
 
     assert html =~ ~s(<select)
     assert html =~ ~s(name="plan")
-    assert html =~ "data-hero-native-select"
+    assert html =~ "data-olis-native-select"
     assert html =~ ~s(aria-controls="plan-listbox")
     assert html =~ ~s(popover="auto")
     assert html =~ ~s(phx-update="ignore")
   end
 
-  test "standalone header and empty state use HeroUI markup and preserve native semantics" do
+  test "standalone header and empty state use OlisUI markup and preserve native semantics" do
     header =
-      render_component(&HeroUI.header/1, %{
+      render_component(&OlisUI.header/1, %{
         as: "h2",
         rest: %{"data-slot" => "custom-header", id: "results-title"},
         inner_block: [%{inner_block: fn _, _ -> "Results" end}]
@@ -3142,13 +3142,13 @@ defmodule HeroUITest do
     assert header =~ ~s(class="header")
     assert header =~ "Results"
 
-    default = render_component(&HeroUI.empty_state/1, %{})
+    default = render_component(&OlisUI.empty_state/1, %{})
     assert default =~ ~s(data-slot="empty-state")
     assert default =~ ~s(class="empty-state")
     assert default =~ "No results found"
 
     custom =
-      render_component(&HeroUI.empty_state/1, %{
+      render_component(&OlisUI.empty_state/1, %{
         as: "p",
         message: "Nothing yet",
         rest: %{"aria-live" => "polite", role: "status"}
@@ -3160,7 +3160,7 @@ defmodule HeroUITest do
     assert custom =~ "Nothing yet"
 
     content =
-      render_component(&HeroUI.empty_state/1, %{
+      render_component(&OlisUI.empty_state/1, %{
         message: "Hidden default",
         inner_block: [%{inner_block: fn _, _ -> "No projects" end}]
       })

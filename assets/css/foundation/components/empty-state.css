@@ -1,0 +1,5 @@
+/* Adapted for OlisUI; see THIRD_PARTY_NOTICES.md. */
+/* Base empty-state styles */
+.empty-state {
+  @apply p-2 text-sm text-muted;
+}

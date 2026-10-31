@@ -1,8 +1,8 @@
-defmodule HeroUI do
+defmodule OlisUI do
   @moduledoc """
-  HeroUI-inspired function components for Phoenix LiveView.
+  OlisUI function components for Phoenix LiveView.
 
-  Import this module in your HTML helpers and include the official HeroUI v3 styles and `assets/css/hero_ui.css` in your Tailwind v4 application stylesheet. See the README for setup and examples.
+  Import this module in your HTML helpers and include the required component styles and `assets/css/olis_ui.css` in your Tailwind v4 application stylesheet. See the README for setup and examples.
   """
   use Phoenix.Component, global_prefixes: ~w(x-)
 
@@ -68,7 +68,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A native button with HeroUI variants and an optional focusable pending state."
+  @doc "A native button with OlisUI variants and an optional focusable pending state."
   attr(:variant, :string,
     default: "primary",
     values: ~w(primary secondary tertiary outline ghost danger danger-soft)
@@ -477,8 +477,8 @@ defmodule HeroUI do
           @group_class
         ]}
         data-slot="input-group"
-        data-hero-input-group
-        x-data="heroInputGroup"
+        data-olis-input-group
+        x-data="olisInputGroup"
         x-on:click="focusInput($event)"
         data-invalid={if @invalid, do: "true"}
         data-disabled={if @disabled, do: "true"}
@@ -538,7 +538,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A search input with a clear button, form-field support, and HeroUI styles."
+  @doc "A search input with a clear button, form-field support, and OlisUI styles."
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
@@ -591,18 +591,18 @@ defmodule HeroUI do
         @full_width && "search-field--full-width",
         @class
       ]}
-      data-hero-search-field
+      data-olis-search-field
       data-slot="search-field"
       data-empty={to_string(is_nil(@value) || @value == "")}
       data-invalid={if @errors != [], do: "true"}
-      x-data="heroSearchField"
+      x-data="olisSearchField"
       x-init="$nextTick(() => sync())"
       x-on:input="sync()"
       x-on:phx:update.window="sync()"
       x-on:reset.window="$nextTick(() => sync())"
       x-bind:data-empty="empty.toString()"
-      x-bind:data-hero-search-ready="'true'"
-      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-empty", "data-hero-search-ready"])}
+      x-bind:data-olis-search-ready="'true'"
+      phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-empty", "data-olis-search-ready"])}
     >
       <label :if={@label} class="label" data-slot="label" for={@id}>{@label}</label>
       <div
@@ -639,7 +639,7 @@ defmodule HeroUI do
           label="Clear search"
           class="search-field__clear-button"
           data-slot="search-field-clear-button"
-          data-hero-search-clear
+          data-olis-search-clear
           slot="clear"
           hidden
           x-bind:hidden="false"
@@ -730,8 +730,8 @@ defmodule HeroUI do
       <div
         id={"#{@id}-otp"}
         class={["input-otp", "input-otp--#{@variant}"]}
-        data-hero-otp
-        x-data="heroInputOTP"
+        data-olis-otp
+        x-data="olisInputOTP"
         x-on:input="onInput($event)"
         x-on:compositionend="onInput($event)"
         x-on:pointerdown="onPointerDown($event)"
@@ -742,9 +742,9 @@ defmodule HeroUI do
         x-on:reset.document="onReset($event)"
         data-invalid={if @errors != [], do: "true"}
         data-allowed-pattern={@allowed_pattern}
-        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-hero-otp-ready"])}
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-olis-otp-ready"])}
       >
-        <div id={"#{@id}-slots"} class="hui-otp-slots" aria-hidden="true">
+        <div id={"#{@id}-slots"} class="olis-otp-slots" aria-hidden="true">
           <%= for {group, index} <- Enum.with_index(@slot_groups) do %>
             <div :if={index > 0} class="input-otp__separator" data-slot="input-otp-separator"></div>
             <div class="input-otp__group" data-slot="input-otp-group">
@@ -752,11 +752,11 @@ defmodule HeroUI do
                 :for={slot <- group}
                 class="input-otp__slot"
                 data-slot="input-otp-slot"
-                data-hero-otp-index={slot}
+                data-olis-otp-index={slot}
               >
-                <span class="input-otp__slot-value" data-hero-otp-value hidden></span><span
+                <span class="input-otp__slot-value" data-olis-otp-value hidden></span><span
                   class="input-otp__caret"
-                  data-hero-otp-caret
+                  data-olis-otp-caret
                   hidden
                 ></span>
               </div>
@@ -773,7 +773,7 @@ defmodule HeroUI do
           autocomplete={@autocomplete}
           spellcheck={@spellcheck}
           class="input input--primary input-otp__input"
-          data-hero-otp-input
+          data-olis-otp-input
           x-ref="input"
           aria-invalid={if @errors != [], do: "true"}
           aria-describedby={if @describedby != "", do: @describedby}
@@ -787,7 +787,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A HeroUI-styled section header. Use `as` to select an appropriate semantic tag."
+  @doc "An OlisUI-styled section header. Use `as` to select an appropriate semantic tag."
   attr(:as, :string, default: "header", values: ~w(header div span h1 h2 h3 h4 h5 h6))
   attr(:class, :any, default: nil)
   attr(:rest, :global)
@@ -918,7 +918,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A compact label with HeroUI v3 color, variant, and size options."
+  @doc "A compact label with OlisUI color, variant, and size options."
   attr(:variant, :string, default: "secondary", values: ~w(primary secondary tertiary soft))
   attr(:color, :string, default: "default", values: ~w(default accent success warning danger))
   attr(:size, :string, default: "md", values: ~w(sm md lg))
@@ -977,7 +977,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "An accessible HeroUI loading indicator."
+  @doc "An accessible OlisUI loading indicator."
   attr(:id, :string, default: nil)
   attr(:size, :string, default: "md", values: ~w(sm md lg xl))
   attr(:color, :string, default: "accent", values: ~w(current accent danger success warning))
@@ -991,7 +991,7 @@ defmodule HeroUI do
       assign(
         assigns,
         :gradient_id,
-        assigns.id || "hui-spinner-#{System.unique_integer([:positive, :monotonic])}"
+        assigns.id || "olis-spinner-#{System.unique_integer([:positive, :monotonic])}"
       )
 
     ~H"""
@@ -1087,7 +1087,7 @@ defmodule HeroUI do
   end
 
   @doc """
-  A labelled native checkbox, with HeroUI styling.
+  A labelled native checkbox, with OlisUI styling.
 
   `indeterminate` displays a mixed state while leaving the native checked value
   independently controlled. Keep it set until your application clears it.
@@ -1108,7 +1108,7 @@ defmodule HeroUI do
   def checkbox(assigns) do
     ~H"""
     <label
-      class={["checkbox", "checkbox--#{@variant}", "hui-native-checkbox", @class]}
+      class={["checkbox", "checkbox--#{@variant}", "olis-native-checkbox", @class]}
       for={@id}
       data-slot="checkbox"
       data-disabled={if @disabled, do: "true"}
@@ -1131,7 +1131,7 @@ defmodule HeroUI do
           aria-labelledby={"#{@id}-label"}
           aria-describedby={if @description, do: "#{@id}-description"}
           aria-invalid={if @invalid, do: "true"}
-          class="hui-visually-hidden-input"
+          class="olis-visually-hidden-input"
           {@rest}
         />
         <span class="checkbox__control" aria-hidden="true"><span class="checkbox__indicator"><svg
@@ -1240,7 +1240,7 @@ defmodule HeroUI do
   end
 
   @doc """
-  A native checkbox presented as a HeroUI switch.
+  A native checkbox presented as an OlisUI switch.
 
   Supply an `id` or Phoenix `field`. When omitting the visible label, provide
   `aria-label` or `aria-labelledby`. An unchecked switch submits no value;
@@ -1680,8 +1680,8 @@ defmodule HeroUI do
         @class
       ]}
       data-slot="scroll-shadow"
-      data-hero-scroll-shadow
-      x-data="heroScrollShadow"
+      data-olis-scroll-shadow
+      x-data="olisScrollShadow"
       x-on:scroll="schedule()"
       x-on:load.capture="schedule()"
       x-on:resize.window="schedule()"
@@ -1717,7 +1717,7 @@ defmodule HeroUI do
         :if={@on_visibility_change}
         type="button"
         hidden
-        data-hero-scroll-shadow-event
+        data-olis-scroll-shadow-event
         phx-click={@on_visibility_change}
         phx-target={@target}
       ></button>
@@ -1756,9 +1756,9 @@ defmodule HeroUI do
         src={@src}
         alt=""
         aria-hidden="true"
-        class="avatar__image hui-avatar-image"
-        data-hero-avatar-image
-        x-data="heroAvatarImage"
+        class="avatar__image olis-avatar-image"
+        data-olis-avatar-image
+        x-data="olisAvatarImage"
         x-on:phx:update.window="sync()"
         x-on:load="$el.removeAttribute('data-failed')"
         x-on:error="$el.dataset.failed = 'true'"
@@ -1887,7 +1887,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A native radio input with HeroUI styling. Radios sharing a name form a group."
+  @doc "A native radio input with OlisUI styling. Radios sharing a name form a group."
   attr(:id, :string, required: true)
   attr(:name, :string, required: true)
   attr(:value, :string, required: true)
@@ -1902,7 +1902,7 @@ defmodule HeroUI do
   def radio(assigns) do
     ~H"""
     <label
-      class={["radio", "hui-native-radio", @class]}
+      class={["radio", "olis-native-radio", @class]}
       for={@id}
       data-slot="radio"
       data-disabled={if @disabled, do: "true"}
@@ -1919,7 +1919,7 @@ defmodule HeroUI do
           aria-labelledby={"#{@id}-label"}
           aria-invalid={if @invalid, do: "true"}
           aria-describedby={if @description, do: "#{@id}-description"}
-          class="hui-visually-hidden-input"
+          class="olis-visually-hidden-input"
           {@rest}
         />
         <span class="radio__control" aria-hidden="true"><span class="radio__indicator"></span></span>
@@ -2006,7 +2006,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A form label with HeroUI required, disabled, and invalid states."
+  @doc "A form label with OlisUI required, disabled, and invalid states."
   attr(:for, :string, default: nil)
   attr(:required, :boolean, default: false)
   attr(:disabled, :boolean, default: false)
@@ -2032,7 +2032,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A HeroUI link for ordinary navigation, LiveView navigation, or patches."
+  @doc "An OlisUI link for ordinary navigation, LiveView navigation, or patches."
   attr(:href, :string, default: nil)
   attr(:navigate, :string, default: nil)
   attr(:patch, :string, default: nil)
@@ -2122,7 +2122,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "Semantic HeroUI typography with a visual type, color, alignment, and weight."
+  @doc "Semantic OlisUI typography with a visual type, color, alignment, and weight."
   attr(:type, :string, default: "body", values: ~w(h1 h2 h3 h4 h5 h6 body body-sm body-xs code))
   attr(:as, :string, default: nil)
   attr(:align, :string, default: "start", values: ~w(start center end justify))
@@ -2164,7 +2164,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "Applies HeroUI's prose styles to rich content."
+  @doc "Applies OlisUI's prose styles to rich content."
   attr(:class, :any, default: nil)
   attr(:rest, :global)
   slot(:inner_block, required: true)
@@ -2177,7 +2177,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A HeroUI surface; use Tailwind classes to add spacing, borders, or rounding."
+  @doc "An OlisUI surface; use Tailwind classes to add spacing, borders, or rounding."
   attr(:variant, :string, default: "default", values: ~w(default secondary tertiary transparent))
   attr(:class, :any, default: nil)
   attr(:rest, :global)
@@ -2197,7 +2197,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "An editable hex color or numeric color channel with HeroUI input styling."
+  @doc "An editable hex color or numeric color channel with OlisUI input styling."
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
@@ -2282,8 +2282,8 @@ defmodule HeroUI do
       id={"#{@id}-color-field"}
       class={["color-field", @full_width && "color-field--full-width", @class]}
       data-slot="color-field"
-      data-hero-color-field
-      x-data="heroColorField"
+      data-olis-color-field
+      x-data="olisColorField"
       x-on:focusout="focusout($event)"
       x-on:change="change($event)"
       x-on:submit.window.capture="submit($event)"
@@ -2317,7 +2317,7 @@ defmodule HeroUI do
           <%= if @prefix != [] do %>
             {render_slot(@prefix)}
           <% else %>
-            <span id={"#{@id}-color-preview"} data-hero-color-preview phx-update="ignore">
+            <span id={"#{@id}-color-preview"} data-olis-color-preview phx-update="ignore">
               <.color_swatch
                 color={@preview_color}
                 label={"Color preview: #{@preview_color}"}
@@ -2333,7 +2333,7 @@ defmodule HeroUI do
           value={@value}
           class="color-input-group__input"
           data-slot="color-input-group-input"
-          data-hero-color-input
+          data-olis-color-input
           autocomplete={@autocomplete}
           autocorrect="off"
           spellcheck="false"
@@ -2398,7 +2398,7 @@ defmodule HeroUI do
 
   defp normalize_color_field(_, _), do: nil
 
-  @doc "A color preview with HeroUI sizes, shapes, and transparency pattern."
+  @doc "A color preview with OlisUI sizes, shapes, and transparency pattern."
   attr(:color, :string, required: true)
   attr(:label, :string, default: nil)
   attr(:size, :string, default: "md", values: ~w(xs sm md lg xl))
@@ -2506,14 +2506,14 @@ defmodule HeroUI do
       >
         <label
           :for={option <- @options}
-          class="color-swatch-picker__item hui-swatch-picker__option"
+          class="color-swatch-picker__item olis-swatch-picker__option"
           data-slot="color-swatch-picker-item"
           data-disabled={if @disabled || Map.get(option, :disabled, false), do: "true"}
           style={"--color-swatch-current: #{option.value}"}
         >
           <input
             type="radio"
-            class="hui-visually-hidden-input"
+            class="olis-visually-hidden-input"
             name={@name}
             value={option.value}
             checked={canonical_swatch_color(option.value) == canonical_swatch_color(@value)}
@@ -2643,16 +2643,16 @@ defmodule HeroUI do
       id={@id}
       class={["toast-region", "toast-region--#{@placement}", @class]}
       data-slot="toast-region"
-      data-hero-toast-region
-      x-data="heroToastRegion"
-      x-on:hero:toast.window="show($event.detail)"
-      x-on:phx:hero:toast.window="show($event.detail)"
-      x-on:hero:toast-update.window="update($event.detail)"
-      x-on:phx:hero:toast-update.window="update($event.detail)"
-      x-on:hero:toast-close.window="closeEvent($event.detail)"
-      x-on:phx:hero:toast-close.window="closeEvent($event.detail)"
-      x-on:hero:toast-clear.window="clearEvent($event.detail)"
-      x-on:phx:hero:toast-clear.window="clearEvent($event.detail)"
+      data-olis-toast-region
+      x-data="olisToastRegion"
+      x-on:olis:toast.window="show($event.detail)"
+      x-on:phx:olis:toast.window="show($event.detail)"
+      x-on:olis:toast-update.window="update($event.detail)"
+      x-on:phx:olis:toast-update.window="update($event.detail)"
+      x-on:olis:toast-close.window="closeEvent($event.detail)"
+      x-on:phx:olis:toast-close.window="closeEvent($event.detail)"
+      x-on:olis:toast-clear.window="clearEvent($event.detail)"
+      x-on:phx:olis:toast-clear.window="clearEvent($event.detail)"
       x-on:pointerenter="pointerEnter($event)"
       x-on:pointermove="pointerEnter($event)"
       x-on:pointerleave="pointerLeave($event)"
@@ -2675,14 +2675,14 @@ defmodule HeroUI do
       tabindex="-1"
       phx-update="ignore"
     >
-      <ol data-hero-toast-list class="contents">
+      <ol data-olis-toast-list class="contents">
         <template x-for="item in items" x-bind:key="item.uid">
           <li class="contents">
             <div
               class="toast"
               x-bind:class="`toast--${$root.dataset.placement} toast--${variant(item.data.variant)}`"
               data-slot="toast"
-              data-hero-toast
+              data-olis-toast
               x-bind:data-toast-uid="item.uid"
               x-bind:data-index="item.index"
               x-bind:data-frontmost="String(item.index === 0)"
@@ -2793,7 +2793,7 @@ defmodule HeroUI do
                   type="button"
                   class="button button--md button--tertiary toast__action"
                   data-slot="toast-action-button"
-                  data-hero-toast-action
+                  data-olis-toast-action
                   x-bind:phx-click="actionCommand(item)"
                   x-on:click="action(item)"
                   x-text="item.data.action.label"
@@ -2803,7 +2803,7 @@ defmodule HeroUI do
                 type="button"
                 class="close-button close-button--default toast__close-button"
                 data-slot="toast-close"
-                data-hero-toast-close
+                data-olis-toast-close
                 aria-label="Close"
                 x-on:click="close(item)"
               >
@@ -2889,7 +2889,7 @@ defmodule HeroUI do
     <div
       id={"#{@id}-date-field"}
       class={["date-field", @full_width && "date-field--full-width", @class]}
-      data-hero-date-field
+      data-olis-date-field
       data-locale={@locale}
       data-variant={@variant}
       data-unavailable={@unavailable_json}
@@ -2910,18 +2910,18 @@ defmodule HeroUI do
           "input",
           "input--#{@variant}",
           @full_width && "input--full-width",
-          "hui-date-field-native"
+          "olis-date-field-native"
         ]}
         disabled={@disabled}
         readonly={@read_only}
         required={@required}
         aria-invalid={if @errors != [], do: "true"}
         aria-describedby={if @describedby != "", do: @describedby}
-        data-hero-date-native
+        data-olis-date-native
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
         {@rest}
       />
-      <div id={"#{@id}-date-enhanced"} data-hero-date-ui phx-update="ignore" hidden>
+      <div id={"#{@id}-date-enhanced"} data-olis-date-ui phx-update="ignore" hidden>
         <div
           class={[
             "date-input-group",
@@ -2929,7 +2929,7 @@ defmodule HeroUI do
             @full_width && "date-input-group--full-width"
           ]}
           data-slot="date-input-group"
-          data-hero-date-group
+          data-olis-date-group
           role="group"
           aria-labelledby={"#{@id}-label"}
           aria-describedby={if @describedby != "", do: @describedby}
@@ -2944,7 +2944,7 @@ defmodule HeroUI do
           <div
             class="date-input-group__input"
             data-slot="date-input-group-input"
-            data-hero-date-segments
+            data-olis-date-segments
           >
           </div>
           <span
@@ -2957,7 +2957,7 @@ defmodule HeroUI do
           id={"#{@id}-native-error"}
           class="field-error"
           data-visible="true"
-          data-hero-date-error
+          data-olis-date-error
           hidden
         >
         </p>
@@ -3035,8 +3035,8 @@ defmodule HeroUI do
       id={"#{@id}-time-field"}
       class={["time-field", @full_width && "time-field--full-width", @class]}
       data-slot="time-field"
-      data-hero-time-field
-      x-data="heroTimeField"
+      data-olis-time-field
+      x-data="olisTimeField"
       x-on:keydown="keydown($event)"
       x-on:beforeinput="beforeinput($event)"
       x-on:paste="paste($event)"
@@ -3074,11 +3074,11 @@ defmodule HeroUI do
         required={@required}
         aria-invalid={if @errors != [], do: "true"}
         aria-describedby={if @describedby != "", do: @describedby}
-        data-hero-time-native
+        data-olis-time-native
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
         {@rest}
       />
-      <div id={"#{@id}-time-enhanced"} data-hero-time-ui phx-update="ignore" hidden>
+      <div id={"#{@id}-time-enhanced"} data-olis-time-ui phx-update="ignore" hidden>
         <div
           class={[
             "date-input-group",
@@ -3086,7 +3086,7 @@ defmodule HeroUI do
             @full_width && "date-input-group--full-width"
           ]}
           data-slot="date-input-group"
-          data-hero-time-group
+          data-olis-time-group
           role="group"
           aria-labelledby={"#{@id}-label"}
         >
@@ -3098,7 +3098,7 @@ defmodule HeroUI do
           <div
             class="date-input-group__input"
             data-slot="date-input-group-input"
-            data-hero-time-segments
+            data-olis-time-segments
           >
           </div>
           <span
@@ -3111,7 +3111,7 @@ defmodule HeroUI do
           id={"#{@id}-native-error"}
           class="field-error"
           data-visible="true"
-          data-hero-time-error
+          data-olis-time-error
           hidden
         >
         </p>
@@ -3177,7 +3177,7 @@ defmodule HeroUI do
     <div
       id={"#{@id}-picker"}
       class={["date-picker", @full_width && "w-full", @class]}
-      data-hero-date-picker
+      data-olis-date-picker
     >
       <.date_field
         field={@field}
@@ -3203,7 +3203,7 @@ defmodule HeroUI do
             type="button"
             class="date-picker__trigger"
             data-slot="date-picker-trigger"
-            data-hero-date-picker-trigger
+            data-olis-date-picker-trigger
             aria-label="Calendar"
             aria-labelledby={"#{@id}-picker-trigger #{@id}-label"}
             id={"#{@id}-picker-trigger"}
@@ -3235,9 +3235,9 @@ defmodule HeroUI do
       </.date_field>
       <div
         id={"#{@id}-picker-popover"}
-        class="date-picker__popover hui-date-picker-popover"
+        class="date-picker__popover olis-date-picker-popover"
         data-slot="date-picker-popover"
-        data-hero-date-picker-popover
+        data-olis-date-picker-popover
         popover="auto"
         role="dialog"
         tabindex="-1"
@@ -3337,8 +3337,8 @@ defmodule HeroUI do
     ~H"""
     <div
       id={"#{@id}-calendar-root"}
-      class={["hui-calendar-root", @class]}
-      data-hero-calendar
+      class={["olis-calendar-root", @class]}
+      data-olis-calendar
       data-locale={@locale}
       data-week-start={@week_starts_on}
       data-weeks={@weeks_in_month}
@@ -3360,17 +3360,17 @@ defmodule HeroUI do
         disabled={@disabled}
         readonly={@read_only}
         required={@required}
-        class="input input--primary hui-calendar-native"
+        class="input input--primary olis-calendar-native"
         aria-invalid={if @errors != [], do: "true"}
         aria-describedby={if @describedby != "", do: @describedby}
-        data-hero-calendar-native
+        data-olis-calendar-native
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
         {@rest}
       />
-      <div id={"#{@id}-calendar-enhanced"} data-hero-calendar-ui phx-update="ignore" hidden>
+      <div id={"#{@id}-calendar-enhanced"} data-olis-calendar-ui phx-update="ignore" hidden>
         <div
           class="calendar"
-          data-hero-calendar-view
+          data-olis-calendar-view
           data-slot="calendar"
           role="group"
           aria-label={@label}
@@ -3380,7 +3380,7 @@ defmodule HeroUI do
           id={"#{@id}-calendar-native-error"}
           class="field-error"
           data-visible="true"
-          data-hero-calendar-error
+          data-olis-calendar-error
           hidden
         >
         </p>
@@ -3482,8 +3482,8 @@ defmodule HeroUI do
     ~H"""
     <div
       id={"#{@id}-calendar-root"}
-      class={["hui-calendar-root", @class]}
-      data-hero-calendar
+      class={["olis-calendar-root", @class]}
+      data-olis-calendar
       data-range="true"
       data-label={@label}
       data-locale={@locale}
@@ -3497,8 +3497,8 @@ defmodule HeroUI do
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-enhanced"])}
     >
       <div
-        class="hui-calendar-native"
-        data-hero-calendar-native-group
+        class="olis-calendar-native"
+        data-olis-calendar-native-group
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden"])}
       >
         <label for={@start_id} class="label">{@label}: {@start_label}</label>
@@ -3515,7 +3515,7 @@ defmodule HeroUI do
           class="input input--primary"
           aria-invalid={if @errors != [], do: "true"}
           aria-describedby={if @describedby != "", do: @describedby}
-          data-hero-calendar-native
+          data-olis-calendar-native
           phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
           {@rest}
         />
@@ -3533,15 +3533,15 @@ defmodule HeroUI do
           class="input input--primary"
           aria-invalid={if @errors != [], do: "true"}
           aria-describedby={if @describedby != "", do: @describedby}
-          data-hero-calendar-end
+          data-olis-calendar-end
           phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
           {@rest}
         />
       </div>
-      <div id={"#{@id}-calendar-enhanced"} data-hero-calendar-ui phx-update="ignore" hidden>
+      <div id={"#{@id}-calendar-enhanced"} data-olis-calendar-ui phx-update="ignore" hidden>
         <div
           class="range-calendar"
-          data-hero-calendar-view
+          data-olis-calendar-view
           data-slot="range-calendar"
           role="group"
           aria-label={@label}
@@ -3551,7 +3551,7 @@ defmodule HeroUI do
           id={"#{@id}-calendar-native-error"}
           class="field-error"
           data-visible="true"
-          data-hero-calendar-error
+          data-olis-calendar-error
           hidden
         >
         </p>
@@ -3658,8 +3658,8 @@ defmodule HeroUI do
         @class
       ]}
       data-slot="autocomplete"
-      data-hero-autocomplete
-      x-data="heroAutocomplete"
+      data-olis-autocomplete
+      x-data="olisAutocomplete"
       x-on:input="input($event)"
       x-on:change="change($event)"
       x-on:keydown="keydown($event)"
@@ -3696,7 +3696,7 @@ defmodule HeroUI do
         required={@required}
         aria-invalid={if @errors != [], do: "true"}
         aria-describedby={if @describedby != "", do: @describedby}
-        data-hero-autocomplete-native
+        data-olis-autocomplete-native
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
         {@rest}
       >
@@ -3704,25 +3704,25 @@ defmodule HeroUI do
         {Phoenix.HTML.Form.options_for_select(@options, @value)}
       </select>
       <span :if={@required} id={"#{@id}-required-hint"} class="sr-only">Required</span>
-      <div id={"#{@id}-enhanced"} data-hero-autocomplete-ui phx-update="ignore" hidden>
+      <div id={"#{@id}-enhanced"} data-olis-autocomplete-ui phx-update="ignore" hidden>
         <div
           class={["autocomplete__trigger", @full_width && "autocomplete__trigger--full-width"]}
           data-slot="autocomplete-trigger"
-          data-hero-autocomplete-group
+          data-olis-autocomplete-group
           role="group"
         >
           <span
             id={"#{@id}-value"}
             class="autocomplete__value pointer-events-none"
             data-slot="autocomplete-value"
-            data-hero-autocomplete-value
+            data-olis-autocomplete-value
             data-placeholder="true"
           >{@placeholder}</span>
           <button
             type="button"
             class="autocomplete__clear-button z-10"
             data-slot="autocomplete-clear-button"
-            data-hero-autocomplete-clear
+            data-olis-autocomplete-clear
             data-empty="true"
             aria-label={"Clear #{@label}"}
             hidden={!@clearable}
@@ -3742,7 +3742,7 @@ defmodule HeroUI do
           <button
             type="button"
             class="absolute inset-0 rounded-[inherit]"
-            data-hero-autocomplete-trigger
+            data-olis-autocomplete-trigger
             aria-labelledby={"#{@id}-label #{@id}-value"}
             aria-haspopup="listbox"
             aria-expanded="false"
@@ -3766,7 +3766,7 @@ defmodule HeroUI do
           id={"#{@id}-popup"}
           class="autocomplete__popover fixed m-0 max-h-[calc(100dvh-1rem)] max-w-[calc(100vw-1rem)] border-0 [inset:auto] [&:not(:popover-open)]:hidden"
           data-slot="autocomplete-popover"
-          data-hero-autocomplete-popup
+          data-olis-autocomplete-popup
           popover="auto"
           role="dialog"
           aria-labelledby={"#{@id}-label"}
@@ -3776,7 +3776,7 @@ defmodule HeroUI do
             <div
               class="search-field search-field--secondary"
               data-slot="search-field"
-              data-hero-autocomplete-search-field
+              data-olis-autocomplete-search-field
               data-empty="true"
             >
               <div class="search-field__group" data-slot="search-field-group">
@@ -3796,7 +3796,7 @@ defmodule HeroUI do
                   type="search"
                   class="search-field__input"
                   data-slot="search-field-input"
-                  data-hero-autocomplete-search
+                  data-olis-autocomplete-search
                   placeholder={@search_placeholder}
                   aria-label={"Search #{@label}"}
                   role="combobox"
@@ -3809,7 +3809,7 @@ defmodule HeroUI do
                   type="button"
                   class="close-button close-button--default search-field__clear-button"
                   data-slot="search-field-clear-button"
-                  data-hero-autocomplete-search-clear
+                  data-olis-autocomplete-search-clear
                   slot="clear"
                   aria-label="Clear search"
                   tabindex="-1"
@@ -3833,7 +3833,7 @@ defmodule HeroUI do
               class="list-box"
               role="listbox"
               data-slot="list-box"
-              data-hero-autocomplete-list
+              data-olis-autocomplete-list
               aria-labelledby={"#{@id}-label"}
               aria-multiselectable={if @selection_mode == "multiple", do: "true"}
             >
@@ -3841,7 +3841,7 @@ defmodule HeroUI do
             <div
               class="empty-state"
               data-slot="empty-state"
-              data-hero-autocomplete-empty
+              data-olis-autocomplete-empty
               role="status"
               hidden
             >
@@ -3853,7 +3853,7 @@ defmodule HeroUI do
           id={"#{@id}-native-error"}
           class="field-error"
           data-visible="true"
-          data-hero-autocomplete-error
+          data-olis-autocomplete-error
           hidden
         >
         </p>
@@ -3940,8 +3940,8 @@ defmodule HeroUI do
     <div
       id={"#{@id}-combo"}
       class={["combo-box", @full_width && "combo-box--full-width", @class]}
-      data-hero-combo
-      x-data="heroComboBox"
+      data-olis-combo
+      x-data="olisComboBox"
       x-on:input="input($event)"
       x-on:change="change($event)"
       x-on:keydown="keydown($event)"
@@ -3969,14 +3969,14 @@ defmodule HeroUI do
       <select
         id={if @allows_custom_value, do: "#{@id}-source", else: @id}
         name={if !@allows_custom_value, do: @name}
-        class="select__trigger hui-combo-native"
+        class="select__trigger olis-combo-native"
         disabled={@disabled}
         required={@required && !@allows_custom_value}
         multiple={@selection_mode == "multiple"}
         hidden={@allows_custom_value}
         aria-invalid={if @errors != [], do: "true"}
         aria-describedby={if @describedby != "", do: @describedby}
-        data-hero-combo-native
+        data-olis-combo-native
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
         {if @allows_custom_value, do: %{}, else: @rest}
       >
@@ -3988,7 +3988,7 @@ defmodule HeroUI do
       </datalist>
       <div
         id={"#{@id}-enhanced"}
-        data-hero-combo-ui
+        data-olis-combo-ui
         phx-update={if !@allows_custom_value, do: "ignore"}
         hidden={!@allows_custom_value}
       >
@@ -4002,7 +4002,7 @@ defmodule HeroUI do
             list={if @allows_custom_value, do: "#{@id}-suggestions"}
             class={["input", "input--#{@variant}", @full_width && "input--full-width"]}
             data-slot="input"
-            data-hero-combo-input
+            data-olis-combo-input
             type="text"
             role={if !@allows_custom_value, do: "combobox"}
             aria-labelledby={"#{@id}-label"}
@@ -4032,7 +4032,7 @@ defmodule HeroUI do
           <button
             type="button"
             class="combo-box__trigger"
-            data-hero-combo-trigger
+            data-olis-combo-trigger
             aria-label={"Show #{@label} options"}
             aria-haspopup="listbox"
             aria-expanded="false"
@@ -4059,15 +4059,15 @@ defmodule HeroUI do
           id={"#{@id}-value"}
           class="combo-box__value"
           data-slot="combo-box-value"
-          data-hero-combo-value
+          data-olis-combo-value
           data-placeholder="true"
         >
           {@selected_placeholder}
         </div>
         <div
           id={"#{@id}-popup"}
-          class="combo-box__popover hui-combo-popup"
-          data-hero-combo-popup
+          class="combo-box__popover olis-combo-popup"
+          data-olis-combo-popup
           popover="auto"
           phx-update={if @allows_custom_value, do: "ignore"}
         >
@@ -4078,10 +4078,10 @@ defmodule HeroUI do
             aria-labelledby={"#{@id}-label"}
             class="list-box"
             data-slot="list-box"
-            data-hero-combo-list
+            data-olis-combo-list
           >
           </div>
-          <div class="hui-combo-empty" data-hero-combo-empty role="status" hidden>
+          <div class="olis-combo-empty" data-olis-combo-empty role="status" hidden>
             No matching options
           </div>
         </div>
@@ -4089,7 +4089,7 @@ defmodule HeroUI do
           id={"#{@id}-native-error"}
           class="field-error"
           data-visible="true"
-          data-hero-combo-error
+          data-olis-combo-error
           hidden
         >
         </p>
@@ -4130,7 +4130,7 @@ defmodule HeroUI do
   end
 
   @doc """
-  A native single or multiple select with HeroUI field styling.
+  A native single or multiple select with OlisUI field styling.
 
   Options use the same formats as `Phoenix.HTML.Form.options_for_select/2`.
   The browser provides the options popup and keyboard interaction.
@@ -4148,10 +4148,10 @@ defmodule HeroUI do
   def select(assigns) do
     ~H"""
     <div
-      class={["select", "select--#{@variant}", "hui-native-select", @class]}
+      class={["select", "select--#{@variant}", "olis-native-select", @class]}
       data-invalid={if @invalid, do: "true"}
-      data-hero-select-root
-      x-data="heroSelect"
+      data-olis-select-root
+      x-data="olisSelect"
       x-on:click.window="click($event)"
       x-on:keydown="keydown($event)"
       x-on:toggle.capture="toggle($event)"
@@ -4163,13 +4163,13 @@ defmodule HeroUI do
       x-on:phx:update.window="sync()"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-enhanced"])}
     >
-      <div class="hui-native-select-field">
+      <div class="olis-native-select-field">
         <select
           id={@id}
           name={@name}
-          class="select__trigger hui-native-select-input"
+          class="select__trigger olis-native-select-input"
           aria-invalid={if @invalid, do: "true"}
-          data-hero-native-select
+          data-olis-native-select
           phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-hidden", "tabindex"])}
           {@rest}
         >
@@ -4177,7 +4177,7 @@ defmodule HeroUI do
           {Phoenix.HTML.Form.options_for_select(@options, @value)}
         </select>
         <svg
-          class="select__indicator hui-native-select-indicator"
+          class="select__indicator olis-native-select-indicator"
           aria-hidden="true"
           viewBox="0 0 16 16"
           fill="none"
@@ -4188,19 +4188,19 @@ defmodule HeroUI do
           stroke-linecap="round"
           stroke-linejoin="round"
         /></svg>
-        <div id={"#{@id}-enhanced"} data-hero-select-ui phx-update="ignore" hidden>
+        <div id={"#{@id}-enhanced"} data-olis-select-ui phx-update="ignore" hidden>
           <button
             id={"#{@id}-trigger"}
             type="button"
-            class="select__trigger hui-enhanced-select-trigger"
+            class="select__trigger olis-enhanced-select-trigger"
             role="combobox"
             aria-haspopup="listbox"
             aria-expanded="false"
             aria-controls={"#{@id}-listbox"}
             popovertarget={"#{@id}-popup"}
-            data-hero-select-trigger
+            data-olis-select-trigger
           >
-            <span class="select__value" data-hero-select-value></span><svg
+            <span class="select__value" data-olis-select-value></span><svg
               class="select__indicator"
               aria-hidden="true"
               viewBox="0 0 16 16"
@@ -4216,15 +4216,15 @@ defmodule HeroUI do
           <div
             id={"#{@id}-popup"}
             popover="auto"
-            class="select__popover hui-enhanced-select-popup"
-            data-hero-select-popup
+            class="select__popover olis-enhanced-select-popup"
+            data-olis-select-popup
           >
             <div
               id={"#{@id}-listbox"}
               role="listbox"
               aria-labelledby={"#{@id}-trigger"}
               class="list-box"
-              data-hero-select-list
+              data-olis-select-list
             >
             </div>
           </div>
@@ -4233,7 +4233,7 @@ defmodule HeroUI do
             class="field-error"
             data-visible="true"
             role="alert"
-            data-hero-select-error
+            data-olis-select-error
             hidden
           ></span>
         </div>
@@ -4309,7 +4309,7 @@ defmodule HeroUI do
       class={[
         "accordion",
         "accordion__item",
-        "hui-native-accordion",
+        "olis-native-accordion",
         @variant == "surface" && "accordion--surface",
         @class
       ]}
@@ -4343,13 +4343,13 @@ defmodule HeroUI do
       id={@id}
       class={["accordion", @variant == "surface" && "accordion--surface", @class]}
       data-slot="accordion"
-      data-hero-accordion
+      data-olis-accordion
       data-controlled={to_string(@controlled)}
       data-multiple={to_string(@allows_multiple_expanded)}
       data-initial-expanded={Jason.encode!(@expanded)}
       data-expanded-keys={Jason.encode!(@expanded)}
       data-disabled={if @disabled, do: "true"}
-      x-data="heroAccordion"
+      x-data="olisAccordion"
       x-on:phx:update.window="sync()"
       x-on:keydown="keydown($event)"
     >
@@ -4483,7 +4483,7 @@ defmodule HeroUI do
       id={@id}
       class={[
         "disclosure",
-        "hui-disclosure",
+        "olis-disclosure",
         "[&[open]_[data-slot=disclosure-indicator]]:-rotate-180",
         "[interpolate-size:allow-keywords]",
         "[&::details-content]:h-0 [&::details-content]:overflow-clip [&::details-content]:opacity-0",
@@ -4492,12 +4492,12 @@ defmodule HeroUI do
         @class
       ]}
       data-slot="disclosure"
-      data-hero-disclosure
+      data-olis-disclosure
       data-disabled={if @disabled, do: "true"}
       data-expanded={if @open, do: "true"}
       open={@open}
       name={@name}
-      x-data="heroDisclosure"
+      x-data="olisDisclosure"
       x-on:toggle.self="sync()"
       x-on:phx:update.window="sync()"
       x-bind:data-expanded="expanded ? 'true' : null"
@@ -4521,7 +4521,7 @@ defmodule HeroUI do
           @trigger_class
         ]}
         data-slot="disclosure-trigger"
-        data-hero-disclosure-trigger
+        data-olis-disclosure-trigger
         role="button"
         aria-controls={"#{@id}-content"}
         aria-expanded={to_string(@open)}
@@ -4535,7 +4535,7 @@ defmodule HeroUI do
         x-bind:phx-value-expanded="(!expanded).toString()"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-expanded", "phx-value-expanded"])}
       >
-        <span class="hui-disclosure-label flex-1 text-start"><%= if @trigger != [] do %>
+        <span class="olis-disclosure-label flex-1 text-start"><%= if @trigger != [] do %>
           {render_slot(@trigger)}
         <% else %>
           {@title}
@@ -4562,7 +4562,7 @@ defmodule HeroUI do
         id={"#{@id}-content"}
         class={["disclosure__content", "h-auto opacity-100", @content_class]}
         data-slot="disclosure-content"
-        data-hero-disclosure-content
+        data-olis-disclosure-content
         data-expanded={if @open, do: "true"}
         x-bind:data-expanded="expanded ? 'true' : null"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-expanded"])}
@@ -4621,7 +4621,7 @@ defmodule HeroUI do
       id={@id}
       class={["disclosure-group", @class]}
       data-slot="disclosure-group"
-      data-hero-disclosure-group
+      data-olis-disclosure-group
       data-allows-multiple-expanded={to_string(@allows_multiple_expanded)}
       {@rest}
     >
@@ -4647,7 +4647,7 @@ defmodule HeroUI do
 
   @doc """
   Contextual feedback with a status icon, title, description, and optional actions.
-  Use `status` for HeroUI naming; the existing `color` attribute remains supported.
+  Use `status` for OlisUI naming; the existing `color` attribute remains supported.
   """
   attr(:title, :string, default: nil)
   attr(:color, :string, default: "default", values: ~w(default accent success warning danger))
@@ -4721,7 +4721,7 @@ defmodule HeroUI do
     """
   end
 
-  # Icon paths adapted from HeroUI, Apache-2.0. See THIRD_PARTY_NOTICES.md.
+  # Icon paths adapted from upstream, Apache-2.0. See THIRD_PARTY_NOTICES.md.
   defp alert_icon_path("success"),
     do:
       "M13.5 8a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0m-3.9-1.55a.75.75 0 1 0-1.2-.9L7.419 8.858L6.03 7.47a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.13-.08z"
@@ -4775,7 +4775,7 @@ defmodule HeroUI do
   end
 
   @doc """
-  A semantic, responsive HeroUI table. Column slots receive each row.
+  A semantic, responsive OlisUI table. Column slots receive each row.
 
   Pass a LiveView stream as `rows` and a unique `id` for incremental updates.
   For server-side sorting, give columns `sort_key` and set `sort_event`; the
@@ -4910,11 +4910,11 @@ defmodule HeroUI do
     ~H"""
     <div
       class={["table-root", "table-root--#{@variant}", @class]}
-      data-hero-table="true"
+      data-olis-table="true"
       data-selection-mode={if @selection_mode != "none", do: @selection_mode}
       data-selected-keys={if @selection_mode != "none", do: @encoded_selected}
       data-controlled={if @selection_mode != "none", do: to_string(!is_nil(@selected_keys))}
-      x-data="heroTable"
+      x-data="olisTable"
       x-on:keydown="keyDown($event)"
       x-on:focusin="focusIn($event)"
       x-on:focusout="focusOut($event)"
@@ -4971,7 +4971,7 @@ defmodule HeroUI do
                   <button
                     :if={@sort_event && Map.get(col, :sort_key)}
                     type="button"
-                    class="table__sortable-column-header hui-table-sort"
+                    class="table__sortable-column-header olis-table-sort"
                     phx-click={@sort_event}
                     phx-value-sort={col.sort_key}
                   >
@@ -5023,7 +5023,7 @@ defmodule HeroUI do
                 :for={item <- @rows}
                 id={table_row_id(item, @stream?, @row_id)}
                 class="table__row"
-                data-hero-table-row="true"
+                data-olis-table-row="true"
                 data-key={if @selection_mode != "none", do: table_row_id(item, @stream?, @row_id)}
                 data-selected={
                   if @selection_mode != "none" and
@@ -5095,7 +5095,7 @@ defmodule HeroUI do
         :if={@on_column_resize}
         type="button"
         hidden
-        data-hero-table-resize-event
+        data-olis-table-resize-event
         phx-click={@on_column_resize}
         phx-target={@target}
       ></button>
@@ -5103,7 +5103,7 @@ defmodule HeroUI do
         :if={@on_selection_change}
         type="button"
         hidden
-        data-hero-table-selection-event
+        data-olis-table-selection-event
         phx-click={@on_selection_change}
         phx-target={@target}
       ></button>
@@ -5119,19 +5119,19 @@ defmodule HeroUI do
   defp table_selection_control(assigns) do
     ~H"""
     <label
-      class="checkbox checkbox--primary hui-native-checkbox group"
+      class="checkbox checkbox--primary olis-native-checkbox group"
       data-slot="checkbox"
       data-disabled={if @disabled, do: "true"}
     >
       <span class="checkbox__content" data-slot="checkbox-content">
         <input
           type="checkbox"
-          class="hui-visually-hidden-input"
+          class="olis-visually-hidden-input"
           aria-label={@label}
           checked={@selected}
           disabled={@disabled}
-          data-hero-table-select-all={if @select_all, do: "true"}
-          data-hero-table-select-row={if !@select_all, do: "true"}
+          data-olis-table-select-all={if @select_all, do: "true"}
+          data-olis-table-select-row={if !@select_all, do: "true"}
         />
         <span class="checkbox__control" aria-hidden="true"><span class="checkbox__indicator"><svg
           class="group-data-[indeterminate=true]:hidden"
@@ -5169,8 +5169,8 @@ defmodule HeroUI do
   @doc """
   A modal dialog using the browser's focus containment and Escape behavior.
 
-  Install the HeroUI Alpine providers as described in the README. Open it with a button carrying
-  `data-hero-dialog-open={id}`, or pass a trigger slot receiving that attribute. Use `open` and
+  Install the OlisUI Alpine providers as described in the README. Open it with a button carrying
+  `data-olis-dialog-open={id}`, or pass a trigger slot receiving that attribute. Use `open` and
   `on_open_change` for server-controlled state or `default_open` for client-managed state.
   """
   attr(:id, :string, required: true)
@@ -5201,15 +5201,15 @@ defmodule HeroUI do
       do: raise(ArgumentError, "modal cannot use open and default_open together")
 
     ~H"""
-    {render_slot(@trigger, %{"data-hero-dialog-open" => @id})}
+    {render_slot(@trigger, %{"data-olis-dialog-open" => @id})}
     <dialog
       id={@id}
       class={[
         "modal__dialog",
         "modal__dialog--#{@size}",
         "modal__dialog--scroll-#{@scroll}",
-        "hui-native-modal",
-        "hui-hero-modal",
+        "olis-native-modal",
+        "olis-olis-modal",
         "fixed inset-0 m-auto w-[calc(100%-2rem)] max-h-[calc(100dvh-2rem)] border-0 text-foreground sm:max-h-[calc(100dvh-5rem)]",
         @scroll == "outside" && "overflow-y-auto",
         @size == "cover" &&
@@ -5223,13 +5223,13 @@ defmodule HeroUI do
         @backdrop == "transparent" && "backdrop:bg-transparent",
         @class
       ]}
-      data-hero-dialog
-      data-hero-modal
+      data-olis-dialog
+      data-olis-modal
       data-slot="modal-dialog"
       data-placement={@placement}
       data-backdrop={@backdrop}
       data-scroll={@scroll}
-      x-data="heroDialog"
+      x-data="olisDialog"
       x-on:click.window="openFromTrigger($event)"
       x-on:click="onClick($event)"
       x-on:cancel="onCancel($event)"
@@ -5258,13 +5258,13 @@ defmodule HeroUI do
       <div class="modal__footer" data-slot="modal-footer">
         {render_slot(@footer)}
         <%= if @close != [] do %>
-          {render_slot(@close, %{"data-hero-dialog-close" => true})}
+          {render_slot(@close, %{"data-olis-dialog-close" => true})}
         <% else %>
           <button
             :if={@show_close}
             class="button button--md button--tertiary"
             type="button"
-            data-hero-dialog-close
+            data-olis-dialog-close
           >{@close_label}</button>
         <% end %>
       </div>
@@ -5272,7 +5272,7 @@ defmodule HeroUI do
         :if={@on_open_change}
         type="button"
         hidden
-        data-hero-modal-event
+        data-olis-modal-event
         phx-click={@on_open_change}
         phx-target={@target}
       ></button>
@@ -5281,8 +5281,8 @@ defmodule HeroUI do
   end
 
   @doc """
-  A swipeable modal sheet. Open it with `data-hero-sheet-open={id}` and install
-  the HeroUI Alpine providers. Supply `open` and `on_open_change` for
+  A swipeable modal sheet. Open it with `data-olis-sheet-open={id}` and install
+  the OlisUI Alpine providers. Supply `open` and `on_open_change` for
   server-controlled state, or use `default_open` for client-managed state.
   """
   attr(:id, :string, required: true)
@@ -5326,8 +5326,8 @@ defmodule HeroUI do
         @placement == "right" && "items-center justify-end",
         "backdrop:bg-transparent"
       ]}
-      data-hero-sheet
-      x-data="heroSheet"
+      data-olis-sheet
+      x-data="olisSheet"
       x-on:click.window="openFromTrigger($event)"
       x-on:click="click($event)"
       x-on:cancel="cancel($event)"
@@ -5357,7 +5357,7 @@ defmodule HeroUI do
       <div
         class={["sheet__backdrop", "sheet__backdrop--#{@backdrop}", "fixed inset-0"]}
         data-slot="sheet-backdrop"
-        data-hero-sheet-backdrop
+        data-olis-sheet-backdrop
         data-stack-index="0"
         aria-hidden="true"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-stack-index", "style"])}
@@ -5366,7 +5366,7 @@ defmodule HeroUI do
       <div
         class={["sheet__content", "sheet__content--#{@placement}", "relative", @class]}
         data-slot="sheet-content"
-        data-hero-sheet-content
+        data-olis-sheet-content
         data-placement={@placement}
         data-detached={if @detached, do: "true"}
         data-snap-points={if @snap_points != [], do: "true"}
@@ -5386,7 +5386,7 @@ defmodule HeroUI do
             :if={@handle}
             class="sheet__handle"
             data-slot="sheet-handle"
-            data-hero-sheet-handle
+            data-olis-sheet-handle
             aria-hidden="true"
           >
             <span class="sheet__handle-bar" data-slot="sheet-handle-bar"></span>
@@ -5394,12 +5394,12 @@ defmodule HeroUI do
           <.close_button
             class="sheet__close-trigger"
             data-slot="sheet-close-trigger"
-            data-hero-sheet-close
+            data-olis-sheet-close
           />
           <header class="sheet__header" data-slot="sheet-header">
             <h2 id={"#{@id}-title"} class="sheet__heading" data-slot="sheet-heading">{@title}</h2>
           </header>
-          <div class={["sheet__body", @body_class]} data-slot="sheet-body" data-hero-sheet-body>
+          <div class={["sheet__body", @body_class]} data-slot="sheet-body" data-olis-sheet-body>
             <p :if={@description} id={"#{@id}-description"} class="text-sm text-muted">
               {@description}
             </p>
@@ -5414,7 +5414,7 @@ defmodule HeroUI do
         :if={@on_open_change}
         type="button"
         hidden
-        data-hero-sheet-event
+        data-olis-sheet-event
         phx-click={@on_open_change}
         phx-target={@target}
       ></button>
@@ -5435,7 +5435,7 @@ defmodule HeroUI do
 
   @doc """
   A keyboard-accessible tab set. Use `selected_key` and `on_selection_change`
-  for LiveView-controlled selection. Requires HeroUI's Alpine components.
+  for LiveView-controlled selection. Requires OlisUI's Alpine components.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
@@ -5489,12 +5489,12 @@ defmodule HeroUI do
       class={["tabs", "tabs--#{@variant}", @align != "center" && "tabs--align-#{@align}", @class]}
       data-slot="tabs"
       data-orientation={@orientation}
-      data-hero-tabs
+      data-olis-tabs
       data-initial-key={@selected_id}
       data-selected-key={@selected_key}
       data-controlled={to_string(!is_nil(@selected_key))}
       data-activation-mode={@activation_mode}
-      x-data="heroTabs"
+      x-data="olisTabs"
       x-on:phx:update.window="sync()"
     >
       <div class="tabs__list-container min-w-0 max-w-full" data-slot="tabs-list-container">
@@ -5623,7 +5623,7 @@ defmodule HeroUI do
 
   @doc """
   An action or selection menu with sections and nested submenus.
-  Register HeroUI's Alpine providers and use a browser with the Popover API.
+  Register OlisUI's Alpine providers and use a browser with the Popover API.
   """
   attr(:id, :string, required: true)
   attr(:label, :string, required: true)
@@ -5677,9 +5677,9 @@ defmodule HeroUI do
     ~H"""
     <div
       id={@id}
-      class={["dropdown", "hui-dropdown", @class]}
-      data-hero-dropdown
-      x-data="heroDropdown"
+      class={["dropdown", "olis-dropdown", @class]}
+      data-olis-dropdown
+      x-data="olisDropdown"
       x-on:click.capture="click($event)"
       x-on:keydown="keydown($event)"
       x-on:toggle.capture="toggle($event)"
@@ -5694,7 +5694,7 @@ defmodule HeroUI do
       <button
         type="button"
         class={["button", "button--md", "button--#{@variant}", "dropdown__trigger"]}
-        data-hero-dropdown-trigger
+        data-olis-dropdown-trigger
         popovertarget={"#{@id}-menu"}
         aria-haspopup="menu"
         aria-controls={"#{@id}-menu"}
@@ -5705,8 +5705,8 @@ defmodule HeroUI do
       <div
         id={"#{@id}-menu"}
         popover="auto"
-        class="dropdown__popover hui-dropdown-popover"
-        data-hero-dropdown-menu
+        class="dropdown__popover olis-dropdown-popover"
+        data-olis-dropdown-menu
         aria-label={@label}
         role="menu"
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
@@ -5783,7 +5783,7 @@ defmodule HeroUI do
       class={@label && "menu-section"}
       role={if @label, do: "group"}
       aria-label={@label}
-      data-hero-dropdown-group
+      data-olis-dropdown-group
       data-selection-mode={@mode}
       data-controlled={to_string(@controlled)}
       data-close-on-select={
@@ -5805,7 +5805,7 @@ defmodule HeroUI do
         :if={@on_selection_change && @mode != "none"}
         type="button"
         hidden
-        data-hero-dropdown-selection-event
+        data-olis-dropdown-selection-event
         phx-click={@on_selection_change}
         phx-target={@target}
       ></button>
@@ -5847,7 +5847,7 @@ defmodule HeroUI do
       )
 
     ~H"""
-    <div :if={@submenu} class="w-full" role="none" data-hero-dropdown-submenu-root>
+    <div :if={@submenu} class="w-full" role="none" data-olis-dropdown-submenu-root>
       <button
         id={@id}
         type="button"
@@ -5855,8 +5855,8 @@ defmodule HeroUI do
         tabindex="-1"
         class="menu-item menu-item--default"
         data-slot="menu-item"
-        data-hero-dropdown-item
-        data-hero-dropdown-submenu-trigger
+        data-olis-dropdown-item
+        data-olis-dropdown-submenu-trigger
         data-has-submenu="true"
         disabled={Map.get(@entry, :disabled, false)}
         data-disabled={if Map.get(@entry, :disabled, false), do: "true"}
@@ -5884,9 +5884,9 @@ defmodule HeroUI do
         popover="auto"
         role="menu"
         aria-label={@entry.label}
-        class="dropdown__popover hui-dropdown-popover"
-        data-hero-dropdown-menu
-        data-hero-dropdown-submenu
+        class="dropdown__popover olis-dropdown-popover"
+        data-olis-dropdown-menu
+        data-olis-dropdown-submenu
         phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
       >
         <div class="dropdown__menu" data-slot="dropdown-menu">
@@ -5918,7 +5918,7 @@ defmodule HeroUI do
         Map.get(@entry, :danger, false) && "menu-item--danger"
       ]}
       data-slot="menu-item"
-      data-hero-dropdown-item
+      data-olis-dropdown-item
       data-key={Map.get(@entry, :key)}
       data-selected={if @mode != "none", do: to_string(@checked)}
       data-selection-mode={if @mode != "none", do: @mode}
@@ -5943,7 +5943,7 @@ defmodule HeroUI do
       data-selection-mode={if @mode != "none", do: @mode}
       data-key={Map.get(@entry, :key)}
       data-slot="menu-item"
-      data-hero-dropdown-item
+      data-olis-dropdown-item
       phx-click={Map.get(@entry, :on_click) || @on_action}
       phx-value-key={Map.get(@entry, :key)}
       phx-target={@target}
@@ -6000,7 +6000,7 @@ defmodule HeroUI do
 
   @doc """
   An alert dialog for decisions that require an explicit response.
-  Open it with `data-hero-dialog-open` and install the HeroUI Alpine providers.
+  Open it with `data-olis-dialog-open` and install the OlisUI Alpine providers.
   The cancel action receives initial focus; confirmation sends `on_confirm` to LiveView.
   """
   attr(:id, :string, required: true)
@@ -6025,9 +6025,9 @@ defmodule HeroUI do
       role="alertdialog"
       aria-labelledby={"#{@id}-title"}
       aria-describedby={"#{@id}-description"}
-      class={["alert-dialog__dialog", "alert-dialog__dialog--#{@size}", "hui-native-modal", @class]}
-      data-hero-dialog
-      x-data="heroDialog"
+      class={["alert-dialog__dialog", "alert-dialog__dialog--#{@size}", "olis-native-modal", @class]}
+      data-olis-dialog
+      x-data="olisDialog"
       x-on:click.window="openFromTrigger($event)"
       x-on:click="onClick($event)"
       x-on:cancel="onCancel($event)"
@@ -6042,14 +6042,14 @@ defmodule HeroUI do
         <button
           type="button"
           class="button button--md button--tertiary"
-          data-hero-dialog-close
+          data-olis-dialog-close
           autofocus
         >{@cancel_label}</button>
         <button
           type="button"
           class={["button", "button--md", "button--#{@confirm_variant}"]}
           phx-click={@on_confirm}
-          data-hero-dialog-close
+          data-olis-dialog-close
         >{@confirm_label}</button>
       </div>
     </dialog>
@@ -6058,7 +6058,7 @@ defmodule HeroUI do
 
   @doc """
   A modal drawer attached to an edge of the viewport.
-  Open it with `data-hero-dialog-open={id}`. Requires HeroUI's Alpine providers.
+  Open it with `data-olis-dialog-open={id}`. Requires OlisUI's Alpine providers.
   The backdrop can be `opaque` (default), `blur`, or `transparent`.
   Use `default_open` for initial client state or `open` and `on_open_change`
   for LiveView-controlled state. A `:close` slot can replace the default control.
@@ -6090,8 +6090,8 @@ defmodule HeroUI do
       aria-labelledby={"#{@id}-title"}
       class={[
         "drawer__dialog",
-        "hui-native-modal",
-        "hui-native-drawer",
+        "olis-native-modal",
+        "olis-native-drawer",
         @backdrop == "opaque" && "backdrop:bg-backdrop",
         @backdrop == "blur" && "backdrop:bg-backdrop backdrop:backdrop-blur-md",
         @backdrop == "transparent" && "backdrop:bg-transparent",
@@ -6099,9 +6099,9 @@ defmodule HeroUI do
       ]}
       data-placement={@placement}
       data-backdrop={@backdrop}
-      data-hero-drawer
+      data-olis-drawer
       data-slot="drawer-dialog"
-      x-data="heroDrawer"
+      x-data="olisDrawer"
       x-on:click.window="openFromTrigger($event)"
       x-on:click="onClick($event)"
       x-on:cancel.prevent="onCancel()"
@@ -6125,7 +6125,7 @@ defmodule HeroUI do
           if(@placement in ["top", "bottom"], do: "touch-pan-x", else: "touch-pan-y")
         ]}
         data-slot="drawer-handle"
-        data-hero-drawer-drag
+        data-olis-drawer-drag
         aria-hidden="true"
       >
         <span data-slot="drawer-handle-bar"></span>
@@ -6136,7 +6136,7 @@ defmodule HeroUI do
           if(@placement in ["top", "bottom"], do: "touch-pan-x", else: "touch-pan-y")
         ]}
         data-slot="drawer-header"
-        data-hero-drawer-drag
+        data-olis-drawer-drag
       >
         <h2 id={"#{@id}-title"} class="drawer__heading" data-slot="drawer-heading">{@title}</h2>
       </header>
@@ -6147,17 +6147,17 @@ defmodule HeroUI do
           if(@placement in ["top", "bottom"], do: "touch-pan-x", else: "touch-pan-y")
         ]}
         data-slot="drawer-footer"
-        data-hero-drawer-drag
+        data-olis-drawer-drag
       >
         {render_slot(@footer)}
         <%= if @close != [] do %>
-          {render_slot(@close, %{"data-hero-dialog-close" => true})}
+          {render_slot(@close, %{"data-olis-dialog-close" => true})}
         <% else %>
           <button
             :if={@show_close}
             type="button"
             class="button button--md button--tertiary"
-            data-hero-dialog-close
+            data-olis-dialog-close
           >{@close_label}</button>
         <% end %>
       </div>
@@ -6165,7 +6165,7 @@ defmodule HeroUI do
         :if={@on_open_change}
         type="button"
         hidden
-        data-hero-drawer-event
+        data-olis-drawer-event
         phx-click={@on_open_change}
         phx-target={@target}
       ></button>
@@ -6174,7 +6174,7 @@ defmodule HeroUI do
   end
 
   @doc """
-  A noninteractive description shown on focus or hover. Requires HeroUI's Alpine providers.
+  A noninteractive description shown on focus or hover. Requires OlisUI's Alpine providers.
   The default slot labels a built-in button. Use `:trigger` to provide an existing
   interactive element and `:content` for rich, noninteractive inline content.
   """
@@ -6210,13 +6210,13 @@ defmodule HeroUI do
 
     ~H"""
     <span
-      class={["hui-tooltip-root", @class]}
-      data-hero-tooltip-root
+      class={["olis-tooltip-root", @class]}
+      data-olis-tooltip-root
       data-delay={@delay}
       data-close-delay={@close_delay}
       data-requested-placement={@placement}
       data-offset={@resolved_offset}
-      x-data="heroTooltip"
+      x-data="olisTooltip"
       x-on:pointerenter="enter($event)"
       x-on:pointerleave="leave($event)"
       x-on:focusin="focus()"
@@ -6231,13 +6231,13 @@ defmodule HeroUI do
         type="button"
         class={["button", "button--md", "button--tertiary", "tooltip__trigger", @trigger_class]}
         aria-describedby={"#{@id}-content"}
-        data-hero-tooltip-trigger
+        data-olis-tooltip-trigger
         x-ref="trigger"
       >{render_slot(@inner_block)}</button>
       <span
         :if={@trigger != []}
         class={["inline-flex", @trigger_class]}
-        data-hero-tooltip-trigger
+        data-olis-tooltip-trigger
         data-slot="tooltip-trigger"
         x-ref="trigger"
       >{render_slot(@trigger, %{"aria-describedby" => "#{@id}-content"})}</span>
@@ -6245,8 +6245,8 @@ defmodule HeroUI do
         id={"#{@id}-content"}
         role="tooltip"
         popover="manual"
-        class="tooltip hui-tooltip group/tooltip overflow-visible"
-        data-hero-tooltip
+        class="tooltip olis-tooltip group/tooltip overflow-visible"
+        data-olis-tooltip
         data-slot="tooltip-content"
         x-ref="content"
         data-placement={@placement}
@@ -6271,7 +6271,7 @@ defmodule HeroUI do
   end
 
   @doc """
-  A nonmodal, interactive popover anchored to a button. Requires HeroUI's Alpine components.
+  A nonmodal, interactive popover anchored to a button. Requires OlisUI's Alpine components.
 
   Use `trigger` for a simple button or the `:trigger_content` slot for a custom
   trigger; apply the yielded attributes to its interactive element. `open` and
@@ -6327,14 +6327,14 @@ defmodule HeroUI do
 
     ~H"""
     <div
-      class={["hui-popover-root", @class]}
+      class={["olis-popover-root", @class]}
       data-controlled={to_string(!is_nil(@open))}
       data-controlled-open={if !is_nil(@open), do: to_string(@open)}
       data-default-open={to_string(@default_open)}
       data-requested-placement={@placement}
       data-offset={@offset}
       data-should-flip={to_string(@should_flip)}
-      x-data="heroPopover"
+      x-data="olisPopover"
       x-on:click="onClick($event)"
       x-on:resize.window="position()"
       x-on:scroll.window.capture="position()"
@@ -6345,7 +6345,7 @@ defmodule HeroUI do
         type="button"
         class="button button--md button--secondary popover__trigger"
         x-ref="trigger"
-        data-hero-popover-trigger
+        data-olis-popover-trigger
         popovertarget={"#{@id}-content"}
         aria-controls={"#{@id}-content"}
         aria-expanded="false"
@@ -6354,7 +6354,7 @@ defmodule HeroUI do
       >{@trigger}</button>
       <span :if={@trigger_content != []} class="inline-flex" x-ref="trigger">
         {render_slot(@trigger_content, %{
-          "data-hero-popover-trigger" => true,
+          "data-olis-popover-trigger" => true,
           "popovertarget" => "#{@id}-content",
           "aria-controls" => "#{@id}-content",
           "aria-expanded" => "false",
@@ -6367,12 +6367,12 @@ defmodule HeroUI do
         popover="auto"
         class={[
           "popover",
-          "hui-popover",
+          "olis-popover",
           "group/popover",
           "transition-[display,overlay] duration-100 [transition-behavior:allow-discrete] motion-reduce:duration-0",
           @content_class
         ]}
-        data-hero-popover
+        data-olis-popover
         x-ref="content"
         x-on:beforetoggle="beforeToggle($event)"
         x-on:toggle="toggle($event)"
@@ -6410,7 +6410,7 @@ defmodule HeroUI do
             :if={@show_close}
             type="button"
             class="button button--sm button--tertiary mt-4"
-            data-hero-popover-close
+            data-olis-popover-close
           >{@close_label}</button>
         </section>
       </div>
@@ -6418,7 +6418,7 @@ defmodule HeroUI do
         :if={@on_open_change}
         type="button"
         hidden
-        data-hero-popover-event
+        data-olis-popover-event
         phx-click={@on_open_change}
         phx-target={@target}
       ></button>
@@ -6426,7 +6426,7 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A single-value or multi-thumb slider. Requires HeroUI's Alpine components for pointer interaction and live updates."
+  @doc "A single-value or multi-thumb slider. Requires OlisUI's Alpine components for pointer interaction and live updates."
   attr(:id, :string, required: true)
   attr(:name, :string, default: nil)
   attr(:label, :string, required: true)
@@ -6494,8 +6494,8 @@ defmodule HeroUI do
       class={["slider", @orientation == "vertical" && "w-fit", @class]}
       data-orientation={@orientation}
       data-disabled={if @disabled, do: "true"}
-      data-hero-slider
-      x-data="heroSlider"
+      data-olis-slider
+      x-data="olisSlider"
       x-on:input.capture="input($event)"
       x-on:pointerdown="start($event)"
       x-on:pointermove="move($event)"
@@ -6505,16 +6505,16 @@ defmodule HeroUI do
       x-on:phx:update.document="sync()"
     >
       <label for={if @multiple, do: "#{@id}-0", else: @id} data-slot="label">{@label}</label>
-      <output class="slider__output" data-hero-slider-output>{Enum.join(@values, " – ")}</output>
+      <output class="slider__output" data-olis-slider-output>{Enum.join(@values, " – ")}</output>
       <div
         class="slider__track touch-none"
-        data-hero-slider-track
+        data-olis-slider-track
         data-fill-start={to_string(@start == 0)}
         data-fill-end={to_string(@finish == 100)}
       >
         <div
           class="slider__fill"
-          data-hero-slider-fill
+          data-olis-slider-fill
           style={slider_fill_style(@orientation, @start, @finish)}
         >
         </div>
@@ -6548,7 +6548,7 @@ defmodule HeroUI do
             aria-label={if @multiple, do: "#{@label} #{index + 1}", else: @label}
             aria-orientation={@orientation}
             class="peer sr-only"
-            data-hero-slider-input
+            data-olis-slider-input
             {@rest}
           />
           <span
@@ -6559,7 +6559,7 @@ defmodule HeroUI do
                 else: "-translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2"
               )
             ]}
-            data-hero-slider-thumb
+            data-olis-slider-thumb
             data-disabled={if @disabled, do: "true"}
             style={slider_position_style(@orientation, Enum.at(@percentages, index))}
           ></span>
@@ -6592,7 +6592,7 @@ defmodule HeroUI do
   defp slider_fill_style(_, start, finish),
     do: "inset-inline-start: #{start}%; width: #{finish - start}%"
 
-  @doc "A labelled numeric input with increment and decrement buttons. Requires HeroUI's Alpine components."
+  @doc "A labelled numeric input with increment and decrement buttons. Requires OlisUI's Alpine components."
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
@@ -6661,11 +6661,11 @@ defmodule HeroUI do
         @class
       ]}
       data-slot="number-field"
-      data-hero-number
+      data-olis-number
       data-invalid={if @invalid_state, do: "true"}
       data-disabled={if @disabled, do: "true"}
       data-required={if @rest[:required] || @rest["required"], do: "true"}
-      x-data="heroNumberField"
+      x-data="olisNumberField"
       x-bind:data-disabled="disabled ? 'true' : null"
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-disabled"])}
       x-init="$nextTick(() => sync())"
@@ -6693,7 +6693,7 @@ defmodule HeroUI do
           aria-controls={@id}
           tabindex="-1"
           disabled={@disabled || @readonly}
-          data-hero-number-step="down"
+          data-olis-number-step="down"
           x-bind:disabled="locked || cannotDecrease"
           x-on:click="step('down')"
           phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["disabled"])}
@@ -6726,7 +6726,7 @@ defmodule HeroUI do
           readonly={@readonly}
           aria-invalid={if @invalid_state, do: "true"}
           aria-describedby={if @describedby != "", do: @describedby}
-          class="number-field__input hui-number-input"
+          class="number-field__input olis-number-input"
           data-slot="number-field-input"
           {@rest}
         />
@@ -6739,7 +6739,7 @@ defmodule HeroUI do
           aria-controls={@id}
           tabindex="-1"
           disabled={@disabled || @readonly}
-          data-hero-number-step="up"
+          data-olis-number-step="up"
           x-bind:disabled="locked || cannotIncrease"
           x-on:click="step('up')"
           phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["disabled"])}
@@ -7017,9 +7017,9 @@ defmodule HeroUI do
       aria-orientation={@orientation}
       class={["toolbar", "toolbar--#{@orientation}", @attached && "toolbar--attached", @class]}
       data-slot="toolbar"
-      data-hero-toolbar
+      data-olis-toolbar
       data-orientation={@orientation}
-      x-data="heroToolbar"
+      x-data="olisToolbar"
       x-on:focusin="onFocusIn($event)"
       x-on:keydown="onKeyDown($event)"
       x-on:phx:update.window="sync()"
@@ -7139,22 +7139,22 @@ defmodule HeroUI do
       aria-pressed={to_string(@selected)}
       data-selected={if @selected, do: "true"}
       data-slot="toggle-button"
-      data-hero-toggle-size={@size}
+      data-olis-toggle-size={@size}
       x-data={if @uncontrolled, do: "{ selected: #{to_string(@selected)} }"}
       x-bind:aria-pressed={
         if @uncontrolled,
           do:
-            "$el.closest('[data-hero-toggle-group]')?.dataset.heroToggleGroup !== 'managed' ? selected.toString() : null"
+            "$el.closest('[data-olis-toggle-group]')?.dataset.olisToggleGroup !== 'managed' ? selected.toString() : null"
       }
       x-bind:data-selected={
         if @uncontrolled,
           do:
-            "$el.closest('[data-hero-toggle-group]')?.dataset.heroToggleGroup !== 'managed' && selected ? 'true' : null"
+            "$el.closest('[data-olis-toggle-group]')?.dataset.olisToggleGroup !== 'managed' && selected ? 'true' : null"
       }
       x-on:click={
         if @uncontrolled,
           do:
-            "if ($el.closest('[data-hero-toggle-group]')?.dataset.heroToggleGroup !== 'managed') selected = !selected"
+            "if ($el.closest('[data-olis-toggle-group]')?.dataset.olisToggleGroup !== 'managed') { selected = !selected }"
       }
       phx-mounted={
         if @uncontrolled, do: Phoenix.LiveView.JS.ignore_attributes(["aria-pressed", "data-selected"])
@@ -7219,14 +7219,14 @@ defmodule HeroUI do
       aria-label={@label}
       aria-disabled={if @disabled, do: "true"}
       disabled={@disabled}
-      data-hero-toggle-size={@size}
-      data-hero-toggle-group={if @selection_mode, do: "managed", else: "independent"}
+      data-olis-toggle-size={@size}
+      data-olis-toggle-group={if @selection_mode, do: "managed", else: "independent"}
       data-selection-mode={@selection_mode}
       data-orientation={@orientation}
       data-controlled={if @selection_mode, do: to_string(!is_nil(@selected_keys))}
       data-selected-keys={if @selection_mode, do: @encoded_keys}
       data-disallow-empty={if @selection_mode, do: to_string(@disallow_empty_selection)}
-      x-data="heroToggleButtonGroup"
+      x-data="olisToggleButtonGroup"
       x-on:click={if @selection_mode, do: "click($event)"}
       x-on:focusin={if @selection_mode, do: "focus($event)"}
       x-on:keydown={if @selection_mode, do: "keydown($event)"}
@@ -7245,7 +7245,7 @@ defmodule HeroUI do
         :if={@selection_mode && @on_selection_change}
         type="button"
         hidden
-        data-hero-toggle-group-event
+        data-olis-toggle-group-event
         phx-click={@on_selection_change}
         phx-target={@target}
       ></button>
@@ -7379,18 +7379,18 @@ defmodule HeroUI do
     ~H"""
     <div
       id={@id}
-      class={["list-box", "hui-listbox", @class]}
+      class={["list-box", "olis-listbox", @class]}
       role="listbox"
       aria-label={@label}
       aria-multiselectable={if @selection_mode == "multiple", do: "true"}
       aria-disabled={if @disabled, do: "true"}
       tabindex={if @disabled, do: "-1", else: "0"}
       aria-activedescendant={@active_id}
-      data-hero-listbox
+      data-olis-listbox
       data-selection-mode={@selection_mode}
       data-controlled={to_string(@controlled)}
       data-selected-keys={@encoded_selected}
-      x-data="heroListbox"
+      x-data="olisListbox"
       x-on:click="click($event)"
       x-on:keydown="keydown($event)"
       x-on:phx:update.window="sync()"
@@ -7430,7 +7430,7 @@ defmodule HeroUI do
         :if={@on_selection_change}
         type="button"
         hidden
-        data-hero-listbox-selection-event
+        data-olis-listbox-selection-event
         phx-click={@on_selection_change}
         phx-target={@target}
       ></button>
@@ -7438,7 +7438,7 @@ defmodule HeroUI do
         :if={@on_action}
         type="button"
         hidden
-        data-hero-listbox-action-event
+        data-olis-listbox-action-event
         phx-click={@on_action}
         phx-target={@target}
       ></button>
@@ -7476,7 +7476,7 @@ defmodule HeroUI do
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["data-active"])}
       class={["list-box-item", "list-box-item--#{Map.get(@option, :variant, "default")}"]}
     >
-      <span class="hui-listbox-text"><span
+      <span class="olis-listbox-text"><span
         id={"#{listbox_option_id(@id, @option.value)}-label"}
         data-slot="label"
       >
@@ -7496,7 +7496,7 @@ defmodule HeroUI do
         class="list-box-item__indicator"
         aria-hidden="true"
         hidden={@option.value not in @selected}
-        data-hero-listbox-indicator
+        data-olis-listbox-indicator
       ><svg data-slot="list-box-item-indicator--checkmark" viewBox="0 0 16 16" fill="none"><path
         d="M3.5 8l3 3 6-6"
         stroke="currentColor"
@@ -7558,11 +7558,15 @@ defmodule HeroUI do
     if length(remove_values) != length(Enum.uniq(remove_values)),
       do: raise(ArgumentError, "remove button values must be unique")
 
-    if Enum.any?(assigns.remove_button, fn slot ->
-         label = Map.get(slot, :label)
-         !is_nil(label) && (!is_binary(label) || String.trim(label) == "")
-       end),
-       do: raise(ArgumentError, "remove button labels must not be empty")
+    invalid_remove_label? =
+      Enum.any?(assigns.remove_button, fn slot ->
+        label = Map.get(slot, :label)
+        !is_nil(label) && (!is_binary(label) || String.trim(label) == "")
+      end)
+
+    if invalid_remove_label? do
+      raise ArgumentError, "remove button labels must not be empty"
+    end
 
     if !is_nil(assigns.selected) && !is_nil(assigns.selected_keys),
       do: raise(ArgumentError, "provide selected or selected_keys, not both")
@@ -7615,12 +7619,12 @@ defmodule HeroUI do
         id={@id}
         class="tag-group__list"
         data-slot="tag-group-list"
-        data-hero-tag-group
+        data-olis-tag-group
         data-selection-mode={@selection_mode}
         data-controlled={to_string(@controlled)}
         data-selected-keys={@encoded_selected}
         data-selection-event-id={if @on_selection_change, do: "#{@id}-selection-event"}
-        x-data="heroTagGroup"
+        x-data="olisTagGroup"
         x-on:focusin="onFocus($event)"
         x-on:click="onClick($event)"
         x-on:keydown="onKeyDown($event)"
@@ -7638,7 +7642,7 @@ defmodule HeroUI do
           role="row"
           class={["tag", "tag--#{@size}", "tag--#{@variant}"]}
           data-slot="tag"
-          data-hero-tag
+          data-olis-tag
           data-key={tag.value}
           data-selection-mode={@selection_mode}
           data-disabled={if @disabled || Map.get(tag, :disabled, false), do: "true"}
@@ -7671,7 +7675,7 @@ defmodule HeroUI do
                 get_in(@remove_buttons, [tag.value, :class])
               ]}
               data-slot="tag-remove-button"
-              data-hero-tag-remove
+              data-olis-tag-remove
               aria-label={get_in(@remove_buttons, [tag.value, :label]) || "Remove #{tag.label}"}
               value={tag.value}
               disabled={@disabled || Map.get(tag, :disabled, false)}

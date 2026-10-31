@@ -1,5 +1,5 @@
-import { heroToastRegion } from "../toast.js";
+import { olisToastRegion } from "../toast.js";
 
-export function registerHeroToastRegion(Alpine) {
-  Alpine.data('heroToastRegion', heroToastRegion);
+export function registerOlisToastRegion(Alpine) {
+  Alpine.data("olisToastRegion", olisToastRegion);
 }

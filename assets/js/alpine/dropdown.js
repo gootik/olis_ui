@@ -1,5 +1,5 @@
-import { heroDropdown } from "../dropdown.js";
+import { olisDropdown } from "../dropdown.js";
 
-export function registerHeroDropdown(Alpine) {
-  Alpine.data('heroDropdown', heroDropdown);
+export function registerOlisDropdown(Alpine) {
+  Alpine.data("olisDropdown", olisDropdown);
 }

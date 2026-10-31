@@ -1,11 +1,17 @@
-export function registerHeroAvatarImage(Alpine) {
-
-  Alpine.data('heroAvatarImage', () => ({
+export function registerOlisAvatarImage(Alpine) {
+  Alpine.data("olisAvatarImage", () => ({
     sync() {
-      if (!this.$el.complete) return;
-      if (this.$el.naturalWidth) this.$el.removeAttribute('data-failed');
-      else this.$el.dataset.failed = 'true';
+      if (!this.$el.complete) {
+        return;
+      }
+      if (this.$el.naturalWidth) {
+        this.$el.removeAttribute("data-failed");
+      } else {
+        this.$el.dataset.failed = "true";
+      }
     },
-    init() { this.sync(); }
+    init() {
+      this.sync();
+    },
   }));
 }

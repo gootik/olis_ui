@@ -1,0 +1,8 @@
+/* Adapted for OlisUI; see THIRD_PARTY_NOTICES.md. */
+/* Base disclosure-group styles */
+.disclosure-group {
+  @apply w-full;
+
+  /* Performance optimization - contain layout changes */
+  contain: layout style;
+}

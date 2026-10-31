@@ -1,6 +1,7 @@
-defmodule HeroUI.Preview do
+defmodule OlisUI.Preview do
+  @moduledoc false
   use Phoenix.Component
-  import HeroUI
+  import OlisUI
 
   def page(assigns) do
     ~H"""
@@ -9,8 +10,8 @@ defmodule HeroUI.Preview do
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>HeroUI for LiveView — Component preview</title>
-        <link rel="stylesheet" href="/hero_ui.css" />
+        <title>OlisUI for LiveView — Component preview</title>
+        <link rel="stylesheet" href="/olis_ui.css" />
         <link rel="stylesheet" href="/preview-fonts/index.css" />
         <script>
           try { document.documentElement.dataset.theme = localStorage.getItem('preview-theme') || 'light'; } catch (_) {}
@@ -22,7 +23,7 @@ defmodule HeroUI.Preview do
             class="brand flex items-center gap-[9px] text-base font-[750] tracking-[-.04em] [&>span:last-child]:font-[450] [&>span:last-child]:tracking-normal [&>span:last-child]:text-[#73767a] dark:[&>span:last-child]:text-[#a0a39e]"
             href="#top"
           ><span class="brand-mark grid size-[29px] place-items-center rounded-[9px] bg-[#d9f99d] text-[21px] text-[#111] dark:bg-[#9bbf5c]">✳&#xFE0E;</span>
-          HeroUI <span>for LiveView</span></a>
+          OlisUI <span>for LiveView</span></a>
           <div class="top-actions flex items-center gap-[22px]">
             <span class="version text-[10px] font-bold tracking-[.1em] text-[#73767a] dark:text-[#a0a39e] max-[520px]:hidden">EARLY PREVIEW</span><button
               class="theme-toggle size-9 cursor-pointer rounded-full border border-[#e9eae7] bg-white text-[19px] text-[#18191a] dark:border-[#303230] dark:bg-[#1a1b1d] dark:text-[#f1f2ef]"
@@ -64,7 +65,7 @@ defmodule HeroUI.Preview do
               </div>
               <h1>Build something<br /><em>beautiful.</em></h1>
               <p>
-                A first look at HeroUI-inspired components for Phoenix LiveView. Thoughtful defaults, flexible styling, and a little less boilerplate.
+                A first look at OlisUI components for Phoenix LiveView. Thoughtful defaults, flexible styling, and a little less boilerplate.
               </p>
               <div class="intro-actions mt-[30px] flex items-center gap-[25px]">
                 <a
@@ -288,7 +289,7 @@ defmodule HeroUI.Preview do
                   </.radio><.kbd>⌘ K</.kbd><.ui_link href="#top">Back to top</.ui_link>
                 </div><div class="divider my-[27px] h-px bg-[#e9eae7] dark:bg-[#303230]"></div><label
                   for="preview-notes"
-                  class="hui-label"
+                  class="olis-label"
                 >Notes</label><.textarea
                   id="preview-notes"
                   placeholder="Add a note…"
@@ -310,7 +311,7 @@ defmodule HeroUI.Preview do
                 </div>
               </div>
               <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
-                <label for="preview-select" class="hui-label">Plan</label><.select
+                <label for="preview-select" class="olis-label">Plan</label><.select
                   id="preview-select"
                   options={[{"Starter", "starter"}, {"Pro", "pro"}]}
                   value="pro"
@@ -355,7 +356,7 @@ defmodule HeroUI.Preview do
                 </div><code>&lt;.modal&gt;</code>
               </div>
               <div class="demo rounded-2xl border border-[#e9eae7] bg-white p-[25px] dark:border-[#303230] dark:bg-[#1a1b1d]">
-                <.button data-hero-dialog-open="preview-modal">Open modal</.button><.modal
+                <.button data-olis-dialog-open="preview-modal">Open modal</.button><.modal
                   id="preview-modal"
                   title="Edit profile"
                 >
@@ -366,20 +367,20 @@ defmodule HeroUI.Preview do
               </div>
             </section>
             <footer class="flex justify-between gap-[15px] border-t border-[#e9eae7] pt-7 pb-10 text-[11px] text-[#73767a] dark:border-[#303230] dark:text-[#a0a39e] [&>span:first-child]:font-bold [&>span:first-child]:text-[#18191a] dark:[&>span:first-child]:text-[#f1f2ef] [&>span:nth-child(2)]:text-[9px] [&>span:nth-child(2)]:tracking-[.08em] max-[520px]:[&>span:nth-child(2)]:hidden">
-              <span>✳&#xFE0E; &nbsp; HeroUI for LiveView</span><span>AN EARLY LOOK · MADE WITH PHOENIX</span><a href="#top">Back to top ↑</a>
+              <span>✳&#xFE0E; &nbsp; OlisUI for LiveView</span><span>AN EARLY LOOK · MADE WITH PHOENIX</span><a href="#top">Back to top ↑</a>
             </footer>
           </main>
         </div>
         <script type="module">
-          import { installHeroUI } from "/hero_ui.js?v=dropdown";
-          import { registerHeroUIAlpine } from "/hero_ui_alpine.js";
+          import { installOlisUI } from "/olis_ui.js?v=dropdown";
+          import { registerOlisUIAlpine } from "/olis_ui_alpine.js";
           import Alpine from "/alpine.esm.js";
           import collapse from "/alpine-collapse.esm.js";
           window.Alpine = Alpine;
           Alpine.plugin(collapse);
-          registerHeroUIAlpine(Alpine);
+          registerOlisUIAlpine(Alpine);
           Alpine.start();
-          installHeroUI();
+          installOlisUI();
         </script>
         <script>
           document.getElementById('theme-toggle').addEventListener('click', function () {
@@ -394,21 +395,21 @@ defmodule HeroUI.Preview do
   end
 end
 
-defmodule HeroUI.Preview.Router do
+defmodule OlisUI.Preview.Router do
   use Plug.Router
   plug(:match)
   plug(:dispatch)
 
   get "/" do
-    html = HeroUI.Preview.page(%{}) |> Phoenix.HTML.Safe.to_iodata()
+    html = OlisUI.Preview.page(%{}) |> Phoenix.HTML.Safe.to_iodata()
     conn |> put_resp_content_type("text/html") |> send_resp(200, html)
   end
 
-  get "/hero_ui.css" do
+  get "/olis_ui.css" do
     conn
     |> put_resp_content_type("text/css")
     |> put_resp_header("cache-control", "no-store")
-    |> send_resp(200, File.read!(Application.app_dir(:hero_ui, "priv/static/hero_ui.css")))
+    |> send_resp(200, File.read!(Application.app_dir(:olis_ui, "priv/static/olis_ui.css")))
   end
 
   get "/preview-fonts/index.css" do
@@ -511,7 +512,7 @@ defmodule HeroUI.Preview.Router do
     end
   end
 
-  get "/hero_ui_alpine.js" do
+  get "/olis_ui_alpine.js" do
     conn
     |> put_resp_content_type("text/javascript")
     |> put_resp_header("cache-control", "no-store")
@@ -538,11 +539,11 @@ defmodule HeroUI.Preview.Router do
     )
   end
 
-  get "/hero_ui.js" do
+  get "/olis_ui.js" do
     conn
     |> put_resp_content_type("text/javascript")
     |> put_resp_header("cache-control", "no-store")
-    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "hero_ui.js"])))
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "olis_ui.js"])))
   end
 
   get "/phoenix.mjs" do
@@ -564,6 +565,7 @@ defmodule HeroUI.Preview.Router do
 end
 
 defmodule Mix.Tasks.Preview do
+  @moduledoc false
   use Mix.Task
   @shortdoc "Starts the local component preview"
   def run(_) do
@@ -571,22 +573,22 @@ defmodule Mix.Tasks.Preview do
     Tailwind.install_and_run(:preview, [])
     port = String.to_integer(System.get_env("PORT", "4000"))
 
-    Application.put_env(:hero_ui, HeroUI.Preview.Endpoint,
+    Application.put_env(:olis_ui, OlisUI.Preview.Endpoint,
       adapter: Bandit.PhoenixAdapter,
       http: [ip: {127, 0, 0, 1}, port: port],
       server: true,
       secret_key_base: String.duplicate("preview-secret-key-", 4),
       live_view: [signing_salt: "livepreview"],
-      pubsub_server: HeroUI.Preview.PubSub
+      pubsub_server: OlisUI.Preview.PubSub
     )
 
     {:ok, _} =
       Phoenix.PubSub.Supervisor.start_link(
-        name: HeroUI.Preview.PubSub,
+        name: OlisUI.Preview.PubSub,
         adapter: Phoenix.PubSub.PG2
       )
 
-    {:ok, _} = HeroUI.Preview.Endpoint.start_link()
+    {:ok, _} = OlisUI.Preview.Endpoint.start_link()
     Mix.shell().info("Preview available at http://localhost:#{port}")
     Process.sleep(:infinity)
   end

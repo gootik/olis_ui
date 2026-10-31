@@ -1,0 +1,8 @@
+/* Adapted for OlisUI; see THIRD_PARTY_NOTICES.md. */
+/* ==========================================================================
+   Base menu section styles
+   ========================================================================== */
+
+.menu-section {
+  @apply flex flex-col items-start gap-0;
+}

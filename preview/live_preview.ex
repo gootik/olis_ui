@@ -1,4 +1,5 @@
-defmodule HeroUI.Preview.Layout do
+defmodule OlisUI.Preview.Layout do
+  @moduledoc false
   use Phoenix.Component
 
   def root(assigns) do
@@ -10,7 +11,7 @@ defmodule HeroUI.Preview.Layout do
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
         <title>LiveView integration preview</title>
-        <link rel="stylesheet" href="/hero_ui.css" />
+        <link rel="stylesheet" href="/olis_ui.css" />
         <link rel="stylesheet" href="/preview-fonts/index.css" />
         <script>
           try { document.documentElement.dataset.theme = localStorage.getItem("preview-theme") || "light"; } catch (_) {}
@@ -18,22 +19,22 @@ defmodule HeroUI.Preview.Layout do
         <script type="module">
           import {Socket} from "/phoenix.mjs";
           import {LiveSocket} from "/phoenix_live_view.esm.js";
-          import {installHeroUI} from "/hero_ui.js?v=dropdown";
-          import {registerHeroUIAlpine} from "/hero_ui_alpine.js";
+          import {installOlisUI} from "/olis_ui.js?v=dropdown";
+          import {registerOlisUIAlpine} from "/olis_ui_alpine.js";
           import Alpine from "/alpine.esm.js";
           import collapse from "/alpine-collapse.esm.js";
           window.Alpine = Alpine;
           Alpine.plugin(collapse);
-          registerHeroUIAlpine(Alpine);
+          registerOlisUIAlpine(Alpine);
           Alpine.start();
-          installHeroUI();
+          installOlisUI();
           const updateNavigation = () => {
             const sections = [...document.querySelectorAll('.lp-intro, .lp-section')];
             const active = sections.filter(section => section.getBoundingClientRect().top <= 160).at(-1) || sections[0];
             document.querySelectorAll('.lp-sidebar a[href^="#"]').forEach(link => {
               const selected = link.getAttribute('href') === `#${active?.id}`;
               link.classList.toggle('is-active', selected);
-              if (selected) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+              if (selected) { link.setAttribute('aria-current', 'location'); } else { link.removeAttribute('aria-current'); }
             });
           };
           window.addEventListener('scroll', updateNavigation, {passive: true});
@@ -43,7 +44,7 @@ defmodule HeroUI.Preview.Layout do
           updateNavigation();
           document.addEventListener('click', event => {
             const toggle = event.target.closest('[data-preview-theme]');
-            if (!toggle) return;
+            if (!toggle) { return; }
             const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
             document.documentElement.dataset.theme = theme;
             try { localStorage.setItem('preview-theme', theme); } catch (_) {}
@@ -51,7 +52,7 @@ defmodule HeroUI.Preview.Layout do
           const csrf = document.querySelector('meta[name="csrf-token"]').content;
           const socket = new LiveSocket('/live', Socket, {
             params: {_csrf_token: csrf},
-            dom: {onBeforeElUpdated(from, to) { if (from._x_dataStack) Alpine.clone(from, to); }}
+            dom: {onBeforeElUpdated(from, to) { if (from._x_dataStack) { Alpine.clone(from, to); } }}
           });
           socket.connect();
           window.liveSocket = socket;
@@ -65,9 +66,9 @@ defmodule HeroUI.Preview.Layout do
   end
 end
 
-defmodule HeroUI.Preview.Live do
+defmodule OlisUI.Preview.Live do
   use Phoenix.LiveView, layout: false
-  import HeroUI
+  import OlisUI
 
   def mount(_params, _session, socket) do
     rows = [
@@ -216,7 +217,7 @@ defmodule HeroUI.Preview.Live do
   def handle_event("add_person", _, socket) do
     {:noreply,
      stream_insert(socket, :people, %{
-       id: Enum.random(1..10000),
+       id: Enum.random(1..10_000),
        name: "Morgan Lee",
        role: "Engineer"
      })}
@@ -362,7 +363,7 @@ defmodule HeroUI.Preview.Live do
     {:noreply,
      socket
      |> assign(:toast_count, count)
-     |> push_event("hero:toast", %{
+     |> push_event("olis:toast", %{
        id: "preview-#{count}",
        title: "Changes saved",
        description: "Your preferences have been updated.",
@@ -378,7 +379,7 @@ defmodule HeroUI.Preview.Live do
   def handle_event("show_toast_star", _, socket),
     do:
       {:noreply,
-       push_event(socket, "hero:toast", %{
+       push_event(socket, "olis:toast", %{
          title: "Added to favorites",
          indicator: "star",
          timeout: 4000
@@ -618,8 +619,8 @@ defmodule HeroUI.Preview.Live do
         <a
           href="/"
           class="lp-brand inline-flex items-center gap-2.5 whitespace-nowrap text-[15px] font-[750] tracking-[-.035em] text-zinc-900 no-underline dark:text-zinc-100 [&>span:last-child>span]:font-[450] [&>span:last-child>span]:tracking-[-.01em] [&>span:last-child>span]:text-zinc-500 dark:[&>span:last-child>span]:text-zinc-400"
-          aria-label="HeroUI for LiveView home"
-        ><span class="lp-brand-mark grid size-[31px] place-items-center rounded-[10px] bg-zinc-900 text-[19px] leading-none text-white dark:bg-zinc-100 dark:text-[#18191d]">✦</span><span>HeroUI
+          aria-label="OlisUI for LiveView home"
+        ><span class="lp-brand-mark grid size-[31px] place-items-center rounded-[10px] bg-zinc-900 text-[19px] leading-none text-white dark:bg-zinc-100 dark:text-[#18191d]">✦</span><span>OlisUI
         <span>for LiveView</span></span></a>
         <div class="lp-top-actions flex items-center gap-[22px]">
           <span class="lp-live inline-flex items-center gap-[7px] whitespace-nowrap text-xs text-zinc-500 dark:text-zinc-400 max-[620px]:hidden [&>span]:inline-block [&>span]:size-[7px] [&>span]:rounded-full [&>span]:bg-[#17c964]"><span></span>
@@ -2205,7 +2206,7 @@ defmodule HeroUI.Preview.Live do
               >
                 <.disclosure_group
                   id="account-disclosures"
-                  class="lp-disclosure-group [&>.hui-disclosure:not(:first-child)]:mt-2"
+                  class="lp-disclosure-group [&>.olis-disclosure:not(:first-child)]:mt-2"
                   expanded_keys={@disclosure_expanded}
                   on_toggle="disclosure_toggle"
                 >
@@ -2233,7 +2234,7 @@ defmodule HeroUI.Preview.Live do
               >
                 <.disclosure_group
                   id="multiple-disclosures"
-                  class="lp-disclosure-group [&>.hui-disclosure:not(:first-child)]:mt-2"
+                  class="lp-disclosure-group [&>.olis-disclosure:not(:first-child)]:mt-2"
                   allows_multiple_expanded
                   default_expanded_keys={["first"]}
                 >
@@ -2376,12 +2377,12 @@ defmodule HeroUI.Preview.Live do
                 description="Swipe an edge panel or snap it between sizes."
               >
                 <div class="flex flex-wrap gap-2">
-                  <.button data-hero-sheet-open="preview-sheet">Bottom sheet</.button>
-                  <.button data-hero-sheet-open="preview-sheet-right" variant="secondary">Right sheet</.button>
-                  <.button data-hero-sheet-open="preview-sheet-top" variant="secondary">Top sheet</.button>
-                  <.button data-hero-sheet-open="preview-sheet-left" variant="secondary">Left sheet</.button>
-                  <.button data-hero-sheet-open="preview-sheet-snap" variant="secondary">Snap points</.button>
-                  <.button data-hero-sheet-open="preview-sheet-controlled" variant="secondary">Controlled</.button>
+                  <.button data-olis-sheet-open="preview-sheet">Bottom sheet</.button>
+                  <.button data-olis-sheet-open="preview-sheet-right" variant="secondary">Right sheet</.button>
+                  <.button data-olis-sheet-open="preview-sheet-top" variant="secondary">Top sheet</.button>
+                  <.button data-olis-sheet-open="preview-sheet-left" variant="secondary">Left sheet</.button>
+                  <.button data-olis-sheet-open="preview-sheet-snap" variant="secondary">Snap points</.button>
+                  <.button data-olis-sheet-open="preview-sheet-controlled" variant="secondary">Controlled</.button>
                 </div>
                 <p
                   id="sheet-state"
@@ -2399,7 +2400,7 @@ defmodule HeroUI.Preview.Live do
                     Drag the handle to dismiss, or open a nested sheet.
                   </p>
                   <.button
-                    data-hero-sheet-open="preview-sheet-nested"
+                    data-olis-sheet-open="preview-sheet-nested"
                     class="mt-4"
                     variant="secondary"
                   >Open nested sheet</.button>
@@ -2407,24 +2408,24 @@ defmodule HeroUI.Preview.Live do
                   <.sheet id="preview-sheet-nested" title="Nested sheet" class="max-w-[380px]">
                     <p class="text-sm text-muted">Close this sheet to return to the previous one.</p>
                     <:footer>
-                      <.button data-hero-sheet-close variant="secondary">Done</.button>
+                      <.button data-olis-sheet-close variant="secondary">Done</.button>
                     </:footer>
                   </.sheet>
                   <:footer>
-                    <.button data-hero-sheet-close variant="secondary">Cancel</.button><.button data-hero-sheet-close>Confirm</.button>
+                    <.button data-olis-sheet-close variant="secondary">Cancel</.button><.button data-olis-sheet-close>Confirm</.button>
                   </:footer>
                 </.sheet>
                 <.sheet id="preview-sheet-right" title="Details" placement="right" detached>
                   <p class="text-sm text-muted">A detached sheet can appear from any edge.</p>
-                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                  <:footer><.button data-olis-sheet-close variant="secondary">Done</.button></:footer>
                 </.sheet>
                 <.sheet id="preview-sheet-top" title="Top sheet" placement="top" class="max-w-[420px]">
                   <p class="text-sm text-muted">This sheet opens from the top edge.</p>
-                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                  <:footer><.button data-olis-sheet-close variant="secondary">Done</.button></:footer>
                 </.sheet>
                 <.sheet id="preview-sheet-left" title="Left sheet" placement="left">
                   <p class="text-sm text-muted">This sheet opens from the left edge.</p>
-                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                  <:footer><.button data-olis-sheet-close variant="secondary">Done</.button></:footer>
                 </.sheet>
                 <.sheet
                   id="preview-sheet-snap"
@@ -2435,7 +2436,7 @@ defmodule HeroUI.Preview.Live do
                   <div class="space-y-4 text-sm text-muted">
                     <p :for={i <- 1..30}>Update {i}: swipe up to expand and scroll this sheet.</p>
                   </div>
-                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                  <:footer><.button data-olis-sheet-close variant="secondary">Done</.button></:footer>
                 </.sheet>
                 <.sheet
                   id="preview-sheet-controlled"
@@ -2445,7 +2446,7 @@ defmodule HeroUI.Preview.Live do
                   on_open_change="sheet_open_change"
                 >
                   <p class="text-sm text-muted">LiveView controls whether this sheet is open.</p>
-                  <:footer><.button data-hero-sheet-close variant="secondary">Done</.button></:footer>
+                  <:footer><.button data-olis-sheet-close variant="secondary">Done</.button></:footer>
                 </.sheet>
               </.preview_card>
               <.preview_card
@@ -2537,10 +2538,10 @@ defmodule HeroUI.Preview.Live do
                   <div>
                     <p class="mb-2 text-xs font-medium text-muted">Modals</p>
                     <div class="flex flex-wrap gap-2">
-                      <.button data-hero-dialog-open="live-modal">Open modal</.button>
-                      <.button data-hero-dialog-open="live-modal-controlled" variant="secondary">Controlled modal</.button>
-                      <.button data-hero-dialog-open="live-modal-bottom" variant="secondary">Bottom modal</.button>
-                      <.button data-hero-dialog-open="live-alert" variant="danger-soft">Open alert dialog</.button>
+                      <.button data-olis-dialog-open="live-modal">Open modal</.button>
+                      <.button data-olis-dialog-open="live-modal-controlled" variant="secondary">Controlled modal</.button>
+                      <.button data-olis-dialog-open="live-modal-bottom" variant="secondary">Bottom modal</.button>
+                      <.button data-olis-dialog-open="live-alert" variant="danger-soft">Open alert dialog</.button>
                     </div>
                     <p id="modal-state" class="mt-2 mb-0 text-xs text-muted">
                       Last modal change: {@modal_last}
@@ -2549,10 +2550,10 @@ defmodule HeroUI.Preview.Live do
                   <div>
                     <p class="mb-2 text-xs font-medium text-muted">Drawers</p>
                     <div class="flex flex-wrap gap-2">
-                      <.button data-hero-dialog-open="live-drawer" variant="secondary">Open drawer</.button>
-                      <.button data-hero-dialog-open="live-drawer-blur" variant="secondary">Blurred drawer</.button>
-                      <.button data-hero-dialog-open="live-drawer-clear" variant="secondary">Transparent drawer</.button>
-                      <.button data-hero-dialog-open="live-drawer-controlled" variant="secondary">Controlled drawer</.button>
+                      <.button data-olis-dialog-open="live-drawer" variant="secondary">Open drawer</.button>
+                      <.button data-olis-dialog-open="live-drawer-blur" variant="secondary">Blurred drawer</.button>
+                      <.button data-olis-dialog-open="live-drawer-clear" variant="secondary">Transparent drawer</.button>
+                      <.button data-olis-dialog-open="live-drawer-controlled" variant="secondary">Controlled drawer</.button>
                     </div>
                     <p id="drawer-state" class="mt-2 mb-0 text-xs text-muted">
                       Last drawer change: {@drawer_last}
@@ -2906,7 +2907,7 @@ defmodule HeroUI.Preview.Live do
                   />
                   <div class="flex flex-wrap gap-4">
                     <.ui_link href="#overview">Overview</.ui_link>
-                    <.ui_link href="https://heroui.com" target="_blank" rel="noopener noreferrer">HeroUI
+                    <.ui_link href="https://elixir-lang.org" target="_blank" rel="noopener noreferrer">Elixir
                     <.link_icon /></.ui_link>
                     <.ui_link href="#overview" disabled>Unavailable</.ui_link>
                   </div>
@@ -3091,7 +3092,7 @@ defmodule HeroUI.Preview.Live do
             </div>
           </section>
           <footer class="lp-footer mt-[65px] flex justify-between gap-4 border-t border-[#e8e8ed] py-11 text-[11px] text-zinc-500 dark:border-[#303138] dark:text-zinc-400 [&>span]:font-[750] [&>span]:text-zinc-900 dark:[&>span]:text-zinc-100 [&>span_span]:font-normal [&>span_span]:text-zinc-500 dark:[&>span_span]:text-zinc-400 [&>a]:text-zinc-500 [&>a]:no-underline dark:[&>a]:text-zinc-400">
-            <span>HeroUI <span>for LiveView</span></span><a href="#overview">Back to top ↑</a>
+            <span>OlisUI <span>for LiveView</span></span><a href="#overview">Back to top ↑</a>
           </footer>
           <.modal id="live-modal" title="Live update">
             <p id="count">Server updates: {@count}</p>
@@ -3124,7 +3125,8 @@ defmodule HeroUI.Preview.Live do
   end
 end
 
-defmodule HeroUI.Preview.WebRouter do
+defmodule OlisUI.Preview.WebRouter do
+  @moduledoc false
   use Phoenix.Router
   import Phoenix.LiveView.Router
 
@@ -3132,21 +3134,21 @@ defmodule HeroUI.Preview.WebRouter do
     plug(:accepts, ["html"])
     plug(:fetch_session)
     plug(:fetch_live_flash)
-    plug(:put_root_layout, html: {HeroUI.Preview.Layout, :root})
+    plug(:put_root_layout, html: {OlisUI.Preview.Layout, :root})
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
   end
 
   scope "/" do
     pipe_through(:browser)
-    live("/live-preview", HeroUI.Preview.Live)
+    live("/live-preview", OlisUI.Preview.Live)
   end
 
-  forward("/", HeroUI.Preview.Router)
+  forward("/", OlisUI.Preview.Router)
 end
 
-defmodule HeroUI.Preview.Endpoint do
-  use Phoenix.Endpoint, otp_app: :hero_ui
+defmodule OlisUI.Preview.Endpoint do
+  use Phoenix.Endpoint, otp_app: :olis_ui
   @session_options [store: :cookie, key: "_hero_preview", signing_salt: "previewsession"]
   socket("/live", Phoenix.LiveView.Socket,
     websocket: [connect_info: [session: @session_options]],
@@ -3154,5 +3156,5 @@ defmodule HeroUI.Preview.Endpoint do
   )
 
   plug(Plug.Session, @session_options)
-  plug(HeroUI.Preview.WebRouter)
+  plug(OlisUI.Preview.WebRouter)
 end

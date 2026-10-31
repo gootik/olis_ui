@@ -17,6 +17,11 @@ defmodule OlisAdminWeb.DashboardLive do
         page: "overview",
         orders: Catalog.orders(),
         products: Catalog.products(),
+        product_query: "",
+        editing_product: nil,
+        stock_input: "",
+        stock_error: nil,
+        kit_page: 1,
         query: "",
         status: "All",
         sort_by: "date",
@@ -33,8 +38,10 @@ defmodule OlisAdminWeb.DashboardLive do
         },
         form_error: nil,
         announcement: nil,
+        announcement_status: "success",
         store_name: "Northstar Studio",
         contact_email: "hello@northstar.example",
+        settings_form: %{"name" => "Northstar Studio", "email" => "hello@northstar.example"},
         notifications: true,
         dark_mode: true
       )
@@ -46,6 +53,97 @@ defmodule OlisAdminWeb.DashboardLive do
   @impl true
   def handle_event("navigate", %{"page" => page}, socket) when page in @pages do
     {:noreply, assign(socket, page: page, announcement: nil)}
+  end
+
+  def handle_event("kit_page", %{"page" => page}, socket) do
+    case Integer.parse(to_string(page)) do
+      {number, ""} when number in 1..3 -> {:noreply, assign(socket, :kit_page, number)}
+      _ -> {:noreply, socket}
+    end
+  end
+
+  def handle_event("filter_products", %{"query" => query}, socket) do
+    {:noreply, assign(socket, :product_query, query)}
+  end
+
+  def handle_event("edit_inventory", %{"product" => product_id}, socket) do
+    case Enum.find(socket.assigns.products, &(&1.id == product_id)) do
+      nil ->
+        {:noreply, socket}
+
+      product ->
+        {:noreply,
+         assign(socket,
+           editing_product: product,
+           stock_input: Integer.to_string(product.stock),
+           stock_error: nil
+         )}
+    end
+  end
+
+  def handle_event("close_inventory", _, socket) do
+    {:noreply, assign(socket, editing_product: nil, stock_error: nil)}
+  end
+
+  def handle_event("validate_inventory", %{"inventory" => form}, socket) do
+    {:noreply, assign(socket, stock_input: Map.get(form, "stock", ""), stock_error: nil)}
+  end
+
+  def handle_event("save_inventory", %{"inventory" => form}, socket) do
+    input = Map.get(form, "stock", "")
+
+    with %{id: id, name: name} <- socket.assigns.editing_product,
+         {stock, ""} when stock >= 0 and stock <= 1_000_000 <- Integer.parse(input),
+         {:ok, products} <- Catalog.update_stock(socket.assigns.products, id, stock) do
+      {:noreply,
+       assign(socket,
+         products: products,
+         editing_product: nil,
+         stock_error: nil,
+         announcement: "Inventory for #{name} updated to #{stock} units.",
+         announcement_status: "success"
+       )}
+    else
+      _ ->
+        {:noreply,
+         assign(socket,
+           stock_input: input,
+           stock_error: "Enter a whole number between 0 and 1,000,000."
+         )}
+    end
+  end
+
+  def handle_event("ship_orders", _, socket) do
+    selected = MapSet.new(socket.assigns.selected_orders)
+
+    {orders, shipped} =
+      Enum.map_reduce(socket.assigns.orders, 0, fn order, count ->
+        if MapSet.member?(selected, order.id) and order.status == "Paid" and
+             order.fulfillment in ["Processing", "Unfulfilled"] do
+          {%{order | fulfillment: "Shipped"}, count + 1}
+        else
+          {order, count}
+        end
+      end)
+
+    {message, status} =
+      if shipped == 0 do
+        {"No selected orders can be shipped. Only paid, unshipped orders are eligible.",
+         "warning"}
+      else
+        {"Marked #{shipped} #{if shipped == 1, do: "order", else: "orders"} as shipped.",
+         "success"}
+      end
+
+    {:noreply,
+     socket
+     |> assign(
+       orders: orders,
+       selected_orders: [],
+       announcement: message,
+       announcement_status: status
+     )
+     |> refresh_orders()}
   end
 
   def handle_event("filter", params, socket) do
@@ -119,7 +217,8 @@ defmodule OlisAdminWeb.DashboardLive do
         amount: amount,
         status: "Pending",
         fulfillment: "Unfulfilled",
-        date: "Today"
+        date: "Today",
+        sort_date: Date.utc_today()
       }
 
       socket =
@@ -135,6 +234,7 @@ defmodule OlisAdminWeb.DashboardLive do
           },
           form_error: nil,
           announcement: "Order #{order.id} was created.",
+          announcement_status: "success",
           page: "orders",
           status: "All",
           query: "",
@@ -157,6 +257,10 @@ defmodule OlisAdminWeb.DashboardLive do
     {:noreply, assign(socket, :announcement, nil)}
   end
 
+  def handle_event("edit_settings", %{"store" => settings}, socket) do
+    {:noreply, assign(socket, :settings_form, settings)}
+  end
+
   def handle_event("save_settings", %{"store" => settings}, socket) do
     name = String.trim(Map.get(settings, "name", ""))
     email = String.trim(Map.get(settings, "email", ""))
@@ -166,10 +270,17 @@ defmodule OlisAdminWeb.DashboardLive do
        assign(socket,
          store_name: name,
          contact_email: email,
-         announcement: "Store settings saved."
+         settings_form: %{"name" => name, "email" => email},
+         announcement: "Store settings saved.",
+         announcement_status: "success"
        )}
     else
-      {:noreply, assign(socket, announcement: "Enter a store name and valid email address.")}
+      {:noreply,
+       assign(socket,
+         settings_form: settings,
+         announcement: "Enter a store name and valid email address.",
+         announcement_status: "danger"
+       )}
     end
   end
 
@@ -211,7 +322,18 @@ defmodule OlisAdminWeb.DashboardLive do
   end
 
   defp csv_field(value) do
-    escaped = value |> to_string() |> String.replace("\"", "\"\"")
+    value = to_string(value)
+
+    # Spreadsheet applications interpret these prefixes as formulas, even in quoted CSV cells.
+    value =
+      if Regex.match?(~r/^[\s\x00-\x1f]*[=+@-]/u, value) or
+           String.starts_with?(value, ["\t", "\r", "\n"]) do
+        "'" <> value
+      else
+        value
+      end
+
+    escaped = String.replace(value, "\"", "\"\"")
     "\"#{escaped}\""
   end
 
@@ -238,7 +360,7 @@ defmodule OlisAdminWeb.DashboardLive do
           case sort_by do
             "customer" -> String.downcase(order.name)
             "amount" -> order.amount
-            _ -> order.id
+            _ -> {order.sort_date, order.id}
           end
         end,
         if(direction == "ascending", do: :asc, else: :desc)
@@ -254,6 +376,10 @@ defmodule OlisAdminWeb.DashboardLive do
       current_page: page
     )
   end
+
+  defp chart_labels("7 days"), do: ["6 days ago", "4 days ago", "2 days ago", "Today"]
+  defp chart_labels("30 days"), do: ["29 days ago", "20 days ago", "10 days ago", "Today"]
+  defp chart_labels("90 days"), do: ["89 days ago", "60 days ago", "30 days ago", "Today"]
 
   defp chart_class(value) do
     case value do
@@ -439,12 +565,17 @@ defmodule OlisAdminWeb.DashboardLive do
                 <.button variant="secondary" phx-click="export"><.icon
                   path="M12 3v12 M8 11l4 4 4-4 M4 17v3h16v-3"
                   class="size-4"
-                />Export CSV</.button>
+                />Export orders CSV</.button>
                 <.button phx-click="open_order"><.icon path="M12 5v14 M5 12h14" class="size-4" />New order</.button>
               </div>
             </div>
 
-            <.alert :if={@announcement} status="success" title={@announcement} class="mb-6">
+            <.alert
+              :if={@announcement}
+              status={@announcement_status}
+              title={@announcement}
+              class="mb-6"
+            >
               <:actions>
                 <.close_button label="Dismiss message" phx-click="dismiss_announcement" />
               </:actions>
@@ -489,7 +620,7 @@ defmodule OlisAdminWeb.DashboardLive do
                       <div class="mb-5 flex flex-wrap items-start justify-between gap-3">
                         <div>
                           <p class="m-0 text-base font-medium">Revenue overview</p><p class="mt-1 mb-0 text-sm text-muted">
-                            Your sales performance over time
+                            Illustrative sales trend for the selected period
                           </p>
                         </div>
                         <div
@@ -547,7 +678,7 @@ defmodule OlisAdminWeb.DashboardLive do
                         </div>
                       </div>
                       <div class="mt-3 flex justify-between pl-11 text-xs text-muted">
-                        <span>Oct 1</span><span>Oct 8</span><span>Oct 15</span><span>Oct 22</span><span>Oct 30</span>
+                        <span :for={label <- chart_labels(@period)}>{label}</span>
                       </div>
                     </:content>
                   </.card>
@@ -597,62 +728,44 @@ defmodule OlisAdminWeb.DashboardLive do
             <% end %>
 
             <%= if @page == "customers" do %>
-              <.card class="border border-border shadow-none">
-                <:content>
-                  <div class="mb-5">
-                    <p class="m-0 text-base font-medium">Customer directory</p><p class="mt-1 mb-0 text-sm text-muted">
-                      People who have ordered from your store.
-                    </p>
-                  </div>
-                  <.data_table
-                    id="customer-table"
-                    label="Customers"
-                    rows={Enum.uniq_by(@orders, & &1.email)}
-                    variant="secondary"
-                  >
-                    <:col :let={customer} label="Customer" row_header>
-                      <div class="flex items-center gap-3">
-                        <.avatar name={customer.name} size="sm" variant="soft" color="accent" /><div>
-                          <p class="m-0 font-medium">{customer.name}</p><p class="m-0 text-xs text-muted">
-                            {customer.email}
-                          </p>
-                        </div>
-                      </div>
-                    </:col>
-                    <:col :let={customer} label="Last order">{customer.id}</:col>
-                    <:col label="Status">
-                      <.chip size="sm" color="success" variant="soft">Active</.chip>
-                    </:col>
-                    <:col :let={customer} label="Last purchase">
-                      {Catalog.format_money(customer.amount)}
-                    </:col>
-                  </.data_table>
-                </:content>
-              </.card>
+              <.live_component
+                module={OlisAdminWeb.CustomerDirectory}
+                id="customers"
+                orders={@orders}
+              />
             <% end %>
 
             <%= if @page == "products" do %>
               <.card class="border border-border shadow-none">
                 <:content>
-                  <div class="mb-5">
-                    <p class="m-0 text-base font-medium">Products</p><p class="mt-1 mb-0 text-sm text-muted">
-                      Your best-selling items this month.
-                    </p>
+                  <div class="mb-5 flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                      <p class="m-0 text-base font-medium">Products</p><p class="mt-1 mb-0 text-sm text-muted">
+                        Search your catalog and update available stock.
+                      </p>
+                    </div>
+                    <form phx-change="filter_products" class="w-full sm:w-60">
+                      <.search_field
+                        id="product-search"
+                        name="query"
+                        value={@product_query}
+                        aria-label="Search products"
+                        placeholder="Search name, category or SKU"
+                        full_width
+                      />
+                    </form>
                   </div>
                   <div class="divide-y divide-border">
                     <div
-                      :for={product <- @products}
+                      :for={product <- Catalog.search_products(@products, @product_query)}
                       class="flex flex-wrap items-center gap-4 py-4 first:pt-0 last:pb-0"
                     >
-                      <div class={[
-                        "grid size-12 place-items-center rounded-xl text-base font-medium text-zinc-600",
-                        product.color
-                      ]}>
+                      <div class="grid size-12 place-items-center rounded-xl bg-default text-base font-medium text-default-foreground">
                         {product.initial}
                       </div>
                       <div class="min-w-32 flex-1">
                         <p class="m-0 text-sm font-medium">{product.name}</p><p class="m-0 text-xs text-muted">
-                          {product.category}
+                          {product.category} · {product.id}
                         </p>
                       </div>
                       <div class="w-24">
@@ -670,10 +783,32 @@ defmodule OlisAdminWeb.DashboardLive do
                         color={if product.stock < 20, do: "warning", else: "success"}
                         variant="soft"
                       >
-                        {if product.stock < 20, do: "Low stock", else: "Active"}
+                        {cond do
+                          product.stock == 0 -> "Out of stock"
+                          product.stock < 20 -> "Low stock"
+                          true -> "Active"
+                        end}
                       </.chip>
+                      <.button
+                        variant="outline"
+                        size="sm"
+                        phx-click="edit_inventory"
+                        phx-value-product={product.id}
+                        aria-label={"Edit inventory for #{product.name}"}
+                      >
+                        Edit stock
+                      </.button>
                     </div>
+                    <p
+                      :if={Catalog.search_products(@products, @product_query) == []}
+                      class="py-6 text-sm text-muted"
+                    >
+                      No products match your search.
+                    </p>
                   </div>
+                  <p class="mt-4 mb-0 text-xs text-muted">
+                    Inventory changes last for this demo session.
+                  </p>
                 </:content>
               </.card>
             <% end %>
@@ -685,12 +820,12 @@ defmodule OlisAdminWeb.DashboardLive do
                     <p class="m-0 text-base font-medium">Store details</p><p class="mt-1 mb-5 text-sm text-muted">
                       Manage the details shown to your customers.
                     </p>
-                    <form phx-submit="save_settings" class="space-y-4">
+                    <form phx-change="edit_settings" phx-submit="save_settings" class="space-y-4">
                       <.text_field
                         id="store-name"
                         name="store[name]"
                         label="Store name"
-                        value={@store_name}
+                        value={@settings_form["name"]}
                         required
                       />
                       <.text_field
@@ -698,7 +833,7 @@ defmodule OlisAdminWeb.DashboardLive do
                         name="store[email]"
                         label="Contact email"
                         type="email"
-                        value={@contact_email}
+                        value={@settings_form["email"]}
                         required
                       />
                       <.button type="submit">Save changes</.button>
@@ -725,13 +860,42 @@ defmodule OlisAdminWeb.DashboardLive do
                 </.card>
               </div>
             <% end %>
-            <.component_kit :if={@page == "components"} />
+            <.component_kit :if={@page == "components"} page={@kit_page} />
             <footer class="mt-10 border-t border-border pt-5 text-xs text-muted">
               Northstar is a sample workspace · Built with OlisUI
             </footer>
           </main>
         </div>
       </div>
+
+      <.modal
+        :if={@editing_product}
+        id="inventory-modal"
+        title={"Edit #{@editing_product.name} stock"}
+        description={"Update available units for #{@editing_product.id}."}
+        open={true}
+        on_open_change="close_inventory"
+        show_close={false}
+      >
+        <form phx-change="validate_inventory" phx-submit="save_inventory" class="space-y-4">
+          <.text_field
+            id="inventory-stock"
+            name="inventory[stock]"
+            label="Available units"
+            type="number"
+            min="0"
+            max="1000000"
+            step="1"
+            value={@stock_input}
+            errors={if @stock_error, do: [@stock_error], else: []}
+            required
+          />
+          <div class="flex flex-wrap justify-end gap-2 pt-2">
+            <.button type="button" variant="secondary" phx-click="close_inventory">Cancel</.button>
+            <.button type="submit">Save inventory</.button>
+          </div>
+        </form>
+      </.modal>
 
       <.modal
         id="new-order-modal"
@@ -876,6 +1040,11 @@ defmodule OlisAdminWeb.DashboardLive do
               )
             ]}
           >{status}</button>
+        </div>
+        <div :if={@selected != []} class="mb-4 flex flex-wrap items-center gap-3">
+          <span class="text-sm text-muted">{length(@selected)} selected</span>
+          <.button variant="outline" size="sm" phx-click="ship_orders">Mark as shipped</.button>
+          <span class="text-xs text-muted">Only paid, unshipped orders are eligible.</span>
         </div>
         <.data_table
           id="orders-table"

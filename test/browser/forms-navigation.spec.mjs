@@ -17,14 +17,53 @@ test("serves compiled Tailwind and component styles", async ({ request }) => {
 test("uses dark styles by default and respects an explicit light theme", async ({ page }) => {
   const body = page.locator("body");
   const primaryAction = page.getByRole("link", { name: "Explore components" });
+  const accentChip = page.locator(".chip--accent.chip--primary");
 
   await page.evaluate(() => document.documentElement.removeAttribute("data-theme"));
   await expect(body).toHaveCSS("background-color", "rgb(8, 9, 10)");
-  await expect(primaryAction).toHaveCSS("background-color", "rgb(227, 66, 52)");
+  await expect(primaryAction).toHaveCSS("background-color", "rgb(212, 58, 44)");
+  await expect(primaryAction).toHaveCSS("color", "rgb(255, 255, 255)");
+  await expect(accentChip).toHaveCSS("background-color", "rgb(212, 58, 44)");
+  await expect(accentChip).toHaveCSS("color", "rgb(255, 255, 255)");
 
   await page.evaluate(() => document.documentElement.setAttribute("data-theme", "light"));
   await expect(body).toHaveCSS("background-color", "rgb(250, 250, 250)");
-  await expect(primaryAction).toHaveCSS("background-color", "rgb(227, 66, 52)");
+  await expect(primaryAction).toHaveCSS("background-color", "rgb(212, 58, 44)");
+  await expect(primaryAction).toHaveCSS("color", "rgb(255, 255, 255)");
+  await expect(accentChip).toHaveCSS("color", "rgb(255, 255, 255)");
+});
+
+test("uses white indicators and slider knobs with the accent", async ({ page }) => {
+  const checkbox = page
+    .locator('[data-slot="checkbox"]')
+    .filter({ has: page.locator("#live-terms") });
+  await checkbox.click();
+  await expect(page.locator("#live-terms")).toBeChecked();
+  await expect(checkbox.locator('[data-slot="checkbox-default-indicator--checkmark"]')).toHaveCSS(
+    "color",
+    "rgb(255, 255, 255)",
+  );
+
+  for (const id of [
+    "live-volume",
+    "preview-price-range-0",
+    "preview-price-range-1",
+    "preview-brightness",
+  ]) {
+    const thumb = page
+      .locator("[data-olis-slider]")
+      .filter({ has: page.locator(`[id="${id}"]`) })
+      .locator("[data-olis-slider-thumb]");
+    const matchedThumb = id.startsWith("preview-price-range")
+      ? thumb.nth(id.endsWith("-0") ? 0 : 1)
+      : thumb;
+    await expect(matchedThumb).toHaveCSS("background-color", "rgb(255, 255, 255)");
+    await expect
+      .poll(() =>
+        matchedThumb.evaluate((element) => getComputedStyle(element, "::after").backgroundColor),
+      )
+      .toBe("rgb(255, 255, 255)");
+  }
 });
 
 test("popover opens and completes its exit animation", async ({ page }) => {

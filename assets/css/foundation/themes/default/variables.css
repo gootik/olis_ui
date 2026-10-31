@@ -35,8 +35,8 @@
     --field-radius: 0.375rem;
 
     /* Accent and status hues (shared with the dark theme) */
-    --accent: #e34234;
-    --accent-foreground: #08090a;
+    --accent: #d43a2c;
+    --accent-foreground: #fff;
 
     --success: #27a644;
     --success-foreground: var(--eclipse);
@@ -121,7 +121,7 @@
     --background-inverse: var(--foreground);
 
     --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
-    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--white) 10%);
+    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--black) 10%);
     --success-hover: color-mix(in oklab, var(--success) 90%, var(--success-foreground) 10%);
     --warning-hover: color-mix(in oklab, var(--warning) 90%, var(--warning-foreground) 10%);
     --danger-hover: color-mix(in oklab, var(--danger) 90%, var(--danger-foreground) 10%);
@@ -265,7 +265,7 @@
     --background-inverse: var(--foreground);
 
     --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
-    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--white) 10%);
+    --accent-hover: color-mix(in oklab, var(--accent) 90%, var(--black) 10%);
     --success-hover: color-mix(in oklab, var(--success) 90%, var(--success-foreground) 10%);
     --warning-hover: color-mix(in oklab, var(--warning) 90%, var(--warning-foreground) 10%);
     --danger-hover: color-mix(in oklab, var(--danger) 90%, var(--danger-foreground) 10%);

@@ -1,6 +1,6 @@
 # OlisUI admin example
 
-A standalone Phoenix LiveView commerce dashboard using the local OlisUI library. Explore orders, filter and sort the table, create an order, export the filtered results, edit settings, and try additional controls in the UI kit. Data is held in the LiveView session and resets on reload; no database or credentials are required.
+A standalone Phoenix LiveView commerce dashboard using the local OlisUI library. Create and filter orders, ship eligible selections, and export the filtered results. Search the customer directory to inspect order histories and totals, search products and edit their inventory, or update workspace settings. The UI kit demonstrates every public component with additional local interactions. Data is held in the LiveView session and resets on reload; no database or credentials are required.
 
 From the repository root, install the JavaScript dependencies with `npm ci`. Then run:
 

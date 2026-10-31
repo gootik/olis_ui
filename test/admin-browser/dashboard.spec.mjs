@@ -19,8 +19,9 @@ test("uses the dark OlisUI palette and compact primary action", async ({ page })
   const primaryAction = page.getByRole("button", { name: "New order" });
 
   await expect(workspace).toBeVisible();
-  await expect(primaryAction).toHaveCSS("background-color", "rgb(227, 66, 52)");
-  await expect(primaryAction).toHaveCSS("color", "rgb(8, 9, 10)");
+  await expect(primaryAction).toHaveCSS("background-color", "rgb(212, 58, 44)");
+  await expect(primaryAction).toHaveCSS("color", "rgb(255, 255, 255)");
+  await expect(primaryAction.locator("svg")).toHaveCSS("stroke", "rgb(255, 255, 255)");
   await expect(primaryAction).toHaveCSS("border-radius", "6px");
   await expect(page.locator(".card").first()).toHaveCSS("border-radius", "12px");
 
@@ -49,7 +50,7 @@ test("uses the dark OlisUI palette and compact primary action", async ({ page })
 
   expect(await contrast()).toBeGreaterThanOrEqual(4.5);
   await primaryAction.hover();
-  await expect(primaryAction).not.toHaveCSS("background-color", "rgb(227, 66, 52)");
+  await expect(primaryAction).not.toHaveCSS("background-color", "rgb(212, 58, 44)");
   await expect.poll(contrast).toBeGreaterThanOrEqual(4.5);
 });
 

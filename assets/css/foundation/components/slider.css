@@ -67,7 +67,7 @@
 
   .slider__thumb {
     /* Flex container for centering pseudo-elements */
-    @apply absolute z-2 flex cursor-grab items-center justify-center rounded-xl bg-accent no-highlight;
+    @apply absolute z-2 flex cursor-grab items-center justify-center rounded-xl bg-accent-foreground no-highlight;
 
     /**
    * Transitions
@@ -81,7 +81,7 @@
 
     /* after: Visible thumb element */
     &::after {
-      @apply relative z-10 rounded-lg bg-accent-foreground text-black shadow-field;
+      @apply relative z-10 rounded-lg bg-accent-foreground shadow-field;
       content: "";
 
       /**

@@ -41,6 +41,7 @@ Restart the asset watcher after adding the dependency. The components migrated t
 <.button phx-click="save">Save changes</.button>
 <.button variant="secondary" type="submit">Continue</.button>
 <.button variant="danger-soft" disabled>Delete</.button>
+<.button pending={@saving} phx-click="save">Save changes</.button>
 
 <.text_field
   field={@form[:email]}
@@ -59,7 +60,49 @@ Restart the asset watcher after adding the dependency. The components migrated t
 
 `translate_error/1` is the application's error translation function (Phoenix generators commonly provide one in `CoreComponents`). Errors are explicit so applications control translation and when validation appears. A standalone field needs an `id` and can receive `name`, `value`, and a list of error strings. `text_field` associates its label, description, and errors with the input; when invalid, it hides the description and associates the visible errors instead. Use `invalid` to mark a field invalid without an error message, or `multiline` and `rows` for a textarea. If there is no visible `label`, provide `aria-label` or `aria-labelledby`. Use `.input` directly when composing your own field.
 
+The standalone label, link, typography, and spinner components use HeroUI's styles and native HTML. A required label displays an indicator; set `required` on the input as well. Links accept `href`, `patch`, or `navigate`. Spinners default to the accent color and announce `Loading`; pass a descriptive `label`, or use `decorative` inside an already named control.
+
+```heex
+<.label for="email" required>Email</.label>
+<.input id="email" type="email" required />
+<.ui_link patch="/settings">Settings</.ui_link>
+<.ui_link href="https://heroui.com" target="_blank" rel="noopener noreferrer">HeroUI <.link_icon /></.ui_link>
+<.typography type="h2">Your account</.typography>
+<.spinner color="success" size="sm" label="Saving" />
+```
+
+`pending` keeps a button focusable while suppressing activation and setting `aria-disabled` and `aria-busy`. A pending submit button temporarily uses `type="button"` to prevent implicit form submission. Install Alpine for the pending-state event guard; compose a spinner or other loading content inside the button when desired. Give icon-only buttons an accessible name with `aria-label`, `aria-labelledby`, or visually hidden text.
+
 Use `<.close_button label="Dismiss notification" phx-click="dismiss" />` for an icon-only dismissal action. It defaults to `type="button"` and the accessible label `Close`; pass `disabled`, Tailwind classes, or custom icon content as needed. Like a normal button, it requires a click handler or another dismissal mechanism supplied by the surrounding component.
+
+Cards accept `variant="default"`, `"secondary"`, `"tertiary"`, or `"transparent"`. Use `:title`, `:description`, `:content`, and `:footer` slots for HeroUI's section styles, or pass ordinary content directly. Set `heading_level` to fit the page outline and give the title an `id` when the card needs an accessible name.
+
+```heex
+<.card variant="secondary" role="article" aria-labelledby="project-title">
+  <:title id="project-title">Project overview</:title>
+  <:description>Latest activity</:description>
+  <:content>Everything is up to date.</:content>
+  <:footer><.button size="sm">View project</.button></:footer>
+</.card>
+```
+
+Alerts accept `status="default"`, `"accent"`, `"success"`, `"warning"`, or `"danger"` (`color` remains supported). Put the description in the default slot or use `:description`; when both are provided, the named description takes precedence. Customize the icon with `:indicator`, add controls with `:actions`, or use `:title_content` for a title containing markup. The default `role="status"` announces updates politely; use `role="alert"` for urgent messages.
+
+```heex
+<.alert status="warning" title="Payment expires soon" role="alert">
+  <:description>Update your billing details.</:description>
+  <:actions><.button size="sm" phx-click="review_billing">Review</.button></:actions>
+</.alert>
+```
+
+Chips default to HeroUI's `secondary` variant and wrap their text in a styled label. Use `:prefix` and `:suffix` for icons or other content beside the label, and mark decorative icons `aria-hidden="true"`. For full control over the children, set `wrap_label={false}` and use `.chip_label` where needed.
+
+```heex
+<.chip color="success" variant="soft">
+  <:prefix><span aria-hidden="true" class="size-1.5 rounded-full bg-current"></span></:prefix>
+  Published
+</.chip>
+```
 
 Group related fields with a native fieldset. Its legend names the group, its description is connected with `aria-describedby`, and `disabled` disables its descendant form controls. Use `:legend_content` instead of `legend` when the legend needs markup; `group_class` and `actions_class` customize the layout.
 
@@ -100,7 +143,7 @@ Time fields submit a native ISO time value and progressively enhance to keyboard
 <.time_field field={@form[:starts_at]} label="Start time" min="09:00" max="17:00" required />
 ```
 
-Switch groups arrange independent native switches. Add a `label` for a fieldset legend and set `orientation="horizontal"` for a row. Each switch submits its `value` only when checked; include a hidden input when your form needs an explicit unchecked value. Switches also accept `description`, `errors`, `label_position="start"`, and an optional `:icon` slot.
+Switch groups arrange independent native switches. Add a `label` for a fieldset legend and set `orientation="horizontal"` for a row. Switches accept `field={@form[:updates]}` or an `id` and `name`. Each switch submits its `value` only when checked; include a hidden input when your form needs an explicit unchecked value. Switches also accept `description`, `errors`, `label_position="start"`, and an optional `:icon` slot. If there is no visible label, provide `aria-label` or `aria-labelledby`.
 
 ```heex
 <.switch_group label="Notifications">
@@ -189,13 +232,21 @@ For LiveView-controlled state, pass `open={@sheet_open}` and `on_open_change="sh
 
 The native dialog contains focus and restores it on close. Escape and backdrop clicks dismiss it by default; `dismissible={false}` disables those dismissals. The Close button is always available. A LiveView mount command preserves the native `open` attribute across updates. Mount the client module once per page; the installer returns a cleanup function for teardown.
 
-Alert dialogs and drawers use the same opener as modals. Alert dialogs require an explicit cancel or confirm action and send `on_confirm` as a LiveView event. Drawers support `top`, `bottom`, `left`, and `right` placement.
+Alert dialogs and drawers use the same opener as modals. Alert dialogs require an explicit cancel or confirm action and send `on_confirm` as a LiveView event. Drawers support `top`, `bottom`, `left`, and `right` placement and use the registered HeroUI Alpine providers for opening and dismissal. Their native dialog traps focus and restores it on close; set `dismissible={false}` to prevent backdrop and Escape dismissal.
 
 ```heex
 <.button data-hero-dialog-open="confirm-delete">Delete</.button>
 <.alert_dialog id="confirm-delete" title="Delete item?" on_confirm="delete" confirm_label="Delete">
   This action cannot be undone.
 </.alert_dialog>
+```
+
+Pagination accepts an `on_change` LiveView event or `Phoenix.LiveView.JS` command, or a one-argument `href` or `patch` function. The application owns the current page. Use `show_pages={false}` for previous/next navigation, `show_controls={false}` for numbered pages alone, and `:previous_icon` / `:next_icon` to replace the decorative arrows. `page_label` is a function for localizing page labels.
+
+```heex
+<.pagination page={@page} total_pages={@total_pages} on_change="page_changed">
+  <:summary>Page {@page} of {@total_pages}</:summary>
+</.pagination>
 ```
 
 Tabs use labelled slots and support arrow keys, Home, and End. By default, selection follows focus. Set `activation_mode="manual"` to move focus with arrow keys and select with Enter or Space. The `selected` or `default_selected_key` attribute sets the initial selection; subsequent selection is browser-managed and preserved through LiveView patches. For LiveView-controlled selection, pass `selected_key={@selected}` and `on_selection_change="select_tab"`; the event receives `"key"`, and the handler must update the assign. Set `orientation="vertical"`, `variant="secondary"`, `align="start"` or `"end"`, and `show_separators` as needed. Overflowing lists show scroll controls. Tab IDs must be unique within a tab set and at least one tab must be enabled.
@@ -259,7 +310,16 @@ Number fields accept `field={@form[:quantity]}` or an `id`, `name`, and `value`,
 
 An ascending list creates multiple thumbs and submits each value under `name[]`. Each thumb is a native range input with its own keyboard focus and is constrained by its neighbors. Marks accept numbers or `{value, label}` tuples; marks outside the bounds are omitted. Step dots are decorative and are omitted if more than 1,000 would be needed. Give vertical sliders a container with a defined height. Values and track positions are updated in the browser as the user moves a thumb, and form change events remain available to LiveView.
 
-Toggle buttons are controlled by LiveView: handle `phx-click` and update the `pressed` attribute. Group related buttons with `.button_group` or `.toggle_button_group`; breadcrumbs use `:item` slots and mark the last item as the current page.
+Button groups accept ordinary button content, or named `:button` slots that inherit the group's `variant`, `size`, `disabled`, and `full_width` settings. Named slots can override those settings; `disabled={false}` re-enables an individual button in a disabled group. Set `show_separators` to add decorative dividers, or use `.button_group_separator` inside manually composed buttons. Named buttons accept `on_click`, `target`, `name`, `value`, `type`, `form`, `pending`, `icon_only`, and `aria_label`.
+
+```heex
+<.button_group label="Editing" variant="secondary" size="sm" show_separators>
+  <:button on_click="edit" value="copy">Copy</:button>
+  <:button on_click="edit" value="paste">Paste</:button>
+</.button_group>
+```
+
+Toggle buttons manage their own state with Alpine when `pressed` is omitted; use `default_pressed` for the initial state. To control a toggle from LiveView, pass `pressed`, handle `phx-click`, and update the assign. Group related toggles with `.toggle_button_group`; breadcrumbs use `:item` slots and mark the last item as the current page.
 
 Pagination supports either LiveView events (`on_change`) or URL generation (`href={fn page -> ... end}`). The event receives the requested page as `"page"`; the application owns page bounds, loading, and URL state. Use the optional `:summary` slot for result counts.
 

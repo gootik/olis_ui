@@ -1,5 +1,30 @@
 /** Register Alpine state used by HeroUI components before calling Alpine.start(). */
 export function registerHeroUIAlpine(Alpine) {
+  // Native dialog retains browser focus trapping and focus restoration.
+  Alpine.data('heroDrawer', () => ({
+    openFromTrigger(event) {
+      const trigger = event.target.closest?.('[data-hero-dialog-open]');
+      if (!trigger || trigger.getAttribute('data-hero-dialog-open') !== this.$root.id ||
+          trigger.matches(':disabled, [aria-disabled="true"]') || this.$root.open) return;
+      this.$root.showModal();
+    },
+    onClick(event) {
+      const dialog = this.$root;
+      const close = event.target.closest?.('[data-hero-dialog-close]');
+      if (close && close.closest('dialog') === dialog) {
+        dialog.close();
+        return;
+      }
+      if (event.target !== dialog || dialog.dataset.dismissible !== 'true') return;
+      const rect = dialog.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right ||
+          event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+    },
+    onCancel() {
+      if (this.$root.dataset.dismissible === 'true') this.$root.close();
+    }
+  }));
+
   Alpine.data('heroSearchField', () => ({
     empty: true,
     locked: false,

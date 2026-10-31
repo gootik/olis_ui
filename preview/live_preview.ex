@@ -80,6 +80,10 @@ defmodule HeroUI.Preview.Live do
       socket
       |> assign(
         count: 0,
+        button_pending: false,
+        button_actions: 0,
+        button_submissions: 0,
+        button_group_action: "none",
         close_button_count: 0,
         terms: false,
         alerts: false,
@@ -434,6 +438,18 @@ defmodule HeroUI.Preview.Live do
   end
 
   def handle_event("increment", _, socket), do: {:noreply, update(socket, :count, &(&1 + 1))}
+
+  def handle_event("preview_button_action", _, socket),
+    do: {:noreply, update(socket, :button_actions, &(&1 + 1))}
+
+  def handle_event("preview_button_submit", _, socket),
+    do: {:noreply, update(socket, :button_submissions, &(&1 + 1))}
+
+  def handle_event("preview_button_pending", _, socket),
+    do: {:noreply, update(socket, :button_pending, &(!&1))}
+
+  def handle_event("preview_button_group", %{"value" => value}, socket),
+    do: {:noreply, assign(socket, :button_group_action, value)}
 
   def handle_event("close_button_clicked", _, socket),
     do: {:noreply, update(socket, :close_button_count, &(&1 + 1))}
@@ -1445,6 +1461,78 @@ defmodule HeroUI.Preview.Live do
             </div>
             <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
               <.preview_card
+                title="Buttons"
+                description="Variants, sizes, and a focusable pending state."
+              >
+                <div class="flex flex-wrap gap-2">
+                  <.button
+                    :for={variant <- ~w(primary secondary tertiary outline ghost danger danger-soft)}
+                    variant={variant}
+                  >{String.capitalize(variant)}</.button>
+                </div>
+                <div class="mt-4 flex flex-wrap items-center gap-2">
+                  <.button size="sm" variant="secondary">Small</.button>
+                  <.button size="md" variant="secondary">Medium</.button>
+                  <.button size="lg" variant="secondary">Large</.button>
+                  <.button variant="secondary" disabled>Disabled</.button>
+                </div>
+                <div class="mt-4 flex flex-wrap items-center gap-2">
+                  <.button
+                    id="preview-pending-button"
+                    pending={@button_pending}
+                    phx-click="preview_button_action"
+                  >Save changes</.button>
+                  <.button
+                    id="preview-toggle-pending"
+                    variant="secondary"
+                    phx-click="preview_button_pending"
+                  >{if @button_pending, do: "End pending", else: "Set pending"}</.button>
+                </div>
+                <form
+                  id="pending-button-form"
+                  phx-submit="preview_button_submit"
+                  class="mt-3 flex flex-wrap items-center gap-2"
+                >
+                  <.input
+                    id="pending-button-input"
+                    name="button_example"
+                    aria-label="Example value"
+                    placeholder="Example value"
+                  />
+                  <.button id="preview-pending-submit" type="submit" pending={@button_pending}>Submit</.button>
+                </form>
+                <p id="button-state" class="mt-3 mb-0 text-xs text-zinc-500 dark:text-zinc-400">
+                  Pending: {to_string(@button_pending)}; Actions: {@button_actions}; Submissions: {@button_submissions}
+                </p>
+              </.preview_card>
+              <.preview_card
+                title="Button groups"
+                description="Shared styles, separators, and individual overrides."
+              >
+                <div class="flex flex-col items-start gap-4">
+                  <.button_group label="Editing actions" variant="secondary" size="sm" show_separators>
+                    <:button on_click="preview_button_group" value="copy">Copy</:button>
+                    <:button on_click="preview_button_group" value="cut">Cut</:button>
+                    <:button on_click="preview_button_group" value="paste">Paste</:button>
+                  </.button_group>
+                  <.button_group label="Disabled group" variant="secondary" disabled show_separators>
+                    <:button>Disabled</:button>
+                    <:button disabled={false} on_click="preview_button_group" value="available">Available</:button>
+                  </.button_group>
+                  <.button_group
+                    label="Vertical actions"
+                    orientation="vertical"
+                    variant="outline"
+                    show_separators
+                  >
+                    <:button>Top</:button><:button>Middle</:button><:button>Bottom</:button>
+                  </.button_group>
+                </div>
+                <p id="button-group-state" class="mt-3 mb-0 text-xs text-zinc-500 dark:text-zinc-400">
+                  Action: {@button_group_action}
+                </p>
+              </.preview_card>
+              <.preview_card
                 title="Form controls"
                 description="Checkboxes, switches, sliders, and more."
               >
@@ -1612,6 +1700,18 @@ defmodule HeroUI.Preview.Live do
                 </div>
               </.preview_card>
               <.preview_card
+                title="Switches"
+                description="Sizes, disabled states, and a label-free control."
+              >
+                <div class="flex flex-col items-start gap-4">
+                  <.switch id="switch-preview-small" size="sm">Small</.switch>
+                  <.switch id="switch-preview-medium" checked>Medium</.switch>
+                  <.switch id="switch-preview-large" size="lg">Large</.switch>
+                  <.switch id="switch-preview-disabled" checked disabled>Disabled</.switch>
+                  <.switch id="switch-preview-icon-only" aria-label="Toggle sound" />
+                </div>
+              </.preview_card>
+              <.preview_card
                 title="Switch groups"
                 description="Group independent settings vertically or horizontally."
               >
@@ -1718,6 +1818,16 @@ defmodule HeroUI.Preview.Live do
                 >
                   Selected topics: {Enum.join(@selected_tags, ", ")}
                 </p>
+              </.preview_card>
+              <.preview_card
+                title="Toggle buttons"
+                description="Local and LiveView-controlled selection states."
+              >
+                <div class="flex flex-wrap items-center gap-2">
+                  <.toggle_button id="toggle-preview-local">Favorite</.toggle_button>
+                  <.toggle_button id="toggle-preview-initial" variant="ghost" default_pressed>Following</.toggle_button>
+                  <.toggle_button disabled>Disabled</.toggle_button>
+                </div>
               </.preview_card>
               <.preview_card
                 title="Listbox & actions"
@@ -2234,6 +2344,39 @@ defmodule HeroUI.Preview.Live do
                   </p>
                 </section>
               </.preview_card>
+              <.preview_card title="Chips" description="Variants, sizes, and icons.">
+                <div class="flex flex-col gap-4">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <.chip>Default</.chip>
+                    <.chip color="accent" variant="primary">New</.chip>
+                    <.chip color="success" variant="soft">Published</.chip>
+                    <.chip color="warning" variant="tertiary">Pending</.chip>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <.chip size="sm">Small</.chip><.chip>Medium</.chip><.chip size="lg">Large</.chip>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <.chip color="success" variant="soft">
+                      <:prefix>
+                        <span aria-hidden="true" class="size-1.5 rounded-full bg-current"></span>
+                      </:prefix>
+                      Online
+                    </.chip>
+                    <.chip color="accent" variant="soft">
+                      Verified
+                      <:suffix>
+                        <svg aria-hidden="true" class="size-3" viewBox="0 0 16 16" fill="none"><path
+                          d="m3.5 8 3 3 6-6"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        /></svg>
+                      </:suffix>
+                    </.chip>
+                  </div>
+                </div>
+              </.preview_card>
               <.preview_card title="Status & identity" description="Alerts, avatars, and badges.">
                 <div class="lp-inline flex flex-wrap items-center gap-2.5">
                   <.avatar
@@ -2247,7 +2390,25 @@ defmodule HeroUI.Preview.Live do
                     </.badge>
                   </.badge_anchor>
                 </div>
-                <.alert title="Profile updated" color="success">Your settings are saved.</.alert>
+              </.preview_card>
+              <.preview_card
+                title="Alerts"
+                description="Status messages with optional actions and custom indicators."
+                class="lp-card-wide"
+              >
+                <div class="grid grid-cols-1 gap-3 min-[621px]:grid-cols-2">
+                  <.alert
+                    :for={status <- ~w(default accent success warning danger)}
+                    status={status}
+                    title={"#{String.capitalize(status)} notification"}
+                  >
+                    <:description>Your changes are ready to review.</:description>
+                  </.alert>
+                  <.alert status="warning" title="Payment expires soon" role="alert">
+                    <:description>Update your billing details.</:description>
+                    <:actions><.button size="sm" variant="secondary">Review</.button></:actions>
+                  </.alert>
+                </div>
               </.preview_card>
               <.preview_card
                 title="Avatar group"
@@ -2311,6 +2472,69 @@ defmodule HeroUI.Preview.Live do
               </div><p>Tables and pagination with LiveView updates.</p>
             </div>
             <div class="lp-grid grid grid-cols-1 items-start gap-4 min-[621px]:grid-cols-2 min-[1201px]:grid-cols-3">
+              <.preview_card
+                title="Cards"
+                description="Four surface variants with composable sections."
+                class="lp-card-wide"
+              >
+                <div class="grid grid-cols-1 gap-3 min-[621px]:grid-cols-2">
+                  <.card
+                    :for={variant <- ~w(default secondary tertiary transparent)}
+                    id={"card-#{variant}"}
+                    variant={variant}
+                    role="article"
+                    aria-labelledby={"card-title-#{variant}"}
+                  >
+                    <:title id={"card-title-#{variant}"}>{String.capitalize(variant)}</:title>
+                    <:description>Project overview</:description>
+                    <:content>
+                      <p class="m-0 text-sm text-muted">A surface for related content.</p>
+                    </:content>
+                    <:footer><.button size="sm" variant="secondary">View details</.button></:footer>
+                  </.card>
+                </div>
+              </.preview_card>
+              <.preview_card
+                title="Typography"
+                description="Semantic type, muted text, and inline code."
+              >
+                <div class="space-y-3">
+                  <.typography type="h4">Clear hierarchy</.typography>
+                  <.typography type="body-sm" color="muted">
+                    Readable content with sensible defaults.
+                  </.typography>
+                  <.typography type="code">mix phx.server</.typography>
+                </div>
+              </.preview_card>
+              <.preview_card
+                title="Labels & links"
+                description="Associated labels and navigation states."
+              >
+                <div class="flex flex-col gap-3">
+                  <.label for="primitive-email" required>Email address</.label>
+                  <.input
+                    id="primitive-email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                    full_width
+                  />
+                  <div class="flex flex-wrap gap-4">
+                    <.ui_link href="#overview">Overview</.ui_link>
+                    <.ui_link href="https://heroui.com" target="_blank" rel="noopener noreferrer">HeroUI
+                    <.link_icon /></.ui_link>
+                    <.ui_link href="#overview" disabled>Unavailable</.ui_link>
+                  </div>
+                </div>
+              </.preview_card>
+              <.preview_card title="Spinners" description="Sizes and semantic colors.">
+                <div class="flex flex-wrap items-center gap-4">
+                  <.spinner size="sm" label="Loading small" />
+                  <.spinner label="Loading medium" />
+                  <.spinner size="lg" color="success" label="Loading success" />
+                  <.spinner size="xl" color="danger" label="Loading danger" />
+                </div>
+              </.preview_card>
               <.preview_card title="Scroll shadow" description="Fade edges as content scrolls.">
                 <.scroll_shadow
                   id="activity-scroll"
@@ -2353,6 +2577,28 @@ defmodule HeroUI.Preview.Live do
                     </.chip>
                   </div>
                 </.scroll_shadow>
+              </.preview_card>
+              <.preview_card
+                title="Pagination"
+                description="Numbered pages or compact previous and next controls."
+              >
+                <div class="flex flex-col gap-4">
+                  <.pagination
+                    page={@page}
+                    total_pages={10}
+                    on_change="page_changed"
+                    label="Numbered pages"
+                  />
+                  <.pagination
+                    page={@page}
+                    total_pages={10}
+                    on_change={Phoenix.LiveView.JS.push("page_changed")}
+                    label="Compact pages"
+                    show_pages={false}
+                  >
+                    <:summary>Page {@page} of 10</:summary>
+                  </.pagination>
+                </div>
               </.preview_card>
               <.preview_card
                 title="Tables"

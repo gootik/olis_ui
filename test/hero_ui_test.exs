@@ -3,6 +3,194 @@ defmodule HeroUITest do
   import Phoenix.LiveViewTest
   import Phoenix.Component, only: [sigil_H: 2]
 
+  test "label applies HeroUI form states and associates with the control" do
+    html =
+      render_component(&HeroUI.label/1, %{
+        for: "email",
+        required: true,
+        disabled: true,
+        invalid: true,
+        inner_block: [%{inner_block: fn _, _ -> "Email" end}]
+      })
+
+    assert html =~ ~s(for="email")
+    assert html =~ "label--required"
+    assert html =~ "label--disabled"
+    assert html =~ "label--invalid"
+    assert html =~ ~s(data-slot="label")
+  end
+
+  test "link supports LiveView navigation, disabled state, and optional icon" do
+    slot = [%{inner_block: fn _, _ -> "Settings" end}]
+    html = render_component(&HeroUI.ui_link/1, %{patch: "/settings", inner_block: slot})
+    assert html =~ ~s(href="/settings")
+    assert html =~ ~s(data-phx-link="patch")
+    assert html =~ ~s(data-slot="link")
+
+    disabled =
+      render_component(&HeroUI.ui_link/1, %{
+        href: "/settings",
+        disabled: true,
+        rest: %{"phx-click" => "navigate", "tabindex" => "0"},
+        inner_block: slot
+      })
+
+    assert disabled =~ ~s(aria-disabled="true")
+    assert disabled =~ ~s(tabindex="-1")
+    refute disabled =~ ~s(href=)
+    refute disabled =~ ~s(phx-click=)
+
+    icon = render_component(&HeroUI.link_icon/1, %{})
+    assert icon =~ ~s(data-slot="link-icon")
+    assert icon =~ ~s(data-default-icon="true")
+    assert icon =~ ~s(data-slot="link-default-icon")
+
+    assert_raise ArgumentError, ~r/exactly one/, fn ->
+      render_component(&HeroUI.ui_link/1, %{href: "/one", patch: "/two", inner_block: slot})
+    end
+  end
+
+  test "spinners use HeroUI gradients with unique IDs and accessible states" do
+    first = render_component(&HeroUI.spinner/1, %{color: "success", size: "lg"})
+    second = render_component(&HeroUI.spinner/1, %{})
+    assert first =~ ~s(role="status")
+    assert first =~ ~s(aria-label="Loading")
+    assert first =~ "spinner--success"
+    assert first =~ "spinner--lg"
+    assert first =~ ~s(data-slot="spinner-icon")
+    [_, first_id] = Regex.run(~r/<linearGradient\s+id="([^"]+)-1"/, first)
+    [_, second_id] = Regex.run(~r/<linearGradient\s+id="([^"]+)-1"/, second)
+    refute first_id == second_id
+    assert first =~ "url(##{first_id}-1)"
+
+    decorative = render_component(&HeroUI.spinner/1, %{decorative: true})
+    assert decorative =~ ~s(aria-hidden="true")
+    refute decorative =~ ~s(role="status")
+  end
+
+  test "typography uses semantic tags while supporting visual overrides" do
+    slot = [%{inner_block: fn _, _ -> "Hello" end}]
+    heading = render_component(&HeroUI.typography/1, %{type: "h2", inner_block: slot})
+    assert heading =~ "<h2 "
+    assert heading =~ "typography--h2"
+
+    body =
+      render_component(&HeroUI.typography/1, %{
+        type: "body-sm",
+        as: "span",
+        color: "muted",
+        align: "end",
+        weight: "medium",
+        truncate: true,
+        inner_block: slot
+      })
+
+    assert body =~ "<span "
+    assert body =~ "typography--body-sm"
+    assert body =~ "typography--color-muted"
+    assert body =~ "typography--align-end"
+    assert body =~ "typography--weight-medium"
+    assert body =~ "typography--truncate"
+
+    assert render_component(&HeroUI.typography_prose/1, %{inner_block: slot}) =~
+             ~s(data-slot="prose")
+
+    assert_raise ArgumentError, ~r/invalid typography/, fn ->
+      render_component(&HeroUI.typography/1, %{type: "body", as: "script", inner_block: slot})
+    end
+  end
+
+  test "pending buttons stay focusable and cannot act as submit buttons" do
+    content = [%{inner_block: fn _, _ -> "Save" end}]
+
+    html =
+      render_component(&HeroUI.button/1, %{pending: true, type: "submit", inner_block: content})
+
+    assert html =~ ~s(type="button")
+    assert html =~ ~s(aria-disabled="true")
+    assert html =~ ~s(aria-busy="true")
+    assert html =~ ~s(data-pending="true")
+    assert html =~ ~s(data-slot="button")
+    assert html =~ ~s(x-data="{}")
+    refute html =~ ~r/<button[^>]*\sdisabled(?:=|\s|>)/
+
+    normal =
+      render_component(&HeroUI.button/1, %{
+        type: "submit",
+        inner_block: content,
+        rest: %{"data-slot" => "custom-button"}
+      })
+
+    assert normal =~ ~s(type="submit")
+    assert normal =~ ~s(data-slot="custom-button")
+    refute normal =~ ~s(data-pending="true")
+  end
+
+  test "button groups apply shared defaults and allow individual overrides" do
+    assigns = %{}
+
+    html =
+      rendered_to_string(~H"""
+      <HeroUI.button_group label="Actions" variant="secondary" size="sm" disabled show_separators>
+        <:button on_click="action" value="copy">Copy</:button>
+        <:button disabled={false} variant="outline" on_click="action" value="paste">Paste</:button>
+      </HeroUI.button_group>
+      """)
+
+    assert html =~ ~s(data-slot="button-group")
+    assert html =~ ~s(aria-label="Actions")
+    assert html =~ "button--secondary"
+    assert html =~ "button--outline"
+    assert length(Regex.scan(~r/button--sm/, html)) == 2
+    assert length(Regex.scan(~r/<button[^>]*\sdisabled(?:=|\s|>)/s, html)) == 1
+    assert length(Regex.scan(~r/data-slot="button-group-separator"/, html)) == 1
+    assert html =~ ~s(phx-click="action")
+    assert html =~ ~s(value="paste")
+  end
+
+  test "card supports HeroUI variants and composable sections" do
+    assigns = %{}
+
+    html =
+      rendered_to_string(~H"""
+      <HeroUI.card
+        variant="secondary"
+        heading_level={2}
+        header_class="gap-1"
+        id="profile-card"
+        role="article"
+        aria-labelledby="profile-title"
+      >
+        <:title id="profile-title" class="font-semibold">Profile</:title>
+        <:description>Account details</:description>
+        <:content class="gap-2">
+          <p>Body content</p>
+        </:content>
+        <:footer><button type="button">Save</button></:footer>
+      </HeroUI.card>
+      """)
+
+    assert html =~ ~s(id="profile-card")
+    assert html =~ ~s(aria-labelledby="profile-title")
+    assert html =~ ~s(id="profile-title")
+    assert html =~ "card--secondary"
+    assert html =~ ~s(data-slot="card-header")
+    assert html =~ ~r/<h2[^>]*data-slot="card-title"[^>]*>\s*Profile\s*<\/h2>/s
+    assert html =~ ~s(data-slot="card-description")
+    assert html =~ ~s(data-slot="card-content")
+    assert html =~ ~s(data-slot="card-footer")
+    assert html =~ "Body content"
+
+    legacy =
+      render_component(&HeroUI.card/1, %{
+        inner_block: [%{inner_block: fn _, _ -> Phoenix.HTML.raw("<p>Legacy content</p>") end}]
+      })
+
+    assert legacy =~ "card--default"
+    assert legacy =~ "<p>Legacy content</p>"
+    refute legacy =~ ~s(data-slot="card-content")
+  end
+
   test "close button provides an accessible default and accepts custom icons" do
     default = render_component(&HeroUI.close_button/1, %{})
     assert default =~ ~s(type="button")
@@ -162,6 +350,42 @@ defmodule HeroUITest do
         description: "Missing id",
         inner_block: [%{inner_block: fn _, _ -> "" end}]
       })
+    end
+  end
+
+  test "switch binds a Phoenix field and permits an accessible name without visible text" do
+    form = Phoenix.Component.to_form(%{"updates" => "true"}, as: :account)
+
+    html =
+      render_component(&HeroUI.switch/1, %{
+        field: form[:updates],
+        rest: %{"aria-label" => "Email updates", "aria-describedby" => "external-help"},
+        description: "News and updates"
+      })
+
+    assert html =~ ~s(id="account_updates")
+    assert html =~ ~s(name="account[updates]")
+    assert html =~ ~r/<input[^>]*checked/
+    assert html =~ ~s(aria-label="Email updates")
+    refute html =~ ~s(aria-labelledby="account_updates-label")
+    assert html =~ ~s(aria-describedby="external-help account_updates-description")
+    assert html =~ ~s(data-slot="switch-control")
+
+    unchecked =
+      render_component(&HeroUI.switch/1, %{
+        field: form[:updates],
+        checked: false,
+        rest: %{"aria-label" => "Email updates"}
+      })
+
+    refute unchecked =~ ~r/<input[^>]*\schecked(?:\s|>|=)/
+
+    assert_raise ArgumentError, ~r/requires a label/, fn ->
+      render_component(&HeroUI.switch/1, %{id: "unlabelled"})
+    end
+
+    assert_raise ArgumentError, ~r/requires an id or field/, fn ->
+      render_component(&HeroUI.switch/1, %{rest: %{"aria-label" => "Missing id"}})
     end
   end
 
@@ -1127,6 +1351,41 @@ defmodule HeroUITest do
     assert input =~ "input--full-width"
   end
 
+  test "chips wrap plain text and support composed leading and trailing content" do
+    assigns = %{}
+
+    html =
+      rendered_to_string(~H"""
+      <HeroUI.chip color="success" title="Published status">
+        <:prefix><svg data-test-icon="leading" aria-hidden="true"></svg></:prefix>
+        Published
+        <:suffix><svg data-test-icon="trailing" aria-hidden="true"></svg></:suffix>
+      </HeroUI.chip>
+      """)
+
+    assert html =~ ~s(data-slot="chip")
+    assert html =~ ~s(data-slot="chip-label")
+    assert html =~ "chip--secondary"
+    assert html =~ "chip--success"
+    assert html =~ ~s(title="Published status")
+
+    assert html =~
+             ~r/data-test-icon="leading".*data-slot="chip-label".*Published.*data-test-icon="trailing"/s
+
+    composed =
+      rendered_to_string(~H"""
+      <HeroUI.chip wrap_label={false}>
+        <span data-test-custom>Custom</span><HeroUI.chip_label class="font-bold">
+          Text
+        </HeroUI.chip_label>
+      </HeroUI.chip>
+      """)
+
+    assert length(Regex.scan(~r/data-slot="chip-label"/, composed)) == 1
+    assert composed =~ ~r/data-test-custom.*data-slot="chip-label"/s
+    assert composed =~ "font-bold"
+  end
+
   test "modal has an accessible title and supports disabling dismissal" do
     slot = [%{inner_block: fn _, _ -> "Details" end}]
 
@@ -1339,6 +1598,12 @@ defmodule HeroUITest do
     assert drawer =~ "drawer__dialog"
     assert drawer =~ ~s(data-placement="left")
     assert drawer =~ ~s(aria-labelledby="settings-title")
+    assert drawer =~ ~s(data-hero-drawer)
+    assert drawer =~ ~s(x-data="heroDrawer")
+    assert drawer =~ ~s|x-on:cancel.prevent="onCancel()"|
+    assert drawer =~ ~s(data-slot="drawer-dialog")
+    assert drawer =~ ~s(data-slot="drawer-body")
+    refute drawer =~ ~s(data-hero-dialog="")
   end
 
   test "progress circle and meter describe their ranges and use HeroUI styles" do
@@ -1497,6 +1762,51 @@ defmodule HeroUITest do
     end
   end
 
+  test "alert supports status, accessible custom indicators, and actions" do
+    assigns = %{}
+
+    html =
+      rendered_to_string(~H"""
+      <HeroUI.alert
+        status="warning"
+        color="success"
+        role="alert"
+        id="payment-alert"
+        aria-describedby="help"
+      >
+        <:title_content>Payment <strong>expires soon</strong></:title_content>
+        <:indicator><span role="img" aria-label="Warning">!</span></:indicator>
+        <:description>Update your billing details.</:description>
+        <:actions><button type="button">Update</button></:actions>
+      </HeroUI.alert>
+      """)
+
+    assert html =~ "alert--warning"
+    assert html =~ ~s(role="alert")
+    assert html =~ ~s(id="payment-alert")
+    assert html =~ ~s(aria-describedby="help")
+    assert html =~ ~s(data-slot="alert-indicator")
+    assert html =~ ~s(role="img")
+    assert html =~ ~s(data-slot="alert-title")
+    assert html =~ ~s(data-slot="alert-description")
+    assert length(Regex.scan(~r/data-slot="alert-description"/, html)) == 1
+    assert html =~ "Update your billing details."
+    assert html =~ "<button type=\"button\">Update</button>"
+    refute html =~ ~s(data-slot="alert-default-icon")
+
+    legacy =
+      render_component(&HeroUI.alert/1, %{
+        title: "Saved",
+        color: "success",
+        inner_block: [%{inner_block: fn _, _ -> "Your changes are saved." end}]
+      })
+
+    assert legacy =~ "alert--success"
+    assert legacy =~ ~s(role="status")
+    assert legacy =~ ~s(data-slot="alert-default-icon")
+    assert legacy =~ "Your changes are saved."
+  end
+
   test "avatar, alert and badge use HeroUI structures" do
     avatar =
       render_component(&HeroUI.avatar/1, %{
@@ -1591,6 +1901,53 @@ defmodule HeroUITest do
     end
   end
 
+  test "pagination supports simple layouts, custom icons and JS commands" do
+    html =
+      render_component(&HeroUI.pagination/1, %{
+        page: 2,
+        total_pages: 5,
+        on_change: Phoenix.LiveView.JS.push("change_page"),
+        show_pages: false,
+        previous_icon: [%{inner_block: fn _, _ -> "BACK_ICON" end}],
+        next_icon: [%{inner_block: fn _, _ -> "NEXT_ICON" end}]
+      })
+
+    assert html =~ "BACK_ICON"
+    assert html =~ "NEXT_ICON"
+    assert html =~ "change_page"
+    assert html =~ ~s(phx-value-page="1")
+    assert html =~ ~s(phx-value-page="3")
+    refute html =~ ~s(aria-label="Page 2")
+    refute html =~ "pagination__ellipsis"
+  end
+
+  test "pagination supports patch navigation, localised page labels and disabled state" do
+    attrs = %{
+      page: 2,
+      total_pages: 3,
+      patch: fn page -> "/people?page=#{page}" end,
+      page_label: fn page -> "Seite #{page}" end,
+      show_controls: false
+    }
+
+    html = render_component(&HeroUI.pagination/1, attrs)
+    assert html =~ ~s(data-phx-link="patch")
+    assert html =~ ~s(href="/people?page=3")
+    assert html =~ ~s(aria-label="Seite 2")
+    assert html =~ ~s(aria-current="page")
+    refute html =~ ~s(aria-label="Previous")
+
+    disabled = render_component(&HeroUI.pagination/1, Map.put(attrs, :disabled, true))
+    assert disabled =~ ~s(aria-disabled="true")
+    assert disabled =~ ~s(aria-current="page")
+    assert disabled =~ ~s(data-active="true")
+    refute disabled =~ "<a "
+
+    assert_raise ArgumentError, ~r/exactly one/, fn ->
+      render_component(&HeroUI.pagination/1, Map.put(attrs, :on_change, "page"))
+    end
+  end
+
   test "radio groups label options, preserve values and associate errors" do
     options = [
       %{value: "standard", label: "Standard", description: "Three days"},
@@ -1675,6 +2032,12 @@ defmodule HeroUITest do
     assert toggle =~ ~s(aria-pressed="true")
     assert toggle =~ ~s(data-selected="true")
     assert toggle =~ ~s(phx-click="toggle")
+    refute toggle =~ ~s(x-data=)
+
+    local = render_component(&HeroUI.toggle_button/1, %{default_pressed: true, inner_block: slot})
+    assert local =~ ~s(aria-pressed="true")
+    assert local =~ ~s|x-bind:aria-pressed="selected.toString()"|
+    assert local =~ ~s(x-on:click="selected = !selected")
 
     group =
       render_component(&HeroUI.toggle_button_group/1, %{label: "Formatting", inner_block: slot})

@@ -313,7 +313,7 @@ export function installHeroUI(root = document) {
     if (trigger && root.contains(trigger)) {
       const id = trigger.getAttribute('data-hero-dialog-open');
       const dialog = root.getElementById ? root.getElementById(id) : document.getElementById(id);
-      if (dialog instanceof HTMLDialogElement && !dialog.open) dialog.showModal();
+      if (dialog instanceof HTMLDialogElement && !dialog.matches('[data-hero-drawer]') && !dialog.open) dialog.showModal();
       return;
     }
     const dialog = event.target;

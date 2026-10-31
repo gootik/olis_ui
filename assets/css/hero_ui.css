@@ -85,7 +85,6 @@
 .hui-input[aria-invalid="true"] { box-shadow:0 0 0 2px var(--hui-danger); }
 .hui-card { @apply rounded-3xl flex flex-col gap-3; border:0; }
 .hui-chip { padding:2px 10px; line-height:20px; border-radius:16px; }
-.hui-spinner { display:inline-flex; width:24px; height:24px; animation:hui-spin .8s linear infinite; } .hui-spinner--sm { width:16px;height:16px; } .hui-spinner--lg { width:32px;height:32px; } .hui-spinner--xl { width:40px;height:40px; } @keyframes hui-spin { to { transform:rotate(360deg); } }
 .hui-separator { background:var(--hui-border); height:1px; width:100%; flex-shrink:0; } .hui-separator--vertical { width:1px; height:auto; min-height:8px; align-self:stretch; }
 .hui-skeleton { position:relative; overflow:hidden; background:var(--hui-default); border-radius:4px; } .hui-skeleton:after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent); animation:hui-shimmer 1.5s infinite; } @keyframes hui-shimmer { from { transform:translateX(-100%); } to { transform:translateX(100%); } }
 .hui-checkbox,.hui-switch { display:inline-flex; align-items:center; gap:12px; color:var(--hui-foreground); font-size:14px; cursor:pointer; } .hui-disabled { opacity:.5; cursor:not-allowed; }
@@ -94,15 +93,13 @@
 .hui-switch input { position:absolute; opacity:0; width:1px; height:1px; } .hui-switch-track { width:36px; height:20px; padding:2px; border-radius:999px; background:var(--hui-default); transition:background .2s; } .hui-switch-track span { display:block; width:16px; height:16px; border-radius:50%; background:white; box-shadow:var(--hui-shadow); transition:transform .2s; } .hui-switch input:checked + .hui-switch-track { background:var(--hui-accent); } .hui-switch input:checked + .hui-switch-track span { transform:translateX(16px); }
 .hui-progress { display:grid; gap:4px; color:var(--hui-foreground); } .hui-progress-label { display:flex; justify-content:space-between; font-size:14px; font-weight:500; } .hui-progress-track { height:8px; overflow:hidden; background:var(--hui-default); border-radius:4px; } .hui-progress-fill { height:100%; background:var(--hui-accent); border-radius:inherit; } .hui-progress-indeterminate { width:40%; animation:hui-progress 1.5s ease-in-out infinite; } @keyframes hui-progress { from { transform:translateX(-100%); } to { transform:translateX(350%); } }
 .hui-avatar { position:relative; display:inline-flex; align-items:center; justify-content:center; overflow:hidden; width:40px; height:40px; border-radius:24px; background:var(--hui-default); color:var(--hui-foreground); font-size:14px; font-weight:500; } .hui-avatar--sm { width:32px; height:32px; border-radius:16px; font-size:12px; } .hui-avatar--lg { width:48px; height:48px; font-size:16px; } .hui-avatar img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-@media(prefers-reduced-motion:reduce) { .hui-spinner,.hui-skeleton:after,.hui-progress-indeterminate { animation:none; } .hui-switch-track,.hui-switch-track span { transition:none; } }
+@media(prefers-reduced-motion:reduce) { .hui-skeleton:after,.hui-progress-indeterminate { animation:none; } .hui-switch-track,.hui-switch-track span { transition:none; } }
 .hui-textarea { @apply min-h-[38px] resize-y; }
 .hui-radio { @apply inline-flex items-center gap-3 text-sm; color:var(--hui-foreground); cursor:pointer; }
 .hui-radio input { @apply appearance-none m-0 rounded-full size-4; background:var(--hui-field); box-shadow:var(--hui-shadow); cursor:inherit; }
 .hui-radio input:checked { border:5px solid var(--hui-accent); }
 .hui-radio input:focus-visible { outline:2px solid var(--hui-focus); outline-offset:2px; }
 .hui-kbd { @apply inline-flex h-6 items-center rounded-lg px-2 text-sm font-medium whitespace-nowrap; background:var(--hui-default); color:var(--hui-muted); font-family:inherit; }
-.hui-link { color:var(--hui-foreground); text-decoration:underline; text-underline-offset:4px; }
-.hui-link:focus-visible { outline:2px solid var(--hui-focus); outline-offset:2px; }
 .hui-surface { @apply rounded-3xl; background:var(--hui-surface); color:var(--hui-foreground); box-shadow:var(--hui-shadow); }
 .hui-surface--secondary { background:color-mix(in oklab,var(--hui-surface) 96%,var(--hui-foreground)); }
 .hui-surface--tertiary { background:color-mix(in oklab,var(--hui-surface) 92%,var(--hui-foreground)); }
@@ -145,19 +142,12 @@ body:has(dialog.hui-native-modal[open]) { overflow:hidden; }
 
 /* Native inputs drive the same HeroUI visual states without mirroring state in JS. */
 .hui-visually-hidden-input { position:absolute; inset-block-start:0; inset-inline-start:0; width:1rem; height:1rem; margin:0; opacity:0; z-index:2; cursor:inherit; }
-.hui-native-switch .hui-visually-hidden-input { width:2.5rem; height:1.25rem; }
-.hui-native-switch.switch--sm .hui-visually-hidden-input { width:2rem; height:1rem; }
-.hui-native-switch.switch--lg .hui-visually-hidden-input { width:3rem; height:1.5rem; }
-.hui-native-checkbox:has(input:focus-visible) .checkbox__control,
-.hui-native-switch:has(input:focus-visible) .switch__control { outline:2px solid var(--focus); outline-offset:2px; }
+.hui-native-checkbox:has(input:focus-visible) .checkbox__control { outline:2px solid var(--focus); outline-offset:2px; }
 .hui-native-checkbox .checkbox__indicator { visibility:hidden; }
 .hui-native-checkbox:has(input:checked) .checkbox__indicator { visibility:visible; }
 .hui-native-checkbox:has(input:checked) .checkbox__control::before { scale:1; opacity:1; }
 .hui-native-checkbox[data-invalid="true"]:has(input:checked) .checkbox__control::before { background:var(--danger); }
 .hui-native-checkbox[data-invalid="true"]:not(:has(input:checked)) .checkbox__control { outline:2px solid var(--danger); }
-.hui-native-switch:has(input:checked) .switch__control { background:var(--switch-control-bg-checked); }
-.hui-native-switch:has(input:checked) .switch__thumb { inset-inline-start:var(--switch-thumb-offset); background:var(--accent-foreground); color:var(--accent); }
-.hui-native-switch[data-disabled="true"]:has(input:checked) .switch__thumb { opacity:.4; }
 
 .hui-dropdown { display:inline-flex; }
 .hui-dropdown-popover { position:fixed; inset:auto; margin:0; width:max-content; min-width:min(13.75rem, calc(100vw - 2rem)); max-width:calc(100vw - 2rem); max-height:min(24rem, calc(100dvh - 2rem)); border:0; }
@@ -203,7 +193,7 @@ dialog.hui-native-drawer[data-placement="bottom"][open] { inset:auto 0 0; width:
 .table-root--secondary .table__body th.table__cell { border-radius:0; }
 
 .hui-native-radio:has(input:focus-visible) .radio__control { outline:2px solid var(--focus); outline-offset:2px; }
-.hui-native-checkbox .checkbox__control, .hui-native-radio .radio__control, .hui-native-switch .switch__control { pointer-events:none; }
+.hui-native-checkbox .checkbox__control, .hui-native-radio .radio__control { pointer-events:none; }
 
 .hui-listbox { outline:none; }
 .hui-listbox:focus-visible .list-box-item[data-active="true"] { background:var(--default); outline:2px solid var(--focus); outline-offset:-2px; }

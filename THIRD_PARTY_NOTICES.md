@@ -1,6 +1,6 @@
 # Third-party notices
 
-Certain component icon paths are adapted from HeroUI's `packages/react/src/components/icons.tsx`, copyright HeroUI contributors, from https://github.com/heroui-inc/heroui. HeroUI is licensed under the Apache License, Version 2.0; its license text is included in `LICENSES/Apache-2.0.txt`.
+Certain component icon and spinner paths are adapted from HeroUI's `packages/react/src/components/icons.tsx` and `packages/react/src/components/spinner/spinner.tsx`, copyright HeroUI contributors, from https://github.com/heroui-inc/heroui. HeroUI is licensed under the Apache License, Version 2.0; its license text is included in `LICENSES/Apache-2.0.txt`.
 
 This project also depends on the separately distributed `@heroui/styles` package, which carries its own Apache-2.0 license and notices.
 

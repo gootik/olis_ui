@@ -6,7 +6,7 @@ defmodule HeroUI do
   """
   use Phoenix.Component, global_prefixes: ~w(x-)
 
-  @doc "A native button with HeroUI v3 variants. Defaults to type=button."
+  @doc "A native button with HeroUI variants and an optional focusable pending state."
   attr(:variant, :string,
     default: "primary",
     values: ~w(primary secondary tertiary outline ghost danger danger-soft)
@@ -15,6 +15,7 @@ defmodule HeroUI do
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:type, :string, default: "button", values: ~w(button submit reset))
   attr(:disabled, :boolean, default: false)
+  attr(:pending, :boolean, default: false)
   attr(:full_width, :boolean, default: false)
   attr(:icon_only, :boolean, default: false)
   attr(:class, :any, default: nil)
@@ -22,10 +23,64 @@ defmodule HeroUI do
   slot(:inner_block, required: true)
 
   def button(assigns) do
+    rest = assigns.rest
+    data_slot = Map.get(rest, :"data-slot") || Map.get(rest, "data-slot") || "button"
+    aria_disabled = Map.get(rest, :"aria-disabled", Map.get(rest, "aria-disabled"))
+    aria_busy = Map.get(rest, :"aria-busy", Map.get(rest, "aria-busy"))
+    alpine_data = Map.get(rest, :"x-data") || Map.get(rest, "x-data")
+    capture = Map.get(rest, :"x-on:click.capture") || Map.get(rest, "x-on:click.capture")
+
+    submit_capture =
+      Map.get(rest, :"x-on:submit.document.capture") ||
+        Map.get(rest, "x-on:submit.document.capture")
+
+    rest =
+      Map.drop(rest, [
+        :"data-slot",
+        "data-slot",
+        :"aria-disabled",
+        "aria-disabled",
+        :"aria-busy",
+        "aria-busy",
+        :"x-data",
+        "x-data",
+        :"x-on:click.capture",
+        "x-on:click.capture",
+        :"x-on:submit.document.capture",
+        "x-on:submit.document.capture"
+      ])
+
+    assigns =
+      assign(assigns,
+        rest: rest,
+        data_slot: data_slot,
+        aria_disabled: if(assigns.pending, do: "true", else: aria_disabled),
+        aria_busy: if(assigns.pending, do: "true", else: aria_busy),
+        alpine_data: if(assigns.pending, do: alpine_data || "{}", else: alpine_data),
+        capture:
+          if(assigns.pending,
+            do: "$event.preventDefault(); $event.stopImmediatePropagation()",
+            else: capture
+          ),
+        submit_capture:
+          if(assigns.pending && assigns.type == "submit",
+            do:
+              "if ($event.target === $el.form && !$event.submitter) { $event.preventDefault(); $event.stopImmediatePropagation() }",
+            else: submit_capture
+          )
+      )
+
     ~H"""
     <button
-      type={@type}
+      type={if @pending && @type == "submit", do: "button", else: @type}
       disabled={@disabled}
+      aria-disabled={@aria_disabled}
+      aria-busy={@aria_busy}
+      data-pending={if @pending, do: "true"}
+      data-slot={@data_slot}
+      x-data={@alpine_data}
+      x-on:click.capture={@capture}
+      x-on:submit.document.capture={@submit_capture}
       class={[
         "button",
         "button--#{@variant}",
@@ -658,50 +713,209 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A surface for grouped content."
+  @doc """
+  A card surface with optional header, title, description, content, and footer slots.
+  Unslotted content remains a direct child of the card for backwards compatibility.
+  """
+  attr(:variant, :string, default: "default", values: ~w(default secondary tertiary transparent))
+  attr(:heading_level, :integer, default: 3, values: [1, 2, 3, 4, 5, 6])
+  attr(:header_class, :any, default: nil)
   attr(:class, :any, default: nil)
   attr(:rest, :global)
-  slot(:inner_block, required: true)
+  slot(:inner_block)
+  slot(:header)
+
+  slot :title do
+    attr(:class, :any)
+    attr(:id, :string)
+  end
+
+  slot :description do
+    attr(:class, :any)
+    attr(:id, :string)
+  end
+
+  slot :content do
+    attr(:class, :any)
+    attr(:id, :string)
+  end
+
+  slot :footer do
+    attr(:class, :any)
+    attr(:id, :string)
+  end
 
   def card(assigns) do
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "card"
+
+    rest = Map.drop(assigns.rest, [:"data-slot", "data-slot"])
+    assigns = assign(assigns, data_slot: data_slot, rest: rest)
+
     ~H"""
-    <div class={["card", "card--default", @class]} {@rest}>{render_slot(@inner_block)}</div>
+    <div class={["card", "card--#{@variant}", @class]} data-slot={@data_slot} {@rest}>
+      <div
+        :if={@header != [] || @title != [] || @description != []}
+        class={["card__header", @header_class]}
+        data-slot="card-header"
+      >
+        {render_slot(@header)}
+        <.dynamic_tag
+          :for={title <- @title}
+          tag_name={"h#{@heading_level}"}
+          id={title[:id]}
+          class={["card__title", title[:class]]}
+          data-slot="card-title"
+        >
+          {render_slot(title)}
+        </.dynamic_tag>
+        <p
+          :for={description <- @description}
+          id={description[:id]}
+          class={["card__description", description[:class]]}
+          data-slot="card-description"
+        >
+          {render_slot(description)}
+        </p>
+      </div>
+      {render_slot(@inner_block)}
+      <div
+        :for={content <- @content}
+        id={content[:id]}
+        class={["card__content", content[:class]]}
+        data-slot="card-content"
+      >
+        {render_slot(content)}
+      </div>
+      <div
+        :for={footer <- @footer}
+        id={footer[:id]}
+        class={["card__footer", footer[:class]]}
+        data-slot="card-footer"
+      >
+        {render_slot(footer)}
+      </div>
+    </div>
     """
   end
 
   @doc "A compact label with HeroUI v3 color, variant, and size options."
-  attr(:variant, :string, default: "primary", values: ~w(primary secondary tertiary soft))
+  attr(:variant, :string, default: "secondary", values: ~w(primary secondary tertiary soft))
   attr(:color, :string, default: "default", values: ~w(default accent success warning danger))
   attr(:size, :string, default: "md", values: ~w(sm md lg))
+  attr(:class, :any, default: nil)
+  attr(:label_class, :any, default: nil)
+  attr(:wrap_label, :boolean, default: true)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+  slot(:prefix)
+  slot(:suffix)
+
+  def chip(assigns) do
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "chip"
+
+    assigns =
+      assign(assigns,
+        data_slot: data_slot,
+        rest: Map.drop(assigns.rest, [:"data-slot", "data-slot"])
+      )
+
+    ~H"""
+    <span
+      class={["chip", "chip--#{@variant}", "chip--#{@color}", "chip--#{@size}", @class]}
+      data-slot={@data_slot}
+      {@rest}
+    >
+      {render_slot(@prefix)}
+      <%= if @wrap_label do %>
+        <.chip_label class={@label_class}>{render_slot(@inner_block)}</.chip_label>
+      <% else %>
+        {render_slot(@inner_block)}
+      <% end %>
+      {render_slot(@suffix)}
+    </span>
+    """
+  end
+
+  @doc "A styled label for a composed chip."
   attr(:class, :any, default: nil)
   attr(:rest, :global)
   slot(:inner_block, required: true)
 
-  def chip(assigns) do
+  def chip_label(assigns) do
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "chip-label"
+
+    assigns =
+      assign(assigns,
+        data_slot: data_slot,
+        rest: Map.drop(assigns.rest, [:"data-slot", "data-slot"])
+      )
+
     ~H"""
-    <span class={["chip", "chip--#{@variant}", "chip--#{@color}", "chip--#{@size}", @class]} {@rest}><span class="chip__label">{render_slot(
-      @inner_block
-    )}</span></span>
+    <span class={["chip__label", @class]} data-slot={@data_slot} {@rest}>{render_slot(@inner_block)}</span>
     """
   end
 
-  @doc "An accessible loading indicator."
+  @doc "An accessible HeroUI loading indicator."
+  attr(:id, :string, default: nil)
   attr(:size, :string, default: "md", values: ~w(sm md lg xl))
+  attr(:color, :string, default: "accent", values: ~w(current accent danger success warning))
   attr(:label, :string, default: "Loading")
+  attr(:decorative, :boolean, default: false)
   attr(:class, :any, default: nil)
+  attr(:rest, :global)
 
   def spinner(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :gradient_id,
+        assigns.id || "hui-spinner-#{System.unique_integer([:positive, :monotonic])}"
+      )
+
     ~H"""
-    <svg
-      class={["hui-spinner", "hui-spinner--#{@size}", @class]}
-      role="status"
-      aria-label={@label}
-      viewBox="0 0 24 24"
-      fill="none"
+    <span
+      id={@id}
+      class={["spinner", "spinner--#{@size}", "spinner--#{@color}", @class]}
+      role={if !@decorative, do: "status"}
+      aria-label={if !@decorative, do: @label}
+      aria-hidden={if @decorative, do: "true"}
+      data-slot="spinner"
+      {@rest}
     >
-      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="3" opacity="0.2" />
-      <path d="M12 3a9 9 0 0 1 9 9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-    </svg>
+      <svg data-slot="spinner-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <defs>
+          <linearGradient id={"#{@gradient_id}-1"} x1="50%" x2="50%" y1="5.271%" y2="91.793%">
+            <stop offset="0%" stop-color="currentColor" /><stop
+              offset="100%"
+              stop-color="currentColor"
+              stop-opacity="0.55"
+            />
+          </linearGradient>
+          <linearGradient id={"#{@gradient_id}-2"} x1="50%" x2="50%" y1="15.24%" y2="87.15%">
+            <stop offset="0%" stop-color="currentColor" stop-opacity="0" /><stop
+              offset="100%"
+              stop-color="currentColor"
+              stop-opacity="0.55"
+            />
+          </linearGradient>
+        </defs>
+        <g fill="none">
+          <path
+            d="M8.749.021a1.5 1.5 0 0 1 .497 2.958A7.5 7.5 0 0 0 3 10.375a7.5 7.5 0 0 0 7.5 7.5v3c-5.799 0-10.5-4.7-10.5-10.5C0 5.23 3.726.865 8.749.021"
+            fill={"url(##{@gradient_id}-1)"}
+            transform="translate(1.5 1.625)"
+          />
+          <path
+            d="M15.392 2.673a1.5 1.5 0 0 1 2.119-.115A10.48 10.48 0 0 1 21 10.375c0 5.8-4.701 10.5-10.5 10.5v-3a7.5 7.5 0 0 0 5.007-13.084a1.5 1.5 0 0 1-.115-2.118"
+            fill={"url(##{@gradient_id}-2)"}
+            transform="translate(1.5 1.625)"
+          />
+        </g>
+      </svg>
+    </span>
     """
   end
 
@@ -863,11 +1077,18 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A native checkbox presented as a HeroUI switch."
-  attr(:id, :string, required: true)
+  @doc """
+  A native checkbox presented as a HeroUI switch.
+
+  Supply an `id` or Phoenix `field`. When omitting the visible label, provide
+  `aria-label` or `aria-labelledby`. An unchecked switch submits no value;
+  add a hidden input if your form needs an explicit false value.
+  """
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
   attr(:value, :string, default: "true")
-  attr(:checked, :boolean, default: false)
+  attr(:checked, :boolean, default: nil)
   attr(:disabled, :boolean, default: false)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:description, :string, default: nil)
@@ -876,10 +1097,33 @@ defmodule HeroUI do
   attr(:label_position, :string, default: "end", values: ~w(start end))
   attr(:class, :any, default: nil)
   attr(:rest, :global, include: ~w(required form))
-  slot(:inner_block, required: true)
+  slot(:inner_block)
   slot(:icon)
 
   def switch(assigns) do
+    field = assigns.field
+
+    assigns =
+      assigns
+      |> assign(:id, assigns.id || (field && field.id))
+      |> assign(:name, assigns.name || (field && field.name))
+      |> assign(
+        :checked,
+        if(is_nil(assigns.checked) && field,
+          do: Phoenix.HTML.Form.normalize_value("checkbox", field.value),
+          else: assigns.checked || false
+        )
+      )
+
+    if is_nil(assigns.id), do: raise(ArgumentError, "switch requires an id or field")
+
+    explicit_label =
+      assigns.rest[:"aria-label"] || assigns.rest["aria-label"] ||
+        assigns.rest[:"aria-labelledby"] || assigns.rest["aria-labelledby"]
+
+    if assigns.inner_block == [] && !explicit_label,
+      do: raise(ArgumentError, "switch requires a label, aria-label, or aria-labelledby")
+
     {external_description, rest} = Map.pop(assigns.rest, :"aria-describedby")
     {external_description_string, rest} = Map.pop(rest, "aria-describedby")
 
@@ -893,13 +1137,24 @@ defmodule HeroUI do
       |> Enum.filter(& &1)
       |> Enum.join(" ")
 
-    assigns = assigns |> assign(:rest, rest) |> assign(:describedby, describedby)
+    assigns =
+      assigns
+      |> assign(:rest, rest)
+      |> assign(:describedby, describedby)
+      |> assign(:explicit_label, explicit_label)
 
     ~H"""
     <label
-      class={["switch", "switch--#{@size}", "hui-native-switch", @class]}
+      class={[
+        "switch",
+        "switch--#{@size}",
+        "group/switch has-[:disabled]:pointer-events-none",
+        @class
+      ]}
       for={@id}
+      data-slot="switch"
       data-disabled={if @disabled, do: "true"}
+      data-invalid={if @invalid || @errors != [], do: "true"}
     >
       <span class="switch__content" data-slot="switch-content">
         <input
@@ -910,19 +1165,27 @@ defmodule HeroUI do
           value={@value}
           checked={@checked}
           disabled={@disabled}
-          aria-labelledby={"#{@id}-label"}
+          aria-labelledby={if !@explicit_label, do: "#{@id}-label"}
           aria-invalid={if @invalid || @errors != [], do: "true"}
           aria-describedby={if @describedby != "", do: @describedby}
-          class="hui-visually-hidden-input"
+          class="peer sr-only"
           {@rest}
         />
-        <span class="switch__control" aria-hidden="true"><span class="switch__thumb"><span
+        <span
+          class="switch__control pointer-events-none peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--focus)] peer-checked:bg-[var(--switch-control-bg-checked)] group-hover/switch:peer-checked:bg-[var(--switch-control-bg-checked-hover)] group-active/switch:peer-checked:bg-[var(--switch-control-bg-checked-hover)] peer-checked:[&_[data-slot=switch-thumb]]:[inset-inline-start:var(--switch-thumb-offset)] peer-checked:[&_[data-slot=switch-thumb]]:bg-accent-foreground peer-checked:[&_[data-slot=switch-thumb]]:text-accent peer-disabled:peer-checked:[&_[data-slot=switch-thumb]]:opacity-40"
+          data-slot="switch-control"
+          aria-hidden="true"
+        ><span class="switch__thumb" data-slot="switch-thumb"><span
           :if={@icon != []}
           class="switch__icon"
+          data-slot="switch-icon"
         >{render_slot(@icon)}</span></span></span>
-        <span id={"#{@id}-label"} data-slot="label" class={@label_position == "start" && "-order-1"}>{render_slot(
-          @inner_block
-        )}</span>
+        <span
+          :if={@inner_block != []}
+          id={"#{@id}-label"}
+          data-slot="label"
+          class={@label_position == "start" && "-order-1"}
+        >{render_slot(@inner_block)}</span>
       </span>
       <span :if={@description} id={"#{@id}-description"} class="description" data-slot="description">{@description}</span>
       <span
@@ -1480,15 +1743,174 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A native link."
-  attr(:href, :string, required: true)
+  @doc "A form label with HeroUI required, disabled, and invalid states."
+  attr(:for, :string, default: nil)
+  attr(:required, :boolean, default: false)
+  attr(:disabled, :boolean, default: false)
+  attr(:invalid, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def label(assigns) do
+    ~H"""
+    <label
+      for={@for}
+      class={[
+        "label",
+        @required && "label--required",
+        @disabled && "label--disabled",
+        @invalid && "label--invalid",
+        @class
+      ]}
+      data-slot="label"
+      {@rest}
+    >{render_slot(@inner_block)}</label>
+    """
+  end
+
+  @doc "A HeroUI link for ordinary navigation, LiveView navigation, or patches."
+  attr(:href, :string, default: nil)
+  attr(:navigate, :string, default: nil)
+  attr(:patch, :string, default: nil)
+  attr(:replace, :boolean, default: false)
+  attr(:disabled, :boolean, default: false)
   attr(:class, :any, default: nil)
   attr(:rest, :global, include: ~w(download hreflang media ping referrerpolicy rel target type))
   slot(:inner_block, required: true)
 
   def ui_link(assigns) do
+    destinations = Enum.reject([assigns.href, assigns.navigate, assigns.patch], &is_nil/1)
+
+    if length(destinations) != 1,
+      do: raise(ArgumentError, "ui_link requires exactly one of href, navigate, or patch")
+
+    # A disabled link must not retain click bindings or an active destination.
+    rest =
+      if assigns.disabled do
+        assigns.rest
+        |> Enum.reject(fn {key, _} ->
+          key = to_string(key)
+
+          key in ~w(phx-click tabindex role aria-disabled) ||
+            String.starts_with?(key, "x-on:click")
+        end)
+        |> Map.new()
+      else
+        assigns.rest
+      end
+
+    assigns = assign(assigns, :rest, rest)
+
     ~H"""
-    <a href={@href} class={["hui-link", @class]} {@rest}>{render_slot(@inner_block)}</a>
+    <.link
+      :if={!@disabled}
+      href={@href}
+      navigate={@navigate}
+      patch={@patch}
+      replace={@replace}
+      class={["link", @class]}
+      data-slot="link"
+      {@rest}
+    >{render_slot(@inner_block)}</.link>
+    <a
+      :if={@disabled}
+      role="link"
+      aria-disabled="true"
+      tabindex="-1"
+      class={["link", @class]}
+      data-slot="link"
+      {@rest}
+    >{render_slot(@inner_block)}</a>
+    """
+  end
+
+  @doc "An optional external-link icon for use inside `ui_link`."
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block)
+
+  def link_icon(assigns) do
+    ~H"""
+    <span
+      class={["link__icon", @class]}
+      data-slot="link-icon"
+      data-default-icon={if @inner_block == [], do: "true"}
+      aria-hidden="true"
+      {@rest}
+    >
+      <%= if @inner_block == [] do %>
+        <svg
+          data-slot="link-default-icon"
+          viewBox="0 0 7 7"
+          width="9"
+          height="9"
+          fill="none"
+          aria-hidden="true"
+          role="presentation"
+        ><path
+          d="M1.20592 6.84333L0.379822 6.01723L4.52594 1.8672H1.37819L1.38601 0.731812H6.48742V5.83714H5.34421L5.35203 2.6933L1.20592 6.84333Z"
+          fill="currentColor"
+        /></svg>
+      <% else %>
+        {render_slot(@inner_block)}
+      <% end %>
+    </span>
+    """
+  end
+
+  @doc "Semantic HeroUI typography with a visual type, color, alignment, and weight."
+  attr(:type, :string, default: "body", values: ~w(h1 h2 h3 h4 h5 h6 body body-sm body-xs code))
+  attr(:as, :string, default: nil)
+  attr(:align, :string, default: "start", values: ~w(start center end justify))
+  attr(:color, :string, default: "default", values: ~w(default muted))
+  attr(:weight, :string, default: nil)
+  attr(:truncate, :boolean, default: false)
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def typography(assigns) do
+    if assigns.type not in ~w(h1 h2 h3 h4 h5 h6 body body-sm body-xs code) or
+         (!is_nil(assigns.weight) and assigns.weight not in ~w(normal medium semibold bold)) or
+         (!is_nil(assigns.as) and
+            assigns.as not in ~w(h1 h2 h3 h4 h5 h6 p span div code blockquote)),
+       do: raise(ArgumentError, "invalid typography type or element")
+
+    default_tag = if assigns.type in ~w(body body-sm body-xs), do: "p", else: assigns.type
+    assigns = assign(assigns, :tag, assigns.as || default_tag)
+
+    ~H"""
+    <.dynamic_tag
+      tag_name={@tag}
+      class={[
+        "typography",
+        "typography--#{@type}",
+        "typography--align-#{@align}",
+        "typography--color-#{@color}",
+        @weight && "typography--weight-#{@weight}",
+        @truncate && "typography--truncate",
+        @class
+      ]}
+      data-slot="typography"
+      data-type={@type}
+      {@rest}
+    >
+      {render_slot(@inner_block)}
+    </.dynamic_tag>
+    """
+  end
+
+  @doc "Applies HeroUI's prose styles to rich content."
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+  slot(:inner_block, required: true)
+
+  def typography_prose(assigns) do
+    ~H"""
+    <div class={["typography-prose", @class]} data-slot="prose" {@rest}>
+      {render_slot(@inner_block)}
+    </div>
     """
   end
 
@@ -3721,31 +4143,78 @@ defmodule HeroUI do
     """
   end
 
-  @doc "A message for contextual feedback. Set role to alert for urgent messages."
-  attr(:title, :string, required: true)
+  @doc """
+  Contextual feedback with a status icon, title, description, and optional actions.
+  Use `status` for HeroUI naming; the existing `color` attribute remains supported.
+  """
+  attr(:title, :string, default: nil)
   attr(:color, :string, default: "default", values: ~w(default accent success warning danger))
-  attr(:role, :string, default: "status", values: ~w(status alert))
+  attr(:status, :string, default: nil, values: [nil | ~w(default accent success warning danger)])
+  attr(:role, :string, default: "status")
+  attr(:show_indicator, :boolean, default: true)
   attr(:class, :any, default: nil)
+  attr(:rest, :global)
   slot(:inner_block)
+  slot(:indicator)
+  slot(:title_content)
+  slot(:description)
+  slot(:content)
+  slot(:actions)
 
   def alert(assigns) do
-    assigns = assign(assigns, :icon_path, alert_icon_path(assigns.color))
+    status = assigns.status || assigns.color
+
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "alert-root"
+
+    rest = Map.drop(assigns.rest, [:"data-slot", "data-slot"])
+
+    assigns =
+      assign(assigns,
+        status: status,
+        data_slot: data_slot,
+        rest: rest,
+        icon_path: alert_icon_path(status)
+      )
 
     ~H"""
-    <div role={@role} class={["alert", "alert--#{@color}", @class]}>
-      <span class="alert__indicator" aria-hidden="true"><svg
-        data-slot="alert-default-icon"
-        viewBox="0 0 16 16"
-        fill="none"
-      ><path d={@icon_path} fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" /></svg></span>
-      <div class="alert__content">
-        <div class="alert__title">{@title}</div><div
-          :if={@inner_block != []}
+    <div role={@role} class={["alert", "alert--#{@status}", @class]} data-slot={@data_slot} {@rest}>
+      <div :if={@show_indicator} class="alert__indicator" data-slot="alert-indicator">
+        <%= if @indicator != [] do %>
+          {render_slot(@indicator)}
+        <% else %>
+          <svg
+            data-slot="alert-default-icon"
+            aria-hidden="true"
+            role="presentation"
+            viewBox="0 0 16 16"
+            fill="none"
+          ><path d={@icon_path} fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" /></svg>
+        <% end %>
+      </div>
+      <div class="alert__content" data-slot="alert-content">
+        <p :if={@title || @title_content != []} class="alert__title" data-slot="alert-title">
+          <%= if @title_content != [] do %>
+            {render_slot(@title_content)}
+          <% else %>
+            {@title}
+          <% end %>
+        </p>
+        <div
+          :if={@inner_block != [] && @description == []}
           class="alert__description"
+          data-slot="alert-description"
         >
           {render_slot(@inner_block)}
         </div>
+        <span
+          :for={description <- @description}
+          class="alert__description"
+          data-slot="alert-description"
+        >{render_slot(description)}</span>
+        {render_slot(@content)}
       </div>
+      {render_slot(@actions)}
     </div>
     """
   end
@@ -4687,7 +5156,7 @@ defmodule HeroUI do
 
   @doc """
   A modal drawer attached to an edge of the viewport.
-  Open it with `data-hero-dialog-open` and install the HeroUI JavaScript module.
+  Open it with `data-hero-dialog-open={id}`. Requires HeroUI's Alpine providers.
   """
   attr(:id, :string, required: true)
   attr(:title, :string, required: true)
@@ -4704,15 +5173,20 @@ defmodule HeroUI do
       aria-labelledby={"#{@id}-title"}
       class={["drawer__dialog", "hui-native-modal", "hui-native-drawer", @class]}
       data-placement={@placement}
-      data-hero-dialog
+      data-hero-drawer
+      data-slot="drawer-dialog"
+      x-data="heroDrawer"
+      x-on:click.window="openFromTrigger($event)"
+      x-on:click="onClick($event)"
+      x-on:cancel.prevent="onCancel()"
       data-dismissible={to_string(@dismissible)}
       phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["open"])}
     >
-      <header class="drawer__header">
-        <h2 id={"#{@id}-title"} class="drawer__heading">{@title}</h2>
+      <header class="drawer__header" data-slot="drawer-header">
+        <h2 id={"#{@id}-title"} class="drawer__heading" data-slot="drawer-heading">{@title}</h2>
       </header>
-      <div class="drawer__body">{render_slot(@inner_block)}</div>
-      <div class="drawer__footer">
+      <div class="drawer__body" data-slot="drawer-body">{render_slot(@inner_block)}</div>
+      <div class="drawer__footer" data-slot="drawer-footer">
         {render_slot(@footer)}<button
           type="button"
           class="button button--md button--tertiary"
@@ -5140,21 +5614,31 @@ defmodule HeroUI do
 
   @doc """
   Page navigation with bounded page links. Provide either `on_change` for a
-  LiveView event receiving `%{"page" => "N"}`, or `href` as a one-argument
-  function returning a URL. The caller owns the current page and data loading.
+  LiveView event receiving `%{"page" => "N"}`, `href` as a one-argument URL
+  function, or `patch` as a one-argument LiveView patch URL function. The caller
+  owns the current page and data loading. `on_change` also accepts a
+  `Phoenix.LiveView.JS` command. Use `show_pages={false}` for previous/next only.
   """
   attr(:page, :integer, required: true)
   attr(:total_pages, :integer, required: true)
-  attr(:on_change, :string, default: nil)
+  attr(:on_change, :any, default: nil)
   attr(:href, :any, default: nil)
+  attr(:patch, :any, default: nil)
   attr(:target, :any, default: nil)
   attr(:siblings, :integer, default: 1)
+  attr(:show_pages, :boolean, default: true)
+  attr(:show_controls, :boolean, default: true)
+  attr(:disabled, :boolean, default: false)
+  attr(:page_label, :any, default: nil)
   attr(:label, :string, default: "Pagination")
   attr(:previous_label, :string, default: "Previous")
   attr(:next_label, :string, default: "Next")
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:class, :any, default: nil)
+  attr(:rest, :global)
   slot(:summary)
+  slot(:previous_icon)
+  slot(:next_icon)
 
   def pagination(assigns) do
     if assigns.total_pages < 0 or assigns.page < 1 or assigns.page > max(assigns.total_pages, 1) or
@@ -5165,11 +5649,24 @@ defmodule HeroUI do
            "page must be within the total page count and siblings must be nonnegative"
          )
 
-    if is_nil(assigns.on_change) == is_nil(assigns.href),
-      do: raise(ArgumentError, "provide exactly one of on_change or href")
+    if Enum.count([assigns.on_change, assigns.href, assigns.patch], &(!is_nil(&1))) != 1,
+      do: raise(ArgumentError, "provide exactly one of on_change, href, or patch")
 
-    if assigns.href && !is_function(assigns.href, 1),
-      do: raise(ArgumentError, "href must be a one-argument function")
+    for {name, value} <- [
+          href: assigns.href,
+          patch: assigns.patch,
+          page_label: assigns.page_label
+        ],
+        value && !is_function(value, 1),
+        do: raise(ArgumentError, "#{name} must be a one-argument function")
+
+    data_slot =
+      Map.get(assigns.rest, :"data-slot") || Map.get(assigns.rest, "data-slot") || "pagination"
+
+    aria_label =
+      Map.get(assigns.rest, :"aria-label") || Map.get(assigns.rest, "aria-label") || assigns.label
+
+    rest = Map.drop(assigns.rest, [:"data-slot", "data-slot", :"aria-label", "aria-label"])
 
     assigns =
       assign(
@@ -5177,22 +5674,32 @@ defmodule HeroUI do
         :pages,
         pagination_pages(assigns.page, assigns.total_pages, assigns.siblings)
       )
+      |> assign(data_slot: data_slot, aria_label: aria_label, rest: rest)
 
     ~H"""
-    <nav aria-label={@label} class={["pagination", "pagination--#{@size}", @class]}>
-      <div :if={@summary != []} class="pagination__summary">{render_slot(@summary)}</div>
-      <ul class="pagination__content">
-        <li class="pagination__item">
+    <nav
+      aria-label={@aria_label}
+      class={["pagination", "pagination--#{@size}", @class]}
+      data-slot={@data_slot}
+      {@rest}
+    >
+      <div :if={@summary != []} class="pagination__summary" data-slot="pagination-summary">
+        {render_slot(@summary)}
+      </div>
+      <ul class="pagination__content" data-slot="pagination-content">
+        <li :if={@show_controls} class="pagination__item">
           <.pagination_control
             page={max(@page - 1, 1)}
             label={@previous_label}
-            disabled={@page <= 1 || @total_pages == 0}
+            disabled={@disabled || @page <= 1 || @total_pages == 0}
             nav
             on_change={@on_change}
             href={@href}
+            patch={@patch}
             target={@target}
           >
-            <span data-slot="pagination-previous-icon" aria-hidden="true"><svg
+            <span data-slot="pagination-previous-icon" aria-hidden="true">{render_slot(@previous_icon)}<svg
+              :if={@previous_icon == []}
               width="16"
               height="16"
               viewBox="0 0 16 16"
@@ -5205,31 +5712,37 @@ defmodule HeroUI do
             /></svg></span><span>{@previous_label}</span>
           </.pagination_control>
         </li>
-        <li :for={item <- @pages} class="pagination__item">
+        <li :for={item <- if(@show_pages, do: @pages, else: [])} class="pagination__item">
           <span :if={item == :ellipsis} class="pagination__ellipsis" aria-hidden="true">…</span>
           <.pagination_control
             :if={item != :ellipsis}
             page={item}
-            label={"Page #{item}"}
+            label={if @page_label, do: @page_label.(item), else: "Page #{item}"}
             active={item == @page}
+            disabled={@disabled}
             on_change={@on_change}
             href={@href}
+            patch={@patch}
             target={@target}
           >
             {item}
           </.pagination_control>
         </li>
-        <li class="pagination__item">
+        <li :if={@show_controls} class="pagination__item">
           <.pagination_control
             page={min(@page + 1, max(@total_pages, 1))}
             label={@next_label}
-            disabled={@page >= @total_pages}
+            disabled={@disabled || @page >= @total_pages}
             nav
             on_change={@on_change}
             href={@href}
+            patch={@patch}
             target={@target}
           >
-            <span>{@next_label}</span><span data-slot="pagination-next-icon" aria-hidden="true"><svg
+            <span>{@next_label}</span><span data-slot="pagination-next-icon" aria-hidden="true">{render_slot(
+              @next_icon
+            )}<svg
+              :if={@next_icon == []}
               width="16"
               height="16"
               viewBox="0 0 16 16"
@@ -5252,18 +5765,21 @@ defmodule HeroUI do
   attr(:active, :boolean, default: false)
   attr(:disabled, :boolean, default: false)
   attr(:nav, :boolean, default: false)
-  attr(:on_change, :string, default: nil)
+  attr(:on_change, :any, default: nil)
   attr(:href, :any, default: nil)
+  attr(:patch, :any, default: nil)
   attr(:target, :any, default: nil)
   slot(:inner_block, required: true)
 
   defp pagination_control(assigns) do
     ~H"""
     <span
-      :if={@href && @disabled}
+      :if={(@href || @patch) && @disabled}
       class={["pagination__link", @nav && "pagination__link--nav"]}
       aria-disabled="true"
       aria-label={@label}
+      aria-current={if @active, do: "page"}
+      data-active={if @active, do: "true"}
     >{render_slot(@inner_block)}</span>
     <a
       :if={@href && !@disabled}
@@ -5273,8 +5789,16 @@ defmodule HeroUI do
       aria-current={if @active, do: "page"}
       data-active={if @active, do: "true"}
     >{render_slot(@inner_block)}</a>
+    <Phoenix.Component.link
+      :if={@patch && !@disabled}
+      patch={@patch.(@page)}
+      class={["pagination__link", @nav && "pagination__link--nav"]}
+      aria-label={@label}
+      aria-current={if @active, do: "page"}
+      data-active={if @active, do: "true"}
+    >{render_slot(@inner_block)}</Phoenix.Component.link>
     <button
-      :if={!@href}
+      :if={!@href && !@patch}
       type="button"
       class={["pagination__link", @nav && "pagination__link--nav"]}
       aria-label={@label}
@@ -5340,32 +5864,95 @@ defmodule HeroUI do
     """
   end
 
-  @doc "Groups adjacent buttons using HeroUI's attached button styles."
+  @doc "Groups adjacent buttons; named button slots inherit group defaults."
   attr(:label, :string, default: nil)
   attr(:orientation, :string, default: "horizontal", values: ~w(horizontal vertical))
+
+  attr(:variant, :string,
+    default: "primary",
+    values: ~w(primary secondary tertiary outline ghost danger danger-soft)
+  )
+
+  attr(:size, :string, default: "md", values: ~w(sm md lg))
+  attr(:disabled, :boolean, default: false)
   attr(:full_width, :boolean, default: false)
+  attr(:show_separators, :boolean, default: false)
   attr(:class, :any, default: nil)
-  slot(:inner_block, required: true)
+  attr(:rest, :global)
+  slot(:inner_block)
+
+  slot :button do
+    attr(:variant, :string)
+    attr(:size, :string)
+    attr(:disabled, :boolean)
+    attr(:pending, :boolean)
+    attr(:full_width, :boolean)
+    attr(:type, :string)
+    attr(:icon_only, :boolean)
+    attr(:aria_label, :string)
+    attr(:on_click, :any)
+    attr(:target, :any)
+    attr(:name, :string)
+    attr(:value, :any)
+    attr(:form, :string)
+    attr(:class, :any)
+  end
 
   def button_group(assigns) do
     ~H"""
     <div
       role="group"
       aria-label={@label}
+      data-slot="button-group"
+      data-orientation={@orientation}
       class={[
         "button-group",
         "button-group--#{@orientation}",
         @full_width && "button-group--full-width",
         @class
       ]}
+      {@rest}
     >
       {render_slot(@inner_block)}
+      <.button
+        :for={{button, index} <- Enum.with_index(@button)}
+        variant={Map.get(button, :variant) || @variant}
+        size={Map.get(button, :size) || @size}
+        disabled={if is_nil(Map.get(button, :disabled)), do: @disabled, else: button.disabled}
+        pending={Map.get(button, :pending, false)}
+        type={Map.get(button, :type) || "button"}
+        icon_only={Map.get(button, :icon_only, false)}
+        full_width={if is_nil(Map.get(button, :full_width)), do: @full_width, else: button.full_width}
+        class={Map.get(button, :class)}
+        aria-label={Map.get(button, :aria_label)}
+        phx-click={Map.get(button, :on_click)}
+        phx-target={Map.get(button, :target)}
+        name={Map.get(button, :name)}
+        value={Map.get(button, :value)}
+        form={Map.get(button, :form)}
+      ><.button_group_separator :if={@show_separators && index > 0} />{render_slot(button)}</.button>
     </div>
     """
   end
 
-  @doc "A server-controlled toggle button. Handle `phx-click` and update `pressed` in LiveView."
-  attr(:pressed, :boolean, default: false)
+  @doc "A decorative separator inside an attached button group button."
+  attr(:class, :any, default: nil)
+  attr(:rest, :global)
+
+  def button_group_separator(assigns) do
+    ~H"""
+    <span
+      class={["button-group__separator", @class]}
+      data-slot="button-group-separator"
+      aria-hidden="true"
+      {@rest}
+    ></span>
+    """
+  end
+
+  @doc "A toggle button. Set `pressed` for LiveView control, or `default_pressed` for Alpine-managed state."
+  attr(:pressed, :boolean, default: nil)
+  attr(:default_pressed, :boolean, default: false)
   attr(:disabled, :boolean, default: false)
   attr(:size, :string, default: "md", values: ~w(sm md lg))
   attr(:variant, :string, default: "default", values: ~w(default ghost))
@@ -5375,12 +5962,24 @@ defmodule HeroUI do
   slot(:inner_block, required: true)
 
   def toggle_button(assigns) do
+    uncontrolled = is_nil(assigns.pressed)
+    selected = if uncontrolled, do: assigns.default_pressed, else: assigns.pressed
+    assigns = assign(assigns, uncontrolled: uncontrolled, selected: selected)
+
     ~H"""
     <button
       type="button"
       disabled={@disabled}
-      aria-pressed={to_string(@pressed)}
-      data-selected={if @pressed, do: "true"}
+      aria-pressed={to_string(@selected)}
+      data-selected={if @selected, do: "true"}
+      data-slot="toggle-button"
+      x-data={if @uncontrolled, do: "{ selected: #{to_string(@selected)} }"}
+      x-bind:aria-pressed={if @uncontrolled, do: "selected.toString()"}
+      x-bind:data-selected={if @uncontrolled, do: "selected ? 'true' : null"}
+      x-on:click={if @uncontrolled, do: "selected = !selected"}
+      phx-mounted={
+        if @uncontrolled, do: Phoenix.LiveView.JS.ignore_attributes(["aria-pressed", "data-selected"])
+      }
       class={[
         "toggle-button",
         "toggle-button--#{@size}",

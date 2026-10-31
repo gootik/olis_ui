@@ -50,53 +50,8 @@ export function installHeroUI(root = document) {
     menu.style.left = `${left}px`;
     menu.style.top = `${top}px`;
   }
-  function positionTooltip(tip) {
-    const trigger = tip.parentElement?.querySelector('[data-hero-tooltip-trigger]');
-    if (!trigger || !tip.matches(':popover-open')) return;
-    const anchor = trigger.getBoundingClientRect(), box = tip.getBoundingClientRect();
-    const left = Math.max(8, Math.min(anchor.left + (anchor.width - box.width) / 2, innerWidth - box.width - 8));
-    const topPreferred = tip.dataset.placement !== 'bottom';
-    const above = anchor.top - box.height - 6;
-    const below = anchor.bottom + 6;
-    const top = topPreferred ? (above >= 8 ? above : below) : (below + box.height <= innerHeight - 8 ? below : Math.max(8, above));
-    tip.style.left = `${left}px`; tip.style.top = `${top}px`;
-  }
   function repositionOpenMenus() {
     root.querySelectorAll('[data-hero-menu]:popover-open, [data-hero-popover]:popover-open').forEach(positionMenu);
-    root.querySelectorAll('[data-hero-tooltip]:popover-open').forEach(positionTooltip);
-  }
-  const tooltipTimers = new WeakMap();
-  function hideTooltip(container) {
-    clearTimeout(tooltipTimers.get(container));
-    const tip = container.querySelector('[data-hero-tooltip]');
-    if (tip?.matches(':popover-open')) tip.hidePopover();
-  }
-  function showTooltip(container, delay) {
-    clearTimeout(tooltipTimers.get(container));
-    tooltipTimers.set(container, setTimeout(() => {
-      const tip = container.querySelector('[data-hero-tooltip]');
-      if (!tip || !container.isConnected) return;
-      if (!tip.matches(':popover-open')) tip.showPopover();
-      positionTooltip(tip);
-    }, delay));
-  }
-  function onPointerOver(event) {
-    const container = event.target.closest?.('[data-hero-tooltip-root]');
-    if (!container || !root.contains(container) || container.contains(event.relatedTarget) || event.pointerType === 'touch') return;
-    showTooltip(container, Number(container.dataset.delay) || 0);
-  }
-  function onPointerOut(event) {
-    const container = event.target.closest?.('[data-hero-tooltip-root]');
-    if (!container || container.contains(event.relatedTarget) || container.matches(':focus-within')) return;
-    hideTooltip(container);
-  }
-  function onFocusIn(event) {
-    const trigger = event.target.closest?.('[data-hero-tooltip-trigger]');
-    if (trigger && root.contains(trigger)) showTooltip(trigger.closest('[data-hero-tooltip-root]'), 0);
-  }
-  function onTooltipFocusOut(event) {
-    const container = event.target.closest?.('[data-hero-tooltip-root]');
-    if (container && !container.contains(event.relatedTarget) && !container.matches(':hover')) hideTooltip(container);
   }
   function onToggle(event) {
     const menu = event.target;
@@ -157,9 +112,6 @@ export function installHeroUI(root = document) {
         return;
       } else return;
       event.preventDefault(); setListboxActive(listbox, items[index], true); return;
-    }
-    if (event.key === 'Escape') {
-      root.querySelectorAll('[data-hero-tooltip-root]').forEach(hideTooltip);
     }
     const menu = event.target.closest?.('[data-hero-menu]');
     if (menu && root.contains(menu)) {
@@ -337,10 +289,6 @@ export function installHeroUI(root = document) {
   root.addEventListener('pointerup', onSliderPointerEnd);
   root.addEventListener('pointercancel', onSliderPointerEnd);
   root.addEventListener('reset', onFormReset);
-  root.addEventListener('pointerover', onPointerOver);
-  root.addEventListener('pointerout', onPointerOut);
-  root.addEventListener('focusin', onFocusIn);
-  root.addEventListener('focusout', onTooltipFocusOut);
   root.addEventListener('toggle', onToggle, true);
   root.addEventListener('focusout', onFocusOut);
   root.addEventListener('click', onClick);
@@ -375,11 +323,6 @@ export function installHeroUI(root = document) {
     root.removeEventListener('pointerup', onSliderPointerEnd);
     root.removeEventListener('pointercancel', onSliderPointerEnd);
     root.removeEventListener('reset', onFormReset);
-    root.removeEventListener('pointerover', onPointerOver);
-    root.removeEventListener('pointerout', onPointerOut);
-    root.removeEventListener('focusin', onFocusIn);
-    root.removeEventListener('focusout', onTooltipFocusOut);
-    root.querySelectorAll('[data-hero-tooltip-root]').forEach(hideTooltip);
     root.removeEventListener('toggle', onToggle, true);
     root.removeEventListener('focusout', onFocusOut);
     root.removeEventListener('click', onClick);

@@ -2273,6 +2273,20 @@ defmodule HeroUI.Preview.Live do
                   Sort: {@dropdown_sort}; Columns: {Enum.join(@dropdown_columns, ", ")}; Action: {@dropdown_last}
                 </p>
               </.preview_card>
+              <.preview_card title="Tooltips" description="Hover or focus to see each placement.">
+                <div class="flex flex-wrap gap-2">
+                  <.tooltip
+                    :for={side <- ~w(top bottom left right)}
+                    id={"tooltip-#{side}"}
+                    text={"#{String.capitalize(side)} tooltip"}
+                    placement={side}
+                    delay={0}
+                    close_delay={0}
+                  >
+                    {String.capitalize(side)}
+                  </.tooltip>
+                </div>
+              </.preview_card>
               <.preview_card
                 title="Dialogs & menus"
                 description="Open each overlay to explore its behavior."

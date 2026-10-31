@@ -5198,27 +5198,50 @@ defmodule HeroUI do
   end
 
   @doc """
-  A noninteractive description shown on focus or hover. Requires `installHeroUI`.
+  A noninteractive description shown on focus or hover. Requires HeroUI's Alpine providers.
   The slot is the content of the trigger button; do not nest interactive elements inside it.
   """
   attr(:id, :string, required: true)
   attr(:text, :string, required: true)
-  attr(:placement, :string, default: "top", values: ~w(top bottom))
-  attr(:delay, :integer, default: 1500)
+  attr(:placement, :string, default: "top", values: ~w(top bottom left right))
+  attr(:delay, :integer, default: nil)
+  attr(:close_delay, :integer, default: nil)
+  attr(:offset, :integer, default: 3)
   attr(:class, :any, default: nil)
   attr(:trigger_class, :any, default: nil)
   slot(:inner_block, required: true)
 
   def tooltip(assigns) do
-    if assigns.delay < 0, do: raise(ArgumentError, "tooltip delay must be nonnegative")
+    if assigns.delay && assigns.delay < 0,
+      do: raise(ArgumentError, "tooltip delay must be nonnegative")
+
+    if assigns.close_delay && assigns.close_delay < 0,
+      do: raise(ArgumentError, "tooltip close delay must be nonnegative")
 
     ~H"""
-    <span class={["hui-tooltip-root", @class]} data-hero-tooltip-root data-delay={@delay}>
+    <span
+      class={["hui-tooltip-root", @class]}
+      data-hero-tooltip-root
+      data-delay={@delay}
+      data-close-delay={@close_delay}
+      data-requested-placement={@placement}
+      data-offset={@offset}
+      x-data="heroTooltip"
+      x-on:pointerenter="enter($event)"
+      x-on:pointerleave="leave($event)"
+      x-on:focusin="focus()"
+      x-on:focusout="blur($event)"
+      x-on:keydown.escape.window="escape()"
+      x-on:resize.window="position()"
+      x-on:scroll.window.capture="position()"
+      x-on:phx:update.window="updated()"
+    >
       <button
         type="button"
         class={["button", "button--md", "button--tertiary", "tooltip__trigger", @trigger_class]}
         aria-describedby={"#{@id}-content"}
         data-hero-tooltip-trigger
+        x-ref="trigger"
       >{render_slot(@inner_block)}</button>
       <span
         id={"#{@id}-content"}
@@ -5226,8 +5249,10 @@ defmodule HeroUI do
         popover="manual"
         class="tooltip hui-tooltip"
         data-hero-tooltip
+        data-slot="tooltip-content"
+        x-ref="content"
         data-placement={@placement}
-        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style"])}
+        phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["style", "data-placement"])}
       >{@text}</span>
     </span>
     """

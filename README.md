@@ -479,7 +479,7 @@ One-time-code fields use one native input for form submission, keyboard editing,
   allowed_pattern="[0-9]*" pattern="[0-9]{6}" required />
 ```
 
-Tooltips show plain descriptive text on hover or focus. The trigger slot is rendered inside a button and should not contain another interactive element. Popovers can contain interactive content; both use the browser Popover API and require the JavaScript installer.
+Tooltips show plain descriptive text on hover or focus using the HeroUI Alpine providers. The trigger slot is rendered inside a button and should not contain another interactive element. Set `placement` to `top`, `bottom`, `left`, or `right`; the tooltip flips when it would overflow. `delay` and `close_delay` are milliseconds and default to the HeroUI theme values. Popovers can contain interactive content and use the JavaScript installer. Both use the browser Popover API.
 
 ```heex
 <.tooltip id="save-tip" text="Save your changes">Save help</.tooltip>

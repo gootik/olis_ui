@@ -1656,6 +1656,32 @@ defmodule HeroUITest do
     assert tooltip =~ ~s(aria-describedby="tip-content")
     assert tooltip =~ ~s(role="tooltip")
     assert tooltip =~ "Helpful text"
+    assert tooltip =~ ~s(x-data="heroTooltip")
+    assert tooltip =~ ~s(data-requested-placement="top")
+    assert tooltip =~ ~s(data-slot="tooltip-content")
+
+    left =
+      render_component(&HeroUI.tooltip/1, %{
+        id: "left-tip",
+        text: "Left",
+        placement: "left",
+        delay: 0,
+        close_delay: 250,
+        inner_block: slot
+      })
+
+    assert left =~ ~s(data-requested-placement="left")
+    assert left =~ ~s(data-delay="0")
+    assert left =~ ~s(data-close-delay="250")
+
+    assert_raise ArgumentError, ~r/close delay must be nonnegative/, fn ->
+      render_component(&HeroUI.tooltip/1, %{
+        id: "bad-tip",
+        text: "Bad",
+        close_delay: -1,
+        inner_block: slot
+      })
+    end
 
     popover =
       render_component(&HeroUI.popover/1, %{

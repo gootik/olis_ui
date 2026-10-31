@@ -4882,7 +4882,8 @@ defmodule HeroUI do
         unless is_binary(key) and key != "" and key != "__selection__" and
                  is_integer(min_width) and min_width > 0 and
                  is_integer(max_width) and max_width >= min_width and
-                 (is_nil(width) or (is_integer(width) and width >= min_width and width <= max_width)) do
+                 (is_nil(width) or
+                    (is_integer(width) and width >= min_width and width <= max_width)) do
           raise ArgumentError,
                 "table column widths must be positive integer pixels within min_width and max_width"
         end
@@ -4961,7 +4962,7 @@ defmodule HeroUI do
                   <span :if={@selection_mode == "single"} class="sr-only">Selection</span>
                 </th>
                 <th
-                  :for={col <- @columns}
+                  :for={{col, index} <- Enum.with_index(@columns)}
                   scope="col"
                   class={["table__column", Map.get(col, :class)]}
                   data-allows-sorting={if @sort_event && Map.get(col, :sort_key), do: "true"}
@@ -4991,7 +4992,10 @@ defmodule HeroUI do
                   <span :if={!@sort_event || !Map.get(col, :sort_key)}>{col.label}</span>
                   <div
                     :if={Map.get(col, :resizable, false)}
-                    class="table__column-resizer z-10"
+                    class={[
+                      "table__column-resizer z-10",
+                      index == length(@columns) - 1 && "translate-x-0"
+                    ]}
                     role="separator"
                     tabindex="0"
                     aria-label={"Resize #{col.label} column"}
@@ -5005,7 +5009,8 @@ defmodule HeroUI do
                     x-on:keydown="resizeKey($event)"
                     x-on:click.stop
                     phx-mounted={Phoenix.LiveView.JS.ignore_attributes(["aria-valuenow"])}
-                  ></div>
+                  >
+                  </div>
                 </th>
               </tr>
             </thead>

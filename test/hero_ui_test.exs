@@ -2493,6 +2493,22 @@ defmodule HeroUITest do
     refute single =~ ~s(data-hero-table-select-all)
   end
 
+  test "table empty content and footer support composable content" do
+    cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
+    empty = [%{inner_block: fn _, _ -> "No matching people" end}]
+    footer = [%{inner_block: fn _, _ -> "Page 1 of 3" end}]
+    attrs = %{label: "People", rows: [], col: cols, empty: empty, footer: footer}
+
+    html = render_component(&HeroUI.data_table/1, attrs)
+    assert html =~ "No matching people"
+    refute html =~ "No results found."
+    assert html =~ ~r/<\/table>[\s\S]*class="table__footer"[^>]*>[\s\S]*Page 1 of 3/
+
+    populated = render_component(&HeroUI.data_table/1, %{attrs | rows: [%{name: "Jane"}]})
+    refute populated =~ "No matching people"
+    assert populated =~ "Page 1 of 3"
+  end
+
   test "selectable tables reject ambiguous state and missing row keys" do
     cols = [%{label: "Name", inner_block: fn _, row -> row.name end}]
 

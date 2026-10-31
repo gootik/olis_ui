@@ -201,6 +201,9 @@ defmodule HeroUI.Preview.Live do
      })}
   end
 
+  def handle_event("clear_people", _, socket),
+    do: {:noreply, stream(socket, :people, [], reset: true)}
+
   def handle_event("page_changed", %{"page" => page}, socket) do
     {page, ""} = Integer.parse(page)
     {:noreply, assign(socket, :page, min(max(page, 1), 10))}
@@ -2893,18 +2896,20 @@ defmodule HeroUI.Preview.Live do
                   >
                     <:col :let={person} label="Name" sort_key="name" row_header>{person.name}</:col>
                     <:col :let={person} label="Role">{person.role}</:col>
+                    <:footer>
+                      <.pagination
+                        class="max-w-full overflow-x-auto"
+                        page={@page}
+                        total_pages={10}
+                        on_change="page_changed"
+                      >
+                        <:summary>Page {@page} of 10</:summary>
+                      </.pagination>
+                    </:footer>
                   </.data_table>
                   <p id="table-selection-state" class="mt-2 text-xs text-muted">
                     Selected: {Enum.join(@table_selected, ", ")}
                   </p>
-                  <.pagination
-                    class="max-w-full overflow-x-auto"
-                    page={@page}
-                    total_pages={10}
-                    on_change="page_changed"
-                  >
-                    <:summary>Page {@page} of 10</:summary>
-                  </.pagination>
                   <h2>Streamed table</h2>
                   <.data_table
                     id="stream-table"
@@ -2915,8 +2920,12 @@ defmodule HeroUI.Preview.Live do
                   >
                     <:col :let={person} label="Name">{person.name}</:col>
                     <:col :let={person} label="Role">{person.role}</:col>
+                    <:empty>No people yet. Add someone to get started.</:empty>
                   </.data_table>
-                  <.button phx-click="add_person">Add person</.button>
+                  <div class="mt-3 flex gap-2">
+                    <.button phx-click="add_person">Add person</.button>
+                    <.button phx-click="clear_people" variant="secondary">Clear people</.button>
+                  </div>
                 </section>
               </.preview_card>
             </div>

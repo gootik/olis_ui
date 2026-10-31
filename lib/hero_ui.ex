@@ -4780,6 +4780,7 @@ defmodule HeroUI do
   Pass a LiveView stream as `rows` and a unique `id` for incremental updates.
   For server-side sorting, give columns `sort_key` and set `sort_event`; the
   event receives `%{"sort" => key}`. The caller owns the order and sort state.
+  Use the `:empty` slot for custom empty content and `:footer` for pagination.
   """
   attr(:id, :string, default: nil)
   attr(:rows, :any, required: true)
@@ -4805,6 +4806,9 @@ defmodule HeroUI do
     attr(:row_header, :boolean)
     attr(:class, :any)
   end
+
+  slot(:empty)
+  slot(:footer)
 
   def data_table(assigns) do
     stream? = match?(%Phoenix.LiveView.LiveStream{}, assigns.rows)
@@ -4953,16 +4957,27 @@ defmodule HeroUI do
                 </td>
               <% end %>
             </tr>
-            <tr :if={@empty?} class="table__row">
+            <tr
+              :if={@empty? || @stream?}
+              id={if @stream?, do: "#{@id}-empty"}
+              class={["table__row", @stream? && "hidden only:table-row"]}
+            >
               <td
                 class="table__cell"
                 colspan={length(@col) + if(@selection_mode == "none", do: 0, else: 1)}
               >
-                {@empty_message}
+                <%= if @empty == [] do %>
+                  {@empty_message}
+                <% else %>
+                  {render_slot(@empty)}
+                <% end %>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div :if={@footer != []} class="table__footer" data-slot="table-footer">
+        {render_slot(@footer)}
       </div>
       <button
         :if={@on_selection_change}

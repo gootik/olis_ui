@@ -144,7 +144,7 @@ const liveSocket = new LiveSocket("/live", Socket, {
 liveSocket.connect();
 ```
 
-Start Alpine and connect the LiveSocket only once. Search Field uses Alpine for its clear action and state; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
+Start Alpine and connect the LiveSocket only once. Search Field and Number Field use Alpine for their client-side behavior; other interactive components still use `installHeroUI` while they are migrated. Phoenix LiveView JS commands handle patch-aware client operations where appropriate.
 
 Disclosures use native `<details>` and work without JavaScript. A group permits one open item by default; add `allows_multiple_expanded` to allow several. Use `default_expanded_keys` for browser-managed state or pass `expanded_keys` and `on_toggle` to manage state in LiveView. The toggle event sends the item `"key"` and the desired `"expanded"` state as `"true"` or `"false"`; update `expanded_keys` in the event handler. Install the JavaScript module for animated transitions and event synchronization.
 
@@ -233,7 +233,9 @@ Use sections to group items and provide each selectable item with a unique strin
 
 Dropdowns require a browser with the Popover API and the HeroUI JavaScript installer. Keyboard users can open with Enter, Space, or arrow keys and navigate items with arrow keys, Home, End, and type-ahead. Arrow keys open and close submenus according to text direction; Escape closes the current menu and restores focus.
 
-Slider and number field use native range and number inputs. Install the HeroUI JavaScript for slider pointer interaction and live output, and for number-field step buttons. Inputs submit through Phoenix forms.
+Slider and number field use native range and number inputs. Install the HeroUI JavaScript for slider pointer interaction and live output, and register the HeroUI Alpine components for number-field step buttons. Inputs submit through Phoenix forms.
+
+Number fields accept `field={@form[:quantity]}` or an `id`, `name`, and `value`, plus `min`, `max`, `step`, `description`, and explicit `errors`. Buttons disable at the reachable bounds and for disabled or read-only inputs. Replace the icons using the `:increment_icon` and `:decrement_icon` slots. The native number input uses the browser's numeric entry behavior; locale-specific currency, percentage, and unit formatting are not yet implemented.
 
 ```heex
 <.slider id="volume" name="volume" label="Volume" value={30} />

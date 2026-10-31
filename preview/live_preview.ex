@@ -242,6 +242,9 @@ defmodule HeroUI.Preview.Live do
   def handle_event("search", %{"query" => value}, socket),
     do: {:noreply, assign(socket, :search_query, value)}
 
+  def handle_event("search_example", _, socket),
+    do: {:noreply, assign(socket, :search_query, "Phoenix")}
+
   def handle_event("brand_color_change", %{"brand_color" => value}, socket),
     do:
       {:noreply, socket |> assign(:brand_color, value) |> update(:brand_color_changes, &(&1 + 1))}
@@ -720,6 +723,9 @@ defmodule HeroUI.Preview.Live do
                   >
                     Query: {@search_query}
                   </p>
+                  <div class="mt-3 flex gap-2">
+                    <.button size="sm" variant="secondary" phx-click="search_example">Set example</.button>
+                  </div>
                 </form>
               </.preview_card>
               <.preview_card
@@ -1493,6 +1499,40 @@ defmodule HeroUI.Preview.Live do
                     Terms: {to_string(@terms)}; Alerts: {to_string(@alerts)}; Plan: {@plan}
                   </p>
                 </form>
+              </.preview_card>
+              <.preview_card title="Number fields" description="Bounds, step values, and validation.">
+                <div class="flex flex-col gap-5">
+                  <.number_field
+                    id="preview-number-step"
+                    label="Quantity"
+                    value={4}
+                    min={0}
+                    max={10}
+                    step={2}
+                    description="Choose between 0 and 10."
+                    full_width
+                  />
+                  <.number_field
+                    id="preview-number-invalid"
+                    label="Discount"
+                    value={15}
+                    min={0}
+                    max={10}
+                    errors={["Enter a value between 0 and 10."]}
+                    full_width
+                  />
+                  <.number_field
+                    id="preview-number-readonly"
+                    label="Read-only"
+                    value={5}
+                    readonly
+                    variant="secondary"
+                    full_width
+                  />
+                  <fieldset disabled>
+                    <.number_field id="preview-number-disabled" label="Disabled" value={3} full_width />
+                  </fieldset>
+                </div>
               </.preview_card>
               <.preview_card title="Close button" description="Default, disabled, and custom icons.">
                 <div class="flex items-center gap-4">

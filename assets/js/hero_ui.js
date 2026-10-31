@@ -328,16 +328,6 @@ export function installHeroUI(root = document) {
     if (listbox && root.contains(listbox) && listbox.getAttribute('aria-disabled') !== 'true' && option.getAttribute('aria-disabled') !== 'true') {
       setListboxActive(listbox, option); listbox.focus({preventScroll:true});
     }
-    const step = event.target.closest?.('[data-hero-number-step]');
-    if (step && root.contains(step) && !step.disabled) {
-      const input = step.closest('[data-hero-number]')?.querySelector('input[type=number]');
-      if (input && !input.disabled && !input.readOnly) {
-        const previous = input.value;
-        if (step.dataset.heroNumberStep === 'up') input.stepUp(); else input.stepDown();
-        if (input.value !== previous) input.dispatchEvent(new Event('input', {bubbles:true}));
-      }
-      return;
-    }
     const closePopover = event.target.closest?.('[data-hero-popover-close]');
     if (closePopover && root.contains(closePopover)) {
       const popover = closePopover.closest('[data-hero-popover]');

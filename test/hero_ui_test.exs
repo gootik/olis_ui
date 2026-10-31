@@ -1374,6 +1374,29 @@ defmodule HeroUITest do
     assert field =~ ~s(type="number")
     assert field =~ ~s(aria-label="Increase Quantity")
     assert field =~ ~s(data-hero-number-step="down")
+    assert field =~ ~s(x-data="heroNumberField")
+    assert field =~ ~s(data-slot="number-field-increment-button-icon")
+
+    form = Phoenix.Component.to_form(%{"quantity" => "3"}, as: :order)
+
+    validation =
+      render_component(&HeroUI.number_field/1, %{
+        field: form[:quantity],
+        label: "Quantity",
+        description: "Choose a quantity",
+        errors: ["is invalid"],
+        rest: %{"aria-describedby" => "additional-help"}
+      })
+
+    assert validation =~ ~s(id="order_quantity")
+    assert validation =~ ~s(name="order[quantity]")
+    assert validation =~ ~s(value="3")
+    assert validation =~ ~s(aria-describedby="additional-help order_quantity-errors")
+    assert validation =~ ~s(data-slot="field-error")
+
+    assert_raise ArgumentError, ~r/bounds/, fn ->
+      render_component(&HeroUI.number_field/1, %{id: "bad", label: "Bad", min: 10, max: 5})
+    end
   end
 
   test "avatar, alert and badge use HeroUI structures" do

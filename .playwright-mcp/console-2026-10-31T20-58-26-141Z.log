@@ -1,7 +1,0 @@
-[      62ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:43875/assets/js/alpine/scroll_shadow.js:0
-[      62ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:43875/assets/js/alpine/toast_region.js:0
-[      62ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:43875/assets/js/alpine/tooltip.js:0
-[      62ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:43875/assets/js/alpine/tag_group.js:0
-[      62ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:43875/assets/js/alpine/input_otp.js:0
-[      62ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:43875/assets/js/alpine/slider.js:0
-[      70ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:43875/favicon.ico:0

@@ -4,9 +4,7 @@
     "includes": [
       "assets/js/**/*.js",
       "test/**/*.mjs",
-      "playwright.config.js",
-      "examples/admin/assets/js/**/*.js",
-      "playwright.admin.config.js"
+      "examples/admin/assets/js/**/*.js"
     ]
   },
   "formatter": {

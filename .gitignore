@@ -10,3 +10,6 @@
 /.playwright-cli/
 /test-results/
 /playwright-report/
+/.playwright-mcp/
+/output/playwright/
+/blob-report/

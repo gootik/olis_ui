@@ -689,6 +689,6 @@ npm run lint:css
 npm run test:js
 ```
 
-Run `npx playwright install chromium firefox` once, then `npm run test:browser` and `npm run test:admin` to test the connected preview and admin example in both browsers. The browser tests start their own servers on ports 4100 and 4101; set `OLIS_UI_TEST_PORT` or `OLIS_ADMIN_TEST_PORT` to use different ports. Credo's component complexity limit reflects the existing HEEx-heavy module and is a baseline for future refactoring, not a claim that every component is simple.
+Credo's component complexity limit reflects the existing HEEx-heavy module and is a baseline for future refactoring, not a claim that every component is simple.
 
 The local preview uses the Phoenix Tailwind Mix integration with a pinned npm CLI; `mix preview` builds the stylesheet at startup. Rebuild or restart the preview after changing CSS. Host Phoenix applications can use their own Tailwind v4 build and watcher. Automated tests do not cover every component or browser.

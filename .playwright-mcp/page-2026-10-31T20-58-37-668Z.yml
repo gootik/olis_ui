@@ -1,5 +1,0 @@
-- generic [ref=f1e2]:
-  - button "Open menu" [expanded] [ref=f1e3]
-  - menu [ref=f1e4]:
-    - menuitem "First" [active] [ref=f1e5]
-    - menuitem "More" [ref=f1e7]

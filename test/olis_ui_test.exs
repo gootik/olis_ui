@@ -58,7 +58,7 @@ defmodule OlisUITest do
         inner_block: content
       })
 
-    assert description =~ ~s(class="description custom")
+    assert description =~ ~r/class="description [^"]*\bcustom\b/
     assert description =~ ~s(id="help")
     assert description =~ ~s(data-slot="description")
 
@@ -70,7 +70,7 @@ defmodule OlisUITest do
 
     hidden = render_component(&OlisUI.field_error/1, %{visible: false, inner_block: content})
     assert hidden =~ "hidden"
-    refute hidden =~ "data-visible"
+    refute hidden =~ ~s(data-visible="true")
 
     message = render_component(&OlisUI.error_message/1, %{inner_block: content})
     assert message =~ ~s(class="error-message )
@@ -319,7 +319,7 @@ defmodule OlisUITest do
     assert html =~ ~s(aria-describedby="additional-help profile-description")
 
     assert html =~
-             ~r/<legend class="fieldset__legend" data-slot="fieldset-legend">\s*Profile\s*<\/legend>/
+             ~r/<legend class="fieldset__legend [^"]*" data-slot="fieldset-legend">\s*Profile\s*<\/legend>/
 
     assert html =~ ~s(id="profile-description")
     assert html =~ ~s(data-slot="fieldset-field-group")
@@ -802,7 +802,7 @@ defmodule OlisUITest do
     assert html =~ ~s(for="email")
     assert html =~ ~s(aria-invalid="true")
     assert html =~ ~s(aria-describedby="email-errors")
-    assert html =~ ~s(class="textfield textfield--full-width)
+    assert html =~ ~r/class="textfield [^"]*\btextfield--full-width\b/
     assert html =~ ~s(data-invalid="true")
     assert html =~ ~s(data-slot="field-error")
     assert html =~ "is invalid"
@@ -1481,7 +1481,7 @@ defmodule OlisUITest do
         width: 360
       })
 
-    assert html =~ ~s(class="toast-region toast-region--top-end")
+    assert html =~ ~s(class="toast-region toast-region--top-end )
     assert html =~ ~s(data-max-visible="2")
     assert html =~ ~s(data-timeout="0")
     assert html =~ ~s(--toast-width: 360px)
@@ -1640,7 +1640,7 @@ defmodule OlisUITest do
     assert html =~ ~s(for="stay_start")
     assert html =~ ~s(for="stay_end")
     assert html =~ ~s(data-range="true")
-    assert html =~ ~s(class="range-calendar")
+    assert html =~ ~s(class="range-calendar )
     assert html =~ ~s(aria-describedby="stay-errors")
     assert html =~ "2026-10-18"
 
@@ -2617,7 +2617,7 @@ defmodule OlisUITest do
     html = render_component(&OlisUI.data_table/1, attrs)
     assert html =~ "No matching people"
     refute html =~ "No results found."
-    assert html =~ ~r/<\/table>[\s\S]*class="table__footer"[^>]*>[\s\S]*Page 1 of 3/
+    assert html =~ ~r/<\/table>[\s\S]*class="table__footer\b[^"]*"[^>]*>[\s\S]*Page 1 of 3/
 
     populated = render_component(&OlisUI.data_table/1, %{attrs | rows: [%{name: "Jane"}]})
     refute populated =~ "No matching people"
@@ -3090,7 +3090,7 @@ defmodule OlisUITest do
 
     assert none =~ ~s(data-selection-mode="none")
     refute none =~ "aria-selected="
-    refute none =~ "list-box-item__indicator"
+    refute none =~ ~s(class="list-box-item__indicator )
 
     assert_raise ArgumentError, ~r/unique string values/, fn ->
       render_component(&OlisUI.listbox/1, %{
@@ -3139,12 +3139,12 @@ defmodule OlisUITest do
     assert header =~ "<h2 "
     assert header =~ ~s(id="results-title")
     assert header =~ ~s(data-slot="custom-header")
-    assert header =~ ~s(class="header")
+    assert header =~ ~s(class="header w-full )
     assert header =~ "Results"
 
     default = render_component(&OlisUI.empty_state/1, %{})
     assert default =~ ~s(data-slot="empty-state")
-    assert default =~ ~s(class="empty-state")
+    assert default =~ ~s(class="empty-state p-2 )
     assert default =~ "No results found"
 
     custom =

@@ -1,3 +1,5 @@
+import { dateSegmentClasses } from "./date-segment-styles.js";
+
 /** Gregorian date segments backed by an ordinary native date input. */
 export function installDateField(root = document) {
   const states = new WeakMap();
@@ -140,7 +142,7 @@ export function installDateField(root = document) {
     segments.replaceChildren();
     for (const part of formatParts(field)) {
       const span = document.createElement("span");
-      span.className = "date-input-group__segment caret-transparent";
+      span.className = `${dateSegmentClasses} caret-transparent`;
       span.dataset.slot = "date-input-group-segment";
       if (["year", "month", "day"].includes(part.type)) {
         span.dataset.type = part.type;

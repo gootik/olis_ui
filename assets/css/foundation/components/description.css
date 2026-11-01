@@ -1,5 +1,0 @@
-/* Adapted for OlisUI; see THIRD_PARTY_NOTICES.md. */
-/* Base description styles */
-.description {
-  @apply text-xs text-wrap wrap-break-word text-muted;
-}

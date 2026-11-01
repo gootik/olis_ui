@@ -360,7 +360,7 @@ defmodule OlisAdminWeb.DashboardLive do
           case sort_by do
             "customer" -> String.downcase(order.name)
             "amount" -> order.amount
-            _ -> {order.sort_date, order.id}
+            _ -> {Date.to_gregorian_days(order.sort_date), order.id}
           end
         end,
         if(direction == "ascending", do: :asc, else: :desc)

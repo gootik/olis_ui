@@ -1,3 +1,5 @@
+import { listBoxItemClasses, listBoxIndicatorClasses } from "../list-box-styles.js";
+
 export function registerOlisSelect(Alpine) {
   Alpine.data("olisSelect", () => {
     const searches = new WeakMap();
@@ -120,7 +122,7 @@ export function registerOlisSelect(Alpine) {
         const index = option.index;
         const item = document.createElement("div");
         item.id = `${native.id}-option-${index}`;
-        item.className = "list-box-item list-box-item--default";
+        item.className = `${listBoxItemClasses} list-box-item--default`;
         item.setAttribute("role", "option");
         item.setAttribute("aria-selected", String(option.selected));
         const disabled =
@@ -137,7 +139,7 @@ export function registerOlisSelect(Alpine) {
         label.textContent = option.textContent;
         item.appendChild(label);
         const indicator = document.createElement("span");
-        indicator.className = "list-box-item__indicator";
+        indicator.className = listBoxIndicatorClasses;
         indicator.setAttribute("aria-hidden", "true");
         indicator.hidden = !option.selected;
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");

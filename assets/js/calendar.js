@@ -1,3 +1,5 @@
+import { calendarStyles } from "./calendar-styles.js";
+
 /** A progressively enhanced Gregorian calendar backed by a native date input. */
 export function installCalendar(root = document) {
   const states = new WeakMap();
@@ -40,7 +42,7 @@ export function installCalendar(root = document) {
   const element = (tag, className, text) => {
     const el = document.createElement(tag);
     if (className) {
-      el.className = className;
+      el.className = [className, calendarStyles[className]].filter(Boolean).join(" ");
     }
     if (text != null) {
       el.textContent = text;
@@ -193,7 +195,12 @@ export function installCalendar(root = document) {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 16 16");
     svg.setAttribute("aria-hidden", "true");
-    svg.classList.add(`${prefix}__nav-button-icon`);
+    svg.classList.add(
+      `${prefix}__nav-button-icon`,
+      "size-4",
+      "rtl:rotate-180",
+      "[.date-picker__popover_&]:rotate-0",
+    );
     svg.dataset.slot = `${prefix}-nav-button-icon`;
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("fill", "currentColor");
@@ -323,7 +330,12 @@ export function installCalendar(root = document) {
       indicator.dataset.slot = "calendar-year-picker-trigger-indicator";
       indicator.setAttribute("aria-hidden", "true");
       const arrow = icon(1);
-      arrow.classList.remove("calendar__nav-button-icon");
+      arrow.classList.remove(
+        "calendar__nav-button-icon",
+        "size-4",
+        "rtl:rotate-180",
+        "[.date-picker__popover_&]:rotate-0",
+      );
       arrow.setAttribute("width", "1em");
       arrow.setAttribute("height", "1em");
       indicator.appendChild(arrow);

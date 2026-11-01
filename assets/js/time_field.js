@@ -1,3 +1,5 @@
+import { dateSegmentClasses } from "./date-segment-styles.js";
+
 /** Segmented time input with a native form control as the source of truth. */
 export function olisTimeField() {
   let root;
@@ -154,7 +156,7 @@ export function olisTimeField() {
     segments.replaceChildren();
     for (const part of state.config.parts) {
       const span = document.createElement("span");
-      span.className = "date-input-group__segment caret-transparent";
+      span.className = `${dateSegmentClasses} caret-transparent`;
       span.dataset.slot = "date-input-group-segment";
       if (["hour", "minute", "second", "dayPeriod"].includes(part.type)) {
         span.dataset.type = part.type;

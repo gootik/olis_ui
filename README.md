@@ -42,7 +42,7 @@ The installer prints the remaining steps and does not overwrite existing files. 
 
 ```sh
 cd assets
-npm install --save-exact alpinejs@3.17.5 @alpinejs/collapse@3.17.5
+npm install --save-exact alpinejs@3.17.5 @alpinejs/collapse@3.17.5 tw-animate-css@1.4.0
 ```
 
 In `assets/css/app.css`, replace the Tailwind import with `@import "./olis_ui.css";` and keep the rest of your application styles. In `assets/js/app.js`, import and start OlisUI before connecting LiveSocket:
@@ -75,11 +75,12 @@ The installer preserves existing generated entry points. If `assets/css/olis_ui.
 
 ```css
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "../../../olis-components/assets/css/foundation/index.css";
 @import "../../../olis-components/assets/css/olis_ui.css";
 ```
 
-Keep the existing `@source` directives and any application customizations. The generated relative path depends on where your OlisUI dependency lives; follow the path already used by the existing `olis_ui.css` import. Remove the old `@heroui/styles` npm dependency once nothing else in your application needs it, then restart your asset watcher.
+Install `tw-animate-css@1.4.0` in the application’s `assets` directory. Keep the existing `@source` directives and any application customizations. The generated relative path depends on where your OlisUI dependency lives; follow the path already used by the existing `olis_ui.css` import. Remove the old `@heroui/styles` npm dependency once nothing else in your application needs it, then restart your asset watcher.
 
 ## Usage
 

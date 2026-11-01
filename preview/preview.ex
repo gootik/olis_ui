@@ -281,7 +281,7 @@ defmodule OlisUI.Preview do
                   </.radio><.kbd>⌘ K</.kbd><.ui_link href="#top">Back to top</.ui_link>
                 </div><div class="divider my-6 h-px bg-[#e5e7eb] dark:bg-[#23252a]"></div><label
                   for="preview-notes"
-                  class="olis-label"
+                  class="olis-label text-sm font-medium"
                 >Notes</label><.textarea
                   id="preview-notes"
                   placeholder="Add a note…"
@@ -303,7 +303,7 @@ defmodule OlisUI.Preview do
                 </div>
               </div>
               <div class="demo rounded-xl border border-[#e5e7eb] bg-white p-6 dark:border-[#23252a] dark:bg-[#0f1011]">
-                <label for="preview-select" class="olis-label">Plan</label><.select
+                <label for="preview-select" class="olis-label text-sm font-medium">Plan</label><.select
                   id="preview-select"
                   options={[{"Starter", "starter"}, {"Pro", "pro"}]}
                   value="pro"
@@ -482,6 +482,30 @@ defmodule OlisUI.Preview.Router do
     conn
     |> put_resp_content_type("text/javascript")
     |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "calendar.js"])))
+  end
+
+  get "/calendar-styles.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> put_resp_header("cache-control", "no-store")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "calendar-styles.js"])))
+  end
+
+  get "/date-segment-styles.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> put_resp_header("cache-control", "no-store")
+    |> send_resp(
+      200,
+      File.read!(Path.join([File.cwd!(), "assets", "js", "date-segment-styles.js"]))
+    )
+  end
+
+  get "/list-box-styles.js" do
+    conn
+    |> put_resp_content_type("text/javascript")
+    |> put_resp_header("cache-control", "no-store")
+    |> send_resp(200, File.read!(Path.join([File.cwd!(), "assets", "js", "list-box-styles.js"])))
   end
 
   # Providers are deliberately served from this fixed directory for unbundled preview imports.

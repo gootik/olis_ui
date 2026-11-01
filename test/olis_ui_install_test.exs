@@ -33,10 +33,11 @@ defmodule OlisUI.InstallTest do
     assert css =~ ~s(@import "../../../olis-components/assets/css/olis_ui.css";)
     refute css =~ "@heroui/styles"
 
-    [tailwind, foundation, overrides] =
+    [tailwind, animations, foundation, overrides] =
       css |> String.split("\n") |> Enum.filter(&String.starts_with?(&1, "@import"))
 
     assert tailwind == ~s(@import "tailwindcss";)
+    assert animations == ~s(@import "tw-animate-css";)
     assert foundation =~ "/foundation/index.css"
     assert overrides =~ "/olis_ui.css"
     assert css =~ ~s(@source "../../../olis-components/lib";)

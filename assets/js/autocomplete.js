@@ -1,3 +1,5 @@
+import { listBoxItemClasses, listBoxIndicatorClasses } from "./list-box-styles.js";
+
 /** Searchable select enhancement. The native select remains the form control. */
 export function olisAutocomplete() {
   let root;
@@ -78,7 +80,7 @@ export function olisAutocomplete() {
       }
       const item = document.createElement("div");
       item.id = `${native.id}-autocomplete-option-${option.index}`;
-      item.className = "list-box-item list-box-item--default data-[active=true]:bg-default";
+      item.className = `${listBoxItemClasses} list-box-item--default data-[active=true]:bg-default`;
       item.dataset.slot = "list-box-item";
       item.dataset.olisAutocompleteOption = "";
       item.dataset.index = String(option.index);
@@ -96,7 +98,7 @@ export function olisAutocomplete() {
       label.textContent = option.textContent.trim();
       item.appendChild(label);
       const indicator = document.createElement("span");
-      indicator.className = "list-box-item__indicator";
+      indicator.className = listBoxIndicatorClasses;
       indicator.dataset.slot = "list-box-item-indicator";
       indicator.setAttribute("aria-hidden", "true");
       indicator.hidden = !option.selected;
@@ -121,11 +123,12 @@ export function olisAutocomplete() {
         append(child, list);
       } else if (child.tagName === "OPTGROUP" && !child.hidden) {
         const group = document.createElement("div");
-        group.className = "list-box-section";
+        group.className = "list-box-section flex flex-col items-start gap-0";
         group.setAttribute("role", "group");
         group.setAttribute("aria-label", child.label);
         const header = document.createElement("div");
-        header.className = "header";
+        header.className =
+          "header w-full px-2 pt-1.5 pb-1 text-start text-xs font-medium text-muted";
         header.setAttribute("aria-hidden", "true");
         header.textContent = child.label;
         group.appendChild(header);

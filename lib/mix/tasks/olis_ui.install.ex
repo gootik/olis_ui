@@ -43,7 +43,7 @@ defmodule Mix.Tasks.OlisUi.Install do
     Next steps:
 
       1. In assets/, run:
-         npm install --save-exact alpinejs@3.17.5 @alpinejs/collapse@3.17.5
+         npm install --save-exact alpinejs@3.17.5 @alpinejs/collapse@3.17.5 tw-animate-css@1.4.0
 
       2. In assets/css/app.css, replace the Tailwind import with:
          @import "./olis_ui.css";

@@ -1,5 +1,5 @@
 /* OlisUI's local component and theme styles. See THIRD_PARTY_NOTICES.md. */
-@import "./animations.css";
+@import "./base/progress-motion.css";
 @import "./base/base.css" layer(base);
 @import "./base/scrollbar.css" layer(base);
 @import "./components/index.css" layer(components);

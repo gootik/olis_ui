@@ -1,3 +1,5 @@
+import { listBoxItemClasses, listBoxIndicatorClasses } from "../list-box-styles.js";
+
 export function registerOlisComboBox(Alpine) {
   Alpine.data("olisComboBox", () => {
     const supportsPopover =
@@ -81,7 +83,7 @@ export function registerOlisComboBox(Alpine) {
         }
         const item = document.createElement("div");
         item.id = `${native.id}-combo-option-${option.index}`;
-        item.className = "list-box-item list-box-item--default";
+        item.className = `${listBoxItemClasses} list-box-item--default`;
         item.dataset.slot = "list-box-item";
         item.dataset.olisComboOption = "";
         item.dataset.index = String(option.index);
@@ -99,7 +101,7 @@ export function registerOlisComboBox(Alpine) {
         label.textContent = option.textContent.trim();
         item.appendChild(label);
         const indicator = document.createElement("span");
-        indicator.className = "list-box-item__indicator";
+        indicator.className = listBoxIndicatorClasses;
         indicator.dataset.slot = "list-box-item-indicator";
         indicator.setAttribute("aria-hidden", "true");
         indicator.hidden = !option.selected;

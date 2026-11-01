@@ -24,6 +24,7 @@ defmodule OlisUI.Install do
 
     css = """
     @import "tailwindcss";
+    @import "tw-animate-css";
     @import #{quoted_path(Path.join(library_dir, "assets/css/foundation/index.css"), css_dir)};
     @import #{quoted_path(Path.join(library_dir, "assets/css/olis_ui.css"), css_dir)};
     @source #{quoted_path(Path.join(library_dir, "lib"), css_dir)};

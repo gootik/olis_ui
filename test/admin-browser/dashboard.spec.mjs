@@ -9,8 +9,8 @@ test("serves compiled dashboard and component styles", async ({ request }) => {
   const response = await request.get("/assets/app.css");
   expect(response.ok()).toBeTruthy();
   const css = await response.text();
-  expect(css).toContain(".olis-button");
-  expect(css).toContain(".search-field");
+  expect(css).toContain(".bg-accent");
+  expect(css).toContain(".bg-overlay");
   expect(css).not.toMatch(/@import\s+(?:url\()?\s*["'](?:@heroui|\.\.\/)/);
 });
 
@@ -74,4 +74,17 @@ test("opens the component kit and switches themes", async ({ page }) => {
   await page.getByRole("button", { name: "Switch to light mode" }).click();
   await expect(page.locator('[data-theme="light"]')).toBeVisible();
   await expect(page.locator("#orders-table")).toHaveCount(0);
+});
+
+test("updates search and text field colors when switching themes", async ({ page }) => {
+  const search = page.getByRole("searchbox", { name: "Search orders" });
+  const searchGroup = search.locator("..");
+
+  await expect(searchGroup).toHaveCSS("background-color", "rgb(15, 16, 17)");
+  await page.getByRole("button", { name: "Switch to light mode" }).click();
+  await expect(searchGroup).toHaveCSS("background-color", "rgb(255, 255, 255)");
+
+  await page.getByRole("button", { name: "New order" }).click();
+  const name = page.getByRole("dialog", { name: "Create order" }).getByLabel("Customer name");
+  await expect(name).toHaveCSS("background-color", "rgb(255, 255, 255)");
 });

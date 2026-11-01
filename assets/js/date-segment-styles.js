@@ -1,0 +1,3 @@
+/** Shared classes for the editable date and time segments. */
+export const dateSegmentClasses =
+  "date-input-group__segment inline-block rounded-md px-0.5 text-end text-nowrap outline-none data-[type=literal]:p-0 data-[type=literal]:text-muted data-[placeholder=true]:text-field-placeholder focus:bg-accent-soft focus:text-accent-soft-foreground data-[focused=true]:bg-accent-soft data-[focused=true]:text-accent-soft-foreground data-[disabled=true]:opacity-50 data-[invalid=true]:text-danger [&[data-invalid=true]:focus]:bg-danger-soft [&[data-invalid=true]:focus]:text-danger-soft-foreground [&[data-invalid=true][data-focused=true]]:bg-danger-soft [&[data-invalid=true][data-focused=true]]:text-danger-soft-foreground";

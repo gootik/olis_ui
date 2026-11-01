@@ -1,7 +1,6 @@
 /* Adapted for OlisUI; see THIRD_PARTY_NOTICES.md. */
 /* Base scroll-shadow component */
 .scroll-shadow {
-  @apply relative;
   --scroll-shadow-size: 40px;
   --scroll-shadow-scrollbar-size: 10px;
   --scroll-shadow-offset: 0px;
@@ -37,16 +36,6 @@
   to {
     --scroll-shadow-end-fade: 0px;
   }
-}
-
-/* Orientation: Vertical */
-.scroll-shadow--vertical {
-  @apply scrollbar overflow-y-auto;
-}
-
-/* Orientation: Horizontal */
-.scroll-shadow--horizontal {
-  @apply scrollbar overflow-x-auto;
 }
 
 /* Variant: Fade - Vertical */
@@ -149,7 +138,6 @@
 }
 
 .scroll-shadow--hide-scrollbar {
-  @apply scrollbar-none;
   --scroll-shadow-scrollbar-size: 0px;
 }
 

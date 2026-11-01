@@ -1,8 +1,0 @@
-/* Adapted for OlisUI; see THIRD_PARTY_NOTICES.md. */
-/* ==========================================================================
-   Base list-box section styles
-   ========================================================================== */
-
-.list-box-section {
-  @apply flex flex-col items-start gap-0;
-}

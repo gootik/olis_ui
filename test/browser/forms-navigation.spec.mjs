@@ -9,8 +9,8 @@ test("serves compiled Tailwind and component styles", async ({ request }) => {
   const response = await request.get("/olis_ui.css");
   expect(response.ok()).toBeTruthy();
   const css = await response.text();
-  expect(css).toContain(".olis-button");
-  expect(css).toContain(".search-field");
+  expect(css).toContain(".bg-accent");
+  expect(css).toContain(".bg-overlay");
   expect(css).not.toMatch(/@import\s+(?:url\()?\s*["'](?:@heroui|\.\/olis_ui)/);
 });
 
@@ -168,6 +168,20 @@ test("dropdown selection and nested menu keyboard focus", async ({ page }) => {
   await page.keyboard.press("Escape");
   await expect(menu).toBeHidden();
   await expect(trigger).toBeFocused();
+});
+
+test("tab indicators follow selection in both variants", async ({ page }) => {
+  for (const id of ["preview-tabs", "controlled-tabs", "vertical-tabs"]) {
+    const tabs = page.locator(`#${id}`);
+    const selected = tabs.getByRole("tab").first();
+    const unselected = tabs.getByRole("tab").nth(1);
+
+    await expect(selected.locator('[data-slot="tabs-indicator"]')).toBeVisible();
+    await expect(unselected.locator('[data-slot="tabs-indicator"]')).toBeHidden();
+    await unselected.click();
+    await expect(unselected.locator('[data-slot="tabs-indicator"]')).toBeVisible();
+    await expect(selected.locator('[data-slot="tabs-indicator"]')).toBeHidden();
+  }
 });
 
 test("manual tabs move focus without selection until activated", async ({ page }) => {

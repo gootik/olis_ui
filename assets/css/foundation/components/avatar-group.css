@@ -3,25 +3,9 @@
    AvatarGroup - Stacked or grid layout for multiple avatars
    ========================================================================== */
 
-.avatar-group {
-  --avatar-group-overlap: 0.5rem;
-  --avatar-group-seam: 2px;
-
-  @apply inline-flex items-center;
-}
-
-/* Grid */
-.avatar-group--grid {
-  @apply flex-wrap gap-3;
-}
-
 .avatar-group:not(.avatar-group--grid) > .avatar + .avatar,
 .avatar-group:not(.avatar-group--grid) > .avatar + .avatar-group__count {
   margin-inline-start: calc(-1 * var(--avatar-group-overlap, 0.5rem));
-}
-
-.avatar-group__count {
-  @apply shrink-0;
 }
 
 /* --------------------------------------------------------------------------

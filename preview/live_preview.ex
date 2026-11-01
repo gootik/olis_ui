@@ -1648,7 +1648,10 @@ defmodule OlisUI.Preview.Live do
                   <.checkbox id="live-terms" name="terms" checked={@terms}>Accept terms</.checkbox>
                   <input type="hidden" name="alerts" value="false" />
                   <.switch id="live-alerts" name="alerts" checked={@alerts}>Enable alerts</.switch>
-                  <label for="live-plan" class="label">Plan</label>
+                  <label
+                    for="live-plan"
+                    class="label text-sm font-medium text-foreground [&.label--required]:after:ms-0.5 [&.label--required]:after:text-danger [&.label--required]:after:content-['*'] [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:ms-0.5 [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:text-danger [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:content-['*'] [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:ms-0.5 [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:text-danger [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:content-['*'] [&.label--disabled]:status-disabled [[data-disabled=true]_&]:status-disabled [&.label--invalid]:text-danger [[data-invalid=true]_&]:text-danger [[aria-invalid=true]_&]:text-danger"
+                  >Plan</label>
                   <.select
                     id="live-plan"
                     name="plan"
@@ -1890,7 +1893,10 @@ defmodule OlisUI.Preview.Live do
               </.preview_card>
               <.preview_card title="Select" description="Grouped, multiple, and required choices.">
                 <div>
-                  <label for="grouped-plan" class="label">Grouped plans</label>
+                  <label
+                    for="grouped-plan"
+                    class="label text-sm font-medium text-foreground [&.label--required]:after:ms-0.5 [&.label--required]:after:text-danger [&.label--required]:after:content-['*'] [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:ms-0.5 [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:text-danger [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:content-['*'] [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:ms-0.5 [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:text-danger [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:content-['*'] [&.label--disabled]:status-disabled [[data-disabled=true]_&]:status-disabled [&.label--invalid]:text-danger [[data-invalid=true]_&]:text-danger [[aria-invalid=true]_&]:text-danger"
+                  >Grouped plans</label>
                   <.select
                     id="grouped-plan"
                     options={[
@@ -1899,7 +1905,10 @@ defmodule OlisUI.Preview.Live do
                     ]}
                     value="starter"
                   />
-                  <label for="native-multiple" class="label">Multiple choices</label>
+                  <label
+                    for="native-multiple"
+                    class="label text-sm font-medium text-foreground [&.label--required]:after:ms-0.5 [&.label--required]:after:text-danger [&.label--required]:after:content-['*'] [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:ms-0.5 [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:text-danger [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:content-['*'] [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:ms-0.5 [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:text-danger [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:content-['*'] [&.label--disabled]:status-disabled [[data-disabled=true]_&]:status-disabled [&.label--invalid]:text-danger [[data-invalid=true]_&]:text-danger [[aria-invalid=true]_&]:text-danger"
+                  >Multiple choices</label>
                   <.select
                     id="native-multiple"
                     name="multiple[]"
@@ -1911,7 +1920,10 @@ defmodule OlisUI.Preview.Live do
                   phx-submit="required_submit"
                   class="lp-settings flex flex-col gap-[14px]"
                 >
-                  <label for="required-choice" class="label">Required choice</label>
+                  <label
+                    for="required-choice"
+                    class="label text-sm font-medium text-foreground [&.label--required]:after:ms-0.5 [&.label--required]:after:text-danger [&.label--required]:after:content-['*'] [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:ms-0.5 [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:text-danger [[data-required=true]:not([role=group]):not([role=radiogroup]):not([role=checkboxgroup])>&]:after:content-['*'] [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:ms-0.5 [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:text-danger [[data-required=true]:not([data-slot=radio]):not([data-slot=checkbox])>&]:after:content-['*'] [&.label--disabled]:status-disabled [[data-disabled=true]_&]:status-disabled [&.label--invalid]:text-danger [[data-invalid=true]_&]:text-danger [[aria-invalid=true]_&]:text-danger"
+                  >Required choice</label>
                   <.select
                     id="required-choice"
                     name="choice"

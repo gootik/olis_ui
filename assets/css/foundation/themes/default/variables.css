@@ -35,7 +35,7 @@
     --field-radius: 0.375rem;
 
     /* Accent and status hues (shared with the dark theme) */
-    --accent: #d43a2c;
+    --accent: #5e6ad2;
     --accent-foreground: #fff;
 
     --success: #27a644;
@@ -58,24 +58,24 @@
     /* == Light Theme Variables == */
 
     /* Base Colors */
-    --background: oklch(0.9702 0 0);
-    --foreground: var(--eclipse);
+    --background: #f7f7f9;
+    --foreground: #242529;
 
     /* Surface: Used for non-overlay components (cards, accordions, disclosure groups) */
     --surface: var(--white);
     --surface-foreground: var(--foreground);
 
-    --surface-secondary: oklch(0.9524 0.0013 286.37);
+    --surface-secondary: #f1f1f3;
     --surface-secondary-foreground: var(--foreground);
 
-    --surface-tertiary: oklch(0.9373 0.0013 286.37);
+    --surface-tertiary: #e9e9ec;
     --surface-tertiary-foreground: var(--foreground);
 
     /* Overlay: Used for floating/overlay components (tooltips, popovers, modals, menus) */
     --overlay: var(--white);
     --overlay-foreground: var(--foreground);
 
-    --muted: oklch(0.5517 0.0138 285.94);
+    --muted: #717278;
 
     --scrollbar: var(--scrollbar-thumb);
     --scrollbar-thumb: color-mix(in oklch, var(--foreground) 15%, transparent);
@@ -105,8 +105,8 @@
     --segment-foreground: var(--eclipse);
 
     /* Misc Colors */
-    --border: oklch(90% 0.004 286.32);
-    --separator: oklch(92% 0.004 286.32);
+    --border: #e2e2e5;
+    --separator: #e9e9eb;
     --focus: var(--accent);
     --link: var(--foreground);
 
@@ -176,8 +176,7 @@
       0 0 1px 0 rgba(0, 0, 0, 0.06);
     /* Overlay shadow */
     --overlay-shadow:
-      0 2px 8px 0 rgba(0, 0, 0, 0.06), 0 -6px 12px 0 rgba(0, 0, 0, 0.03),
-      0 14px 28px 0 rgba(0, 0, 0, 0.08);
+      0 0 0 1px rgb(0 0 0 / 0.06), 0 2px 4px rgb(0 0 0 / 0.04), 0 12px 32px rgb(0 0 0 / 0.1);
     --field-shadow:
       0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06),
       0 0 1px 0 rgba(0, 0, 0, 0.06);

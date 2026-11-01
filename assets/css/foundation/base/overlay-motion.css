@@ -17,7 +17,7 @@
  * compositor, so each scale / direction combination is spelled out instead.
  *
  * Enter keyframes are named `olis-overlay-enter-<scale>[-<offset>]`:
- *   scale   90 / 95 / 100 / 105 -> scale(0.9) / 0.95 / 1 / 1.05
+ *   scale   90 / 95 / 98 / 100 / 105 -> scale(0.9) / 0.95 / 0.98 / 1 / 1.05
  *   offset  y / ny / x / nx -> translate 0.25rem / -0.25rem on the Y / X axis
  */
 
@@ -42,7 +42,7 @@
   }
   to {
     opacity: 0;
-    transform: translate3d(0, 0, 0) scale(0.95);
+    transform: translate3d(0, 0, 0) scale(0.98);
   }
 }
 
@@ -155,5 +155,48 @@
   from {
     opacity: 0;
     transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Compact menus settle into place without a noticeable zoom. */
+@keyframes olis-overlay-enter-98 {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.98);
+  }
+}
+
+@keyframes olis-overlay-enter-98-y {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.125rem, 0) scale(0.98);
+  }
+}
+
+@keyframes olis-overlay-enter-98-ny {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -0.125rem, 0) scale(0.98);
+  }
+}
+
+@keyframes olis-overlay-enter-98-x {
+  from {
+    opacity: 0;
+    transform: translate3d(0.125rem, 0, 0) scale(0.98);
+  }
+}
+
+@keyframes olis-overlay-enter-98-nx {
+  from {
+    opacity: 0;
+    transform: translate3d(-0.125rem, 0, 0) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.select__popover, .dropdown__popover, .popover)[data-entering="true"],
+  :is(.select__popover, .dropdown__popover, .popover)[data-exiting="true"] {
+    animation-duration: 0.01ms !important;
   }
 }

@@ -1,0 +1,18 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e18]:
+    - heading "Log in to Linear" [level=1] [ref=e19]
+    - generic [ref=e20]:
+      - button "Continue with Google" [ref=e21]
+      - button "Continue with email" [ref=e22]
+      - button "Continue with SAML SSO" [ref=e23]
+      - button "Log in with passkey" [ref=e24]
+    - paragraph [ref=e26]:
+      - text: Don’t have an account?
+      - link "Sign up" [ref=e27]:
+        - /url: /signup
+      - text: or
+      - link "learn more" [ref=e28]:
+        - /url: /homepage
+  - generic:
+    - generic:
+      - region "Notifications alt+T"

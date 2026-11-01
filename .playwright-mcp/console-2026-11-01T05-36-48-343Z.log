@@ -1,0 +1,25 @@
+[     746ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:44450/linear/check-url:0
+[     746ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:18450/linear/check-url:0
+[     746ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:33234/linear/check-url:0
+[     882ms] [ERROR] Failed to launch 'linear://olis-app/members' because the scheme does not have a registered handler. @ https://linear.app/olis-app/members?noRedirect=1:0
+[    3856ms] [LOG] %c __                                               _____          __          __           ______          v1.85462.0
+/\ \       __                                    /\  __`\       /\ \      __/\ \__       /\__  _\                       
+\ \ \     /\_\    ___      __     __     _ __    \ \ \/\ \  _ __\ \ \____/\_\ \ ,_\      \/_/\ \/     ___     ___       
+ \ \ \  __\/\ \ /' _ `\  /'__`\ /'__`\  /\`'__\   \ \ \ \ \/\`'__\ \ '__`\/\ \ \ \/         \ \ \   /' _ `\  /'___\     
+  \ \ \L\ \\ \ \/\ \/\ \/\  __//\ \L\.\_\ \ \/     \ \ \_\ \ \ \/ \ \ \L\ \ \ \ \ \_  __     \_\ \__/\ \/\ \/\ \__/  __ 
+   \ \____/ \ \_\ \_\ \_\ \____\ \__/.\_\\ \_\      \ \_____\ \_\  \ \_,__/\ \_\ \__\/\ \    /\_____\ \_\ \_\ \____\/\_\
+    \/___/   \/_/\/_/\/_/\/____/\/__/\/_/ \/_/       \/_____/\/_/   \/___/  \/_/\/__/\ \/    \/_____/\/_/\/_/\/____/\/_/
+                                                                                      \/
+
+The product development system for teams and agents
+
+WE'RE HIRING: https://linear.app/careers
+CHANGELOG:    https://linear.app/changelog
+ 
+  font-family: monospace;
+  color: #282A30;
+   @ https://static.linear.app/client/assets/startup-entry-vendor.TLx-NI8P.js:79
+[    6968ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S-233840277%3A1793511414870028&access_type=offline&client_id=463717515632-5f96ed9uaue5p206umg9toffdbfmsfbm.apps.googleusercontent.com&o2v=2&prompt=consent&redirect_uri=https%3A%2F%2Flinear.app%2Fauth%2Fgoogle%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&service=lso&state=%7B%22key%22%3A%22dgKb9xR4BFUzWcCFnlgd9MKqXl8EcP3A%22%2C%22isMobileAppLogin%22%3Afalse%2C%22diagnostics%22%3A%7B%22attemptId%22%3A%22uPPrGI4GsWsmunh2P2BOZZOMzvBgIGJS%22%2C%22startedAt%22%3A1793511414802%2C%22startOrigin%22%3A%22https%3A%2F%2Flinear.app%22%2C%22flow%22%3A%22web%22%2C%22localWrite%22%3Atrue%2C%22sessionWrite%22%3A%22not_attempted%22%7D%7D&flowName=GeneralOAuthFlow&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fv3%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAN553etcOgJVr-RyBG7zpG1S8sQzb_bb3CB-BCwGRtx3YmdsOh2T_lYpoNbgKCXiW_H4f_oVqK9tDzcSGy5y_MSyWNG_nhpp4M6O7LT_-SOP3gbac3muJb-eeZmej7aHbzEnCFixh6sXgTaprwW0s0yK3daa88rpEZXKavFEeC80ll9PDKR6N7zZ_KtfOf-Zv5RmtaxhwgC1z5nZzjJvDULuhIathhMdBatj4H7BKw12TRityAbkK6nVTAbQIM6ZHkbA0VkVqstsbdgsfFBim4Gp4QLTcnfZx8Gcqw3DFh8Sy-VrhEcnsRIWiTRKAdLld4E-r9IV0MoAIFMwOe9a3qleYchDf47f2KcDEzUa3h_QOgYqSEQVYZcnTejLjzMSubHJh7bIQPQesTqwqm7bStnzQ6yMUjNJTKW9vtvYfwxi-OtPzqm8jwZYItOtQonHHZSFrNhzX8siiIzSrXEZpttGEnOkw%26flowName%3DGeneralOAuthFlow%26as%3DS-233840277%253A1793511414870028%26client_id%3D463717515632-5f96ed9uaue5p206umg9toffdbfmsfbm.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fv3%252Fconsent%23&app_domain=https%3A%2F%2Flinear.app&rart=ANgoxce4JkzWN2Fb_X5rgaGEVQUndYkHHmfJh-5gpGhAkNCxLBqXT8x_EhDHv2L2zvGKQ_p04G_oG6xQIoTlb27DPA1Nlado8CJh12Nely96ySNzhq0Btlk:0
+[    6977ms] [LOG] %c%s color: red; background: yellow; font-size: 24px; WARNING! @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.en_US.TfA1MuO5R4E.es5.O/am=nw9CAAAAABzhJQAASADQvwEABAjWAe-1AEyAkAEAAAAAAAAAAC4CANAigA/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlFXMfXLxYqGEJ8v_FLJoHrbwl-jTA/dti=1/m=_b,_tp:593
+[    6977ms] [LOG] %c%s font-size: 18px; Using this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.
+Do not enter or paste code that you do not understand. @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.en_US.TfA1MuO5R4E.es5.O/am=nw9CAAAAABzhJQAASADQvwEABAjWAe-1AEyAkAEAAAAAAAAAAC4CANAigA/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlFXMfXLxYqGEJ8v_FLJoHrbwl-jTA/dti=1/m=_b,_tp:593
